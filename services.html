@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Webサイト制作サービス｜10万円から簡易的なWebサイト制作に対応。ペライチ・LP制作も承ります。">
+    <title>追加サービス - Webサイト制作</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            color: #333333;
+            background-color: #FFFFFF;
+            letter-spacing: 0.08em;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 6%;
+        }
+
+        /* ヘッダー */
+        header {
+            background: #FFFFFF;
+            border-bottom: 1px solid #E0E0E0;
+            padding: 24px 0;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333333;
+            text-decoration: none;
+            letter-spacing: 0.08em;
+        }
+
+        nav a {
+            color: #666666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #333333;
+            text-decoration: underline;
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            background: #FFFFFF;
+            padding: 120px 6% 120px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 32px;
+            line-height: 1.8;
+            color: #333333;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-description {
+            font-size: 14px;
+            color: #666666;
+            line-height: 2.0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* セクション共通 */
+        section {
+            padding: 80px 6%;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 64px;
+            color: #333333;
+            letter-spacing: 0.08em;
+        }
+
+        /* サービス一覧 */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 64px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            border-top: 1px solid #E0E0E0;
+            padding-top: 48px;
+        }
+
+        .service-header {
+            margin-bottom: 24px;
+        }
+
+        .service-name {
+            font-size: 20px;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+        }
+
+        .service-price {
+            font-size: 28px;
+            font-weight: 500;
+            color: #8B7355;
+            margin-bottom: 8px;
+        }
+
+        .service-price-note {
+            font-size: 12px;
+            color: #666666;
+        }
+
+        .service-description {
+            font-size: 14px;
+            color: #666666;
+            line-height: 2.0;
+            margin-bottom: 32px;
+        }
+
+        .service-details {
+            background: #FAFAFA;
+            padding: 32px;
+            margin-top: 32px;
+        }
+
+        .service-details h4 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+        }
+
+        .service-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .service-details li {
+            font-size: 14px;
+            color: #666666;
+            line-height: 2.0;
+            padding-left: 1em;
+            position: relative;
+        }
+
+        .service-details li:before {
+            content: "・";
+            position: absolute;
+            left: 0;
+        }
+
+        /* LP説明セクション */
+        .lp-explanation {
+            background: #FAFAFA;
+            padding: 80px 6%;
+        }
+
+        .lp-explanation-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .lp-explanation h3 {
+            font-size: 20px;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 32px;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+
+        .lp-explanation p {
+            font-size: 14px;
+            color: #666666;
+            line-height: 2.0;
+            margin-bottom: 24px;
+        }
+
+        .lp-features {
+            margin-top: 48px;
+        }
+
+        .lp-features h4 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 24px;
+            letter-spacing: 0.05em;
+        }
+
+        .lp-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .lp-features li {
+            font-size: 14px;
+            color: #666666;
+            line-height: 2.0;
+            padding-left: 1em;
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .lp-features li:before {
+            content: "・";
+            position: absolute;
+            left: 0;
+        }
+
+        /* 注意事項 */
+        .notice {
+            padding: 80px 6%;
+        }
+
+        .notice-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .notice h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 32px;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+
+        .notice ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .notice li {
+            font-size: 14px;
+            color: #666666;
+            line-height: 2.0;
+            padding-left: 1em;
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .notice li:before {
+            content: "・";
+            position: absolute;
+            left: 0;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 120px 6%;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 64px;
+            border: 1px solid #333333;
+            background: transparent;
+            color: #333333;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.08em;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #F5F5F5;
+        }
+
+        /* フッター */
+        footer {
+            background: #FAFAFA;
+            border-top: 1px solid #E0E0E0;
+            padding: 48px 6%;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 12px;
+            color: #666666;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 5% 80px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+                margin-bottom: 24px;
+            }
+
+            section {
+                padding: 64px 5%;
+            }
+
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 48px;
+            }
+
+            .services-grid {
+                gap: 48px;
+            }
+
+            .service-item {
+                padding-top: 32px;
+            }
+
+            .service-name {
+                font-size: 18px;
+            }
+
+            .service-price {
+                font-size: 24px;
+            }
+
+            .service-details {
+                padding: 24px;
+            }
+
+            .lp-explanation,
+            .notice {
+                padding: 64px 5%;
+            }
+
+            .cta {
+                padding: 80px 5%;
+            }
+
+            .cta-button {
+                padding: 16px 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">STUDIO</a>
+            <nav>
+                <a href="index.html">ホーム</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>追加サービス</h1>
+        <p class="hero-description">
+            ショート動画制作に加え、Webサイト制作サービスも提供しております。<br>
+            シンプルで効果的なWebサイトを、適正な価格で制作いたします。
+        </p>
+    </section>
+
+    <section>
+        <h2 class="section-title">サービス一覧</h2>
+        <div class="services-grid">
+
+            <!-- 簡易Webサイト制作 -->
+            <article class="service-item">
+                <div class="service-header">
+                    <h3 class="service-name">簡易Webサイト制作</h3>
+                    <p class="service-price">100,000円〜</p>
+                    <p class="service-price-note">※税別</p>
+                </div>
+                <p class="service-description">
+                    情報発信を目的としたシンプルなWebサイトを制作いたします。<br>
+                    企業情報やサービス紹介など、基本的な情報を効果的に伝えるサイトに最適です。
+                </p>
+                <div class="service-details">
+                    <h4>制作可能な内容</h4>
+                    <ul>
+                        <li>トップページ + 3〜5ページ程度の構成</li>
+                        <li>レスポンシブデザイン対応</li>
+                        <li>企業情報・サービス紹介ページ</li>
+                        <li>アクセス情報・会社概要ページ</li>
+                    </ul>
+                </div>
+                <div class="service-details" style="margin-top: 24px;">
+                    <h4>対応が難しい内容</h4>
+                    <ul>
+                        <li>ブログ機能</li>
+                        <li>問い合わせフォーム（外部サービス連携は可能）</li>
+                        <li>会員登録・ログイン機能</li>
+                        <li>データベース連携が必要な機能</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- ペライチ制作 -->
+            <article class="service-item">
+                <div class="service-header">
+                    <h3 class="service-name">ペライチ制作</h3>
+                    <p class="service-price">50,000円〜</p>
+                    <p class="service-price-note">※税別</p>
+                </div>
+                <p class="service-description">
+                    1ページ完結型のシンプルなWebサイトを制作いたします。<br>
+                    必要な情報を1ページにまとめ、伝えたいメッセージを明確に届けます。
+                </p>
+                <div class="service-details">
+                    <h4>このような方におすすめ</h4>
+                    <ul>
+                        <li>個人事業主・フリーランスの方</li>
+                        <li>イベント告知サイトが必要な方</li>
+                        <li>シンプルな名刺代わりのサイトが欲しい方</li>
+                        <li>スタートアップで素早くWebサイトを立ち上げたい方</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- LP制作 -->
+            <article class="service-item">
+                <div class="service-header">
+                    <h3 class="service-name">LP制作</h3>
+                    <p class="service-price">50,000円〜</p>
+                    <p class="service-price-note">※税別</p>
+                </div>
+                <p class="service-description">
+                    商品やサービスの魅力を効果的に伝える、ランディングページを制作いたします。<br>
+                    コンバージョンを意識した構成で、訪問者を行動へと導きます。
+                </p>
+                <div class="service-details">
+                    <h4>制作内容</h4>
+                    <ul>
+                        <li>ターゲットに響く訴求ポイントの設計</li>
+                        <li>ストーリー性のある情報設計</li>
+                        <li>レスポンシブデザイン対応</li>
+                        <li>CTAボタンの最適配置</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- LP説明セクション -->
+    <section class="lp-explanation">
+        <div class="lp-explanation-content">
+            <h3>LPとは</h3>
+            <p>
+                LP（ランディングページ）とは、訪問者に特定の行動を促すことを目的とした、1ページ完結型のWebページです。商品購入、資料請求、問い合わせなど、明確な目的を持って設計されます。
+            </p>
+            <p>
+                通常のWebサイトとは異なり、訪問者の注意を逸らさず、一つの目標に向けて情報を提供していく構成が特徴です。
+            </p>
+
+            <div class="lp-features">
+                <h4>LPの主な特徴</h4>
+                <ul>
+                    <li>縦長の1ページ構成で、ストーリー性のある情報展開</li>
+                    <li>他のページへのリンクを最小限にし、離脱を防ぐ設計</li>
+                    <li>明確なCTA（行動喚起）ボタンの配置</li>
+                    <li>ターゲットを絞った訴求内容</li>
+                    <li>視覚的に魅力的なデザインで興味を引く</li>
+                </ul>
+            </div>
+
+            <div class="lp-features" style="margin-top: 48px;">
+                <h4>LPが効果的な場面</h4>
+                <ul>
+                    <li>新商品・新サービスのプロモーション</li>
+                    <li>キャンペーンやイベントの告知</li>
+                    <li>資料請求・問い合わせの獲得</li>
+                    <li>メールマーケティングの受け皿</li>
+                    <li>SNS広告からの誘導先</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 注意事項 -->
+    <section class="notice">
+        <div class="notice-content">
+            <h3>ご注意事項</h3>
+            <ul>
+                <li>料金は全て税別表記となります</li>
+                <li>制作期間は内容により2週間〜1ヶ月程度を想定しております</li>
+                <li>原稿・画像素材はお客様にてご用意いただきます</li>
+                <li>ドメイン・サーバー費用は別途必要となります</li>
+                <li>機能追加や大幅な修正は別途お見積もりとなります</li>
+                <li>詳細な要件により料金が変動する場合がございます</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="cta">
+        <a href="index.html#contact" class="cta-button">お問い合わせ</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 STUDIO. All rights reserved.</p>
+    </footer>
+</body>
+</html>
