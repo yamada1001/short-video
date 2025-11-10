@@ -30,43 +30,84 @@
             padding: 0 6%;
         }
 
-        /* ヘッダー */
-        header {
+        /* グローバルナビゲーション */
+        .global-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             background: #FFFFFF;
             border-bottom: 1px solid #E0E0E0;
-            padding: 24px 0;
+            z-index: 1000;
         }
 
-        header .container {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            font-size: 18px;
+        .nav-logo {
+            font-size: 16px;
             font-weight: 500;
             color: #333333;
-            text-decoration: none;
             letter-spacing: 0.08em;
+            text-decoration: none;
         }
 
-        nav a {
-            color: #666666;
+        .nav-menu {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #333333;
             text-decoration: none;
             font-size: 14px;
-            transition: color 0.3s ease;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease-in-out;
         }
 
-        nav a:hover {
-            color: #333333;
-            text-decoration: underline;
+        .nav-menu a:hover {
+            color: #8B7355;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: #333333;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
         }
 
         /* ヒーローセクション */
         .hero {
             background: #FFFFFF;
-            padding: 120px 6% 120px;
+            padding: 200px 6% 120px;
             text-align: center;
         }
 
@@ -277,45 +318,115 @@
             left: 0;
         }
 
-        /* CTA */
-        .cta {
-            padding: 120px 6%;
+        /* お問い合わせ */
+        .contact-section {
+            background: #FAFAFA;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
             text-align: center;
         }
 
-        .cta-button {
+        .contact-intro {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 64px;
+            line-height: 2.0;
+        }
+
+        .contact-method {
+            padding: 48px 0;
+            border-top: 1px solid #E0E0E0;
+        }
+
+        .contact-method h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: #333333;
+            letter-spacing: 0.08em;
+        }
+
+        .contact-button {
             display: inline-block;
-            padding: 16px 64px;
+            padding: 16px 48px;
             border: 1px solid #333333;
             background: transparent;
             color: #333333;
             text-decoration: none;
             font-size: 14px;
+            font-weight: 400;
             letter-spacing: 0.08em;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 16px;
         }
 
-        .cta-button:hover {
-            background-color: #F5F5F5;
+        .contact-button:hover {
+            background: #F5F5F5;
+        }
+
+        .email-display {
+            font-size: 14px;
+            color: #666666;
+            margin-top: 16px;
+            letter-spacing: 0.05em;
         }
 
         /* フッター */
         footer {
-            background: #FAFAFA;
-            border-top: 1px solid #E0E0E0;
-            padding: 48px 6%;
+            padding: 64px 6%;
             text-align: center;
+            border-top: 1px solid #E0E0E0;
         }
 
         footer p {
             font-size: 12px;
-            color: #666666;
+            color: #999999;
+            letter-spacing: 0.08em;
         }
 
         /* レスポンシブ */
         @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 73px;
+                left: 0;
+                right: 0;
+                background: #FFFFFF;
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+                border-bottom: 1px solid #E0E0E0;
+            }
+
+            .nav-menu.active {
+                max-height: 400px;
+            }
+
+            .nav-menu li {
+                border-bottom: 1px solid #E0E0E0;
+            }
+
+            .nav-menu li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 24px 6%;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
             .hero {
-                padding: 80px 5% 80px;
+                padding: 160px 6% 80px;
             }
 
             .hero h1 {
@@ -357,25 +468,26 @@
                 padding: 64px 5%;
             }
 
-            .cta {
-                padding: 80px 5%;
-            }
-
-            .cta-button {
-                padding: 16px 48px;
-            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="index.html" class="logo">STUDIO</a>
-            <nav>
-                <a href="index.html">ホーム</a>
-            </nav>
+    <!-- グローバルナビゲーション -->
+    <nav class="global-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">ショート動画制作</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="services.html">追加サービス</a></li>
+                <li><a href="index.html#contact">お問い合わせ</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-    </header>
+    </nav>
 
     <section class="hero">
         <h1>追加サービス</h1>
@@ -407,6 +519,7 @@
                         <li>レスポンシブデザイン対応</li>
                         <li>企業情報・サービス紹介ページ</li>
                         <li>アクセス情報・会社概要ページ</li>
+                        <li>制作期間：1ヶ月以内</li>
                     </ul>
                 </div>
                 <div class="service-details" style="margin-top: 24px;">
@@ -460,6 +573,7 @@
                         <li>ストーリー性のある情報設計</li>
                         <li>レスポンシブデザイン対応</li>
                         <li>CTAボタンの最適配置</li>
+                        <li>制作期間：1週間以内</li>
                     </ul>
                 </div>
             </article>
@@ -501,13 +615,50 @@
         </div>
     </section>
 
+    <!-- 制作実績 -->
+    <section>
+        <h2 class="section-title">制作実績</h2>
+        <div class="services-grid">
+            <article class="service-item">
+                <div class="service-header">
+                    <h3 class="service-name">「このままでいいのかな」から抜け出した人たちが選んだ、次の一歩。</h3>
+                </div>
+                <p class="service-description">
+                    大分IT移住プロジェクトのランディングページ。<br>
+                    移住を検討する方々に向けた訴求力のあるデザインと情報設計を実現しました。
+                </p>
+                <div class="service-details">
+                    <h4>詳細</h4>
+                    <ul>
+                        <li><a href="https://migration.oita-creative.jp/lp2/" target="_blank" rel="noopener noreferrer" style="color: #8B7355; text-decoration: underline;">制作実績を見る</a></li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="service-item">
+                <div class="service-header">
+                    <h3 class="service-name">大分IT移住プロジェクト | 同じ働き方で、もっと豊かに</h3>
+                </div>
+                <p class="service-description">
+                    IT人材の移住促進を目的としたランディングページ。<br>
+                    ターゲットに響くメッセージと、行動を促すCTA設計を実施しました。
+                </p>
+                <div class="service-details">
+                    <h4>詳細</h4>
+                    <ul>
+                        <li><a href="https://migration.oita-creative.jp/2025/lp/" target="_blank" rel="noopener noreferrer" style="color: #8B7355; text-decoration: underline;">制作実績を見る</a></li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </section>
+
     <!-- 注意事項 -->
     <section class="notice">
         <div class="notice-content">
             <h3>ご注意事項</h3>
             <ul>
                 <li>料金は全て税別表記となります</li>
-                <li>制作期間は内容により2週間〜1ヶ月程度を想定しております</li>
                 <li>原稿・画像素材はお客様にてご用意いただきます</li>
                 <li>ドメイン・サーバー費用は別途必要となります</li>
                 <li>機能追加や大幅な修正は別途お見積もりとなります</li>
@@ -516,12 +667,57 @@
         </div>
     </section>
 
-    <section class="cta">
-        <a href="index.html#contact" class="cta-button">お問い合わせ</a>
+    <!-- お問い合わせ -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <h2 class="section-title">お問い合わせ</h2>
+                <p class="contact-intro">
+                    ご質問やご依頼は、<br>
+                    LINE、電話、メールでお気軽にご連絡ください。
+                </p>
+                <div class="contact-method">
+                    <h3>LINE</h3>
+                    <a href="https://line.me/ti/p/CTOCx9YKjk" class="contact-button" target="_blank">LINEで相談する</a>
+                </div>
+                <div class="contact-method">
+                    <h3>電話</h3>
+                    <p class="email-display">080-4692-9681</p>
+                    <a href="tel:08046929681" class="contact-button">電話をかける</a>
+                </div>
+                <div class="contact-method">
+                    <h3>メール</h3>
+                    <p class="email-display">yamada1881r@gmail.com</p>
+                    <a href="mailto:yamada1881r@gmail.com" class="contact-button">メールを送る</a>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- フッター -->
     <footer>
-        <p>&copy; 2024 STUDIO. All rights reserved.</p>
+        <div class="container">
+            <p>© 2025 余日</p>
+        </div>
     </footer>
+
+    <script>
+        // ハンバーガーメニュー
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // メニュークリック時に閉じる
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
