@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ショート動画制作サービス｜2万円から撮影・編集まで対応。">
+    <title>ショート動画制作</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 2.0;
+            color: #333333;
+            background-color: #FFFFFF;
+            letter-spacing: 0.08em;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 6%;
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            background: #FFFFFF;
+            padding: 120px 6% 160px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 64px;
+            line-height: 1.8;
+            color: #333333;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-description {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 80px;
+            line-height: 2.0;
+        }
+
+        /* 完成イメージ */
+        .sample-link {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .sample-text {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 32px;
+            line-height: 2.0;
+        }
+
+        .sample-button {
+            display: inline-block;
+            padding: 16px 48px;
+            border: 1px solid #333333;
+            background: transparent;
+            color: #333333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .sample-button:hover {
+            background: #F5F5F5;
+        }
+
+        /* グローバルナビゲーション */
+        .global-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E0E0E0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333333;
+            letter-spacing: 0.08em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #333333;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-menu a:hover {
+            color: #8B7355;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: #333333;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* セクション共通 */
+        .section {
+            padding: 120px 6%;
+            border-top: 1px solid #E0E0E0;
+        }
+
+        /* ヒーローセクション余白調整 */
+        .hero {
+            padding-top: 200px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 80px;
+            color: #333333;
+            letter-spacing: 0.1em;
+        }
+
+        /* サービス内容 */
+        .service-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            padding: 48px 0;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .service-item:first-child {
+            padding-top: 0;
+        }
+
+        .service-item h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: #333333;
+            letter-spacing: 0.08em;
+        }
+
+        .service-item p {
+            font-size: 14px;
+            color: #666666;
+            line-height: 2.0;
+        }
+
+        /* 料金プラン */
+        .pricing-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pricing-block {
+            padding: 64px 0;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .pricing-block:last-child {
+            border-bottom: none;
+        }
+
+        .plan-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .plan-name {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 32px;
+            color: #333333;
+            letter-spacing: 0.08em;
+        }
+
+        .plan-price {
+            font-size: 40px;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+        }
+
+        .plan-note {
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .plan-details {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .plan-details ul {
+            list-style: none;
+        }
+
+        .plan-details li {
+            padding: 16px 0;
+            border-bottom: 1px solid #E0E0E0;
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .plan-details li:last-child {
+            border-bottom: none;
+        }
+
+        .disclaimer {
+            text-align: center;
+            margin-top: 64px;
+            font-size: 14px;
+            color: #666666;
+            line-height: 2.0;
+        }
+
+        /* 制作フロー */
+        .flow-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .flow-item {
+            padding: 48px 0;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            gap: 32px;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-number {
+            font-size: 14px;
+            color: #8B7355;
+            min-width: 32px;
+        }
+
+        .flow-content h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: #333333;
+            letter-spacing: 0.08em;
+        }
+
+        .flow-content p {
+            font-size: 14px;
+            color: #666666;
+            line-height: 2.0;
+        }
+
+        /* お問い合わせ */
+        .contact-section {
+            background: #FAFAFA;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-intro {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 64px;
+            line-height: 2.0;
+        }
+
+        .contact-method {
+            padding: 48px 0;
+            border-top: 1px solid #E0E0E0;
+        }
+
+        .contact-method h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: #333333;
+            letter-spacing: 0.08em;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 16px 48px;
+            border: 1px solid #333333;
+            background: transparent;
+            color: #333333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 16px;
+        }
+
+        .contact-button:hover {
+            background: #F5F5F5;
+        }
+
+        .email-display {
+            font-size: 14px;
+            color: #666666;
+            margin-top: 16px;
+            letter-spacing: 0.05em;
+        }
+
+        /* フッター */
+        footer {
+            padding: 64px 6%;
+            text-align: center;
+            border-top: 1px solid #E0E0E0;
+        }
+
+        footer p {
+            font-size: 12px;
+            color: #999999;
+            letter-spacing: 0.08em;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 73px;
+                left: 0;
+                right: 0;
+                background: #FFFFFF;
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+                border-bottom: 1px solid #E0E0E0;
+            }
+
+            .nav-menu.active {
+                max-height: 400px;
+            }
+
+            .nav-menu li {
+                border-bottom: 1px solid #E0E0E0;
+            }
+
+            .nav-menu li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 24px 6%;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 160px 6% 120px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+                margin-bottom: 48px;
+            }
+
+            .section {
+                padding: 80px 6%;
+            }
+
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 64px;
+            }
+
+            .plan-price {
+                font-size: 32px;
+            }
+
+            .flow-item {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .flow-number {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- グローバルナビゲーション -->
+    <nav class="global-nav">
+        <div class="nav-container">
+            <div class="nav-logo">ショート動画制作</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#service">サービス内容</a></li>
+                <li><a href="#pricing">料金</a></li>
+                <li><a href="#flow">制作の流れ</a></li>
+                <li><a href="#sample">完成イメージ</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <h1>ショート動画制作</h1>
+        <p class="hero-description">
+            撮影から編集まで。<br>
+            Instagram、TikTok、YouTube Shorts に対応しています。
+        </p>
+    </section>
+
+    <!-- サービス内容 -->
+    <section class="section" id="service">
+        <div class="container">
+            <h2 class="section-title">サービス内容</h2>
+            <div class="service-list">
+                <div class="service-item">
+                    <h3>撮影</h3>
+                    <p>必要な機材を用いて撮影を行います。照明や音声にも配慮し、品質の高い映像を記録します。</p>
+                </div>
+                <div class="service-item">
+                    <h3>編集</h3>
+                    <p>カット編集、BGM・効果音の追加、テロップの挿入など、視聴しやすい動画に仕上げます。</p>
+                </div>
+                <div class="service-item">
+                    <h3>形式</h3>
+                    <p>各プラットフォームに適した形式で納品いたします。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 料金プラン -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">料金</h2>
+            <div class="pricing-container">
+                <div class="pricing-block">
+                    <div class="plan-header">
+                        <p class="plan-name">基本プラン</p>
+                        <p class="plan-price">¥20,000</p>
+                        <p class="plan-note">1本あたり（税別）</p>
+                    </div>
+                    <div class="plan-details">
+                        <ul>
+                            <li>撮影（1時間まで）</li>
+                            <li>編集作業</li>
+                            <li>BGM・効果音追加</li>
+                            <li>テロップ挿入</li>
+                            <li>修正1回まで</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-block">
+                    <div class="plan-header">
+                        <p class="plan-name">企画案作成</p>
+                        <p class="plan-price">¥5,000</p>
+                        <p class="plan-note">オプション（10本の企画案・税別）</p>
+                    </div>
+                    <div class="plan-details">
+                        <ul>
+                            <li>最新トレンドに沿った企画案10本</li>
+                            <li>ターゲット設定</li>
+                            <li>投稿時期の提案</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="disclaimer">
+                    企画案やアカウントのコンセプトメイクは<br>
+                    基本プランに含まれておりません。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 制作フロー -->
+    <section class="section" id="flow">
+        <div class="container">
+            <h2 class="section-title">制作の流れ</h2>
+            <div class="flow-list">
+                <div class="flow-item">
+                    <div class="flow-number">01</div>
+                    <div class="flow-content">
+                        <h3>お問い合わせ</h3>
+                        <p>LINEまたはメールでご連絡ください。</p>
+                    </div>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-number">02</div>
+                    <div class="flow-content">
+                        <h3>ヒアリング</h3>
+                        <p>動画の目的や内容について詳しくお伺いします。</p>
+                    </div>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-number">03</div>
+                    <div class="flow-content">
+                        <h3>撮影・編集</h3>
+                        <p>撮影から編集まで一貫して行います。</p>
+                    </div>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-number">04</div>
+                    <div class="flow-content">
+                        <h3>納品</h3>
+                        <p>完成した動画をお渡しします。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 完成イメージ -->
+    <section class="section" id="sample">
+        <div class="container">
+            <h2 class="section-title">完成イメージ</h2>
+            <div class="sample-link">
+                <p class="sample-text">制作した動画のサンプルをご覧いただけます。</p>
+                <a href="https://youtube.com/shorts/sONqhmELlT8?si=2NvrLu1BnFjWnCF4" class="sample-button" target="_blank" rel="noopener noreferrer">サンプル動画を見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <h2 class="section-title">お問い合わせ</h2>
+                <p class="contact-intro">
+                    ご質問やご依頼は、<br>
+                    LINE、電話、メールでお気軽にご連絡ください。
+                </p>
+                <div class="contact-method">
+                    <h3>LINE</h3>
+                    <a href="https://line.me/ti/p/CTOCx9YKjk" class="contact-button" target="_blank">LINEで相談する</a>
+                </div>
+                <div class="contact-method">
+                    <h3>電話</h3>
+                    <p class="email-display">080-4692-9681</p>
+                    <a href="tel:08046929681" class="contact-button">電話をかける</a>
+                </div>
+                <div class="contact-method">
+                    <h3>メール</h3>
+                    <p class="email-display">yamada1881r@gmail.com</p>
+                    <a href="mailto:yamada1881r@gmail.com" class="contact-button">メールを送る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <p>© 2025 余日</p>
+        </div>
+    </footer>
+
+    <script>
+        // ハンバーガーメニュー
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // メニュークリック時に閉じる
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // スムーススクロール（ナビの高さ分オフセット）
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('.global-nav').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
