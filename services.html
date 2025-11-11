@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Webサイト制作サービス｜20万円から簡易的なWebサイト制作に対応（年内発注限定、2026年1月より30万円）。LP制作も承ります。制作期間：Webサイト1ヶ月以内、LP1週間以内。">
+    <meta name="description" content="Webサイト制作サービス｜20万円からWebサイト制作に対応（年内発注限定、2026年1月より30万円）。LP制作も承ります。制作期間：Webサイト1ヶ月以内、LP1週間以内。">
     <title>余日｜サイト制作サービス・LP制作</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "余日 Webサイト制作サービス",
-      "description": "余日（yojitsu）のWebサイト制作サービス。簡易的なWebサイト、LP（ランディングページ）制作。Webサイトは1ヶ月以内、LPは1週間以内で納品。",
+      "description": "余日（yojitsu）のWebサイト制作サービス。Webサイト、LP（ランディングページ）制作。Webサイトは1ヶ月以内、LPは1週間以内で納品。",
       "url": "https://yamada1001.github.io/short-video/services.html",
       "telephone": "080-4692-9681",
       "email": "yamada1881r@gmail.com",
@@ -37,7 +37,7 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "簡易Webサイト制作",
+              "name": "Webサイト制作",
               "description": "トップページ + 3〜5ページ程度の構成、レスポンシブデザイン対応。制作期間：1ヶ月以内"
             },
             "price": "200000",
@@ -110,12 +110,17 @@
         <h2 class="section-title">サービス一覧</h2>
         <div class="services-grid">
 
-            <!-- 簡易Webサイト制作 -->
+            <!-- Webサイト制作 -->
             <article class="service-item">
                 <div class="service-header">
-                    <h3 class="service-name">簡易Webサイト制作</h3>
+                    <h3 class="service-name">Webサイト制作</h3>
                     <p class="service-price">200,000円〜</p>
-                    <p class="service-price-note">※税別・年内（2025年12月31日まで）の発注に限る<br>2026年1月1日より300,000円〜に変更</p>
+                    <p class="service-price-note service-price-note-basic">※税別</p>
+                    <div class="price-alert">
+                        <p class="price-alert-title">⚠️ 年内限定価格</p>
+                        <p class="price-alert-text">2025年12月31日までの発注に限り<strong>200,000円〜</strong></p>
+                        <p class="price-alert-change">2026年1月1日より <strong>300,000円〜</strong> に変更</p>
+                    </div>
                 </div>
                 <p class="service-description">
                     情報発信を目的としたシンプルなWebサイトを制作いたします。<br>
@@ -289,8 +294,8 @@
     <!-- 保守・更新について -->
     <section class="notice" id="maintenance">
         <div class="notice-content">
-            <h3>保守・更新について</h3>
-            <p style="margin-bottom: 24px; line-height: 2.0;">
+            <h3><span class="term-tooltip" data-term="maintenance">保守</span>・更新について</h3>
+            <p class="maintenance-intro">
                 納品後のサイト更新・修正については、都度お見積もりにて対応いたします。<br>
                 軽微な変更については以下の料金で承ります。
             </p>
@@ -415,6 +420,96 @@
             // 自動スライド（5秒ごと）
             setInterval(nextSlide, 5000);
         }
+    </script>
+
+    <!-- 用語説明モーダル -->
+    <div class="term-modal-overlay" id="termModalOverlay">
+        <div class="term-modal">
+            <button class="term-modal-close" id="termModalClose" aria-label="閉じる">×</button>
+            <h3 class="term-modal-title" id="termModalTitle"></h3>
+            <p class="term-modal-description" id="termModalDescription"></p>
+        </div>
+    </div>
+
+    <script>
+        // 用語説明モーダル
+        const termDefinitions = {
+            'maintenance': {
+                title: '保守とは？',
+                description: 'Webサイトの保守とは、サイト公開後の維持管理作業のことです。具体的には、文章や画像の更新、セキュリティ対策、不具合の修正、バックアップ管理などが含まれます。サイトを安全かつ最新の状態に保つために重要な作業です。'
+            }
+        };
+
+        // 用語ツールチップのクリックイベント
+        document.querySelectorAll('.term-tooltip').forEach(tooltip => {
+            tooltip.addEventListener('click', (e) => {
+                e.preventDefault();
+                const term = tooltip.getAttribute('data-term');
+                const def = termDefinitions[term];
+                
+                if (def) {
+                    document.getElementById('termModalTitle').textContent = def.title;
+                    document.getElementById('termModalDescription').textContent = def.description;
+                    document.getElementById('termModalOverlay').classList.add('show');
+                }
+            });
+        });
+
+        // モーダルを閉じる
+        document.getElementById('termModalClose').addEventListener('click', () => {
+            document.getElementById('termModalOverlay').classList.remove('show');
+        });
+
+        document.getElementById('termModalOverlay').addEventListener('click', (e) => {
+            if (e.target.id === 'termModalOverlay') {
+                document.getElementById('termModalOverlay').classList.remove('show');
+            }
+        });
+
+        // ナビゲーション自動非表示機能
+        (function() {
+            const nav = document.querySelector('.global-nav');
+            let scrollTimeout;
+            let hideTimeout;
+
+            // 初回表示後、3秒後にナビを非表示
+            setTimeout(() => {
+                nav.classList.add('nav-hidden');
+            }, 3000);
+
+            // スクロールイベント
+            window.addEventListener('scroll', () => {
+                // スクロール中はナビを表示
+                nav.classList.remove('nav-hidden');
+
+                // 既存のタイムアウトをクリア
+                clearTimeout(scrollTimeout);
+                clearTimeout(hideTimeout);
+
+                // スクロールが止まって2秒後にナビを非表示
+                scrollTimeout = setTimeout(() => {
+                    hideTimeout = setTimeout(() => {
+                        nav.classList.add('nav-hidden');
+                    }, 2000);
+                }, 150);
+            });
+
+            // ナビにマウスオーバーしたら表示を維持
+            nav.addEventListener('mouseenter', () => {
+                nav.classList.remove('nav-hidden');
+                clearTimeout(hideTimeout);
+            });
+
+            // ハンバーガーメニューが開いている時は非表示にしない
+            const hamburger = document.getElementById('hamburger');
+            const observer = new MutationObserver(() => {
+                if (hamburger.classList.contains('active')) {
+                    nav.classList.remove('nav-hidden');
+                    clearTimeout(hideTimeout);
+                }
+            });
+            observer.observe(hamburger, { attributes: true, attributeFilter: ['class'] });
+        })();
     </script>
 </body>
 </html>

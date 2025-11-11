@@ -334,3 +334,176 @@ section {
         padding: 64px 5%;
     }
 }
+
+/* 用語説明モーダル */
+.term-tooltip {
+    color: #8B7355;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    cursor: help;
+    transition: color 0.3s ease;
+}
+
+.term-tooltip:hover {
+    color: #6A5940;
+}
+
+.term-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.term-modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.term-modal {
+    background: #FFFFFF;
+    padding: 40px 32px;
+    border-radius: 8px;
+    max-width: 90%;
+    width: 500px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.term-modal-overlay.show .term-modal {
+    transform: translateY(0);
+}
+
+.term-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #999999;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.term-modal-close:hover {
+    color: #333333;
+}
+
+.term-modal-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 20px;
+    letter-spacing: 0.08em;
+}
+
+.term-modal-description {
+    font-size: 14px;
+    color: #666666;
+    line-height: 2.0;
+}
+
+@media (max-width: 768px) {
+    .term-modal {
+        padding: 32px 24px;
+        width: 90%;
+    }
+
+    .term-modal-title {
+        font-size: 16px;
+    }
+
+    .term-modal-description {
+        font-size: 13px;
+    }
+}
+
+/* 年内限定価格アラート */
+.service-price-note-basic {
+    font-size: 13px;
+    color: #999999;
+    margin-bottom: 16px;
+}
+
+.price-alert {
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFF3D6 100%);
+    border-left: 4px solid #F0B429;
+    padding: 20px 24px;
+    border-radius: 8px;
+    margin-top: 16px;
+    box-shadow: 0 2px 8px rgba(240, 180, 41, 0.15);
+}
+
+.price-alert-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #D89000;
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+}
+
+.price-alert-text {
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 8px;
+    line-height: 1.8;
+}
+
+.price-alert-change {
+    font-size: 13px;
+    color: #666666;
+    line-height: 1.8;
+}
+
+.price-alert strong {
+    font-weight: 500;
+    color: #D89000;
+    font-size: 16px;
+}
+
+/* 保守・更新の説明を控えめに */
+.maintenance-intro {
+    margin-bottom: 24px;
+    line-height: 2.0;
+    font-size: 13px;
+    color: #999999;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .price-alert {
+        padding: 16px 20px;
+    }
+
+    .price-alert-title {
+        font-size: 14px;
+    }
+
+    .price-alert-text {
+        font-size: 13px;
+    }
+
+    .price-alert-change {
+        font-size: 12px;
+    }
+
+    .price-alert strong {
+        font-size: 15px;
+    }
+}
