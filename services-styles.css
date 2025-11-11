@@ -434,61 +434,6 @@ section {
     }
 }
 
-/* 年内限定価格アラート */
-.service-price-note-basic {
-    display: none;
-}
-
-.price-alert {
-    background: #FAF9F7;
-    border: 1px solid #E0E0E0;
-    border-left: 3px solid #8B7355;
-    padding: 24px;
-    margin-top: 16px;
-}
-
-.price-alert-label {
-    font-size: 13px;
-    font-weight: 400;
-    color: #8B7355;
-    margin-bottom: 16px;
-    letter-spacing: 0.08em;
-}
-
-.price-alert-label i {
-    margin-right: 6px;
-}
-
-.price-alert-period {
-    font-size: 13px;
-    color: #666666;
-    margin-bottom: 12px;
-    line-height: 1.8;
-}
-
-.price-alert-current {
-    font-size: 20px;
-    font-weight: 500;
-    color: #333333;
-    margin-bottom: 12px;
-    letter-spacing: 0.05em;
-}
-
-.price-tax {
-    font-size: 12px;
-    font-weight: 400;
-    color: #999999;
-    margin-left: 8px;
-}
-
-.price-alert-future {
-    font-size: 12px;
-    color: #999999;
-    line-height: 1.8;
-    padding-top: 12px;
-    border-top: 1px solid #E0E0E0;
-}
-
 /* 保守・更新の説明を控えめに */
 
 .maintenance-intro {
@@ -500,11 +445,6 @@ section {
 
 
 
-/* 価格アラートのレスポンシブ対応 */
-@media (max-width: 768px) {
-    .price-alert {
-        padding: 20px;
-    }
 
     .price-alert-label {
         font-size: 12px;
