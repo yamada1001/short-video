@@ -164,6 +164,51 @@ section {
     left: 0;
 }
 
+/* プロフィール */
+.profile-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.profile-name {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    color: #333333;
+    letter-spacing: 0.08em;
+}
+
+.profile-description {
+    font-size: 14px;
+    color: #666666;
+    line-height: 2.0;
+    margin-bottom: 64px;
+    text-align: left;
+}
+
+.profile-certificate {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.profile-certificate a {
+    display: block;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.profile-certificate a:hover {
+    opacity: 0.8;
+}
+
+.profile-certificate img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+}
+
 /* 注意事項 */
 .notice {
     padding: 80px 6%;
