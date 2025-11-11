@@ -254,11 +254,3 @@ footer p {
     }
 }
 
-/* ナビゲーション自動非表示 */
-.global-nav {
-    transition: transform 0.3s ease-in-out;
-}
-
-.global-nav.nav-hidden {
-    transform: translateY(-100%);
-}
