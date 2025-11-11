@@ -209,37 +209,68 @@
     text-align: left;
 }
 
-.profile-certificates {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+/* カルーセル */
+.profile-certificates-carousel {
     margin-top: 48px;
-    max-width: 900px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.certificate-item {
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.certificate-slide {
+    min-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.certificate-item a {
+.certificate-slide a {
     display: block;
     transition: opacity 0.3s ease-in-out;
     width: 100%;
 }
 
-.certificate-item a:hover {
+.certificate-slide a:hover {
     opacity: 0.8;
 }
 
-.certificate-item img {
+.certificate-slide img {
     max-width: 100%;
     height: auto;
+    display: block;
     border: 1px solid #E0E0E0;
     border-radius: 4px;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #E0E0E0;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.carousel-dot.active {
+    background: #8B7355;
 }
 
 /* レスポンシブ - index.html 固有 */
@@ -263,10 +294,5 @@
 
     .flow-number {
         min-width: auto;
-    }
-
-    .profile-certificates {
-        grid-template-columns: 1fr;
-        gap: 24px;
     }
 }
