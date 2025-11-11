@@ -209,22 +209,33 @@
     text-align: left;
 }
 
-.profile-certificate {
+.profile-certificates {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 48px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.certificate-item {
     display: flex;
     justify-content: center;
-    margin-top: 48px;
+    align-items: center;
 }
 
-.profile-certificate a {
+.certificate-item a {
     display: block;
     transition: opacity 0.3s ease-in-out;
+    width: 100%;
 }
 
-.profile-certificate a:hover {
+.certificate-item a:hover {
     opacity: 0.8;
 }
 
-.profile-certificate img {
+.certificate-item img {
     max-width: 100%;
     height: auto;
     border: 1px solid #E0E0E0;
@@ -252,5 +263,10 @@
 
     .flow-number {
         min-width: auto;
+    }
+
+    .profile-certificates {
+        grid-template-columns: 1fr;
+        gap: 24px;
     }
 }
