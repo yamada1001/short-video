@@ -166,9 +166,8 @@ section {
 
 /* プロフィール */
 .profile-content {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
-    text-align: center;
 }
 
 .profile-name {
@@ -177,6 +176,7 @@ section {
     margin-bottom: 40px;
     color: #333333;
     letter-spacing: 0.08em;
+    text-align: center;
 }
 
 .profile-description {
@@ -185,9 +185,6 @@ section {
     line-height: 2.0;
     margin-bottom: 64px;
     text-align: left;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 /* カルーセル */
