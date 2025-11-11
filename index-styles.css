@@ -1,0 +1,211 @@
+/* ==========================================================================
+   index.html 固有のスタイル
+   ========================================================================== */
+
+/* ヒーローセクション - index.html */
+.hero {
+    padding: 120px 6% 160px;
+}
+
+.hero h1 {
+    margin-bottom: 64px;
+}
+
+.hero-description {
+    margin-bottom: 80px;
+}
+
+/* ヒーローセクション余白調整 */
+.hero {
+    padding-top: 200px;
+}
+
+/* 完成イメージ */
+.sample-link {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sample-text {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 32px;
+    line-height: 2.0;
+}
+
+.sample-button {
+    display: inline-block;
+    padding: 16px 48px;
+    border: 1px solid #333333;
+    background: transparent;
+    color: #333333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.sample-button:hover {
+    background: #F5F5F5;
+}
+
+/* サービス内容 */
+.service-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.service-item {
+    padding: 48px 0;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.service-item:first-child {
+    padding-top: 0;
+}
+
+.service-item h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    color: #333333;
+    letter-spacing: 0.08em;
+}
+
+.service-item p {
+    font-size: 14px;
+    color: #666666;
+    line-height: 2.0;
+}
+
+/* 料金プラン */
+.pricing-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pricing-block {
+    padding: 64px 0;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.pricing-block:last-child {
+    border-bottom: none;
+}
+
+.plan-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.plan-name {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 32px;
+    color: #333333;
+    letter-spacing: 0.08em;
+}
+
+.plan-price {
+    font-size: 40px;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+}
+
+.plan-note {
+    font-size: 14px;
+    color: #666666;
+}
+
+.plan-details {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.plan-details ul {
+    list-style: none;
+}
+
+.plan-details li {
+    padding: 16px 0;
+    border-bottom: 1px solid #E0E0E0;
+    font-size: 14px;
+    color: #333333;
+}
+
+.plan-details li:last-child {
+    border-bottom: none;
+}
+
+.disclaimer {
+    text-align: center;
+    margin-top: 64px;
+    font-size: 14px;
+    color: #666666;
+    line-height: 2.0;
+}
+
+/* 制作フロー */
+.flow-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.flow-item {
+    padding: 48px 0;
+    border-bottom: 1px solid #E0E0E0;
+    display: flex;
+    gap: 32px;
+}
+
+.flow-item:last-child {
+    border-bottom: none;
+}
+
+.flow-number {
+    font-size: 14px;
+    color: #8B7355;
+    min-width: 32px;
+}
+
+.flow-content h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    color: #333333;
+    letter-spacing: 0.08em;
+}
+
+.flow-content p {
+    font-size: 14px;
+    color: #666666;
+    line-height: 2.0;
+}
+
+/* レスポンシブ - index.html 固有 */
+@media (max-width: 768px) {
+    .hero {
+        padding: 160px 6% 120px;
+    }
+
+    .hero h1 {
+        margin-bottom: 48px;
+    }
+
+    .plan-price {
+        font-size: 32px;
+    }
+
+    .flow-item {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .flow-number {
+        min-width: auto;
+    }
+}

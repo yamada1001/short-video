@@ -1,0 +1,248 @@
+/* ==========================================================================
+   services.html 固有のスタイル
+   ========================================================================== */
+
+/* body - services.html 固有の設定 */
+body {
+    line-height: 1.8;
+    font-weight: 400;
+}
+
+/* ヒーローセクション - services.html */
+.hero {
+    padding: 200px 6% 120px;
+}
+
+.hero h1 {
+    margin-bottom: 32px;
+}
+
+.hero-description {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* セクション - services.html */
+section {
+    padding: 80px 6%;
+}
+
+/* サービス一覧グリッド */
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 64px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.service-item {
+    border-top: 1px solid #E0E0E0;
+    padding-top: 48px;
+}
+
+.service-header {
+    margin-bottom: 24px;
+}
+
+.service-name {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+}
+
+.service-price {
+    font-size: 28px;
+    font-weight: 500;
+    color: #8B7355;
+    margin-bottom: 8px;
+}
+
+.service-price-note {
+    font-size: 12px;
+    color: #666666;
+}
+
+.service-description {
+    font-size: 14px;
+    color: #666666;
+    line-height: 2.0;
+    margin-bottom: 32px;
+}
+
+.service-details {
+    background: #FAFAFA;
+    padding: 32px;
+    margin-top: 32px;
+}
+
+.service-details h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+}
+
+.service-details ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.service-details li {
+    font-size: 14px;
+    color: #666666;
+    line-height: 2.0;
+    padding-left: 1em;
+    position: relative;
+}
+
+.service-details li:before {
+    content: "・";
+    position: absolute;
+    left: 0;
+}
+
+/* LP説明セクション */
+.lp-explanation {
+    background: #FAFAFA;
+    padding: 80px 6%;
+}
+
+.lp-explanation-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.lp-explanation h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 32px;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+.lp-explanation p {
+    font-size: 14px;
+    color: #666666;
+    line-height: 2.0;
+    margin-bottom: 24px;
+}
+
+.lp-features {
+    margin-top: 48px;
+}
+
+.lp-features h4 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+}
+
+.lp-features ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.lp-features li {
+    font-size: 14px;
+    color: #666666;
+    line-height: 2.0;
+    padding-left: 1em;
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.lp-features li:before {
+    content: "・";
+    position: absolute;
+    left: 0;
+}
+
+/* 注意事項 */
+.notice {
+    padding: 80px 6%;
+}
+
+.notice-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.notice h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 32px;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+.notice ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.notice li {
+    font-size: 14px;
+    color: #666666;
+    line-height: 2.0;
+    padding-left: 1em;
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.notice li:before {
+    content: "・";
+    position: absolute;
+    left: 0;
+}
+
+/* レスポンシブ - services.html 固有 */
+@media (max-width: 768px) {
+    .hero {
+        padding: 160px 6% 80px;
+    }
+
+    .hero h1 {
+        margin-bottom: 24px;
+    }
+
+    section {
+        padding: 64px 5%;
+    }
+
+    .section-title {
+        margin-bottom: 48px;
+    }
+
+    .services-grid {
+        gap: 48px;
+    }
+
+    .service-item {
+        padding-top: 32px;
+    }
+
+    .service-name {
+        font-size: 18px;
+    }
+
+    .service-price {
+        font-size: 24px;
+    }
+
+    .service-details {
+        padding: 24px;
+    }
+
+    .lp-explanation,
+    .notice {
+        padding: 64px 5%;
+    }
+}

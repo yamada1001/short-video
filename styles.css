@@ -1,0 +1,255 @@
+/* ==========================================================================
+   共通スタイル - 両ページで使用
+   ========================================================================== */
+
+/* リセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 2.0;
+    color: #333333;
+    background-color: #FFFFFF;
+    letter-spacing: 0.08em;
+    font-weight: 300;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 6%;
+}
+
+/* グローバルナビゲーション */
+.global-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E0E0E0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333333;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 48px;
+    list-style: none;
+}
+
+.nav-menu a {
+    color: #333333;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-menu a:hover {
+    color: #8B7355;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: #333333;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ヒーローセクション - 共通 */
+.hero {
+    background: #FFFFFF;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.8;
+    color: #333333;
+    letter-spacing: 0.1em;
+}
+
+.hero-description {
+    font-size: 14px;
+    color: #666666;
+    line-height: 2.0;
+}
+
+/* セクション共通 */
+.section {
+    padding: 120px 6%;
+    border-top: 1px solid #E0E0E0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 80px;
+    color: #333333;
+    letter-spacing: 0.1em;
+}
+
+/* お問い合わせセクション - 共通 */
+.contact-section {
+    background: #FAFAFA;
+}
+
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-intro {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 64px;
+    line-height: 2.0;
+}
+
+.contact-method {
+    padding: 48px 0;
+    border-top: 1px solid #E0E0E0;
+}
+
+.contact-method h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    color: #333333;
+    letter-spacing: 0.08em;
+}
+
+.contact-button {
+    display: inline-block;
+    padding: 16px 48px;
+    border: 1px solid #333333;
+    background: transparent;
+    color: #333333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 16px;
+}
+
+.contact-button:hover {
+    background: #F5F5F5;
+}
+
+.email-display {
+    font-size: 14px;
+    color: #666666;
+    margin-top: 16px;
+    letter-spacing: 0.05em;
+}
+
+/* フッター */
+footer {
+    padding: 64px 6%;
+    text-align: center;
+    border-top: 1px solid #E0E0E0;
+}
+
+footer p {
+    font-size: 12px;
+    color: #999999;
+    letter-spacing: 0.08em;
+}
+
+/* レスポンシブ - 共通 */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: 73px;
+        left: 0;
+        right: 0;
+        background: #FFFFFF;
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    .nav-menu.active {
+        max-height: 400px;
+    }
+
+    .nav-menu li {
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-menu a {
+        display: block;
+        padding: 24px 6%;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .section {
+        padding: 80px 6%;
+    }
+
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 64px;
+    }
+}

@@ -3,473 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Webサイト制作サービス｜10万円から簡易的なWebサイト制作に対応。ペライチ・LP制作も承ります。">
-    <title>追加サービス - Webサイト制作</title>
+    <meta name="description" content="Webサイト制作サービス｜10万円から簡易的なWebサイト制作に対応。ペライチ・LP制作も承ります。制作期間：Webサイト1ヶ月以内、LP1週間以内。">
+    <title>Webサイト制作サービス｜LP・ペライチ制作</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.8;
-            color: #333333;
-            background-color: #FFFFFF;
-            letter-spacing: 0.08em;
-            font-weight: 400;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 6%;
-        }
-
-        /* グローバルナビゲーション */
-        .global-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #FFFFFF;
-            border-bottom: 1px solid #E0E0E0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 24px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 16px;
-            font-weight: 500;
-            color: #333333;
-            letter-spacing: 0.08em;
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 48px;
-            list-style: none;
-        }
-
-        .nav-menu a {
-            color: #333333;
-            text-decoration: none;
-            font-size: 14px;
-            letter-spacing: 0.08em;
-            transition: color 0.3s ease-in-out;
-        }
-
-        .nav-menu a:hover {
-            color: #8B7355;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 1px;
-            background: #333333;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
-        /* ヒーローセクション */
-        .hero {
-            background: #FFFFFF;
-            padding: 200px 6% 120px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 32px;
-            font-weight: 500;
-            margin-bottom: 32px;
-            line-height: 1.8;
-            color: #333333;
-            letter-spacing: 0.1em;
-        }
-
-        .hero-description {
-            font-size: 14px;
-            color: #666666;
-            line-height: 2.0;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* セクション共通 */
-        section {
-            padding: 80px 6%;
-        }
-
-        .section-title {
-            font-size: 24px;
-            font-weight: 500;
-            text-align: center;
-            margin-bottom: 64px;
-            color: #333333;
-            letter-spacing: 0.08em;
-        }
-
-        /* サービス一覧 */
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 64px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .service-item {
-            border-top: 1px solid #E0E0E0;
-            padding-top: 48px;
-        }
-
-        .service-header {
-            margin-bottom: 24px;
-        }
-
-        .service-name {
-            font-size: 20px;
-            font-weight: 500;
-            color: #333333;
-            margin-bottom: 16px;
-            letter-spacing: 0.05em;
-        }
-
-        .service-price {
-            font-size: 28px;
-            font-weight: 500;
-            color: #8B7355;
-            margin-bottom: 8px;
-        }
-
-        .service-price-note {
-            font-size: 12px;
-            color: #666666;
-        }
-
-        .service-description {
-            font-size: 14px;
-            color: #666666;
-            line-height: 2.0;
-            margin-bottom: 32px;
-        }
-
-        .service-details {
-            background: #FAFAFA;
-            padding: 32px;
-            margin-top: 32px;
-        }
-
-        .service-details h4 {
-            font-size: 14px;
-            font-weight: 500;
-            color: #333333;
-            margin-bottom: 16px;
-            letter-spacing: 0.05em;
-        }
-
-        .service-details ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .service-details li {
-            font-size: 14px;
-            color: #666666;
-            line-height: 2.0;
-            padding-left: 1em;
-            position: relative;
-        }
-
-        .service-details li:before {
-            content: "・";
-            position: absolute;
-            left: 0;
-        }
-
-        /* LP説明セクション */
-        .lp-explanation {
-            background: #FAFAFA;
-            padding: 80px 6%;
-        }
-
-        .lp-explanation-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .lp-explanation h3 {
-            font-size: 20px;
-            font-weight: 500;
-            color: #333333;
-            margin-bottom: 32px;
-            text-align: center;
-            letter-spacing: 0.05em;
-        }
-
-        .lp-explanation p {
-            font-size: 14px;
-            color: #666666;
-            line-height: 2.0;
-            margin-bottom: 24px;
-        }
-
-        .lp-features {
-            margin-top: 48px;
-        }
-
-        .lp-features h4 {
-            font-size: 16px;
-            font-weight: 500;
-            color: #333333;
-            margin-bottom: 24px;
-            letter-spacing: 0.05em;
-        }
-
-        .lp-features ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .lp-features li {
-            font-size: 14px;
-            color: #666666;
-            line-height: 2.0;
-            padding-left: 1em;
-            position: relative;
-            margin-bottom: 16px;
-        }
-
-        .lp-features li:before {
-            content: "・";
-            position: absolute;
-            left: 0;
-        }
-
-        /* 注意事項 */
-        .notice {
-            padding: 80px 6%;
-        }
-
-        .notice-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .notice h3 {
-            font-size: 18px;
-            font-weight: 500;
-            color: #333333;
-            margin-bottom: 32px;
-            text-align: center;
-            letter-spacing: 0.05em;
-        }
-
-        .notice ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .notice li {
-            font-size: 14px;
-            color: #666666;
-            line-height: 2.0;
-            padding-left: 1em;
-            position: relative;
-            margin-bottom: 16px;
-        }
-
-        .notice li:before {
-            content: "・";
-            position: absolute;
-            left: 0;
-        }
-
-        /* お問い合わせ */
-        .contact-section {
-            background: #FAFAFA;
-        }
-
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-intro {
-            font-size: 14px;
-            color: #666666;
-            margin-bottom: 64px;
-            line-height: 2.0;
-        }
-
-        .contact-method {
-            padding: 48px 0;
-            border-top: 1px solid #E0E0E0;
-        }
-
-        .contact-method h3 {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 24px;
-            color: #333333;
-            letter-spacing: 0.08em;
-        }
-
-        .contact-button {
-            display: inline-block;
-            padding: 16px 48px;
-            border: 1px solid #333333;
-            background: transparent;
-            color: #333333;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            transition: background-color 0.3s ease-in-out;
-            margin-top: 16px;
-        }
-
-        .contact-button:hover {
-            background: #F5F5F5;
-        }
-
-        .email-display {
-            font-size: 14px;
-            color: #666666;
-            margin-top: 16px;
-            letter-spacing: 0.05em;
-        }
-
-        /* フッター */
-        footer {
-            padding: 64px 6%;
-            text-align: center;
-            border-top: 1px solid #E0E0E0;
-        }
-
-        footer p {
-            font-size: 12px;
-            color: #999999;
-            letter-spacing: 0.08em;
-        }
-
-        /* レスポンシブ */
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 73px;
-                left: 0;
-                right: 0;
-                background: #FFFFFF;
-                flex-direction: column;
-                gap: 0;
-                padding: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease-in-out;
-                border-bottom: 1px solid #E0E0E0;
-            }
-
-            .nav-menu.active {
-                max-height: 400px;
-            }
-
-            .nav-menu li {
-                border-bottom: 1px solid #E0E0E0;
-            }
-
-            .nav-menu li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-menu a {
-                display: block;
-                padding: 24px 6%;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hero {
-                padding: 160px 6% 80px;
-            }
-
-            .hero h1 {
-                font-size: 24px;
-                margin-bottom: 24px;
-            }
-
-            section {
-                padding: 64px 5%;
-            }
-
-            .section-title {
-                font-size: 20px;
-                margin-bottom: 48px;
-            }
-
-            .services-grid {
-                gap: 48px;
-            }
-
-            .service-item {
-                padding-top: 32px;
-            }
-
-            .service-name {
-                font-size: 18px;
-            }
-
-            .service-price {
-                font-size: 24px;
-            }
-
-            .service-details {
-                padding: 24px;
-            }
-
-            .lp-explanation,
-            .notice {
-                padding: 64px 5%;
-            }
-
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="services-styles.css">
+
+    <!-- 構造化データ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Webサイト制作サービス",
+      "description": "簡易的なWebサイト、ペライチ、LP（ランディングページ）制作サービス。Webサイトは1ヶ月以内、LPは1週間以内で納品。",
+      "url": "https://yamada1001.github.io/short-video/services.html",
+      "telephone": "080-4692-9681",
+      "email": "yamada1881r@gmail.com",
+      "priceRange": "¥50,000〜¥100,000",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "JP"
+      },
+      "areaServed": "JP",
+      "serviceType": ["Webサイト制作", "LP制作", "ランディングページ制作", "ペライチ制作"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Webサイト制作サービス",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "簡易Webサイト制作",
+              "description": "トップページ + 3〜5ページ程度の構成、レスポンシブデザイン対応。制作期間：1ヶ月以内"
+            },
+            "price": "100000",
+            "priceCurrency": "JPY"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "ペライチ制作",
+              "description": "1ページ完結型のシンプルなWebサイト制作"
+            },
+            "price": "50000",
+            "priceCurrency": "JPY"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "LP制作",
+              "description": "ランディングページ制作。コンバージョンを意識した構成。制作期間：1週間以内"
+            },
+            "price": "50000",
+            "priceCurrency": "JPY"
+          }
+        ]
+      }
+    }
+    </script>
+    <script src="gtm.js"></script>
 </head>
 <body>
     <!-- グローバルナビゲーション -->
@@ -700,6 +298,10 @@
     <!-- フッター -->
     <footer>
         <div class="container">
+            <p style="margin-bottom: 16px;">
+                <a href="privacy.html" style="color: #666666; text-decoration: none; margin-right: 24px;">プライバシーポリシー</a>
+                <a href="tokushoho.html" style="color: #666666; text-decoration: none;">特定商取引法に基づく表記</a>
+            </p>
             <p>© 2025 余日</p>
         </div>
     </footer>

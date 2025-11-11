@@ -3,454 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ショート動画制作サービス｜2万円から撮影・編集まで対応。">
-    <title>ショート動画制作</title>
+    <meta name="description" content="ショート動画制作サービス｜2万円から撮影・編集まで対応。Instagram、TikTok、YouTube Shortsに対応しています。">
+    <title>ショート動画制作｜撮影・編集サービス</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 2.0;
-            color: #333333;
-            background-color: #FFFFFF;
-            letter-spacing: 0.08em;
-            font-weight: 300;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 6%;
-        }
-
-        /* ヒーローセクション */
-        .hero {
-            background: #FFFFFF;
-            padding: 120px 6% 160px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 32px;
-            font-weight: 500;
-            margin-bottom: 64px;
-            line-height: 1.8;
-            color: #333333;
-            letter-spacing: 0.1em;
-        }
-
-        .hero-description {
-            font-size: 14px;
-            color: #666666;
-            margin-bottom: 80px;
-            line-height: 2.0;
-        }
-
-        /* 完成イメージ */
-        .sample-link {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .sample-text {
-            font-size: 14px;
-            color: #666666;
-            margin-bottom: 32px;
-            line-height: 2.0;
-        }
-
-        .sample-button {
-            display: inline-block;
-            padding: 16px 48px;
-            border: 1px solid #333333;
-            background: transparent;
-            color: #333333;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        .sample-button:hover {
-            background: #F5F5F5;
-        }
-
-        /* グローバルナビゲーション */
-        .global-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #FFFFFF;
-            border-bottom: 1px solid #E0E0E0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 24px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 16px;
-            font-weight: 500;
-            color: #333333;
-            letter-spacing: 0.08em;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 48px;
-            list-style: none;
-        }
-
-        .nav-menu a {
-            color: #333333;
-            text-decoration: none;
-            font-size: 14px;
-            letter-spacing: 0.08em;
-            transition: color 0.3s ease-in-out;
-        }
-
-        .nav-menu a:hover {
-            color: #8B7355;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 1px;
-            background: #333333;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
-        /* セクション共通 */
-        .section {
-            padding: 120px 6%;
-            border-top: 1px solid #E0E0E0;
-        }
-
-        /* ヒーローセクション余白調整 */
-        .hero {
-            padding-top: 200px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 500;
-            margin-bottom: 80px;
-            color: #333333;
-            letter-spacing: 0.1em;
-        }
-
-        /* サービス内容 */
-        .service-list {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .service-item {
-            padding: 48px 0;
-            border-bottom: 1px solid #E0E0E0;
-        }
-
-        .service-item:first-child {
-            padding-top: 0;
-        }
-
-        .service-item h3 {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 24px;
-            color: #333333;
-            letter-spacing: 0.08em;
-        }
-
-        .service-item p {
-            font-size: 14px;
-            color: #666666;
-            line-height: 2.0;
-        }
-
-        /* 料金プラン */
-        .pricing-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .pricing-block {
-            padding: 64px 0;
-            border-bottom: 1px solid #E0E0E0;
-        }
-
-        .pricing-block:last-child {
-            border-bottom: none;
-        }
-
-        .plan-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .plan-name {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 32px;
-            color: #333333;
-            letter-spacing: 0.08em;
-        }
-
-        .plan-price {
-            font-size: 40px;
-            font-weight: 500;
-            color: #333333;
-            margin-bottom: 16px;
-            letter-spacing: 0.05em;
-        }
-
-        .plan-note {
-            font-size: 14px;
-            color: #666666;
-        }
-
-        .plan-details {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .plan-details ul {
-            list-style: none;
-        }
-
-        .plan-details li {
-            padding: 16px 0;
-            border-bottom: 1px solid #E0E0E0;
-            font-size: 14px;
-            color: #333333;
-        }
-
-        .plan-details li:last-child {
-            border-bottom: none;
-        }
-
-        .disclaimer {
-            text-align: center;
-            margin-top: 64px;
-            font-size: 14px;
-            color: #666666;
-            line-height: 2.0;
-        }
-
-        /* 制作フロー */
-        .flow-list {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .flow-item {
-            padding: 48px 0;
-            border-bottom: 1px solid #E0E0E0;
-            display: flex;
-            gap: 32px;
-        }
-
-        .flow-item:last-child {
-            border-bottom: none;
-        }
-
-        .flow-number {
-            font-size: 14px;
-            color: #8B7355;
-            min-width: 32px;
-        }
-
-        .flow-content h3 {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 16px;
-            color: #333333;
-            letter-spacing: 0.08em;
-        }
-
-        .flow-content p {
-            font-size: 14px;
-            color: #666666;
-            line-height: 2.0;
-        }
-
-        /* お問い合わせ */
-        .contact-section {
-            background: #FAFAFA;
-        }
-
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-intro {
-            font-size: 14px;
-            color: #666666;
-            margin-bottom: 64px;
-            line-height: 2.0;
-        }
-
-        .contact-method {
-            padding: 48px 0;
-            border-top: 1px solid #E0E0E0;
-        }
-
-        .contact-method h3 {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 24px;
-            color: #333333;
-            letter-spacing: 0.08em;
-        }
-
-        .contact-button {
-            display: inline-block;
-            padding: 16px 48px;
-            border: 1px solid #333333;
-            background: transparent;
-            color: #333333;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            transition: background-color 0.3s ease-in-out;
-            margin-top: 16px;
-        }
-
-        .contact-button:hover {
-            background: #F5F5F5;
-        }
-
-        .email-display {
-            font-size: 14px;
-            color: #666666;
-            margin-top: 16px;
-            letter-spacing: 0.05em;
-        }
-
-        /* フッター */
-        footer {
-            padding: 64px 6%;
-            text-align: center;
-            border-top: 1px solid #E0E0E0;
-        }
-
-        footer p {
-            font-size: 12px;
-            color: #999999;
-            letter-spacing: 0.08em;
-        }
-
-        /* レスポンシブ */
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 73px;
-                left: 0;
-                right: 0;
-                background: #FFFFFF;
-                flex-direction: column;
-                gap: 0;
-                padding: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease-in-out;
-                border-bottom: 1px solid #E0E0E0;
-            }
-
-            .nav-menu.active {
-                max-height: 400px;
-            }
-
-            .nav-menu li {
-                border-bottom: 1px solid #E0E0E0;
-            }
-
-            .nav-menu li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-menu a {
-                display: block;
-                padding: 24px 6%;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hero {
-                padding: 160px 6% 120px;
-            }
-
-            .hero h1 {
-                font-size: 24px;
-                margin-bottom: 48px;
-            }
-
-            .section {
-                padding: 80px 6%;
-            }
-
-            .section-title {
-                font-size: 20px;
-                margin-bottom: 64px;
-            }
-
-            .plan-price {
-                font-size: 32px;
-            }
-
-            .flow-item {
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            .flow-number {
-                min-width: auto;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index-styles.css">
+
+    <!-- 構造化データ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ショート動画制作",
+      "description": "ショート動画制作サービス。撮影から編集まで2万円から対応。Instagram、TikTok、YouTube Shortsに対応。",
+      "url": "https://yamada1001.github.io/short-video/index.html",
+      "telephone": "080-4692-9681",
+      "email": "yamada1881r@gmail.com",
+      "priceRange": "¥20,000〜",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "JP"
+      },
+      "areaServed": "JP",
+      "serviceType": ["動画制作", "ショート動画制作", "動画編集"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "ショート動画制作サービス",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "基本プラン",
+              "description": "撮影（1時間まで）、編集作業、BGM・効果音追加、テロップ挿入、修正1回まで"
+            },
+            "price": "20000",
+            "priceCurrency": "JPY"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "企画案作成",
+              "description": "最新トレンドに沿った企画案10本、ターゲット設定、投稿時期の提案"
+            },
+            "price": "5000",
+            "priceCurrency": "JPY"
+          }
+        ]
+      }
+    }
+    </script>
+    <script src="gtm.js"></script>
 </head>
 <body>
     <!-- グローバルナビゲーション -->
@@ -624,6 +231,10 @@
     <!-- フッター -->
     <footer>
         <div class="container">
+            <p style="margin-bottom: 16px;">
+                <a href="privacy.html" style="color: #666666; text-decoration: none; margin-right: 24px;">プライバシーポリシー</a>
+                <a href="tokushoho.html" style="color: #666666; text-decoration: none;">特定商取引法に基づく表記</a>
+            </p>
             <p style="margin-bottom: 16px;"><a href="services.html" style="color: #666666; text-decoration: none; border-bottom: 1px solid #E0E0E0; padding-bottom: 2px; transition: color 0.3s ease;">追加サービス（Webサイト制作）</a></p>
             <p>© 2025 余日</p>
         </div>
