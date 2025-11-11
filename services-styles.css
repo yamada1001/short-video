@@ -436,48 +436,61 @@ section {
 
 /* 年内限定価格アラート */
 .service-price-note-basic {
-    font-size: 13px;
-    color: #999999;
-    margin-bottom: 16px;
+    display: none;
 }
 
 .price-alert {
-    background: linear-gradient(135deg, #FFF9E6 0%, #FFF3D6 100%);
-    border-left: 4px solid #F0B429;
-    padding: 20px 24px;
-    border-radius: 8px;
+    background: #FAF9F7;
+    border: 1px solid #E0E0E0;
+    border-left: 3px solid #8B7355;
+    padding: 24px;
     margin-top: 16px;
-    box-shadow: 0 2px 8px rgba(240, 180, 41, 0.15);
 }
 
-.price-alert-title {
-    font-size: 15px;
+.price-alert-label {
+    font-size: 13px;
+    font-weight: 400;
+    color: #8B7355;
+    margin-bottom: 16px;
+    letter-spacing: 0.08em;
+}
+
+.price-alert-label i {
+    margin-right: 6px;
+}
+
+.price-alert-period {
+    font-size: 13px;
+    color: #666666;
+    margin-bottom: 12px;
+    line-height: 1.8;
+}
+
+.price-alert-current {
+    font-size: 20px;
     font-weight: 500;
-    color: #D89000;
+    color: #333333;
     margin-bottom: 12px;
     letter-spacing: 0.05em;
 }
 
-.price-alert-text {
-    font-size: 14px;
-    color: #333333;
-    margin-bottom: 8px;
-    line-height: 1.8;
+.price-tax {
+    font-size: 12px;
+    font-weight: 400;
+    color: #999999;
+    margin-left: 8px;
 }
 
-.price-alert-change {
-    font-size: 13px;
-    color: #666666;
+.price-alert-future {
+    font-size: 12px;
+    color: #999999;
     line-height: 1.8;
-}
-
-.price-alert strong {
-    font-weight: 500;
-    color: #D89000;
-    font-size: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #E0E0E0;
 }
 
 /* 保守・更新の説明を控えめに */
+
 .maintenance-intro {
     margin-bottom: 24px;
     line-height: 2.0;
@@ -485,25 +498,31 @@ section {
     color: #999999;
 }
 
-/* レスポンシブ対応 */
+
+
+/* 価格アラートのレスポンシブ対応 */
 @media (max-width: 768px) {
     .price-alert {
-        padding: 16px 20px;
+        padding: 20px;
     }
 
-    .price-alert-title {
-        font-size: 14px;
-    }
-
-    .price-alert-text {
-        font-size: 13px;
-    }
-
-    .price-alert-change {
+    .price-alert-label {
         font-size: 12px;
     }
 
-    .price-alert strong {
-        font-size: 15px;
+    .price-alert-period {
+        font-size: 12px;
+    }
+
+    .price-alert-current {
+        font-size: 18px;
+    }
+
+    .price-tax {
+        font-size: 11px;
+    }
+
+    .price-alert-future {
+        font-size: 11px;
     }
 }
