@@ -182,7 +182,7 @@ $categories = array_unique(array_column($all_posts, 'category'));
                         <i class="fab fa-line" style="margin-right: 8px;"></i>LINE: <a href="https://line.me/ti/p/CTOCx9YKjk" style="color: rgba(255, 255, 255, 0.9);">お問い合わせ</a>
                     </p>
                     <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.8;">
-                        <i class="fas fa-clock" style="margin-right: 8px;"></i>営業時間: 起きてから寝るまで<br>
+                        <i class="fas fa-clock" style="margin-right: 8px;"></i>営業時間: 10時~22時<br>
                         <i class="fas fa-calendar-check" style="margin-right: 8px;"></i>定休日: なし
                     </p>
                     <div style="margin-top: 16px;">

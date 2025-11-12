@@ -42,43 +42,38 @@
     // PC版：サイドバーの追従制御
     function handleSidebarScroll() {
         if (window.innerWidth > 768 && tocSidebar) {
-            const article = document.querySelector('.article-main');
-            if (!article) return;
-
-            const articleRect = article.getBoundingClientRect();
-            const tocRect = tocSidebar.getBoundingClientRect();
-            const headerHeight = 80;
-            const margin = 20;
-
-            // 記事の開始位置より上にいる場合
-            if (articleRect.top > headerHeight + margin) {
-                tocSidebar.style.position = 'absolute';
-                tocSidebar.style.top = '0';
-            }
-            // 記事の終了位置より下にいる場合
-            else if (articleRect.bottom < tocRect.height + headerHeight + margin) {
-                tocSidebar.style.position = 'absolute';
-                tocSidebar.style.top = (articleRect.height - tocRect.height) + 'px';
-            }
-            // 通常の追従
-            else {
-                tocSidebar.style.position = 'sticky';
-                tocSidebar.style.top = (headerHeight + margin) + 'px';
-            }
+            // stickyポジションを使用するため、特別な制御は不要
+            // CSSのposition: stickyに任せる
         }
     }
 
     // アクティブな目次項目のハイライト
     function highlightActiveTocItem() {
-        const headings = document.querySelectorAll('[id^="heading-"]');
+        const headings = document.querySelectorAll('h2[id^="heading-"], h3[id^="heading-"]');
         let activeId = null;
+        const scrollPosition = window.pageYOffset;
+        const headerOffset = 100;
+
+        // 現在のスクロール位置に最も近い見出しを見つける
+        let closestHeading = null;
+        let closestDistance = Infinity;
 
         headings.forEach(function(heading) {
-            const rect = heading.getBoundingClientRect();
-            if (rect.top <= 150 && rect.top >= -rect.height) {
-                activeId = heading.id;
+            const headingTop = heading.getBoundingClientRect().top + scrollPosition;
+            const distance = Math.abs(scrollPosition + headerOffset - headingTop);
+
+            if (scrollPosition + headerOffset >= headingTop && distance < closestDistance) {
+                closestDistance = distance;
+                closestHeading = heading;
             }
         });
+
+        if (closestHeading) {
+            activeId = closestHeading.id;
+        } else if (headings.length > 0) {
+            // ページ上部にいる場合は最初の見出しをアクティブに
+            activeId = headings[0].id;
+        }
 
         tocLinks.forEach(function(link) {
             link.classList.remove('toc-link--active');

@@ -3,7 +3,7 @@
 /* ページヘッダー */
 .page-header {
   background-color: var(--color-bg);
-  padding: var(--spacing-xxl) 0 var(--spacing-xl);
+  padding: 120px 0 var(--spacing-xl);
   text-align: center;
   border-bottom: 1px solid var(--color-border);
 }
@@ -123,7 +123,7 @@
   font-size: 15px;
   letter-spacing: 0.08em;
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0 auto var(--spacing-xl);
 }
 
 .service-detail__content {

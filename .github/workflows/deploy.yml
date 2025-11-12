@@ -25,4 +25,4 @@ jobs:
           **/.git*/**
           **/node_modules/**
           **/.github/**
-          
+          <h1 class="page-header__title">お問い合わせ</h1>
