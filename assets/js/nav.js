@@ -67,7 +67,7 @@
         } else {
           header.classList.remove('header--scrolled');
         }
-      }, 150); // 150ms後にスクロール停止と判定
+      }, 1000); // 1000ms（1秒）後にスクロール停止と判定
 
       lastScrollY = currentScrollY;
     });
