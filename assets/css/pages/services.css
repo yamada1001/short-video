@@ -138,7 +138,6 @@
 
 .service-detail__features li {
   padding: var(--spacing-md) 0;
-  padding-left: var(--spacing-lg);
   position: relative;
   line-height: 1.9;
   letter-spacing: 0.05em;
@@ -147,17 +146,6 @@
 
 .service-detail__features li:last-child {
   border-bottom: none;
-}
-
-.service-detail__features li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 20px;
-  width: 6px;
-  height: 6px;
-  background-color: var(--color-natural-brown);
-  border-radius: 50%;
 }
 
 /* 料金表 */

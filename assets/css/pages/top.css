@@ -216,8 +216,8 @@
 }
 
 .cta-section {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  background-color: var(--color-beige);
+  color: var(--color-charcoal);
   text-align: center;
   padding: var(--spacing-xxl) var(--spacing-md);
 }
@@ -228,13 +228,13 @@
 }
 
 .cta-section__title {
-  color: white;
+  color: var(--color-charcoal);
   margin-bottom: var(--spacing-md);
   font-weight: 500;
 }
 
 .cta-section__description {
-  color: white;
+  color: var(--color-text);
   margin-bottom: var(--spacing-xl);
   font-size: 18px;
   line-height: 1.9;
@@ -262,7 +262,7 @@
   justify-content: center;
   flex-wrap: wrap;
   padding-top: var(--spacing-xl);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid var(--color-border);
 }
 
 .cta-info-item {
@@ -274,7 +274,7 @@
 
 .cta-info-item i {
   font-size: 32px;
-  color: white;
+  color: var(--color-natural-brown);
   flex-shrink: 0;
 }
 
@@ -286,20 +286,19 @@
 
 .cta-info-label {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-text-light);
   letter-spacing: 0.05em;
 }
 
 .cta-info-value {
   font-size: 18px;
   font-weight: 500;
-  color: white;
+  color: var(--color-charcoal);
   letter-spacing: 0.05em;
 }
 
 .cta-info-value:hover {
-  color: white;
-  opacity: 0.8;
+  color: var(--color-natural-brown);
 }
 
 @media (max-width: 768px) {
