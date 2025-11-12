@@ -6,6 +6,11 @@
   justify-content: center;
   text-align: center;
   background-color: var(--color-bg);
+  background-image: url('../../images/hero-pattern.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
 .hero__content {

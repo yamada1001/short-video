@@ -8,6 +8,50 @@
   border-bottom: 1px solid var(--color-border);
 }
 
+/* サービスナビゲーション */
+.service-nav {
+  position: sticky;
+  top: 60px;
+  z-index: 100;
+  background-color: var(--color-bg-white);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-md) 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.service-nav__list {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.service-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.service-nav__link:hover,
+.service-nav__link--active {
+  background-color: var(--color-natural-brown);
+  color: var(--color-bg-white);
+  border-color: var(--color-natural-brown);
+}
+
+.service-nav__link i {
+  font-size: 14px;
+}
+
 .page-header__title {
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 400;
@@ -31,8 +75,15 @@
   padding: var(--spacing-xxl) 0;
 }
 
-.service-detail:nth-child(even) {
+/* サービスナビを考慮して3番目から開始 */
+.service-detail:nth-child(3),
+.service-detail:nth-child(5) {
   background-color: var(--color-off-white);
+}
+
+.service-detail:nth-child(4),
+.service-detail:nth-child(6) {
+  background-color: var(--color-bg-white);
 }
 
 .service-detail__container {
