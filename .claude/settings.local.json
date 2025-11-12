@@ -3,7 +3,8 @@
     "allow": [
       "Bash(node generate-sitemap.js:*)",
       "Bash(CNAME)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(test -f:*)"
     ],
     "deny": [],
     "ask": []

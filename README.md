@@ -17,32 +17,41 @@
 ├── about.html              # 会社概要
 ├── services.html           # サービス一覧
 ├── contact.html            # お問い合わせ
+├── privacy.html            # プライバシーポリシー (予定)
+├── tokushoho.html          # 特定商取引法 (予定)
 ├── assets/
 │   ├── css/
 │   │   ├── reset.css       # リセットCSS
-│   │   ├── common.css      # 共通スタイル
-│   │   ├── components.css  # コンポーネント
-│   │   ├── news.css        # お知らせ専用
+│   │   ├── common.css      # 共通スタイル (MUJI風デザイン)
+│   │   ├── components.css  # コンポーネント (MUJI風デザイン)
 │   │   └── pages/          # ページ別CSS
 │   │       ├── top.css
 │   │       ├── about.css
 │   │       ├── services.css
-│   │       └── contact.css
+│   │       ├── contact.css
+│   │       └── blog.css    # ブログ専用CSS
 │   ├── js/
 │   │   ├── common.js               # 共通機能
 │   │   ├── nav.js                  # ナビゲーション
 │   │   ├── fontawesome-init.js     # Font Awesome
 │   │   └── form-validation.js      # フォームバリデーション
-│   └── images/             # 画像ファイル（今後追加）
+│   └── images/             # 画像ファイル
 ├── news/
 │   ├── index.php           # お知らせ一覧
 │   ├── detail.php          # お知らせ詳細
 │   └── data/
 │       └── articles.json   # 記事データ
-├── php/
+├── blog/                   # ブログ機能
+│   ├── index.php           # ブログ一覧
+│   ├── detail.php          # ブログ詳細
+│   └── data/
+│       └── posts.json      # ブログ記事データ
+├── includes/               # 共通PHPファイル (旧 php/)
 │   ├── config.php          # 設定ファイル
 │   ├── functions.php       # 共通関数
-│   └── contact-form.php    # お問い合わせ処理
+│   ├── contact-form.php    # お問い合わせ処理
+│   ├── sitemap-generator.php    # Sitemap自動生成 (予定)
+│   └── rss-generator.php        # RSS配信 (予定)
 ├── robots.txt
 ├── .htaccess
 ├── .gitignore
@@ -51,22 +60,24 @@
 
 ## 🎨 デザインコンセプト
 
-### JQ風ミニマルデザイン
+### 無印良品風ミニマルデザイン
 - 余白を贅沢に使った洗練されたレイアウト
-- モノトーンベースのカラーパレット
+- 自然素材を思わせるアースカラー
 - レスポンシブデザイン（モバイルファースト）
+- "Less is more" - 無駄を削ぎ落としたデザイン
 
 ### カラーパレット
-- Primary: `#000000` (黒)
-- Text: `#1a1a1a`
-- Text Light: `#666666`
-- Background: `#ffffff`
-- Background Gray: `#f5f5f5`
-- Border: `#e5e5e5`
+- Beige: `#E5DDD5` (ベースカラー)
+- Off White: `#F5F3F0` (背景)
+- Natural Brown: `#8B7355` (アクセント)
+- Charcoal: `#4A4A4A` (テキスト・フッター)
+- Light Gray: `#E8E8E8` (サブ背景)
 
 ### タイポグラフィ
-- 日本語: Noto Sans JP (400, 500, 700)
-- 英語: Inter, Helvetica Neue
+- 日本語: Noto Sans JP (400, 500のみ)
+- フォントウェイト: 基本400、強調500まで（700以上は使用禁止）
+- レターススペーシング: 0.08em - 0.15em（広め）
+- 行間: 1.9 - 2.0（ゆったり）
 
 ## ✨ 実装済み機能
 
@@ -84,8 +95,9 @@
 - ✅ 共通関数（functions.php）
 - ✅ お問い合わせフォーム処理
 - ✅ 自動返信メール
-- ✅ JSONベースの記事管理
+- ✅ JSONベースの記事管理（お知らせ・ブログ）
 - ✅ ページネーション
+- ✅ ブログ機能（カテゴリフィルター・タグ機能）
 
 ### SEO
 - ✅ 構造化データ（JSON-LD）

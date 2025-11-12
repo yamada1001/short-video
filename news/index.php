@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../php/functions.php';
+require_once __DIR__ . '/../includes/functions.php';
 
 // 記事データ取得
 $articles = getArticles(NEWS_DATA_PATH);
