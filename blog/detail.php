@@ -20,6 +20,32 @@ if (isset($post['content']) && strpos($post['content'], '.html') !== false) {
         $post['content'] = file_get_contents($content_file);
     }
 }
+
+// 目次生成関数
+function generateToc(&$content) {
+    $toc = [];
+    $dom = new DOMDocument();
+    @$dom->loadHTML('<?xml encoding="UTF-8">' . $content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    $xpath = new DOMXPath($dom);
+
+    $headings = $xpath->query('//h2 | //h3');
+    foreach ($headings as $index => $heading) {
+        $id = 'heading-' . $index;
+        $heading->setAttribute('id', $id);
+
+        $toc[] = [
+            'id' => $id,
+            'text' => $heading->textContent,
+            'level' => $heading->nodeName
+        ];
+    }
+
+    $content = $dom->saveHTML();
+    return $toc;
+}
+
+// 目次を生成（参照渡しでコンテンツにIDを追加）
+$toc = generateToc($post['content']);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -43,6 +69,7 @@ if (isset($post['content']) && strpos($post['content'], '.html') !== false) {
     <link rel="stylesheet" href="../assets/css/common.css">
     <link rel="stylesheet" href="../assets/css/components.css">
     <link rel="stylesheet" href="../assets/css/pages/blog.css">
+    <link rel="stylesheet" href="../assets/css/toc.css">
 </head>
 <body>
     <!-- ヘッダー -->
@@ -67,18 +94,21 @@ if (isset($post['content']) && strpos($post['content'], '.html') !== false) {
 
     <!-- ブログ記事 -->
     <article class="blog-article">
-        <div class="container container--narrow">
-            <!-- パンくずリスト -->
-            <nav class="breadcrumb">
-                <a href="../index.html" class="breadcrumb__link">ホーム</a>
-                <span class="breadcrumb__separator">/</span>
-                <a href="index.php" class="breadcrumb__link">ブログ</a>
-                <span class="breadcrumb__separator">/</span>
-                <span class="breadcrumb__current"><?php echo h($post['title']); ?></span>
-            </nav>
+        <div class="container">
+            <div class="article-layout">
+                <!-- メインコンテンツ -->
+                <div class="article-main">
+                    <!-- パンくずリスト -->
+                    <nav class="breadcrumb">
+                        <a href="../index.html" class="breadcrumb__link">ホーム</a>
+                        <span class="breadcrumb__separator">/</span>
+                        <a href="index.php" class="breadcrumb__link">ブログ</a>
+                        <span class="breadcrumb__separator">/</span>
+                        <span class="breadcrumb__current"><?php echo h($post['title']); ?></span>
+                    </nav>
 
-            <!-- 記事ヘッダー -->
-            <header class="article-header">
+                    <!-- 記事ヘッダー -->
+                    <header class="article-header">
                 <div class="article-meta">
                     <time class="article-date" datetime="<?php echo h($post['publishedAt']); ?>">
                         <?php echo formatDate($post['publishedAt'], 'Y年m月d日'); ?>
@@ -117,12 +147,54 @@ if (isset($post['content']) && strpos($post['content'], '.html') !== false) {
                 <?php endif; ?>
             </footer>
 
-            <!-- 一覧に戻る -->
-            <div class="article-back">
-                <a href="index.php" class="btn btn-secondary">ブログ一覧に戻る</a>
+                    <!-- 一覧に戻る -->
+                    <div class="article-back">
+                        <a href="index.php" class="btn btn-secondary">ブログ一覧に戻る</a>
+                    </div>
+                </div>
+
+                <!-- 目次サイドバー（PC版） -->
+                <aside class="article-toc-sidebar" id="tocSidebar">
+                    <div class="toc-container">
+                        <h2 class="toc-title"><i class="fas fa-list"></i> 目次</h2>
+                        <nav class="toc-nav">
+                            <?php foreach ($toc as $item): ?>
+                                <a href="#<?php echo $item['id']; ?>" class="toc-link toc-link--<?php echo $item['level']; ?>" data-target="<?php echo $item['id']; ?>">
+                                    <?php echo h($item['text']); ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </nav>
+                    </div>
+                </aside>
             </div>
         </div>
     </article>
+
+    <!-- 目次ボタン（SP版） -->
+    <button class="toc-button" id="tocButton" aria-label="目次を開く">
+        <i class="fas fa-list"></i>
+        <span>目次</span>
+    </button>
+
+    <!-- 目次モーダル（SP版） -->
+    <div class="toc-modal" id="tocModal">
+        <div class="toc-modal__overlay" id="tocModalOverlay"></div>
+        <div class="toc-modal__content">
+            <div class="toc-modal__header">
+                <h2 class="toc-modal__title"><i class="fas fa-list"></i> 目次</h2>
+                <button class="toc-modal__close" id="tocModalClose" aria-label="閉じる">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="toc-modal__nav">
+                <?php foreach ($toc as $item): ?>
+                    <a href="#<?php echo $item['id']; ?>" class="toc-modal__link toc-link--<?php echo $item['level']; ?>" data-target="<?php echo $item['id']; ?>">
+                        <?php echo h($item['text']); ?>
+                    </a>
+                <?php endforeach; ?>
+            </nav>
+        </div>
+    </div>
 
     <!-- フッター -->
     <footer class="footer">
@@ -180,5 +252,6 @@ if (isset($post['content']) && strpos($post['content'], '.html') !== false) {
     <script src="../assets/js/fontawesome-init.js"></script>
     <script src="../assets/js/nav.js"></script>
     <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/toc.js"></script>
 </body>
 </html>
