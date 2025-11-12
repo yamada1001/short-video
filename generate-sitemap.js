@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const baseUrl = 'https://yamada1001.github.io/short-video';
+const baseUrl = 'https://yojitu.com';
 const currentDate = new Date().toISOString().split('T')[0];
 
 // ページの優先度と更新頻度を定義

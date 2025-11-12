@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node generate-sitemap.js:*)"
+      "Bash(node generate-sitemap.js:*)",
+      "Bash(CNAME)"
     ],
     "deny": [],
     "ask": []
