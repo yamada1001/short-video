@@ -468,50 +468,6 @@
             }
         });
 
-        // ナビゲーション自動非表示機能
-        (function() {
-            const nav = document.querySelector('.global-nav');
-            let scrollTimeout;
-            let hideTimeout;
-
-            // 初回表示後、3秒後にナビを非表示
-            setTimeout(() => {
-                nav.classList.add('nav-hidden');
-            }, 3000);
-
-            // スクロールイベント
-            window.addEventListener('scroll', () => {
-                // スクロール中はナビを表示
-                nav.classList.remove('nav-hidden');
-
-                // 既存のタイムアウトをクリア
-                clearTimeout(scrollTimeout);
-                clearTimeout(hideTimeout);
-
-                // スクロールが止まって2秒後にナビを非表示
-                scrollTimeout = setTimeout(() => {
-                    hideTimeout = setTimeout(() => {
-                        nav.classList.add('nav-hidden');
-                    }, 2000);
-                }, 150);
-            });
-
-            // ナビにマウスオーバーしたら表示を維持
-            nav.addEventListener('mouseenter', () => {
-                nav.classList.remove('nav-hidden');
-                clearTimeout(hideTimeout);
-            });
-
-            // ハンバーガーメニューが開いている時は非表示にしない
-            const hamburger = document.getElementById('hamburger');
-            const observer = new MutationObserver(() => {
-                if (hamburger.classList.contains('active')) {
-                    nav.classList.remove('nav-hidden');
-                    clearTimeout(hideTimeout);
-                }
-            });
-            observer.observe(hamburger, { attributes: true, attributeFilter: ['class'] });
-        })();
     </script>
 </body>
 </html>
