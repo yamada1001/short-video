@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="余日（Yojitsu）へのお問い合わせはこちら。LINE、電話、メールフォームで受け付けております。">
+    <title>お問い合わせ | 余日（Yojitsu）</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/pages/contact.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header" id="header">
+        <div class="container header__container">
+            <a href="index.html" class="header__logo">余日</a>
+            <nav class="nav">
+                <ul class="nav__list" id="navList">
+                    <li><a href="index.html#services" class="nav__link">サービス</a></li>
+                    <li><a href="news/" class="nav__link">お知らせ</a></li>
+                    <li><a href="about.html" class="nav__link">会社概要</a></li>
+                    <li><a href="contact.html" class="nav__link nav__link--active">お問い合わせ</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ページヘッダー -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-header__title">お問い合わせ</h1>
+            <p class="page-header__description">
+                ご質問やご相談は、<br>
+                お気軽にお問い合わせください
+            </p>
+        </div>
+    </section>
+
+    <!-- お問い合わせ方法 -->
+    <section class="contact-methods">
+        <div class="container">
+            <h2 class="section__title animate">お問い合わせ方法</h2>
+            <div class="contact-methods__grid">
+                <div class="contact-method animate">
+                    <div class="contact-method__icon">
+                        <i class="fab fa-line"></i>
+                    </div>
+                    <h3 class="contact-method__title">LINE</h3>
+                    <p class="contact-method__info">
+                        お気軽にLINEでご連絡ください。<br>
+                        ご返信は24時間以内に行います。
+                    </p>
+                    <a href="https://line.me/ti/p/CTOCx9YKjk" class="contact-method__link" target="_blank" rel="noopener noreferrer">
+                        LINEで相談する
+                    </a>
+                </div>
+                <div class="contact-method animate">
+                    <div class="contact-method__icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 class="contact-method__title">電話</h3>
+                    <p class="contact-method__info">
+                        080-4692-9681<br>
+                        受付時間：平日 9:00-18:00
+                    </p>
+                    <a href="tel:08046929681" class="contact-method__link">
+                        電話をかける
+                    </a>
+                </div>
+                <div class="contact-method animate">
+                    <div class="contact-method__icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="contact-method__title">メール</h3>
+                    <p class="contact-method__info">
+                        yamada1881r@gmail.com<br>
+                        24時間受付中
+                    </p>
+                    <a href="mailto:yamada1881r@gmail.com" class="contact-method__link">
+                        メールを送る
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせフォーム -->
+    <section class="contact-form">
+        <div class="container contact-form__container">
+            <h2 class="section__title animate">メールフォーム</h2>
+            <p class="contact-form__intro animate">
+                以下のフォームからもお問い合わせいただけます。<br>
+                内容を確認後、担当者よりご連絡させていただきます。
+            </p>
+
+            <form action="php/contact-form.php" method="POST" class="form animate" id="contactForm">
+                <div class="form-group">
+                    <label for="company" class="form-label">会社名・団体名</label>
+                    <input type="text" id="company" name="company" class="form-input" placeholder="株式会社〇〇">
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="form-label form-label--required">お名前</label>
+                    <input type="text" id="name" name="name" class="form-input" required placeholder="山田 太郎">
+                    <div class="form-error" id="nameError">お名前を入力してください</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label form-label--required">メールアドレス</label>
+                    <input type="email" id="email" name="email" class="form-input" required placeholder="example@example.com">
+                    <div class="form-error" id="emailError">正しいメールアドレスを入力してください</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tel" class="form-label">電話番号</label>
+                    <input type="tel" id="tel" name="tel" class="form-input" placeholder="090-1234-5678">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject" class="form-label form-label--required">お問い合わせ種別</label>
+                    <select id="subject" name="subject" class="form-select" required>
+                        <option value="">選択してください</option>
+                        <option value="SEO対策について">SEO対策について</option>
+                        <option value="広告運用について">広告運用について</option>
+                        <option value="Web制作について">Web制作について</option>
+                        <option value="ショート動画制作について">ショート動画制作について</option>
+                        <option value="見積もり依頼">見積もり依頼</option>
+                        <option value="その他">その他</option>
+                    </select>
+                    <div class="form-error" id="subjectError">お問い合わせ種別を選択してください</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label form-label--required">お問い合わせ内容</label>
+                    <textarea id="message" name="message" class="form-textarea" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+                    <p class="form-help">具体的な内容をご記入いただけますと、スムーズに対応できます。</p>
+                    <div class="form-error" id="messageError">お問い合わせ内容を入力してください</div>
+                </div>
+
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary btn--large">送信する</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- 営業時間・アクセス -->
+    <section class="business-info">
+        <div class="container">
+            <h2 class="section__title animate">営業時間・所在地</h2>
+            <div class="business-info__grid">
+                <div class="business-hours animate">
+                    <h3 class="business-hours__title">
+                        <i class="fas fa-clock"></i> 営業時間
+                    </h3>
+                    <div class="business-hours__content">
+                        <p><strong>平日</strong>　9:00 - 18:00</p>
+                        <p><strong>土日祝</strong>　休業</p>
+                        <p style="margin-top: 16px; font-size: 14px;">
+                            ※メール・LINEでのお問い合わせは24時間受付中です。<br>
+                            ※営業時間外のお問い合わせは翌営業日にご返信いたします。
+                        </p>
+                    </div>
+                </div>
+                <div class="access-info animate">
+                    <h3 class="access-info__title">
+                        <i class="fas fa-map-marker-alt"></i> 所在地
+                    </h3>
+                    <div class="access-info__content">
+                        <p><strong>余日（Yojitsu）</strong></p>
+                        <p>〒000-0000<br>大分県大分市</p>
+                        <p style="margin-top: 16px; font-size: 14px;">
+                            ※訪問をご希望の場合は、事前にご連絡をお願いいたします。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h3 class="footer__section-title">余日（Yojitsu）</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8);">
+                        大分県を拠点としたデジタルマーケティング・Web制作会社
+                    </p>
+                </div>
+                <div class="footer__section">
+                    <h3 class="footer__section-title">サービス</h3>
+                    <a href="services.html#seo" class="footer__link">SEO対策</a>
+                    <a href="services.html#ads" class="footer__link">広告運用</a>
+                    <a href="services.html#web" class="footer__link">Web制作</a>
+                </div>
+                <div class="footer__section">
+                    <h3 class="footer__section-title">企業情報</h3>
+                    <a href="about.html" class="footer__link">会社概要</a>
+                    <a href="news/" class="footer__link">お知らせ</a>
+                    <a href="contact.html" class="footer__link">お問い合わせ</a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 余日（Yojitsu）. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/fontawesome-init.js"></script>
+    <script src="assets/js/nav.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/form-validation.js"></script>
+</body>
+</html>

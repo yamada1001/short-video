@@ -3,462 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Webサイト制作サービス｜20万円からWebサイト制作に対応。LP制作も承ります。制作期間：Webサイト1ヶ月以内、LP1週間以内。">
-    <title>余日｜サイト制作サービス・LP制作</title>
+    <meta name="description" content="余日（Yojitsu）のサービス一覧。SEO対策、広告運用、Web制作など、大分県を拠点にデジタルマーケティングをトータルサポート。">
+    <meta name="keywords" content="SEO対策,広告運用,Web制作,大分,デジタルマーケティング">
+    <title>サービス | 余日（Yojitsu）</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="services-styles.css">
-
-    <!-- 構造化データ -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "余日 Webサイト制作サービス",
-      "description": "余日（yojitsu）のWebサイト制作サービス。Webサイト、LP（ランディングページ）制作。Webサイトは1ヶ月以内、LPは1週間以内で納品。",
-      "url": "https://yojitu.com/services.html",
-      "telephone": "080-4692-9681",
-      "email": "yamada1881r@gmail.com",
-      "priceRange": "¥50,000〜¥200,000",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "JP"
-      },
-      "areaServed": "JP",
-      "serviceType": ["Webサイト制作", "LP制作", "ランディングページ制作"],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Webサイト制作サービス",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Webサイト制作",
-              "description": "トップページ + 3〜5ページ程度の構成、レスポンシブデザイン対応。制作期間：1ヶ月以内"
-            },
-            "price": "200000",
-            "priceCurrency": "JPY"
-          },
-          {
-            "@type": "Offer",
-            "itemOffered":             "price": "50000",
-            "priceCurrency": "JPY"
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "LP制作",
-              "description": "ランディングページ制作。コンバージョンを意識した構成。制作期間：1週間以内"
-            },
-            "price": "50000",
-            "priceCurrency": "JPY"
-          }
-        ]
-      }
-    }
-    </script>
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WZX7SZ3V');</script>
-    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/pages/services.css">
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZX7SZ3V"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <!-- グローバルナビゲーション -->
-    <nav class="global-nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo"><ruby>余日<rt>yojitsu</rt></ruby></a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#service">サービス</a></li>
-                <li><a href="#lp">LPとは</a></li>
-                <li><a href="#works">実績</a></li>
-                <li><a href="#profile">プロフィール</a></li>
-                <li><a href="#contact">お問い合わせ</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <h1>サイト制作</h1>
-        <p class="hero-description">
-            ショート動画制作に加え、Webサイト制作サービスも提供しております。<br>
-            シンプルで効果的なWebサイトを、適正な価格で制作いたします。
-        </p>
-    </section>
-
-    <section id="service">
-        <h2 class="section-title">サービス一覧</h2>
-        <div class="services-grid">
-
-            <!-- Webサイト制作 -->
-            <article class="service-item">
-                <div class="service-header">
-                    <h3 class="service-name">Webサイト制作</h3>
-                    <p class="service-price">200,000円〜</p>
-                    <p class="service-price-note">※税別</p>
-                </div>
-                <p class="service-description">
-                    情報発信を目的としたシンプルなWebサイトを制作いたします。<br>
-                    企業情報やサービス紹介など、基本的な情報を効果的に伝えるサイトに最適です。
-                </p>
-                <div class="service-details">
-                    <h4>制作可能な内容</h4>
-                    <ul>
-                        <li>トップページ + 3〜5ページ程度の構成</li>
-                        <li>レスポンシブデザイン対応</li>
-                        <li>企業情報・サービス紹介ページ</li>
-                        <li>アクセス情報・会社概要ページ</li>
-                        <li>制作期間：1ヶ月以内</li>
-                    </ul>
-                </div>
-                <div class="service-details" style="margin-top: 24px;">
-                    <h4>対応が難しい内容</h4>
-                    <ul>
-                        <li>ブログ機能</li>
-                        <li>問い合わせフォーム（外部サービス連携は可能）</li>
-                        <li>会員登録・ログイン機能</li>
-                        <li>データベース連携が必要な機能</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- LP制作 -->
-            <article class="service-item">
-                <div class="service-header">
-                    <h3 class="service-name">LP制作</h3>
-                    <p class="service-price">50,000円〜</p>
-                    <p class="service-price-note">※税別</p>
-                </div>
-                <p class="service-description">
-                    商品やサービスの魅力を効果的に伝える、ランディングページを制作いたします。<br>
-                    コンバージョンを意識した構成で、訪問者を行動へと導きます。
-                </p>
-                <div class="service-details">
-                    <h4>制作内容</h4>
-                    <ul>
-                        <li>ターゲットに響く訴求ポイントの設計</li>
-                        <li>ストーリー性のある情報設計</li>
-                        <li>レスポンシブデザイン対応</li>
-                        <li>CTAボタンの最適配置</li>
-                        <li>制作期間：1週間以内</li>
-                    </ul>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- LP説明セクション -->
-    <section class="lp-explanation" id="lp">
-        <div class="lp-explanation-content">
-            <h3>LPとは</h3>
-            <p>
-                LP（ランディングページ）とは、訪問者に特定の行動を促すことを目的とした、1ページ完結型のWebページです。商品購入、資料請求、問い合わせなど、明確な目的を持って設計されます。
-            </p>
-            <p>
-                通常のWebサイトとは異なり、訪問者の注意を逸らさず、一つの目標に向けて情報を提供していく構成が特徴です。
-            </p>
-
-            <div class="lp-features">
-                <h4>LPの主な特徴</h4>
-                <ul>
-                    <li>縦長の1ページ構成で、ストーリー性のある情報展開</li>
-                    <li>他のページへのリンクを最小限にし、離脱を防ぐ設計</li>
-                    <li>明確なCTA（行動喚起）ボタンの配置</li>
-                    <li>ターゲットを絞った訴求内容</li>
-                    <li>視覚的に魅力的なデザインで興味を引く</li>
+    <!-- ヘッダー -->
+    <header class="header" id="header">
+        <div class="container header__container">
+            <a href="index.html" class="header__logo">余日</a>
+            <nav class="nav">
+                <ul class="nav__list" id="navList">
+                    <li><a href="index.html#services" class="nav__link nav__link--active">サービス</a></li>
+                    <li><a href="news/" class="nav__link">お知らせ</a></li>
+                    <li><a href="about.html" class="nav__link">会社概要</a></li>
+                    <li><a href="contact.html" class="nav__link">お問い合わせ</a></li>
                 </ul>
-            </div>
-
-            <div class="lp-features" style="margin-top: 48px;">
-                <h4>LPが効果的な場面</h4>
-                <ul>
-                    <li>新商品・新サービスのプロモーション</li>
-                    <li>キャンペーンやイベントの告知</li>
-                    <li>資料請求・問い合わせの獲得</li>
-                    <li>メールマーケティングの受け皿</li>
-                    <li>SNS広告からの誘導先</li>
-                </ul>
-            </div>
+                <div class="hamburger" id="hamburger">
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                </div>
+            </nav>
         </div>
-    </section>
+    </header>
 
-    <!-- 制作実績 -->
-    <section id="works">
-        <h2 class="section-title">制作実績</h2>
-        <div class="services-grid">
-            <article class="service-item">
-                <div class="service-header">
-                    <h3 class="service-name">「このままでいいのかな」から抜け出した人たちが選んだ、次の一歩。</h3>
-                </div>
-                <p class="service-description">
-                    大分IT移住プロジェクトのランディングページ。<br>
-                    移住を検討する方々に向けた訴求力のあるデザインと情報設計を実現しました。
-                </p>
-                <div class="service-details">
-                    <h4>詳細</h4>
-                    <ul>
-                        <li><a href="https://migration.oita-creative.jp/lp2/" target="_blank" rel="noopener noreferrer" style="color: #8B7355; text-decoration: underline;">制作実績を見る</a></li>
-                    </ul>
-                </div>
-            </article>
-
-            <article class="service-item">
-                <div class="service-header">
-                    <h3 class="service-name">大分IT移住プロジェクト | 同じ働き方で、もっと豊かに</h3>
-                </div>
-                <p class="service-description">
-                    IT人材の移住促進を目的としたランディングページ。<br>
-                    ターゲットに響くメッセージと、行動を促すCTA設計を実施しました。
-                </p>
-                <div class="service-details">
-                    <h4>詳細</h4>
-                    <ul>
-                        <li><a href="https://migration.oita-creative.jp/2025/lp/" target="_blank" rel="noopener noreferrer" style="color: #8B7355; text-decoration: underline;">制作実績を見る</a></li>
-                    </ul>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- プロフィール -->
-    <section class="section" id="profile">
+    <!-- ページヘッダー -->
+    <section class="page-header">
         <div class="container">
-            <h2 class="section-title">プロフィール</h2>
-            <div class="profile-content">
-                <h3 class="profile-name">山田蓮</h3>
-                <p class="profile-description">
-                    web制作会社にてマーケティング、web制作を３年ほど経験を積み独立。<br>
-                    マーケ領域では主にSEO・SNS・広告運用代行などを行った。<br>
-                    独立後は外部CMOやPM、動画制作やweb制作を行う。
-                </p>
-                <div class="profile-certificates-carousel">
-                    <div class="carousel-container">
-                        <div class="carousel-track">
-                            <div class="certificate-slide">
-                                <a href="https://skillshop.credential.net/ad4a1bd5-fbf0-44e7-8d22-f54f534f1334#acc.3soRY81H" target="_blank" rel="noopener noreferrer">
-                                    <img src="https://images.credential.net/embed/hlglbz6a_1762850596236.png" alt="Google Skillshop 認定証 1">
-                                </a>
-                            </div>
-                            <div class="certificate-slide">
-                                <a href="https://skillshop.credential.net/d0c16042-b1ea-45d9-819b-0843afb548df#acc.Ym5EjHLn" target="_blank" rel="noopener noreferrer">
-                                    <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/166239443" alt="Google Skillshop 認定証 2">
-                                </a>
-                            </div>
+            <h1 class="page-header__title">サービス</h1>
+            <p class="page-header__description">
+                デジタルマーケティングの専門知識で、<br>
+                お客様のビジネス成長をトータルサポート
+            </p>
+        </div>
+    </section>
+
+    <!-- SEO対策 -->
+    <section class="service-detail" id="seo">
+        <div class="container">
+            <div class="service-detail__container">
+                <div class="service-detail__content animate">
+                    <div class="service-detail__icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h2 class="service-detail__title">SEO対策</h2>
+                    <p class="service-detail__description">
+                        検索エンジンで上位表示を実現し、自然流入を増やします。大分県内の企業様に最適化した戦略で、地域でのWeb集客を成功に導きます。
+                    </p>
+                    <h3>サービス内容</h3>
+                    <ul class="service-detail__features">
+                        <li>キーワード調査・選定</li>
+                        <li>コンテンツSEO施策</li>
+                        <li>内部対策（タグ最適化、サイト構造改善）</li>
+                        <li>外部対策（被リンク獲得）</li>
+                        <li>ローカルSEO（Googleビジネスプロフィール最適化）</li>
+                        <li>定期レポート・分析</li>
+                    </ul>
+                    <div class="pricing-table">
+                        <div class="pricing-table__row">
+                            <div class="pricing-table__label">初期費用</div>
+                            <div class="pricing-table__value">50,000円〜</div>
+                        </div>
+                        <div class="pricing-table__row">
+                            <div class="pricing-table__label">月額費用</div>
+                            <div class="pricing-table__value">30,000円〜</div>
+                        </div>
+                        <div class="pricing-table__row">
+                            <div class="pricing-table__label">契約期間</div>
+                            <div class="pricing-table__value">6ヶ月〜（効果測定のため）</div>
                         </div>
                     </div>
-                    <div class="carousel-dots"></div>
+                </div>
+                <div class="service-detail__image animate">
+                    <i class="fas fa-chart-line"></i>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 注意事項 -->
-    <section class="notice" id="notice">
-        <div class="notice-content">
-            <h3>ご注意事項</h3>
-            <ul>
-                <li>料金は全て税別表記となります</li>
-                <li>原稿・画像素材はお客様にてご用意いただきます</li>
-                <li>ドメイン・サーバー費用は別途必要となります</li>
-                <li>機能追加や大幅な修正は別途お見積もりとなります</li>
-                <li>詳細な要件により料金が変動する場合がございます</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- 保守・更新について -->
-    <section class="notice" id="maintenance">
-        <div class="notice-content">
-            <h3><span class="term-tooltip" data-term="maintenance">保守</span>・更新について</h3>
-            <p class="maintenance-intro">
-                納品後のサイト更新・修正については、都度お見積もりにて対応いたします。<br>
-                軽微な変更については以下の料金で承ります。
-            </p>
-            <ul>
-                <li>文章の修正・変更：3,000円（税別）</li>
-                <li>画像の差し替え：3,000円（税別）</li>
-            </ul>
-            <p style="margin-top: 24px; line-height: 2.0; font-size: 13px; color: #999999;">
-                ※大幅な修正や機能追加については別途お見積もりとなります<br>
-                ※緊急対応が必要な場合はご相談ください
-            </p>
-        </div>
-    </section>
-
-    <!-- お問い合わせ -->
-    <section class="section contact-section" id="contact">
+    <!-- 広告運用 -->
+    <section class="service-detail" id="ads">
         <div class="container">
-            <div class="contact-container">
-                <h2 class="section-title">お問い合わせ</h2>
-                <p class="contact-intro">
-                    ご質問やご依頼は、<br>
-                    LINE、電話、メールでお気軽にご連絡ください。
-                </p>
-                <div class="contact-method">
-                    <h3>LINE</h3>
-                    <a href="https://line.me/ti/p/CTOCx9YKjk" class="contact-button" target="_blank" rel="noopener noreferrer">LINEで相談する</a>
+            <div class="service-detail__container">
+                <div class="service-detail__content animate">
+                    <div class="service-detail__icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h2 class="service-detail__title">広告運用代行</h2>
+                    <p class="service-detail__description">
+                        Google広告・Meta広告（Facebook・Instagram）の運用を代行。データ分析に基づいた最適化で、費用対効果を最大化します。
+                    </p>
+                    <h3>対応広告媒体</h3>
+                    <ul class="service-detail__features">
+                        <li>Google検索広告</li>
+                        <li>Googleディスプレイ広告</li>
+                        <li>YouTube広告</li>
+                        <li>Meta広告（Facebook・Instagram）</li>
+                        <li>LINE広告</li>
+                    </ul>
+                    <h3>運用フロー</h3>
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <div class="process-step__number">1</div>
+                            <h4 class="process-step__title">ヒアリング</h4>
+                            <p class="process-step__description">目標・予算の設定</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="process-step__number">2</div>
+                            <h4 class="process-step__title">戦略立案</h4>
+                            <p class="process-step__description">ターゲット・クリエイティブ設計</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="process-step__number">3</div>
+                            <h4 class="process-step__title">運用開始</h4>
+                            <p class="process-step__description">配信・モニタリング</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="process-step__number">4</div>
+                            <h4 class="process-step__title">最適化</h4>
+                            <p class="process-step__description">分析・改善提案</p>
+                        </div>
+                    </div>
+                    <div class="pricing-table">
+                        <div class="pricing-table__row">
+                            <div class="pricing-table__label">初期費用</div>
+                            <div class="pricing-table__value">30,000円</div>
+                        </div>
+                        <div class="pricing-table__row">
+                            <div class="pricing-table__label">運用手数料</div>
+                            <div class="pricing-table__value">広告費の20%（最低30,000円〜）</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="contact-method">
-                    <h3>電話</h3>
-                    <p class="email-display">080-4692-9681</p>
-                    <a href="tel:08046929681" class="contact-button">電話をかける</a>
-                </div>
-                <div class="contact-method">
-                    <h3>メール</h3>
-                    <p class="email-display">yamada1881r@gmail.com</p>
-                    <a href="mailto:yamada1881r@gmail.com" class="contact-button">メールを送る</a>
+                <div class="service-detail__image animate">
+                    <i class="fas fa-ad"></i>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Web制作 -->
+    <section class="service-detail" id="web">
+        <div class="container">
+            <div class="service-detail__container">
+                <div class="service-detail__content animate">
+                    <div class="service-detail__icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h2 class="service-detail__title">Web制作</h2>
+                    <p class="service-detail__description">
+                        企業サイト、LP、ECサイトなど、目的に合わせたWebサイトを制作。モダンなデザインと高速表示、SEO対策を標準実装します。
+                    </p>
+                    <h3>制作実績</h3>
+                    <ul class="service-detail__features">
+                        <li>コーポレートサイト</li>
+                        <li>ランディングページ（LP）</li>
+                        <li>採用サイト</li>
+                        <li>ECサイト</li>
+                        <li>オウンドメディア</li>
+                        <li>WordPressカスタマイズ</li>
+                    </ul>
+                    <h3>標準機能</h3>
+                    <ul class="service-detail__features">
+                        <li>レスポンシブデザイン</li>
+                        <li>SEO対策（構造化データ、メタタグ最適化）</li>
+                        <li>ページ速度最適化</li>
+                        <li>お問い合わせフォーム</li>
+                        <li>Google Analytics・Search Console設定</li>
+                        <li>SSL対応</li>
+                    </ul>
+                    <div class="pricing-table">
+                        <div class="pricing-table__row">
+                            <div class="pricing-table__label">LP制作</div>
+                            <div class="pricing-table__value">50,000円〜</div>
+                        </div>
+                        <div class="pricing-table__row">
+                            <div class="pricing-table__label">コーポレートサイト</div>
+                            <div class="pricing-table__value">200,000円〜</div>
+                        </div>
+                        <div class="pricing-table__row">
+                            <div class="pricing-table__label">制作期間</div>
+                            <div class="pricing-table__value">LP: 1週間 / コーポレート: 1ヶ月</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-detail__image animate">
+                    <i class="fas fa-desktop"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ショート動画制作 -->
+    <section class="service-detail" id="video">
+        <div class="container">
+            <div class="service-detail__container">
+                <div class="service-detail__content animate">
+                    <div class="service-detail__icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h2 class="service-detail__title">ショート動画制作</h2>
+                    <p class="service-detail__description">
+                        Instagram Reels、TikTok、YouTube Shortsに対応したショート動画を制作。撮影から編集まで、SNSマーケティングをトータルサポートします。
+                    </p>
+                    <h3>対応プラットフォーム</h3>
+                    <ul class="service-detail__features">
+                        <li>Instagram Reels</li>
+                        <li>TikTok</li>
+                        <li>YouTube Shorts</li>
+                    </ul>
+                    <h3>制作内容</h3>
+                    <ul class="service-detail__features">
+                        <li>撮影（1時間まで）</li>
+                        <li>編集作業</li>
+                        <li>BGM・効果音追加</li>
+                        <li>テロップ挿入</li>
+                        <li>修正1回まで</li>
+                    </ul>
+                    <div class="pricing-table">
+                        <div class="pricing-table__row">
+                            <div class="pricing-table__label">基本プラン</div>
+                            <div class="pricing-table__value">20,000円 / 1本</div>
+                        </div>
+                        <div class="pricing-table__row">
+                            <div class="pricing-table__label">10本セット</div>
+                            <div class="pricing-table__value">150,000円（25%オフ）</div>
+                        </div>
+                        <div class="pricing-table__row">
+                            <div class="pricing-table__label">企画案作成</div>
+                            <div class="pricing-table__value">5,000円（10本分）</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-detail__image animate">
+                    <i class="fas fa-film"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTAセクション -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-section__title animate">お気軽にご相談ください</h2>
+            <p class="cta-section__description animate">
+                貴社のビジネス課題に合わせた、<br>
+                最適なプランをご提案いたします
+            </p>
+            <a href="contact.html" class="btn btn-primary btn--large animate">お問い合わせはこちら</a>
         </div>
     </section>
 
     <!-- フッター -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p style="margin-bottom: 16px;">
-                <a href="privacy.html" style="color: #666666; text-decoration: none; margin-right: 24px;">プライバシーポリシー</a>
-                <a href="tokushoho.html" style="color: #666666; text-decoration: none;">特定商取引法に基づく表記</a>
-            </p>
-            <p>© 2025 余日</p>
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h3 class="footer__section-title">余日（Yojitsu）</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8);">
+                        大分県を拠点としたデジタルマーケティング・Web制作会社
+                    </p>
+                </div>
+                <div class="footer__section">
+                    <h3 class="footer__section-title">サービス</h3>
+                    <a href="services.html#seo" class="footer__link">SEO対策</a>
+                    <a href="services.html#ads" class="footer__link">広告運用</a>
+                    <a href="services.html#web" class="footer__link">Web制作</a>
+                    <a href="services.html#video" class="footer__link">ショート動画制作</a>
+                </div>
+                <div class="footer__section">
+                    <h3 class="footer__section-title">企業情報</h3>
+                    <a href="about.html" class="footer__link">会社概要</a>
+                    <a href="news/" class="footer__link">お知らせ</a>
+                    <a href="contact.html" class="footer__link">お問い合わせ</a>
+                </div>
+                <div class="footer__section">
+                    <h3 class="footer__section-title">お問い合わせ</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8);">
+                        Tel: 080-4692-9681<br>
+                        Email: yamada1881r@gmail.com
+                    </p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 余日（Yojitsu）. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
-    <script>
-        // ハンバーガーメニュー
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // メニュークリック時に閉じる
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // スムーススクロール（ナビの高さ分オフセット）
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const navHeight = document.querySelector('.global-nav').offsetHeight;
-                    const targetPosition = target.offsetTop - navHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // カルーセル機能
-        const carousel = document.querySelector('.carousel-track');
-        const slides = document.querySelectorAll('.certificate-slide');
-        const dotsContainer = document.querySelector('.carousel-dots');
-
-        if (carousel && slides.length > 0) {
-            let currentIndex = 0;
-            const slideCount = slides.length;
-
-            // ドットを生成
-            slides.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.classList.add('carousel-dot');
-                if (index === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(index));
-                dotsContainer.appendChild(dot);
-            });
-
-            const dots = document.querySelectorAll('.carousel-dot');
-
-            function goToSlide(index) {
-                currentIndex = index;
-                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-                // ドットの更新
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === currentIndex);
-                });
-            }
-
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % slideCount;
-                goToSlide(currentIndex);
-            }
-
-            // 自動スライド（5秒ごと）
-            setInterval(nextSlide, 5000);
-        }
-    </script>
-
-    <!-- 用語説明モーダル -->
-    <div class="term-modal-overlay" id="termModalOverlay">
-        <div class="term-modal">
-            <button class="term-modal-close" id="termModalClose" aria-label="閉じる">×</button>
-            <h3 class="term-modal-title" id="termModalTitle"></h3>
-            <p class="term-modal-description" id="termModalDescription"></p>
-        </div>
-    </div>
-
-    <script>
-        // 用語説明モーダル
-        const termDefinitions = {
-            'maintenance': {
-                title: '保守とは？',
-                description: 'Webサイトの保守とは、サイト公開後の維持管理作業のことです。具体的には、文章や画像の更新、セキュリティ対策、不具合の修正、バックアップ管理などが含まれます。サイトを安全かつ最新の状態に保つために重要な作業です。'
-            }
-        };
-
-        // 用語ツールチップのクリックイベント
-        document.querySelectorAll('.term-tooltip').forEach(tooltip => {
-            tooltip.addEventListener('click', (e) => {
-                e.preventDefault();
-                const term = tooltip.getAttribute('data-term');
-                const def = termDefinitions[term];
-                
-                if (def) {
-                    document.getElementById('termModalTitle').textContent = def.title;
-                    document.getElementById('termModalDescription').textContent = def.description;
-                    document.getElementById('termModalOverlay').classList.add('show');
-                }
-            });
-        });
-
-        // モーダルを閉じる
-        document.getElementById('termModalClose').addEventListener('click', () => {
-            document.getElementById('termModalOverlay').classList.remove('show');
-        });
-
-        document.getElementById('termModalOverlay').addEventListener('click', (e) => {
-            if (e.target.id === 'termModalOverlay') {
-                document.getElementById('termModalOverlay').classList.remove('show');
-            }
-        });
-
-    </script>
+    <script src="assets/js/fontawesome-init.js"></script>
+    <script src="assets/js/nav.js"></script>
+    <script src="assets/js/common.js"></script>
 </body>
 </html>

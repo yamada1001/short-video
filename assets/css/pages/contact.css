@@ -1,0 +1,247 @@
+/* お問い合わせページ専用スタイル */
+
+/* お問い合わせフォーム */
+.contact-form {
+  padding: var(--spacing-xxl) 0;
+}
+
+.contact-form__container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-form__intro {
+  text-align: center;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.8;
+}
+
+.form {
+  background-color: var(--color-bg);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: var(--spacing-xs);
+  font-size: 16px;
+}
+
+.form-label--required::after {
+  content: '必須';
+  margin-left: var(--spacing-xs);
+  padding: 2px 8px;
+  background-color: #e74c3c;
+  color: white;
+  font-size: 12px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color var(--transition-base);
+  background-color: var(--color-bg);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-textarea {
+  min-height: 200px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.form-help {
+  font-size: 14px;
+  color: var(--color-text-light);
+  margin-top: var(--spacing-xs);
+}
+
+.form-error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: var(--spacing-xs);
+  display: none;
+}
+
+.form-error--show {
+  display: block;
+}
+
+.form-submit {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+}
+
+.form-submit .btn {
+  min-width: 200px;
+}
+
+/* お問い合わせ方法 */
+.contact-methods {
+  background-color: var(--color-bg-gray);
+  padding: var(--spacing-xxl) 0;
+}
+
+.contact-methods__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.contact-method {
+  background-color: var(--color-bg);
+  padding: var(--spacing-xl);
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all var(--transition-base);
+}
+
+.contact-method:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.contact-method__icon {
+  width: 64px;
+  height: 64px;
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto var(--spacing-md);
+}
+
+.contact-method__title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+}
+
+.contact-method__info {
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-md);
+  font-size: 15px;
+}
+
+.contact-method__link {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all var(--transition-base);
+}
+
+.contact-method__link:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* 営業時間・アクセス */
+.business-info {
+  padding: var(--spacing-xxl) 0;
+}
+
+.business-info__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.business-hours,
+.access-info {
+  padding: var(--spacing-lg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.business-hours__title,
+.access-info__title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.business-hours__content,
+.access-info__content {
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+
+/* 送信完了メッセージ */
+.form-success {
+  text-align: center;
+  padding: var(--spacing-xxl) var(--spacing-md);
+}
+
+.form-success__icon {
+  width: 80px;
+  height: 80px;
+  background-color: #27ae60;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin: 0 auto var(--spacing-lg);
+}
+
+.form-success__title {
+  font-size: clamp(24px, 3vw, 32px);
+  margin-bottom: var(--spacing-md);
+}
+
+.form-success__message {
+  color: var(--color-text-light);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-xl);
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .form {
+    padding: var(--spacing-lg);
+  }
+
+  .business-info__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-methods__grid {
+    grid-template-columns: 1fr;
+  }
+}

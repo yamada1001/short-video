@@ -1,0 +1,240 @@
+/* 会社概要ページ専用スタイル */
+
+/* 会社情報セクション */
+.company-info {
+  padding: var(--spacing-xxl) 0;
+}
+
+.company-info__grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.company-info__image {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background-color: var(--color-bg-gray);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  color: var(--color-text-light);
+}
+
+.company-info__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.company-info__description {
+  color: var(--color-text-light);
+  line-height: 1.9;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* 会社データテーブル */
+.company-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--spacing-xl);
+}
+
+.company-table tr {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.company-table th,
+.company-table td {
+  padding: var(--spacing-md);
+  text-align: left;
+}
+
+.company-table th {
+  background-color: var(--color-bg-gray);
+  font-weight: 500;
+  width: 200px;
+}
+
+.company-table td {
+  background-color: var(--color-bg);
+}
+
+/* ミッション・ビジョン */
+.mission-vision {
+  background-color: var(--color-bg-gray);
+  padding: var(--spacing-xxl) 0;
+}
+
+.mission-vision__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.mission-card,
+.vision-card {
+  background-color: var(--color-bg);
+  padding: var(--spacing-xl);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.mission-card__title,
+.vision-card__title {
+  font-size: 24px;
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.mission-card__icon,
+.vision-card__icon {
+  font-size: 32px;
+}
+
+.mission-card__description,
+.vision-card__description {
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+
+/* バリュー（価値観） */
+.values {
+  padding: var(--spacing-xxl) 0;
+}
+
+.values__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.value-item {
+  text-align: center;
+  padding: var(--spacing-lg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: all var(--transition-base);
+}
+
+.value-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.value-item__icon {
+  width: 64px;
+  height: 64px;
+  background-color: var(--color-bg-gray);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto var(--spacing-md);
+}
+
+.value-item__title {
+  font-size: 20px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.value-item__description {
+  color: var(--color-text-light);
+  font-size: 15px;
+}
+
+/* 代表プロフィール */
+.profile {
+  background-color: var(--color-bg-gray);
+  padding: var(--spacing-xxl) 0;
+}
+
+.profile__container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profile__card {
+  background-color: var(--color-bg);
+  padding: var(--spacing-xl);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.profile__header {
+  display: flex;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  align-items: center;
+}
+
+.profile__image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: var(--color-bg-gray);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: var(--color-text-light);
+}
+
+.profile__info {
+  flex-grow: 1;
+}
+
+.profile__name {
+  font-size: 28px;
+  margin-bottom: var(--spacing-xs);
+}
+
+.profile__title {
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-sm);
+}
+
+.profile__description {
+  color: var(--color-text-light);
+  line-height: 1.9;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .company-info__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .company-table th,
+  .company-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .company-table th {
+    border-bottom: none;
+    padding-bottom: var(--spacing-xs);
+  }
+
+  .mission-vision__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .values__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile__header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
