@@ -228,12 +228,13 @@
 }
 
 .cta-section__title {
-  color: var(--color-bg);
+  color: white;
   margin-bottom: var(--spacing-md);
+  font-weight: 500;
 }
 
 .cta-section__description {
-  color: rgba(255, 255, 255, 0.9);
+  color: white;
   margin-bottom: var(--spacing-xl);
   font-size: 18px;
   line-height: 1.9;
@@ -273,7 +274,7 @@
 
 .cta-info-item i {
   font-size: 32px;
-  color: rgba(255, 255, 255, 0.9);
+  color: white;
   flex-shrink: 0;
 }
 
@@ -284,20 +285,21 @@
 }
 
 .cta-info-label {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0.05em;
 }
 
 .cta-info-value {
   font-size: 18px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.95);
+  color: white;
   letter-spacing: 0.05em;
 }
 
 .cta-info-value:hover {
   color: white;
+  opacity: 0.8;
 }
 
 @media (max-width: 768px) {
