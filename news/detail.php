@@ -29,6 +29,13 @@ $next_article = isset($articles[$current_index - 1]) ? $articles[$current_index 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?php echo h(strip_tags(mb_substr($article['content'], 0, 120))); ?>">
     <title><?php echo h($article['title']); ?> | お知らせ | 余日（Yojitsu）</title>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
+    <!-- End Google Tag Manager -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/common.css">
@@ -36,6 +43,10 @@ $next_article = isset($articles[$current_index - 1]) ? $articles[$current_index 
     <link rel="stylesheet" href="../assets/css/news.css">
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- ヘッダー -->
     <header class="header" id="header">
         <div class="container header__container">

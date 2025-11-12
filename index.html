@@ -16,6 +16,14 @@
     <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary_large_image">
 
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
+    <!-- End Google Tag Manager -->
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
@@ -52,6 +60,11 @@
     </script>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <!-- ヘッダー -->
     <header class="header" id="header">
         <div class="container header__container">
@@ -74,15 +87,36 @@
 
     <!-- ヒーローセクション -->
     <section class="hero">
+        <div class="hero__background">
+            <div class="hero__circle hero__circle--1"></div>
+            <div class="hero__circle hero__circle--2"></div>
+            <div class="hero__circle hero__circle--3"></div>
+            <div class="hero__grid"></div>
+        </div>
         <div class="hero__content animate">
-            <h1 class="hero__title">余日</h1>
-            <p class="hero__subtitle">
-                デジタルマーケティング
-            </p>
-            <div class="hero__cta">
-                <a href="contact.html" class="btn btn-primary btn--large">お問い合わせ</a>
-                <a href="services.html" class="btn btn-secondary btn--large">サービス詳細</a>
+            <h1 class="hero__title">
+                <span class="hero__title-char">余</span>
+                <span class="hero__title-char">日</span>
+            </h1>
+            <div class="hero__subtitle-wrap">
+                <div class="hero__subtitle-line"></div>
+                <p class="hero__subtitle">Digital Marketing</p>
+                <div class="hero__subtitle-line"></div>
             </div>
+            <div class="hero__cta">
+                <a href="contact.html" class="btn btn-primary btn--large">
+                    <span>お問い合わせ</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="services.html" class="btn btn-secondary btn--large">
+                    <span>サービス詳細</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="hero__scroll">
+            <span>Scroll</span>
+            <div class="hero__scroll-line"></div>
         </div>
     </section>
 
@@ -103,7 +137,7 @@
                     <p class="service-card__description">
                         コーポレートサイト・LP・採用サイトの制作。レスポンシブ対応、SEO最適化を標準実装。
                     </p>
-                    <p class="service-card__price">200,000円〜</p>
+                    <p class="service-card__price">300,000円〜</p>
                     <a href="services.html#web" class="btn btn-secondary">詳しく見る</a>
                 </div>
                 <div class="service-card animate">

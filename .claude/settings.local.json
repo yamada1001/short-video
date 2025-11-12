@@ -6,7 +6,9 @@
       "Bash(tree:*)",
       "Bash(test -f:*)",
       "Bash(node:*)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(cat:*)",
+      "Bash(php generate-sitemap.php:*)"
     ],
     "deny": [],
     "ask": []

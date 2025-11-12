@@ -1,37 +1,163 @@
 /* トップページ - 無印良品スタイル */
 .hero {
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   background-color: var(--color-bg);
-  background-image: url('../../images/hero-pattern.svg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   position: relative;
+  overflow: hidden;
+}
+
+/* 背景アニメーション */
+.hero__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero__circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(99, 88, 76, 0.1);
+  animation: pulse 8s ease-in-out infinite;
+}
+
+.hero__circle--1 {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.hero__circle--2 {
+  width: 500px;
+  height: 500px;
+  bottom: -10%;
+  left: -10%;
+  animation-delay: 2s;
+}
+
+.hero__circle--3 {
+  width: 400px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 4s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1) translateZ(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1) translateZ(0);
+    opacity: 0.15;
+  }
+}
+
+.hero__grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(99, 88, 76, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 88, 76, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
 }
 
 .hero__content {
   max-width: 900px;
   padding: var(--spacing-xl) var(--spacing-md);
+  position: relative;
+  z-index: 1;
 }
 
 .hero__title {
-  font-size: clamp(48px, 6vw, 80px);
+  font-size: clamp(80px, 12vw, 140px);
   font-weight: 400;
-  margin-bottom: var(--spacing-lg);
-  letter-spacing: 0.15em;
+  margin-bottom: var(--spacing-xl);
+  letter-spacing: 0.2em;
   color: var(--color-charcoal);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.hero__title-char {
+  display: inline-block;
+  animation: floatChar 3s ease-in-out infinite;
+}
+
+.hero__title-char:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.hero__title-char:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+@keyframes floatChar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.hero__subtitle-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xxl);
+}
+
+.hero__subtitle-line {
+  width: 60px;
+  height: 1px;
+  background-color: var(--color-natural-brown);
+  animation: expandLine 2s ease-in-out infinite;
+}
+
+@keyframes expandLine {
+  0%, 100% {
+    transform: scaleX(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleX(1.5);
+    opacity: 1;
+  }
 }
 
 .hero__subtitle {
-  font-size: clamp(16px, 2vw, 20px);
+  font-size: clamp(14px, 2vw, 18px);
   font-weight: 400;
   color: var(--color-text-light);
-  margin-bottom: var(--spacing-xl);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 .hero__cta {
@@ -39,6 +165,57 @@
   gap: var(--spacing-md);
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.hero__cta .btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all var(--transition-base);
+}
+
+.hero__cta .btn i {
+  transition: transform var(--transition-base);
+}
+
+.hero__cta .btn:hover i {
+  transform: translateX(5px);
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-light);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  z-index: 1;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--color-natural-brown), transparent);
+  animation: scrollLineMove 1.5s ease-in-out infinite;
+}
+
+@keyframes scrollLineMove {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
 }
 
 .services-grid {
