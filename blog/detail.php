@@ -12,6 +12,14 @@ if (!$post) {
     echo '記事が見つかりません。';
     exit;
 }
+
+// コンテンツファイルの読み込み
+if (isset($post['content']) && strpos($post['content'], '.html') !== false) {
+    $content_file = __DIR__ . '/' . $post['content'];
+    if (file_exists($content_file)) {
+        $post['content'] = file_get_contents($content_file);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
