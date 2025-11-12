@@ -4,7 +4,9 @@
       "Bash(node generate-sitemap.js:*)",
       "Bash(CNAME)",
       "Bash(tree:*)",
-      "Bash(test -f:*)"
+      "Bash(test -f:*)",
+      "Bash(node:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []
