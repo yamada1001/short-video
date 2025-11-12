@@ -8,7 +8,11 @@
       "Bash(node:*)",
       "Bash(git rm:*)",
       "Bash(cat:*)",
-      "Bash(php generate-sitemap.php:*)"
+      "Bash(php generate-sitemap.php:*)",
+      "Bash(for:*)",
+      "Bash(do echo \"=== Article $i ===\")",
+      "Bash(head:*)",
+      "Bash(done)"
     ],
     "deny": [],
     "ask": []
