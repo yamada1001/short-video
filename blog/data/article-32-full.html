@@ -1,0 +1,447 @@
+<h1>llms.txtの設置方法｜サーバー別に詳しく解説</h1>
+
+<p>llms.txtを作成したら、次はサーバーに設置します。本記事では、主要なサーバー・環境別に、llms.txtの設置方法を詳しく解説します。初心者の方でも迷わず設置できるよう、画像付きで説明します。</p>
+
+<h2>llms.txt設置の基本</h2>
+
+<h3>設置場所</h3>
+<p>llms.txtは、サイトのルートディレクトリに配置します。</p>
+
+<pre><code>https://yoursite.com/llms.txt
+</code></pre>
+
+<blockquote>
+<p>ルートディレクトリとは、サイトのトップページ（index.html等）があるディレクトリです。</p>
+</blockquote>
+
+<h3>ファイル名</h3>
+<pre><code>llms.txt （すべて小文字）
+</code></pre>
+
+<h3>文字コード</h3>
+<pre><code>UTF-8 （BOMなし推奨）
+</code></pre>
+
+<h3>パーミッション</h3>
+<pre><code>644 （rw-r--r--）
+</code></pre>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-how-to-create.html">llms.txtの作り方｜ステップバイステップで解説</a></p>
+
+<h2>方法1：FTPソフトで設置（汎用）</h2>
+
+<p>最も一般的な方法です。FileZilla、Cyberduck、WinSCPなどのFTPソフトを使います。</p>
+
+<h3>手順（FileZillaの例）</h3>
+
+<h4>ステップ1：FTPソフトを起動</h4>
+<ol>
+<li>FileZillaを起動</li>
+<li>サーバー情報を入力
+  <ul>
+    <li>ホスト：ftp.yoursite.com</li>
+    <li>ユーザー名：FTPユーザー名</li>
+    <li>パスワード：FTPパスワード</li>
+    <li>ポート：21（通常）または990（FTPS）</li>
+  </ul>
+</li>
+<li>「クイック接続」をクリック</li>
+</ol>
+
+<h4>ステップ2：ルートディレクトリを開く</h4>
+<p>右側のリモートサイト欄で、以下のいずれかのディレクトリを開きます。</p>
+
+<ul>
+<li>public_html/</li>
+<li>htdocs/</li>
+<li>www/</li>
+<li>html/</li>
+</ul>
+
+<blockquote>
+<p>サーバーによって名前が異なります。index.htmlがあるディレクトリがルートです。</p>
+</blockquote>
+
+<h4>ステップ3：llms.txtをアップロード</h4>
+<ol>
+<li>左側のローカルサイト欄でllms.txtを選択</li>
+<li>右側のルートディレクトリにドラッグ&ドロップ</li>
+<li>アップロード完了を確認</li>
+</ol>
+
+<h4>ステップ4：パーミッションを確認</h4>
+<ol>
+<li>アップロードしたllms.txtを右クリック</li>
+<li>「ファイルのパーミッション」を選択</li>
+<li>数値を「644」に設定</li>
+<li>「OK」をクリック</li>
+</ol>
+
+<h2>方法2：レンタルサーバーの管理画面（初心者向け）</h2>
+
+<p>FTPソフトを使わず、ブラウザから直接アップロードできます。</p>
+
+<h3>エックスサーバーの場合</h3>
+
+<h4>手順</h4>
+<ol>
+<li>サーバーパネルにログイン</li>
+<li>「ファイル管理」をクリック</li>
+<li>ドメインフォルダを選択</li>
+<li>「public_html」を開く</li>
+<li>「ファイルのアップロード」をクリック</li>
+<li>llms.txtを選択してアップロード</li>
+</ol>
+
+<h3>さくらインターネットの場合</h3>
+
+<h4>手順</h4>
+<ol>
+<li>サーバコントロールパネルにログイン</li>
+<li>「ファイルマネージャー」を開く</li>
+<li>「www」フォルダを開く</li>
+<li>「アップロード」ボタンをクリック</li>
+<li>llms.txtを選択してアップロード</li>
+</ol>
+
+<h3>ロリポップの場合</h3>
+
+<h4>手順</h4>
+<ol>
+<li>ユーザー専用ページにログイン</li>
+<li>「サーバーの管理・設定」→「ロリポップ！FTP」</li>
+<li>ルートディレクトリを開く</li>
+<li>「アップロード」からllms.txtを選択</li>
+</ol>
+
+<h3>ConoHa WINGの場合</h3>
+
+<h4>手順</h4>
+<ol>
+<li>コントロールパネルにログイン</li>
+<li>「サイト管理」→「ファイルマネージャー」</li>
+<li>「public_html」を開く</li>
+<li>「アップロード」からllms.txtを選択</li>
+</ol>
+
+<h2>方法3：SSH/SCP（上級者向け）</h2>
+
+<p>コマンドラインでサーバーに接続し、直接配置します。</p>
+
+<h3>SCPコマンドでアップロード</h3>
+<pre><code>scp llms.txt username@yoursite.com:~/public_html/
+</code></pre>
+
+<h3>SSHで接続して直接作成</h3>
+<pre><code># SSHで接続
+ssh username@yoursite.com
+
+# ルートディレクトリに移動
+cd ~/public_html/
+
+# エディタでllms.txtを作成
+nano llms.txt
+
+# 内容を貼り付けて保存（Ctrl + X → Y → Enter）
+
+# パーミッションを設定
+chmod 644 llms.txt
+
+# 確認
+ls -la llms.txt
+cat llms.txt
+</code></pre>
+
+<h2>方法4：Git/GitHub（開発者向け）</h2>
+
+<p>Gitでバージョン管理している場合、llms.txtをリポジトリに追加します。</p>
+
+<h3>手順</h3>
+<pre><code># llms.txtをプロジェクトのルートに配置
+cp llms.txt /path/to/project/
+
+# Gitに追加
+git add llms.txt
+
+# コミット
+git commit -m "Add llms.txt for LLM optimization"
+
+# プッシュ
+git push origin main
+
+# デプロイ（自動デプロイ設定されている場合）
+# 手動デプロイの場合は、サーバーでgit pullを実行
+</code></pre>
+
+<h3>GitHub Actionsで自動デプロイ</h3>
+<pre><code># .github/workflows/deploy.yml
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+</code></pre>
+
+<h2>方法5：WordPress（プラグイン使用）</h2>
+
+<p>WordPressサイトでは、プラグインで簡単に設置できます。</p>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-wordpress.html">WordPressでllms.txtを自動生成する方法</a></p>
+
+<h3>手動で設置する場合</h3>
+<ol>
+<li>「外観」→「テーマエディター」</li>
+<li>警告を確認して「理解しました」</li>
+<li>右側のファイル一覧から「functions.php」以外の編集可能な場所を探す</li>
+</ol>
+
+<blockquote>
+<p>WordPressの場合、FTPまたはプラグインでの設置を推奨します。テーマエディターでの直接編集はリスクがあります。</p>
+</blockquote>
+
+<h2>方法6：静的サイトジェネレーター</h2>
+
+<h3>Next.js / Gatsby / Hugoの場合</h3>
+
+<h4>Next.jsの例</h4>
+<pre><code># publicフォルダに配置
+/public/llms.txt
+
+# ビルド後、自動的にルートに配置されます
+npm run build
+</code></pre>
+
+<h4>Gatsbyの例</h4>
+<pre><code># staticフォルダに配置
+/static/llms.txt
+
+# ビルド
+gatsby build
+</code></pre>
+
+<h4>Hugoの例</h4>
+<pre><code># staticフォルダに配置
+/static/llms.txt
+
+# ビルド
+hugo
+</code></pre>
+
+<h2>方法7：CDN経由（Cloudflare等）</h2>
+
+<p>CloudflareなどのCDNを使用している場合でも、オリジンサーバーに設置すれば自動的に配信されます。</p>
+
+<h3>注意点</h3>
+<ul>
+<li>キャッシュ設定を確認（llms.txtがキャッシュされるか）</li>
+<li>必要に応じてキャッシュをパージ</li>
+</ul>
+
+<h2>設置後の確認方法</h2>
+
+<h3>1. ブラウザで直接アクセス</h3>
+<pre><code>https://yoursite.com/llms.txt
+</code></pre>
+
+<p>llms.txtの内容が表示されればOKです。</p>
+
+<h3>2. curlコマンドで確認</h3>
+<pre><code>curl https://yoursite.com/llms.txt
+</code></pre>
+
+<h3>3. HTTPステータスコードを確認</h3>
+<pre><code>curl -I https://yoursite.com/llms.txt
+
+# 200 OKが返ればOK
+HTTP/2 200
+content-type: text/plain; charset=utf-8
+</code></pre>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-verification.html">llms.txt確認方法｜正しく設置されているかチェック</a></p>
+
+<h2>トラブルシューティング</h2>
+
+<h3>問題1：404 Not Foundエラー</h3>
+<h4>原因</h4>
+<ul>
+<li>ファイルが正しい場所にない</li>
+<li>ファイル名が間違っている（LLMS.txt、llms.md等）</li>
+<li>アップロードに失敗している</li>
+</ul>
+
+<h4>解決方法</h4>
+<ol>
+<li>ファイル名を確認（すべて小文字の「llms.txt」）</li>
+<li>ルートディレクトリにあるか確認</li>
+<li>FTPソフトで再度アップロード</li>
+</ol>
+
+<h3>問題2：403 Forbiddenエラー</h3>
+<h4>原因</h4>
+<ul>
+<li>パーミッションが間違っている</li>
+<li>.htaccessでブロックされている</li>
+</ul>
+
+<h4>解決方法</h4>
+<ol>
+<li>パーミッションを644に設定</li>
+<li>.htaccessの設定を確認
+<pre><code># .htaccessで.txtファイルをブロックしている場合
+# この行を削除またはコメントアウト
+# <FilesMatch "\\.txt$">
+#   Deny from all
+# </FilesMatch>
+
+# llms.txtのみ許可する場合
+<Files "llms.txt">
+  Allow from all
+</Files>
+</code></pre>
+</li>
+</ol>
+
+<h3>問題3：文字化けする</h3>
+<h4>原因</h4>
+<ul>
+<li>文字コードがUTF-8以外</li>
+<li>BOM付きUTF-8になっている</li>
+</ul>
+
+<h4>解決方法</h4>
+<ol>
+<li>テキストエディタでUTF-8（BOMなし）で保存し直す</li>
+<li>再アップロード</li>
+</ol>
+
+<h3>問題4：内容が古いまま</h3>
+<h4>原因</h4>
+<ul>
+<li>ブラウザキャッシュ</li>
+<li>CDNキャッシュ</li>
+<li>サーバーキャッシュ</li>
+</ul>
+
+<h4>解決方法</h4>
+<ol>
+<li>ブラウザでスーパーリロード（Ctrl + Shift + R / Cmd + Shift + R）</li>
+<li>CDN管理画面でキャッシュをパージ</li>
+<li>サーバーのキャッシュをクリア</li>
+</ol>
+
+<h2>セキュリティ上の注意点</h2>
+
+<h3>1. 機密情報を含めない</h3>
+<p>llms.txtは誰でも閲覧可能です。以下の情報は含めないでください。</p>
+
+<ul>
+<li>内部システムのURL</li>
+<li>管理画面のパス</li>
+<li>APIキー・パスワード</li>
+<li>非公開ページのURL</li>
+</ul>
+
+<h3>2. robots.txtとの併用</h3>
+<p>公開したくないページは、robots.txtでブロックします。</p>
+
+<pre><code># robots.txt
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+
+# llms.txtは公開OK
+Allow: /llms.txt
+</code></pre>
+
+<h2>大分県の企業向け：地域対応の設置方法</h2>
+
+<h3>地域情報の明記</h3>
+<p>大分県内の企業であることをllms.txtに明記します。</p>
+
+<pre><code># 余日（Yojitsu）
+
+> 大分県を拠点に、Web制作・ショート動画制作を提供するデジタルマーケティング会社です。
+
+大分市、別府市、中津市など大分県内全域に対応。
+</code></pre>
+
+<h3>地域別のllms.txt</h3>
+<p>複数拠点がある場合、地域別に作成することも可能です。</p>
+
+<pre><code>https://yoursite.com/llms.txt （本社・全体）
+https://yoursite.com/oita/llms.txt （大分拠点）
+https://yoursite.com/fukuoka/llms.txt （福岡拠点）
+</code></pre>
+
+<h2>まとめ：サーバー別設置方法の選び方</h2>
+
+<table>
+<thead>
+<tr><th>環境</th><th>推奨方法</th><th>難易度</th></tr>
+</thead>
+<tbody>
+<tr><td>共用レンタルサーバー</td><td>FTPまたは管理画面</td><td>初級</td></tr>
+<tr><td>VPS/専用サーバー</td><td>SSH/SCP</td><td>中級</td></tr>
+<tr><td>WordPress</td><td>FTPまたはプラグイン</td><td>初級</td></tr>
+<tr><td>静的サイトジェネレーター</td><td>publicフォルダに配置</td><td>中級</td></tr>
+<tr><td>Git管理</td><td>Gitコミット→デプロイ</td><td>中級</td></tr>
+</tbody>
+</table>
+
+<h3>初心者におすすめ</h3>
+<ol>
+<li>レンタルサーバーの管理画面からアップロード</li>
+<li>FileZillaなどのFTPソフトでアップロード</li>
+</ol>
+
+<h3>設置後は必ず確認</h3>
+<ul>
+<li>ブラウザで https://yoursite.com/llms.txt にアクセス</li>
+<li>内容が正しく表示されるか確認</li>
+<li>文字化けしていないか確認</li>
+</ul>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-how-to-write.html">llms.txtの書き方｜実例付き完全ガイド</a></p>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-how-to-use.html">llms.txtの使い方｜LLMに効果的に情報を伝える方法</a></p>
+
+<h3>余日（Yojitsu）の設置サポート</h3>
+<p>余日では、llms.txtの作成から設置まで、トータルでサポートしています。設置方法が分からない、うまくいかないという場合もお気軽にご相談ください。</p>
+
+<p><i class="fas fa-external-link-alt"></i> <a href="https://yojitu.com/contact.html" target="_blank" rel="noopener">お問い合わせはこちら</a></p>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "llms.txtの設置方法｜サーバー別に詳しく解説",
+  "description": "FTP、レンタルサーバー管理画面、SSH、Git、WordPressなど、環境別にllms.txtの設置方法を詳しく解説。",
+  "author": {
+    "@type": "Person",
+    "name": "山田 蓮"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "余日（Yojitsu）",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://yojitu.com/assets/images/logo.png"
+    }
+  },
+  "datePublished": "2025-11-13T12:30:00+09:00",
+  "dateModified": "2025-11-13T12:30:00+09:00"
+}
+</script>

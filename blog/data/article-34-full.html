@@ -1,0 +1,446 @@
+<h1>WordPressでllms.txtを自動生成する方法｜プラグインと手動設置</h1>
+
+<p>WordPressサイトでllms.txtを実装する方法を詳しく解説します。プラグインを使った自動生成から、手動での設置方法、カスタマイズまで、WordPress特有の注意点も含めて完全ガイドします。</p>
+
+<h2>WordPressでllms.txtを設置する3つの方法</h2>
+
+<table>
+<thead>
+<tr><th>方法</th><th>難易度</th><th>自動更新</th><th>推奨度</th></tr>
+</thead>
+<tbody>
+<tr><td>1. プラグイン使用</td><td>初級</td><td>○</td><td>★★★★★</td></tr>
+<tr><td>2. FTPで手動設置</td><td>初級</td><td>×</td><td>★★★☆☆</td></tr>
+<tr><td>3. functions.phpで生成</td><td>中級</td><td>○</td><td>★★★★☆</td></tr>
+</tbody>
+</table>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-basics.html">llms.txtとは？LLM時代のウェブサイト最適化を解説</a></p>
+
+<h2>方法1：プラグインを使用（推奨）</h2>
+
+<h3>推奨プラグイン</h3>
+<p>2025年時点では、llms.txt専用のプラグインは少ないですが、以下の方法で実装できます。</p>
+
+<h4>オプション1：Custom Upload Dir プラグイン</h4>
+<ol>
+<li>「プラグイン」→「新規追加」</li>
+<li>「Custom Upload Dir」を検索してインストール</li>
+<li>有効化</li>
+<li>FTPでルートディレクトリにllms.txtを配置</li>
+</ol>
+
+<h4>オプション2：WP Add Custom File プラグイン</h4>
+<ol>
+<li>「プラグイン」→「新規追加」</li>
+<li>「WP Add Custom File」を検索</li>
+<li>インストール・有効化</li>
+<li>プラグイン設定でllms.txtを追加</li>
+</ol>
+
+<h3>自作プラグインを作成（推奨）</h3>
+<p>シンプルな自作プラグインを作成することで、自動生成が可能です。</p>
+
+<h4>プラグインファイルの作成</h4>
+<pre><code><?php
+/**
+ * Plugin Name: LLMS.txt Generator
+ * Description: Automatically generates llms.txt for your WordPress site
+ * Version: 1.0
+ * Author: Your Name
+ */
+
+// ルートディレクトリのパスを取得
+$root_dir = ABSPATH;
+
+// llms.txtの内容を生成
+function generate_llms_txt() {
+    $site_name = get_bloginfo('name');
+    $site_description = get_bloginfo('description');
+    $site_url = get_site_url();
+    
+    $content = "# " . $site_name . "\n\n";
+    $content .= "> " . $site_description . "\n\n";
+    
+    // 固定ページを取得
+    $pages = get_pages();
+    if ($pages) {
+        $content .= "## ページ\n\n";
+        foreach ($pages as $page) {
+            $content .= "- [" . $page->post_title . "](" . get_permalink($page->ID) . "): " . wp_trim_words($page->post_excerpt, 20) . "\n";
+        }
+        $content .= "\n";
+    }
+    
+    // 最新記事を取得
+    $recent_posts = wp_get_recent_posts(array('numberposts' => 5));
+    if ($recent_posts) {
+        $content .= "## 最新記事\n\n";
+        foreach ($recent_posts as $post) {
+            $content .= "- [" . $post['post_title'] . "](" . get_permalink($post['ID']) . ")\n";
+        }
+        $content .= "\n";
+    }
+    
+    return $content;
+}
+
+// llms.txtを生成・保存
+function save_llms_txt() {
+    $content = generate_llms_txt();
+    $file_path = ABSPATH . 'llms.txt';
+    file_put_contents($file_path, $content);
+}
+
+// 記事公開時に自動更新
+add_action('publish_post', 'save_llms_txt');
+add_action('publish_page', 'save_llms_txt');
+
+// プラグイン有効化時に生成
+register_activation_hook(__FILE__, 'save_llms_txt');
+?></code></pre>
+
+<h4>プラグインの設置手順</h4>
+<ol>
+<li>上記コードを <code>llms-txt-generator.php</code> として保存</li>
+<li>FTPで <code>/wp-content/plugins/llms-txt-generator/</code> フォルダを作成</li>
+<li>その中に <code>llms-txt-generator.php</code> をアップロード</li>
+<li>WordPress管理画面の「プラグイン」から有効化</li>
+</ol>
+
+<h2>方法2：FTPで手動設置</h2>
+
+<h3>手順</h3>
+<ol>
+<li>ローカルでllms.txtを作成</li>
+<li>FTPソフト（FileZilla等）でWordPressサイトに接続</li>
+<li>WordPressのルートディレクトリを開く（wp-config.phpがある場所）</li>
+<li>llms.txtをアップロード</li>
+</ol>
+
+<h4>WordPressのルートディレクトリ例</h4>
+<pre><code>/
+├── wp-admin/
+├── wp-content/
+├── wp-includes/
+├── index.php
+├── wp-config.php
+├── llms.txt  ← ここに配置
+└── ...</code></pre>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-setup.html">llms.txtの設置方法｜サーバー別に詳しく解説</a></p>
+
+<h3>注意点</h3>
+<ul>
+<li>wp-content/フォルダ内ではない</li>
+<li>テーマフォルダ内でもない</li>
+<li>WordPressルート（最上位ディレクトリ）に配置</li>
+</ul>
+
+<h2>方法3：functions.phpで動的生成</h2>
+
+<p>テーマのfunctions.phpに追加することで、動的にllms.txtを生成できます。</p>
+
+<h3>コード例</h3>
+<pre><code>// テーマのfunctions.phpに追加
+
+// llms.txtのエンドポイントを追加
+add_action('init', 'add_llms_txt_endpoint');
+function add_llms_txt_endpoint() {
+    add_rewrite_rule('^llms\.txt$', 'index.php?llms_txt=1', 'top');
+}
+
+// クエリ変数を追加
+add_filter('query_vars', 'add_llms_txt_query_var');
+function add_llms_txt_query_var($vars) {
+    $vars[] = 'llms_txt';
+    return $vars;
+}
+
+// llms.txtを動的生成
+add_action('template_redirect', 'generate_llms_txt_content');
+function generate_llms_txt_content() {
+    if (get_query_var('llms_txt')) {
+        header('Content-Type: text/plain; charset=utf-8');
+        
+        $site_name = get_bloginfo('name');
+        $site_description = get_bloginfo('description');
+        
+        echo "# " . $site_name . "\n\n";
+        echo "> " . $site_description . "\n\n";
+        
+        // 固定ページ
+        $pages = get_pages(array('sort_column' => 'menu_order'));
+        if ($pages) {
+            echo "## ページ\n\n";
+            foreach ($pages as $page) {
+                $excerpt = $page->post_excerpt ? $page->post_excerpt : wp_trim_words(strip_tags($page->post_content), 20);
+                echo "- [" . $page->post_title . "](" . get_permalink($page) . "): " . $excerpt . "\n";
+            }
+            echo "\n";
+        }
+        
+        // カテゴリ
+        $categories = get_categories(array('hide_empty' => true));
+        if ($categories) {
+            echo "## カテゴリ\n\n";
+            foreach ($categories as $category) {
+                echo "- [" . $category->name . "](" . get_category_link($category) . "): " . $category->description . "\n";
+            }
+            echo "\n";
+        }
+        
+        // 最新記事
+        $recent_posts = wp_get_recent_posts(array('numberposts' => 10));
+        if ($recent_posts) {
+            echo "## 最新記事\n\n";
+            foreach ($recent_posts as $post) {
+                echo "- [" . $post['post_title'] . "](" . get_permalink($post['ID']) . ")\n";
+            }
+        }
+        
+        exit;
+    }
+}
+
+// パーマリンク設定を保存した時に、リライトルールをフラッシュ
+add_action('after_switch_theme', 'flush_llms_txt_rewrite');
+function flush_llms_txt_rewrite() {
+    add_llms_txt_endpoint();
+    flush_rewrite_rules();
+}</code></pre>
+
+<h3>設定後の確認</h3>
+<ol>
+<li>「設定」→「パーマリンク」を開く</li>
+<li>何も変更せず「変更を保存」をクリック（リライトルールの更新）</li>
+<li>https://yoursite.com/llms.txt にアクセスして確認</li>
+</ol>
+
+<h2>WordPressでのカスタマイズ</h2>
+
+<h3>特定のページを除外</h3>
+<pre><code>// 特定のページIDを除外
+$pages = get_pages(array(
+    'exclude' => array(123, 456), // 除外するページID
+    'sort_column' => 'menu_order'
+));</code></pre>
+
+<h3>カスタム投稿タイプを追加</h3>
+<pre><code>// カスタム投稿タイプ「portfolio」を追加
+$portfolios = get_posts(array(
+    'post_type' => 'portfolio',
+    'numberposts' => 10
+));
+
+if ($portfolios) {
+    echo "## ポートフォリオ\n\n";
+    foreach ($portfolios as $portfolio) {
+        echo "- [" . $portfolio->post_title . "](" . get_permalink($portfolio) . ")\n";
+    }
+    echo "\n";
+}</code></pre>
+
+<h3>ACFカスタムフィールドを活用</h3>
+<pre><code>// ACFで設定した説明文を使用
+$pages = get_pages();
+foreach ($pages as $page) {
+    $custom_desc = get_field('llms_description', $page->ID);
+    $description = $custom_desc ? $custom_desc : wp_trim_words($page->post_excerpt, 20);
+    echo "- [" . $page->post_title . "](" . get_permalink($page) . "): " . $description . "\n";
+}</code></pre>
+
+<h2>マルチサイトでの対応</h2>
+
+<p>WordPress マルチサイトの場合、各サイトごとにllms.txtを生成できます。</p>
+
+<pre><code>// 各サイトのllms.txtを生成
+add_action('template_redirect', 'generate_multisite_llms_txt');
+function generate_multisite_llms_txt() {
+    if (get_query_var('llms_txt')) {
+        header('Content-Type: text/plain; charset=utf-8');
+        
+        $blog_id = get_current_blog_id();
+        $site_name = get_bloginfo('name');
+        
+        echo "# " . $site_name . " (Site ID: " . $blog_id . ")\n\n";
+        echo "> " . get_bloginfo('description') . "\n\n";
+        
+        // 以下、通常の生成処理
+        
+        exit;
+    }
+}</code></pre>
+
+<h2>パフォーマンス最適化</h2>
+
+<h3>キャッシュの活用</h3>
+<pre><code>// Transient APIでキャッシュ
+function get_cached_llms_txt() {
+    $cache_key = 'llms_txt_content';
+    $cached = get_transient($cache_key);
+    
+    if ($cached !== false) {
+        return $cached;
+    }
+    
+    // llms.txtを生成
+    $content = generate_llms_txt();
+    
+    // 24時間キャッシュ
+    set_transient($cache_key, $content, DAY_IN_SECONDS);
+    
+    return $content;
+}
+
+// 記事更新時にキャッシュをクリア
+add_action('save_post', 'clear_llms_txt_cache');
+function clear_llms_txt_cache() {
+    delete_transient('llms_txt_content');
+}</code></pre>
+
+<h3>静的ファイルとして保存</h3>
+<pre><code>// 記事更新時に静的ファイルとして保存
+function save_llms_txt_static() {
+    $content = generate_llms_txt();
+    $file_path = ABSPATH . 'llms.txt';
+    file_put_contents($file_path, $content);
+}
+
+add_action('save_post', 'save_llms_txt_static');
+add_action('delete_post', 'save_llms_txt_static');</code></pre>
+
+<h2>セキュリティ対策</h2>
+
+<h3>1. 非公開コンテンツを除外</h3>
+<pre><code>// 公開済みのコンテンツのみ取得
+$pages = get_pages(array(
+    'post_status' => 'publish'
+));
+
+$posts = get_posts(array(
+    'post_status' => 'publish',
+    'numberposts' => 10
+));</code></pre>
+
+<h3>2. パスワード保護ページを除外</h3>
+<pre><code>// パスワード保護されているページを除外
+$pages = get_pages();
+foreach ($pages as $page) {
+    if (!post_password_required($page->ID)) {
+        echo "- [" . $page->post_title . "](" . get_permalink($page) . ")\n";
+    }
+}</code></pre>
+
+<h3>3. 管理者専用ページを除外</h3>
+<pre><code>// 特定のカテゴリやタグを除外
+$posts = get_posts(array(
+    'category__not_in' => array(999), // 除外するカテゴリID
+    'numberposts' => 10
+));</code></pre>
+
+<h2>プラグインとの互換性</h2>
+
+<h3>Yoast SEOとの連携</h3>
+<pre><code>// Yoast SEOのメタディスクリプションを使用
+if (function_exists('wpseo_auto_load')) {
+    $meta_desc = get_post_meta($page->ID, '_yoast_wpseo_metadesc', true);
+    $description = $meta_desc ? $meta_desc : wp_trim_words($page->post_excerpt, 20);
+}</code></pre>
+
+<h3>WooCommerceとの連携</h3>
+<pre><code>// 商品ページを追加
+if (class_exists('WooCommerce')) {
+    $products = wc_get_products(array(
+        'limit' => 10,
+        'status' => 'publish'
+    ));
+    
+    echo "## 商品\n\n";
+    foreach ($products as $product) {
+        echo "- [" . $product->get_name() . "](" . $product->get_permalink() . "): " . $product->get_short_description() . "\n";
+    }
+    echo "\n";
+}</code></pre>
+
+<h2>トラブルシューティング</h2>
+
+<h3>問題1：llms.txtが404エラー</h3>
+<h4>解決方法</h4>
+<ol>
+<li>「設定」→「パーマリンク」→「変更を保存」</li>
+<li>キャッシュプラグインをクリア</li>
+<li>.htaccessを確認</li>
+</ol>
+
+<h3>問題2：内容が更新されない</h3>
+<h4>解決方法</h4>
+<ol>
+<li>キャッシュプラグインを無効化</li>
+<li>ブラウザキャッシュをクリア</li>
+<li>Transientキャッシュを削除
+<pre><code>delete_transient('llms_txt_content');</code></pre>
+</li>
+</ol>
+
+<h3>問題3：パーミッションエラー</h3>
+<h4>解決方法</h4>
+<pre><code>// ファイル書き込み権限を確認
+if (is_writable(ABSPATH)) {
+    file_put_contents(ABSPATH . 'llms.txt', $content);
+} else {
+    error_log('llms.txt: Directory not writable');
+}</code></pre>
+
+<h2>まとめ：WordPress に最適な方法</h2>
+
+<h3>初心者向け</h3>
+<ol>
+<li>FTPでllms.txtを手動設置</li>
+<li>更新時に手動で編集</li>
+</ol>
+
+<h3>中級者向け</h3>
+<ol>
+<li>自作プラグインで自動生成</li>
+<li>記事更新時に自動更新</li>
+</ol>
+
+<h3>上級者向け</h3>
+<ol>
+<li>functions.phpで動的生成</li>
+<li>キャッシュを活用</li>
+<li>カスタム投稿タイプも含める</li>
+</ol>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-how-to-create.html">llms.txtの作り方｜ステップバイステップで解説</a></p>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-verification.html">llms.txt確認方法｜正しく設置されているかチェック</a></p>
+
+<h3>余日（Yojitsu）のWordPress llms.txt導入サポート</h3>
+<p>余日では、WordPressサイトへのllms.txt実装をサポートしています。自動生成プラグインの設置から、カスタマイズまで対応可能です。</p>
+
+<p><i class="fas fa-external-link-alt"></i> <a href="https://yojitu.com/contact.html" target="_blank" rel="noopener">お問い合わせはこちら</a></p>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WordPressでllms.txtを自動生成する方法｜プラグインと手動設置",
+  "description": "WordPressサイトにllms.txtを実装する方法を完全ガイド。プラグイン、FTP、functions.phpを使った自動生成まで詳しく解説。",
+  "author": {
+    "@type": "Person",
+    "name": "山田 蓮"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "余日（Yojitsu）",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://yojitu.com/assets/images/logo.png"
+    }
+  },
+  "datePublished": "2025-11-13T13:30:00+09:00",
+  "dateModified": "2025-11-13T13:30:00+09:00"
+}
+</script>

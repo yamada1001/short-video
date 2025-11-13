@@ -1,0 +1,443 @@
+<h1>llms.txt確認方法｜正しく設置されているかチェックする完全ガイド</h1>
+
+<p>llms.txtを設置した後、正しく動作しているか確認することは重要です。本記事では、ブラウザ、コマンドライン、オンラインツールなど、様々な方法でllms.txtの設置状況を確認する方法を詳しく解説します。</p>
+
+<h2>基本的な確認方法</h2>
+
+<h3>方法1：ブラウザで直接アクセス</h3>
+<p>最も簡単な確認方法です。</p>
+
+<h4>手順</h4>
+<ol>
+<li>ブラウザを開く</li>
+<li>アドレスバーに以下を入力
+<pre><code>https://yoursite.com/llms.txt</code></pre>
+</li>
+<li>Enterキーを押す</li>
+</ol>
+
+<h4>正常な場合</h4>
+<ul>
+<li>llms.txtの内容が表示される</li>
+<li>Markdown形式のテキストが見える</li>
+<li>文字化けしていない</li>
+</ul>
+
+<h4>異常な場合</h4>
+<ul>
+<li>404 Not Found エラー → ファイルが存在しない</li>
+<li>403 Forbidden エラー → アクセス権限の問題</li>
+<li>文字化け → 文字コードの問題</li>
+<li>ダウンロードが始まる → Content-Typeの問題</li>
+</ul>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-setup.html">llms.txtの設置方法｜サーバー別に詳しく解説</a></p>
+
+<h3>方法2：キャッシュをクリアして確認</h3>
+<p>ブラウザキャッシュで古い内容が表示されている可能性があります。</p>
+
+<h4>スーパーリロードの方法</h4>
+<table>
+<thead>
+<tr><th>OS/ブラウザ</th><th>ショートカット</th></tr>
+</thead>
+<tbody>
+<tr><td>Windows Chrome/Edge</td><td>Ctrl + Shift + R</td></tr>
+<tr><td>Windows Firefox</td><td>Ctrl + F5</td></tr>
+<tr><td>Mac Chrome/Safari</td><td>Cmd + Shift + R</td></tr>
+<tr><td>Mac Firefox</td><td>Cmd + Shift + R</td></tr>
+</tbody>
+</table>
+
+<h3>方法3：シークレットモードで確認</h3>
+<p>キャッシュの影響を完全に排除して確認できます。</p>
+
+<h4>手順</h4>
+<ol>
+<li>シークレットウィンドウを開く
+<ul>
+<li>Chrome: Ctrl + Shift + N (Win) / Cmd + Shift + N (Mac)</li>
+<li>Firefox: Ctrl + Shift + P (Win) / Cmd + Shift + P (Mac)</li>
+<li>Safari: Cmd + Shift + N</li>
+</ul>
+</li>
+<li>https://yoursite.com/llms.txt にアクセス</li>
+</ol>
+
+<h2>コマンドラインでの確認</h2>
+
+<h3>curlコマンドで確認</h3>
+<p>ターミナルやコマンドプロンプトから確認できます。</p>
+
+<h4>基本的な確認</h4>
+<pre><code>curl https://yoursite.com/llms.txt</code></pre>
+
+<h4>HTTPステータスコードを確認</h4>
+<pre><code>curl -I https://yoursite.com/llms.txt</code></pre>
+
+<h4>正常な場合の出力例</h4>
+<pre><code>HTTP/2 200
+content-type: text/plain; charset=utf-8
+content-length: 1234
+date: Wed, 13 Nov 2025 03:00:00 GMT
+server: nginx</code></pre>
+
+<h4>詳細情報を取得</h4>
+<pre><code>curl -v https://yoursite.com/llms.txt</code></pre>
+
+<h3>wgetコマンドで確認</h3>
+<pre><code># ダウンロードして内容を確認
+wget https://yoursite.com/llms.txt
+
+# 内容を表示
+cat llms.txt
+
+# ステータスコードのみ確認
+wget --spider -S https://yoursite.com/llms.txt 2>&1 | grep "HTTP/"</code></pre>
+
+<h2>オンラインツールでの確認</h2>
+
+<h3>HTTPステータスチェッカー</h3>
+<p>ブラウザから手軽にHTTPステータスを確認できます。</p>
+
+<h4>おすすめツール</h4>
+<ul>
+<li><i class="fas fa-external-link-alt"></i> <a href="https://httpstatus.io/" target="_blank" rel="noopener">HTTP Status Code Checker</a></li>
+<li><i class="fas fa-external-link-alt"></i> <a href="https://www.websiteplanet.com/webtools/http-status-checker/" target="_blank" rel="noopener">Website Planet HTTP Checker</a></li>
+</ul>
+
+<h4>使い方</h4>
+<ol>
+<li>ツールのサイトを開く</li>
+<li>URLフィールドに <code>https://yoursite.com/llms.txt</code> を入力</li>
+<li>「Check」ボタンをクリック</li>
+<li>ステータスコード「200 OK」を確認</li>
+</ol>
+
+<h3>リンクチェッカー</h3>
+<p>サイト全体のリンクをチェックし、llms.txtの存在も確認できます。</p>
+
+<ul>
+<li><i class="fas fa-external-link-alt"></i> <a href="https://www.deadlinkchecker.com/" target="_blank" rel="noopener">Dead Link Checker</a></li>
+<li><i class="fas fa-external-link-alt"></i> <a href="https://validator.w3.org/checklink" target="_blank" rel="noopener">W3C Link Checker</a></li>
+</ul>
+
+<h2>詳細なチェック項目</h2>
+
+<h3>1. HTTPステータスコード</h3>
+<table>
+<thead>
+<tr><th>ステータス</th><th>意味</th><th>対応</th></tr>
+</thead>
+<tbody>
+<tr><td>200 OK</td><td>正常</td><td>問題なし</td></tr>
+<tr><td>301/302</td><td>リダイレクト</td><td>直接アクセスできるように修正</td></tr>
+<tr><td>404 Not Found</td><td>ファイルが存在しない</td><td>正しい場所に設置</td></tr>
+<tr><td>403 Forbidden</td><td>アクセス権限の問題</td><td>パーミッションを644に変更</td></tr>
+<tr><td>500 Internal Server Error</td><td>サーバーエラー</td><td>サーバー設定を確認</td></tr>
+</tbody>
+</table>
+
+<h3>2. Content-Type</h3>
+<p>正しいContent-Typeが設定されているか確認します。</p>
+
+<h4>推奨されるContent-Type</h4>
+<pre><code>text/plain; charset=utf-8</code></pre>
+
+<h4>確認方法</h4>
+<pre><code>curl -I https://yoursite.com/llms.txt | grep -i content-type</code></pre>
+
+<h4>Content-Typeが間違っている場合</h4>
+<p>.htaccessで修正できます。</p>
+
+<pre><code># .htaccess
+<Files "llms.txt">
+    ForceType text/plain
+    AddCharset UTF-8 .txt
+</Files></code></pre>
+
+<h3>3. 文字コード</h3>
+<p>UTF-8で保存されているか確認します。</p>
+
+<h4>確認方法（Linux/Mac）</h4>
+<pre><code>file -i llms.txt</code></pre>
+
+<h4>正常な出力</h4>
+<pre><code>llms.txt: text/plain; charset=utf-8</code></pre>
+
+<h3>4. ファイルサイズ</h3>
+<p>適切なファイルサイズか確認します。</p>
+
+<h4>推奨サイズ</h4>
+<ul>
+<li>llms.txt: 10〜50KB</li>
+<li>llms-full.txt: 100KB〜1MB</li>
+</ul>
+
+<h4>確認方法</h4>
+<pre><code># Linux/Mac
+ls -lh llms.txt
+
+# curl で確認
+curl -I https://yoursite.com/llms.txt | grep -i content-length</code></pre>
+
+<h3>5. 内容の正確性</h3>
+<p>Markdown記法が正しいか確認します。</p>
+
+<h4>チェックポイント</h4>
+<ul>
+<li>□ H1見出し（#）が1つだけ</li>
+<li>□ 引用ブロック（>）で概要を記述</li>
+<li>□ リンク形式が正しい <code>[テキスト](URL)</code></li>
+<li>□ URLが完全URL（絶対パス）</li>
+<li>□ セクション（##）が適切</li>
+<li>□ 不要な改行や空白がない</li>
+</ul>
+
+<h2>LLMでの動作確認</h2>
+
+<h3>ChatGPTで確認</h3>
+<p>実際にLLMが読み込めるか確認します。</p>
+
+<h4>手順</h4>
+<ol>
+<li>ChatGPT（GPT-4以上、Web Browsing有効）を開く</li>
+<li>以下のプロンプトを入力
+<pre><code>https://yoursite.com/llms.txt を読み込んで、
+このサイトの概要を教えてください。</code></pre>
+</li>
+<li>正しく情報が抽出されているか確認</li>
+</ol>
+
+<h3>Claudeで確認</h3>
+<ol>
+<li>Claude（Claude 3 Opus推奨）を開く</li>
+<li>以下のプロンプトを入力
+<pre><code>https://yoursite.com/llms.txt の内容を参照して、
+このサイトが提供しているサービスをリスト化してください。</code></pre>
+</li>
+<li>正しく情報が理解されているか確認</li>
+</ol>
+
+<h3>Perplexity AIで確認</h3>
+<ol>
+<li>Perplexity AIを開く</li>
+<li>以下のように質問
+<pre><code>"yoursite.com" について教えてください。
+どんなサービスを提供していますか？</code></pre>
+</li>
+<li>llms.txtの情報が参照されているか確認</li>
+</ol>
+
+<h2>robots.txtとの連携確認</h2>
+
+<h3>robots.txtでブロックされていないか確認</h3>
+
+<h4>手順</h4>
+<ol>
+<li>https://yoursite.com/robots.txt にアクセス</li>
+<li>以下のような記述がないか確認
+<pre><code># NGな例
+Disallow: /*.txt$
+Disallow: /llms.txt</code></pre>
+</li>
+</ol>
+
+<h4>正しいrobots.txtの例</h4>
+<pre><code>User-agent: *
+Disallow: /admin/
+Disallow: /private/
+
+# llms.txtは公開（明示的に許可）
+Allow: /llms.txt</code></pre>
+
+<h3>Google Search Consoleで確認</h3>
+<ol>
+<li>Google Search Consoleにログイン</li>
+<li>「URL検査」ツールを開く</li>
+<li><code>https://yoursite.com/llms.txt</code> を入力</li>
+<li>「公開URLをテスト」をクリック</li>
+<li>クロール可能か確認</li>
+</ol>
+
+<h2>定期的な確認</h2>
+
+<h3>確認スケジュール</h3>
+<table>
+<thead>
+<tr><th>確認タイミング</th><th>確認内容</th></tr>
+</thead>
+<tbody>
+<tr><td>設置直後</td><td>すべての項目を確認</td></tr>
+<tr><td>更新時</td><td>内容と動作を確認</td></tr>
+<tr><td>月1回</td><td>アクセス可能性を確認</td></tr>
+<tr><td>四半期ごと</td><td>全項目を再確認</td></tr>
+</tbody>
+</table>
+
+<h3>監視ツールの活用</h3>
+<p>自動で定期的に確認できます。</p>
+
+<h4>UptimeRobot</h4>
+<ol>
+<li><i class="fas fa-external-link-alt"></i> <a href="https://uptimerobot.com/" target="_blank" rel="noopener">UptimeRobot</a> にサインアップ</li>
+<li>「Add New Monitor」をクリック</li>
+<li>Monitor Type: HTTP(s)</li>
+<li>URL: https://yoursite.com/llms.txt</li>
+<li>Monitoring Interval: 5分ごと</li>
+</ol>
+
+<h4>Pingdom</h4>
+<ul>
+<li><i class="fas fa-external-link-alt"></i> <a href="https://www.pingdom.com/" target="_blank" rel="noopener">Pingdom</a></li>
+</ul>
+
+<h2>トラブルシューティング</h2>
+
+<h3>問題1：404エラーが表示される</h3>
+<h4>確認事項</h4>
+<ul>
+<li>ファイル名が正確に「llms.txt」（小文字）か</li>
+<li>ルートディレクトリに配置されているか</li>
+<li>FTPでアップロードが完了しているか</li>
+</ul>
+
+<h4>解決方法</h4>
+<pre><code># FTPで接続し、ファイルの存在を確認
+ls -la llms.txt
+
+# 存在しない場合は再アップロード</code></pre>
+
+<h3>問題2：403エラーが表示される</h3>
+<h4>確認事項</h4>
+<ul>
+<li>パーミッションが644になっているか</li>
+<li>.htaccessでブロックされていないか</li>
+</ul>
+
+<h4>解決方法</h4>
+<pre><code># パーミッションを変更
+chmod 644 llms.txt
+
+# .htaccessを確認・修正</code></pre>
+
+<h3>問題3：文字化けする</h3>
+<h4>確認事項</h4>
+<ul>
+<li>UTF-8で保存されているか</li>
+<li>BOM付きになっていないか</li>
+</ul>
+
+<h4>解決方法</h4>
+<ol>
+<li>テキストエディタでファイルを開く</li>
+<li>「名前を付けて保存」で文字コードをUTF-8（BOMなし）に設定</li>
+<li>再アップロード</li>
+</ol>
+
+<h3>問題4：古い内容が表示される</h3>
+<h4>確認事項</h4>
+<ul>
+<li>ブラウザキャッシュ</li>
+<li>CDNキャッシュ</li>
+<li>サーバーキャッシュ</li>
+</ul>
+
+<h4>解決方法</h4>
+<ol>
+<li>スーパーリロード（Ctrl + Shift + R）</li>
+<li>CDN管理画面でキャッシュをパージ</li>
+<li>サーバーのキャッシュをクリア</li>
+</ol>
+
+<h2>確認チェックリスト</h2>
+
+<p>llms.txtの設置と動作を確認するための完全なチェックリストです。</p>
+
+<h3>基本確認</h3>
+<ul>
+<li>□ ブラウザで https://yoursite.com/llms.txt にアクセスできる</li>
+<li>□ HTTPステータスコードが200 OK</li>
+<li>□ 内容が正しく表示される</li>
+<li>□ 文字化けしていない</li>
+</ul>
+
+<h3>技術的確認</h3>
+<ul>
+<li>□ Content-Typeが text/plain; charset=utf-8</li>
+<li>□ ファイルサイズが適切（10〜50KB）</li>
+<li>□ パーミッションが644</li>
+<li>□ UTF-8（BOMなし）で保存されている</li>
+</ul>
+
+<h3>内容確認</h3>
+<ul>
+<li>□ H1見出しが1つ</li>
+<li>□ 引用ブロックで概要を記述</li>
+<li>□ リンクが正しい形式</li>
+<li>□ URLが完全URL（絶対パス）</li>
+<li>□ セクション分けが適切</li>
+</ul>
+
+<h3>連携確認</h3>
+<ul>
+<li>□ robots.txtでブロックされていない</li>
+<li>□ LLMで読み込める（任意）</li>
+<li>□ 監視ツールを設定（推奨）</li>
+</ul>
+
+<h2>まとめ：定期的な確認の重要性</h2>
+
+<p>llms.txtは一度設置したら終わりではありません。定期的に以下を確認しましょう。</p>
+
+<h3>設置直後（必須）</h3>
+<ul>
+<li>ブラウザでアクセス</li>
+<li>HTTPステータスコード確認</li>
+<li>内容の正確性確認</li>
+</ul>
+
+<h3>月次（推奨）</h3>
+<ul>
+<li>アクセス可能性の確認</li>
+<li>内容の更新確認</li>
+</ul>
+
+<h3>四半期ごと（推奨）</h3>
+<ul>
+<li>全項目の再確認</li>
+<li>LLMでの動作テスト</li>
+<li>内容の見直し</li>
+</ul>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-how-to-create.html">llms.txtの作り方｜ステップバイステップで解説</a></p>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-how-to-use.html">llms.txtの使い方｜LLMに効果的に情報を伝える方法</a></p>
+
+<h3>余日（Yojitsu）の確認・サポートサービス</h3>
+<p>余日では、llms.txtの設置確認から定期的なメンテナンスまでサポートしています。正しく動作しているか不安な場合は、お気軽にご相談ください。</p>
+
+<p><i class="fas fa-external-link-alt"></i> <a href="https://yojitu.com/contact.html" target="_blank" rel="noopener">お問い合わせはこちら</a></p>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "llms.txt確認方法｜正しく設置されているかチェックする完全ガイド",
+  "description": "llms.txtが正しく設置されているか確認する方法を詳しく解説。ブラウザ、コマンドライン、オンラインツールを使った確認方法とトラブルシューティング。",
+  "author": {
+    "@type": "Person",
+    "name": "山田 蓮"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "余日（Yojitsu）",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://yojitu.com/assets/images/logo.png"
+    }
+  },
+  "datePublished": "2025-11-13T13:00:00+09:00",
+  "dateModified": "2025-11-13T13:00:00+09:00"
+}
+</script>
