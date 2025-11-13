@@ -52,7 +52,8 @@
         const headings = document.querySelectorAll('h2[id^="heading-"], h3[id^="heading-"]');
         let activeId = null;
         const scrollPosition = window.pageYOffset;
-        const headerOffset = 100;
+        const header = document.getElementById('header');
+        const headerOffset = header ? header.offsetHeight + 20 : 100;
 
         // 現在のスクロール位置に最も近い見出しを見つける
         let closestHeading = null;
@@ -82,21 +83,22 @@
 
                 // アクティブな項目を目次内でスクロール表示（PC版サイドバー）
                 if (window.innerWidth > 768 && tocSidebar && link.classList.contains('toc-link')) {
-                    // アクティブな項目が目次の中央付近に表示されるようスクロール
-                    // linkのtocSidebarからの相対位置を取得
-                    const linkRect = link.getBoundingClientRect();
-                    const sidebarRect = tocSidebar.getBoundingClientRect();
-                    const linkTopInSidebar = linkRect.top - sidebarRect.top + tocSidebar.scrollTop;
-                    const linkHeight = link.offsetHeight;
+                    // アクティブな項目を目次内で見えるようにスクロール
+                    const linkOffsetTop = link.offsetTop;
+                    const sidebarScrollTop = tocSidebar.scrollTop;
                     const sidebarHeight = tocSidebar.clientHeight;
+                    const linkHeight = link.offsetHeight;
 
-                    // 目次の中央に配置するための計算
-                    const targetScrollTop = linkTopInSidebar - sidebarHeight / 2 + linkHeight / 2;
+                    // リンクが見える範囲にない場合のみスクロール
+                    if (linkOffsetTop < sidebarScrollTop || linkOffsetTop + linkHeight > sidebarScrollTop + sidebarHeight) {
+                        // 目次の上部から1/3の位置に配置
+                        const targetScrollTop = linkOffsetTop - sidebarHeight / 3;
 
-                    tocSidebar.scrollTo({
-                        top: targetScrollTop,
-                        behavior: 'smooth'
-                    });
+                        tocSidebar.scrollTo({
+                            top: Math.max(0, targetScrollTop),
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             }
         });

@@ -38,24 +38,7 @@ $paged_articles = array_slice($articles, $pagination['offset'], NEWS_PER_PAGE);
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- ヘッダー -->
-    <header class="header" id="header">
-        <div class="container header__container">
-            <a href="../index.html" class="header__logo">余日</a>
-            <nav class="nav">
-                <ul class="nav__list" id="navList">
-                    <li><a href="../index.html#services" class="nav__link">サービス</a></li>
-                    <li><a href="../news/" class="nav__link nav__link--active">お知らせ</a></li>
-                    <li><a href="../about.html" class="nav__link">会社概要</a></li>
-                    <li><a href="../contact.html" class="nav__link">お問い合わせ</a></li>
-                </ul>
-                <div class="hamburger" id="hamburger">
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <?php include __DIR__ . '/../includes/header.php'; ?>
 
     <!-- ページヘッダー -->
     <section class="page-header">
@@ -111,33 +94,7 @@ $paged_articles = array_slice($articles, $pagination['offset'], NEWS_PER_PAGE);
     </section>
 
     <!-- フッター -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <div class="footer__section">
-                    <h3 class="footer__section-title">余日（Yojitsu）</h3>
-                    <p style="color: rgba(255, 255, 255, 0.8);">
-                        大分県を拠点としたデジタルマーケティング・Web制作会社
-                    </p>
-                </div>
-                <div class="footer__section">
-                    <h3 class="footer__section-title">サービス</h3>
-                    <a href="../services.html#seo" class="footer__link">SEO対策</a>
-                    <a href="../services.html#ads" class="footer__link">広告運用</a>
-                    <a href="../services.html#web" class="footer__link">Web制作</a>
-                </div>
-                <div class="footer__section">
-                    <h3 class="footer__section-title">企業情報</h3>
-                    <a href="../about.html" class="footer__link">会社概要</a>
-                    <a href="../news/" class="footer__link">お知らせ</a>
-                    <a href="../contact.html" class="footer__link">お問い合わせ</a>
-                </div>
-            </div>
-            <div class="footer__bottom">
-                <p>&copy; 2025 余日（Yojitsu）. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <?php include __DIR__ . '/../includes/footer.php'; ?>
 
     <script src="../assets/js/fontawesome-init.js"></script>
     <script defer src="../assets/js/app.js"></script>
