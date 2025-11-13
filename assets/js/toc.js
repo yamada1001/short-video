@@ -54,44 +54,31 @@
         const header = document.getElementById('header');
         const headerHeight = header ? header.offsetHeight : 80;
 
-        // 画面の中央付近（視線の自然な位置）を基準にする
-        const viewportMiddle = window.innerHeight / 3; // 上から1/3の位置
+        // スクロール位置の基準点（ヘッダーの下＋少し余白）
+        const scrollThreshold = headerHeight + 100;
 
-        // 画面内に表示されている見出しを探す
-        let visibleHeading = null;
-        let bestScore = -Infinity;
+        // 現在のスクロール位置から最も近い見出しを探す
+        let closestHeading = null;
+        let minDistance = Infinity;
 
         headings.forEach(function(heading) {
             const rect = heading.getBoundingClientRect();
+            const headingTop = rect.top;
 
-            // 見出しが画面内に表示されているか判定
-            const isVisible = rect.top >= headerHeight && rect.bottom <= window.innerHeight;
+            // ヘッダー下の基準点からの距離
+            const distance = Math.abs(headingTop - scrollThreshold);
 
-            if (isVisible) {
-                // 画面内にある場合、視線位置（1/3の位置）に近いほど高スコア
-                const distanceFromIdealPosition = Math.abs(rect.top - viewportMiddle);
-                const score = 1000 - distanceFromIdealPosition;
-
-                if (score > bestScore) {
-                    bestScore = score;
-                    visibleHeading = heading;
-                }
-            } else if (rect.top < headerHeight) {
-                // 画面外（上方）にある場合もスコアを計算
-                // ただし、画面内の見出しより優先度を下げる
-                const score = -rect.top;
-
-                if (score > bestScore && !visibleHeading) {
-                    bestScore = score;
-                    visibleHeading = heading;
-                }
+            // 見出しが基準点より上にあり、かつ最も近い場合
+            if (headingTop <= scrollThreshold && distance < minDistance) {
+                minDistance = distance;
+                closestHeading = heading;
             }
         });
 
-        if (visibleHeading) {
-            activeId = visibleHeading.id;
+        // 見つからない場合は最初の見出しを使用
+        if (closestHeading) {
+            activeId = closestHeading.id;
         } else if (headings.length > 0) {
-            // どの見出しも条件に合わない場合は最初の見出しをアクティブに
             activeId = headings[0].id;
         }
 
