@@ -961,6 +961,71 @@
       "tags": ["ブランディング", "成功事例"],
       "thumbnail": "",
       "author": "山田 蓮"
+    },
+    {
+      "id": 75,
+      "title": "【2025年最新】生成AI SEO対策完全ガイド｜GoogleのAI時代で勝つための実践戦略",
+      "slug": "generative-ai-seo-strategy",
+      "excerpt": "2025年、生成AIの登場でSEO対策は大きく変化しています。GoogleのAI Overview導入後の検索流入減少に対応し、E-E-A-Tを重視した高品質コンテンツ作成、AIツール活用、構造化データ最適化など、今すぐ実践すべき最新SEO戦略を徹底解説します。",
+      "content": "data/article-75-full.html",
+      "publishedAt": "2025-11-14T00:00:00+09:00",
+      "updatedAt": "2025-11-14T00:00:00+09:00",
+      "category": "SEO",
+      "tags": ["生成AI", "SEO対策", "AI Overview", "E-E-A-T", "Google", "2025年", "検索エンジン最適化"],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 76,
+      "title": "SEO対策にAIを活用する完全ガイド｜効率化と成果を両立する実践方法",
+      "slug": "seo-ai-utilization",
+      "excerpt": "AIツールを活用したSEO対策の実践方法を徹底解説。キーワードリサーチ、コンテンツ作成、内部SEO最適化、競合分析まで、AIで効率化しながら成果を出す具体的なワークフローと注意点を紹介します。",
+      "content": "data/article-76-full.html",
+      "publishedAt": "2025-11-14T00:30:00+09:00",
+      "updatedAt": "2025-11-14T00:30:00+09:00",
+      "category": "SEO",
+      "tags": ["SEO対策", "AI活用", "効率化", "コンテンツ作成", "キーワードリサーチ", "Emma Tools", "Transcope"],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 77,
+      "title": "生成AIがSEOに与える影響と対応策｜2025年の検索トレンド完全分析",
+      "slug": "generative-ai-seo-impact",
+      "excerpt": "生成AIの登場により検索エンジンとSEOはどう変わるのか？AI Overview導入で61.9%が流入減少した一方、適切な対応で成果を出す企業も。検索行動の変化、ゼロクリック検索の増加、E-E-A-Tの重要性など、2025年のSEO戦略を徹底解説します。",
+      "content": "data/article-77-full.html",
+      "publishedAt": "2025-11-14T01:00:00+09:00",
+      "updatedAt": "2025-11-14T01:00:00+09:00",
+      "category": "SEO",
+      "tags": ["生成AI", "SEO", "影響", "AI Overview", "検索トレンド", "ゼロクリック検索", "2025年"],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 78,
+      "title": "LLMO対策の費用相場完全ガイド｜予算別プランと投資対効果を徹底解説",
+      "slug": "llmo-cost-guide",
+      "excerpt": "LLMO（Large Language Model Optimization）対策にかかる費用相場を徹底解説。初期費用10〜80万円、月額3〜60万円の内訳、スタートアップから大企業まで予算別の最適プラン、ROI計算方法、費用を抑えるコツまで実践的に紹介します。",
+      "content": "data/article-78-full.html",
+      "publishedAt": "2025-11-14T01:30:00+09:00",
+      "updatedAt": "2025-11-14T01:30:00+09:00",
+      "category": "SEO",
+      "tags": ["LLMO対策", "費用", "相場", "予算", "投資対効果", "ROI", "AI最適化"],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 79,
+      "title": "AIO対策の始め方｜5ステップ実践ガイドで学ぶAI時代のSEO戦略",
+      "slug": "aio-implementation-guide",
+      "excerpt": "AIO（AI Optimization / AI Overview対策）の具体的な実践方法を5ステップで解説。現状分析、構造化データ実装、FAQ最適化、E-E-A-Tシグナル強化、効果測定まで、今日から始められる実践的なチェックリストとツールを紹介します。",
+      "content": "data/article-79-full.html",
+      "publishedAt": "2025-11-14T02:00:00+09:00",
+      "updatedAt": "2025-11-14T02:00:00+09:00",
+      "category": "SEO",
+      "tags": ["AIO対策", "やり方", "実践ガイド", "AI Overview", "構造化データ", "FAQ", "E-E-A-T"],
+      "thumbnail": "",
+      "author": "山田 蓮"
     }
   ]
 }

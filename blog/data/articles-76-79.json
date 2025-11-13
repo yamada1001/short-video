@@ -1,0 +1,212 @@
+[
+  {
+    "article_number": 76,
+    "keyword": "SEO対策 AI活用",
+    "slug": "seo-ai-utilization",
+    "html_content_file": "article-76-full.html",
+    "title": "SEO対策にAIを活用する完全ガイド【2025年最新版】作業効率80%改善の実践手法",
+    "excerpt": "AIツールでSEO対策を劇的に効率化。キーワード分析から記事作成、効果測定まで、具体的な活用手順とツール比較、ROI分析を徹底解説。従来12時間の作業が3.5時間に短縮、月間39万PV達成事例も紹介。",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "SEO対策にAIを活用する完全ガイド【2025年最新版】作業効率80%改善の実践手法",
+      "description": "AIツールでSEO対策を劇的に効率化。キーワード分析から記事作成、効果測定まで、具体的な活用手順とツール比較、ROI分析を徹底解説。",
+      "author": {
+        "@type": "Person",
+        "name": "山田 蓮",
+        "url": "https://yojitu.com/author/yamada-ren"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "YOJITU",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://yojitu.com/logo.png"
+        }
+      },
+      "datePublished": "2025-01-15T10:00:00+09:00",
+      "dateModified": "2025-01-15T10:00:00+09:00",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://yojitu.com/blog/seo-ai-utilization"
+      }
+    },
+    "category": "SEO",
+    "tags": ["SEO対策", "AI活用", "AIツール", "効率化", "キーワード分析", "コンテンツ作成", "ROI"],
+    "internal_links": [
+      "/blog/generative-ai-seo-strategy",
+      "/blog/generative-ai-seo-impact",
+      "/blog/aio-strategy"
+    ],
+    "external_links": [
+      "https://emma.tools",
+      "https://transcope.io",
+      "https://www.google.com/search/howsearchworks/",
+      "https://openai.com/chatgpt"
+    ]
+  },
+  {
+    "article_number": 77,
+    "keyword": "生成AI SEO 影響",
+    "slug": "generative-ai-seo-impact",
+    "html_content_file": "article-77-full.html",
+    "title": "生成AIがSEOに与える影響と対応策【2025年版】62%が流入減も15%は逆に増加",
+    "excerpt": "GoogleのAI Overview導入で約62%の企業が流入減少を経験。しかし適切な対応で15%は逆に増加。具体的な影響データ、AI Overviewで引用されるサイトの特徴、成功企業の戦略、今すぐ実践できる5つの対策を徹底解説。",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "生成AIがSEOに与える影響と対応策【2025年版】62%が流入減も15%は逆に増加",
+      "description": "GoogleのAI Overview導入による具体的な影響データと、成功企業の対応策を詳しく解説。AI Overviewで引用されるサイトの7つの特徴とは。",
+      "author": {
+        "@type": "Person",
+        "name": "山田 蓮",
+        "url": "https://yojitu.com/author/yamada-ren"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "YOJITU",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://yojitu.com/logo.png"
+        }
+      },
+      "datePublished": "2025-01-15T11:00:00+09:00",
+      "dateModified": "2025-01-15T11:00:00+09:00",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://yojitu.com/blog/generative-ai-seo-impact"
+      }
+    },
+    "category": "SEO",
+    "tags": ["生成AI", "AI Overview", "SEO影響", "対応策", "ゼロクリック検索", "E-E-A-T", "構造化データ"],
+    "internal_links": [
+      "/blog/generative-ai-seo-strategy",
+      "/blog/seo-ai-utilization",
+      "/blog/llmo-cost",
+      "/blog/aio-strategy"
+    ],
+    "external_links": [
+      "https://ai.google.dev/",
+      "https://search.google.com/search-console",
+      "https://developers.google.com/search/docs/appearance/structured-data"
+    ]
+  },
+  {
+    "article_number": 78,
+    "keyword": "LLMO対策 費用",
+    "slug": "llmo-cost",
+    "html_content_file": "article-78-full.html",
+    "title": "LLMO対策の費用相場完全ガイド【2025年版】初期10-150万円、ROI分析と見積もりチェックリスト",
+    "excerpt": "LLMO対策の費用相場を企業規模別に徹底解説。初期費用10〜150万円、月額3〜30万円の内訳、自社対応vs外注の比較、ROI計算例（投資額の18倍の売上）、適正価格の判断基準、コスト削減の5つの戦略を網羅。",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "LLMO対策の費用相場完全ガイド【2025年版】初期10-150万円、ROI分析と見積もりチェックリスト",
+      "description": "LLMO対策の費用相場、内訳、ROI分析を徹底解説。企業規模別のシミュレーション、自社対応vs外注の比較、見積もりチェックリスト付き。",
+      "author": {
+        "@type": "Person",
+        "name": "山田 蓮",
+        "url": "https://yojitu.com/author/yamada-ren"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "YOJITU",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://yojitu.com/logo.png"
+        }
+      },
+      "datePublished": "2025-01-15T12:00:00+09:00",
+      "dateModified": "2025-01-15T12:00:00+09:00",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://yojitu.com/blog/llmo-cost"
+      }
+    },
+    "category": "SEO",
+    "tags": ["LLMO対策", "費用相場", "ROI", "投資対効果", "見積もり", "llms.txt", "構造化データ", "予算"],
+    "internal_links": [
+      "/blog/generative-ai-seo-strategy",
+      "/blog/seo-ai-utilization",
+      "/blog/generative-ai-seo-impact",
+      "/blog/aio-strategy"
+    ],
+    "external_links": [
+      "https://www.schema.org",
+      "https://llmstxt.org/",
+      "https://developers.google.com/search"
+    ]
+  },
+  {
+    "article_number": 79,
+    "keyword": "AIO対策 やり方",
+    "slug": "aio-strategy",
+    "html_content_file": "article-79-full.html",
+    "title": "AIO対策の始め方｜5ステップ実践ガイド【2025年版】初心者でも今日から実践できるチェックリスト付き",
+    "excerpt": "AI Overview最適化（AIO対策）を5ステップで完全解説。llms.txt作成、構造化データ実装、FAQ充実、E-E-A-T強化の具体的手順。初心者でも実践できるチェックリスト、推奨ツール、効果測定方法まで網羅。",
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "AIO対策の始め方｜5ステップ実践ガイド",
+      "description": "AI Overview最適化を5ステップで解説。初心者でも実践できる具体的な手順とチェックリスト付き。",
+      "totalTime": "P7D",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "現状分析と目標設定",
+          "text": "Google Search Consoleでトラフィック推移を確認し、主要キーワードでAI Overview表示状況を調査。3ヶ月後、6ヶ月後、1年後の具体的な目標を設定する。"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "技術的基盤の構築",
+          "text": "llms.txtファイルの作成・設置、構造化データ（Article、FAQPage、Organization等）の実装、サイト構造の最適化を行う。"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "コンテンツの最適化",
+          "text": "FAQ形式コンテンツの充実（1記事5-10個）、E-E-A-Tの強化、独自性と一次情報の追加を実施する。"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "継続的な最適化とモニタリング",
+          "text": "AI Overview引用回数、トラフィック、CTRを月次で測定。優先度の高い記事から定期的にリライトを実施する。"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "高度な施策と差別化",
+          "text": "ブランド力の構築、マルチフォーマット戦略、ローカルSEO（地域企業向け）で競合との差別化を図る。"
+        }
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "山田 蓮",
+        "url": "https://yojitu.com/author/yamada-ren"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "YOJITU",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://yojitu.com/logo.png"
+        }
+      },
+      "datePublished": "2025-01-15T13:00:00+09:00",
+      "dateModified": "2025-01-15T13:00:00+09:00"
+    },
+    "category": "SEO",
+    "tags": ["AIO対策", "AI Overview", "やり方", "実践ガイド", "チェックリスト", "初心者向け", "構造化データ", "FAQ"],
+    "internal_links": [
+      "/blog/generative-ai-seo-strategy",
+      "/blog/seo-ai-utilization",
+      "/blog/generative-ai-seo-impact",
+      "/blog/llmo-cost",
+      "/blog/llms-txt-creation-steps"
+    ],
+    "external_links": [
+      "https://search.google.com/test/rich-results",
+      "https://search.google.com/search-console",
+      "https://schema.org",
+      "https://developers.google.com/search/docs/appearance/structured-data"
+    ]
+  }
+]

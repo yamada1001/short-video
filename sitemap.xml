@@ -498,4 +498,34 @@
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
+    <url>
+        <loc>https://yojitu.com/blog/detail.php?slug=generative-ai-seo-strategy</loc>
+        <lastmod>2025-11-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://yojitu.com/blog/detail.php?slug=seo-ai-utilization</loc>
+        <lastmod>2025-11-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://yojitu.com/blog/detail.php?slug=generative-ai-seo-impact</loc>
+        <lastmod>2025-11-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://yojitu.com/blog/detail.php?slug=llmo-cost-guide</loc>
+        <lastmod>2025-11-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://yojitu.com/blog/detail.php?slug=aio-implementation-guide</loc>
+        <lastmod>2025-11-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
 </urlset>
