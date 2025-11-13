@@ -9,20 +9,24 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-md);
+  position: relative;
 }
 
 .article-main {
   max-width: 800px;
   width: 100%;
+  min-height: 100vh;
 }
 
 /* PC版：サイドバー目次 */
 .article-toc-sidebar {
+  position: -webkit-sticky;
   position: sticky;
   top: 100px;
   align-self: start;
   max-height: calc(100vh - 120px);
   overflow-y: auto;
+  will-change: transform;
 }
 
 .toc-container {
