@@ -40,7 +40,8 @@
       "Bash(php:*)",
       "Bash(git push:*)",
       "Bash(git pull:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nマージ: Google Fonts追加とリモートの変更を統合\n\nコンフリクト解決:\n- index.phpにGoogle Fonts読み込みを追加（文字表示の修正）\n- .claude/settings.local.jsonをローカル版に統一\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
