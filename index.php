@@ -41,7 +41,10 @@
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/pages/top.css">
-    <link rel="stylesheet" href="assets/css/cookie-consent.css">
+
+    <!-- 非クリティカルCSS - 遅延読み込み -->
+    <link rel="stylesheet" href="assets/css/cookie-consent.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="assets/css/cookie-consent.css"></noscript>
 
     <!-- Font Awesome - Async load for non-blocking -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
