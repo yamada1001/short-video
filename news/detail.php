@@ -70,13 +70,13 @@ $next_article = isset($articles[$current_index - 1]) ? $articles[$current_index 
     <!-- お知らせ詳細 -->
     <section class="news-detail">
         <div class="container news-detail-container">
-            <!-- ブレッドクラム -->
+            <!-- パンくずリスト -->
             <nav class="breadcrumb">
-                <ul class="breadcrumb__list">
-                    <li class="breadcrumb__item"><a href="../index.html">ホーム</a></li>
-                    <li class="breadcrumb__item"><a href="../news/">お知らせ</a></li>
-                    <li class="breadcrumb__item"><?php echo h($article['title']); ?></li>
-                </ul>
+                <a href="../index.html" class="breadcrumb__link">ホーム</a>
+                <span class="breadcrumb__separator">/</span>
+                <a href="../news/" class="breadcrumb__link">お知らせ</a>
+                <span class="breadcrumb__separator">/</span>
+                <span class="breadcrumb__current"><?php echo h($article['title']); ?></span>
             </nav>
 
             <!-- 記事ヘッダー -->
