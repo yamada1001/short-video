@@ -22,11 +22,12 @@
 .article-toc-sidebar {
   position: -webkit-sticky;
   position: sticky;
-  top: 100px;
-  align-self: start;
-  max-height: calc(100vh - 120px);
+  top: 80px;
+  align-self: flex-start;
+  max-height: calc(100vh - 100px);
   overflow-y: auto;
   will-change: transform;
+  z-index: 10;
 }
 
 .toc-container {

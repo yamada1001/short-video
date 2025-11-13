@@ -29,7 +29,8 @@
       "Bash(wc:*)",
       "Bash(if [ -f \"$file\" ])",
       "Bash(then wc -c \"$file\")",
-      "Bash(do echo \"=== article-$i ===\")"
+      "Bash(do echo \"=== article-$i ===\")",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []
