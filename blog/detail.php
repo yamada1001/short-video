@@ -78,7 +78,7 @@ $toc = generateToc($post['content']);
     <?php endif; ?>
 
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/pages/blog.css">
     <link rel="stylesheet" href="../assets/css/toc.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
@@ -290,6 +290,6 @@ $toc = generateToc($post['content']);
         </div>
     </footer>
 
-    <script defer src="assets/js/app.js"></script>
+    <script defer src="../assets/js/app.js"></script>
 </body>
 </html>

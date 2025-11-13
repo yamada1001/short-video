@@ -49,7 +49,7 @@ if (!empty($errors)) {
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>エラー | お問い合わせ</title>
-    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
 </head>
 <body>
     <div class='container' style='padding: 60px 24px; text-align: center;'>
@@ -109,7 +109,7 @@ mb_send_mail($email, $reply_subject, $reply_body, $reply_headers);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>送信完了 | お問い合わせ | 余日（Yojitsu）</title>
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/pages/contact.css">
 </head>
 <body>

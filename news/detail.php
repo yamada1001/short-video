@@ -37,7 +37,7 @@ $next_article = isset($articles[$current_index - 1]) ? $articles[$current_index 
     })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
     <!-- End Google Tag Manager -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/news.css">
 </head>
 <body>
@@ -152,5 +152,5 @@ $next_article = isset($articles[$current_index - 1]) ? $articles[$current_index 
     </footer>
 
     <script src="../assets/js/fontawesome-init.js"></script>
-    <script defer src="assets/js/app.js"></script>
+    <script defer src="../assets/js/app.js"></script>
 </html>
