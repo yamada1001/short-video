@@ -22,9 +22,9 @@
 .article-toc-sidebar {
   position: -webkit-sticky;
   position: sticky;
-  top: 80px;
+  top: 120px;
   align-self: flex-start;
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - 140px);
   overflow-y: auto;
   will-change: transform;
   z-index: 10;

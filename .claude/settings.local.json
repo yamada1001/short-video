@@ -34,7 +34,10 @@
       "Bash(time curl:*)",
       "Bash(find:*)",
       "Bash(chmod:*)",
-      "Bash(./optimize-html.sh:*)"
+      "Bash(./optimize-html.sh:*)",
+      "Bash(php add-heading-ids.php:*)",
+      "Bash(php check-duplicate-h1.php:*)",
+      "Bash(php:*)"
     ],
     "deny": [],
     "ask": []
