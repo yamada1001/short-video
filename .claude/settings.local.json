@@ -38,7 +38,8 @@
       "Bash(php add-heading-ids.php:*)",
       "Bash(php check-duplicate-h1.php:*)",
       "Bash(php:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git pull:*)"
     ],
     "deny": [],
     "ask": []
