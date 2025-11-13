@@ -16,7 +16,6 @@ $company = isset($_POST['company']) ? trim($_POST['company']) : '';
 $name = isset($_POST['name']) ? trim($_POST['name']) : '';
 $email = isset($_POST['email']) ? trim($_POST['email']) : '';
 $tel = isset($_POST['tel']) ? trim($_POST['tel']) : '';
-$contact_method = isset($_POST['contact_method']) ? trim($_POST['contact_method']) : '';
 $subject = isset($_POST['subject']) ? trim($_POST['subject']) : '';
 $message = isset($_POST['message']) ? trim($_POST['message']) : '';
 
@@ -31,10 +30,6 @@ if (empty($email)) {
     $errors[] = 'メールアドレスを入力してください。';
 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors[] = '正しいメールアドレスを入力してください。';
-}
-
-if (empty($contact_method)) {
-    $errors[] = 'ご希望の連絡方法を選択してください。';
 }
 
 if (empty($subject)) {
@@ -76,7 +71,6 @@ $mail_body .= "■ 会社名・団体名\n" . $company . "\n\n";
 $mail_body .= "■ お名前\n" . $name . "\n\n";
 $mail_body .= "■ メールアドレス\n" . $email . "\n\n";
 $mail_body .= "■ 電話番号\n" . $tel . "\n\n";
-$mail_body .= "■ ご希望の連絡方法\n" . $contact_method . "\n\n";
 $mail_body .= "■ お問い合わせ種別\n" . $subject . "\n\n";
 $mail_body .= "■ お問い合わせ内容\n" . $message . "\n\n";
 $mail_body .= "送信日時: " . date('Y年m月d日 H:i:s') . "\n";
@@ -92,9 +86,8 @@ $reply_subject = 'お問い合わせありがとうございます - 余日（Yo
 $reply_body = "{$name} 様\n\n";
 $reply_body .= "この度は、余日（Yojitsu）にお問い合わせいただき、誠にありがとうございます。\n\n";
 $reply_body .= "以下の内容でお問い合わせを受け付けました。\n";
-$reply_body .= "担当者より2営業日以内に、ご希望の方法でご連絡させていただきます。\n\n";
+$reply_body .= "担当者より2営業日以内にご連絡させていただきます。\n\n";
 $reply_body .= "────────────────────\n\n";
-$reply_body .= "■ ご希望の連絡方法\n" . $contact_method . "\n\n";
 $reply_body .= "■ お問い合わせ種別\n" . $subject . "\n\n";
 $reply_body .= "■ お問い合わせ内容\n" . $message . "\n\n";
 $reply_body .= "────────────────────\n\n";

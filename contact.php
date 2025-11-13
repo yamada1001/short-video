@@ -35,50 +35,183 @@
     <!-- お問い合わせ方法 -->
     <section class="contact-methods">
         <div class="container">
-            <h2 class="section__title animate">お問い合わせ方法</h2>
-            <div class="contact-methods__grid">
-                <div class="contact-method animate">
-                    <div class="contact-method__icon">
-                        <i class="fab fa-line"></i>
+            <h2 class="section__title animate fade-in">お問い合わせ方法</h2>
+
+            <!-- アコーディオン形式 -->
+            <div class="contact-accordion">
+                <!-- LINE -->
+                <div class="accordion-item animate">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-header__content">
+                            <i class="fab fa-line" style="color: #06C755; font-size: 24px; margin-right: 12px;"></i>
+                            <span class="accordion-title">LINE</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p class="accordion-text">
+                            お気軽にLINEでご連絡ください。<br>
+                            ご返信は24時間以内に行います。
+                        </p>
+                        <a href="https://line.me/ti/p/CTOCx9YKjk" class="btn btn-primary" target="_blank" rel="noopener noreferrer" style="margin-top: 16px; display: inline-block;">
+                            <i class="fab fa-line"></i> LINEで相談する
+                        </a>
                     </div>
-                    <h3 class="contact-method__title">LINE</h3>
-                    <p class="contact-method__info">
-                        お気軽にLINEでご連絡ください。<br>
-                        ご返信は24時間以内に行います。
-                    </p>
-                    <a href="https://line.me/ti/p/CTOCx9YKjk" class="contact-method__link" target="_blank" rel="noopener noreferrer">
-                        LINEで相談する
-                    </a>
                 </div>
-                <div class="contact-method animate">
-                    <div class="contact-method__icon">
-                        <i class="fas fa-phone"></i>
+
+                <!-- 電話 -->
+                <div class="accordion-item animate">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-header__content">
+                            <i class="fas fa-phone" style="color: var(--color-natural-brown); font-size: 24px; margin-right: 12px;"></i>
+                            <span class="accordion-title">電話</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p class="accordion-text">
+                            <strong style="font-size: 18px; color: var(--color-natural-brown);">080-4692-9681</strong><br>
+                            対応時間：9:00〜21:00（年中無休）
+                        </p>
+                        <a href="tel:08046929681" class="btn btn-primary" style="margin-top: 16px; display: inline-block;">
+                            <i class="fas fa-phone"></i> 電話をかける
+                        </a>
                     </div>
-                    <h3 class="contact-method__title">電話</h3>
-                    <p class="contact-method__info">
-                        080-4692-9681<br>
-                        対応時間：9:00〜21:00（年中無休）
-                    </p>
-                    <a href="tel:08046929681" class="contact-method__link">
-                        電話をかける
-                    </a>
                 </div>
-                <div class="contact-method animate">
-                    <div class="contact-method__icon">
-                        <i class="fas fa-envelope"></i>
+
+                <!-- メール -->
+                <div class="accordion-item animate">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-header__content">
+                            <i class="fas fa-envelope" style="color: var(--color-natural-brown); font-size: 24px; margin-right: 12px;"></i>
+                            <span class="accordion-title">メール</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p class="accordion-text">
+                            <strong style="font-size: 16px; color: var(--color-natural-brown);">yamada@yojitu.com</strong><br>
+                            24時間受付中
+                        </p>
+                        <a href="mailto:yamada@yojitu.com" class="btn btn-primary" style="margin-top: 16px; display: inline-block;">
+                            <i class="fas fa-envelope"></i> メールを送る
+                        </a>
                     </div>
-                    <h3 class="contact-method__title">メール</h3>
-                    <p class="contact-method__info">
-                        yamada@yojitu.com<br>
-                        24時間受付中
-                    </p>
-                    <a href="mailto:yamada@yojitu.com" class="contact-method__link">
-                        メールを送る
-                    </a>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+    function toggleAccordion(button) {
+        const item = button.parentElement;
+        const body = item.querySelector('.accordion-body');
+        const icon = button.querySelector('.accordion-icon');
+
+        // 他のアコーディオンを閉じる
+        document.querySelectorAll('.accordion-item').forEach(function(otherItem) {
+            if (otherItem !== item) {
+                otherItem.classList.remove('active');
+                otherItem.querySelector('.accordion-body').style.maxHeight = null;
+                otherItem.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // クリックされたアコーディオンを開閉
+        item.classList.toggle('active');
+        if (item.classList.contains('active')) {
+            body.style.maxHeight = body.scrollHeight + 'px';
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            body.style.maxHeight = null;
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+    </script>
+
+    <style>
+    .contact-accordion {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .accordion-item {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .accordion-item:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .accordion-header {
+        width: 100%;
+        padding: 20px 24px;
+        background: none;
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .accordion-header:hover {
+        background-color: #f5f5f5;
+    }
+
+    .accordion-header__content {
+        display: flex;
+        align-items: center;
+    }
+
+    .accordion-title {
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--color-text);
+    }
+
+    .accordion-icon {
+        font-size: 14px;
+        color: var(--color-natural-brown);
+        transition: transform 0.3s;
+    }
+
+    .accordion-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 0 24px;
+    }
+
+    .accordion-item.active .accordion-body {
+        padding: 0 24px 24px;
+    }
+
+    .accordion-text {
+        color: var(--color-text);
+        line-height: 1.8;
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+        .accordion-header {
+            padding: 16px 20px;
+        }
+
+        .accordion-title {
+            font-size: 16px;
+        }
+
+        .accordion-item.active .accordion-body {
+            padding: 0 20px 20px;
+        }
+    }
+    </style>
 
     <!-- お問い合わせフォーム -->
     <section class="contact-form">
@@ -110,18 +243,6 @@
                 <div class="form-group">
                     <label for="tel" class="form-label">電話番号</label>
                     <input type="tel" id="tel" name="tel" class="form-input" placeholder="090-1234-5678">
-                </div>
-
-                <div class="form-group">
-                    <label for="contact-method" class="form-label form-label--required">ご希望の連絡方法</label>
-                    <select id="contact-method" name="contact_method" class="form-select" required>
-                        <option value="">選択してください</option>
-                        <option value="LINE">LINE</option>
-                        <option value="電話">電話</option>
-                        <option value="メール">メール</option>
-                        <option value="どれでも可">どれでも可</option>
-                    </select>
-                    <div class="form-error" id="contactMethodError">ご希望の連絡方法を選択してください</div>
                 </div>
 
                 <div class="form-group">
