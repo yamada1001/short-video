@@ -33,43 +33,59 @@
     <!-- Critical CSS - Inline for faster FCP -->
     <style>
         /* Critical styles for above-the-fold content */
-        body{margin:0;font-family:'Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow-x:clip}
-        .header{position:fixed;top:0;left:0;width:100%;z-index:1000;background-color:#fff;border-bottom:1px solid #e0e0e0;transition:transform .3s ease}
-        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;background-color:#f5f5f5}
+        :root{--color-natural-brown:#8B7355;--color-charcoal:#4A4A4A;--color-beige:#E5DDD5;--color-bg:#F5F3F0;--spacing-sm:16px;--spacing-md:24px;--spacing-lg:40px;--spacing-xl:60px;--transition-base:0.35s ease-in-out}
+        *{box-sizing:border-box}
+        body{margin:0;font-family:'Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow-x:clip;color:#4A4A4A;line-height:1.8;background-color:var(--color-bg)}
+        .container{max-width:1200px;margin:0 auto;padding:0 32px}
+        .header{position:fixed;top:0;left:0;width:100%;z-index:1000;background-color:#fff;border-bottom:1px solid #e0e0e0;transition:transform .3s ease;padding:20px 0}
+        .header__container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 32px}
+        .header__logo{font-size:20px;font-weight:500;color:var(--color-charcoal);text-decoration:none;letter-spacing:0.1em}
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#faf9f7 0%,#f5f3f0 100%);position:relative;overflow:hidden;padding-top:80px}
+        .hero__background{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+        .hero__content{position:relative;z-index:10;max-width:800px;padding:var(--spacing-md)}
+        .hero__label{font-size:12px;letter-spacing:0.2em;color:var(--color-natural-brown);text-transform:uppercase;margin-bottom:var(--spacing-md);font-weight:500}
+        .hero__description{font-size:clamp(24px,5vw,42px);font-weight:500;line-height:1.6;letter-spacing:0.05em;color:var(--color-charcoal);margin:0 0 var(--spacing-lg)}
+        .hero__cta{display:flex;gap:var(--spacing-sm);justify-content:center;flex-wrap:wrap}
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border:1px solid var(--color-natural-brown);background-color:transparent;color:var(--color-natural-brown);text-decoration:none;transition:all var(--transition-base);font-weight:500;letter-spacing:0.05em;cursor:pointer}
+        .btn:hover{background-color:var(--color-beige)}
+        .btn-primary{background-color:var(--color-natural-brown);color:#fff}
+        .btn-primary:hover{background-color:var(--color-charcoal)}
+        .btn-secondary{background-color:transparent;color:var(--color-natural-brown)}
+        .btn--large{padding:18px 40px;font-size:16px}
+        @media(max-width:768px){
+            .container,.header__container{padding:0 16px}
+            .hero{padding-top:60px}
+            .hero__content{padding:16px}
+            .hero__cta{flex-direction:column;align-items:center}
+            .btn--large{padding:14px 28px;font-size:14px;width:100%;max-width:300px;justify-content:center}
+        }
     </style>
 
-    <!-- CSS - Preload critical, defer non-critical -->
+    <!-- CSS - Optimized loading -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/common.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="preload" href="assets/css/cta.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="assets/css/pages/top.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="assets/css/cookie-consent.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="assets/css/components.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/cta.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/pages/top.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/cookie-consent.css" media="print" onload="this.media='all'">
     <noscript>
+        <link rel="stylesheet" href="assets/css/components.css">
         <link rel="stylesheet" href="assets/css/cta.css">
         <link rel="stylesheet" href="assets/css/pages/top.css">
         <link rel="stylesheet" href="assets/css/cookie-consent.css">
     </noscript>
 
-    <!-- Font Awesome - Lazy load with preload -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <!-- Font Awesome - Deferred loading -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"></noscript>
 
-    <!-- Google Tag Manager - Deferred with timeout -->
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    // Load GTM after page load
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            var script = document.createElement('script');
-            script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2';
-            script.async = true;
-            document.head.appendChild(script);
-        }, 2000);
-    });
-    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
+    <!-- End Google Tag Manager -->
 
     <!-- 構造化データ -->
     <script type="application/ld+json">
@@ -352,10 +368,7 @@
         </div>
     </div>
 
-    <!-- JavaScript - Deferred for better performance -->
-    <script defer src="assets/js/nav.js"></script>
-    <script defer src="assets/js/common.js"></script>
-    <script defer src="assets/js/external-links.js"></script>
-    <script defer src="assets/js/cookie-consent.js"></script>
+    <!-- JavaScript - Single unified file for better performance -->
+    <script defer src="assets/js/main.js"></script>
 </body>
 </html>
