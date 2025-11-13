@@ -25,7 +25,11 @@
       "Bash(then head -100 \"blog/data/article-22-full.html\")",
       "Bash(else echo \"File not found\")",
       "Bash(fi)",
-      "WebFetch(domain:yojitu.com)"
+      "WebFetch(domain:yojitu.com)",
+      "Bash(wc:*)",
+      "Bash(if [ -f \"$file\" ])",
+      "Bash(then wc -c \"$file\")",
+      "Bash(do echo \"=== article-$i ===\")"
     ],
     "deny": [],
     "ask": []
