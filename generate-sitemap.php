@@ -21,7 +21,7 @@ $staticPages = [
     ['url' => '/services.html', 'priority' => '0.9', 'changefreq' => 'weekly'],
     ['url' => '/about.html', 'priority' => '0.8', 'changefreq' => 'monthly'],
     ['url' => '/contact.html', 'priority' => '0.8', 'changefreq' => 'monthly'],
-    ['url' => '/recruit.html', 'priority' => '0.7', 'changefreq' => 'monthly'],
+    ['url' => '/recruit.php', 'priority' => '0.7', 'changefreq' => 'monthly'],
     ['url' => '/blog/', 'priority' => '0.8', 'changefreq' => 'daily'],
     ['url' => '/news/', 'priority' => '0.7', 'changefreq' => 'weekly'],
     ['url' => '/privacy.html', 'priority' => '0.3', 'changefreq' => 'yearly'],

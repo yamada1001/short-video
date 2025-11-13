@@ -219,7 +219,7 @@
                 <div class="footer__section">
                     <h3 class="footer__section-title">企業情報</h3>
                     <a href="about.html" class="footer__link"><i class="fas fa-info-circle"></i> 会社概要</a>
-                    <a href="recruit.html" class="footer__link"><i class="fas fa-handshake"></i> 業務委託募集・交流</a>
+                    <a href="recruit.php" class="footer__link"><i class="fas fa-handshake"></i> 業務委託募集・交流</a>
                     <a href="blog/" class="footer__link"><i class="fas fa-blog"></i> ブログ</a>
                     <a href="news/" class="footer__link"><i class="fas fa-newspaper"></i> お知らせ</a>
                     <a href="contact.html" class="footer__link"><i class="fas fa-envelope"></i> お問い合わせ</a>

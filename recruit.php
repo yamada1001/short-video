@@ -6,23 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="余日（Yojitsu）では業務委託パートナーを募集中。動画撮影者・編集者、デジタルマーケティング関連の交流を希望しています。">
     <title>業務委託募集・交流 | 余日（Yojitsu）</title>
-
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
+    <!-- End Google Tag Manager -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/cta.css">
     <link rel="stylesheet" href="assets/css/pages/about.css">
     <link rel="stylesheet" href="assets/css/pages/top.css">
-    <link rel="stylesheet" href="assets/css/cookie-consent.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
 
     <!-- 構造化データ -->
     <script type="application/ld+json">
@@ -73,10 +69,29 @@
     </script>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-    <?php include __DIR__ . '/includes/header.php'; ?>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- ヘッダー -->
+    <header class="header" id="header">
+        <div class="container header__container">
+            <a href="index.html" class="header__logo">余日</a>
+            <nav class="nav">
+                <ul class="nav__list" id="navList">
+                    <li><a href="services.html" class="nav__link">サービス</a></li>
+                    <li><a href="blog/" class="nav__link">ブログ</a></li>
+                    <li><a href="about.html" class="nav__link">会社概要</a></li>
+                    <li><a href="contact.html" class="nav__link">お問い合わせ</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
 
     <!-- ページヘッダー -->
     <section class="page-header">
@@ -238,81 +253,19 @@
     </section>
 
     <!-- CTAセクション -->
-    <?php $cta_base_path = ''; include __DIR__ . '/includes/cta.php'; ?>
+    <?php
+    $cta_title = 'お問い合わせ';
+    $cta_description = '業務委託のご応募や交流のご希望は、<br>お気軽にお問い合わせください';
+    $cta_show_info = true;
+    $cta_base_path = '';
+    include __DIR__ . '/includes/cta.php';
+    ?>
 
-    <!-- フッター -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <div class="footer__section">
-                    <h3 class="footer__section-title">余日（Yojitsu）</h3>
-                    <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 16px; line-height: 1.9;">
-                        大分県を拠点に、SEO・広告運用・Web制作・ショート動画制作を提供するデジタルマーケティング会社です。
-                    </p>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.8;">
-                        <i class="fas fa-building" style="margin-right: 8px;"></i>屋号: 余日（Yojitsu）<br>
-                        <i class="fas fa-file-invoice" style="margin-right: 8px;"></i>登録番号: T9810094141774<br>
-                        <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>設立: 令和7年5月14日
-                    </p>
-                </div>
-                <div class="footer__section">
-                    <h3 class="footer__section-title">サービス</h3>
-                    <a href="services.html#web" class="footer__link"><i class="fas fa-laptop-code"></i> Web制作</a>
-                    <a href="services.html#short-video" class="footer__link"><i class="fas fa-video"></i> ショート動画制作</a>
-                    <a href="services.html" class="footer__link" style="margin-top: 8px; opacity: 0.8;"><i class="fas fa-arrow-right"></i> サービス詳細</a>
-                </div>
-                <div class="footer__section">
-                    <h3 class="footer__section-title">企業情報</h3>
-                    <a href="about.html" class="footer__link"><i class="fas fa-info-circle"></i> 会社概要</a>
-                    <a href="recruit.html" class="footer__link"><i class="fas fa-handshake"></i> 業務委託募集・交流</a>
-                    <a href="blog/" class="footer__link"><i class="fas fa-blog"></i> ブログ</a>
-                    <a href="news/" class="footer__link"><i class="fas fa-newspaper"></i> お知らせ</a>
-                    <a href="contact.html" class="footer__link"><i class="fas fa-envelope"></i> お問い合わせ</a>
-                    <a href="privacy.html" class="footer__link"><i class="fas fa-shield-alt"></i> プライバシーポリシー</a>
-                    <a href="sitemap-page.php" class="footer__link"><i class="fas fa-sitemap"></i> サイトマップ</a>
-                </div>
-                <div class="footer__section">
-                    <h3 class="footer__section-title">お問い合わせ</h3>
-                    <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 12px; line-height: 1.9;">
-                        <i class="fas fa-phone" style="margin-right: 8px;"></i>Tel: <a href="tel:08046929681" style="color: rgba(255, 255, 255, 0.9);">080-4692-9681</a><br>
-                        <i class="fas fa-envelope" style="margin-right: 8px;"></i>Email: <a href="mailto:yamada@yojitu.com" style="color: rgba(255, 255, 255, 0.9);">yamada@yojitu.com</a><br>
-                        <i class="fab fa-line" style="margin-right: 8px;"></i>LINE: <a href="https://line.me/ti/p/CTOCx9YKjk" style="color: rgba(255, 255, 255, 0.9);">お問い合わせ</a>
-                    </p>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.8;">
-                        <i class="fas fa-clock" style="margin-right: 8px;"></i>営業時間: 10時~22時<br>
-                        <i class="fas fa-calendar-check" style="margin-right: 8px;"></i>定休日: なし
-                    </p>
-                    <div style="margin-top: 16px;">
-                        <a href="contact.html" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; font-size: 14px;">お問い合わせフォーム</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__bottom">
-                <p>&copy; 2025 余日（Yojitsu）. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <?php include __DIR__ . '/includes/footer.php'; ?>
 
-    <script defer src="assets/js/nav.js"></script>
-    <script defer src="assets/js/common.js"></script>
-    <script defer src="assets/js/external-links.js"></script>
-
-    <!-- Cookie同意バナー -->
-    <div id="cookieConsent" class="cookie-consent">
-        <div class="cookie-consent__container">
-            <div class="cookie-consent__content">
-                <p class="cookie-consent__text">
-                    当サイトは、ウェブサイトにおけるお客様の利用状況を把握するためにCookieを使用しています。「同意する」をクリックすると、当サイトでのCookieの使用に同意することになります。
-                    <a href="privacy.php" class="cookie-consent__link">プライバシーポリシー</a>
-                </p>
-            </div>
-            <div class="cookie-consent__actions">
-                <button id="acceptCookies" class="cookie-consent__button cookie-consent__button--accept">同意する</button>
-                <button id="declineCookies" class="cookie-consent__button cookie-consent__button--decline">拒否する</button>
-            </div>
-        </div>
-    </div>
-
-    <script defer src="assets/js/cookie-consent.js"></script>
+    <script src="assets/js/fontawesome-init.js"></script>
+    <script src="assets/js/nav.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/external-links.js"></script>
 </body>
 </html>
