@@ -348,6 +348,18 @@
   max-width: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* すべての子要素にも文字折り返しを適用 */
+.article-content p,
+.article-content li,
+.article-content div,
+.article-content span,
+.article-content a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 /* 見出し - H2 */
