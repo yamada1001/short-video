@@ -1,3 +1,4 @@
+<?php $current_page = 'privacy'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,45 +7,27 @@
     <meta name="description" content="余日（Yojitsu）のプライバシーポリシー・個人情報保護方針について。">
     <meta name="robots" content="noindex, follow">
     <title>プライバシーポリシー | 余日（Yojitsu）</title>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
-    <!-- End Google Tag Manager -->
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/pages/about.css">
     <link rel="stylesheet" href="assets/css/cookie-consent.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
-    <!-- ヘッダー -->
-    <header class="header" id="header">
-        <div class="container header__container">
-            <a href="index.html" class="header__logo"><svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#8B7355" opacity="0.1"/><path d="M12 10 L20 20 L28 10" stroke="#8B7355" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="20" y1="20" x2="20" y2="30" stroke="#8B7355" stroke-width="2" stroke-linecap="round"/><text x="45" y="18" font-family="'Noto Sans JP', sans-serif" font-size="14" font-weight="400" fill="#4A4A4A" letter-spacing="0.15em">余日</text><text x="45" y="30" font-family="'Noto Sans JP', sans-serif" font-size="9" font-weight="400" fill="#8B7355" letter-spacing="0.2em">YOJITSU</text></svg></a>
-            <nav class="nav">
-                <ul class="nav__list" id="navList">
-                    <li><a href="services.html" class="nav__link">サービス</a></li>
-                    <li><a href="blog/" class="nav__link">ブログ</a></li>
-                    <li><a href="about.html" class="nav__link">会社概要</a></li>
-                    <li><a href="contact.html" class="nav__link">お問い合わせ</a></li>
-                </ul>
-                <div class="hamburger" id="hamburger">
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <?php include __DIR__ . '/includes/header.php'; ?>
 
     <!-- ページヘッダー -->
     <section class="page-header">
@@ -236,10 +219,9 @@
         </div>
     </div>
 
-    <script src="assets/js/fontawesome-init.js"></script>
-    <script src="assets/js/nav.js"></script>
-    <script src="assets/js/common.js"></script>
-    <script src="assets/js/external-links.js"></script>
-    <script src="assets/js/cookie-consent.js"></script>
+    <script defer src="assets/js/nav.js"></script>
+    <script defer src="assets/js/common.js"></script>
+    <script defer src="assets/js/external-links.js"></script>
+    <script defer src="assets/js/cookie-consent.js"></script>
 </body>
 </html>

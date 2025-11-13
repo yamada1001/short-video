@@ -39,8 +39,7 @@
   --transition-base: 0.35s ease-in-out;
 }
 
-/* フォント読み込み - 源ノ角ゴシック / Noto Sans JP */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap');
+/* フォント読み込み - HTMLのheadに移動済み */
 
 /* ベーススタイル */
 * {

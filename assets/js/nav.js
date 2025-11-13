@@ -15,11 +15,20 @@
       navList.classList.toggle('nav__list--active');
       navList.classList.toggle('nav__list--mobile');
 
-      // body のスクロールを制御
+      // body のスクロールを制御（スクロール位置を維持）
       if (navList.classList.contains('nav__list--active')) {
+        const scrollY = window.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100%';
         document.body.style.overflow = 'hidden';
       } else {
+        const scrollY = document.body.style.top;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
         document.body.style.overflow = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
       }
     });
 
@@ -31,7 +40,12 @@
           hamburger.classList.remove('hamburger--active');
           navList.classList.remove('nav__list--active');
           navList.classList.remove('nav__list--mobile');
+          const scrollY = document.body.style.top;
+          document.body.style.position = '';
+          document.body.style.top = '';
+          document.body.style.width = '';
           document.body.style.overflow = '';
+          window.scrollTo(0, parseInt(scrollY || '0') * -1);
         }
       });
     });

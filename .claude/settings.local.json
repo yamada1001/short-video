@@ -39,7 +39,8 @@
       "Bash(php check-duplicate-h1.php:*)",
       "Bash(php:*)",
       "Bash(git push:*)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []

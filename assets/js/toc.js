@@ -79,6 +79,25 @@
             link.classList.remove('toc-link--active');
             if (activeId && link.dataset.target === activeId) {
                 link.classList.add('toc-link--active');
+
+                // アクティブな項目を目次内でスクロール表示（PC版サイドバー）
+                if (window.innerWidth > 768 && tocSidebar && link.classList.contains('toc-link')) {
+                    // アクティブな項目が目次の中央付近に表示されるようスクロール
+                    // linkのtocSidebarからの相対位置を取得
+                    const linkRect = link.getBoundingClientRect();
+                    const sidebarRect = tocSidebar.getBoundingClientRect();
+                    const linkTopInSidebar = linkRect.top - sidebarRect.top + tocSidebar.scrollTop;
+                    const linkHeight = link.offsetHeight;
+                    const sidebarHeight = tocSidebar.clientHeight;
+
+                    // 目次の中央に配置するための計算
+                    const targetScrollTop = linkTopInSidebar - sidebarHeight / 2 + linkHeight / 2;
+
+                    tocSidebar.scrollTo({
+                        top: targetScrollTop,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     }
