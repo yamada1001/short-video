@@ -102,33 +102,43 @@
 
                 // アクティブな項目を目次内でスクロール表示（PC版サイドバー）
                 if (window.innerWidth > 768 && tocSidebar && link.classList.contains('toc-link')) {
-                    // アクティブな項目を目次内で見えるようにスクロール
-                    const tocNav = link.parentElement;
-                    const linkRect = link.getBoundingClientRect();
-                    const sidebarRect = tocSidebar.getBoundingClientRect();
+                    // スクロール処理を次のフレームで実行（レンダリング後に確実に実行）
+                    requestAnimationFrame(function() {
+                        const linkRect = link.getBoundingClientRect();
+                        const sidebarRect = tocSidebar.getBoundingClientRect();
 
-                    // リンクが目次サイドバーの表示範囲内にあるか確認
-                    const isLinkVisible = linkRect.top >= sidebarRect.top &&
-                                         linkRect.bottom <= sidebarRect.bottom;
+                        // リンクが目次サイドバーの表示範囲内にあるか確認
+                        const isLinkVisible = linkRect.top >= sidebarRect.top &&
+                                             linkRect.bottom <= sidebarRect.bottom;
 
-                    // リンクが見える範囲にない場合のみスクロール
-                    if (!isLinkVisible) {
-                        // リンクの位置を目次コンテナの先頭からの相対位置で計算
-                        let offsetTop = 0;
-                        let element = link;
-                        while (element && element !== tocSidebar) {
-                            offsetTop += element.offsetTop;
-                            element = element.offsetParent;
+                        // リンクが見える範囲にない場合のみスクロール
+                        if (!isLinkVisible) {
+                            // .toc-navの親要素を取得
+                            const tocNav = link.parentElement;
+
+                            // linkのtocNav内での相対位置を取得
+                            const linkOffsetTop = link.offsetTop;
+
+                            // 目次サイドバーの現在のスクロール位置
+                            const currentScroll = tocSidebar.scrollTop;
+
+                            // 目次の高さ
+                            const sidebarHeight = tocSidebar.clientHeight;
+
+                            // 目次コンテナ内でのlinkの絶対位置を計算
+                            // .toc-containerのpadding/margin分も考慮
+                            const tocContainer = tocSidebar.querySelector('.toc-container');
+                            const containerPaddingTop = tocContainer ? parseInt(getComputedStyle(tocContainer).paddingTop) : 0;
+
+                            // 目標スクロール位置：アクティブな項目を上部から1/3の位置に
+                            const targetScrollTop = linkOffsetTop - (sidebarHeight / 3) + containerPaddingTop;
+
+                            tocSidebar.scrollTo({
+                                top: Math.max(0, targetScrollTop),
+                                behavior: 'smooth'
+                            });
                         }
-
-                        // 目次の上部から1/3の位置に配置
-                        const targetScrollTop = offsetTop - tocSidebar.clientHeight / 3;
-
-                        tocSidebar.scrollTo({
-                            top: Math.max(0, targetScrollTop),
-                            behavior: 'smooth'
-                        });
-                    }
+                    });
                 }
             }
         });

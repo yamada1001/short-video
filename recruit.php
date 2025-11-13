@@ -77,7 +77,7 @@ require_once __DIR__ . '/includes/functions.php';
     <?php include __DIR__ . '/includes/header.php'; ?>
 
     <!-- 募集内容 -->
-    <section class="company-info">
+    <section class="company-info" style="padding-top: 100px;">
         <div class="container">
             <h2 class="section__title animate">業務委託パートナー募集</h2>
             <p class="section__description animate" style="margin-bottom: 60px;">
