@@ -37,7 +37,8 @@
       "Bash(./optimize-html.sh:*)",
       "Bash(php add-heading-ids.php:*)",
       "Bash(php check-duplicate-h1.php:*)",
-      "Bash(php:*)"
+      "Bash(php:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
