@@ -95,45 +95,62 @@
             activeId = headings[0].id;
         }
 
+        // 目次内のリンクを更新
+        let activeLink = null;
         tocLinks.forEach(function(link) {
             link.classList.remove('toc-link--active');
             if (activeId && link.dataset.target === activeId) {
                 link.classList.add('toc-link--active');
-
-                // アクティブな項目を目次内でスクロール表示（PC版サイドバー）
-                if (window.innerWidth > 768 && tocSidebar && link.classList.contains('toc-link')) {
-                    // スクロール処理を次のフレームで実行（レンダリング後に確実に実行）
-                    requestAnimationFrame(function() {
-                        const linkRect = link.getBoundingClientRect();
-                        const sidebarRect = tocSidebar.getBoundingClientRect();
-
-                        // リンクが目次サイドバーの表示範囲内にあるか確認
-                        const isLinkVisible = linkRect.top >= sidebarRect.top &&
-                                             linkRect.bottom <= sidebarRect.bottom;
-
-                        // リンクが見える範囲にない場合のみスクロール
-                        if (!isLinkVisible) {
-                            // sidebarの上端からlinkの上端までの距離を計算
-                            const linkTopRelativeToSidebar = linkRect.top - sidebarRect.top;
-
-                            // 現在のスクロール位置
-                            const currentScrollTop = tocSidebar.scrollTop;
-
-                            // 目次の高さ
-                            const sidebarHeight = tocSidebar.clientHeight;
-
-                            // 目標スクロール位置：アクティブな項目を上部から1/3の位置に
-                            // 現在のスクロール位置 + linkの相対位置 - 目標位置(1/3)
-                            const targetScrollTop = currentScrollTop + linkTopRelativeToSidebar - (sidebarHeight / 3);
-
-                            tocSidebar.scrollTo({
-                                top: Math.max(0, targetScrollTop),
-                                behavior: 'smooth'
-                            });
-                        }
-                    });
+                if (link.classList.contains('toc-link')) {
+                    activeLink = link;
                 }
             }
+        });
+
+        // アクティブな項目を目次内でスクロール表示（PC版サイドバー）
+        if (window.innerWidth > 768 && tocSidebar && activeLink) {
+            scrollTocToActiveItem(activeLink);
+        }
+    }
+
+    // 目次サイドバーをスクロールしてアクティブな項目を表示
+    function scrollTocToActiveItem(activeLink) {
+        if (!tocSidebar || !activeLink) return;
+
+        // アクティブなリンクの位置を計算
+        const container = tocSidebar.querySelector('.toc-container');
+        if (!container) return;
+
+        const navElement = container.querySelector('.toc-nav');
+        if (!navElement) return;
+
+        // navElement内の全リンクを取得してインデックスを見つける
+        const allLinks = Array.from(navElement.querySelectorAll('.toc-link'));
+        const activeIndex = allLinks.indexOf(activeLink);
+
+        if (activeIndex === -1) return;
+
+        // 各リンクの高さを計算（padding含む）
+        let totalHeight = 0;
+        for (let i = 0; i < activeIndex; i++) {
+            totalHeight += allLinks[i].offsetHeight;
+        }
+
+        // アクティブなリンクを中央に配置
+        const sidebarHeight = tocSidebar.clientHeight;
+        const activeLinkHeight = activeLink.offsetHeight;
+        const scrollTarget = totalHeight - (sidebarHeight / 2) + (activeLinkHeight / 2);
+
+        // .toc-containerのpadding-topを考慮
+        const containerPadding = parseInt(getComputedStyle(container).paddingTop) || 0;
+        const titleElement = container.querySelector('.toc-title');
+        const titleHeight = titleElement ? titleElement.offsetHeight : 0;
+
+        const finalScrollTarget = scrollTarget + containerPadding + titleHeight;
+
+        tocSidebar.scrollTo({
+            top: Math.max(0, finalScrollTarget),
+            behavior: 'smooth'
         });
     }
 
