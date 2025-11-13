@@ -349,14 +349,28 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
+  overflow-x: hidden; /* 横スクロールを完全に防止 */
 }
 
-/* すべての子要素にも文字折り返しを適用 */
+/* すべての子要素に幅制限と文字折り返しを強制適用 */
+.article-content *:not(table):not(tr):not(thead):not(tbody) {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
+/* テキスト要素に特に強い制約 */
 .article-content p,
 .article-content li,
 .article-content div,
 .article-content span,
-.article-content a {
+.article-content a,
+.article-content strong,
+.article-content em,
+.article-content blockquote {
+  max-width: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;

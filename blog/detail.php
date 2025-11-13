@@ -83,6 +83,52 @@ $toc = generateToc($post['content']);
     <link rel="stylesheet" href="../assets/css/toc.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <style>
+        /* 記事コンテンツの完全な幅制限 - すべての要素に強制適用 */
+        .article-content,
+        .article-content * {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        /* 横スクロール完全防止 */
+        .article-content {
+            overflow-x: hidden !important;
+            width: 100% !important;
+        }
+
+        /* すべてのテキスト要素の折り返し強制 */
+        .article-content *:not(br):not(hr) {
+            overflow-wrap: break-word !important;
+            word-wrap: break-word !important;
+            word-break: break-word !important;
+        }
+
+        /* 特定の要素の幅制限 */
+        .article-content table,
+        .article-content img,
+        .article-content pre,
+        .article-content code,
+        .article-content div,
+        .article-content blockquote,
+        .article-content ul,
+        .article-content ol {
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+
+        /* モバイル時の追加制約 */
+        @media (max-width: 768px) {
+            .article-content {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .article-content * {
+                max-width: 100vw !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
