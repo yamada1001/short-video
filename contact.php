@@ -32,17 +32,6 @@
     <!-- End Google Tag Manager (noscript) -->
     <?php include __DIR__ . '/includes/header.php'; ?>
 
-    <!-- ページヘッダー -->
-    <section class="page-header">
-        <div class="container">
-            <h1 class="page-header__title">お問い合わせ</h1>
-            <p class="page-header__description">
-                ご質問やご相談は、<br>
-                お気軽にお問い合わせください
-            </p>
-        </div>
-    </section>
-
     <!-- お問い合わせ方法 -->
     <section class="contact-methods">
         <div class="container">

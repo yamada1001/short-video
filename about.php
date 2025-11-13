@@ -41,17 +41,6 @@ $company = $company_json['company'] ?? [];
     <!-- End Google Tag Manager (noscript) -->
     <?php include __DIR__ . '/includes/header.php'; ?>
 
-    <!-- ページヘッダー -->
-    <section class="page-header">
-        <div class="container">
-            <h1 class="page-header__title">会社概要</h1>
-            <p class="page-header__description">
-                大分県を拠点に、<br>
-                デジタルマーケティングで地域企業を支援
-            </p>
-        </div>
-    </section>
-
     <!-- 会社情報 -->
     <section class="company-info">
         <div class="container">
