@@ -26,16 +26,15 @@
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-    <!-- Google Fonts - with font-display swap -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap"></noscript>
+    <!-- Google Fonts - Immediate loading -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
 
     <!-- Critical CSS - Inline for faster FCP -->
     <style>
         /* Critical styles for above-the-fold content */
         :root{--color-natural-brown:#8B7355;--color-charcoal:#4A4A4A;--color-beige:#E5DDD5;--color-bg:#F5F3F0;--spacing-sm:16px;--spacing-md:24px;--spacing-lg:40px;--spacing-xl:60px;--transition-base:0.35s ease-in-out}
         *{box-sizing:border-box}
-        body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;overflow-x:clip;color:#4A4A4A;line-height:1.8;background-color:var(--color-bg)}
+        body{margin:0;font-family:'Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,'Hiragino Sans',sans-serif;overflow-x:clip;color:#4A4A4A;line-height:1.8;background-color:var(--color-bg)}
         .container{max-width:1200px;margin:0 auto;padding:0 32px}
         .header{position:fixed;top:0;left:0;width:100%;z-index:1000;background-color:#fff;border-bottom:1px solid #e0e0e0;transition:transform .3s ease;padding:20px 0}
         .header__container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 32px}
