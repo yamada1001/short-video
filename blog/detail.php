@@ -84,6 +84,17 @@ $toc = generateToc($post['content']);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <style>
+        /* 記事全体の構造的な幅制限 */
+        .blog-article,
+        .container,
+        .article-layout,
+        .article-main,
+        .article-content {
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            box-sizing: border-box !important;
+        }
+
         /* 記事コンテンツの完全な幅制限 - すべての要素に強制適用 */
         .article-content,
         .article-content * {
@@ -114,18 +125,43 @@ $toc = generateToc($post['content']);
         .article-content ul,
         .article-content ol {
             max-width: 100% !important;
+        }
+
+        /* テーブルの特別処理 */
+        .article-content table {
             width: 100% !important;
+            display: block !important;
+            overflow-x: auto !important;
         }
 
         /* モバイル時の追加制約 */
         @media (max-width: 768px) {
+            body {
+                overflow-x: hidden !important;
+            }
+
+            .blog-article,
+            .container,
+            .article-layout,
+            .article-main {
+                width: 100% !important;
+                max-width: 100vw !important;
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
             .article-content {
                 padding: 0 !important;
                 margin: 0 !important;
+                width: 100% !important;
             }
 
             .article-content * {
-                max-width: 100vw !important;
+                max-width: calc(100vw - 32px) !important;
+            }
+
+            .article-content table {
+                max-width: calc(100vw - 32px) !important;
             }
         }
     </style>
