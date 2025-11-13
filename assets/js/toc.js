@@ -60,12 +60,18 @@
         let closestDistance = Infinity;
 
         headings.forEach(function(heading) {
-            const headingTop = heading.getBoundingClientRect().top + scrollPosition;
-            const distance = Math.abs(scrollPosition + headerOffset - headingTop);
+            // より正確な位置計算
+            const rect = heading.getBoundingClientRect();
+            const headingTop = rect.top + scrollPosition;
+            const adjustedScrollPosition = scrollPosition + headerOffset;
 
-            if (scrollPosition + headerOffset >= headingTop && distance < closestDistance) {
-                closestDistance = distance;
-                closestHeading = heading;
+            // 見出しがスクロール位置を超えている場合のみ考慮
+            if (adjustedScrollPosition >= headingTop - 10) { // 10pxの余裕を持たせる
+                const distance = adjustedScrollPosition - headingTop;
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestHeading = heading;
+                }
             }
         });
 
@@ -131,9 +137,11 @@
             // モーダルを閉じる（SP版）
             closeModal();
 
-            // スムーススクロール
-            const headerHeight = 80;
-            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+            // スムーススクロール（動的なヘッダー高さを使用）
+            const header = document.getElementById('header');
+            const headerHeight = header ? header.offsetHeight : 80;
+            const extraOffset = 20; // 余白
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - extraOffset;
 
             window.scrollTo({
                 top: targetPosition,
