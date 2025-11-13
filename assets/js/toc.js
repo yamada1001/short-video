@@ -103,15 +103,26 @@
                 // アクティブな項目を目次内でスクロール表示（PC版サイドバー）
                 if (window.innerWidth > 768 && tocSidebar && link.classList.contains('toc-link')) {
                     // アクティブな項目を目次内で見えるようにスクロール
-                    const linkOffsetTop = link.offsetTop;
-                    const sidebarScrollTop = tocSidebar.scrollTop;
-                    const sidebarHeight = tocSidebar.clientHeight;
-                    const linkHeight = link.offsetHeight;
+                    const tocNav = link.parentElement;
+                    const linkRect = link.getBoundingClientRect();
+                    const sidebarRect = tocSidebar.getBoundingClientRect();
+
+                    // リンクが目次サイドバーの表示範囲内にあるか確認
+                    const isLinkVisible = linkRect.top >= sidebarRect.top &&
+                                         linkRect.bottom <= sidebarRect.bottom;
 
                     // リンクが見える範囲にない場合のみスクロール
-                    if (linkOffsetTop < sidebarScrollTop || linkOffsetTop + linkHeight > sidebarScrollTop + sidebarHeight) {
+                    if (!isLinkVisible) {
+                        // リンクの位置を目次コンテナの先頭からの相対位置で計算
+                        let offsetTop = 0;
+                        let element = link;
+                        while (element && element !== tocSidebar) {
+                            offsetTop += element.offsetTop;
+                            element = element.offsetParent;
+                        }
+
                         // 目次の上部から1/3の位置に配置
-                        const targetScrollTop = linkOffsetTop - sidebarHeight / 3;
+                        const targetScrollTop = offsetTop - tocSidebar.clientHeight / 3;
 
                         tocSidebar.scrollTo({
                             top: Math.max(0, targetScrollTop),

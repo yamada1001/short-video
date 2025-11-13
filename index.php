@@ -333,7 +333,8 @@ sort($all_categories);
                             data.posts.forEach(function(post) {
                                 const card = document.createElement('a');
                                 card.href = 'blog/detail.php?slug=' + post.slug;
-                                card.className = 'blog-preview-card animate';
+                                card.className = 'blog-preview-card';
+                                card.style.opacity = '1'; // 即座に表示
                                 card.innerHTML =
                                     '<div class="blog-preview-card__meta">' +
                                         '<span class="blog-preview-card__date">' + post.date + '</span>' +

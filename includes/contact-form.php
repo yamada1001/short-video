@@ -42,23 +42,32 @@ if (empty($message)) {
 
 // エラーがある場合
 if (!empty($errors)) {
+    $current_page = 'contact';
     $error_message = implode('<br>', $errors);
-    echo "<!DOCTYPE html>
-<html lang='ja'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>エラー | お問い合わせ</title>
-    <link rel='stylesheet' href='assets/css/base.css'>
-</head>
-<body>
-    <div class='container' style='padding: 60px 24px; text-align: center;'>
-        <h1 style='color: var(--color-natural-brown); margin-bottom: 24px;'>エラーが発生しました</h1>
-        <p style='margin-bottom: 40px; color: var(--color-text-light);'>{$error_message}</p>
-        <a href='../contact.html' class='btn btn-primary'>戻る</a>
-    </div>
-</body>
-</html>";
+    ?>
+    <!DOCTYPE html>
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>エラー | お問い合わせ | 余日（Yojitsu）</title>
+        <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+        <link rel="stylesheet" href="../assets/css/base.css">
+    </head>
+    <body>
+        <?php include __DIR__ . '/header.php'; ?>
+
+        <div class='container' style='padding: 120px 24px 60px; text-align: center; min-height: 60vh;'>
+            <h1 style='color: var(--color-natural-brown); margin-bottom: 24px;'>エラーが発生しました</h1>
+            <p style='margin-bottom: 40px; color: var(--color-text-light);'><?php echo $error_message; ?></p>
+            <a href='../contact.html' class='btn btn-primary'>戻る</a>
+        </div>
+
+        <?php include __DIR__ . '/footer.php'; ?>
+        <script src="../assets/js/fontawesome-init.js"></script>
+    </body>
+    </html>
+    <?php
     exit;
 }
 
@@ -101,6 +110,8 @@ $reply_body .= "URL: " . SITE_URL . "\n";
 $reply_headers = "From: " . FROM_EMAIL . "\r\n";
 
 mb_send_mail($email, $reply_subject, $reply_body, $reply_headers);
+
+$current_page = 'contact';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -109,24 +120,11 @@ mb_send_mail($email, $reply_subject, $reply_body, $reply_headers);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>送信完了 | お問い合わせ | 余日（Yojitsu）</title>
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/pages/contact.css">
 </head>
 <body>
-    <!-- ヘッダー -->
-    <header class="header" id="header">
-        <div class="container header__container">
-            <a href="../index.html" class="header__logo">余日</a>
-            <nav class="nav">
-                <ul class="nav__list" id="navList">
-                    <li><a href="../index.html#services" class="nav__link">サービス</a></li>
-                    <li><a href="../news/" class="nav__link">お知らせ</a></li>
-                    <li><a href="../about.html" class="nav__link">会社概要</a></li>
-                    <li><a href="../contact.html" class="nav__link">お問い合わせ</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <?php include __DIR__ . '/header.php'; ?>
 
     <!-- 送信完了メッセージ -->
     <section class="form-success">
@@ -146,22 +144,7 @@ mb_send_mail($email, $reply_subject, $reply_body, $reply_headers);
         </div>
     </section>
 
-    <!-- フッター -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <div class="footer__section">
-                    <h3 class="footer__section-title">余日（Yojitsu）</h3>
-                    <p style="color: rgba(255, 255, 255, 0.8);">
-                        大分県を拠点としたデジタルマーケティング・Web制作会社
-                    </p>
-                </div>
-            </div>
-            <div class="footer__bottom">
-                <p>&copy; 2025 余日（Yojitsu）. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <?php include __DIR__ . '/footer.php'; ?>
 
     <script src="../assets/js/fontawesome-init.js"></script>
 </body>

@@ -76,17 +76,6 @@ require_once __DIR__ . '/includes/functions.php';
     <!-- End Google Tag Manager (noscript) -->
     <?php include __DIR__ . '/includes/header.php'; ?>
 
-    <!-- ページヘッダー -->
-    <section class="page-header">
-        <div class="container">
-            <h1 class="page-header__title">業務委託募集・交流</h1>
-            <p class="page-header__description">
-                一緒に働くパートナーを募集しています<br>
-                デジタルマーケティング・Web制作関連の方との交流も歓迎
-            </p>
-        </div>
-    </section>
-
     <!-- 募集内容 -->
     <section class="company-info">
         <div class="container">
@@ -237,9 +226,6 @@ require_once __DIR__ . '/includes/functions.php';
 
     <!-- CTAセクション -->
     <?php
-    $cta_title = 'お問い合わせ';
-    $cta_description = '業務委託のご応募や交流のご希望は、<br>お気軽にお問い合わせください';
-    $cta_show_info = true;
     $cta_base_path = '';
     include __DIR__ . '/includes/cta.php';
     ?>
