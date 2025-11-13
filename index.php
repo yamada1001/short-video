@@ -11,12 +11,33 @@ usort($all_news, function($a, $b) {
 });
 $latest_news = array_slice($all_news, 0, 3);
 
-// ブログ記事を取得（最新3件）
+// ブログ記事を取得（カテゴリフィルタ対応）
 $all_posts = getPosts(BLOG_DATA_PATH);
-usort($all_posts, function($a, $b) {
+$selected_category = isset($_GET['category']) ? $_GET['category'] : 'all';
+
+// カテゴリフィルタ適用
+if ($selected_category !== 'all') {
+    $filtered_posts = array_filter($all_posts, function($post) use ($selected_category) {
+        return isset($post['category']) && $post['category'] === $selected_category;
+    });
+} else {
+    $filtered_posts = $all_posts;
+}
+
+// 日付順にソート
+usort($filtered_posts, function($a, $b) {
     return strtotime($b['publishedAt']) - strtotime($a['publishedAt']);
 });
-$latest_posts = array_slice($all_posts, 0, 3);
+
+// 最新3件を取得
+$latest_posts = array_slice($filtered_posts, 0, 3);
+
+// 全カテゴリを取得（重複なし）
+$all_categories = array_unique(array_map(function($post) {
+    return $post['category'] ?? '';
+}, $all_posts));
+$all_categories = array_filter($all_categories); // 空の値を除外
+sort($all_categories);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -249,6 +270,15 @@ $latest_posts = array_slice($all_posts, 0, 3);
                 デジタルマーケティングの最新情報と<br>
                 実践的なノウハウをお届けします
             </p>
+
+            <!-- カテゴリフィルタ -->
+            <div class="blog-category-filter animate" style="text-align: center; margin-bottom: 40px;">
+                <a href="?category=all#blog" class="category-filter-btn <?php echo $selected_category === 'all' ? 'active' : ''; ?>" style="display: inline-block; padding: 8px 20px; margin: 4px; border: 1px solid var(--color-natural-brown); border-radius: 20px; color: <?php echo $selected_category === 'all' ? '#fff' : 'var(--color-natural-brown)'; ?>; background-color: <?php echo $selected_category === 'all' ? 'var(--color-natural-brown)' : 'transparent'; ?>; text-decoration: none; transition: all 0.3s;">すべて</a>
+                <?php foreach ($all_categories as $category): ?>
+                    <a href="?category=<?php echo urlencode($category); ?>#blog" class="category-filter-btn <?php echo $selected_category === $category ? 'active' : ''; ?>" style="display: inline-block; padding: 8px 20px; margin: 4px; border: 1px solid var(--color-natural-brown); border-radius: 20px; color: <?php echo $selected_category === $category ? '#fff' : 'var(--color-natural-brown)'; ?>; background-color: <?php echo $selected_category === $category ? 'var(--color-natural-brown)' : 'transparent'; ?>; text-decoration: none; transition: all 0.3s;"><?php echo h($category); ?></a>
+                <?php endforeach; ?>
+            </div>
+
             <div class="blog-preview-grid">
                 <?php foreach ($latest_posts as $post): ?>
                     <?php
