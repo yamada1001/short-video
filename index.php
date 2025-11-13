@@ -1,4 +1,23 @@
-<?php $current_page = 'home'; ?>
+<?php
+$current_page = 'home';
+require_once __DIR__ . '/includes/functions.php';
+
+// お知らせを取得（最新3件）
+$news_data = file_get_contents(__DIR__ . '/news/data/articles.json');
+$news_json = json_decode($news_data, true);
+$all_news = $news_json['articles'] ?? [];
+usort($all_news, function($a, $b) {
+    return strtotime($b['publishedAt']) - strtotime($a['publishedAt']);
+});
+$latest_news = array_slice($all_news, 0, 3);
+
+// ブログ記事を取得（最新3件）
+$all_posts = getPosts(BLOG_DATA_PATH);
+usort($all_posts, function($a, $b) {
+    return strtotime($b['publishedAt']) - strtotime($a['publishedAt']);
+});
+$latest_posts = array_slice($all_posts, 0, 3);
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -200,22 +219,21 @@
         <div class="container">
             <h2 class="section__title animate">お知らせ</h2>
             <div class="news-list">
-                <a href="news/detail.php?id=1" class="news-item animate">
-                    <span class="news-item__date">2025.11.12</span>
-                    <span class="news-item__category">お知らせ</span>
-                    <span class="news-item__title">Webサイトをリニューアルしました</span>
-                    <span class="news-item__badge">NEW</span>
-                </a>
-                <a href="news/detail.php?id=2" class="news-item animate">
-                    <span class="news-item__date">2025.11.01</span>
-                    <span class="news-item__category">サービス</span>
-                    <span class="news-item__title">ショート動画制作サービスを開始しました</span>
-                </a>
-                <a href="news/detail.php?id=3" class="news-item animate">
-                    <span class="news-item__date">2025.10.15</span>
-                    <span class="news-item__category">実績</span>
-                    <span class="news-item__title">大分県内企業様のSEO対策で検索順位1位を獲得</span>
-                </a>
+                <?php foreach ($latest_news as $index => $news): ?>
+                    <?php
+                    $date = new DateTime($news['publishedAt']);
+                    $formatted_date = $date->format('Y.m.d');
+                    $is_new = (time() - strtotime($news['publishedAt'])) < (7 * 24 * 60 * 60); // 7日以内
+                    ?>
+                    <a href="news/detail.php?id=<?php echo $news['id']; ?>" class="news-item animate">
+                        <span class="news-item__date"><?php echo h($formatted_date); ?></span>
+                        <span class="news-item__category"><?php echo h($news['category']); ?></span>
+                        <span class="news-item__title"><?php echo h($news['title']); ?></span>
+                        <?php if ($is_new): ?>
+                            <span class="news-item__badge">NEW</span>
+                        <?php endif; ?>
+                    </a>
+                <?php endforeach; ?>
             </div>
             <div class="text-center mt-xl animate">
                 <a href="news/" class="btn btn-secondary">お知らせ一覧</a>
@@ -232,30 +250,20 @@
                 実践的なノウハウをお届けします
             </p>
             <div class="blog-preview-grid">
-                <a href="blog/detail.php?slug=seo-basics-5-points" class="blog-preview-card animate">
-                    <div class="blog-preview-card__meta">
-                        <span class="blog-preview-card__date">2025.11.10</span>
-                        <span class="blog-preview-card__category">SEO</span>
-                    </div>
-                    <h3 class="blog-preview-card__title">SEO対策の基本 - 初心者が知っておくべき5つのポイント</h3>
-                    <p class="blog-preview-card__excerpt">SEO対策を始めたい方へ。検索エンジン最適化の基本から、すぐに実践できる5つのポイントをご紹介します。</p>
-                </a>
-                <a href="blog/detail.php?slug=google-ads-effective-management" class="blog-preview-card animate">
-                    <div class="blog-preview-card__meta">
-                        <span class="blog-preview-card__date">2025.11.08</span>
-                        <span class="blog-preview-card__category">広告運用</span>
-                    </div>
-                    <h3 class="blog-preview-card__title">Google広告の効果的な運用方法</h3>
-                    <p class="blog-preview-card__excerpt">Google広告で成果を出すための運用ノウハウをご紹介。予算設定からキーワード選定、広告文の作成まで詳しく解説します。</p>
-                </a>
-                <a href="blog/detail.php?slug=landing-page-design-3-elements" class="blog-preview-card animate">
-                    <div class="blog-preview-card__meta">
-                        <span class="blog-preview-card__date">2025.11.05</span>
-                        <span class="blog-preview-card__category">Web制作</span>
-                    </div>
-                    <h3 class="blog-preview-card__title">ランディングページのデザインで重要な3つの要素</h3>
-                    <p class="blog-preview-card__excerpt">コンバージョン率を高めるランディングページデザインの秘訣。ファーストビュー、CTA、信頼性の3要素を解説します。</p>
-                </a>
+                <?php foreach ($latest_posts as $post): ?>
+                    <?php
+                    $date = new DateTime($post['publishedAt']);
+                    $formatted_date = $date->format('Y.m.d');
+                    ?>
+                    <a href="blog/detail.php?slug=<?php echo h($post['slug']); ?>" class="blog-preview-card animate">
+                        <div class="blog-preview-card__meta">
+                            <span class="blog-preview-card__date"><?php echo h($formatted_date); ?></span>
+                            <span class="blog-preview-card__category"><?php echo h($post['category']); ?></span>
+                        </div>
+                        <h3 class="blog-preview-card__title"><?php echo h($post['title']); ?></h3>
+                        <p class="blog-preview-card__excerpt"><?php echo h($post['excerpt']); ?></p>
+                    </a>
+                <?php endforeach; ?>
             </div>
             <div class="text-center mt-xl animate">
                 <a href="blog/" class="btn btn-secondary">ブログ一覧</a>
