@@ -39,7 +39,8 @@
       "Bash(php check-duplicate-h1.php:*)",
       "Bash(php:*)",
       "Bash(xargs sed:*)",
-      "WebFetch(domain:pagespeed.web.dev)"
+      "WebFetch(domain:pagespeed.web.dev)",
+      "Bash(assets/css/critical.min.css)"
     ],
     "deny": [],
     "ask": []

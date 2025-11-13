@@ -17,18 +17,14 @@
     <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-    <!-- Google Fonts - Optimized with display=swap -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
+    <!-- Preconnect for performance - DNS resolution only -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <!-- Critical CSS - Inline for faster FCP -->
     <style>
@@ -61,15 +57,14 @@
         }
     </style>
 
-    <!-- CSS - Optimized loading -->
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/common.css">
-    <link rel="stylesheet" href="assets/css/components.css" media="print" onload="this.media='all'">
+    <!-- CSS - Unified critical CSS -->
+    <link rel="stylesheet" href="assets/css/critical.min.css">
+
+    <!-- Non-critical CSS - Deferred -->
     <link rel="stylesheet" href="assets/css/cta.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="assets/css/pages/top.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="assets/css/cookie-consent.css" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="assets/css/components.css">
         <link rel="stylesheet" href="assets/css/cta.css">
         <link rel="stylesheet" href="assets/css/pages/top.css">
         <link rel="stylesheet" href="assets/css/cookie-consent.css">
@@ -370,5 +365,17 @@
 
     <!-- JavaScript - Single unified file for better performance -->
     <script defer src="assets/js/main.js"></script>
+
+    <!-- Google Fonts - Deferred loading (non-blocking) -->
+    <script>
+    (function(){
+        var link=document.createElement('link');
+        link.rel='stylesheet';
+        link.href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap';
+        link.media='print';
+        link.onload=function(){this.media='all'};
+        document.head.appendChild(link);
+    })();
+    </script>
 </body>
 </html>
