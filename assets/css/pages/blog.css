@@ -651,3 +651,95 @@
     min-width: 100px;
   }
 }
+
+/* 関連記事セクション */
+.related-articles {
+  margin-top: var(--spacing-xxl);
+  padding-top: var(--spacing-xxl);
+  border-top: 1px solid var(--color-border);
+}
+
+.related-articles__title {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-charcoal);
+  letter-spacing: 0.08em;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--color-natural-brown);
+  display: inline-block;
+}
+
+.related-articles__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.related-article-card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.related-article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-natural-brown);
+}
+
+.related-article-card__link {
+  display: block;
+  padding: var(--spacing-lg);
+  text-decoration: none;
+  color: inherit;
+}
+
+.related-article-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.related-article-card__date {
+  font-size: 12px;
+  color: var(--color-text-light);
+}
+
+.related-article-card__category {
+  font-size: 11px;
+  background-color: var(--color-beige);
+  color: var(--color-natural-brown);
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.related-article-card__title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-charcoal);
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+}
+
+.related-article-card__excerpt {
+  font-size: 13px;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .related-articles__grid {
+    grid-template-columns: 1fr;
+  }
+}

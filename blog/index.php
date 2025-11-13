@@ -1,4 +1,5 @@
 <?php
+$current_page = 'blog';
 require_once __DIR__ . '/../includes/functions.php';
 
 // ブログ記事取得（1回のみ）
@@ -58,25 +59,7 @@ $categories = array_unique(array_column($all_posts, 'category'));
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <!-- ヘッダー -->
-    <header class="header" id="header">
-        <div class="container header__container">
-            <a href="../index.html" class="header__logo">余日</a>
-            <nav class="nav">
-                <ul class="nav__list" id="navList">
-                    <li><a href="../index.html#services" class="nav__link">サービス</a></li>
-                    <li><a href="../blog/" class="nav__link nav__link--active">ブログ</a></li>
-                    <li><a href="../about.html" class="nav__link">会社概要</a></li>
-                    <li><a href="../contact.html" class="nav__link">お問い合わせ</a></li>
-                </ul>
-                <div class="hamburger" id="hamburger">
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <?php include __DIR__ . '/../includes/header.php'; ?>
 
     <!-- ページヘッダー -->
     <section class="page-header">

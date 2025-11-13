@@ -1,3 +1,4 @@
+<?php $current_page = 'services'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -32,25 +33,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <!-- ヘッダー -->
-    <header class="header" id="header">
-        <div class="container header__container">
-            <a href="index.html" class="header__logo"><svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#8B7355" opacity="0.1"/><path d="M12 10 L20 20 L28 10" stroke="#8B7355" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="20" y1="20" x2="20" y2="30" stroke="#8B7355" stroke-width="2" stroke-linecap="round"/><text x="45" y="18" font-family="'Noto Sans JP', sans-serif" font-size="14" font-weight="400" fill="#4A4A4A" letter-spacing="0.15em">余日</text><text x="45" y="30" font-family="'Noto Sans JP', sans-serif" font-size="9" font-weight="400" fill="#8B7355" letter-spacing="0.2em">YOJITSU</text></svg></a>
-            <nav class="nav">
-                <ul class="nav__list" id="navList">
-                    <li><a href="services.html" class="nav__link nav__link--active">サービス</a></li>
-                    <li><a href="blog/" class="nav__link">ブログ</a></li>
-                    <li><a href="about.html" class="nav__link">会社概要</a></li>
-                    <li><a href="contact.html" class="nav__link">お問い合わせ</a></li>
-                </ul>
-                <div class="hamburger" id="hamburger">
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <?php include __DIR__ . '/includes/header.php'; ?>
 
     <!-- ページヘッダー -->
     <section class="page-header">

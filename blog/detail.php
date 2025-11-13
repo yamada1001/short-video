@@ -1,4 +1,5 @@
 <?php
+$current_page = 'blog';
 require_once __DIR__ . '/../includes/functions.php';
 
 // ブログ記事取得
@@ -90,25 +91,7 @@ $toc = generateToc($post['content']);
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <!-- ヘッダー -->
-    <header class="header" id="header">
-        <div class="container header__container">
-            <a href="../index.html" class="header__logo">余日</a>
-            <nav class="nav">
-                <ul class="nav__list" id="navList">
-                    <li><a href="../index.html#services" class="nav__link">サービス</a></li>
-                    <li><a href="../blog/" class="nav__link nav__link--active">ブログ</a></li>
-                    <li><a href="../about.html" class="nav__link">会社概要</a></li>
-                    <li><a href="../contact.html" class="nav__link">お問い合わせ</a></li>
-                </ul>
-                <div class="hamburger" id="hamburger">
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <?php include __DIR__ . '/../includes/header.php'; ?>
 
     <!-- ブログ記事 -->
     <article class="blog-article">
@@ -164,6 +147,46 @@ $toc = generateToc($post['content']);
                 </p>
                 <?php endif; ?>
             </footer>
+
+            <!-- 関連記事 -->
+            <?php
+            // 関連記事の取得（同じカテゴリから3記事、現在の記事を除く）
+            $related_posts = array_filter($posts, function($p) use ($post) {
+                return $p['category'] === $post['category'] && $p['id'] !== $post['id'];
+            });
+
+            // 新しい順にソート
+            usort($related_posts, function($a, $b) {
+                return strtotime($b['publishedAt']) - strtotime($a['publishedAt']);
+            });
+
+            // 最大3件
+            $related_posts = array_slice($related_posts, 0, 3);
+
+            if (!empty($related_posts)):
+            ?>
+            <section class="related-articles">
+                <h2 class="related-articles__title">関連記事</h2>
+                <div class="related-articles__grid">
+                    <?php foreach ($related_posts as $related): ?>
+                    <article class="related-article-card">
+                        <a href="detail.php?slug=<?php echo urlencode($related['slug']); ?>" class="related-article-card__link">
+                            <div class="related-article-card__meta">
+                                <time class="related-article-card__date" datetime="<?php echo h($related['publishedAt']); ?>">
+                                    <?php echo formatDate($related['publishedAt'], 'Y.m.d'); ?>
+                                </time>
+                                <span class="related-article-card__category"><?php echo h($related['category']); ?></span>
+                            </div>
+                            <h3 class="related-article-card__title"><?php echo h($related['title']); ?></h3>
+                            <?php if (!empty($related['excerpt'])): ?>
+                            <p class="related-article-card__excerpt"><?php echo h($related['excerpt']); ?></p>
+                            <?php endif; ?>
+                        </a>
+                    </article>
+                    <?php endforeach; ?>
+                </div>
+            </section>
+            <?php endif; ?>
 
                     <!-- 一覧に戻る -->
                     <div class="article-back">

@@ -1,3 +1,4 @@
+<?php $current_page = 'home'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -83,25 +84,7 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- ヘッダー -->
-    <header class="header" id="header">
-        <div class="container header__container">
-            <a href="/" class="header__logo">余日</a>
-            <nav class="nav">
-                <ul class="nav__list" id="navList">
-                    <li><a href="services.html" class="nav__link">サービス</a></li>
-                    <li><a href="blog/" class="nav__link">ブログ</a></li>
-                    <li><a href="about.html" class="nav__link">会社概要</a></li>
-                    <li><a href="contact.html" class="nav__link">お問い合わせ</a></li>
-                </ul>
-                <div class="hamburger" id="hamburger">
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <?php include __DIR__ . '/includes/header.php'; ?>
 
     <!-- ヒーローセクション -->
     <section class="hero">

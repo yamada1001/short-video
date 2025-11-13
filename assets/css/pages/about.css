@@ -264,3 +264,72 @@
     text-align: center;
   }
 }
+
+/* 認定資格セクション */
+.certifications {
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.certifications__title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-charcoal);
+  letter-spacing: 0.08em;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--color-natural-brown);
+  display: inline-block;
+}
+
+.certifications__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-md);
+}
+
+.certification-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-md);
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-base);
+}
+
+.certification-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.certification-card__image {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.certification-card__label {
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-text);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .certifications__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certification-card__image {
+    max-width: 150px;
+  }
+}

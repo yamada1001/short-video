@@ -1,3 +1,4 @@
+<?php $current_page = 'about'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -31,25 +32,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <!-- ヘッダー -->
-    <header class="header" id="header">
-        <div class="container header__container">
-            <a href="index.html" class="header__logo"><svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#8B7355" opacity="0.1"/><path d="M12 10 L20 20 L28 10" stroke="#8B7355" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="20" y1="20" x2="20" y2="30" stroke="#8B7355" stroke-width="2" stroke-linecap="round"/><text x="45" y="18" font-family="'Noto Sans JP', sans-serif" font-size="14" font-weight="400" fill="#4A4A4A" letter-spacing="0.15em">余日</text><text x="45" y="30" font-family="'Noto Sans JP', sans-serif" font-size="9" font-weight="400" fill="#8B7355" letter-spacing="0.2em">YOJITSU</text></svg></a>
-            <nav class="nav">
-                <ul class="nav__list" id="navList">
-                    <li><a href="services.html" class="nav__link">サービス</a></li>
-                    <li><a href="blog/" class="nav__link">ブログ</a></li>
-                    <li><a href="about.html" class="nav__link nav__link--active">会社概要</a></li>
-                    <li><a href="contact.html" class="nav__link">お問い合わせ</a></li>
-                </ul>
-                <div class="hamburger" id="hamburger">
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                    <span class="hamburger__line"></span>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <?php include __DIR__ . '/includes/header.php'; ?>
 
     <!-- ページヘッダー -->
     <section class="page-header">
@@ -190,9 +173,18 @@
                     <p>Web制作会社にて、マーケティング・Web制作業務を3年間担当。SEO・SNS・広告運用代行を中心に、多数の企業様のデジタルマーケティングを支援。</p>
                     <p style="margin-top: 16px;">独立後は外部CMOやプロジェクトマネージャー、動画制作、Web制作を行いながら、大分県を拠点にデジタルマーケティング事業を展開。</p>
                     <p style="margin-top: 16px;">データに基づいた戦略立案と、クリエイティブな発想を掛け合わせた提案を得意としています。</p>
-                    <div style="margin-top: 24px; display: flex; gap: 16px; flex-wrap: wrap;">
-                        <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/166225387" alt="Google広告認定資格" style="max-width: 200px; height: auto; border-radius: 4px;">
-                        <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/166239443" alt="Google Analytics認定資格" style="max-width: 200px; height: auto; border-radius: 4px;">
+                    <div class="certifications">
+                        <h4 class="certifications__title">保有資格</h4>
+                        <div class="certifications__grid">
+                            <div class="certification-card">
+                                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/166225387" alt="Google広告認定資格" class="certification-card__image">
+                                <p class="certification-card__label">Google広告認定資格</p>
+                            </div>
+                            <div class="certification-card">
+                                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/166239443" alt="Google Analytics認定資格" class="certification-card__image">
+                                <p class="certification-card__label">Google Analytics認定資格</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -202,12 +194,21 @@
     <!-- CTAセクション -->
     <section class="cta-section">
         <div class="container">
-            <h2 class="cta-section__title animate">一緒にビジネスを成長させませんか？</h2>
-            <p class="cta-section__description animate">
-                デジタルマーケティングのご相談は、<br>
-                お気軽にお問い合わせください
-            </p>
-            <a href="contact.html" class="btn btn-primary btn--large animate">お問い合わせはこちら</a>
+            <div class="cta-content">
+                <h2 class="cta-section__title animate">お問い合わせ</h2>
+                <p class="cta-section__description animate">
+                    デジタルマーケティングのご相談は、<br>
+                    お気軽にお問い合わせください
+                </p>
+                <div class="cta-buttons animate">
+                    <a href="contact.html" class="btn btn-primary btn--large">
+                        <i class="fas fa-envelope"></i> お問い合わせフォーム
+                    </a>
+                    <a href="https://line.me/ti/p/CTOCx9YKjk" class="btn btn-secondary btn--large" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-line"></i> LINEで相談
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 

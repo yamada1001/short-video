@@ -118,45 +118,71 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* 全画面モバイルメニュー */
+/* 全画面モバイルメニュー - モダンスライドイン */
 .nav__list--mobile {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  right: 0;
+  width: 85%;
+  max-width: 400px;
   height: 100vh;
-  background-color: var(--color-natural-brown);
+  background: linear-gradient(135deg, var(--color-natural-brown) 0%, rgba(139, 115, 85, 0.95) 100%);
+  backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: var(--spacing-xl);
+  align-items: flex-start;
+  padding: var(--spacing-xxl) var(--spacing-xl);
+  gap: var(--spacing-lg);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-100%);
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform: translateX(100%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
 }
 
 .nav__list--mobile.nav__list--active {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateX(0);
+}
+
+/* メニューオーバーレイ */
+.nav__list--mobile::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.nav__list--mobile.nav__list--active::before {
+  opacity: 1;
 }
 
 .nav__list--mobile .nav__link {
-  font-size: 24px;
+  font-size: 22px;
   color: var(--color-bg-white);
   font-weight: 400;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateX(30px);
   transition: all 0.3s ease;
+  padding: var(--spacing-sm) 0;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav__list--active .nav__link {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
 }
 
 .nav__list--active .nav__link:nth-child(1) {
