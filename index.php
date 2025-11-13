@@ -25,6 +25,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
+
     <!-- Critical CSS - Inline for faster FCP -->
     <style>
         /* Critical styles for above-the-fold content */
