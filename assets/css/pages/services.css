@@ -270,8 +270,92 @@
   letter-spacing: 0.05em;
 }
 
+/* サービス選択タブ */
+.service-selector {
+  background-color: var(--color-bg-white);
+  padding: var(--spacing-xl) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.service-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.service-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xl);
+  background-color: var(--color-bg);
+  border: 2px solid var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-align: center;
+}
+
+.service-tab i {
+  font-size: 48px;
+  color: var(--color-natural-brown);
+  transition: all var(--transition-base);
+}
+
+.service-tab__title {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--color-charcoal);
+  transition: all var(--transition-base);
+}
+
+.service-tab__description {
+  font-size: 13px;
+  color: var(--color-text-light);
+  letter-spacing: 0.05em;
+  transition: all var(--transition-base);
+}
+
+.service-tab:hover {
+  border-color: var(--color-natural-brown);
+  background-color: var(--color-bg-white);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.service-tab--active {
+  border-color: var(--color-natural-brown);
+  background-color: var(--color-natural-brown);
+}
+
+.service-tab--active i,
+.service-tab--active .service-tab__title,
+.service-tab--active .service-tab__description {
+  color: var(--color-bg-white);
+}
+
 /* レスポンシブ */
 @media (max-width: 768px) {
+  .service-tabs {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .service-tab {
+    padding: var(--spacing-lg);
+  }
+
+  .service-tab i {
+    font-size: 40px;
+  }
+
+  .service-tab__title {
+    font-size: 18px;
+  }
+
   .pricing-table__row {
     grid-template-columns: 1fr;
   }

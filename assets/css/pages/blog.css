@@ -169,6 +169,8 @@
   color: var(--color-text-light);
   flex-wrap: wrap;
   letter-spacing: 0.05em;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .breadcrumb__link {
@@ -224,6 +226,9 @@
   margin-bottom: var(--spacing-md);
   letter-spacing: 0.08em;
   font-weight: 400;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .article-tags {
@@ -248,6 +253,9 @@
   letter-spacing: 0.08em;
   margin-bottom: var(--spacing-xl);
   color: var(--color-text);
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 /* 見出し - H2 */
@@ -392,6 +400,7 @@
   margin: var(--spacing-lg) 0;
   border: 1px solid var(--color-border);
   display: block;
+  box-sizing: border-box;
 }
 
 /* リンク */
@@ -445,6 +454,8 @@
   overflow-x: auto;
   margin: var(--spacing-lg) 0;
   line-height: 1.6;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .article-content code {
@@ -467,6 +478,10 @@
   border-collapse: collapse;
   margin: var(--spacing-lg) 0;
   font-size: 15px;
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .article-content th,
@@ -608,6 +623,10 @@
 
   .article-content {
     font-size: 15px;
+    overflow-x: hidden;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .article-content h2 {
@@ -616,5 +635,20 @@
 
   .article-content h3 {
     font-size: 18px;
+  }
+
+  .article-content pre {
+    padding: var(--spacing-md);
+    font-size: 13px;
+  }
+
+  .article-content table {
+    font-size: 14px;
+  }
+
+  .article-content th,
+  .article-content td {
+    padding: var(--spacing-sm);
+    min-width: 100px;
   }
 }
