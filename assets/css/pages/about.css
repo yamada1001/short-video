@@ -240,6 +240,10 @@
     grid-template-columns: 1fr;
   }
 
+  .company-info__image {
+    display: none;
+  }
+
   .company-table th,
   .company-table td {
     display: block;

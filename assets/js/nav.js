@@ -7,28 +7,52 @@
   let scrollTimer = null;
   let lastScrollY = window.scrollY;
   let isScrolling = false;
+  let scrollPosition = 0;
+
+  // メニューを閉じる関数
+  function closeMenu() {
+    hamburger.classList.remove('hamburger--active');
+    navList.classList.remove('nav__list--active');
+    navList.classList.remove('nav__list--mobile');
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    if (scrollPosition !== 0) {
+      window.scrollTo(0, scrollPosition);
+      scrollPosition = 0;
+    }
+  }
+
+  // メニューを開く関数
+  function openMenu() {
+    scrollPosition = window.scrollY;
+    hamburger.classList.add('hamburger--active');
+    navList.classList.add('nav__list--active');
+    navList.classList.add('nav__list--mobile');
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.width = '100%';
+  }
 
   // ハンバーガーメニュートグル
   if (hamburger && navList) {
-    hamburger.addEventListener('click', function() {
-      hamburger.classList.toggle('hamburger--active');
-      navList.classList.toggle('nav__list--active');
-      navList.classList.toggle('nav__list--mobile');
-
-      // body のスクロールを制御（スクロール位置を維持）
+    hamburger.addEventListener('click', function(e) {
+      e.stopPropagation();
       if (navList.classList.contains('nav__list--active')) {
-        const scrollY = window.scrollY;
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${scrollY}px`;
-        document.body.style.width = '100%';
-        document.body.style.overflow = 'hidden';
+        closeMenu();
       } else {
-        const scrollY = document.body.style.top;
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        document.body.style.overflow = '';
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        openMenu();
+      }
+    });
+
+    // メニュー外をクリックしたら閉じる
+    document.addEventListener('click', function(e) {
+      if (navList.classList.contains('nav__list--active')) {
+        if (!navList.contains(e.target) && !hamburger.contains(e.target)) {
+          closeMenu();
+        }
       }
     });
 
@@ -37,17 +61,16 @@
     navLinks.forEach(link => {
       link.addEventListener('click', function() {
         if (window.innerWidth <= 768) {
-          hamburger.classList.remove('hamburger--active');
-          navList.classList.remove('nav__list--active');
-          navList.classList.remove('nav__list--mobile');
-          const scrollY = document.body.style.top;
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.width = '';
-          document.body.style.overflow = '';
-          window.scrollTo(0, parseInt(scrollY || '0') * -1);
+          closeMenu();
         }
       });
+    });
+
+    // ウィンドウリサイズ時の処理
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768 && navList.classList.contains('nav__list--active')) {
+        closeMenu();
+      }
     });
   }
 

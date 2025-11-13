@@ -47,7 +47,10 @@
       "Bash(sort:*)",
       "Bash(assets/css/base.css)",
       "Bash(assets/js/app.js)",
-      "Bash(xargs -0 perl -i.bak2 -pe '\n  # Skip if already replaced\n  next if /assets\\/js\\/app\\.js/;\n  \n  # Replace the four JS script tags with one\n  if (/nav\\.js/) {\n    $_ = <>;  # Read next line (common.js)\n    $_ = <>;  # Read next line (external-links.js)  \n    $_ = \"\"\"\"    <script defer src=\\\"\"\"\"assets/js/app.js\\\"\"\"\"></script>\\n\"\"\"\";\n  }\n  # Remove cookie-consent.js line (its already in app.js)\n  elsif (/cookie-consent\\.js/) {\n    $_ = \"\"\"\"\"\"\"\";\n  }\n')"
+      "Bash(xargs -0 perl -i.bak2 -pe '\n  # Skip if already replaced\n  next if /assets\\/js\\/app\\.js/;\n  \n  # Replace the four JS script tags with one\n  if (/nav\\.js/) {\n    $_ = <>;  # Read next line (common.js)\n    $_ = <>;  # Read next line (external-links.js)  \n    $_ = \"\"\"\"    <script defer src=\\\"\"\"\"assets/js/app.js\\\"\"\"\"></script>\\n\"\"\"\";\n  }\n  # Remove cookie-consent.js line (its already in app.js)\n  elsif (/cookie-consent\\.js/) {\n    $_ = \"\"\"\"\"\"\"\";\n  }\n')",
+      "Bash(ssh:*)",
+      "Bash(ssh-keygen:*)",
+      "Bash(git remote set-url:*)"
     ],
     "deny": [],
     "ask": []
