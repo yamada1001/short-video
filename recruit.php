@@ -1,4 +1,7 @@
-<?php $current_page = 'recruit'; ?>
+<?php
+$current_page = 'recruit';
+require_once __DIR__ . '/includes/functions.php';
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>

@@ -49,7 +49,7 @@ if (!empty($errors)) {
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>エラー | お問い合わせ</title>
-    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel='stylesheet' href='assets/css/base.css'>
 </head>
 <body>
     <div class='container' style='padding: 60px 24px; text-align: center;'>
