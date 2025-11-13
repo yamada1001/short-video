@@ -291,5 +291,6 @@ $toc = generateToc($post['content']);
     </footer>
 
     <script defer src="../assets/js/app.js"></script>
+    <script defer src="../assets/js/toc.js"></script>
 </body>
 </html>
