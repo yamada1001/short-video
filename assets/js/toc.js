@@ -51,34 +51,47 @@
     function highlightActiveTocItem() {
         const headings = document.querySelectorAll('h2[id^="heading-"], h3[id^="heading-"]');
         let activeId = null;
-        const scrollPosition = window.pageYOffset;
         const header = document.getElementById('header');
-        const headerOffset = header ? header.offsetHeight + 20 : 100;
+        const headerHeight = header ? header.offsetHeight : 80;
 
-        // 現在のスクロール位置に最も近い見出しを見つける
-        let closestHeading = null;
-        let closestDistance = Infinity;
+        // 画面の中央付近（視線の自然な位置）を基準にする
+        const viewportMiddle = window.innerHeight / 3; // 上から1/3の位置
+
+        // 画面内に表示されている見出しを探す
+        let visibleHeading = null;
+        let bestScore = -Infinity;
 
         headings.forEach(function(heading) {
-            // より正確な位置計算
             const rect = heading.getBoundingClientRect();
-            const headingTop = rect.top + scrollPosition;
-            const adjustedScrollPosition = scrollPosition + headerOffset;
 
-            // 見出しがスクロール位置を超えている場合のみ考慮
-            if (adjustedScrollPosition >= headingTop - 10) { // 10pxの余裕を持たせる
-                const distance = adjustedScrollPosition - headingTop;
-                if (distance < closestDistance) {
-                    closestDistance = distance;
-                    closestHeading = heading;
+            // 見出しが画面内に表示されているか判定
+            const isVisible = rect.top >= headerHeight && rect.bottom <= window.innerHeight;
+
+            if (isVisible) {
+                // 画面内にある場合、視線位置（1/3の位置）に近いほど高スコア
+                const distanceFromIdealPosition = Math.abs(rect.top - viewportMiddle);
+                const score = 1000 - distanceFromIdealPosition;
+
+                if (score > bestScore) {
+                    bestScore = score;
+                    visibleHeading = heading;
+                }
+            } else if (rect.top < headerHeight) {
+                // 画面外（上方）にある場合もスコアを計算
+                // ただし、画面内の見出しより優先度を下げる
+                const score = -rect.top;
+
+                if (score > bestScore && !visibleHeading) {
+                    bestScore = score;
+                    visibleHeading = heading;
                 }
             }
         });
 
-        if (closestHeading) {
-            activeId = closestHeading.id;
+        if (visibleHeading) {
+            activeId = visibleHeading.id;
         } else if (headings.length > 0) {
-            // ページ上部にいる場合は最初の見出しをアクティブに
+            // どの見出しも条件に合わない場合は最初の見出しをアクティブに
             activeId = headings[0].id;
         }
 
