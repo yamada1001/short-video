@@ -207,6 +207,8 @@
   align-items: center;
   gap: 8px;
   color: var(--color-charcoal);
+  margin: 0;
+  padding: 0;
 }
 
 .toc-modal__title i {
