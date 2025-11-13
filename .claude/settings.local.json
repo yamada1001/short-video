@@ -41,7 +41,8 @@
       "Bash(xargs sed:*)",
       "WebFetch(domain:pagespeed.web.dev)",
       "Bash(assets/css/critical.min.css)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nPageSpeed最適化: パフォーマンス改善とCSS統合\n\n- .htaccessにGzip圧縮とブラウザキャッシュ設定を強化\n- CSS統合: reset.css + common.css + components.css → critical.min.css\n- Font Awesomeを遅延読み込みに変更\n- JavaScriptファイルを統合 (main.js)\n- クリティカルCSSをインライン化して拡張\n- 非クリティカルCSSを遅延読み込み\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
