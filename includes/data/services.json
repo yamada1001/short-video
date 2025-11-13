@@ -1,0 +1,73 @@
+{
+  "services": [
+    {
+      "id": "web",
+      "name": "Web制作",
+      "slug": "web-production",
+      "description": "SEOに強く、集客できるWebサイトを制作します。ランディングページからコーポレートサイトまで、目的に応じた最適なデザインと機能を提供します。",
+      "features": [
+        "ランディングページ（LP）",
+        "コーポレートサイト",
+        "ECサイト",
+        "採用サイト"
+      ],
+      "standardFeatures": [
+        "レスポンシブデザイン",
+        "SEO対策",
+        "問い合わせフォーム",
+        "Google Analytics設定",
+        "SSL対応",
+        "保守サポート（初月無料）"
+      ],
+      "pricing": [
+        {
+          "name": "LP制作",
+          "price": "50,000円～",
+          "description": "シンプルな1ページ構成"
+        },
+        {
+          "name": "コーポレートサイト",
+          "price": "300,000円～",
+          "description": "5～10ページ程度"
+        }
+      ],
+      "deliveryTime": "2週間～2ヶ月（規模により変動）"
+    },
+    {
+      "id": "video",
+      "name": "ショート動画制作",
+      "slug": "short-video-production",
+      "description": "TikTok、Instagram Reels、YouTube Shortsに最適化したショート動画を制作します。企画から撮影、編集まで一貫してサポートします。",
+      "platforms": [
+        "TikTok",
+        "Instagram Reels",
+        "YouTube Shorts"
+      ],
+      "productionContent": [
+        "企画・構成案作成",
+        "撮影（必要に応じて）",
+        "動画編集",
+        "テロップ・BGM挿入",
+        "納品後の効果測定サポート"
+      ],
+      "pricing": [
+        {
+          "name": "基本プラン",
+          "price": "20,000円/1本",
+          "description": "15～60秒の動画1本"
+        },
+        {
+          "name": "10本セット",
+          "price": "150,000円",
+          "description": "15～60秒の動画10本（25%OFF）"
+        },
+        {
+          "name": "企画案作成のみ",
+          "price": "5,000円",
+          "description": "動画コンセプト・構成案の提案"
+        }
+      ],
+      "deliveryTime": "1本あたり3～5営業日"
+    }
+  ]
+}

@@ -29,21 +29,21 @@ $animate_class = $cta_animate ? ' animate' : '';
                     <i class="fas fa-phone"></i>
                     <div>
                         <span class="cta-info-label">お電話でのお問い合わせ</span>
-                        <a href="tel:08046929681" class="cta-info-value">080-4692-9681</a>
+                        <a href="tel:<?php echo CONTACT_TEL_LINK; ?>" class="cta-info-value"><?php echo CONTACT_TEL; ?></a>
                     </div>
                 </div>
                 <div class="cta-info-item">
                     <i class="fas fa-envelope"></i>
                     <div>
                         <span class="cta-info-label">メールでのお問い合わせ</span>
-                        <a href="mailto:yamada@yojitu.com" class="cta-info-value">yamada@yojitu.com</a>
+                        <a href="mailto:<?php echo CONTACT_EMAIL; ?>" class="cta-info-value"><?php echo CONTACT_EMAIL; ?></a>
                     </div>
                 </div>
                 <div class="cta-info-item">
                     <i class="fas fa-clock"></i>
                     <div>
                         <span class="cta-info-label">営業時間</span>
-                        <span class="cta-info-value">10時〜22時（定休日なし）</span>
+                        <span class="cta-info-value"><?php echo BUSINESS_HOURS; ?>（定休日<?php echo BUSINESS_DAYS; ?>）</span>
                     </div>
                 </div>
             </div>
