@@ -83,14 +83,17 @@
                 // アクティブな項目を目次内でスクロール表示（PC版サイドバー）
                 if (window.innerWidth > 768 && tocSidebar) {
                     const tocNav = tocSidebar.querySelector('.toc-nav');
-                    if (tocNav) {
+                    if (tocNav && link.classList.contains('toc-link')) {
                         // アクティブな項目が目次の中央付近に表示されるようスクロール
-                        const linkTop = link.offsetTop;
+                        // linkの.toc-navからの相対位置を取得
+                        const linkRect = link.getBoundingClientRect();
+                        const navRect = tocNav.getBoundingClientRect();
+                        const linkTopInNav = linkRect.top - navRect.top + tocNav.scrollTop;
                         const linkHeight = link.offsetHeight;
                         const navHeight = tocNav.clientHeight;
 
                         // 目次の中央に配置するための計算
-                        const targetScrollTop = linkTop - navHeight / 2 + linkHeight / 2;
+                        const targetScrollTop = linkTopInNav - navHeight / 2 + linkHeight / 2;
 
                         tocNav.scrollTo({
                             top: targetScrollTop,
