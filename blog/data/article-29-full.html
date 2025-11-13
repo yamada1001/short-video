@@ -1,0 +1,399 @@
+<h1>llms.txtの書き方｜実例付き完全ガイド</h1>
+
+<p>llms.txtを作成したいけれど、具体的にどう書けば良いか分からない方も多いでしょう。本記事では、llms.txtの書き方を実例を交えながら詳しく解説します。</p>
+
+<h2>llms.txtの基本フォーマット</h2>
+
+<p>llms.txtは、Markdown形式で記述します。基本的な構造は以下の通りです。</p>
+
+<pre><code># [プロジェクト名]
+
+> [サイトの簡潔な説明]
+
+[任意のコンテンツ]
+
+## [セクション名]
+
+- [リンクタイトル](URL): 説明
+- [リンクタイトル](URL): 説明
+
+## Optional
+
+- [補足情報](URL): 説明
+</code></pre>
+
+<h2>必須要素と任意要素</h2>
+
+<table>
+<thead>
+<tr><th>要素</th><th>必須/任意</th><th>説明</th></tr>
+</thead>
+<tbody>
+<tr><td>H1見出し（#）</td><td>必須</td><td>プロジェクトまたはサイト名</td></tr>
+<tr><td>引用（>）</td><td>推奨</td><td>サイトの簡潔な要約</td></tr>
+<tr><td>本文</td><td>任意</td><td>追加の説明文</td></tr>
+<tr><td>H2セクション（##）</td><td>任意</td><td>カテゴリ分け</td></tr>
+<tr><td>リンクリスト</td><td>任意</td><td>重要ページへのリンク</td></tr>
+<tr><td>Optionalセクション</td><td>任意</td><td>優先度の低い情報</td></tr>
+</tbody>
+</table>
+
+<h2>ステップ1：プロジェクト名を記述</h2>
+
+<p>最初の行に、H1見出しとしてプロジェクト名またはサイト名を記述します。</p>
+
+<pre><code># 余日（Yojitsu）
+</code></pre>
+
+<h3>プロジェクト名の書き方のポイント</h3>
+<ul>
+<li>正式名称を使用する</li>
+<li>読み方が難しい場合は、カッコ書きでフリガナを添える</li>
+<li>英語名と日本語名がある場合、主要なものを使用</li>
+</ul>
+
+<h4>良い例</h4>
+<pre><code># 余日（Yojitsu）
+# FastHTML
+# Claude Code
+</code></pre>
+
+<h4>避けるべき例</h4>
+<pre><code># ようこそ！私たちのサイトへ
+# ホームページ
+# 公式サイト
+</code></pre>
+
+<h2>ステップ2：サイトの要約を記述</h2>
+
+<p>H1見出しの後に、引用ブロック（>）でサイトの簡潔な要約を記述します。</p>
+
+<pre><code>> 大分県を拠点に、Web制作・ショート動画制作を提供するデジタルマーケティング会社です。
+</code></pre>
+
+<h3>要約の書き方のポイント</h3>
+<ul>
+<li>1〜3文程度に収める</li>
+<li>何をしている会社・プロジェクトかを明確に</li>
+<li>重要なキーワードを含める</li>
+<li>具体的で分かりやすい表現を使う</li>
+</ul>
+
+<h4>良い例</h4>
+<pre><code>> 大分県を拠点に、Web制作・ショート動画制作を提供するデジタルマーケティング会社です。SEO対策、広告運用を通じて地域企業の成長を支援します。
+
+> オープンソースのPython Webフレームワーク。高速で、モダンなWeb開発を実現します。
+
+> 開発者向けドキュメント作成ツール。Markdownからプロフェッショナルなドキュメントサイトを生成します。
+</code></pre>
+
+<h4>避けるべき例</h4>
+<pre><code>> 最高のサービスを提供します。
+> 様々なサービスを展開中。
+> 詳しくはサイトをご覧ください。
+</code></pre>
+
+<h2>ステップ3：追加の説明文（任意）</h2>
+
+<p>必要に応じて、引用ブロックの後に追加の説明文を記述できます。</p>
+
+<pre><code># 余日（Yojitsu）
+
+> 大分県を拠点に、Web制作・ショート動画制作を提供するデジタルマーケティング会社です。
+
+2025年5月設立。地域企業のデジタル化を通じて、ビジネスの成長を加速させることを使命としています。
+</code></pre>
+
+<h2>ステップ4：セクションとリンクリスト</h2>
+
+<p>H2見出しでセクションを作成し、その下にリンクリストを記述します。</p>
+
+<pre><code>## サービス
+
+- [Web制作](https://yojitu.com/services.html#web): コーポレートサイト、LP制作
+- [ショート動画制作](https://yojitu.com/services.html#short-video): Instagram Reels、TikTok対応
+
+## 会社情報
+
+- [会社概要](https://yojitu.com/about.html): 企業理念、代表プロフィール
+- [お問い合わせ](https://yojitu.com/contact.html): 電話、メール、LINE対応
+</code></pre>
+
+<h3>セクション分けのポイント</h3>
+<table>
+<thead>
+<tr><th>サイトタイプ</th><th>推奨セクション例</th></tr>
+</thead>
+<tbody>
+<tr><td>コーポレートサイト</td><td>サービス、会社情報、お問い合わせ、採用</td></tr>
+<tr><td>ドキュメントサイト</td><td>Getting Started、API Reference、Guides、Examples</td></tr>
+<tr><td>ブログ</td><td>最新記事、カテゴリ、人気記事、プロフィール</td></tr>
+<tr><td>ECサイト</td><td>商品カテゴリ、特集、ご利用ガイド、お問い合わせ</td></tr>
+</tbody>
+</table>
+
+<h3>リンクの書き方</h3>
+<pre><code>- [リンクテキスト](URL): 説明文
+</code></pre>
+
+<h4>良い例</h4>
+<pre><code>- [Web制作サービス](https://yojitu.com/services.html#web): LP制作5万円〜、コーポレート30万円〜
+- [料金表](https://example.com/pricing): 全サービスの料金一覧と比較表
+- [API Documentation](https://example.com/api): RESTful API の完全なリファレンス
+</code></pre>
+
+<h4>避けるべき例</h4>
+<pre><code>- [こちら](https://example.com)
+- [リンク](https://example.com): リンクです
+- [詳細](https://example.com): 詳細はこちら
+</code></pre>
+
+<h2>ステップ5：Optionalセクション</h2>
+
+<p>優先度の低い情報は、「Optional」セクションにまとめます。LLMのコンテキストウィンドウが限られている場合、このセクションは省略される可能性があります。</p>
+
+<pre><code>## Optional
+
+- [ブログ](https://yojitu.com/blog/): デジタルマーケティング関連記事
+- [お知らせ](https://yojitu.com/news/): 最新情報とプレスリリース
+- [よくある質問](https://yojitu.com/faq): お客様からよくいただく質問
+</code></pre>
+
+<h3>Optionalに含めるべき情報</h3>
+<ul>
+<li>ブログやニュース</li>
+<li>FAQ</li>
+<li>用語集</li>
+<li>アーカイブ</li>
+<li>外部リンク集</li>
+</ul>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-basics.html">llms.txtとは？LLM時代のウェブサイト最適化を解説</a></p>
+
+<h2>実例1：コーポレートサイト向けllms.txt</h2>
+
+<pre><code># 余日（Yojitsu）
+
+> 大分県を拠点に、Web制作・ショート動画制作を提供するデジタルマーケティング会社です。
+
+2025年5月設立。地域企業のデジタル化を通じて、ビジネスの成長を加速させることを使命としています。
+
+## サービス
+
+- [Web制作](https://yojitu.com/services.html#web): コーポレートサイト、LP制作（5万円〜）
+- [ショート動画制作](https://yojitu.com/services.html#short-video): Instagram Reels、TikTok対応（2万円〜）
+
+## 会社情報
+
+- [会社概要](https://yojitu.com/about.html): 企業理念、ミッション・ビジョン、代表プロフィール
+- [お問い合わせ](https://yojitu.com/contact.html): 電話（080-4692-9681）、メール、LINE対応
+
+## 実績・事例
+
+- [制作実績](https://yojitu.com/works): 大分県内100社以上の支援実績
+
+## Optional
+
+- [ブログ](https://yojitu.com/blog/): SEO対策、Web制作、動画マーケティング記事
+- [お知らせ](https://yojitu.com/news/): 最新情報とプレスリリース
+- [採用情報](https://yojitu.com/recruit): 業務委託募集・交流
+</code></pre>
+
+<h2>実例2：ドキュメントサイト向けllms.txt</h2>
+
+<pre><code># FastHTML
+
+> 高速で直感的なPython Webフレームワーク。最小限のコードでモダンなWebアプリケーションを構築できます。
+
+## Getting Started
+
+- [Quick Start](https://docs.fastht.ml/quickstart): 5分で始めるFastHTML
+- [Installation](https://docs.fastht.ml/install): インストール方法とセットアップ
+- [Tutorial](https://docs.fastht.ml/tutorial): ステップバイステップガイド
+
+## Core Concepts
+
+- [Components](https://docs.fastht.ml/components): コンポーネントシステムの理解
+- [Routing](https://docs.fastht.ml/routing): ルーティングの設定方法
+- [State Management](https://docs.fastht.ml/state): 状態管理のベストプラクティス
+
+## API Reference
+
+- [API Documentation](https://docs.fastht.ml/api): 完全なAPIリファレンス
+- [Configuration](https://docs.fastht.ml/config): 設定オプション一覧
+
+## Examples
+
+- [Example Gallery](https://docs.fastht.ml/examples): 実際の使用例とサンプルコード
+
+## Optional
+
+- [Contributing](https://docs.fastht.ml/contributing): 貢献ガイドライン
+- [Changelog](https://docs.fastht.ml/changelog): バージョン履歴
+- [Community](https://docs.fastht.ml/community): Discord、フォーラム
+</code></pre>
+
+<h2>実例3：ブログサイト向けllms.txt</h2>
+
+<pre><code># デジタルマーケティングブログ
+
+> SEO対策、Web制作、SNSマーケティングに関する実践的な情報を発信するブログです。
+
+## 人気記事
+
+- [SEO対策の基本](https://example.com/seo-basics): 初心者向けSEO完全ガイド
+- [Google広告の効果的な運用方法](https://example.com/google-ads): 成果を出す広告運用ノウハウ
+- [ランディングページのデザイン](https://example.com/lp-design): CVRを高める3つの要素
+
+## カテゴリ
+
+- [SEO](https://example.com/category/seo): 検索エンジン最適化の記事一覧
+- [広告運用](https://example.com/category/ads): リスティング、SNS広告の記事
+- [Web制作](https://example.com/category/web): サイト制作・デザインの記事
+
+## プロフィール
+
+- [運営者情報](https://example.com/about): デジタルマーケター山田蓮のプロフィール
+
+## Optional
+
+- [お問い合わせ](https://example.com/contact): 執筆・講演依頼はこちら
+</code></pre>
+
+<h2>llms.txt作成時の注意点</h2>
+
+<h3>1. URLは絶対パスで記述</h3>
+<p>相対パスではなく、完全なURLを使用します。</p>
+
+<h4>良い例</h4>
+<pre><code>- [サービス](https://yojitu.com/services.html)
+</code></pre>
+
+<h4>避けるべき例</h4>
+<pre><code>- [サービス](/services.html)
+- [サービス](./services.html)
+</code></pre>
+
+<h3>2. 簡潔で明確な表現</h3>
+<p>LLMが理解しやすいよう、専門用語や曖昧な表現を避けます。</p>
+
+<h3>3. 重複を避ける</h3>
+<p>同じ情報を複数箇所に記載しないようにします。</p>
+
+<h3>4. ファイルサイズを適度に保つ</h3>
+<p>llms.txtは10〜50KB程度が目安です。大きすぎる場合は、llms-full.txtとの併用を検討しましょう。</p>
+
+<p><i class="fas fa-link"></i> <a href="llms-full-txt-guide.html">llms-full.txtとは？完全版ファイルの作り方と活用方法</a></p>
+
+<h3>5. 定期的な更新</h3>
+<p>サイト構造が変わったら、llms.txtも更新します。</p>
+
+<h2>llms.txtの品質チェックリスト</h2>
+
+<p>作成したllms.txtが適切かどうか、以下のチェックリストで確認しましょう。</p>
+
+<h3>□ H1見出しでプロジェクト名を明記している</h3>
+<h3>□ 引用ブロックでサイトの要約を記述している</h3>
+<h3>□ リンクテキストが分かりやすい</h3>
+<h3>□ URLが絶対パスになっている</h3>
+<h3>□ 各リンクに説明文を添えている</h3>
+<h3>□ セクション分けが適切</h3>
+<h3>□ 重要な情報が上部に配置されている</h3>
+<h3>□ Optionalセクションで優先度を明示</h3>
+<h3>□ ファイルサイズが適切（10〜50KB目安）</h3>
+<h3>□ Markdown記法が正しい</h3>
+
+<h2>よくある間違いと修正例</h2>
+
+<h3>間違い1：リンクテキストが不明瞭</h3>
+<h4>NG</h4>
+<pre><code>- [こちら](https://example.com/services)
+</code></pre>
+
+<h4>OK</h4>
+<pre><code>- [サービス一覧](https://example.com/services): Web制作、動画制作のサービス詳細
+</code></pre>
+
+<h3>間違い2：説明文がない</h3>
+<h4>NG</h4>
+<pre><code>- [会社概要](https://example.com/about)
+</code></pre>
+
+<h4>OK</h4>
+<pre><code>- [会社概要](https://example.com/about): 企業理念、沿革、代表メッセージ
+</code></pre>
+
+<h3>間違い3：セクションが多すぎる</h3>
+<h4>NG（10個以上のセクション）</h4>
+<pre><code>## サービス1
+## サービス2
+## サービス3
+...
+## その他10
+</code></pre>
+
+<h4>OK（3〜5個程度に集約）</h4>
+<pre><code>## サービス
+## 会社情報
+## お問い合わせ
+</code></pre>
+
+<h2>作成後の確認方法</h2>
+
+<p>llms.txtを作成したら、以下の方法で確認します。</p>
+
+<h3>1. ブラウザで直接アクセス</h3>
+<pre><code>https://yoursite.com/llms.txt
+</code></pre>
+
+<h3>2. Markdown表示ツールで確認</h3>
+<p>Markdownビューアーで表示し、フォーマットが正しいか確認します。</p>
+
+<h3>3. LLMに読み込ませてテスト</h3>
+<p>ChatGPTやClaudeに直接llms.txtを読み込ませ、適切に理解できるか確認します。</p>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-verification.html">llms.txt確認方法｜正しく設置されているかチェック</a></p>
+
+<h2>まとめ：効果的なllms.txtの書き方</h2>
+
+<p>llms.txtを効果的に書くためのポイントをまとめます。</p>
+
+<ul>
+<li>H1見出しでプロジェクト名を明記</li>
+<li>引用ブロックで簡潔な要約</li>
+<li>明確なリンクテキストと説明文</li>
+<li>適切なセクション分け（3〜5個）</li>
+<li>重要な情報を上部に配置</li>
+<li>Optionalセクションで優先度を管理</li>
+<li>絶対URLを使用</li>
+<li>10〜50KBのファイルサイズを目安に</li>
+</ul>
+
+<p>実例を参考にしながら、自社サイトに合ったllms.txtを作成しましょう。</p>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-how-to-create.html">llms.txtの作り方｜ステップバイステップで解説</a></p>
+
+<p><i class="fas fa-link"></i> <a href="llms-txt-setup.html">llms.txtの設置方法｜サーバー別に解説</a></p>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "llms.txtの書き方｜実例付き完全ガイド",
+  "description": "llms.txtの書き方を実例を交えながら詳しく解説。正しいMarkdown記法から、効果的なセクション分けまで完全ガイド。",
+  "author": {
+    "@type": "Person",
+    "name": "山田 蓮"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "余日（Yojitsu）",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://yojitu.com/assets/images/logo.png"
+    }
+  },
+  "datePublished": "2025-11-13T11:00:00+09:00",
+  "dateModified": "2025-11-13T11:00:00+09:00"
+}
+</script>

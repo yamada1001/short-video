@@ -37,37 +37,17 @@
     });
   }
 
-  // スクロール制御 - スクロール停止時にヘッダー表示
+  // スクロール制御 - ヘッダーを常時表示（影のみ変更）
   if (header) {
     window.addEventListener('scroll', function() {
       const currentScrollY = window.scrollY;
 
-      // スクロール中はヘッダーを隠す（トップ以外）
-      if (currentScrollY > 100) {
-        isScrolling = true;
-        header.style.transform = 'translateY(-100%)';
-        header.style.transition = 'transform 0.3s ease';
+      // ヘッダーは常に表示し、スクロール時に影を追加
+      if (currentScrollY > 50) {
+        header.classList.add('header--scrolled');
       } else {
-        header.style.transform = 'translateY(0)';
+        header.classList.remove('header--scrolled');
       }
-
-      // スクロール停止検知
-      if (scrollTimer !== null) {
-        clearTimeout(scrollTimer);
-      }
-
-      scrollTimer = setTimeout(function() {
-        // スクロールが停止したらヘッダーを表示
-        header.style.transform = 'translateY(0)';
-        isScrolling = false;
-
-        // スクロール時の影
-        if (currentScrollY > 50) {
-          header.classList.add('header--scrolled');
-        } else {
-          header.classList.remove('header--scrolled');
-        }
-      }, 1000); // 1000ms（1秒）後にスクロール停止と判定
 
       lastScrollY = currentScrollY;
     });
