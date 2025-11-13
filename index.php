@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/cta.css">
     <link rel="stylesheet" href="assets/css/pages/top.css">
     <link rel="stylesheet" href="assets/css/cookie-consent.css">
 
@@ -228,30 +229,32 @@
                 実践的なノウハウをお届けします
             </p>
             <div class="blog-preview-grid">
-                <a href="blog/detail.php?slug=seo-basics-5-points" class="blog-preview-card animate">
+                <?php
+                // posts.jsonを読み込み
+                $postsJson = file_get_contents(__DIR__ . '/blog/data/posts.json');
+                $postsData = json_decode($postsJson, true);
+                $posts = $postsData['posts'] ?? [];
+
+                // 公開日でソート（新しい順）
+                usort($posts, function($a, $b) {
+                    return strtotime($b['publishedAt']) - strtotime($a['publishedAt']);
+                });
+
+                // 最新3記事を取得
+                $latestPosts = array_slice($posts, 0, 3);
+
+                foreach ($latestPosts as $post):
+                    $date = date('Y.m.d', strtotime($post['publishedAt']));
+                ?>
+                <a href="blog/detail.php?slug=<?php echo htmlspecialchars($post['slug'], ENT_QUOTES, 'UTF-8'); ?>" class="blog-preview-card animate">
                     <div class="blog-preview-card__meta">
-                        <span class="blog-preview-card__date">2025.11.10</span>
-                        <span class="blog-preview-card__category">SEO</span>
+                        <span class="blog-preview-card__date"><?php echo htmlspecialchars($date, ENT_QUOTES, 'UTF-8'); ?></span>
+                        <span class="blog-preview-card__category"><?php echo htmlspecialchars($post['category'], ENT_QUOTES, 'UTF-8'); ?></span>
                     </div>
-                    <h3 class="blog-preview-card__title">SEO対策の基本 - 初心者が知っておくべき5つのポイント</h3>
-                    <p class="blog-preview-card__excerpt">SEO対策を始めたい方へ。検索エンジン最適化の基本から、すぐに実践できる5つのポイントをご紹介します。</p>
+                    <h3 class="blog-preview-card__title"><?php echo htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8'); ?></h3>
+                    <p class="blog-preview-card__excerpt"><?php echo htmlspecialchars($post['excerpt'], ENT_QUOTES, 'UTF-8'); ?></p>
                 </a>
-                <a href="blog/detail.php?slug=google-ads-effective-management" class="blog-preview-card animate">
-                    <div class="blog-preview-card__meta">
-                        <span class="blog-preview-card__date">2025.11.08</span>
-                        <span class="blog-preview-card__category">広告運用</span>
-                    </div>
-                    <h3 class="blog-preview-card__title">Google広告の効果的な運用方法</h3>
-                    <p class="blog-preview-card__excerpt">Google広告で成果を出すための運用ノウハウをご紹介。予算設定からキーワード選定、広告文の作成まで詳しく解説します。</p>
-                </a>
-                <a href="blog/detail.php?slug=landing-page-design-3-elements" class="blog-preview-card animate">
-                    <div class="blog-preview-card__meta">
-                        <span class="blog-preview-card__date">2025.11.05</span>
-                        <span class="blog-preview-card__category">Web制作</span>
-                    </div>
-                    <h3 class="blog-preview-card__title">ランディングページのデザインで重要な3つの要素</h3>
-                    <p class="blog-preview-card__excerpt">コンバージョン率を高めるランディングページデザインの秘訣。ファーストビュー、CTA、信頼性の3要素を解説します。</p>
-                </a>
+                <?php endforeach; ?>
             </div>
             <div class="text-center mt-xl animate">
                 <a href="blog/" class="btn btn-secondary">ブログ一覧</a>
@@ -260,41 +263,7 @@
     </section>
 
     <!-- CTAセクション -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-section__title animate">お問い合わせ</h2>
-                <p class="cta-section__description animate">
-                    デジタルマーケティングのご相談は、<br>
-                    お気軽にお問い合わせください
-                </p>
-                <div class="cta-buttons animate">
-                    <a href="contact.html" class="btn btn-primary btn--large">
-                        <i class="fas fa-envelope"></i> お問い合わせフォーム
-                    </a>
-                    <a href="https://line.me/ti/p/CTOCx9YKjk" class="btn btn-secondary btn--large" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-line"></i> LINEで相談
-                    </a>
-                </div>
-                <div class="cta-info animate">
-                    <div class="cta-info-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <span class="cta-info-label">お電話でのお問い合わせ</span>
-                            <a href="tel:08046929681" class="cta-info-value">080-4692-9681</a>
-                        </div>
-                    </div>
-                    <div class="cta-info-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <span class="cta-info-label">営業時間</span>
-                            <span class="cta-info-value">10時~22時（年中無休）</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php $cta_base_path = ''; include __DIR__ . '/includes/cta.php'; ?>
 
     <!-- フッター -->
     <footer class="footer">

@@ -79,6 +79,25 @@
             link.classList.remove('toc-link--active');
             if (activeId && link.dataset.target === activeId) {
                 link.classList.add('toc-link--active');
+
+                // アクティブな項目を目次内でスクロール表示（PC版サイドバー）
+                if (window.innerWidth > 768 && tocSidebar) {
+                    const tocNav = tocSidebar.querySelector('.toc-nav');
+                    if (tocNav && link.offsetParent === tocNav) {
+                        const linkTop = link.offsetTop;
+                        const linkHeight = link.offsetHeight;
+                        const navScrollTop = tocNav.scrollTop;
+                        const navHeight = tocNav.clientHeight;
+
+                        // リンクが見えない場合はスクロール
+                        if (linkTop < navScrollTop || linkTop + linkHeight > navScrollTop + navHeight) {
+                            tocNav.scrollTo({
+                                top: linkTop - navHeight / 2 + linkHeight / 2,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                }
             }
         });
     }

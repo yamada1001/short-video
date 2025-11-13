@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/cta.css">
     <link rel="stylesheet" href="assets/css/pages/services.css">
     <link rel="stylesheet" href="assets/css/cookie-consent.css">
 
@@ -157,41 +158,7 @@
     </section>
 
     <!-- CTAセクション -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-section__title animate">お問い合わせ</h2>
-                <p class="cta-section__description animate">
-                    デジタルマーケティングのご相談は、<br>
-                    お気軽にお問い合わせください
-                </p>
-                <div class="cta-buttons animate">
-                    <a href="contact.html" class="btn btn-primary btn--large">
-                        <i class="fas fa-envelope"></i> お問い合わせフォーム
-                    </a>
-                    <a href="https://line.me/ti/p/CTOCx9YKjk" class="btn btn-secondary btn--large" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-line"></i> LINEで相談
-                    </a>
-                </div>
-                <div class="cta-info animate">
-                    <div class="cta-info-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <span class="cta-info-label">お電話でのお問い合わせ</span>
-                            <a href="tel:08046929681" class="cta-info-value">080-4692-9681</a>
-                        </div>
-                    </div>
-                    <div class="cta-info-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <span class="cta-info-label">営業時間</span>
-                            <span class="cta-info-value">10時~22時（年中無休）</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php $cta_base_path = ''; include __DIR__ . '/includes/cta.php'; ?>
 
     <!-- フッター -->
     <footer class="footer">

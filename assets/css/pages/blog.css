@@ -21,6 +21,98 @@
   line-height: 2.0;
 }
 
+/* 検索バー */
+.blog-search {
+  background-color: var(--color-bg);
+  padding: var(--spacing-xl) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.search-form {
+  display: flex;
+  gap: var(--spacing-sm);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.search-input-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  color: var(--color-text-light);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 48px 14px 48px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--color-text);
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  transition: border-color var(--transition-base);
+  letter-spacing: 0.05em;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-natural-brown);
+}
+
+.search-input::placeholder {
+  color: var(--color-text-light);
+}
+
+.search-clear {
+  position: absolute;
+  right: 16px;
+  color: var(--color-text-light);
+  font-size: 16px;
+  cursor: pointer;
+  transition: color var(--transition-base);
+  padding: 4px;
+}
+
+.search-clear:hover {
+  color: var(--color-natural-brown);
+}
+
+.search-button {
+  padding: 14px 32px;
+  background-color: var(--color-natural-brown);
+  color: var(--color-bg-white);
+  border: 1px solid var(--color-natural-brown);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.search-button:hover {
+  opacity: 0.8;
+}
+
+.search-result-info {
+  text-align: center;
+  margin-top: var(--spacing-md);
+  font-size: 14px;
+  color: var(--color-text-light);
+  letter-spacing: 0.05em;
+}
+
 /* カテゴリフィルター */
 .blog-filter {
   background-color: var(--color-off-white);
@@ -607,6 +699,19 @@
 
 /* レスポンシブ */
 @media (max-width: 768px) {
+  .search-form {
+    flex-direction: column;
+  }
+
+  .search-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .search-input {
+    font-size: 16px; /* iOSでズームを防ぐ */
+  }
+
   .blog-grid {
     grid-template-columns: 1fr;
   }

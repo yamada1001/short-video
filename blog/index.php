@@ -10,9 +10,33 @@ usort($all_posts, function($a, $b) {
     return strtotime($b['publishedAt']) - strtotime($a['publishedAt']);
 });
 
+// 検索クエリ
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+
 // カテゴリフィルター
 $category = isset($_GET['category']) ? $_GET['category'] : '';
 $posts = $all_posts;
+
+// 検索フィルター（タイトル、要約、タグで検索）
+if ($search) {
+    $posts = array_filter($posts, function($post) use ($search) {
+        $searchLower = mb_strtolower($search);
+        $titleMatch = mb_strpos(mb_strtolower($post['title']), $searchLower) !== false;
+        $excerptMatch = mb_strpos(mb_strtolower($post['excerpt']), $searchLower) !== false;
+        $tagsMatch = false;
+        if (!empty($post['tags'])) {
+            foreach ($post['tags'] as $tag) {
+                if (mb_strpos(mb_strtolower($tag), $searchLower) !== false) {
+                    $tagsMatch = true;
+                    break;
+                }
+            }
+        }
+        return $titleMatch || $excerptMatch || $tagsMatch;
+    });
+}
+
+// カテゴリでさらに絞り込み
 if ($category) {
     $posts = array_filter($posts, function($post) use ($category) {
         return $post['category'] === $category;
@@ -69,6 +93,39 @@ $categories = array_unique(array_column($all_posts, 'category'));
                 デジタルマーケティングの最新情報と<br>
                 実践的なノウハウをお届けします
             </p>
+        </div>
+    </section>
+
+    <!-- 検索バー -->
+    <section class="blog-search">
+        <div class="container">
+            <form action="index.php" method="get" class="search-form">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text"
+                           name="search"
+                           class="search-input"
+                           placeholder="記事を検索..."
+                           value="<?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8'); ?>">
+                    <?php if ($search): ?>
+                    <a href="index.php<?php echo $category ? '?category=' . urlencode($category) : ''; ?>" class="search-clear" title="検索をクリア">
+                        <i class="fas fa-times"></i>
+                    </a>
+                    <?php endif; ?>
+                </div>
+                <?php if ($category): ?>
+                <input type="hidden" name="category" value="<?php echo htmlspecialchars($category, ENT_QUOTES, 'UTF-8'); ?>">
+                <?php endif; ?>
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                    <span>検索</span>
+                </button>
+            </form>
+            <?php if ($search): ?>
+            <p class="search-result-info">
+                「<?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8'); ?>」の検索結果: <?php echo count($posts); ?>件
+            </p>
+            <?php endif; ?>
         </div>
     </section>
 
