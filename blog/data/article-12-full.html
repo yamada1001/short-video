@@ -1,992 +1,774 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ホームページ制作費用の勘定科目と会計処理を徹底解説。資産計上・費用計上の判断基準、ケース別の仕訳例、減価償却の方法、補助金利用時の処理まで、大分県の企業の経理担当者・経営者向けに詳しく紹介します。">
-    <meta name="keywords" content="ホームページ 制作費用 勘定科目,Web制作 仕訳,ホームページ 会計処理,Webサイト 経理,減価償却">
-    <title>ホームページ制作費用の勘定科目は？経理処理を徹底解説 | 余日（yojitsu）</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- JSON-LD構造化データ -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "ホームページ制作費用の勘定科目は？経理処理を徹底解説",
-      "description": "ホームページ制作費用の勘定科目と会計処理を徹底解説。資産計上・費用計上の判断基準、ケース別の仕訳例、減価償却の方法を詳しく紹介します。",
-      "image": "https://yojitsu.com/images/blog/accounting-homepage-cost.jpg",
-      "author": {
-        "@type": "Person",
-        "name": "山田 蓮"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "余日（yojitsu）",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://yojitsu.com/images/logo.png"
-        }
-      },
-      "datePublished": "2025-11-12T11:00:00+09:00",
-      "dateModified": "2025-11-12T11:00:00+09:00",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://yojitsu.com/blog/homepage-accounting-treatment"
-      },
-      "keywords": ["ホームページ制作費用", "勘定科目", "会計処理", "仕訳", "減価償却", "経理"],
-      "articleSection": "経理・会計",
-      "wordCount": 5200
-    }
-    </script>
-
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            line-height: 1.8;
-            color: #333;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        article {
-            background: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            font-size: 2em;
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-        }
-        h2 {
-            font-size: 1.6em;
-            color: #2c3e50;
-            margin-top: 50px;
-            margin-bottom: 20px;
-            padding-left: 15px;
-            border-left: 5px solid #3498db;
-        }
-        h3 {
-            font-size: 1.3em;
-            color: #34495e;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            padding-left: 10px;
-            border-left: 3px solid #95a5a6;
-        }
-        p {
-            margin-bottom: 20px;
-        }
-        ul, ol {
-            margin-bottom: 25px;
-            padding-left: 30px;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        strong {
-            color: #e74c3c;
-            font-weight: 600;
-        }
-        a {
-            color: #3498db;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        a:hover {
-            color: #2980b9;
-            text-decoration: underline;
-        }
-        .internal-link {
-            display: inline-block;
-            margin: 10px 0;
-            padding: 10px 15px;
-            background: #ecf0f1;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .internal-link:hover {
-            background: #d5dbdd;
-            text-decoration: none;
-        }
-        .external-link {
-            color: #16a085;
-        }
-        .accounting-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background: #fff;
-            font-size: 0.95em;
-        }
-        .accounting-table th,
-        .accounting-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        .accounting-table th {
-            background-color: #3498db;
-            color: white;
-            font-weight: 600;
-        }
-        .accounting-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .accounting-table td:first-child {
-            font-weight: 600;
-        }
-        .highlight-box {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-        .info-box {
-            background: #d1ecf1;
-            border-left: 4px solid #17a2b8;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-        .warning-box {
-            background: #f8d7da;
-            border-left: 4px solid #dc3545;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-        .cta-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 8px;
-            margin: 40px 0;
-            text-align: center;
-        }
-        .cta-box h3 {
-            color: white;
-            border: none;
-            padding: 0;
-        }
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-top: 20px;
-            transition: transform 0.3s;
-        }
-        .cta-button:hover {
-            transform: translateY(-2px);
-            text-decoration: none;
-        }
-        .flow-chart {
-            background: #f8f9fa;
-            border: 2px solid #dee2e6;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .flow-step {
-            background: white;
-            border: 2px solid #3498db;
-            padding: 15px;
-            margin: 10px auto;
-            border-radius: 5px;
-            max-width: 600px;
-            font-weight: 600;
-        }
-        .flow-arrow {
-            color: #3498db;
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
-    </style>
-</head>
-<body>
-    <article>
-        <h1>ホームページ制作費用の勘定科目は？経理処理を徹底解説</h1>
-
-        <p>「ホームページを制作したけれど、この費用はどの勘定科目で処理すればいいの？」「資産として計上すべき？それとも経費で処理できる？」——大分県でホームページ制作を検討、または発注された企業の経理担当者や経営者の方から、このような会計処理に関するご質問を数多くいただきます。</p>
-
-        <p>ホームページ制作費用の会計処理は、<strong>金額や使用目的、機能によって取り扱いが異なる</strong>ため、適切な判断が必要です。誤った処理をしてしまうと、税務調査で指摘される可能性もあり、注意が必要です。</p>
-
-        <p>本記事では、Web制作と経理実務に精通した余日（yojitsu）が、ホームページ制作費用の勘定科目と会計処理について、具体的な仕訳例を交えながら徹底解説します。大分県の企業の皆様が安心して正しい経理処理ができるよう、実務で役立つ情報をお届けします。</p>
-
-        <h2>1. ホームページ制作費用の会計処理の基本</h2>
-
-        <p>まずは、ホームページ制作費用の会計処理における基本的な考え方を理解しましょう。</p>
-
-        <h3>1-1. 資産計上 vs 費用計上の判断基準</h3>
-
-        <p>ホームページ制作費用は、<strong>状況に応じて「資産」または「費用」のいずれかで処理</strong>します。この判断基準は主に以下の3つの要素で決まります。</p>
-
-        <div class="info-box">
-            <strong>判断基準の3要素</strong>
-            <ol>
-                <li><strong>金額の大きさ</strong>：10万円が大きな分岐点</li>
-                <li><strong>使用期間</strong>：1年以上使用するか否か</li>
-                <li><strong>機能・目的</strong>：広告宣伝目的か、事業用資産か</li>
-            </ol>
-        </div>
-
-        <h3>1-2. 基本的な考え方</h3>
-
-        <p>国税庁の見解によれば、ホームページの制作費用は原則として以下のように取り扱われます<a href="https://www.nta.go.jp/law/shitsugi/hojin/12/12.htm" target="_blank" rel="noopener noreferrer" class="external-link"><i class="fas fa-external-link-alt"></i> （国税庁タックスアンサー）</a>：</p>
-
-        <ul>
-            <li><strong>単なる広告宣伝費的なもの</strong>：広告宣伝費として費用処理</li>
-            <li><strong>プログラムを使用した機能的なもの</strong>：ソフトウェアとして資産計上</li>
-            <li><strong>10万円未満のもの</strong>：金額基準により費用処理可能</li>
-        </ul>
-
-        <p>この基本原則を踏まえた上で、具体的なケースごとの処理方法を見ていきましょう。</p>
-
-        <h2>2. 金額別の処理方法</h2>
-
-        <p>ホームページ制作費用の処理は、<strong>制作費用の総額</strong>によって大きく変わります。</p>
-
-        <h3>2-1. 10万円未満の場合</h3>
-
-        <p>制作費用が<strong>10万円未満の場合は、全額を費用として処理</strong>できます。これは少額資産の損金算入の特例によるものです。</p>
-
-        <div class="info-box">
-            <strong>使用する勘定科目</strong>
-            <ul>
-                <li><strong>広告宣伝費</strong>：最も一般的。商品・サービスの宣伝が主目的の場合</li>
-                <li><strong>支払手数料</strong>：制作を外部に委託した場合</li>
-                <li><strong>雑費</strong>：頻度が低く、他の科目に該当しない場合</li>
-            </ul>
-        </div>
-
-        <p><strong>仕訳例：制作費80,000円（税込88,000円）を支払った場合</strong></p>
-
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>広告宣伝費</td>
-                <td>80,000</td>
-                <td>現金（または普通預金）</td>
-                <td>88,000</td>
-            </tr>
-            <tr>
-                <td>仮払消費税</td>
-                <td>8,000</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
-        <h3>2-2. 10万円以上20万円未満の場合</h3>
-
-        <p>制作費用が<strong>10万円以上20万円未満の場合</strong>は、以下の選択肢があります：</p>
-
-        <ol>
-            <li><strong>通常の減価償却資産として処理</strong>：耐用年数に応じて償却</li>
-            <li><strong>一括償却資産として処理</strong>：3年間で均等償却（中小企業向け）</li>
-        </ol>
-
-        <p><strong>一括償却資産を選択した場合の仕訳例：制作費150,000円（税込165,000円）の場合</strong></p>
-
-        <p>【取得時】</p>
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>一括償却資産</td>
-                <td>150,000</td>
-                <td>現金（または普通預金）</td>
-                <td>165,000</td>
-            </tr>
-            <tr>
-                <td>仮払消費税</td>
-                <td>15,000</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
-        <p>【決算時（1年目）】</p>
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>減価償却費</td>
-                <td>50,000</td>
-                <td>一括償却資産</td>
-                <td>50,000</td>
-            </tr>
-        </table>
-
-        <p>※ 150,000円 ÷ 3年 = 50,000円/年</p>
-
-        <div class="highlight-box">
-            <strong>一括償却資産のメリット</strong>
-            <ul>
-                <li>償却期間が3年で固定されるため、管理が簡単</li>
-                <li>償却資産税（固定資産税）の対象外</li>
-                <li>中小企業には使いやすい制度</li>
-            </ul>
-        </div>
-
-        <h3>2-3. 20万円以上30万円未満の場合（中小企業者等）</h3>
-
-        <p>資本金1億円以下の中小企業者等は、<strong>少額減価償却資産の特例</strong>を利用できます。これにより、<strong>30万円未満の資産を取得した年度に全額損金算入</strong>できます（年間合計300万円まで）。</p>
-
-        <p><strong>仕訳例：制作費250,000円（税込275,000円）を支払った場合</strong></p>
-
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>工具器具備品<br>（またはソフトウェア）</td>
-                <td>250,000</td>
-                <td>現金（または普通預金）</td>
-                <td>275,000</td>
-            </tr>
-            <tr>
-                <td>仮払消費税</td>
-                <td>25,000</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
-        <p>【決算時】</p>
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>減価償却費</td>
-                <td>250,000</td>
-                <td>工具器具備品<br>（またはソフトウェア）</td>
-                <td>250,000</td>
-            </tr>
-        </table>
-
-        <div class="warning-box">
-            <strong>注意点</strong>
-            <p>この特例を利用するには、<strong>確定申告書に「少額減価償却資産の取得価額に関する明細書」を添付</strong>する必要があります。忘れずに手続きを行いましょう。</p>
-        </div>
-
-        <h3>2-4. 30万円以上の場合</h3>
-
-        <p>制作費用が<strong>30万円以上の場合は、原則として固定資産に計上</strong>し、耐用年数に応じて減価償却を行います。</p>
-
-        <div class="info-box">
-            <strong>ホームページ制作費用の勘定科目と耐用年数</strong>
-            <ul>
-                <li><strong>ソフトウェア</strong>：耐用年数5年（自社利用のソフトウェア）</li>
-                <li><strong>工具器具備品</strong>：耐用年数5年（器具及び備品として処理する場合）</li>
-            </ul>
-        </div>
-
-        <p><strong>仕訳例：制作費500,000円（税込550,000円）を支払った場合（定額法による償却）</strong></p>
-
-        <p>【取得時】</p>
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>ソフトウェア</td>
-                <td>500,000</td>
-                <td>現金（または普通預金）</td>
-                <td>550,000</td>
-            </tr>
-            <tr>
-                <td>仮払消費税</td>
-                <td>50,000</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
-        <p>【決算時（1年目）】</p>
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>減価償却費</td>
-                <td>100,000</td>
-                <td>ソフトウェア</td>
-                <td>100,000</td>
-            </tr>
-        </table>
-
-        <p>※ 500,000円 ÷ 5年 = 100,000円/年（定額法の場合）</p>
-
-        <div class="internal-link">
-            <a href="/blog/detail.php?slug=homepage-production-price-guide"><i class="fas fa-link"></i> ホームページ制作の相場を徹底解説！大分県の費用相場も紹介</a>
-        </div>
-
-        <h2>3. ケース別の仕訳例</h2>
-
-        <p>実際のホームページ制作では、様々なケースが考えられます。ここでは代表的なケースの仕訳例を紹介します。</p>
-
-        <h3>3-1. 新規制作の場合</h3>
-
-        <p>企業として初めてホームページを制作する場合、<strong>プログラムや機能の有無</strong>によって処理が変わります。</p>
-
-        <p><strong>Case A：単純な情報掲載のみのサイト（50,000円）</strong></p>
-
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>広告宣伝費</td>
-                <td>50,000</td>
-                <td>普通預金</td>
-                <td>55,000</td>
-            </tr>
-            <tr>
-                <td>仮払消費税</td>
-                <td>5,000</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
-        <p><strong>Case B：予約システム付きのサイト（800,000円）</strong></p>
-
-        <p>【取得時】</p>
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>ソフトウェア</td>
-                <td>800,000</td>
-                <td>普通預金</td>
-                <td>880,000</td>
-            </tr>
-            <tr>
-                <td>仮払消費税</td>
-                <td>80,000</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
-        <p>【決算時（年間償却）】</p>
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>減価償却費</td>
-                <td>160,000</td>
-                <td>ソフトウェア</td>
-                <td>160,000</td>
-            </tr>
-        </table>
-
-        <h3>3-2. リニューアルの場合</h3>
-
-        <p>既存のホームページをリニューアルする場合、<strong>既存サイトの簿価の処理</strong>が必要になることがあります。</p>
-
-        <p><strong>例：既存サイトの簿価が200,000円残っている状態で、新たに600,000円でリニューアル</strong></p>
-
-        <p>【既存サイトの除却】</p>
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>固定資産除却損</td>
-                <td>200,000</td>
-                <td>ソフトウェア</td>
-                <td>200,000</td>
-            </tr>
-        </table>
-
-        <p>【新サイトの取得】</p>
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>ソフトウェア</td>
-                <td>600,000</td>
-                <td>普通預金</td>
-                <td>660,000</td>
-            </tr>
-            <tr>
-                <td>仮払消費税</td>
-                <td>60,000</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
-        <div class="highlight-box">
-            <strong>リニューアルの判断ポイント</strong>
-            <p><strong>全面的なリニューアル</strong>（デザイン・機能を大幅変更）の場合は、既存サイトを除却し新規取得として処理。<strong>部分的な修正</strong>（デザイン微調整、ページ追加程度）の場合は、修繕費や保守費用として費用処理します。</p>
-        </div>
-
-        <h3>3-3. 保守・運用費用の場合</h3>
-
-        <p>ホームページ公開後の保守・運用費用は、<strong>基本的に費用として処理</strong>します。</p>
-
-        <p><strong>毎月の保守費用30,000円を支払った場合</strong></p>
-
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>保守費<br>（または支払手数料）</td>
-                <td>30,000</td>
-                <td>普通預金</td>
-                <td>33,000</td>
-            </tr>
-            <tr>
-                <td>仮払消費税</td>
-                <td>3,000</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
-        <div class="info-box">
-            <strong>保守・運用費用に含まれるもの</strong>
-            <ul>
-                <li>サーバー・ドメイン管理費</li>
-                <li>定期的なバックアップ</li>
-                <li>セキュリティアップデート</li>
-                <li>軽微なコンテンツ更新</li>
-                <li>アクセス解析レポート作成</li>
-            </ul>
-        </div>
-
-        <h3>3-4. ドメイン・サーバー費用の場合</h3>
-
-        <p>ドメインやサーバーの費用は、<strong>通常は費用として処理</strong>します。</p>
-
-        <p><strong>年間のドメイン・サーバー費用15,000円を支払った場合</strong></p>
-
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>支払手数料<br>（または通信費）</td>
-                <td>15,000</td>
-                <td>普通預金</td>
-                <td>16,500</td>
-            </tr>
-            <tr>
-                <td>仮払消費税</td>
-                <td>1,500</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
-        <h2>4. 減価償却の方法</h2>
-
-        <p>ホームページ制作費用を資産計上した場合、<strong>減価償却によって費用化</strong>していきます。</p>
-
-        <h3>4-1. 償却方法の種類</h3>
-
-        <p>日本の税法では、主に以下の2つの償却方法があります：</p>
-
-        <ul>
-            <li><strong>定額法</strong>：毎年同じ金額を償却（一般的）</li>
-            <li><strong>定率法</strong>：初年度に多く償却し、年々償却額が減少</li>
-        </ul>
-
-        <p>ホームページなどのソフトウェアは、<strong>原則として定額法</strong>で償却します<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/hojin/5461.htm" target="_blank" rel="noopener noreferrer" class="external-link"><i class="fas fa-external-link-alt"></i> （国税庁：減価償却資産の償却方法）</a>。</p>
-
-        <h3>4-2. 耐用年数</h3>
-
-        <p>ホームページの耐用年数は、<strong>自社利用のソフトウェアとして5年</strong>が一般的です。</p>
-
-        <div class="info-box">
-            <strong>耐用年数の根拠</strong>
-            <p>国税庁の耐用年数表において、「自社利用のソフトウェア（複写して販売するための原本、開発研究用のものを除く）」は<strong>5年</strong>と定められています。</p>
-        </div>
-
-        <h3>4-3. 償却計算の具体例</h3>
-
-        <p><strong>取得価額：500,000円、耐用年数：5年、定額法で償却する場合</strong></p>
-
-        <table class="accounting-table">
-            <tr>
-                <th>年度</th>
-                <th>期首簿価</th>
-                <th>償却費</th>
-                <th>期末簿価</th>
-            </tr>
-            <tr>
-                <td>1年目</td>
-                <td>500,000</td>
-                <td>100,000</td>
-                <td>400,000</td>
-            </tr>
-            <tr>
-                <td>2年目</td>
-                <td>400,000</td>
-                <td>100,000</td>
-                <td>300,000</td>
-            </tr>
-            <tr>
-                <td>3年目</td>
-                <td>300,000</td>
-                <td>100,000</td>
-                <td>200,000</td>
-            </tr>
-            <tr>
-                <td>4年目</td>
-                <td>200,000</td>
-                <td>100,000</td>
-                <td>100,000</td>
-            </tr>
-            <tr>
-                <td>5年目</td>
-                <td>100,000</td>
-                <td>99,999</td>
-                <td>1</td>
-            </tr>
-        </table>
-
-        <p>※ 最終年度は備忘価額1円を残します。</p>
-
-        <h3>4-4. 月割計算が必要な場合</h3>
-
-        <p>事業年度の途中で取得した場合、<strong>使用月数に応じて月割計算</strong>を行います。</p>
-
-        <p><strong>例：9月に500,000円のホームページを取得（決算3月、定額法）</strong></p>
-
-        <p>使用月数：9月〜3月 = 7ヶ月</p>
-        <p>1年目の償却費：500,000円 × 0.2（償却率）× 7/12 = 58,333円</p>
-
-        <h2>5. 消費税の取り扱い</h2>
-
-        <p>ホームページ制作費用における消費税の取り扱いについて解説します。</p>
-
-        <h3>5-1. 課税取引に該当する</h3>
-
-        <p>ホームページ制作費用は、<strong>消費税の課税取引</strong>に該当します。税込経理方式と税抜経理方式のどちらを採用しているかで処理が異なります。</p>
-
-        <div class="info-box">
-            <strong>税抜経理方式（一般的）</strong>
-            <p>制作費用と消費税を分けて記帳します。本体価格のみを固定資産または費用として計上し、消費税は「仮払消費税」として別途記帳します。</p>
-        </div>
-
-        <div class="info-box">
-            <strong>税込経理方式</strong>
-            <p>消費税を含めた総額で記帳します。消費税を含めた金額が固定資産または費用となります。</p>
-        </div>
-
-        <h3>5-2. 固定資産の判定基準</h3>
-
-        <p>固定資産に該当するかどうかの<strong>10万円・20万円・30万円の判定</strong>は、以下のようになります：</p>
-
-        <ul>
-            <li><strong>税抜経理方式の場合</strong>：税抜金額で判定</li>
-            <li><strong>税込経理方式の場合</strong>：税込金額で判定</li>
-            <li><strong>免税事業者の場合</strong>：税込金額で判定</li>
-        </ul>
-
-        <p><strong>例：制作費95,000円（税込104,500円）の場合</strong></p>
-
-        <ul>
-            <li>税抜経理方式：95,000円で判定 → <strong>10万円未満なので全額費用処理可能</strong></li>
-            <li>税込経理方式：104,500円で判定 → <strong>10万円以上なので資産計上が必要</strong></li>
-        </ul>
-
-        <div class="highlight-box">
-            <strong>実務上のポイント</strong>
-            <p>税抜経理方式を採用している場合、消費税を含めると10万円を超える場合でも、<strong>本体価格が10万円未満であれば全額費用処理できる</strong>ため、節税効果があります。</p>
-        </div>
-
-        <h2>6. 補助金を使った場合の処理</h2>
-
-        <p>ホームページ制作に補助金を利用した場合の会計処理について解説します。</p>
-
-        <h3>6-1. 補助金受給時の基本的な処理</h3>
-
-        <p>補助金は<strong>「雑収入」または「国庫補助金受贈益」</strong>として計上します。</p>
-
-        <p><strong>例：制作費500,000円、補助金200,000円を受給した場合</strong></p>
-
-        <p>【制作費の支払時】</p>
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>ソフトウェア</td>
-                <td>500,000</td>
-                <td>普通預金</td>
-                <td>550,000</td>
-            </tr>
-            <tr>
-                <td>仮払消費税</td>
-                <td>50,000</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
-        <p>【補助金の受給時】</p>
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>普通預金</td>
-                <td>200,000</td>
-                <td>雑収入</td>
-                <td>200,000</td>
-            </tr>
-        </table>
-
-        <h3>6-2. 圧縮記帳という選択肢</h3>
-
-        <p>補助金を受給した場合、<strong>圧縮記帳</strong>という制度を利用できる場合があります。これは、補助金相当額を資産の取得価額から控除することで、<strong>補助金収入に対する税負担を繰り延べる</strong>制度です。</p>
-
-        <p><strong>圧縮記帳を適用した場合の仕訳例</strong></p>
-
-        <table class="accounting-table">
-            <tr>
-                <th>借方</th>
-                <th>金額</th>
-                <th>貸方</th>
-                <th>金額</th>
-            </tr>
-            <tr>
-                <td>固定資産圧縮損</td>
-                <td>200,000</td>
-                <td>ソフトウェア</td>
-                <td>200,000</td>
-            </tr>
-        </table>
-
-        <p>この場合、ソフトウェアの帳簿価額は300,000円となり、以後は300,000円を基準に減価償却を行います。</p>
-
-        <div class="warning-box">
-            <strong>圧縮記帳の注意点</strong>
-            <ul>
-                <li>税負担を将来に繰り延べるだけで、<strong>免除されるわけではない</strong></li>
-                <li>適用できる補助金の種類に制限がある</li>
-                <li>届出や申告書への記載が必要</li>
-                <li>顧問税理士に相談することを強く推奨</li>
-            </ul>
-        </div>
-
-        <h3>6-3. 大分県の主な補助金制度</h3>
-
-        <p>大分県でホームページ制作に活用できる主な補助金：</p>
-
-        <ul>
-            <li><strong>小規模事業者持続化補助金</strong>：最大250万円、Web制作費用も対象</li>
-            <li><strong>IT導入補助金</strong>：ECサイトや予約システム付きサイトが対象になる場合も</li>
-            <li><strong>大分県事業再構築補助金</strong>：新規事業展開に伴うWeb構築</li>
-        </ul>
-
-        <div class="internal-link">
-            <a href="/blog/detail.php?slug=subsidy-guide-website"><i class="fas fa-link"></i> ホームページ制作に使える補助金ガイド【大分県版】</a>
-        </div>
-
-        <h2>7. 注意点とよくある質問</h2>
-
-        <h3>7-1. よくある間違い</h3>
-
-        <div class="warning-box">
-            <strong>間違いやすいポイント</strong>
-            <ul>
-                <li><strong>全額を広告宣伝費で処理してしまう</strong>：機能的なサイトで10万円以上の場合は資産計上が原則</li>
-                <li><strong>リニューアル費用を修繕費で処理</strong>：全面リニューアルは新規取得として処理すべき</li>
-                <li><strong>ドメイン取得費用を固定資産にしてしまう</strong>：年間契約の場合は費用処理が適切</li>
-                <li><strong>保守費用を資産に計上</strong>：維持管理費用は費用処理</li>
-            </ul>
-        </div>
-
-        <h3>7-2. よくある質問（Q&A）</h3>
-
-        <p><strong>Q1. 制作費が11万円の場合、どう処理すべきですか？</strong></p>
-
-        <p>A. 中小企業者等であれば、<strong>少額減価償却資産の特例（30万円未満）</strong>を利用して全額損金算入できます。それ以外の場合は、一括償却資産（3年均等償却）または通常の減価償却資産として処理します。</p>
-
-        <p><strong>Q2. ランディングページ（LP）の制作費は広告宣伝費で良いですか？</strong></p>
-
-        <p>A. LPは広告的な性質が強いため、<strong>10万円未満であれば広告宣伝費で処理可能</strong>です。ただし、複雑なシステムが組み込まれている場合は、内容を精査する必要があります。</p>
-
-        <p><strong>Q3. 既存サイトのリニューアルで、デザインだけ変更する場合は？</strong></p>
-
-        <p>A. デザインのみの変更で機能に変更がない場合は、<strong>修繕費または保守費用として費用処理</strong>するのが適切です。ただし、金額が大きい場合は資産計上を検討します。</p>
-
-        <p><strong>Q4. 毎月3万円の保守費用は、どう処理しますか？</strong></p>
-
-        <p>A. <strong>支払手数料または保守費として費用処理</strong>します。継続的に発生する維持管理費用は資産計上しません。</p>
-
-        <p><strong>Q5. 自分で作った場合の人件費は計上できますか？</strong></p>
-
-        <p>A. 自社の従業員が制作した場合、<strong>通常の人件費として処理</strong>します。ただし、外部に委託した場合と同様の機能を持つサイトを構築した場合、理論上はソフトウェアとして資産計上することも考えられますが、実務上は複雑なため、税理士に相談することを推奨します。</p>
-
-        <h3>7-3. 税務調査で指摘されやすいポイント</h3>
-
-        <div class="highlight-box">
-            <strong>税務調査での注意点</strong>
-            <ul>
-                <li><strong>機能的なサイトを全額費用処理している</strong>：プログラム機能がある場合はソフトウェアとして資産計上が必要</li>
-                <li><strong>高額な制作費を広告宣伝費で処理</strong>：50万円以上の費用を一括で費用処理すると指摘される可能性</li>
-                <li><strong>著作権の帰属が不明確</strong>：制作会社に著作権が残る契約の場合、資産計上できない可能性</li>
-            </ul>
-        </div>
-
-        <h3>7-4. 迷った時の判断フローチャート</h3>
-
-        <div class="flow-chart">
-            <div class="flow-step">ホームページ制作費用が発生</div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-step">金額は10万円未満？ → YES → 全額費用処理</div>
-            <div class="flow-arrow">↓ NO</div>
-            <div class="flow-step">単なる情報掲載のみ？ → YES → 広告宣伝費で費用処理も可</div>
-            <div class="flow-arrow">↓ NO</div>
-            <div class="flow-step">プログラム機能あり？ → YES → ソフトウェアとして資産計上</div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-step">30万円未満？ → YES → 少額減価償却資産の特例を検討</div>
-            <div class="flow-arrow">↓ NO</div>
-            <div class="flow-step">耐用年数5年で減価償却</div>
-        </div>
-
-        <div class="internal-link">
-            <a href="/blog/detail.php?slug=website-maintenance-guide"><i class="fas fa-link"></i> Webサイトの保守・運用で本当に必要なこと</a>
-        </div>
-
-        <h2>8. まとめ：適切な経理処理で安心のWeb運営を</h2>
-
-        <p>ホームページ制作費用の会計処理は、金額や機能、目的によって異なります。最後に重要なポイントをまとめます：</p>
-
-        <ul>
-            <li><strong>10万円未満は全額費用処理可能</strong>（広告宣伝費など）</li>
-            <li><strong>10万円以上は原則として資産計上</strong>（ソフトウェアまたは工具器具備品）</li>
-            <li><strong>中小企業は30万円未満まで即時償却可能</strong>（少額減価償却資産の特例）</li>
-            <li><strong>耐用年数は原則5年</strong>（自社利用のソフトウェア）</li>
-            <li><strong>保守・運用費用は費用処理</strong>（継続的な維持管理費用）</li>
-            <li><strong>補助金利用時は圧縮記帳も検討</strong>（顧問税理士に相談）</li>
-            <li><strong>消費税の処理方法</strong>（税抜経理方式が一般的）に注意</li>
-        </ul>
-
-        <div class="info-box">
-            <strong>実務での推奨事項</strong>
-            <ul>
-                <li>契約時に<strong>制作内容の詳細を文書で残す</strong>（後の判断材料になる）</li>
-                <li>見積書は<strong>項目別に内訳を明記</strong>してもらう（デザイン費、システム開発費など）</li>
-                <li>金額が大きい場合や判断に迷う場合は、<strong>必ず顧問税理士に相談</strong></li>
-                <li>税制改正もあるため、<strong>最新の税法を確認</strong></li>
-            </ul>
-        </div>
-
-        <div class="cta-box">
-            <h3>余日（yojitsu）のホームページ制作サービス</h3>
-            <p>余日では、大分県を中心に、<strong>適切な会計処理を見据えたホームページ制作</strong>を提供しています。</p>
-            <ul style="text-align: left; display: inline-block; margin: 20px auto;">
-                <li><strong>明確な見積もり</strong>：会計処理しやすい項目別の詳細見積書</li>
-                <li><strong>税理士との連携</strong>：必要に応じて顧問税理士との調整をサポート</li>
-                <li><strong>補助金申請支援</strong>：活用可能な補助金のご提案と申請サポート</li>
-                <li><strong>柔軟な契約形態</strong>：予算に応じた段階的な制作プランもご提案</li>
-                <li><strong>透明性の高い料金体系</strong>：追加費用が発生しない明朗会計</li>
-            </ul>
-            <p><strong>料金目安</strong>：コーポレートサイト30万円〜、ランディングページ15万円〜</p>
-            <a href="/contact.php" class="cta-button">無料相談・お見積もり依頼</a>
-        </div>
-
-        <p>ホームページ制作費用の会計処理は、<strong>正しく理解することで節税効果も期待できます</strong>。不明点や不安がある場合は、必ず専門家に相談しましょう。</p>
-
-        <p>大分県でホームページ制作をお考えの企業様、適切な経理処理を含めてトータルサポートいたします。お気軽に余日（yojitsu）までご相談ください。</p>
-
-        <div class="internal-link">
-            <a href="/blog/detail.php?slug=website-planning-guide"><i class="fas fa-link"></i> 成果の出るWebサイト設計の進め方</a>
-        </div>
-
-        <div class="internal-link">
-            <a href="/blog/detail.php?slug=website-renewal-checklist"><i class="fas fa-link"></i> ホームページリニューアルのチェックリスト完全版</a>
-        </div>
-
-        <hr style="margin: 50px 0; border: none; border-top: 1px solid #ddd;">
-
-        <p style="color: #7f8c8d; font-size: 0.9em;">
-            <strong>この記事を書いた人</strong><br>
-            山田 蓮（やまだ れん）<br>
-            余日（yojitsu）代表。大分県を拠点に、Webマーケティングとホームページ制作を支援。税理士とも連携し、中小企業のデジタル化と適切な経理処理をサポートしています。
-        </p>
-
-        <p style="color: #7f8c8d; font-size: 0.85em; margin-top: 30px;">
-            <strong>参考文献</strong><br>
-            ・国税庁「タックスアンサー No.5461 ソフトウエアの取得価額と耐用年数」<br>
-            ・国税庁「法人税基本通達7-3-15の2」<br>
-            ・中小企業庁「中小企業等経営強化法に基づく支援措置」
-        </p>
-    </article>
-</body>
-</html>
+
+<h1>ホームページ制作費用の勘定科目は？経理処理を徹底解説</h1>
+
+<p>「ホームページを制作したけれど、この費用はどの勘定科目で処理すればいいの？」「資産として計上すべき？それとも経費で処理できる？」——大分県でホームページ制作を検討、または発注された企業の経理担当者や経営者の方から、このような会計処理に関するご質問を数多くいただきます。</p>
+
+<p>ホームページ制作費用の会計処理は、<strong>金額や使用目的、機能によって取り扱いが異なる</strong>ため、適切な判断が必要です。誤った処理をしてしまうと、税務調査で指摘される可能性もあり、注意が必要です。</p>
+
+<p>本記事では、Web制作と経理実務に精通した余日（yojitsu）が、ホームページ制作費用の勘定科目と会計処理について、具体的な仕訳例を交えながら徹底解説します。大分県の企業の皆様が安心して正しい経理処理ができるよう、実務で役立つ情報をお届けします。</p>
+
+<h2>1. ホームページ制作費用の会計処理の基本</h2>
+
+<p>まずは、ホームページ制作費用の会計処理における基本的な考え方を理解しましょう。</p>
+
+<h3>1-1. 資産計上 vs 費用計上の判断基準</h3>
+
+<p>ホームページ制作費用は、<strong>状況に応じて「資産」または「費用」のいずれかで処理</strong>します。この判断基準は主に以下の3つの要素で決まります。</p>
+
+<div class="info-box">
+<strong>判断基準の3要素</strong>
+<ol>
+<li><strong>金額の大きさ</strong>：10万円が大きな分岐点</li>
+<li><strong>使用期間</strong>：1年以上使用するか否か</li>
+<li><strong>機能・目的</strong>：広告宣伝目的か、事業用資産か</li>
+</ol>
+</div>
+
+<h3>1-2. 基本的な考え方</h3>
+
+<p>国税庁の見解によれば、ホームページの制作費用は原則として以下のように取り扱われます<a href="https://www.nta.go.jp/law/shitsugi/hojin/12/12.htm" target="_blank" rel="noopener noreferrer" class="external-link"><i class="fas fa-external-link-alt"></i> （国税庁タックスアンサー）</a>：</p>
+
+<ul>
+<li><strong>単なる広告宣伝費的なもの</strong>：広告宣伝費として費用処理</li>
+<li><strong>プログラムを使用した機能的なもの</strong>：ソフトウェアとして資産計上</li>
+<li><strong>10万円未満のもの</strong>：金額基準により費用処理可能</li>
+</ul>
+
+<p>この基本原則を踏まえた上で、具体的なケースごとの処理方法を見ていきましょう。</p>
+
+<h2>2. 金額別の処理方法</h2>
+
+<p>ホームページ制作費用の処理は、<strong>制作費用の総額</strong>によって大きく変わります。</p>
+
+<h3>2-1. 10万円未満の場合</h3>
+
+<p>制作費用が<strong>10万円未満の場合は、全額を費用として処理</strong>できます。これは少額資産の損金算入の特例によるものです。</p>
+
+<div class="info-box">
+<strong>使用する勘定科目</strong>
+<ul>
+<li><strong>広告宣伝費</strong>：最も一般的。商品・サービスの宣伝が主目的の場合</li>
+<li><strong>支払手数料</strong>：制作を外部に委託した場合</li>
+<li><strong>雑費</strong>：頻度が低く、他の科目に該当しない場合</li>
+</ul>
+</div>
+
+<p><strong>仕訳例：制作費80,000円（税込88,000円）を支払った場合</strong></p>
+
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>広告宣伝費</td>
+<td>80,000</td>
+<td>現金（または普通預金）</td>
+<td>88,000</td>
+</tr>
+<tr>
+<td>仮払消費税</td>
+<td>8,000</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<h3>2-2. 10万円以上20万円未満の場合</h3>
+
+<p>制作費用が<strong>10万円以上20万円未満の場合</strong>は、以下の選択肢があります：</p>
+
+<ol>
+<li><strong>通常の減価償却資産として処理</strong>：耐用年数に応じて償却</li>
+<li><strong>一括償却資産として処理</strong>：3年間で均等償却（中小企業向け）</li>
+</ol>
+
+<p><strong>一括償却資産を選択した場合の仕訳例：制作費150,000円（税込165,000円）の場合</strong></p>
+
+<p>【取得時】</p>
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>一括償却資産</td>
+<td>150,000</td>
+<td>現金（または普通預金）</td>
+<td>165,000</td>
+</tr>
+<tr>
+<td>仮払消費税</td>
+<td>15,000</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<p>【決算時（1年目）】</p>
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>減価償却費</td>
+<td>50,000</td>
+<td>一括償却資産</td>
+<td>50,000</td>
+</tr>
+</table>
+
+<p>※ 150,000円 ÷ 3年 = 50,000円/年</p>
+
+<div class="highlight-box">
+<strong>一括償却資産のメリット</strong>
+<ul>
+<li>償却期間が3年で固定されるため、管理が簡単</li>
+<li>償却資産税（固定資産税）の対象外</li>
+<li>中小企業には使いやすい制度</li>
+</ul>
+</div>
+
+<h3>2-3. 20万円以上30万円未満の場合（中小企業者等）</h3>
+
+<p>資本金1億円以下の中小企業者等は、<strong>少額減価償却資産の特例</strong>を利用できます。これにより、<strong>30万円未満の資産を取得した年度に全額損金算入</strong>できます（年間合計300万円まで）。</p>
+
+<p><strong>仕訳例：制作費250,000円（税込275,000円）を支払った場合</strong></p>
+
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>工具器具備品<br>（またはソフトウェア）</td>
+<td>250,000</td>
+<td>現金（または普通預金）</td>
+<td>275,000</td>
+</tr>
+<tr>
+<td>仮払消費税</td>
+<td>25,000</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<p>【決算時】</p>
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>減価償却費</td>
+<td>250,000</td>
+<td>工具器具備品<br>（またはソフトウェア）</td>
+<td>250,000</td>
+</tr>
+</table>
+
+<div class="warning-box">
+<strong>注意点</strong>
+<p>この特例を利用するには、<strong>確定申告書に「少額減価償却資産の取得価額に関する明細書」を添付</strong>する必要があります。忘れずに手続きを行いましょう。</p>
+</div>
+
+<h3>2-4. 30万円以上の場合</h3>
+
+<p>制作費用が<strong>30万円以上の場合は、原則として固定資産に計上</strong>し、耐用年数に応じて減価償却を行います。</p>
+
+<div class="info-box">
+<strong>ホームページ制作費用の勘定科目と耐用年数</strong>
+<ul>
+<li><strong>ソフトウェア</strong>：耐用年数5年（自社利用のソフトウェア）</li>
+<li><strong>工具器具備品</strong>：耐用年数5年（器具及び備品として処理する場合）</li>
+</ul>
+</div>
+
+<p><strong>仕訳例：制作費500,000円（税込550,000円）を支払った場合（定額法による償却）</strong></p>
+
+<p>【取得時】</p>
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>ソフトウェア</td>
+<td>500,000</td>
+<td>現金（または普通預金）</td>
+<td>550,000</td>
+</tr>
+<tr>
+<td>仮払消費税</td>
+<td>50,000</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<p>【決算時（1年目）】</p>
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>減価償却費</td>
+<td>100,000</td>
+<td>ソフトウェア</td>
+<td>100,000</td>
+</tr>
+</table>
+
+<p>※ 500,000円 ÷ 5年 = 100,000円/年（定額法の場合）</p>
+
+<div class="internal-link">
+<a href="/blog/detail.php?slug=homepage-production-price-guide"><i class="fas fa-link"></i> ホームページ制作の相場を徹底解説！大分県の費用相場も紹介</a>
+</div>
+
+<h2>3. ケース別の仕訳例</h2>
+
+<p>実際のホームページ制作では、様々なケースが考えられます。ここでは代表的なケースの仕訳例を紹介します。</p>
+
+<h3>3-1. 新規制作の場合</h3>
+
+<p>企業として初めてホームページを制作する場合、<strong>プログラムや機能の有無</strong>によって処理が変わります。</p>
+
+<p><strong>Case A：単純な情報掲載のみのサイト（50,000円）</strong></p>
+
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>広告宣伝費</td>
+<td>50,000</td>
+<td>普通預金</td>
+<td>55,000</td>
+</tr>
+<tr>
+<td>仮払消費税</td>
+<td>5,000</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<p><strong>Case B：予約システム付きのサイト（800,000円）</strong></p>
+
+<p>【取得時】</p>
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>ソフトウェア</td>
+<td>800,000</td>
+<td>普通預金</td>
+<td>880,000</td>
+</tr>
+<tr>
+<td>仮払消費税</td>
+<td>80,000</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<p>【決算時（年間償却）】</p>
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>減価償却費</td>
+<td>160,000</td>
+<td>ソフトウェア</td>
+<td>160,000</td>
+</tr>
+</table>
+
+<h3>3-2. リニューアルの場合</h3>
+
+<p>既存のホームページをリニューアルする場合、<strong>既存サイトの簿価の処理</strong>が必要になることがあります。</p>
+
+<p><strong>例：既存サイトの簿価が200,000円残っている状態で、新たに600,000円でリニューアル</strong></p>
+
+<p>【既存サイトの除却】</p>
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>固定資産除却損</td>
+<td>200,000</td>
+<td>ソフトウェア</td>
+<td>200,000</td>
+</tr>
+</table>
+
+<p>【新サイトの取得】</p>
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>ソフトウェア</td>
+<td>600,000</td>
+<td>普通預金</td>
+<td>660,000</td>
+</tr>
+<tr>
+<td>仮払消費税</td>
+<td>60,000</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<div class="highlight-box">
+<strong>リニューアルの判断ポイント</strong>
+<p><strong>全面的なリニューアル</strong>（デザイン・機能を大幅変更）の場合は、既存サイトを除却し新規取得として処理。<strong>部分的な修正</strong>（デザイン微調整、ページ追加程度）の場合は、修繕費や保守費用として費用処理します。</p>
+</div>
+
+<h3>3-3. 保守・運用費用の場合</h3>
+
+<p>ホームページ公開後の保守・運用費用は、<strong>基本的に費用として処理</strong>します。</p>
+
+<p><strong>毎月の保守費用30,000円を支払った場合</strong></p>
+
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>保守費<br>（または支払手数料）</td>
+<td>30,000</td>
+<td>普通預金</td>
+<td>33,000</td>
+</tr>
+<tr>
+<td>仮払消費税</td>
+<td>3,000</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<div class="info-box">
+<strong>保守・運用費用に含まれるもの</strong>
+<ul>
+<li>サーバー・ドメイン管理費</li>
+<li>定期的なバックアップ</li>
+<li>セキュリティアップデート</li>
+<li>軽微なコンテンツ更新</li>
+<li>アクセス解析レポート作成</li>
+</ul>
+</div>
+
+<h3>3-4. ドメイン・サーバー費用の場合</h3>
+
+<p>ドメインやサーバーの費用は、<strong>通常は費用として処理</strong>します。</p>
+
+<p><strong>年間のドメイン・サーバー費用15,000円を支払った場合</strong></p>
+
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>支払手数料<br>（または通信費）</td>
+<td>15,000</td>
+<td>普通預金</td>
+<td>16,500</td>
+</tr>
+<tr>
+<td>仮払消費税</td>
+<td>1,500</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<h2>4. 減価償却の方法</h2>
+
+<p>ホームページ制作費用を資産計上した場合、<strong>減価償却によって費用化</strong>していきます。</p>
+
+<h3>4-1. 償却方法の種類</h3>
+
+<p>日本の税法では、主に以下の2つの償却方法があります：</p>
+
+<ul>
+<li><strong>定額法</strong>：毎年同じ金額を償却（一般的）</li>
+<li><strong>定率法</strong>：初年度に多く償却し、年々償却額が減少</li>
+</ul>
+
+<p>ホームページなどのソフトウェアは、<strong>原則として定額法</strong>で償却します<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/hojin/5461.htm" target="_blank" rel="noopener noreferrer" class="external-link"><i class="fas fa-external-link-alt"></i> （国税庁：減価償却資産の償却方法）</a>。</p>
+
+<h3>4-2. 耐用年数</h3>
+
+<p>ホームページの耐用年数は、<strong>自社利用のソフトウェアとして5年</strong>が一般的です。</p>
+
+<div class="info-box">
+<strong>耐用年数の根拠</strong>
+<p>国税庁の耐用年数表において、「自社利用のソフトウェア（複写して販売するための原本、開発研究用のものを除く）」は<strong>5年</strong>と定められています。</p>
+</div>
+
+<h3>4-3. 償却計算の具体例</h3>
+
+<p><strong>取得価額：500,000円、耐用年数：5年、定額法で償却する場合</strong></p>
+
+<table class="accounting-table">
+<tr>
+<th>年度</th>
+<th>期首簿価</th>
+<th>償却費</th>
+<th>期末簿価</th>
+</tr>
+<tr>
+<td>1年目</td>
+<td>500,000</td>
+<td>100,000</td>
+<td>400,000</td>
+</tr>
+<tr>
+<td>2年目</td>
+<td>400,000</td>
+<td>100,000</td>
+<td>300,000</td>
+</tr>
+<tr>
+<td>3年目</td>
+<td>300,000</td>
+<td>100,000</td>
+<td>200,000</td>
+</tr>
+<tr>
+<td>4年目</td>
+<td>200,000</td>
+<td>100,000</td>
+<td>100,000</td>
+</tr>
+<tr>
+<td>5年目</td>
+<td>100,000</td>
+<td>99,999</td>
+<td>1</td>
+</tr>
+</table>
+
+<p>※ 最終年度は備忘価額1円を残します。</p>
+
+<h3>4-4. 月割計算が必要な場合</h3>
+
+<p>事業年度の途中で取得した場合、<strong>使用月数に応じて月割計算</strong>を行います。</p>
+
+<p><strong>例：9月に500,000円のホームページを取得（決算3月、定額法）</strong></p>
+
+<p>使用月数：9月〜3月 = 7ヶ月</p>
+<p>1年目の償却費：500,000円 × 0.2（償却率）× 7/12 = 58,333円</p>
+
+<h2>5. 消費税の取り扱い</h2>
+
+<p>ホームページ制作費用における消費税の取り扱いについて解説します。</p>
+
+<h3>5-1. 課税取引に該当する</h3>
+
+<p>ホームページ制作費用は、<strong>消費税の課税取引</strong>に該当します。税込経理方式と税抜経理方式のどちらを採用しているかで処理が異なります。</p>
+
+<div class="info-box">
+<strong>税抜経理方式（一般的）</strong>
+<p>制作費用と消費税を分けて記帳します。本体価格のみを固定資産または費用として計上し、消費税は「仮払消費税」として別途記帳します。</p>
+</div>
+
+<div class="info-box">
+<strong>税込経理方式</strong>
+<p>消費税を含めた総額で記帳します。消費税を含めた金額が固定資産または費用となります。</p>
+</div>
+
+<h3>5-2. 固定資産の判定基準</h3>
+
+<p>固定資産に該当するかどうかの<strong>10万円・20万円・30万円の判定</strong>は、以下のようになります：</p>
+
+<ul>
+<li><strong>税抜経理方式の場合</strong>：税抜金額で判定</li>
+<li><strong>税込経理方式の場合</strong>：税込金額で判定</li>
+<li><strong>免税事業者の場合</strong>：税込金額で判定</li>
+</ul>
+
+<p><strong>例：制作費95,000円（税込104,500円）の場合</strong></p>
+
+<ul>
+<li>税抜経理方式：95,000円で判定 → <strong>10万円未満なので全額費用処理可能</strong></li>
+<li>税込経理方式：104,500円で判定 → <strong>10万円以上なので資産計上が必要</strong></li>
+</ul>
+
+<div class="highlight-box">
+<strong>実務上のポイント</strong>
+<p>税抜経理方式を採用している場合、消費税を含めると10万円を超える場合でも、<strong>本体価格が10万円未満であれば全額費用処理できる</strong>ため、節税効果があります。</p>
+</div>
+
+<h2>6. 補助金を使った場合の処理</h2>
+
+<p>ホームページ制作に補助金を利用した場合の会計処理について解説します。</p>
+
+<h3>6-1. 補助金受給時の基本的な処理</h3>
+
+<p>補助金は<strong>「雑収入」または「国庫補助金受贈益」</strong>として計上します。</p>
+
+<p><strong>例：制作費500,000円、補助金200,000円を受給した場合</strong></p>
+
+<p>【制作費の支払時】</p>
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>ソフトウェア</td>
+<td>500,000</td>
+<td>普通預金</td>
+<td>550,000</td>
+</tr>
+<tr>
+<td>仮払消費税</td>
+<td>50,000</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<p>【補助金の受給時】</p>
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>普通預金</td>
+<td>200,000</td>
+<td>雑収入</td>
+<td>200,000</td>
+</tr>
+</table>
+
+<h3>6-2. 圧縮記帳という選択肢</h3>
+
+<p>補助金を受給した場合、<strong>圧縮記帳</strong>という制度を利用できる場合があります。これは、補助金相当額を資産の取得価額から控除することで、<strong>補助金収入に対する税負担を繰り延べる</strong>制度です。</p>
+
+<p><strong>圧縮記帳を適用した場合の仕訳例</strong></p>
+
+<table class="accounting-table">
+<tr>
+<th>借方</th>
+<th>金額</th>
+<th>貸方</th>
+<th>金額</th>
+</tr>
+<tr>
+<td>固定資産圧縮損</td>
+<td>200,000</td>
+<td>ソフトウェア</td>
+<td>200,000</td>
+</tr>
+</table>
+
+<p>この場合、ソフトウェアの帳簿価額は300,000円となり、以後は300,000円を基準に減価償却を行います。</p>
+
+<div class="warning-box">
+<strong>圧縮記帳の注意点</strong>
+<ul>
+<li>税負担を将来に繰り延べるだけで、<strong>免除されるわけではない</strong></li>
+<li>適用できる補助金の種類に制限がある</li>
+<li>届出や申告書への記載が必要</li>
+<li>顧問税理士に相談することを強く推奨</li>
+</ul>
+</div>
+
+<h3>6-3. 大分県の主な補助金制度</h3>
+
+<p>大分県でホームページ制作に活用できる主な補助金：</p>
+
+<ul>
+<li><strong>小規模事業者持続化補助金</strong>：最大250万円、Web制作費用も対象</li>
+<li><strong>IT導入補助金</strong>：ECサイトや予約システム付きサイトが対象になる場合も</li>
+<li><strong>大分県事業再構築補助金</strong>：新規事業展開に伴うWeb構築</li>
+</ul>
+
+<div class="internal-link">
+<a href="/blog/detail.php?slug=subsidy-guide-website"><i class="fas fa-link"></i> ホームページ制作に使える補助金ガイド【大分県版】</a>
+</div>
+
+<h2>7. 注意点とよくある質問</h2>
+
+<h3>7-1. よくある間違い</h3>
+
+<div class="warning-box">
+<strong>間違いやすいポイント</strong>
+<ul>
+<li><strong>全額を広告宣伝費で処理してしまう</strong>：機能的なサイトで10万円以上の場合は資産計上が原則</li>
+<li><strong>リニューアル費用を修繕費で処理</strong>：全面リニューアルは新規取得として処理すべき</li>
+<li><strong>ドメイン取得費用を固定資産にしてしまう</strong>：年間契約の場合は費用処理が適切</li>
+<li><strong>保守費用を資産に計上</strong>：維持管理費用は費用処理</li>
+</ul>
+</div>
+
+<h3>7-2. よくある質問（Q&A）</h3>
+
+<p><strong>Q1. 制作費が11万円の場合、どう処理すべきですか？</strong></p>
+
+<p>A. 中小企業者等であれば、<strong>少額減価償却資産の特例（30万円未満）</strong>を利用して全額損金算入できます。それ以外の場合は、一括償却資産（3年均等償却）または通常の減価償却資産として処理します。</p>
+
+<p><strong>Q2. ランディングページ（LP）の制作費は広告宣伝費で良いですか？</strong></p>
+
+<p>A. LPは広告的な性質が強いため、<strong>10万円未満であれば広告宣伝費で処理可能</strong>です。ただし、複雑なシステムが組み込まれている場合は、内容を精査する必要があります。</p>
+
+<p><strong>Q3. 既存サイトのリニューアルで、デザインだけ変更する場合は？</strong></p>
+
+<p>A. デザインのみの変更で機能に変更がない場合は、<strong>修繕費または保守費用として費用処理</strong>するのが適切です。ただし、金額が大きい場合は資産計上を検討します。</p>
+
+<p><strong>Q4. 毎月3万円の保守費用は、どう処理しますか？</strong></p>
+
+<p>A. <strong>支払手数料または保守費として費用処理</strong>します。継続的に発生する維持管理費用は資産計上しません。</p>
+
+<p><strong>Q5. 自分で作った場合の人件費は計上できますか？</strong></p>
+
+<p>A. 自社の従業員が制作した場合、<strong>通常の人件費として処理</strong>します。ただし、外部に委託した場合と同様の機能を持つサイトを構築した場合、理論上はソフトウェアとして資産計上することも考えられますが、実務上は複雑なため、税理士に相談することを推奨します。</p>
+
+<h3>7-3. 税務調査で指摘されやすいポイント</h3>
+
+<div class="highlight-box">
+<strong>税務調査での注意点</strong>
+<ul>
+<li><strong>機能的なサイトを全額費用処理している</strong>：プログラム機能がある場合はソフトウェアとして資産計上が必要</li>
+<li><strong>高額な制作費を広告宣伝費で処理</strong>：50万円以上の費用を一括で費用処理すると指摘される可能性</li>
+<li><strong>著作権の帰属が不明確</strong>：制作会社に著作権が残る契約の場合、資産計上できない可能性</li>
+</ul>
+</div>
+
+<h3>7-4. 迷った時の判断フローチャート</h3>
+
+<div class="flow-chart">
+<div class="flow-step">ホームページ制作費用が発生</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">金額は10万円未満？ → YES → 全額費用処理</div>
+<div class="flow-arrow">↓ NO</div>
+<div class="flow-step">単なる情報掲載のみ？ → YES → 広告宣伝費で費用処理も可</div>
+<div class="flow-arrow">↓ NO</div>
+<div class="flow-step">プログラム機能あり？ → YES → ソフトウェアとして資産計上</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">30万円未満？ → YES → 少額減価償却資産の特例を検討</div>
+<div class="flow-arrow">↓ NO</div>
+<div class="flow-step">耐用年数5年で減価償却</div>
+</div>
+
+<div class="internal-link">
+<a href="/blog/detail.php?slug=website-maintenance-guide"><i class="fas fa-link"></i> Webサイトの保守・運用で本当に必要なこと</a>
+</div>
+
+<h2>8. まとめ：適切な経理処理で安心のWeb運営を</h2>
+
+<p>ホームページ制作費用の会計処理は、金額や機能、目的によって異なります。最後に重要なポイントをまとめます：</p>
+
+<ul>
+<li><strong>10万円未満は全額費用処理可能</strong>（広告宣伝費など）</li>
+<li><strong>10万円以上は原則として資産計上</strong>（ソフトウェアまたは工具器具備品）</li>
+<li><strong>中小企業は30万円未満まで即時償却可能</strong>（少額減価償却資産の特例）</li>
+<li><strong>耐用年数は原則5年</strong>（自社利用のソフトウェア）</li>
+<li><strong>保守・運用費用は費用処理</strong>（継続的な維持管理費用）</li>
+<li><strong>補助金利用時は圧縮記帳も検討</strong>（顧問税理士に相談）</li>
+<li><strong>消費税の処理方法</strong>（税抜経理方式が一般的）に注意</li>
+</ul>
+
+<div class="info-box">
+<strong>実務での推奨事項</strong>
+<ul>
+<li>契約時に<strong>制作内容の詳細を文書で残す</strong>（後の判断材料になる）</li>
+<li>見積書は<strong>項目別に内訳を明記</strong>してもらう（デザイン費、システム開発費など）</li>
+<li>金額が大きい場合や判断に迷う場合は、<strong>必ず顧問税理士に相談</strong></li>
+<li>税制改正もあるため、<strong>最新の税法を確認</strong></li>
+</ul>
+</div>
+
+<div class="cta-box">
+<h3>余日（yojitsu）のホームページ制作サービス</h3>
+<p>余日では、大分県を中心に、<strong>適切な会計処理を見据えたホームページ制作</strong>を提供しています。</p>
+<ul style="text-align: left; display: inline-block; margin: 20px auto;">
+<li><strong>明確な見積もり</strong>：会計処理しやすい項目別の詳細見積書</li>
+<li><strong>税理士との連携</strong>：必要に応じて顧問税理士との調整をサポート</li>
+<li><strong>補助金申請支援</strong>：活用可能な補助金のご提案と申請サポート</li>
+<li><strong>柔軟な契約形態</strong>：予算に応じた段階的な制作プランもご提案</li>
+<li><strong>透明性の高い料金体系</strong>：追加費用が発生しない明朗会計</li>
+</ul>
+<p><strong>料金目安</strong>：コーポレートサイト30万円〜、ランディングページ15万円〜</p>
+<a href="/contact.php" class="cta-button">無料相談・お見積もり依頼</a>
+</div>
+
+<p>ホームページ制作費用の会計処理は、<strong>正しく理解することで節税効果も期待できます</strong>。不明点や不安がある場合は、必ず専門家に相談しましょう。</p>
+
+<p>大分県でホームページ制作をお考えの企業様、適切な経理処理を含めてトータルサポートいたします。お気軽に余日（yojitsu）までご相談ください。</p>
+
+<div class="internal-link">
+<a href="/blog/detail.php?slug=website-planning-guide"><i class="fas fa-link"></i> 成果の出るWebサイト設計の進め方</a>
+</div>
+
+<div class="internal-link">
+<a href="/blog/detail.php?slug=website-renewal-checklist"><i class="fas fa-link"></i> ホームページリニューアルのチェックリスト完全版</a>
+</div>
+
+<hr style="margin: 50px 0; border: none; border-top: 1px solid #ddd;">
+
+<p style="color: #7f8c8d; font-size: 0.9em;">
+<strong>この記事を書いた人</strong><br>
+山田 蓮（やまだ れん）<br>
+余日（yojitsu）代表。大分県を拠点に、Webマーケティングとホームページ制作を支援。税理士とも連携し、中小企業のデジタル化と適切な経理処理をサポートしています。
+</p>
+
+<p style="color: #7f8c8d; font-size: 0.85em; margin-top: 30px;">
+<strong>参考文献</strong><br>
+・国税庁「タックスアンサー No.5461 ソフトウエアの取得価額と耐用年数」<br>
+・国税庁「法人税基本通達7-3-15の2」<br>
+・中小企業庁「中小企業等経営強化法に基づく支援措置」
+</p>
+

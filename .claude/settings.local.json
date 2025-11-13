@@ -12,7 +12,19 @@
       "Bash(for:*)",
       "Bash(do echo \"=== Article $i ===\")",
       "Bash(head:*)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(do echo \"=== $file ===\")",
+      "Bash(do echo \"=== $file (先頭5行) ===\")",
+      "Bash(echo:*)",
+      "Bash(tail:*)",
+      "Bash(ls:*)",
+      "Bash(awk:*)",
+      "WebSearch",
+      "WebFetch(domain:llmstxt.org)",
+      "Bash(if [ -f \"blog/data/article-22-full.html\" ])",
+      "Bash(then head -100 \"blog/data/article-22-full.html\")",
+      "Bash(else echo \"File not found\")",
+      "Bash(fi)"
     ],
     "deny": [],
     "ask": []

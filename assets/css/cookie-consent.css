@@ -1,0 +1,112 @@
+/* Cookie同意バナー */
+.cookie-consent {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  color: white;
+  padding: var(--spacing-lg);
+  z-index: 9999;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.cookie-consent.show {
+  transform: translateY(0);
+}
+
+.cookie-consent__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+}
+
+.cookie-consent__content {
+  flex: 1;
+}
+
+.cookie-consent__text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xs);
+}
+
+.cookie-consent__link {
+  color: #4a9eff;
+  text-decoration: underline;
+  font-size: 14px;
+  margin-left: var(--spacing-xs);
+}
+
+.cookie-consent__link:hover {
+  color: #6bb1ff;
+}
+
+.cookie-consent__actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-shrink: 0;
+}
+
+.cookie-consent__button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.cookie-consent__button--accept {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.cookie-consent__button--accept:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.cookie-consent__button--decline {
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cookie-consent__button--decline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .cookie-consent {
+    padding: var(--spacing-md);
+  }
+
+  .cookie-consent__container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+
+  .cookie-consent__text {
+    font-size: 13px;
+  }
+
+  .cookie-consent__actions {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .cookie-consent__button {
+    width: 100%;
+    padding: 14px 20px;
+  }
+}

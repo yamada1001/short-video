@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/pages/contact.css">
+    <link rel="stylesheet" href="assets/css/cookie-consent.css">
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -194,6 +195,7 @@
                     <a href="blog/" class="footer__link"><i class="fas fa-blog"></i> ブログ</a>
                     <a href="news/" class="footer__link"><i class="fas fa-newspaper"></i> お知らせ</a>
                     <a href="contact.html" class="footer__link"><i class="fas fa-envelope"></i> お問い合わせ</a>
+                    <a href="privacy.html" class="footer__link"><i class="fas fa-shield-alt"></i> プライバシーポリシー</a>
                 </div>
                 <div class="footer__section">
                     <h3 class="footer__section-title">お問い合わせ</h3>
@@ -222,5 +224,22 @@
     <script src="assets/js/common.js"></script>
     <script src="assets/js/external-links.js"></script>
     <script src="assets/js/form-validation.js"></script>
+    <!-- Cookie同意バナー -->
+    <div id="cookieConsent" class="cookie-consent">
+        <div class="cookie-consent__container">
+            <div class="cookie-consent__content">
+                <p class="cookie-consent__text">
+                    当サイトは、ウェブサイトにおけるお客様の利用状況を把握するためにCookieを使用しています。「同意する」をクリックすると、当サイトでのCookieの使用に同意することになります。
+                    <a href="privacy.html" class="cookie-consent__link">プライバシーポリシー</a>
+                </p>
+            </div>
+            <div class="cookie-consent__actions">
+                <button id="acceptCookies" class="cookie-consent__button cookie-consent__button--accept">同意する</button>
+                <button id="declineCookies" class="cookie-consent__button cookie-consent__button--decline">拒否する</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/cookie-consent.js"></script>
 </body>
 </html>
