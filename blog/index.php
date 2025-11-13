@@ -1,16 +1,17 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
 
-// ブログ記事取得
-$posts = getPosts(BLOG_DATA_PATH);
+// ブログ記事取得（1回のみ）
+$all_posts = getPosts(BLOG_DATA_PATH);
 
 // 新しい順に並べ替え
-usort($posts, function($a, $b) {
+usort($all_posts, function($a, $b) {
     return strtotime($b['publishedAt']) - strtotime($a['publishedAt']);
 });
 
 // カテゴリフィルター
 $category = isset($_GET['category']) ? $_GET['category'] : '';
+$posts = $all_posts;
 if ($category) {
     $posts = array_filter($posts, function($post) use ($category) {
         return $post['category'] === $category;
@@ -23,7 +24,6 @@ $pagination = getPagination(count($posts), BLOG_PER_PAGE, $page);
 $paged_posts = array_slice($posts, $pagination['offset'], BLOG_PER_PAGE);
 
 // 全カテゴリ取得
-$all_posts = getPosts(BLOG_DATA_PATH);
 $categories = array_unique(array_column($all_posts, 'category'));
 ?>
 <!DOCTYPE html>
@@ -33,6 +33,11 @@ $categories = array_unique(array_column($all_posts, 'category'));
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="余日（Yojitsu）のブログ。SEO、広告運用、Web制作に関する最新情報とノウハウをお届けします。">
     <title>ブログ | 余日（Yojitsu）</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -45,6 +50,8 @@ $categories = array_unique(array_column($all_posts, 'category'));
     <link rel="stylesheet" href="../assets/css/common.css">
     <link rel="stylesheet" href="../assets/css/components.css">
     <link rel="stylesheet" href="../assets/css/pages/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -207,7 +214,6 @@ $categories = array_unique(array_column($all_posts, 'category'));
         </div>
     </footer>
 
-    <script src="../assets/js/fontawesome-init.js"></script>
     <script src="../assets/js/nav.js"></script>
     <script src="../assets/js/common.js"></script>
 </body>

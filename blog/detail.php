@@ -54,6 +54,11 @@ $toc = generateToc($post['content']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?php echo h($post['excerpt']); ?>">
     <title><?php echo h($post['title']); ?> | ブログ | 余日（Yojitsu）</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -77,6 +82,8 @@ $toc = generateToc($post['content']);
     <link rel="stylesheet" href="../assets/css/components.css">
     <link rel="stylesheet" href="../assets/css/pages/blog.css">
     <link rel="stylesheet" href="../assets/css/toc.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -260,7 +267,6 @@ $toc = generateToc($post['content']);
         </div>
     </footer>
 
-    <script src="../assets/js/fontawesome-init.js"></script>
     <script src="../assets/js/nav.js"></script>
     <script src="../assets/js/common.js"></script>
     <script src="../assets/js/toc.js"></script>

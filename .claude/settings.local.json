@@ -30,7 +30,11 @@
       "Bash(if [ -f \"$file\" ])",
       "Bash(then wc -c \"$file\")",
       "Bash(do echo \"=== article-$i ===\")",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(time curl:*)",
+      "Bash(find:*)",
+      "Bash(chmod:*)",
+      "Bash(./optimize-html.sh:*)"
     ],
     "deny": [],
     "ask": []
