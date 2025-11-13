@@ -18,12 +18,17 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Google Fonts - Optimized with display=swap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
 
     <!-- Critical CSS - Inline for faster FCP -->
     <style>
@@ -33,25 +38,38 @@
         .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;background-color:#f5f5f5}
     </style>
 
-    <!-- CSS -->
+    <!-- CSS - Preload critical, defer non-critical -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/cta.css">
-    <link rel="stylesheet" href="assets/css/pages/top.css">
-    <link rel="stylesheet" href="assets/css/cookie-consent.css">
+    <link rel="preload" href="assets/css/cta.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="assets/css/pages/top.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="assets/css/cookie-consent.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="assets/css/cta.css">
+        <link rel="stylesheet" href="assets/css/pages/top.css">
+        <link rel="stylesheet" href="assets/css/cookie-consent.css">
+    </noscript>
 
-    <!-- Font Awesome - Async load for non-blocking -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+    <!-- Font Awesome - Lazy load with preload -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
-    <!-- Google Tag Manager - Deferred -->
+    <!-- Google Tag Manager - Deferred with timeout -->
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    // Load GTM after page load
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            var script = document.createElement('script');
+            script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2';
+            script.async = true;
+            document.head.appendChild(script);
+        }, 2000);
+    });
     </script>
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
 
     <!-- 構造化データ -->
     <script type="application/ld+json">
