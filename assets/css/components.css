@@ -9,6 +9,10 @@
   border-bottom: 1px solid var(--color-border);
   padding: var(--spacing-md) 0;
   transition: box-shadow var(--transition-base);
+  /* 常時表示を保証 */
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 .header--scrolled {
