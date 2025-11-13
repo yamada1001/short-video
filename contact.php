@@ -113,6 +113,18 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="contact-method" class="form-label form-label--required">ご希望の連絡方法</label>
+                    <select id="contact-method" name="contact_method" class="form-select" required>
+                        <option value="">選択してください</option>
+                        <option value="LINE">LINE</option>
+                        <option value="電話">電話</option>
+                        <option value="メール">メール</option>
+                        <option value="どれでも可">どれでも可</option>
+                    </select>
+                    <div class="form-error" id="contactMethodError">ご希望の連絡方法を選択してください</div>
+                </div>
+
+                <div class="form-group">
                     <label for="subject" class="form-label form-label--required">お問い合わせ種別</label>
                     <select id="subject" name="subject" class="form-select" required>
                         <option value="">選択してください</option>

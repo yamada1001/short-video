@@ -15,6 +15,9 @@
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(value);
     },
+    'contact-method': function(value) {
+      return value.trim().length > 0;
+    },
     subject: function(value) {
       return value.trim().length > 0;
     },
