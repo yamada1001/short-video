@@ -12,9 +12,7 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/common.css">
-    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/pages/about.css">
     <link rel="stylesheet" href="assets/css/cookie-consent.css">
 
@@ -219,9 +217,6 @@
         </div>
     </div>
 
-    <script defer src="assets/js/nav.js"></script>
-    <script defer src="assets/js/common.js"></script>
-    <script defer src="assets/js/external-links.js"></script>
-    <script defer src="assets/js/cookie-consent.js"></script>
+    <script defer src="assets/js/app.js"></script>
 </body>
 </html>

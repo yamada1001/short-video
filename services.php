@@ -15,9 +15,7 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/common.css">
-    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/cta.css">
     <link rel="stylesheet" href="assets/css/pages/services.css">
     <link rel="stylesheet" href="assets/css/cookie-consent.css">
@@ -213,9 +211,7 @@
         </div>
     </footer>
 
-    <script defer src="assets/js/nav.js"></script>
-    <script defer src="assets/js/common.js"></script>
-    <script defer src="assets/js/external-links.js"></script>
+    <script defer src="assets/js/app.js"></script>
     <script defer src="assets/js/service-tabs.js"></script>
     <!-- Cookie同意バナー -->
     <div id="cookieConsent" class="cookie-consent">
@@ -233,6 +229,5 @@
         </div>
     </div>
 
-    <script defer src="assets/js/cookie-consent.js"></script>
 </body>
 </html>

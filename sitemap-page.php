@@ -37,9 +37,7 @@ foreach ($categories as &$category_posts) {
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/common.css">
-    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/pages/sitemap.css">
     <link rel="stylesheet" href="assets/css/cookie-consent.css">
 
@@ -184,9 +182,7 @@ foreach ($categories as &$category_posts) {
         </div>
     </footer>
 
-    <script defer src="assets/js/nav.js"></script>
-    <script defer src="assets/js/common.js"></script>
-    <script defer src="assets/js/external-links.js"></script>
+    <script defer src="assets/js/app.js"></script>
     <!-- Cookie同意バナー -->
     <div id="cookieConsent" class="cookie-consent">
         <div class="cookie-consent__container">
@@ -203,6 +199,5 @@ foreach ($categories as &$category_posts) {
         </div>
     </div>
 
-    <script defer src="assets/js/cookie-consent.js"></script>
 </body>
 </html>

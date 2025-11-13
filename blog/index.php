@@ -71,9 +71,7 @@ $categories = array_unique(array_column($all_posts, 'category'));
     })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
     <!-- End Google Tag Manager -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="stylesheet" href="../assets/css/reset.css">
-    <link rel="stylesheet" href="../assets/css/common.css">
-    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/pages/blog.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
@@ -256,7 +254,5 @@ $categories = array_unique(array_column($all_posts, 'category'));
         </div>
     </footer>
 
-    <script src="../assets/js/nav.js"></script>
-    <script src="../assets/js/common.js"></script>
-</body>
+    <script defer src="assets/js/app.js"></script>
 </html>
