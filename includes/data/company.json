@@ -1,0 +1,45 @@
+{
+  "company": {
+    "name": "余日（Yojitsu）",
+    "nameKana": "ヨジツ",
+    "representative": "山田 蓮",
+    "founded": "2025.05.14",
+    "foundedJp": "令和7年5月14日",
+    "taxId": "T9810094141774",
+    "location": "大分県",
+    "description": "大分県を拠点に、デジタルマーケティングで地域企業を支援",
+    "services": [
+      "Webサイト制作",
+      "SEO対策",
+      "Web広告運用",
+      "ショート動画制作"
+    ],
+    "values": [
+      {
+        "title": "顧客第一",
+        "icon": "fa-users",
+        "description": "お客様のビジネス成長を最優先に考え、最適なソリューションを提供します。"
+      },
+      {
+        "title": "データドリブン",
+        "icon": "fa-chart-line",
+        "description": "数値に基づいた戦略立案と、継続的な効果測定で確実な成果を実現します。"
+      },
+      {
+        "title": "継続的改善",
+        "icon": "fa-sync-alt",
+        "description": "PDCAサイクルを回し、常に最新のマーケティング手法を取り入れています。"
+      },
+      {
+        "title": "地域貢献",
+        "icon": "fa-heart",
+        "description": "大分県をはじめ、地域企業のデジタル化支援を通じて地域経済の活性化に貢献します。"
+      }
+    ],
+    "representative_profile": {
+      "name": "山田 蓮",
+      "position": "代表",
+      "description": "Web業界でのキャリアを経て、余日（Yojitsu）を設立。SEO対策、Web広告運用を中心に、データに基づいたマーケティング戦略の立案・実行をサポート。大分県を拠点に、地域企業のデジタルマーケティングを支援しています。"
+    }
+  }
+}

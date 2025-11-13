@@ -1,4 +1,12 @@
-<?php $current_page = 'about'; ?>
+<?php
+$current_page = 'about';
+require_once __DIR__ . '/includes/functions.php';
+
+// 会社情報を取得
+$company_data = file_get_contents(__DIR__ . '/includes/data/company.json');
+$company_json = json_decode($company_data, true);
+$company = $company_json['company'] ?? [];
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -69,41 +77,39 @@
             <table class="company-table animate">
                 <tr>
                     <th>屋号</th>
-                    <td>余日（Yojitsu）</td>
+                    <td><?php echo h($company['name']); ?></td>
                 </tr>
                 <tr>
                     <th>代表</th>
-                    <td>山田 蓮</td>
+                    <td><?php echo h($company['representative']); ?></td>
                 </tr>
                 <tr>
                     <th>拠点</th>
-                    <td>大分県（オンライン対応可）</td>
+                    <td><?php echo h($company['location']); ?>（オンライン対応可）</td>
                 </tr>
                 <tr>
                     <th>設立</th>
-                    <td>令和7年5月14日（2025年5月14日）</td>
+                    <td><?php echo h($company['foundedJp']); ?>（<?php echo h($company['founded']); ?>）</td>
                 </tr>
                 <tr>
                     <th>登録番号</th>
-                    <td>適格請求書発行事業者<br>T9810094141774</td>
+                    <td>適格請求書発行事業者<br><?php echo h($company['taxId']); ?></td>
                 </tr>
                 <tr>
                     <th>事業内容</th>
                     <td>
-                        SEO対策<br>
-                        Web広告運用代行<br>
-                        Webサイト制作<br>
-                        ショート動画制作<br>
-                        デジタルマーケティングコンサルティング
+                        <?php foreach ($company['services'] as $service): ?>
+                            <?php echo h($service); ?><br>
+                        <?php endforeach; ?>
                     </td>
                 </tr>
                 <tr>
                     <th>電話番号</th>
-                    <td>080-4692-9681</td>
+                    <td><?php echo CONTACT_TEL; ?></td>
                 </tr>
                 <tr>
                     <th>メールアドレス</th>
-                    <td>yamada@yojitu.com</td>
+                    <td><?php echo CONTACT_EMAIL; ?></td>
                 </tr>
             </table>
         </div>

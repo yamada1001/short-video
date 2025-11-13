@@ -1,4 +1,12 @@
-<?php $current_page = 'services'; ?>
+<?php
+$current_page = 'services';
+require_once __DIR__ . '/includes/functions.php';
+
+// サービス情報を取得
+$services_data = file_get_contents(__DIR__ . '/includes/data/services.json');
+$services_json = json_decode($services_data, true);
+$services = $services_json['services'] ?? [];
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -64,6 +72,11 @@
     </section>
 
     <!-- Web制作 -->
+    <?php
+    $web_service = array_filter($services, function($s) { return $s['id'] === 'web'; });
+    $web_service = reset($web_service);
+    if ($web_service):
+    ?>
     <section class="service-detail" id="web">
         <div class="container">
             <div class="service-detail__container">
@@ -71,46 +84,46 @@
                     <div class="service-detail__icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
-                    <h2 class="service-detail__title">Web制作</h2>
+                    <h2 class="service-detail__title"><?php echo h($web_service['name']); ?></h2>
                     <p class="service-detail__description">
-                        コーポレートサイト、LP（ランディングページ）など、目的に合わせたWebサイトを制作。シンプルで見やすいデザインと高速表示を実現します。
+                        <?php echo h($web_service['description']); ?>
                     </p>
                     <h3>制作可能なサイト</h3>
                     <ul class="service-detail__features">
-                        <li>コーポレートサイト</li>
-                        <li>ランディングページ（LP）</li>
-                        <li>採用サイト</li>
-                        <li>オウンドメディア</li>
+                        <?php foreach ($web_service['features'] as $feature): ?>
+                            <li><?php echo h($feature); ?></li>
+                        <?php endforeach; ?>
                     </ul>
                     <h3>標準機能</h3>
                     <ul class="service-detail__features">
-                        <li>レスポンシブデザイン</li>
-                        <li>SEO対策（構造化データ、メタタグ最適化）</li>
-                        <li>ページ速度最適化</li>
-                        <li>お問い合わせフォーム</li>
-                        <li>Google Analytics・Search Console設定</li>
-                        <li>SSL対応</li>
+                        <?php foreach ($web_service['standardFeatures'] as $feature): ?>
+                            <li><?php echo h($feature); ?></li>
+                        <?php endforeach; ?>
                     </ul>
                     <div class="pricing-table">
-                        <div class="pricing-table__row">
-                            <div class="pricing-table__label">LP制作</div>
-                            <div class="pricing-table__value">50,000円〜</div>
-                        </div>
-                        <div class="pricing-table__row">
-                            <div class="pricing-table__label">コーポレートサイト</div>
-                            <div class="pricing-table__value">300,000円〜</div>
-                        </div>
+                        <?php foreach ($web_service['pricing'] as $price): ?>
+                            <div class="pricing-table__row">
+                                <div class="pricing-table__label"><?php echo h($price['name']); ?></div>
+                                <div class="pricing-table__value"><?php echo h($price['price']); ?></div>
+                            </div>
+                        <?php endforeach; ?>
                         <div class="pricing-table__row">
                             <div class="pricing-table__label">制作期間</div>
-                            <div class="pricing-table__value">LP: 1週間 / コーポレート: 1ヶ月</div>
+                            <div class="pricing-table__value"><?php echo h($web_service['deliveryTime']); ?></div>
                         </div>
                     </div>
                 </div>
+    <?php endif; ?>
             </div>
         </div>
     </section>
 
     <!-- ショート動画制作 -->
+    <?php
+    $video_service = array_filter($services, function($s) { return $s['id'] === 'video'; });
+    $video_service = reset($video_service);
+    if ($video_service):
+    ?>
     <section class="service-detail" id="short-video">
         <div class="container">
             <div class="service-detail__container">
@@ -118,42 +131,39 @@
                     <div class="service-detail__icon">
                         <i class="fas fa-video"></i>
                     </div>
-                    <h2 class="service-detail__title">ショート動画制作</h2>
+                    <h2 class="service-detail__title"><?php echo h($video_service['name']); ?></h2>
                     <p class="service-detail__description">
-                        Instagram Reels、TikTok、YouTube Shortsに対応したショート動画を制作。撮影から編集まで、SNSマーケティングをトータルサポートします。
+                        <?php echo h($video_service['description']); ?>
                     </p>
                     <h3>対応プラットフォーム</h3>
                     <ul class="service-detail__features">
-                        <li>Instagram Reels</li>
-                        <li>TikTok</li>
-                        <li>YouTube Shorts</li>
+                        <?php foreach ($video_service['platforms'] as $platform): ?>
+                            <li><?php echo h($platform); ?></li>
+                        <?php endforeach; ?>
                     </ul>
                     <h3>制作内容</h3>
                     <ul class="service-detail__features">
-                        <li>撮影（1時間まで）</li>
-                        <li>編集作業</li>
-                        <li>BGM・効果音追加</li>
-                        <li>テロップ挿入</li>
-                        <li>修正1回まで</li>
+                        <?php foreach ($video_service['productionContent'] as $content): ?>
+                            <li><?php echo h($content); ?></li>
+                        <?php endforeach; ?>
                     </ul>
                     <div class="pricing-table">
+                        <?php foreach ($video_service['pricing'] as $price): ?>
+                            <div class="pricing-table__row">
+                                <div class="pricing-table__label"><?php echo h($price['name']); ?></div>
+                                <div class="pricing-table__value"><?php echo h($price['price']); ?></div>
+                            </div>
+                        <?php endforeach; ?>
                         <div class="pricing-table__row">
-                            <div class="pricing-table__label">基本プラン</div>
-                            <div class="pricing-table__value">20,000円 / 1本</div>
-                        </div>
-                        <div class="pricing-table__row">
-                            <div class="pricing-table__label">10本セット</div>
-                            <div class="pricing-table__value">150,000円（25%オフ）</div>
-                        </div>
-                        <div class="pricing-table__row">
-                            <div class="pricing-table__label">企画案作成</div>
-                            <div class="pricing-table__value">5,000円（10本分）</div>
+                            <div class="pricing-table__label">納期</div>
+                            <div class="pricing-table__value"><?php echo h($video_service['deliveryTime']); ?></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <?php endif; ?>
 
     <!-- CTAセクション -->
     <?php $cta_base_path = ''; include __DIR__ . '/includes/cta.php'; ?>
