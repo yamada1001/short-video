@@ -40,7 +40,8 @@
       "Bash(php:*)",
       "Bash(xargs sed:*)",
       "WebFetch(domain:pagespeed.web.dev)",
-      "Bash(assets/css/critical.min.css)"
+      "Bash(assets/css/critical.min.css)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
