@@ -174,6 +174,8 @@ $categories = array_unique(array_column($all_posts, 'category'));
                     <a href="../blog/" class="footer__link"><i class="fas fa-blog"></i> ブログ</a>
                     <a href="../news/" class="footer__link"><i class="fas fa-newspaper"></i> お知らせ</a>
                     <a href="../contact.html" class="footer__link"><i class="fas fa-envelope"></i> お問い合わせ</a>
+                    <a href="../privacy.html" class="footer__link"><i class="fas fa-shield-alt"></i> プライバシーポリシー</a>
+                    <a href="../sitemap-page.php" class="footer__link"><i class="fas fa-sitemap"></i> サイトマップ</a>
                 </div>
                 <div class="footer__section">
                     <h3 class="footer__section-title">お問い合わせ</h3>
