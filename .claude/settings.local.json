@@ -24,7 +24,8 @@
       "Bash(if [ -f \"blog/data/article-22-full.html\" ])",
       "Bash(then head -100 \"blog/data/article-22-full.html\")",
       "Bash(else echo \"File not found\")",
-      "Bash(fi)"
+      "Bash(fi)",
+      "WebFetch(domain:yojitu.com)"
     ],
     "deny": [],
     "ask": []
