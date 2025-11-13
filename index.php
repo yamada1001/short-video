@@ -273,13 +273,13 @@ sort($all_categories);
 
             <!-- カテゴリフィルタ -->
             <div class="blog-category-filter animate" style="text-align: center; margin-bottom: 40px;">
-                <a href="?category=all#blog" class="category-filter-btn <?php echo $selected_category === 'all' ? 'active' : ''; ?>" style="display: inline-block; padding: 8px 20px; margin: 4px; border: 1px solid var(--color-natural-brown); border-radius: 20px; color: <?php echo $selected_category === 'all' ? '#fff' : 'var(--color-natural-brown)'; ?>; background-color: <?php echo $selected_category === 'all' ? 'var(--color-natural-brown)' : 'transparent'; ?>; text-decoration: none; transition: all 0.3s;">すべて</a>
+                <button data-category="all" class="category-filter-btn active" style="display: inline-block; padding: 8px 20px; margin: 4px; border: 1px solid var(--color-natural-brown); border-radius: 20px; background-color: var(--color-natural-brown); color: #fff; cursor: pointer; transition: all 0.3s;">すべて</button>
                 <?php foreach ($all_categories as $category): ?>
-                    <a href="?category=<?php echo urlencode($category); ?>#blog" class="category-filter-btn <?php echo $selected_category === $category ? 'active' : ''; ?>" style="display: inline-block; padding: 8px 20px; margin: 4px; border: 1px solid var(--color-natural-brown); border-radius: 20px; color: <?php echo $selected_category === $category ? '#fff' : 'var(--color-natural-brown)'; ?>; background-color: <?php echo $selected_category === $category ? 'var(--color-natural-brown)' : 'transparent'; ?>; text-decoration: none; transition: all 0.3s;"><?php echo h($category); ?></a>
+                    <button data-category="<?php echo h($category); ?>" class="category-filter-btn" style="display: inline-block; padding: 8px 20px; margin: 4px; border: 1px solid var(--color-natural-brown); border-radius: 20px; background-color: transparent; color: var(--color-natural-brown); cursor: pointer; transition: all 0.3s;"><?php echo h($category); ?></button>
                 <?php endforeach; ?>
             </div>
 
-            <div class="blog-preview-grid">
+            <div class="blog-preview-grid" id="blogPreviewGrid">
                 <?php foreach ($latest_posts as $post): ?>
                     <?php
                     $date = new DateTime($post['publishedAt']);
@@ -300,6 +300,58 @@ sort($all_categories);
             </div>
         </div>
     </section>
+
+    <script>
+    // ブログカテゴリフィルタ（Ajax）
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.category-filter-btn');
+        const blogGrid = document.getElementById('blogPreviewGrid');
+
+        filterButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const category = this.dataset.category;
+
+                // アクティブボタンの切り替え
+                filterButtons.forEach(function(btn) {
+                    btn.classList.remove('active');
+                    btn.style.backgroundColor = 'transparent';
+                    btn.style.color = 'var(--color-natural-brown)';
+                });
+                this.classList.add('active');
+                this.style.backgroundColor = 'var(--color-natural-brown)';
+                this.style.color = '#fff';
+
+                // Ajaxリクエスト
+                fetch('/api/blog-filter.php?category=' + encodeURIComponent(category))
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        if (data.success) {
+                            // グリッドを更新
+                            blogGrid.innerHTML = '';
+                            data.posts.forEach(function(post) {
+                                const card = document.createElement('a');
+                                card.href = 'blog/detail.php?slug=' + post.slug;
+                                card.className = 'blog-preview-card animate';
+                                card.innerHTML =
+                                    '<div class="blog-preview-card__meta">' +
+                                        '<span class="blog-preview-card__date">' + post.date + '</span>' +
+                                        '<span class="blog-preview-card__category">' + post.category + '</span>' +
+                                    '</div>' +
+                                    '<h3 class="blog-preview-card__title">' + post.title + '</h3>' +
+                                    '<p class="blog-preview-card__excerpt">' + post.excerpt + '</p>';
+                                blogGrid.appendChild(card);
+                            });
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+    });
+    </script>
 
     <!-- CTAセクション -->
     <?php

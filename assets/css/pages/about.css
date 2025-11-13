@@ -28,7 +28,7 @@
 
 /* 会社情報セクション */
 .company-info {
-  padding: var(--spacing-xxl) 0;
+  padding: 0 0 var(--spacing-xxl) 0;
 }
 
 .company-info__grid {
