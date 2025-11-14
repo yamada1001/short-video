@@ -509,6 +509,10 @@ a:hover {
 
 /* 全画面モバイルメニュー - グラスモーフィズム風フルスクリーン */
 .nav__list--mobile {
+  display: none;
+}
+
+.nav__list--mobile.nav__list--active {
   position: fixed;
   top: 0;
   left: 0;
@@ -530,8 +534,8 @@ a:hover {
   align-items: center;
   padding: var(--spacing-xxl) var(--spacing-md);
   gap: 0;
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
               visibility 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 9999;
@@ -539,7 +543,7 @@ a:hover {
 }
 
 /* 多層背景アニメーション - より繊細に */
-.nav__list--mobile::before {
+.nav__list--mobile.nav__list--active::before {
   content: '';
   position: absolute;
   top: -50%;
@@ -554,7 +558,7 @@ a:hover {
 }
 
 /* 装飾的なアクセント - 控えめで上品 */
-.nav__list--mobile::after {
+.nav__list--mobile.nav__list--active::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -589,13 +593,8 @@ a:hover {
   }
 }
 
-.nav__list--mobile.nav__list--active {
-  opacity: 1;
-  visibility: visible;
-}
-
 /* メニュー項目のstaggered animation - より洗練された動き */
-.nav__list--mobile li {
+.nav__list--mobile.nav__list--active li {
   opacity: 0;
   transform: translateY(30px) scale(0.95);
   position: relative;
