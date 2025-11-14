@@ -21,6 +21,11 @@ $paged_articles = array_slice($articles, $pagination['offset'], NEWS_PER_PAGE);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="余日（Yojitsu）のお知らせ一覧ページです。最新情報をお届けします。">
     <title>お知らせ一覧 | 余日（Yojitsu）</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -29,6 +34,9 @@ $paged_articles = array_slice($articles, $pagination['offset'], NEWS_PER_PAGE);
     })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
     <!-- End Google Tag Manager -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/news.css">
 </head>

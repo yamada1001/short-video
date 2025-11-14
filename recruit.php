@@ -16,7 +16,16 @@ require_once __DIR__ . '/includes/functions.php';
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
     <!-- End Google Tag Manager -->
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <?php require_once __DIR__ . '/includes/favicon.php'; ?>
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
+
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/pages/about.css">
     <link rel="stylesheet" href="assets/css/pages/top.css">

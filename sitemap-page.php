@@ -31,10 +31,15 @@ foreach ($categories as &$category_posts) {
     <title>サイトマップ | 余日（Yojitsu）</title>
 
     <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <?php require_once __DIR__ . '/includes/favicon.php'; ?>
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
 
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/base.css">
