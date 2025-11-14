@@ -74,20 +74,6 @@
   opacity: 0.7;
 }
 
-.nav__link--active {
-  color: var(--color-natural-brown);
-}
-
-.nav__link--active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: var(--color-natural-brown);
-}
-
 /* ===== ハンバーガーメニュー ===== */
 .hamburger {
   display: none;
@@ -157,7 +143,7 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* 全画面モバイルメニュー - おしゃれなフルスクリーン表示 */
+/* 全画面モバイルメニュー - モダンでおしゃれなフルスクリーン表示 */
 .nav__list--mobile {
   position: fixed;
   top: 0;
@@ -167,9 +153,12 @@
   width: 100%;
   height: 100vh;
   height: 100dvh;
-  background: linear-gradient(135deg, rgba(99, 88, 76, 0.96) 0%, rgba(70, 62, 54, 0.96) 100%);
-  backdrop-filter: blur(30px) saturate(180%);
-  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  background: linear-gradient(135deg,
+    rgba(99, 88, 76, 0.95) 0%,
+    rgba(70, 62, 54, 0.95) 50%,
+    rgba(99, 88, 76, 0.95) 100%);
+  backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -178,13 +167,14 @@
   gap: 0;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              visibility 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 9999;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
 
-/* 背景アニメーション */
+/* 多層背景アニメーション - より繊細に */
 .nav__list--mobile::before {
   content: '';
   position: absolute;
@@ -192,15 +182,47 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at 50% 50%, rgba(219, 203, 178, 0.08) 0%, transparent 50%);
-  animation: backgroundFloat 20s ease-in-out infinite;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(219, 203, 178, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(139, 115, 85, 0.08) 0%, transparent 50%);
+  animation: backgroundFloat 25s ease-in-out infinite;
   pointer-events: none;
 }
 
+/* 装飾的なアクセント - 控えめで上品 */
+.nav__list--mobile::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1px;
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(219, 203, 178, 0.15) 20%,
+    rgba(219, 203, 178, 0.15) 80%,
+    transparent
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* より滑らかな背景アニメーション */
 @keyframes backgroundFloat {
-  0%, 100% { transform: translate(0, 0); }
-  33% { transform: translate(10%, 10%); }
-  66% { transform: translate(-10%, 5%); }
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  33% {
+    transform: translate(8%, 12%) rotate(2deg);
+    opacity: 0.9;
+  }
+  66% {
+    transform: translate(-8%, 6%) rotate(-2deg);
+    opacity: 0.95;
+  }
 }
 
 .nav__list--mobile.nav__list--active {
@@ -208,40 +230,50 @@
   visibility: visible;
 }
 
-/* メニュー項目のstaggered animation */
+/* メニュー項目のstaggered animation - より洗練された動き */
 .nav__list--mobile li {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(30px) scale(0.95);
+  position: relative;
+  z-index: 1;
 }
 
 .nav__list--mobile.nav__list--active li:nth-child(1) {
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+  animation: fadeInUpScale 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
 }
 
 .nav__list--mobile.nav__list--active li:nth-child(2) {
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+  animation: fadeInUpScale 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
 }
 
 .nav__list--mobile.nav__list--active li:nth-child(3) {
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+  animation: fadeInUpScale 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
 }
 
 .nav__list--mobile.nav__list--active li:nth-child(4) {
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+  animation: fadeInUpScale 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
 }
 
 .nav__list--mobile.nav__list--active li:nth-child(5) {
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+  animation: fadeInUpScale 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
 }
 
-@keyframes fadeInUp {
-  to {
+@keyframes fadeInUpScale {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  60% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-2px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
-/* アイコン付きリンク */
+/* アイコン付きリンク - よりモダンでエレガント */
 .nav__list--mobile .nav__link {
   display: flex;
   align-items: center;
@@ -254,15 +286,31 @@
   padding: var(--spacing-lg) var(--spacing-xl);
   text-align: center;
   position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 16px;
   margin-bottom: var(--spacing-sm);
+  overflow: hidden;
+}
+
+/* リンクの背景グロー効果 */
+.nav__list--mobile .nav__link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(219, 203, 178, 0.08) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .nav__list--mobile .nav__link i {
   display: inline-block;
   font-size: 28px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: drop-shadow(0 0 0 transparent);
 }
 
 .nav__list--mobile .nav__link::after {
@@ -271,63 +319,106 @@
   bottom: var(--spacing-sm);
   left: 50%;
   transform: translateX(-50%) scaleX(0);
-  width: 60%;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--color-beige), transparent);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(219, 203, 178, 0.6) 20%,
+    var(--color-beige) 50%,
+    rgba(219, 203, 178, 0.6) 80%,
+    transparent
+  );
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   border-radius: 2px;
+  box-shadow: 0 0 8px rgba(219, 203, 178, 0.3);
 }
 
 .nav__list--mobile .nav__link:hover {
   color: var(--color-beige);
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nav__list--mobile .nav__link:hover::before {
+  opacity: 1;
 }
 
 .nav__list--mobile .nav__link:hover i {
   transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 2px 8px rgba(219, 203, 178, 0.4));
 }
 
 .nav__list--mobile .nav__link:hover::after {
   transform: translateX(-50%) scaleX(1);
 }
 
-.nav__list--mobile .nav__link--active {
-  color: var(--color-beige);
-  font-weight: 500;
-  background: rgba(255, 255, 255, 0.1);
+/* タップ時のアクティブ効果 */
+.nav__list--mobile .nav__link:active {
+  transform: translateY(-1px) scale(0.98);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav__list--mobile .nav__link--active::after {
-  transform: translateX(-50%) scaleX(1);
-}
-
-/* メールアドレス */
+/* メールアドレス - エレガントでタッチしやすいデザイン */
 .nav__list--mobile .mobile-menu__email {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-xl);
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.8);
+  margin-top: var(--spacing-xxl);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  position: relative;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* メールセクションの装飾ライン */
+.nav__list--mobile .mobile-menu__email::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--spacing-xl));
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(219, 203, 178, 0.3),
+    transparent
+  );
 }
 
 .nav__list--mobile .mobile-menu__email i {
-  font-size: 20px;
+  font-size: 18px;
   color: var(--color-beige);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .nav__list--mobile .mobile-menu__email a {
   color: var(--color-bg-white);
   text-decoration: none;
-  transition: color 0.3s ease;
+  font-size: 15px;
   letter-spacing: 0.05em;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.nav__list--mobile .mobile-menu__email a:hover {
+.nav__list--mobile .mobile-menu__email:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.nav__list--mobile .mobile-menu__email:hover i {
+  transform: translateX(-2px);
+  color: rgba(219, 203, 178, 1);
+}
+
+.nav__list--mobile .mobile-menu__email:hover a {
   color: var(--color-beige);
 }
 
