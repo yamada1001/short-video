@@ -54,15 +54,14 @@
   align-items: center;
 }
 
-/* デスクトップではアイコンとメールアドレスを非表示 */
-.nav__list .nav__link i,
-.nav__list .mobile-menu__email {
-  display: none !important;
+/* デスクトップ用ナビゲーション - デフォルトで表示 */
+.nav__list--desktop {
+  display: flex;
 }
 
-/* デスクトップではメールアドレス項目自体も非表示 */
-.nav__list .mobile-menu__email {
-  display: none !important;
+/* モバイル用ナビゲーション - デフォルトで非表示 */
+.nav__list--mobile-menu {
+  display: none;
 }
 
 .nav__link {
@@ -90,8 +89,27 @@
   position: relative;
 }
 
-/* モバイル時はハンバーガーを固定 */
+/* モバイル時の制御 */
 @media (max-width: 768px) {
+  /* デスクトップナビを非表示 */
+  .nav__list--desktop {
+    display: none !important;
+  }
+
+  /* モバイルナビを準備（.nav__list--mobileクラス追加で表示される） */
+  .nav__list--mobile-menu {
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* ハンバーガーを表示 */
+  .hamburger {
+    display: flex;
+  }
+
+  /* ハンバーガーを固定 */
   .hamburger {
     position: fixed !important;
     top: 20px !important;
