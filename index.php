@@ -183,7 +183,7 @@ sort($all_categories);
                 企業の成長をサポート
             </p>
             <div class="hero__cta">
-                <a href="contact.html" class="btn btn-primary btn--large">
+                <a href="contact.php" class="btn btn-primary btn--large">
                     <span>お問い合わせ</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>

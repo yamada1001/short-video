@@ -547,7 +547,7 @@ require_once __DIR__ . '/includes/functions.php';
                         <li><i class="fas fa-check-circle"></i> <span>納期: 3〜5営業日</span></li>
                     </ul>
                     <div class="pricing-card__cta">
-                        <a href="contact.html" class="btn btn-secondary btn--large" style="width: 100%;">
+                        <a href="contact.php" class="btn btn-secondary btn--large" style="width: 100%;">
                             <i class="fas fa-envelope"></i> お問い合わせ
                         </a>
                     </div>
@@ -575,7 +575,7 @@ require_once __DIR__ . '/includes/functions.php';
                         <li><i class="fas fa-check-circle"></i> <span>優先対応</span></li>
                     </ul>
                     <div class="pricing-card__cta">
-                        <a href="contact.html" class="btn btn-primary btn--large" style="width: 100%;">
+                        <a href="contact.php" class="btn btn-primary btn--large" style="width: 100%;">
                             <i class="fas fa-envelope"></i> お問い合わせ
                         </a>
                     </div>
@@ -602,7 +602,7 @@ require_once __DIR__ . '/includes/functions.php';
                         <li><i class="fas fa-check-circle"></i> <span>納期: 2営業日</span></li>
                     </ul>
                     <div class="pricing-card__cta">
-                        <a href="contact.html" class="btn btn-secondary btn--large" style="width: 100%;">
+                        <a href="contact.php" class="btn btn-secondary btn--large" style="width: 100%;">
                             <i class="fas fa-envelope"></i> お問い合わせ
                         </a>
                     </div>

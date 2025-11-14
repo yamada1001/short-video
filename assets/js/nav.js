@@ -13,7 +13,6 @@
   function closeMenu() {
     hamburger.classList.remove('hamburger--active');
     navList.classList.remove('nav__list--active');
-    navList.classList.remove('nav__list--mobile');
     document.body.style.overflow = '';
   }
 
@@ -21,7 +20,6 @@
   function openMenu() {
     hamburger.classList.add('hamburger--active');
     navList.classList.add('nav__list--active');
-    navList.classList.add('nav__list--mobile');
     document.body.style.overflow = 'hidden';
   }
 

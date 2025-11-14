@@ -7,7 +7,7 @@ require_once __DIR__ . '/functions.php';
 
 // POST送信のみ受付
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../contact.html');
+    header('Location: ../contact.php');
     exit;
 }
 
@@ -71,7 +71,7 @@ if (!empty($errors)) {
         <div class='container' style='padding: 120px 24px 60px; text-align: center; min-height: 60vh;'>
             <h1 style='color: var(--color-natural-brown); margin-bottom: 24px;'>エラーが発生しました</h1>
             <p style='margin-bottom: 40px; color: var(--color-text-light);'><?php echo $error_message; ?></p>
-            <a href='../contact.html' class='btn btn-primary'>戻る</a>
+            <a href='../contact.php' class='btn btn-primary'>戻る</a>
         </div>
 
         <?php include __DIR__ . '/footer.php'; ?>
@@ -83,7 +83,7 @@ if (!empty($errors)) {
 }
 
 // メール送信の設定
-mb_language("Japanese");
+mb_language("uni");
 mb_internal_encoding("UTF-8");
 
 // 管理者へのメール
@@ -99,9 +99,10 @@ $mail_body .= "■ お問い合わせ種別\n" . $subject . "\n\n";
 $mail_body .= "■ お問い合わせ内容\n" . $message . "\n\n";
 $mail_body .= "送信日時: " . date('Y年m月d日 H:i:s') . "\n";
 
-$headers = "From: " . FROM_EMAIL . "\r\n";
+$headers = "From: " . ADMIN_EMAIL . "\r\n";
 $headers .= "Reply-To: " . $email . "\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 
 // 管理者へ送信
 $admin_result = mb_send_mail($to, $mail_subject, $mail_body, $headers);
@@ -130,8 +131,9 @@ $reply_body .= "Email: " . SITE_EMAIL . "\n";
 $reply_body .= "Tel: " . SITE_TEL . "\n";
 $reply_body .= "URL: " . SITE_URL . "\n";
 
-$reply_headers = "From: " . FROM_EMAIL . "\r\n";
+$reply_headers = "From: " . ADMIN_EMAIL . "\r\n";
 $reply_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$reply_headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 
 $user_result = mb_send_mail($email, $reply_subject, $reply_body, $reply_headers);
 

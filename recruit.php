@@ -211,7 +211,7 @@ require_once __DIR__ . '/includes/functions.php';
                         </tr>
                         <tr>
                             <th>お問い合わせフォーム</th>
-                            <td><a href="contact.html" style="color: var(--color-natural-brown);">こちらから</a></td>
+                            <td><a href="contact.php" style="color: var(--color-natural-brown);">こちらから</a></td>
                         </tr>
                     </table>
 

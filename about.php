@@ -211,11 +211,11 @@ $company = $company_json['company'] ?? [];
                 </div>
                 <div class="footer__section">
                     <h3 class="footer__section-title">企業情報</h3>
-                    <a href="about.html" class="footer__link"><i class="fas fa-info-circle"></i> 会社概要</a>
+                    <a href="about.php" class="footer__link"><i class="fas fa-info-circle"></i> 会社概要</a>
                     <a href="recruit.php" class="footer__link"><i class="fas fa-handshake"></i> 業務委託募集・交流</a>
                     <a href="blog/" class="footer__link"><i class="fas fa-blog"></i> ブログ</a>
                     <a href="news/" class="footer__link"><i class="fas fa-newspaper"></i> お知らせ</a>
-                    <a href="contact.html" class="footer__link"><i class="fas fa-envelope"></i> お問い合わせ</a>
+                    <a href="contact.php" class="footer__link"><i class="fas fa-envelope"></i> お問い合わせ</a>
                     <a href="privacy.html" class="footer__link"><i class="fas fa-shield-alt"></i> プライバシーポリシー</a>
                     <a href="sitemap-page.php" class="footer__link"><i class="fas fa-sitemap"></i> サイトマップ</a>
                 </div>
@@ -231,7 +231,7 @@ $company = $company_json['company'] ?? [];
                         <i class="fas fa-calendar-check" style="margin-right: 8px;"></i>定休日: なし
                     </p>
                     <div style="margin-top: 16px;">
-                        <a href="contact.html" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; font-size: 14px;">お問い合わせフォーム</a>
+                        <a href="contact.php" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; font-size: 14px;">お問い合わせフォーム</a>
                     </div>
                 </div>
             </div>

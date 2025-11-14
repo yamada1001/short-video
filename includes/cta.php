@@ -13,7 +13,7 @@ $cta_base_path = isset($cta_base_path) ? $cta_base_path : '';
             <p class="cta-section__description animate fade-in">
                 デジタルマーケティングのご相談は、<br>お気軽にお問い合わせください            </p>
             <div class="cta-buttons animate fade-in">
-                <a href="<?php echo $cta_base_path; ?>contact.html" class="btn btn-primary btn--large">
+                <a href="<?php echo $cta_base_path; ?>contact.php" class="btn btn-primary btn--large">
                     <i class="fas fa-envelope"></i> お問い合わせフォーム
                 </a>
                 <a href="<?php echo defined('CONTACT_LINE_URL') ? CONTACT_LINE_URL : 'https://line.me/ti/p/CTOCx9YKjk'; ?>" class="btn btn-secondary btn--large" target="_blank" rel="noopener noreferrer">

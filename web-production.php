@@ -465,7 +465,7 @@ require_once __DIR__ . '/includes/functions.php';
                         <li><i class="fas fa-times-circle" style="color: #ccc;"></i> <span style="color: #999;">更新機能は含まれません</span></li>
                     </ul>
                     <div class="pricing-card__cta">
-                        <a href="contact.html" class="btn btn-secondary btn--large" style="width: 100%;">
+                        <a href="contact.php" class="btn btn-secondary btn--large" style="width: 100%;">
                             <i class="fas fa-envelope"></i> お問い合わせ
                         </a>
                     </div>
@@ -494,7 +494,7 @@ require_once __DIR__ . '/includes/functions.php';
                         <li><i class="fas fa-check-circle"></i> <span>1ヶ月間の無料サポート</span></li>
                     </ul>
                     <div class="pricing-card__cta">
-                        <a href="contact.html" class="btn btn-primary btn--large" style="width: 100%;">
+                        <a href="contact.php" class="btn btn-primary btn--large" style="width: 100%;">
                             <i class="fas fa-envelope"></i> お問い合わせ
                         </a>
                     </div>
@@ -522,7 +522,7 @@ require_once __DIR__ . '/includes/functions.php';
                         <li><i class="fas fa-check-circle"></i> <span>継続的な保守・運用サポート</span></li>
                     </ul>
                     <div class="pricing-card__cta">
-                        <a href="contact.html" class="btn btn-secondary btn--large" style="width: 100%;">
+                        <a href="contact.php" class="btn btn-secondary btn--large" style="width: 100%;">
                             <i class="fas fa-envelope"></i> お見積もり依頼
                         </a>
                     </div>
@@ -584,7 +584,7 @@ require_once __DIR__ . '/includes/functions.php';
                     話だけ聞いて、誰かに紹介してくれる人なんかも大歓迎です。
                 </p>
                 <div style="text-align: center; margin-top: var(--spacing-lg);">
-                    <a href="contact.html" class="btn btn-primary btn--large">
+                    <a href="contact.php" class="btn btn-primary btn--large">
                         <i class="fas fa-envelope"></i> お気軽にご相談ください
                     </a>
                 </div>
@@ -751,7 +751,7 @@ require_once __DIR__ . '/includes/functions.php';
             </div>
 
             <div style="text-align: center; margin-top: var(--spacing-xxl);">
-                <a href="contact.html" class="btn btn-primary btn--large">
+                <a href="contact.php" class="btn btn-primary btn--large">
                     <i class="fas fa-envelope"></i> あなたのプロジェクトについて相談する
                 </a>
             </div>
