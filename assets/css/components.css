@@ -55,9 +55,14 @@
 }
 
 /* デスクトップではアイコンとメールアドレスを非表示 */
-.nav__link i,
-.mobile-menu__email {
-  display: none;
+.nav__list .nav__link i,
+.nav__list .mobile-menu__email {
+  display: none !important;
+}
+
+/* デスクトップではメールアドレス項目自体も非表示 */
+.nav__list .mobile-menu__email {
+  display: none !important;
 }
 
 .nav__link {
