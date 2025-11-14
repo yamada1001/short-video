@@ -18,7 +18,9 @@ $urls = [];
 // 静的ページ
 $staticPages = [
     ['url' => '/index.html', 'priority' => '1.0', 'changefreq' => 'weekly'],
-    ['url' => '/services.html', 'priority' => '0.9', 'changefreq' => 'weekly'],
+    ['url' => '/services.php', 'priority' => '0.9', 'changefreq' => 'weekly'],
+    ['url' => '/web-production.php', 'priority' => '0.9', 'changefreq' => 'weekly'],
+    ['url' => '/video-production.php', 'priority' => '0.9', 'changefreq' => 'weekly'],
     ['url' => '/about.html', 'priority' => '0.8', 'changefreq' => 'monthly'],
     ['url' => '/contact.html', 'priority' => '0.8', 'changefreq' => 'monthly'],
     ['url' => '/recruit.php', 'priority' => '0.7', 'changefreq' => 'monthly'],

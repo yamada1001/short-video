@@ -42,6 +42,7 @@ require_once __DIR__ . '/includes/functions.php';
             font-weight: 700;
             margin-bottom: var(--spacing-md);
             letter-spacing: 0.05em;
+            color: var(--color-bg-white);
         }
 
         .page-header__description {
@@ -382,73 +383,6 @@ require_once __DIR__ . '/includes/functions.php';
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- サービス比較表 -->
-    <section class="compare-section">
-        <div class="container">
-            <h2 class="compare-section__title">
-                <i class="fas fa-balance-scale"></i> サービス比較
-            </h2>
-
-            <div class="compare-table">
-                <div class="compare-table__row">
-                    <div class="compare-table__cell compare-table__cell--header"></div>
-                    <div class="compare-table__cell compare-table__cell--header">
-                        <i class="fas fa-laptop-code"></i> Webサイト制作
-                    </div>
-                    <div class="compare-table__cell compare-table__cell--header">
-                        <i class="fas fa-video"></i> ショート動画制作
-                    </div>
-                </div>
-
-                <div class="compare-table__row">
-                    <div class="compare-table__cell compare-table__cell--label">
-                        <i class="fas fa-yen-sign"></i> 最低価格
-                    </div>
-                    <div class="compare-table__cell">10万円〜</div>
-                    <div class="compare-table__cell">5,000円〜</div>
-                </div>
-
-                <div class="compare-table__row">
-                    <div class="compare-table__cell compare-table__cell--label">
-                        <i class="fas fa-clock"></i> 納期
-                    </div>
-                    <div class="compare-table__cell">2週間〜2ヶ月</div>
-                    <div class="compare-table__cell">2〜5営業日</div>
-                </div>
-
-                <div class="compare-table__row">
-                    <div class="compare-table__cell compare-table__cell--label">
-                        <i class="fas fa-bullseye"></i> 最適な用途
-                    </div>
-                    <div class="compare-table__cell">会社の信頼性向上<br>長期的な集客</div>
-                    <div class="compare-table__cell">認知度向上<br>SNSマーケティング</div>
-                </div>
-
-                <div class="compare-table__row">
-                    <div class="compare-table__cell compare-table__cell--label">
-                        <i class="fas fa-chart-line"></i> 効果の出方
-                    </div>
-                    <div class="compare-table__cell">じっくり資産化</div>
-                    <div class="compare-table__cell">短期間でバズる可能性</div>
-                </div>
-
-                <div class="compare-table__row">
-                    <div class="compare-table__cell compare-table__cell--label">
-                        <i class="fas fa-tools"></i> 運用の手間
-                    </div>
-                    <div class="compare-table__cell">低い<br>（一度作れば長期利用）</div>
-                    <div class="compare-table__cell">定期的な投稿が必要</div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: var(--spacing-xxl);">
-                <p style="margin-bottom: var(--spacing-md); color: var(--color-text-light);">
-                    <i class="fas fa-lightbulb"></i> <strong>おすすめの組み合わせ:</strong> Webサイトで信頼性を確保し、ショート動画で認知度を拡大
-                </p>
             </div>
         </div>
     </section>

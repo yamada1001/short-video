@@ -17,7 +17,9 @@ function generateSitemap() {
     $staticPages = [
         ['loc' => $baseUrl . '/', 'priority' => '1.0', 'changefreq' => 'daily'],
         ['loc' => $baseUrl . '/about.html', 'priority' => '0.8', 'changefreq' => 'monthly'],
-        ['loc' => $baseUrl . '/services.html', 'priority' => '0.9', 'changefreq' => 'weekly'],
+        ['loc' => $baseUrl . '/services.php', 'priority' => '0.9', 'changefreq' => 'weekly'],
+        ['loc' => $baseUrl . '/web-production.php', 'priority' => '0.9', 'changefreq' => 'weekly'],
+        ['loc' => $baseUrl . '/video-production.php', 'priority' => '0.9', 'changefreq' => 'weekly'],
         ['loc' => $baseUrl . '/contact.html', 'priority' => '0.7', 'changefreq' => 'monthly'],
         ['loc' => $baseUrl . '/news/', 'priority' => '0.8', 'changefreq' => 'daily'],
         ['loc' => $baseUrl . '/blog/', 'priority' => '0.8', 'changefreq' => 'daily'],

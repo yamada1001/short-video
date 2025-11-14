@@ -187,7 +187,7 @@ sort($all_categories);
                     <span>お問い合わせ</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
-                <a href="services.html" class="btn btn-secondary btn--large">
+                <a href="services.php" class="btn btn-secondary btn--large">
                     <span>サービス詳細</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
@@ -218,7 +218,7 @@ sort($all_categories);
                         コーポレートサイト・LP・採用サイトの制作。レスポンシブ対応、SEO最適化を標準実装。
                     </p>
                     <p class="service-card__price">300,000円〜</p>
-                    <a href="services.html#web" class="btn btn-secondary">詳しく見る</a>
+                    <a href="web-production.php" class="btn btn-secondary">詳しく見る</a>
                 </div>
                 <div class="service-card animate">
                     <div class="service-card__icon">
@@ -229,7 +229,7 @@ sort($all_categories);
                         TikTok・Instagram・YouTubeショート向け。企画から編集まで、SNS映えする動画を制作。
                     </p>
                     <p class="service-card__price">1本 20,000円〜</p>
-                    <a href="services.html#short-video" class="btn btn-secondary">詳しく見る</a>
+                    <a href="video-production.php" class="btn btn-secondary">詳しく見る</a>
                 </div>
             </div>
         </div>

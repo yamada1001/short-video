@@ -24,7 +24,16 @@ $current_page = $current_page ?? '';
         <nav class="nav">
             <!-- デスクトップ用ナビゲーション（アイコンなし） -->
             <ul class="nav__list nav__list--desktop">
-                <li><a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__link<?php echo ($current_page === 'services') ? ' nav__link--active' : ''; ?>">サービス</a></li>
+                <li class="nav__item nav__item--dropdown">
+                    <a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__link<?php echo ($current_page === 'services') ? ' nav__link--active' : ''; ?>">
+                        サービス <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="nav__dropdown">
+                        <li><a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__dropdown-link"><i class="fas fa-th"></i> サービストップ</a></li>
+                        <li><a href="<?php echo ($current_page === 'home') ? 'web-production.php' : '/web-production.php'; ?>" class="nav__dropdown-link"><i class="fas fa-laptop-code"></i> Webサイト制作</a></li>
+                        <li><a href="<?php echo ($current_page === 'home') ? 'video-production.php' : '/video-production.php'; ?>" class="nav__dropdown-link"><i class="fas fa-video"></i> 動画制作</a></li>
+                    </ul>
+                </li>
                 <li><a href="<?php echo ($current_page === 'home') ? 'blog/' : '/blog/'; ?>" class="nav__link<?php echo ($current_page === 'blog') ? ' nav__link--active' : ''; ?>">ブログ</a></li>
                 <li><a href="<?php echo ($current_page === 'home') ? 'about.html' : '/about.html'; ?>" class="nav__link<?php echo ($current_page === 'about') ? ' nav__link--active' : ''; ?>">会社概要</a></li>
                 <li><a href="<?php echo ($current_page === 'home') ? 'contact.html' : '/contact.html'; ?>" class="nav__link<?php echo ($current_page === 'contact') ? ' nav__link--active' : ''; ?>">お問い合わせ</a></li>
@@ -33,6 +42,12 @@ $current_page = $current_page ?? '';
             <!-- モバイル用ナビゲーション（アイコンあり） -->
             <ul class="nav__list nav__list--mobile-menu" id="navList">
                 <li><a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__link"><i class="fas fa-briefcase"></i><span>サービス</span></a></li>
+                <li class="mobile-submenu">
+                    <a href="<?php echo ($current_page === 'home') ? 'web-production.php' : '/web-production.php'; ?>" class="nav__link nav__link--sub"><i class="fas fa-laptop-code"></i><span>Webサイト制作</span></a>
+                </li>
+                <li class="mobile-submenu">
+                    <a href="<?php echo ($current_page === 'home') ? 'video-production.php' : '/video-production.php'; ?>" class="nav__link nav__link--sub"><i class="fas fa-video"></i><span>動画制作</span></a>
+                </li>
                 <li><a href="<?php echo ($current_page === 'home') ? 'blog/' : '/blog/'; ?>" class="nav__link"><i class="fas fa-blog"></i><span>ブログ</span></a></li>
                 <li><a href="<?php echo ($current_page === 'home') ? 'about.html' : '/about.html'; ?>" class="nav__link"><i class="fas fa-building"></i><span>会社概要</span></a></li>
                 <li><a href="<?php echo ($current_page === 'home') ? 'contact.html' : '/contact.html'; ?>" class="nav__link"><i class="fas fa-envelope"></i><span>お問い合わせ</span></a></li>

@@ -354,6 +354,70 @@ a:hover {
   display: flex !important;
 }
 
+/* ドロップダウンメニュー - デスクトップ */
+.nav__item--dropdown {
+  position: relative;
+}
+
+.nav__item--dropdown .fa-chevron-down {
+  font-size: 10px;
+  margin-left: 4px;
+  transition: transform 0.3s ease;
+}
+
+.nav__item--dropdown:hover .fa-chevron-down {
+  transform: rotate(180deg);
+}
+
+.nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--color-bg-white);
+  min-width: 220px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1000;
+  padding: var(--spacing-sm) 0;
+  margin-top: var(--spacing-xs);
+  list-style: none;
+}
+
+.nav__item--dropdown:hover .nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav__dropdown li {
+  margin: 0;
+}
+
+.nav__dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.nav__dropdown-link i {
+  color: var(--color-natural-brown);
+  width: 16px;
+}
+
+.nav__dropdown-link:hover {
+  background: var(--color-bg-gray);
+  color: var(--color-natural-brown);
+}
+
 /* モバイル用ナビゲーション - デスクトップでは完全に非表示 */
 .nav__list--mobile-menu {
   display: none;
@@ -662,6 +726,20 @@ a:hover {
 .nav__list--mobile .nav__link:active {
   transform: translateY(-1px) scale(0.98);
   transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* モバイルサブメニュー（インデント表示） */
+.nav__list--mobile .mobile-submenu {
+  margin-left: var(--spacing-lg);
+}
+
+.nav__list--mobile .mobile-submenu .nav__link {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.nav__list--mobile .mobile-submenu .nav__link i {
+  font-size: 24px;
 }
 
 /* 連絡先情報 - エレガントでタッチしやすいデザイン */

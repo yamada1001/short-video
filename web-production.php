@@ -89,6 +89,7 @@ require_once __DIR__ . '/includes/functions.php';
             font-weight: 700;
             margin-bottom: var(--spacing-md);
             letter-spacing: 0.05em;
+            color: var(--color-bg-white);
         }
 
         .page-header__description {
