@@ -160,14 +160,7 @@ sort($all_categories);
                 <rect class="hero__bar hero__bar--2" x="180" y="450" width="40" height="250" fill="#63584C" opacity="0.15"/>
                 <rect class="hero__bar hero__bar--3" x="260" y="400" width="40" height="300" fill="#63584C" opacity="0.15"/>
 
-                <!-- 上昇トレンドライン -->
-                <polyline class="hero__trend-line" points="880,200 920,170 960,150 1000,120 1040,100" stroke="#63584C" stroke-width="3" fill="none" opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-
-            <!-- 上昇アイコン -->
-            <div class="hero__trend-icon">
-                <i class="fas fa-arrow-trend-up"></i>
-            </div>
 
             <div class="hero__particles">
                 <div class="hero__particle"></div>
