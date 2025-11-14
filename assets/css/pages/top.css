@@ -235,18 +235,10 @@
   }
 }
 
-/* SVGテキスト：ラベル */
-.hero__svg-label {
-  width: 100%;
-  max-width: 400px;
-  height: 50px;
-  margin: 0 auto var(--spacing-lg);
-  display: block;
-}
-
+/* SVGテキスト：ラベル（背景SVG内） */
 .hero__svg-text--label {
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -258,18 +250,10 @@
   animation: svgTextDraw 2s ease-out forwards, svgTextFill 1s ease-out 1.5s forwards;
 }
 
-/* SVGテキスト：メインメッセージ */
-.hero__svg-description {
-  width: 100%;
-  max-width: 800px;
-  height: 120px;
-  margin: 0 auto var(--spacing-xxl);
-  display: block;
-}
-
+/* SVGテキスト：メインメッセージ（背景SVG内） */
 .hero__svg-text--main {
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 500;
   letter-spacing: 0.08em;
   fill: var(--color-charcoal);
@@ -661,18 +645,8 @@
     text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
   }
 
-  .hero__svg-label {
-    max-width: 300px;
-    height: 40px;
-  }
-
   .hero__svg-text--label {
     font-size: 12px;
-  }
-
-  .hero__svg-description {
-    max-width: 100%;
-    height: 100px;
   }
 
   .hero__svg-text--main {
