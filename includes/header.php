@@ -22,11 +22,10 @@ $current_page = $current_page ?? '';
             </svg>
         </a>
         <nav class="nav">
-            <!-- デスクトップ用ナビゲーション（アイコンなし） -->
-            <ul class="nav__list nav__list--desktop">
+            <ul class="nav__list" id="navList">
                 <li class="nav__item nav__item--dropdown">
                     <a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__link<?php echo ($current_page === 'services') ? ' nav__link--active' : ''; ?>">
-                        サービス
+                        <i class="fas fa-briefcase nav__icon"></i><span>サービス</span>
                     </a>
                     <ul class="nav__dropdown">
                         <li><a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__dropdown-link"><i class="fas fa-th"></i> サービストップ</a></li>
@@ -34,17 +33,9 @@ $current_page = $current_page ?? '';
                         <li><a href="<?php echo ($current_page === 'home') ? 'video-production.php' : '/video-production.php'; ?>" class="nav__dropdown-link"><i class="fas fa-video"></i> 動画制作</a></li>
                     </ul>
                 </li>
-                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'blog/' : '/blog/'; ?>" class="nav__link<?php echo ($current_page === 'blog') ? ' nav__link--active' : ''; ?>">ブログ</a></li>
-                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'about.php' : '/about.php'; ?>" class="nav__link<?php echo ($current_page === 'about') ? ' nav__link--active' : ''; ?>">会社概要</a></li>
-                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'contact.php' : '/contact.php'; ?>" class="nav__link<?php echo ($current_page === 'contact') ? ' nav__link--active' : ''; ?>">お問い合わせ</a></li>
-            </ul>
-
-            <!-- モバイル用ナビゲーション（アイコンあり） -->
-            <ul class="nav__list nav__list--mobile" id="navList">
-                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__link"><i class="fas fa-briefcase"></i><span>サービス</span></a></li>
-                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'blog/' : '/blog/'; ?>" class="nav__link"><i class="fas fa-blog"></i><span>ブログ</span></a></li>
-                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'about.php' : '/about.php'; ?>" class="nav__link"><i class="fas fa-building"></i><span>会社概要</span></a></li>
-                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'contact.php' : '/contact.php'; ?>" class="nav__link"><i class="fas fa-envelope"></i><span>お問い合わせ</span></a></li>
+                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'blog/' : '/blog/'; ?>" class="nav__link<?php echo ($current_page === 'blog') ? ' nav__link--active' : ''; ?>"><i class="fas fa-blog nav__icon"></i><span>ブログ</span></a></li>
+                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'about.php' : '/about.php'; ?>" class="nav__link<?php echo ($current_page === 'about') ? ' nav__link--active' : ''; ?>"><i class="fas fa-building nav__icon"></i><span>会社概要</span></a></li>
+                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'contact.php' : '/contact.php'; ?>" class="nav__link<?php echo ($current_page === 'contact') ? ' nav__link--active' : ''; ?>"><i class="fas fa-envelope nav__icon"></i><span>お問い合わせ</span></a></li>
                 <li class="nav__item nav__item--contact"><i class="fas fa-paper-plane"></i><a href="mailto:<?php echo CONTACT_EMAIL; ?>"><?php echo CONTACT_EMAIL; ?></a></li>
                 <li class="nav__item nav__item--contact"><i class="fas fa-phone"></i><a href="tel:<?php echo CONTACT_TEL_LINK; ?>"><?php echo CONTACT_TEL; ?></a></li>
             </ul>
