@@ -353,9 +353,10 @@
   transition: all var(--transition-base);
 }
 
+/* 無印良品スタイル: 控えめで上品なホバーエフェクト */
 .service-card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transform: translateY(-4px);
 }
 
 .service-card__icon {
@@ -408,6 +409,8 @@
 
 .news-item:hover {
   background-color: var(--color-bg-gray);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .news-item__date {
@@ -454,8 +457,8 @@
 }
 
 .blog-preview-card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transform: translateY(-4px);
 }
 
 .blog-preview-card__meta {
