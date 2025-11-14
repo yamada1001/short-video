@@ -160,10 +160,6 @@ sort($all_categories);
                 <rect class="hero__bar hero__bar--2" x="180" y="450" width="40" height="250" fill="#63584C" opacity="0.15"/>
                 <rect class="hero__bar hero__bar--3" x="260" y="400" width="40" height="300" fill="#63584C" opacity="0.15"/>
 
-                <!-- テキスト要素（最前面に配置） -->
-                <text x="600" y="320" text-anchor="middle" class="hero__svg-text hero__svg-text--label">Digital Marketing</text>
-                <text x="600" y="390" text-anchor="middle" class="hero__svg-text hero__svg-text--main">Web制作・ショート動画で</text>
-                <text x="600" y="430" text-anchor="middle" class="hero__svg-text hero__svg-text--main">企業の成長をサポート</text>
             </svg>
 
             <div class="hero__particles">
@@ -176,6 +172,22 @@ sort($all_categories);
         </div>
 
         <div class="hero__content animate">
+            <!-- SVGテキスト：Digital Marketing -->
+            <svg class="hero__svg-label" viewBox="0 0 400 50" xmlns="http://www.w3.org/2000/svg">
+                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="hero__svg-text hero__svg-text--label">
+                    Digital Marketing
+                </text>
+            </svg>
+
+            <!-- SVGテキスト：メインメッセージ -->
+            <svg class="hero__svg-description" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg">
+                <text x="50%" y="40%" text-anchor="middle" dominant-baseline="middle" class="hero__svg-text hero__svg-text--main">
+                    Web制作・ショート動画で
+                </text>
+                <text x="50%" y="70%" text-anchor="middle" dominant-baseline="middle" class="hero__svg-text hero__svg-text--main">
+                    企業の成長をサポート
+                </text>
+            </svg>
             <div class="hero__cta">
                 <a href="contact.php" class="btn btn-primary btn--large">
                     <span>お問い合わせ</span>
