@@ -172,13 +172,22 @@ sort($all_categories);
         </div>
 
         <div class="hero__content animate">
-            <div class="hero__label">
-                <span>Digital Marketing</span>
-            </div>
-            <p class="hero__description">
-                Web制作・ショート動画で<br class="sp-only">
-                企業の成長をサポート
-            </p>
+            <!-- SVGテキスト：Digital Marketing -->
+            <svg class="hero__svg-label" viewBox="0 0 400 50" xmlns="http://www.w3.org/2000/svg">
+                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="hero__svg-text hero__svg-text--label">
+                    Digital Marketing
+                </text>
+            </svg>
+
+            <!-- SVGテキスト：メインメッセージ -->
+            <svg class="hero__svg-description" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg">
+                <text x="50%" y="40%" text-anchor="middle" dominant-baseline="middle" class="hero__svg-text hero__svg-text--main">
+                    Web制作・ショート動画で
+                </text>
+                <text x="50%" y="70%" text-anchor="middle" dominant-baseline="middle" class="hero__svg-text hero__svg-text--main">
+                    企業の成長をサポート
+                </text>
+            </svg>
             <div class="hero__cta">
                 <a href="contact.php" class="btn btn-primary btn--large">
                     <span>お問い合わせ</span>

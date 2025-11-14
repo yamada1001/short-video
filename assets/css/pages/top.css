@@ -235,17 +235,65 @@
   }
 }
 
-.hero__description {
-  font-size: clamp(16px, 2vw, 20px);
+/* SVGテキスト：ラベル */
+.hero__svg-label {
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  margin: 0 auto var(--spacing-lg);
+  display: block;
+}
+
+.hero__svg-text--label {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 14px;
   font-weight: 500;
-  color: var(--color-charcoal);
-  margin-bottom: var(--spacing-xxl);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  fill: var(--color-natural-brown);
+  stroke: var(--color-natural-brown);
+  stroke-width: 0.5;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: svgTextDraw 2s ease-out forwards, svgTextFill 1s ease-out 1.5s forwards;
+}
+
+/* SVGテキスト：メインメッセージ */
+.hero__svg-description {
+  width: 100%;
+  max-width: 800px;
+  height: 120px;
+  margin: 0 auto var(--spacing-xxl);
+  display: block;
+}
+
+.hero__svg-text--main {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 28px;
+  font-weight: 500;
   letter-spacing: 0.08em;
-  line-height: 1.8;
-  animation: descriptionFadeIn 1s ease-out 0.4s both;
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: 8px;
+  fill: var(--color-charcoal);
+  stroke: var(--color-charcoal);
+  stroke-width: 0.8;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: svgTextDraw 2.5s ease-out 0.5s forwards, svgTextFill 1s ease-out 2.5s forwards;
+}
+
+/* SVGテキスト描画アニメーション */
+@keyframes svgTextDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes svgTextFill {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: currentColor;
+  }
 }
 
 @keyframes descriptionFadeIn {
@@ -613,14 +661,22 @@
     text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
   }
 
-  .hero__label {
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  .hero__svg-label {
+    max-width: 300px;
+    height: 40px;
   }
 
-  .hero__description {
-    color: var(--color-charcoal);
-    font-weight: 500;
+  .hero__svg-text--label {
+    font-size: 12px;
+  }
+
+  .hero__svg-description {
+    max-width: 100%;
+    height: 100px;
+  }
+
+  .hero__svg-text--main {
+    font-size: 20px;
   }
 
   .news-item {
