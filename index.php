@@ -176,8 +176,8 @@ sort($all_categories);
                 <span>Digital Marketing</span>
             </div>
             <p class="hero__description">
-                Web制作・ショート動画で<br class="sp-only">
-                企業の成長をサポート
+                本質に向き合う余裕を、<br class="sp-only">
+                デジタルで創る
             </p>
             <div class="hero__cta">
                 <a href="contact.php" class="btn btn-primary btn--large">
