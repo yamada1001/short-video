@@ -44,6 +44,11 @@
     AddOutputFilterByType DEFLATE font/otf
     AddOutputFilterByType DEFLATE font/woff
     AddOutputFilterByType DEFLATE font/woff2
+
+    # Varyヘッダーを追加してキャッシュを最適化
+    <IfModule mod_headers.c>
+        Header append Vary Accept-Encoding
+    </IfModule>
 </IfModule>
 
 # ====================================

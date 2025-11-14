@@ -37,6 +37,11 @@ $paged_articles = array_slice($articles, $pagination['offset'], NEWS_PER_PAGE);
 
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
+
+    <!-- Font Awesome - Async load -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/news.css">
 </head>
@@ -104,6 +109,5 @@ $paged_articles = array_slice($articles, $pagination['offset'], NEWS_PER_PAGE);
     <!-- フッター -->
     <?php include __DIR__ . '/../includes/footer.php'; ?>
 
-    <script src="../assets/js/fontawesome-init.js"></script>
     <script defer src="../assets/js/app.js"></script>
 </html>

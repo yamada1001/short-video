@@ -108,7 +108,21 @@ mb_send_mail($email, $reply_subject, $reply_body, $reply_headers);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>送信完了 | お問い合わせ | 余日（Yojitsu）</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
+
+    <!-- Font Awesome - Async load -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/pages/contact.css">
 </head>
@@ -163,6 +177,6 @@ mb_send_mail($email, $reply_subject, $reply_body, $reply_headers);
         </div>
     </footer>
 
-    <script src="../assets/js/fontawesome-init.js"></script>
+    <script defer src="../assets/js/app.js"></script>
 </body>
 </html>

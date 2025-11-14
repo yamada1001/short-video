@@ -58,7 +58,21 @@ if (!empty($errors)) {
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
         <!-- End Google Tag Manager -->
+
+        <!-- Preconnect for performance -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
         <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
+
+        <!-- Font Awesome - Async load -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
         <link rel="stylesheet" href="../assets/css/base.css">
     </head>
     <body>
@@ -75,7 +89,7 @@ if (!empty($errors)) {
         </div>
 
         <?php include __DIR__ . '/footer.php'; ?>
-        <script src="../assets/js/fontawesome-init.js"></script>
+        <script defer src="../assets/js/app.js"></script>
     </body>
     </html>
     <?php
@@ -157,7 +171,21 @@ $current_page = 'contact';
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
     <!-- End Google Tag Manager -->
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
+
+    <!-- Font Awesome - Async load -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/pages/contact.css">
 </head>
@@ -188,6 +216,6 @@ $current_page = 'contact';
 
     <?php include __DIR__ . '/footer.php'; ?>
 
-    <script src="../assets/js/fontawesome-init.js"></script>
+    <script defer src="../assets/js/app.js"></script>
 </body>
 </html>
