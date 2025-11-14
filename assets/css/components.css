@@ -56,12 +56,15 @@
 
 /* デスクトップ用ナビゲーション - デフォルトで表示 */
 .nav__list--desktop {
-  display: flex;
+  display: flex !important;
 }
 
-/* モバイル用ナビゲーション - デフォルトで非表示 */
+/* モバイル用ナビゲーション - デスクトップでは完全に非表示 */
 .nav__list--mobile-menu {
-  display: none;
+  display: none !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .nav__link {
@@ -98,7 +101,7 @@
 
   /* モバイルナビを準備（.nav__list--mobileクラス追加で表示される） */
   .nav__list--mobile-menu {
-    display: flex;
+    display: flex !important;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -106,7 +109,7 @@
 
   /* ハンバーガーを表示 */
   .hamburger {
-    display: flex;
+    display: flex !important;
   }
 
   /* ハンバーガーを固定 */
