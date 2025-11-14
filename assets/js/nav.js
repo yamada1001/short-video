@@ -15,25 +15,14 @@
     navList.classList.remove('nav__list--active');
     navList.classList.remove('nav__list--mobile');
     document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    if (scrollPosition !== 0) {
-      window.scrollTo(0, scrollPosition);
-      scrollPosition = 0;
-    }
   }
 
   // メニューを開く関数
   function openMenu() {
-    scrollPosition = window.scrollY;
     hamburger.classList.add('hamburger--active');
     navList.classList.add('nav__list--active');
     navList.classList.add('nav__list--mobile');
     document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollPosition}px`;
-    document.body.style.width = '100%';
   }
 
   // ハンバーガーメニュートグル

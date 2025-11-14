@@ -19,6 +19,8 @@ if (isset($post['content']) && strpos($post['content'], '.html') !== false) {
     $content_file = __DIR__ . '/' . $post['content'];
     if (file_exists($content_file)) {
         $post['content'] = file_get_contents($content_file);
+        // モバイル対応処理を適用
+        $post['content'] = processBlogContent($post['content']);
     }
 }
 

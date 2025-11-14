@@ -108,4 +108,81 @@ function verifyCsrfToken($token) {
     return isset($_SESSION[CSRF_TOKEN_NAME]) &&
            hash_equals($_SESSION[CSRF_TOKEN_NAME], $token);
 }
+
+/**
+ * ブログコンテンツをモバイル対応処理
+ * <pre><code>、<table>などの要素を自動検出してレスポンシブ対応のラッパーを追加
+ *
+ * @param string $content HTMLコンテンツ
+ * @return string 処理済みHTMLコンテンツ
+ */
+function processBlogContent($content) {
+    if (empty($content)) {
+        return $content;
+    }
+
+    // DOMDocumentで安全にHTML処理
+    $dom = new DOMDocument('1.0', 'UTF-8');
+
+    // エラー抑制とHTML5対応
+    libxml_use_internal_errors(true);
+
+    // メタタグを追加してUTF-8を明示
+    $dom->loadHTML('<?xml encoding="UTF-8">' . $content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+    libxml_clear_errors();
+
+    $xpath = new DOMXPath($dom);
+
+    // 1. <pre><code>ブロックの処理
+    $preElements = $xpath->query('//pre[code]');
+    foreach ($preElements as $pre) {
+        // 既にラッパーdivで囲まれていないかチェック
+        if ($pre->parentNode->nodeName !== 'div' ||
+            !$pre->parentNode->hasAttribute('style') ||
+            strpos($pre->parentNode->getAttribute('style'), 'overflow-x') === false) {
+
+            // ラッパーdivを作成
+            $wrapper = $dom->createElement('div');
+            $wrapper->setAttribute('style', 'overflow-x: auto; max-width: 100%;');
+
+            // preにスタイルを追加
+            $existingStyle = $pre->hasAttribute('style') ? $pre->getAttribute('style') : '';
+            $newStyle = 'white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;';
+            $pre->setAttribute('style', $existingStyle ? $existingStyle . ' ' . $newStyle : $newStyle);
+
+            // preの親要素に挿入
+            $pre->parentNode->insertBefore($wrapper, $pre);
+            $wrapper->appendChild($pre);
+        }
+    }
+
+    // 2. <table>要素の処理
+    $tableElements = $xpath->query('//table');
+    foreach ($tableElements as $table) {
+        // 既にラッパーdivで囲まれていないかチェック
+        if ($table->parentNode->nodeName !== 'div' ||
+            !$table->parentNode->hasAttribute('class') ||
+            strpos($table->parentNode->getAttribute('class'), 'table-responsive') === false) {
+
+            // ラッパーdivを作成
+            $wrapper = $dom->createElement('div');
+            $wrapper->setAttribute('class', 'table-responsive');
+            $wrapper->setAttribute('style', 'overflow-x: auto; -webkit-overflow-scrolling: touch;');
+
+            // tableの親要素に挿入
+            $table->parentNode->insertBefore($wrapper, $table);
+            $wrapper->appendChild($table);
+        }
+    }
+
+    // HTML出力
+    $output = $dom->saveHTML();
+
+    // <?xml encoding="UTF-8">を除去（複数パターン対応）
+    $output = str_replace('<?xml encoding="UTF-8">', '', $output);
+    $output = preg_replace('/<\?xml[^?]*\?>\s*/', '', $output);
+
+    return $output;
+}
 ?>
