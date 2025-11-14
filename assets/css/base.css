@@ -578,17 +578,17 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-md);
-  font-size: 26px;
+  gap: var(--spacing-sm);
+  font-size: 20px;
   color: var(--color-bg-white);
   font-weight: 400;
-  letter-spacing: 0.12em;
-  padding: var(--spacing-lg) var(--spacing-xl);
+  letter-spacing: 0.1em;
+  padding: var(--spacing-md) var(--spacing-lg);
   text-align: center;
   position: relative;
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  border-radius: 16px;
-  margin-bottom: var(--spacing-sm);
+  border-radius: 12px;
+  margin-bottom: var(--spacing-xs);
   overflow: hidden;
 }
 
@@ -608,7 +608,7 @@ a:hover {
 
 .nav__list--mobile .nav__link i {
   display: inline-block;
-  font-size: 28px;
+  font-size: 22px;
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   filter: drop-shadow(0 0 0 transparent);
 }
@@ -665,11 +665,11 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-sm);
-  margin-top: var(--spacing-xxl);
-  padding: var(--spacing-lg) var(--spacing-xl);
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-lg);
   position: relative;
-  border-radius: 30px;
+  border-radius: 24px;
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -694,7 +694,7 @@ a:hover {
 }
 
 .nav__list--mobile .mobile-menu__email i {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--color-beige);
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -702,7 +702,7 @@ a:hover {
 .nav__list--mobile .mobile-menu__email a {
   color: var(--color-bg-white);
   text-decoration: none;
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 0.05em;
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }

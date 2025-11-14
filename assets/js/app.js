@@ -36,12 +36,11 @@
         }
       });
 
-      // メニュー外をクリックしたら閉じる
-      document.addEventListener('click', function(e) {
-        if (navList.classList.contains('nav__list--active')) {
-          if (!navList.contains(e.target) && !hamburger.contains(e.target)) {
-            closeMenu();
-          }
+      // メニュー背景（空白部分）をクリックしたら閉じる
+      navList.addEventListener('click', function(e) {
+        // メニュー項目やリンク以外（背景）をクリックした場合に閉じる
+        if (e.target === navList) {
+          closeMenu();
         }
       });
 
