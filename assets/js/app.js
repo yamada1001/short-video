@@ -15,7 +15,6 @@
       hamburger.classList.remove('hamburger--active');
       navList.classList.remove('nav__list--active');
       navList.classList.remove('nav__list--mobile');
-      document.body.style.overflow = '';
     }
 
     // メニューを開く関数
@@ -24,7 +23,6 @@
       hamburger.classList.add('hamburger--active');
       navList.classList.add('nav__list--active');
       navList.classList.add('nav__list--mobile');
-      document.body.style.overflow = 'hidden';
     }
 
     // ハンバーガーメニュートグル

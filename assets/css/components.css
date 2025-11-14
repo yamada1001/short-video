@@ -151,13 +151,14 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* 全画面モバイルメニュー - モダンスライドイン */
+/* 全画面モバイルメニュー - フルスクリーン表示 */
 .nav__list--mobile {
   position: fixed;
   top: 0;
+  left: 0;
   right: 0;
-  width: 85%;
-  max-width: 400px;
+  bottom: 0;
+  width: 100%;
   height: 100vh;
   height: 100dvh; /* モバイルブラウザのアドレスバーを考慮 */
   background: linear-gradient(135deg, rgba(99, 88, 76, 0.98) 0%, rgba(70, 62, 54, 0.98) 100%);
@@ -165,16 +166,14 @@
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 80px var(--spacing-xl) var(--spacing-xxl);
-  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-xxl);
+  gap: var(--spacing-md);
   opacity: 0;
   visibility: hidden;
-  transform: translateX(100%);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 9999;
-  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
   overflow-y: auto;
   overscroll-behavior: contain;
 }
@@ -182,125 +181,46 @@
 .nav__list--mobile.nav__list--active {
   opacity: 1;
   visibility: visible;
-  transform: translateX(0);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* メニューオーバーレイ */
-.nav__list--mobile::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.nav__list--mobile.nav__list--active::before {
-  opacity: 1;
 }
 
 .nav__list--mobile .nav__link {
-  font-size: 20px;
+  font-size: 24px;
   color: var(--color-bg-white);
   font-weight: 400;
-  letter-spacing: 0.1em;
-  opacity: 0;
-  transform: translateX(30px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: var(--spacing-md) var(--spacing-lg);
-  width: 100%;
-  border-radius: 8px;
+  letter-spacing: 0.15em;
+  padding: var(--spacing-md) var(--spacing-xl);
+  text-align: center;
   position: relative;
-  overflow: hidden;
-  margin-bottom: 4px;
-}
-
-.nav__list--mobile .nav__link::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 4px;
-  background: var(--color-beige);
-  transform: scaleY(0);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
-  border-radius: 0 4px 4px 0;
+  transition: all 0.3s ease;
 }
 
 .nav__list--mobile .nav__link::after {
   content: '';
   position: absolute;
-  right: var(--spacing-md);
-  top: 50%;
-  transform: translateY(-50%) rotate(-45deg);
-  width: 8px;
-  height: 8px;
-  border-right: 2px solid rgba(255, 255, 255, 0.3);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.nav__list--active .nav__link {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.nav__list--active .nav__link:nth-child(1) {
-  transition-delay: 0.1s;
-}
-
-.nav__list--active .nav__link:nth-child(2) {
-  transition-delay: 0.2s;
-}
-
-.nav__list--active .nav__link:nth-child(3) {
-  transition-delay: 0.3s;
-}
-
-.nav__list--active .nav__link:nth-child(4) {
-  transition-delay: 0.4s;
-}
-
-.nav__list--active .nav__link:nth-child(5) {
-  transition-delay: 0.5s;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 2px;
+  background: var(--color-beige);
+  transition: transform 0.3s ease;
 }
 
 .nav__list--mobile .nav__link:hover {
   color: var(--color-beige);
-  background: rgba(255, 255, 255, 0.1);
-  padding-left: calc(var(--spacing-lg) + 8px);
-}
-
-.nav__list--mobile .nav__link:hover::before {
-  transform: scaleY(1);
 }
 
 .nav__list--mobile .nav__link:hover::after {
-  opacity: 1;
-  right: calc(var(--spacing-md) - 4px);
+  transform: translateX(-50%) scaleX(1);
 }
 
 .nav__list--mobile .nav__link--active {
   color: var(--color-beige);
   font-weight: 500;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.nav__list--mobile .nav__link--active::before {
-  transform: scaleY(1);
 }
 
 .nav__list--mobile .nav__link--active::after {
-  opacity: 1;
+  transform: translateX(-50%) scaleX(1);
 }
 
 /* ===== ボタン ===== */
