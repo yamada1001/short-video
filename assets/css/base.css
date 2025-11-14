@@ -350,8 +350,8 @@ a:hover {
   align-items: center;
 }
 
-/* デスクトップではアイコンを非表示 */
-.nav__icon {
+/* デスクトップではモバイルナビを非表示 */
+.nav__list--mobile {
   display: none;
 }
 
@@ -513,8 +513,13 @@ a:hover {
     z-index: 10000 !important;
   }
 
-  /* モバイルでは通常時非表示 */
-  .nav__list {
+  /* モバイルではデスクトップナビを非表示 */
+  .nav__list--desktop {
+    display: none !important;
+  }
+
+  /* モバイルではモバイルナビも通常時非表示（ハンバーガーで開閉） */
+  .nav__list--mobile {
     display: none;
   }
 
