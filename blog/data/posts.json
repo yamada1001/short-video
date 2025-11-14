@@ -1026,6 +1026,19 @@
       "tags": ["AIO対策", "やり方", "実践ガイド", "AI Overview", "構造化データ", "FAQ", "E-E-A-T"],
       "thumbnail": "",
       "author": "山田 蓮"
+    },
+    {
+      "id": 80,
+      "title": "エンティティSEOとは？Googleナレッジグラフを活用したビジネス成長戦略【2025年完全版】",
+      "slug": "entity-seo-business-guide",
+      "excerpt": "2025年、SEOは「キーワード」から「エンティティ」へシフト。Googleが50億のエンティティを管理する今、発信者の実体を明確にするエンティティSEOが成功の鍵です。構造化データ実装、ナレッジグラフ活用、E-E-A-T強化まで、ビジネスで実践すべき具体的手法を徹底解説します。",
+      "content": "data/article-80-full.html",
+      "publishedAt": "2025-11-14T02:30:00+09:00",
+      "updatedAt": "2025-11-14T02:30:00+09:00",
+      "category": "SEO",
+      "tags": ["エンティティSEO", "ナレッジグラフ", "構造化データ", "E-E-A-T", "Googleビジネスプロフィール", "ビジネスSEO", "2025年"],
+      "thumbnail": "",
+      "author": "山田 蓮"
     }
   ]
 }
