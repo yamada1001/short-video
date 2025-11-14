@@ -182,15 +182,17 @@
   padding: var(--spacing-xl) var(--spacing-md);
   position: relative;
   z-index: 10;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
 }
 
 .hero__label {
   display: inline-block;
   padding: 8px 20px;
-  background-color: rgba(99, 88, 76, 0.08);
+  background-color: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
   margin-bottom: var(--spacing-lg);
   animation: labelFadeIn 1s ease-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .hero__label span {
@@ -235,8 +237,8 @@
 
 .hero__description {
   font-size: clamp(16px, 2vw, 20px);
-  font-weight: 400;
-  color: var(--color-text);
+  font-weight: 500;
+  color: var(--color-charcoal);
   margin-bottom: var(--spacing-xxl);
   letter-spacing: 0.08em;
   line-height: 1.8;
