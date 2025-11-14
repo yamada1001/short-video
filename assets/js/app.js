@@ -62,6 +62,19 @@
       });
     }
 
+    // アコーディオンメニュー
+    const accordionTriggers = document.querySelectorAll('.nav__link--accordion-trigger');
+    accordionTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const parentItem = this.closest('.nav__item--accordion');
+        if (parentItem) {
+          parentItem.classList.toggle('active');
+        }
+      });
+    });
+
     // スクロール制御 - ヘッダーを常時表示（影のみ変更）
     if (header) {
       window.addEventListener('scroll', function() {
@@ -155,7 +168,8 @@ document.addEventListener('DOMContentLoaded', function() {
         link.setAttribute('rel', 'noopener noreferrer');
 
         // 外部リンクアイコンを追加（オプション）
-        if (!link.querySelector('.external-icon')) {
+        // ただし、ポートフォリオアイテムのラッパーリンクには追加しない
+        if (!link.querySelector('.external-icon') && !link.classList.contains('portfolio-item-wrapper')) {
           const icon = document.createElement('span');
           icon.className = 'external-icon';
           icon.innerHTML = ' <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px; opacity: 0.6;"></i>';

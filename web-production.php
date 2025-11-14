@@ -701,59 +701,53 @@ require_once __DIR__ . '/includes/functions.php';
             </h2>
 
             <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-item__image">
-                        <i class="fas fa-laptop-code"></i>
+                <a href="https://migration.oita-creative.jp/lp2/" target="_blank" rel="noopener noreferrer" class="portfolio-item-wrapper">
+                    <div class="portfolio-item">
+                        <div class="portfolio-item__image">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="portfolio-item__content">
+                            <h3 class="portfolio-item__title">
+                                「このままでいいのかな」から抜け出した人たちが選んだ、次の一歩
+                            </h3>
+                            <p class="portfolio-item__description">
+                                大分県のIT移住を促進するランディングページ。共感を生むキャッチコピーと、実際の移住者の声を掲載。
+                            </p>
+                        </div>
                     </div>
-                    <div class="portfolio-item__content">
-                        <h3 class="portfolio-item__title">
-                            「このままでいいのかな」から抜け出した人たちが選んだ、次の一歩
-                        </h3>
-                        <p class="portfolio-item__description">
-                            大分県のIT移住を促進するランディングページ。共感を生むキャッチコピーと、実際の移住者の声を掲載。
-                        </p>
-                        <a href="https://migration.oita-creative.jp/lp2/" target="_blank" rel="noopener noreferrer" class="portfolio-item__link">
-                            <span>サイトを見る</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </div>
+                </a>
 
-                <div class="portfolio-item">
-                    <div class="portfolio-item__image">
-                        <i class="fas fa-plane-departure"></i>
+                <a href="https://migration.oita-creative.jp/2025/lp/" target="_blank" rel="noopener noreferrer" class="portfolio-item-wrapper">
+                    <div class="portfolio-item">
+                        <div class="portfolio-item__image">
+                            <i class="fas fa-plane-departure"></i>
+                        </div>
+                        <div class="portfolio-item__content">
+                            <h3 class="portfolio-item__title">
+                                大分IT移住プロジェクト - 同じ働き方で、もっと豊かに
+                            </h3>
+                            <p class="portfolio-item__description">
+                                リモートワーク時代の新しい働き方を提案。大分への移住を検討するITワーカー向けのプロモーションサイト。
+                            </p>
+                        </div>
                     </div>
-                    <div class="portfolio-item__content">
-                        <h3 class="portfolio-item__title">
-                            大分IT移住プロジェクト - 同じ働き方で、もっと豊かに
-                        </h3>
-                        <p class="portfolio-item__description">
-                            リモートワーク時代の新しい働き方を提案。大分への移住を検討するITワーカー向けのプロモーションサイト。
-                        </p>
-                        <a href="https://migration.oita-creative.jp/2025/lp/" target="_blank" rel="noopener noreferrer" class="portfolio-item__link">
-                            <span>サイトを見る</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </div>
+                </a>
 
-                <div class="portfolio-item">
-                    <div class="portfolio-item__image">
-                        <i class="fas fa-globe"></i>
+                <a href="/" class="portfolio-item-wrapper">
+                    <div class="portfolio-item">
+                        <div class="portfolio-item__image">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="portfolio-item__content">
+                            <h3 class="portfolio-item__title">
+                                余日（Yojitsu）コーポレートサイト
+                            </h3>
+                            <p class="portfolio-item__description">
+                                今ご覧いただいているこのサイト。ブログ機能、お知らせ機能、お問い合わせフォームなど、ビジネスに必要な機能を網羅。
+                            </p>
+                        </div>
                     </div>
-                    <div class="portfolio-item__content">
-                        <h3 class="portfolio-item__title">
-                            余日（Yojitsu）コーポレートサイト
-                        </h3>
-                        <p class="portfolio-item__description">
-                            今ご覧いただいているこのサイト。ブログ機能、お知らせ機能、お問い合わせフォームなど、ビジネスに必要な機能を網羅。
-                        </p>
-                        <a href="/" class="portfolio-item__link">
-                            <span>トップページへ</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+                </a>
             </div>
 
             <div style="text-align: center; margin-top: var(--spacing-xxl);">

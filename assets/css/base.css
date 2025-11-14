@@ -728,18 +728,49 @@ a:hover {
   transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* モバイルサブメニュー（インデント表示） */
-.nav__list--mobile .mobile-submenu {
-  margin-left: var(--spacing-lg);
+/* モバイルアコーディオンメニュー */
+.nav__item--accordion {
+  overflow: hidden;
 }
 
-.nav__list--mobile .mobile-submenu .nav__link {
+.nav__link--accordion-trigger {
+  position: relative;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__link--accordion-trigger .accordion-icon {
+  margin-left: auto;
+  font-size: 14px;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav__item--accordion.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.nav__accordion-content {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav__item--accordion.active .nav__accordion-content {
+  max-height: 500px;
+}
+
+.nav__accordion-content .nav__link {
+  padding-left: calc(var(--spacing-lg) + 40px);
   font-size: 18px;
   opacity: 0.9;
 }
 
-.nav__list--mobile .mobile-submenu .nav__link i {
-  font-size: 24px;
+.nav__accordion-content .nav__link i {
+  font-size: 20px;
 }
 
 /* 連絡先情報 - エレガントでタッチしやすいデザイン */

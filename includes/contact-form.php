@@ -82,7 +82,11 @@ if (!empty($errors)) {
     exit;
 }
 
-// メール送信
+// メール送信の設定
+mb_language("Japanese");
+mb_internal_encoding("UTF-8");
+
+// 管理者へのメール
 $to = ADMIN_EMAIL;
 $mail_subject = '【お問い合わせ】' . $subject;
 
@@ -97,9 +101,17 @@ $mail_body .= "送信日時: " . date('Y年m月d日 H:i:s') . "\n";
 
 $headers = "From: " . FROM_EMAIL . "\r\n";
 $headers .= "Reply-To: " . $email . "\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
 // 管理者へ送信
-$result = mb_send_mail($to, $mail_subject, $mail_body, $headers);
+$admin_result = mb_send_mail($to, $mail_subject, $mail_body, $headers);
+
+// メール送信失敗時のログ記録（デバッグ用）
+if (!$admin_result) {
+    error_log("Contact form: Failed to send admin email to " . $to);
+    error_log("Subject: " . $mail_subject);
+    error_log("From: " . FROM_EMAIL);
+}
 
 // 自動返信メール
 $reply_subject = 'お問い合わせありがとうございます - 余日（Yojitsu）';
@@ -119,8 +131,14 @@ $reply_body .= "Tel: " . SITE_TEL . "\n";
 $reply_body .= "URL: " . SITE_URL . "\n";
 
 $reply_headers = "From: " . FROM_EMAIL . "\r\n";
+$reply_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-mb_send_mail($email, $reply_subject, $reply_body, $reply_headers);
+$user_result = mb_send_mail($email, $reply_subject, $reply_body, $reply_headers);
+
+// ユーザーへのメール送信失敗時のログ記録
+if (!$user_result) {
+    error_log("Contact form: Failed to send user email to " . $email);
+}
 
 $current_page = 'contact';
 ?>

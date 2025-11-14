@@ -40,13 +40,17 @@ $current_page = $current_page ?? '';
             </ul>
 
             <!-- モバイル用ナビゲーション（アイコンあり） -->
-            <ul class="nav__list nav__list--mobile-menu" id="navList">
-                <li><a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__link"><i class="fas fa-briefcase"></i><span>サービス</span></a></li>
-                <li class="mobile-submenu">
-                    <a href="<?php echo ($current_page === 'home') ? 'web-production.php' : '/web-production.php'; ?>" class="nav__link nav__link--sub"><i class="fas fa-laptop-code"></i><span>Webサイト制作</span></a>
-                </li>
-                <li class="mobile-submenu">
-                    <a href="<?php echo ($current_page === 'home') ? 'video-production.php' : '/video-production.php'; ?>" class="nav__link nav__link--sub"><i class="fas fa-video"></i><span>動画制作</span></a>
+            <ul class="nav__list nav__list--mobile" id="navList">
+                <li class="nav__item--accordion">
+                    <a href="javascript:void(0);" class="nav__link nav__link--accordion-trigger">
+                        <i class="fas fa-briefcase"></i><span>サービス</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </a>
+                    <ul class="nav__accordion-content">
+                        <li><a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__link nav__link--sub"><i class="fas fa-th"></i><span>サービストップ</span></a></li>
+                        <li><a href="<?php echo ($current_page === 'home') ? 'web-production.php' : '/web-production.php'; ?>" class="nav__link nav__link--sub"><i class="fas fa-laptop-code"></i><span>Webサイト制作</span></a></li>
+                        <li><a href="<?php echo ($current_page === 'home') ? 'video-production.php' : '/video-production.php'; ?>" class="nav__link nav__link--sub"><i class="fas fa-video"></i><span>動画制作</span></a></li>
+                    </ul>
                 </li>
                 <li><a href="<?php echo ($current_page === 'home') ? 'blog/' : '/blog/'; ?>" class="nav__link"><i class="fas fa-blog"></i><span>ブログ</span></a></li>
                 <li><a href="<?php echo ($current_page === 'home') ? 'about.html' : '/about.html'; ?>" class="nav__link"><i class="fas fa-building"></i><span>会社概要</span></a></li>
