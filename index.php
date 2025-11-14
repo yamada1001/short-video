@@ -161,7 +161,14 @@ sort($all_categories);
                 <rect class="hero__bar hero__bar--3" x="260" y="400" width="40" height="300" fill="#63584C" opacity="0.15"/>
 
                 <!-- 矢印（成長を示す） -->
-                <path class="hero__arrow" d="M 900 150 L 1050 100 L 1040 120 M 1050 100 L 1030 110" stroke="#63584C" stroke-width="3" fill="none" opacity="0.4"/>
+                <g class="hero__arrow">
+                    <!-- 矢印の軸 -->
+                    <line x1="900" y1="150" x2="1050" y2="100" stroke="#63584C" stroke-width="3" opacity="0.4" stroke-linecap="round"/>
+                    <!-- 矢じり左側 -->
+                    <line x1="1050" y1="100" x2="1035" y2="115" stroke="#63584C" stroke-width="3" opacity="0.4" stroke-linecap="round"/>
+                    <!-- 矢じり右側 -->
+                    <line x1="1050" y1="100" x2="1065" y2="115" stroke="#63584C" stroke-width="3" opacity="0.4" stroke-linecap="round"/>
+                </g>
             </svg>
 
             <div class="hero__particles">
