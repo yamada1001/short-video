@@ -25,7 +25,7 @@ $current_page = $current_page ?? '';
             <ul class="nav__list" id="navList">
                 <li class="nav__item nav__item--dropdown">
                     <a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__link<?php echo ($current_page === 'services') ? ' nav__link--active' : ''; ?>">
-                        <i class="fas fa-briefcase nav__icon"></i><span>サービス</span><i class="fas fa-chevron-down nav__chevron"></i>
+                        <i class="fas fa-briefcase nav__icon"></i><span>サービス</span>
                     </a>
                     <ul class="nav__dropdown">
                         <li><a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__dropdown-link"><i class="fas fa-th"></i> サービストップ</a></li>

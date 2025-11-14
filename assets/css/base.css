@@ -355,13 +355,6 @@ a:hover {
   display: none;
 }
 
-/* デスクトップではシェブロンを表示 */
-.nav__chevron {
-  font-size: 10px;
-  margin-left: 4px;
-  transition: transform 0.3s ease;
-}
-
 /* デスクトップでは連絡先を非表示 */
 .nav__item--contact {
   display: none;
@@ -370,10 +363,6 @@ a:hover {
 /* ドロップダウンメニュー */
 .nav__item--dropdown {
   position: relative;
-}
-
-.nav__item--dropdown:hover .nav__chevron {
-  transform: rotate(180deg);
 }
 
 .nav__dropdown {
@@ -581,11 +570,6 @@ a:hover {
   .nav__list--active .nav__icon {
     display: inline-block;
     font-size: 22px;
-  }
-
-  /* モバイルメニューではシェブロンを非表示 */
-  .nav__list--active .nav__chevron {
-    display: none;
   }
 
   /* モバイルメニューでは連絡先を表示 */
