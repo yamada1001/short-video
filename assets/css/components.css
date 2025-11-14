@@ -54,6 +54,12 @@
   align-items: center;
 }
 
+/* デスクトップではアイコンとメールアドレスを非表示 */
+.nav__link i,
+.mobile-menu__email {
+  display: none;
+}
+
 .nav__link {
   font-weight: 400;
   font-size: 14px;
@@ -151,7 +157,7 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* 全画面モバイルメニュー - フルスクリーン表示 */
+/* 全画面モバイルメニュー - おしゃれなフルスクリーン表示 */
 .nav__list--mobile {
   position: fixed;
   top: 0;
@@ -160,22 +166,41 @@
   bottom: 0;
   width: 100%;
   height: 100vh;
-  height: 100dvh; /* モバイルブラウザのアドレスバーを考慮 */
-  background: linear-gradient(135deg, rgba(99, 88, 76, 0.98) 0%, rgba(70, 62, 54, 0.98) 100%);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  height: 100dvh;
+  background: linear-gradient(135deg, rgba(99, 88, 76, 0.96) 0%, rgba(70, 62, 54, 0.96) 100%);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: var(--spacing-xxl);
-  gap: var(--spacing-md);
+  gap: 0;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
   z-index: 9999;
   overflow-y: auto;
   overscroll-behavior: contain;
+}
+
+/* 背景アニメーション */
+.nav__list--mobile::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(219, 203, 178, 0.08) 0%, transparent 50%);
+  animation: backgroundFloat 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes backgroundFloat {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(10%, 10%); }
+  66% { transform: translate(-10%, 5%); }
 }
 
 .nav__list--mobile.nav__list--active {
@@ -183,31 +208,84 @@
   visibility: visible;
 }
 
+/* メニュー項目のstaggered animation */
+.nav__list--mobile li {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.nav__list--mobile.nav__list--active li:nth-child(1) {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+}
+
+.nav__list--mobile.nav__list--active li:nth-child(2) {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+}
+
+.nav__list--mobile.nav__list--active li:nth-child(3) {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+.nav__list--mobile.nav__list--active li:nth-child(4) {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+}
+
+.nav__list--mobile.nav__list--active li:nth-child(5) {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* アイコン付きリンク */
 .nav__list--mobile .nav__link {
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  font-size: 26px;
   color: var(--color-bg-white);
   font-weight: 400;
-  letter-spacing: 0.15em;
-  padding: var(--spacing-md) var(--spacing-xl);
+  letter-spacing: 0.12em;
+  padding: var(--spacing-lg) var(--spacing-xl);
   text-align: center;
   position: relative;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.nav__list--mobile .nav__link i {
+  display: inline-block;
+  font-size: 28px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav__list--mobile .nav__link::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: var(--spacing-sm);
   left: 50%;
   transform: translateX(-50%) scaleX(0);
-  width: 80%;
-  height: 2px;
-  background: var(--color-beige);
-  transition: transform 0.3s ease;
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-beige), transparent);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
 }
 
 .nav__list--mobile .nav__link:hover {
   color: var(--color-beige);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.nav__list--mobile .nav__link:hover i {
+  transform: scale(1.15) rotate(5deg);
 }
 
 .nav__list--mobile .nav__link:hover::after {
@@ -217,10 +295,40 @@
 .nav__list--mobile .nav__link--active {
   color: var(--color-beige);
   font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .nav__list--mobile .nav__link--active::after {
   transform: translateX(-50%) scaleX(1);
+}
+
+/* メールアドレス */
+.nav__list--mobile .mobile-menu__email {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.nav__list--mobile .mobile-menu__email i {
+  font-size: 20px;
+  color: var(--color-beige);
+}
+
+.nav__list--mobile .mobile-menu__email a {
+  color: var(--color-bg-white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  letter-spacing: 0.05em;
+}
+
+.nav__list--mobile .mobile-menu__email a:hover {
+  color: var(--color-beige);
 }
 
 /* ===== ボタン ===== */
