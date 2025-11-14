@@ -349,6 +349,19 @@ a:hover {
   align-items: center;
 }
 
+/* デスクトップ用ナビゲーション - デフォルトで表示 */
+.nav__list--desktop {
+  display: flex !important;
+}
+
+/* モバイル用ナビゲーション - デスクトップでは完全に非表示 */
+.nav__list--mobile-menu {
+  display: none !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .nav__link {
   font-weight: 400;
   font-size: 14px;
@@ -806,8 +819,16 @@ a:hover {
   }
 
   /* デスクトップのナビはモバイルで非表示 */
-  .nav__list:not(.nav__list--mobile) {
-    display: none;
+  .nav__list--desktop {
+    display: none !important;
+  }
+
+  /* モバイルナビを準備 */
+  .nav__list--mobile-menu {
+    display: flex !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   /* モバイルメニューの調整 */
