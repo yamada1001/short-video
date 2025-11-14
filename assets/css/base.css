@@ -656,11 +656,8 @@ a:hover {
   border-color: var(--color-natural-brown);
 }
 
-/* 無印良品スタイル: 控えめで上品なホバー */
 .btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(99, 88, 76, 0.15);
+  opacity: 0.8;
 }
 
 .btn-secondary {
@@ -672,8 +669,6 @@ a:hover {
 .btn-secondary:hover {
   background-color: var(--color-natural-brown);
   color: var(--color-bg-white);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(99, 88, 76, 0.12);
 }
 
 .btn--large {
@@ -688,25 +683,6 @@ a:hover {
 
 .btn--full {
   width: 100%;
-}
-
-/* アクセシビリティ: prefers-reduced-motion対応 */
-@media (prefers-reduced-motion: reduce) {
-  .btn,
-  .service-card,
-  .news-item,
-  .blog-preview-card,
-  .card {
-    transition: none !important;
-  }
-
-  .btn:hover,
-  .service-card:hover,
-  .news-item:hover,
-  .blog-preview-card:hover,
-  .card:hover {
-    transform: none !important;
-  }
 }
 
 /* ===== カード ===== */
