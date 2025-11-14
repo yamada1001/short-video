@@ -62,19 +62,6 @@
       });
     }
 
-    // アコーディオンメニュー
-    const accordionTriggers = document.querySelectorAll('.nav__link--accordion-trigger');
-    accordionTriggers.forEach(trigger => {
-      trigger.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const parentItem = this.closest('.nav__item--accordion');
-        if (parentItem) {
-          parentItem.classList.toggle('active');
-        }
-      });
-    });
-
     // スクロール制御 - ヘッダーを常時表示（影のみ変更）
     if (header) {
       window.addEventListener('scroll', function() {
