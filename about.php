@@ -19,7 +19,7 @@ $company = $company_json['company'] ?? [];
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <?php require_once __DIR__ . '/includes/favicon.php'; ?>
 
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/base.css">

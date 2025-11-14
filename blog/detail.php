@@ -79,7 +79,7 @@ $toc = generateToc($post['content']);
     <meta property="og:image" content="<?php echo h($post['thumbnail']); ?>">
     <?php endif; ?>
 
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/pages/blog.css">
     <link rel="stylesheet" href="../assets/css/toc.css">
