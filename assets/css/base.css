@@ -356,10 +356,7 @@ a:hover {
 
 /* モバイル用ナビゲーション - デスクトップでは完全に非表示 */
 .nav__list--mobile-menu {
-  display: none !important;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+  display: none;
 }
 
 .nav__link {
@@ -977,10 +974,11 @@ a:hover {
     display: none !important;
   }
 
-  /* モバイルナビは常に非表示（.nav__list--mobileクラス追加で表示） */
-  .nav__list--mobile-menu {
-    display: none !important;
+  /* ハンバーガーを表示 */
+  .hamburger {
+    display: flex !important;
   }
+}
 
   /* モバイルメニューの調整 */
   .nav__list--mobile .nav__link {
