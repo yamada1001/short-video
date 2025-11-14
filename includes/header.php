@@ -3,6 +3,10 @@
  * 共通ヘッダー
  * $current_page: 現在のページを指定（'home', 'services', 'blog', 'about', 'contact'）
  */
+// config.phpを読み込む（未読み込みの場合のみ）
+if (!defined('CONTACT_EMAIL')) {
+    require_once __DIR__ . '/config.php';
+}
 $current_page = $current_page ?? '';
 ?>
 <!-- ヘッダー -->
@@ -32,8 +36,8 @@ $current_page = $current_page ?? '';
                 <li><a href="<?php echo ($current_page === 'home') ? 'blog/' : '/blog/'; ?>" class="nav__link"><i class="fas fa-blog"></i><span>ブログ</span></a></li>
                 <li><a href="<?php echo ($current_page === 'home') ? 'about.html' : '/about.html'; ?>" class="nav__link"><i class="fas fa-building"></i><span>会社概要</span></a></li>
                 <li><a href="<?php echo ($current_page === 'home') ? 'contact.html' : '/contact.html'; ?>" class="nav__link"><i class="fas fa-envelope"></i><span>お問い合わせ</span></a></li>
-                <li class="mobile-menu__contact"><i class="fas fa-paper-plane"></i><a href="mailto:yamada@yojitu.com">yamada@yojitu.com</a></li>
-                <li class="mobile-menu__contact"><i class="fas fa-phone"></i><a href="tel:+81367121467">03-6712-1467</a></li>
+                <li class="mobile-menu__contact"><i class="fas fa-paper-plane"></i><a href="mailto:<?php echo defined('CONTACT_EMAIL') ? CONTACT_EMAIL : 'yamada@yojitu.com'; ?>"><?php echo defined('CONTACT_EMAIL') ? CONTACT_EMAIL : 'yamada@yojitu.com'; ?></a></li>
+                <li class="mobile-menu__contact"><i class="fas fa-phone"></i><a href="tel:<?php echo defined('CONTACT_TEL_LINK') ? CONTACT_TEL_LINK : '08046929681'; ?>"><?php echo defined('CONTACT_TEL') ? CONTACT_TEL : '080-4692-9681'; ?></a></li>
             </ul>
 
             <div class="hamburger" id="hamburger">
