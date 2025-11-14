@@ -977,12 +977,9 @@ a:hover {
     display: none !important;
   }
 
-  /* モバイルナビを準備 */
+  /* モバイルナビは常に非表示（.nav__list--mobileクラス追加で表示） */
   .nav__list--mobile-menu {
-    display: flex !important;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    display: none !important;
   }
 
   /* モバイルメニューの調整 */
