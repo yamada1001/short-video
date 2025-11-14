@@ -130,8 +130,17 @@ $toc = generateToc($post['content']);
         /* テーブルの特別処理 */
         .article-content table {
             width: 100% !important;
-            display: block !important;
+            max-width: 100% !important;
+            table-layout: fixed !important;
             overflow-x: auto !important;
+            display: table !important;
+        }
+
+        .article-content table th,
+        .article-content table td {
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            max-width: 100% !important;
         }
 
         /* モバイル時の追加制約 */
@@ -162,6 +171,15 @@ $toc = generateToc($post['content']);
 
             .article-content table {
                 max-width: calc(100vw - 32px) !important;
+                display: block !important;
+                overflow-x: auto !important;
+            }
+
+            .article-content table tbody,
+            .article-content table tr,
+            .article-content table td,
+            .article-content table th {
+                min-width: auto !important;
             }
         }
     </style>
