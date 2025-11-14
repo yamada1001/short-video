@@ -104,8 +104,8 @@ sort($all_categories);
       "name": "余日（Yojitsu）",
       "description": "デジタルマーケティング・Web制作会社",
       "url": "https://yojitu.com/",
-      "telephone": "080-4692-9681",
-      "email": "yamada@yojitu.com",
+      "telephone": "<?php echo CONTACT_TEL; ?>",
+      "email": "<?php echo CONTACT_EMAIL; ?>",
       "foundingDate": "2025-05-14",
       "taxID": "T9810094141774",
       "address": {

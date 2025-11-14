@@ -134,8 +134,8 @@
                 <div style="background-color: var(--color-bg-gray); padding: var(--spacing-lg); border-radius: 8px; margin-bottom: var(--spacing-xl);">
                     <p style="line-height: 2.0; color: var(--color-text-light);">
                         <strong>余日（Yojitsu）</strong><br>
-                        Email: <a href="mailto:yamada@yojitu.com" style="color: var(--color-primary);">yamada@yojitu.com</a><br>
-                        Tel: <a href="tel:08046929681" style="color: var(--color-primary);">080-4692-9681</a><br>
+                        Email: <a href="mailto:<?php echo CONTACT_EMAIL; ?>" style="color: var(--color-primary);"><?php echo CONTACT_EMAIL; ?></a><br>
+                        Tel: <a href="tel:<?php echo CONTACT_TEL_LINK; ?>" style="color: var(--color-primary);"><?php echo CONTACT_TEL; ?></a><br>
                         営業時間: 10時~22時（年中無休）
                     </p>
                 </div>
@@ -182,8 +182,8 @@
                 <div class="footer__section">
                     <h3 class="footer__section-title">お問い合わせ</h3>
                     <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 12px; line-height: 1.9;">
-                        <i class="fas fa-phone" style="margin-right: 8px;"></i>Tel: <a href="tel:08046929681" style="color: rgba(255, 255, 255, 0.9);">080-4692-9681</a><br>
-                        <i class="fas fa-envelope" style="margin-right: 8px;"></i>Email: <a href="mailto:yamada@yojitu.com" style="color: rgba(255, 255, 255, 0.9);">yamada@yojitu.com</a><br>
+                        <i class="fas fa-phone" style="margin-right: 8px;"></i>Tel: <a href="tel:<?php echo CONTACT_TEL_LINK; ?>" style="color: rgba(255, 255, 255, 0.9);"><?php echo CONTACT_TEL; ?></a><br>
+                        <i class="fas fa-envelope" style="margin-right: 8px;"></i>Email: <a href="mailto:<?php echo CONTACT_EMAIL; ?>" style="color: rgba(255, 255, 255, 0.9);"><?php echo CONTACT_EMAIL; ?></a><br>
                         <i class="fab fa-line" style="margin-right: 8px;"></i>LINE: <a href="https://line.me/ti/p/CTOCx9YKjk" style="color: rgba(255, 255, 255, 0.9);">お問い合わせ</a>
                     </p>
                     <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.8;">

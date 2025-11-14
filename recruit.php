@@ -199,11 +199,11 @@ require_once __DIR__ . '/includes/functions.php';
                     <table class="company-table">
                         <tr>
                             <th>メールアドレス</th>
-                            <td><a href="mailto:yamada@yojitu.com" style="color: var(--color-natural-brown);">yamada@yojitu.com</a></td>
+                            <td><a href="mailto:<?php echo CONTACT_EMAIL; ?>" style="color: var(--color-natural-brown);"><?php echo CONTACT_EMAIL; ?></a></td>
                         </tr>
                         <tr>
                             <th>電話番号</th>
-                            <td><a href="tel:08046929681" style="color: var(--color-natural-brown);">080-4692-9681</a></td>
+                            <td><a href="tel:<?php echo CONTACT_TEL_LINK; ?>" style="color: var(--color-natural-brown);"><?php echo CONTACT_TEL; ?></a></td>
                         </tr>
                         <tr>
                             <th>LINE</th>

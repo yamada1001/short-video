@@ -1,5 +1,9 @@
 <!-- CTAセクション -->
 <?php
+// config.phpを読み込む（未読み込みの場合のみ）
+if (!defined('CONTACT_EMAIL')) {
+    require_once __DIR__ . '/config.php';
+}
 $cta_base_path = isset($cta_base_path) ? $cta_base_path : '';
 ?>
 <section class="cta-section">
@@ -12,7 +16,7 @@ $cta_base_path = isset($cta_base_path) ? $cta_base_path : '';
                 <a href="<?php echo $cta_base_path; ?>contact.html" class="btn btn-primary btn--large">
                     <i class="fas fa-envelope"></i> お問い合わせフォーム
                 </a>
-                <a href="https://line.me/ti/p/CTOCx9YKjk" class="btn btn-secondary btn--large" target="_blank" rel="noopener noreferrer">
+                <a href="<?php echo defined('CONTACT_LINE_URL') ? CONTACT_LINE_URL : 'https://line.me/ti/p/CTOCx9YKjk'; ?>" class="btn btn-secondary btn--large" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-line"></i> LINEで相談
                 <span class="external-icon"> <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px; opacity: 0.6;"></i></span></a>
             </div>
@@ -21,14 +25,14 @@ $cta_base_path = isset($cta_base_path) ? $cta_base_path : '';
                     <i class="fas fa-phone"></i>
                     <div>
                         <span class="cta-info-label">お電話でのお問い合わせ</span>
-                        <a href="tel:08046929681" class="cta-info-value" target="_blank" rel="noopener noreferrer">080-4692-9681<span class="external-icon"> <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px; opacity: 0.6;"></i></span></a>
+                        <a href="tel:<?php echo defined('CONTACT_TEL_LINK') ? CONTACT_TEL_LINK : '08046929681'; ?>" class="cta-info-value" target="_blank" rel="noopener noreferrer"><?php echo defined('CONTACT_TEL') ? CONTACT_TEL : '080-4692-9681'; ?><span class="external-icon"> <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px; opacity: 0.6;"></i></span></a>
                     </div>
                 </div>
                 <div class="cta-info-item">
                     <i class="fas fa-envelope"></i>
                     <div>
                         <span class="cta-info-label">メールでのお問い合わせ</span>
-<a href="mailto:yamada@yojitu.com" class="cta-info-value" target="_blank" rel="noopener noreferrer">yamada@yojitu.com<span class="external-icon"> <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px; opacity: 0.6;"></i></span></a>
+<a href="mailto:<?php echo defined('CONTACT_EMAIL') ? CONTACT_EMAIL : 'yamada@yojitu.com'; ?>" class="cta-info-value" target="_blank" rel="noopener noreferrer"><?php echo defined('CONTACT_EMAIL') ? CONTACT_EMAIL : 'yamada@yojitu.com'; ?><span class="external-icon"> <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px; opacity: 0.6;"></i></span></a>
                     </div>
                 </div>
                 <div class="cta-info-item">
