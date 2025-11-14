@@ -145,15 +145,15 @@ sort($all_categories);
                 <path class="hero__wave hero__wave--1" d="M0,400 Q300,300 600,400 T1200,400 L1200,800 L0,800 Z" fill="url(#grad1)" opacity="0.3"/>
                 <path class="hero__wave hero__wave--2" d="M0,450 Q300,350 600,450 T1200,450 L1200,800 L0,800 Z" fill="url(#grad1)" opacity="0.2"/>
 
-                <!-- データポイント（マーケティング風） -->
-                <circle class="hero__data-point hero__data-point--1" cx="200" cy="300" r="8" fill="#63584C" opacity="0.6"/>
-                <circle class="hero__data-point hero__data-point--2" cx="400" cy="250" r="6" fill="#63584C" opacity="0.5"/>
-                <circle class="hero__data-point hero__data-point--3" cx="600" cy="200" r="10" fill="#63584C" opacity="0.7"/>
-                <circle class="hero__data-point hero__data-point--4" cx="800" cy="280" r="7" fill="#63584C" opacity="0.6"/>
-                <circle class="hero__data-point hero__data-point--5" cx="1000" cy="320" r="9" fill="#63584C" opacity="0.5"/>
+                <!-- データポイント（マーケティング風 - 上昇トレンド） -->
+                <circle class="hero__data-point hero__data-point--1" cx="200" cy="500" r="8" fill="#63584C" opacity="0.6"/>
+                <circle class="hero__data-point hero__data-point--2" cx="400" cy="400" r="9" fill="#63584C" opacity="0.6"/>
+                <circle class="hero__data-point hero__data-point--3" cx="600" cy="300" r="10" fill="#63584C" opacity="0.7"/>
+                <circle class="hero__data-point hero__data-point--4" cx="800" cy="200" r="11" fill="#63584C" opacity="0.7"/>
+                <circle class="hero__data-point hero__data-point--5" cx="1000" cy="150" r="12" fill="#63584C" opacity="0.8"/>
 
-                <!-- 接続線（データフロー） -->
-                <polyline class="hero__line" points="200,300 400,250 600,200 800,280 1000,320" fill="none" stroke="#63584C" stroke-width="2" opacity="0.3"/>
+                <!-- 接続線（上昇データフロー） -->
+                <polyline class="hero__line" points="200,500 400,400 600,300 800,200 1000,150" fill="none" stroke="#63584C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
 
                 <!-- グラフ風の棒 -->
                 <rect class="hero__bar hero__bar--1" x="100" y="500" width="40" height="200" fill="#63584C" opacity="0.15"/>
