@@ -127,6 +127,7 @@ a:hover {
 /* セクション */
 .section {
   padding: var(--spacing-xxl) 0;
+  scroll-snap-align: start;
 }
 
 .section--beige {
