@@ -247,7 +247,7 @@ $structured_data = '
         <div class="container">
             <div class="section-header">
                 <span class="section-header__label animate">Services</span>
-                <h2 class="section__title animate">サービス</h2>
+                <h2 class="section__title" data-split-text>サービス</h2>
                 <p class="section__description animate">
                     デジタルマーケティングの専門知識で、<br>
                     お客様のビジネス成長をトータルサポート
@@ -332,7 +332,7 @@ $structured_data = '
         <div class="container">
             <div class="section-header">
                 <span class="section-header__label animate">Blog</span>
-                <h2 class="section__title animate">ブログ</h2>
+                <h2 class="section__title" data-split-text>ブログ</h2>
                 <p class="section__description animate">
                     デジタルマーケティングの最新情報と<br>
                     実践的なノウハウをお届けします
@@ -445,6 +445,7 @@ $structured_data = '
     <!-- GSAP for hero animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" integrity="sha512-1PKqXBz2ju2JcAerHKL0ldg0PT/1vr3LghYAtc59+9xy8e19QEtaNUyt1gprouyWnpOPqNJjL4gXMRMEpHYyLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -454,6 +455,9 @@ $structured_data = '
 
     <!-- Hero section animations -->
     <script defer src="assets/js/hero-animations.js"></script>
+
+    <!-- Rich Animations (Split Text, GPU Acceleration, 60fps) -->
+    <script defer src="assets/js/rich-animations.js"></script>
 
     <!-- Rich interactions (safe version) -->
     <script defer src="assets/js/rich-interactions-safe.js"></script>
