@@ -209,7 +209,11 @@ $company = $company_json['company'] ?? [];
     </section>
 
     <!-- CTAセクション -->
-    <?php $cta_base_path = ''; include __DIR__ . '/includes/cta.php'; ?>
+    <?php
+    $cta_base_path = '';
+    $cta_show_info = true;
+    include __DIR__ . '/includes/cta.php';
+    ?>
 
     <!-- フッター -->
     <footer class="footer">

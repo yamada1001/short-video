@@ -1,4 +1,5 @@
 <?php
+$current_page = 'news';
 require_once __DIR__ . '/../includes/functions.php';
 
 // 記事データ取得
@@ -33,15 +34,11 @@ $next_article = isset($articles[$current_index - 1]) ? $articles[$current_index 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
-    <!-- End Google Tag Manager -->
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
 
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
@@ -52,6 +49,14 @@ $next_article = isset($articles[$current_index - 1]) ? $articles[$current_index 
 
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/news.css">
+
+    <!-- Google Tag Manager - Deferred -->
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    </script>
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->

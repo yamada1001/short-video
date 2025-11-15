@@ -9,17 +9,13 @@ require_once __DIR__ . '/includes/functions.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="余日（Yojitsu）では業務委託パートナーを募集中。動画撮影者・編集者、デジタルマーケティング関連の交流を希望しています。">
     <title>業務委託募集・交流 | 余日（Yojitsu）</title>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
-    <!-- End Google Tag Manager -->
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <?php require_once __DIR__ . '/includes/favicon.php'; ?>
 
@@ -32,7 +28,14 @@ require_once __DIR__ . '/includes/functions.php';
 
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/pages/about.css">
-    <link rel="stylesheet" href="assets/css/pages/top.css">
+
+    <!-- Google Tag Manager - Deferred -->
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    </script>
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
 
     <!-- 構造化データ -->
     <script type="application/ld+json">
