@@ -1,12 +1,10 @@
 /**
- * ヒーローセクション v2 - モダンアニメーション
- * 3D効果 + 文字分割 + パーティクル
+ * ヒーローセクション v2 - GSAPアニメーション
+ * ブランディングサイト風の段階的なアニメーション
  */
 
 (function() {
     'use strict';
-
-    console.log('🎬 Hero Animations - モダン版初期化開始');
 
     // GSAP読み込み確認
     if (typeof gsap === 'undefined') {
@@ -24,244 +22,276 @@
         return;
     }
 
-    /**
-     * タイトルを1文字ずつ分割
-     */
-    function splitTextToChars(element) {
-        const text = element.textContent;
-        const chars = text.split('');
-        element.innerHTML = '';
+    // アニメーション対象要素
+    const label = heroSection.querySelector('[data-hero-label]');
+    const titleLine1 = heroSection.querySelector('[data-hero-title-1]');
+    const titleLine2 = heroSection.querySelector('[data-hero-title-2]');
+    const titleLine3 = heroSection.querySelector('[data-hero-title-3]');
+    const text = heroSection.querySelector('[data-hero-text]');
+    const buttons = heroSection.querySelector('[data-hero-buttons]');
+    const meta1 = heroSection.querySelector('[data-hero-meta-1]');
+    const meta2 = heroSection.querySelector('[data-hero-meta-2]');
+    const meta3 = heroSection.querySelector('[data-hero-meta-3]');
+    const scroll = heroSection.querySelector('[data-hero-scroll]');
+    const bg = heroSection.querySelector('.hero-v2__bg');
+    const shapes = heroSection.querySelectorAll('.hero-v2__shape');
 
-        chars.forEach((char, index) => {
-            const span = document.createElement('span');
-            span.textContent = char === ' ' ? '\u00A0' : char;
-            span.style.display = 'inline-block';
-            span.style.opacity = '0';
-            span.style.transform = 'translateY(100px) rotateX(-90deg) scale(0.5)';
-            span.className = 'char-split';
-            element.appendChild(span);
-        });
-
-        return element.querySelectorAll('.char-split');
-    }
+    // タイトルの単語を取得
+    const words1 = titleLine1 ? titleLine1.querySelectorAll('.hero-v2__title-word') : [];
+    const words2 = titleLine2 ? titleLine2.querySelectorAll('.hero-v2__title-word') : [];
+    const words3 = titleLine3 ? titleLine3.querySelectorAll('.hero-v2__title-word') : [];
 
     /**
-     * メインアニメーション
+     * メインタイムラインアニメーション
      */
     function initHeroAnimation() {
-        console.log('✨ ヒーローアニメーション - 実行中...');
-
-        // 要素の取得
-        const label = heroSection.querySelector('[data-hero-label]');
-        const titleLines = heroSection.querySelectorAll('.hero-v2__title-line');
-        const text = heroSection.querySelector('[data-hero-text]');
-        const buttons = heroSection.querySelector('[data-hero-buttons]');
-        const metaItems = heroSection.querySelectorAll('.hero-v2__meta-item');
-        const scroll = heroSection.querySelector('[data-hero-scroll]');
-        const shapes = heroSection.querySelectorAll('.hero-v2__shape');
-
-        // タイトルを文字分割
-        const allChars = [];
-        titleLines.forEach(line => {
-            const chars = splitTextToChars(line);
-            allChars.push(...chars);
+        // GSAPのデフォルト設定
+        gsap.defaults({
+            ease: 'power3.out',
+            duration: 1
         });
 
         // メインタイムライン
         const tl = gsap.timeline({
-            delay: 0.5,
-            defaults: {
-                ease: 'power3.out'
-            }
+            delay: 0.3 // ページロード後の遅延
         });
 
-        // 背景シェイプのパルスアニメーション
+        // 背景のシェイプをアニメーション
         if (shapes.length > 0) {
             gsap.set(shapes, { scale: 0, opacity: 0 });
             tl.to(shapes, {
                 scale: 1,
                 opacity: 1,
-                duration: 2,
-                stagger: 0.3,
-                ease: 'elastic.out(1, 0.5)'
+                duration: 1.5,
+                stagger: 0.2,
+                ease: 'power2.out'
             }, 0);
-
-            // 継続的なパルス
-            shapes.forEach((shape, index) => {
-                gsap.to(shape, {
-                    scale: 1.1,
-                    duration: 3 + index,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: 'sine.inOut',
-                    delay: index * 0.5
-                });
-            });
         }
 
-        // ラベル - スケール + フェード
+        // ラベルをフェードイン
         if (label) {
-            tl.from(label, {
-                opacity: 0,
-                scale: 0.8,
-                y: -30,
-                duration: 1,
-                ease: 'back.out(1.7)'
-            }, 0.3);
-        }
-
-        // タイトル文字 - 3Dアニメーション
-        if (allChars.length > 0) {
-            tl.to(allChars, {
+            tl.to(label, {
                 opacity: 1,
                 y: 0,
-                rotateX: 0,
-                scale: 1,
-                duration: 1.2,
-                stagger: {
-                    each: 0.03,
-                    from: 'start',
-                    ease: 'power2.inOut'
-                },
-                ease: 'back.out(1.5)'
-            }, 0.6);
+                duration: 0.8
+            }, 0.2);
         }
 
-        // テキスト - フェード + スライド
+        // タイトル1行目の単語を順番に表示
+        if (words1.length > 0) {
+            tl.to(words1, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: 'power3.out'
+            }, 0.4);
+        }
+
+        // タイトル2行目の単語を順番に表示
+        if (words2.length > 0) {
+            tl.to(words2, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: 'power3.out'
+            }, 0.7);
+        }
+
+        // タイトル3行目の単語を順番に表示
+        if (words3.length > 0) {
+            tl.to(words3, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: 'power3.out'
+            }, 1.0);
+        }
+
+        // テキストをフェードイン
         if (text) {
-            tl.from(text, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                ease: 'power2.out'
-            }, '-=0.8');
+            tl.to(text, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8
+            }, 1.4);
         }
 
-        // ボタン - スケール + バウンス
+        // ボタンをフェードイン
         if (buttons) {
             const buttonElements = buttons.querySelectorAll('.hero-v2__btn');
-            tl.from(buttonElements, {
-                opacity: 0,
-                scale: 0.8,
-                y: 40,
-                duration: 0.8,
-                stagger: 0.15,
-                ease: 'back.out(1.7)'
-            }, '-=0.6');
-
-            // ボタンのホバーアニメーション強化
-            buttonElements.forEach(btn => {
-                btn.addEventListener('mouseenter', () => {
-                    gsap.to(btn, {
-                        scale: 1.1,
-                        rotateZ: 2,
-                        duration: 0.3,
-                        ease: 'power2.out'
-                    });
-                });
-
-                btn.addEventListener('mouseleave', () => {
-                    gsap.to(btn, {
-                        scale: 1,
-                        rotateZ: 0,
-                        duration: 0.3,
-                        ease: 'power2.out'
-                    });
-                });
-            });
+            tl.to(buttonElements, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.15
+            }, 1.6);
         }
 
-        // メタ情報 - 横からスライド + フェード
+        // サイドメタ情報を順番に表示
+        const metaItems = [meta1, meta2, meta3].filter(Boolean);
         if (metaItems.length > 0) {
-            tl.from(metaItems, {
-                opacity: 0,
-                x: 100,
-                rotateY: 45,
-                duration: 0.8,
-                stagger: 0.15,
-                ease: 'power3.out'
-            }, '-=0.5');
+            tl.to(metaItems, {
+                opacity: 1,
+                x: 0,
+                duration: 0.6,
+                stagger: 0.2
+            }, 1.8);
         }
 
-        // スクロールヒント - バウンスアニメーション
+        // スクロールヒントをフェードイン
         if (scroll) {
-            tl.from(scroll, {
-                opacity: 0,
-                y: -30,
-                duration: 1,
-                ease: 'bounce.out'
-            }, '-=0.3');
-
-            // 継続的なバウンス
-            gsap.to(scroll, {
-                y: 10,
-                duration: 1.5,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            });
+            tl.to(scroll, {
+                opacity: 1,
+                duration: 0.8
+            }, 2.0);
         }
-
-        console.log('✅ ヒーローアニメーション - 完了');
     }
 
     /**
-     * マウス追従効果（オプション）
+     * スクロールアニメーション（ScrollTrigger使用）
      */
-    function initMouseFollowEffect() {
-        let mouseX = 0;
-        let mouseY = 0;
+    function initScrollAnimations() {
+        // ScrollTrigger読み込み確認
+        if (typeof ScrollTrigger === 'undefined') {
+            console.warn('ScrollTrigger is not loaded. Scroll animations will be skipped.');
+            return;
+        }
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
-            mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 背景の視差効果
+        if (bg) {
+            gsap.to(bg, {
+                yPercent: 30,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: heroSection,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+        }
+
+        // シェイプの視差効果
+        shapes.forEach((shape, index) => {
+            const speed = (index + 1) * 0.5;
+            gsap.to(shape, {
+                yPercent: 50 * speed,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: heroSection,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
         });
 
-        // タイトルをマウスに追従
-        const title = heroSection.querySelector('.hero-v2__title');
-        if (title) {
-            gsap.to(title, {
-                x: () => mouseX,
-                y: () => mouseY,
-                duration: 2,
-                ease: 'power2.out',
-                overwrite: 'auto'
+        // タイトルの視差効果
+        const titleLines = [titleLine1, titleLine2, titleLine3].filter(Boolean);
+        titleLines.forEach((line, index) => {
+            gsap.to(line, {
+                yPercent: (index + 1) * 10,
+                opacity: 0.5,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: heroSection,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                }
             });
-
-            // 継続的な更新
-            gsap.ticker.add(() => {
-                gsap.to(title, {
-                    x: mouseX,
-                    y: mouseY,
-                    duration: 2,
-                    ease: 'power2.out',
-                    overwrite: 'auto'
-                });
-            });
-        }
+        });
     }
 
     /**
-     * 初期化
+     * ホバーアニメーション
+     */
+    function initHoverAnimations() {
+        // ボタンのホバーエフェクト強化
+        const buttons = heroSection.querySelectorAll('.hero-v2__btn');
+        buttons.forEach(btn => {
+            const icon = btn.querySelector('.hero-v2__btn-icon');
+
+            btn.addEventListener('mouseenter', () => {
+                if (icon) {
+                    gsap.to(icon, {
+                        x: 5,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                }
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                if (icon) {
+                    gsap.to(icon, {
+                        x: 0,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                }
+            });
+        });
+
+        // メタアイテムのホバーエフェクト
+        const metaItems = heroSection.querySelectorAll('.hero-v2__meta-item');
+        metaItems.forEach(item => {
+            const line = item.querySelector('.hero-v2__meta-line');
+
+            item.addEventListener('mouseenter', () => {
+                if (line) {
+                    gsap.to(line, {
+                        width: 80,
+                        duration: 0.4,
+                        ease: 'power2.out'
+                    });
+                }
+            });
+
+            item.addEventListener('mouseleave', () => {
+                if (line) {
+                    gsap.to(line, {
+                        width: 60,
+                        duration: 0.4,
+                        ease: 'power2.out'
+                    });
+                }
+            });
+        });
+    }
+
+    /**
+     * 初期化関数
      */
     function init() {
-        console.log('🚀 Hero Animations - 初期化実行');
+        try {
+            // メインアニメーション実行
+            initHeroAnimation();
 
-        // メインアニメーション
-        initHeroAnimation();
+            // スクロールアニメーション実行
+            initScrollAnimations();
 
-        // マウス追従効果（デスクトップのみ）
-        if (window.innerWidth >= 1024) {
-            initMouseFollowEffect();
+            // ホバーアニメーション実行
+            initHoverAnimations();
+
+            console.log('Hero animations initialized successfully');
+        } catch (error) {
+            console.error('Error initializing hero animations:', error);
+            // エラー時は.js-enabledクラスを削除して通常表示に戻す
+            document.documentElement.classList.remove('js-enabled');
         }
-
-        console.log('✅ Hero Animations - すべて完了');
     }
 
     // ページロード後に実行
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
+        // すでにDOMが読み込まれている場合
         init();
     }
 
