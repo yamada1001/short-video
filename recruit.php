@@ -89,6 +89,24 @@ require_once __DIR__ . '/includes/functions.php';
     <!-- End Google Tag Manager (noscript) -->
     <?php include __DIR__ . '/includes/header.php'; ?>
 
+    <!-- ページヒーロー -->
+    <section class="page-hero">
+        <div class="page-hero__bg">
+            <div class="page-hero__shape page-hero__shape--1"></div>
+            <div class="page-hero__shape page-hero__shape--2"></div>
+        </div>
+        <div class="page-hero__container">
+            <span class="page-hero__label">Recruit & Networking</span>
+            <h1 class="page-hero__title">
+                <i class="fas fa-handshake"></i> 業務委託募集・交流
+            </h1>
+            <p class="page-hero__description">
+                一緒に働くパートナーを募集<br>
+                デジタルマーケティング関連の方との交流も歓迎
+            </p>
+        </div>
+    </section>
+
     <!-- 募集内容 -->
     <section class="company-info" style="padding-top: 100px;">
         <div class="container">
@@ -245,6 +263,12 @@ require_once __DIR__ . '/includes/functions.php';
 
     <?php include __DIR__ . '/includes/footer.php'; ?>
 
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Page Scripts -->
     <script defer src="assets/js/app.js"></script>
+    <script defer src="assets/js/recruit.js"></script>
 </body>
 </html>
