@@ -150,58 +150,78 @@ sort($all_categories);
     <?php include __DIR__ . '/includes/header.php'; ?>
 
     <!-- ヒーローセクション -->
-    <section class="hero-v2">
-        <!-- 背景装飾（ミニマル） -->
-        <div class="hero-v2__bg">
-            <div class="hero-v2__circle hero-v2__circle--1"></div>
-            <div class="hero-v2__circle hero-v2__circle--2"></div>
+    <section class="hero-v2" data-scroll-section>
+        <!-- 背景装飾 -->
+        <div class="hero-v2__bg" data-scroll data-scroll-speed="-2">
+            <div class="hero-v2__shape hero-v2__shape--1"></div>
+            <div class="hero-v2__shape hero-v2__shape--2"></div>
+            <div class="hero-v2__shape hero-v2__shape--3"></div>
         </div>
 
         <div class="hero-v2__container">
             <!-- メインコンテンツ -->
             <div class="hero-v2__content">
-                <div class="hero-v2__label">
-                    <span>Digital Marketing</span>
+                <div class="hero-v2__label" data-hero-label>
+                    <span class="hero-v2__label-num">01</span>
+                    <span class="hero-v2__label-text">Digital Marketing</span>
                     <span class="hero-v2__label-line"></span>
                 </div>
 
                 <h1 class="hero-v2__title">
-                    本質に向き合う余裕を、<br>
-                    デジタルで創る
+                    <span class="hero-v2__title-line" data-hero-title-1>
+                        <span class="hero-v2__title-word">本質に</span>
+                        <span class="hero-v2__title-word">向き合う</span>
+                    </span>
+                    <span class="hero-v2__title-line" data-hero-title-2>
+                        <span class="hero-v2__title-word">余裕を、</span>
+                    </span>
+                    <span class="hero-v2__title-line" data-hero-title-3>
+                        <span class="hero-v2__title-word">デジタルで</span>
+                        <span class="hero-v2__title-word">創る</span>
+                    </span>
                 </h1>
 
-                <p class="hero-v2__text">
+                <p class="hero-v2__text" data-hero-text>
                     大分から始まる、新しいビジネスの形
                 </p>
 
-                <div class="hero-v2__buttons">
+                <div class="hero-v2__buttons" data-hero-buttons>
                     <a href="contact.php" class="hero-v2__btn hero-v2__btn--primary">
-                        <span>お問い合わせ</span>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
+                        <span class="hero-v2__btn-text">お問い合わせ</span>
+                        <span class="hero-v2__btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </span>
                     </a>
                     <a href="services.php" class="hero-v2__btn hero-v2__btn--secondary">
-                        <span>サービス詳細</span>
+                        <span class="hero-v2__btn-text">サービス詳細</span>
                     </a>
                 </div>
             </div>
 
             <!-- サイドメタ情報 -->
             <div class="hero-v2__meta">
-                <div class="hero-v2__meta-item">
+                <div class="hero-v2__meta-item" data-hero-meta-1>
                     <span class="hero-v2__meta-num">01</span>
                     <span class="hero-v2__meta-text">Web制作</span>
+                    <div class="hero-v2__meta-line"></div>
                 </div>
-                <div class="hero-v2__meta-item">
+                <div class="hero-v2__meta-item" data-hero-meta-2>
                     <span class="hero-v2__meta-num">02</span>
                     <span class="hero-v2__meta-text">動画制作</span>
+                    <div class="hero-v2__meta-line"></div>
+                </div>
+                <div class="hero-v2__meta-item" data-hero-meta-3>
+                    <span class="hero-v2__meta-num">03</span>
+                    <span class="hero-v2__meta-text">マーケティング</span>
+                    <div class="hero-v2__meta-line"></div>
                 </div>
             </div>
         </div>
 
         <!-- スクロールヒント -->
-        <div class="hero-v2__scroll">
+        <div class="hero-v2__scroll" data-hero-scroll>
             <span>Scroll</span>
             <div class="hero-v2__scroll-line"></div>
         </div>
@@ -388,6 +408,15 @@ sort($all_categories);
     </div>
 
     <!-- JavaScript - Deferred for better performance -->
+
+    <!-- GSAP for hero animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Hero section animations -->
+    <script defer src="assets/js/hero-animations.js"></script>
+
+    <!-- Common app scripts -->
     <script defer src="assets/js/app.js"></script>
 </body>
 </html>
