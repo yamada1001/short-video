@@ -11,7 +11,6 @@
     background: linear-gradient(135deg, #faf9f7 0%, #f5f3f0 100%);
     overflow: hidden;
     padding: 120px 20px 60px;
-    scroll-snap-align: start;
 }
 
 /* ========================================
