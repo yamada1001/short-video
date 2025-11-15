@@ -38,17 +38,18 @@ $all_categories = array_unique(array_map(function($post) {
 }, $all_posts));
 $all_categories = array_filter($all_categories); // 空の値を除外
 sort($all_categories);
-?>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="大分県を拠点に、Web制作・ショート動画制作を提供する余日（Yojitsu）。デジタルマーケティングで地域企業の成長を支援します。">
-    <meta name="keywords" content="大分,Web制作,ショート動画,動画制作,ホームページ制作,余日,Yojitsu">
-    <title>余日（Yojitsu） - 大分のデジタルマーケティング</title>
 
-    <!-- OGP -->
+// Head用の変数設定
+$page_title = '余日（Yojitsu） - 大分のデジタルマーケティング';
+$page_description = '大分県を拠点に、Web制作・ショート動画制作を提供する余日（Yojitsu）。デジタルマーケティングで地域企業の成長を支援します。';
+$page_keywords = '大分,Web制作,ショート動画,動画制作,ホームページ制作,余日,Yojitsu';
+$additional_css = [
+    'assets/css/loading.css',
+    'assets/css/pages/top.css',
+    'assets/css/pages/hero-v2.css'
+];
+
+$ogp_tags = <<<'EOD'
     <meta property="og:title" content="余日（Yojitsu） - 大分のデジタルマーケティング">
     <meta property="og:description" content="大分県を拠点に、Web制作・ショート動画制作を提供。地域企業のデジタル化を支援します。">
     <meta property="og:type" content="website">
@@ -56,60 +57,24 @@ sort($all_categories);
     <meta property="og:image" content="https://yojitu.com/assets/images/ogp.jpg">
     <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary_large_image">
+EOD;
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
-    <?php require_once __DIR__ . '/includes/favicon.php'; ?>
-
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
-
-    <!-- Critical CSS - Inline for faster FCP -->
-    <style>
+$inline_styles = <<<'EOD'
         /* Critical styles for above-the-fold content */
         body{margin:0;font-family:'Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow-x:clip}
         .header{position:fixed;top:0;left:0;width:100%;z-index:1000;background-color:#fff;border-bottom:1px solid #e0e0e0;transition:transform .3s ease}
         .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;background-color:#f5f5f5}
-    </style>
+EOD;
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/loading.css">
-    <link rel="stylesheet" href="assets/css/cta.css">
-    <link rel="stylesheet" href="assets/css/pages/top.css">
-    <link rel="stylesheet" href="assets/css/pages/hero-v2.css">
-
-    <!-- 非クリティカルCSS - 遅延読み込み -->
-    <link rel="stylesheet" href="assets/css/cookie-consent.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="assets/css/cookie-consent.css"></noscript>
-
-    <!-- Font Awesome - Async load for non-blocking -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-
-    <!-- Google Tag Manager - Deferred -->
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    </script>
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
-
-    <!-- 構造化データ -->
-    <script type="application/ld+json">
+$structured_data = <<<EOD
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "余日（Yojitsu）",
       "description": "デジタルマーケティング・Web制作会社",
       "url": "https://yojitu.com/",
-      "telephone": "<?php echo CONTACT_TEL; ?>",
-      "email": "<?php echo CONTACT_EMAIL; ?>",
+      "telephone": "{$CONTACT_TEL}",
+      "email": "{$CONTACT_EMAIL}",
       "foundingDate": "2025-05-14",
       "taxID": "T9810094141774",
       "address": {
@@ -124,7 +89,28 @@ sort($all_categories);
       "priceRange": "¥¥",
       "serviceType": ["Webサイト制作", "ショート動画制作"]
     }
+EOD;
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<?php require_once __DIR__ . '/includes/head.php'; ?>
+
+    <!-- 非クリティカルCSS - 遅延読み込み -->
+    <link rel="stylesheet" href="assets/css/cookie-consent.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="assets/css/cookie-consent.css"></noscript>
+
+    <!-- Google Tag Manager - Deferred -->
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
     </script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=GTM-T7NGQDC2"></script>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="assets/css/base.css" as="style">
+    <link rel="preload" href="assets/js/app.js" as="script">
 </head>
 <body>
     <!-- ローディングアニメーション -->

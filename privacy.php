@@ -1,32 +1,17 @@
-<?php $current_page = 'privacy'; ?>
+<?php
+$current_page = 'privacy';
+require_once __DIR__ . '/includes/functions.php';
+
+// Head用の変数設定
+$page_title = 'プライバシーポリシー | 余日（Yojitsu）';
+$page_description = '余日（Yojitsu）のプライバシーポリシー・個人情報保護方針について。';
+$robots_meta = 'noindex, follow';
+$additional_css = ['assets/css/pages/about.css', 'assets/css/cookie-consent.css'];
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="余日（Yojitsu）のプライバシーポリシー・個人情報保護方針について。">
-    <meta name="robots" content="noindex, follow">
-    <title>プライバシーポリシー | 余日（Yojitsu）</title>
-
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
-    <?php require_once __DIR__ . '/includes/favicon.php'; ?>
-
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
-
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/pages/about.css">
-    <link rel="stylesheet" href="assets/css/cookie-consent.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
+<?php require_once __DIR__ . '/includes/head.php'; ?>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"

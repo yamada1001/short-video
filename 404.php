@@ -2,20 +2,14 @@
 http_response_code(404);
 $current_page = '404';
 require_once __DIR__ . '/includes/functions.php';
-?>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>404 ページが見つかりません | 余日（Yojitsu）</title>
 
-    <?php require_once __DIR__ . '/includes/favicon.php'; ?>
+// Head用の変数設定
+$page_title = '404 ページが見つかりません | 余日（Yojitsu）';
+$page_description = 'お探しのページが見つかりませんでした。';
+$robots_meta = 'noindex, nofollow';
+$css_base_path = '/';
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
-    <link rel="stylesheet" href="/assets/css/base.css">
-    <style>
+$inline_styles = <<<'EOD'
         .error-page {
             min-height: 80vh;
             display: flex;
@@ -94,7 +88,12 @@ require_once __DIR__ . '/includes/functions.php';
                 flex-direction: column;
             }
         }
-    </style>
+EOD;
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<?php require_once __DIR__ . '/includes/head.php'; ?>
 </head>
 <body>
     <?php include __DIR__ . '/includes/header.php'; ?>

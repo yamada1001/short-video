@@ -1,0 +1,58 @@
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?php echo $page_description ?? '大分県を拠点に、Web制作・ショート動画制作を提供する余日（Yojitsu）。'; ?>">
+<?php if (isset($page_keywords)): ?>
+    <meta name="keywords" content="<?php echo $page_keywords; ?>">
+<?php endif; ?>
+<?php if (isset($robots_meta)): ?>
+    <meta name="robots" content="<?php echo $robots_meta; ?>">
+<?php endif; ?>
+    <title><?php echo $page_title ?? '余日（Yojitsu）'; ?></title>
+<?php if (isset($ogp_tags)): ?>
+
+    <!-- OGP -->
+<?php echo $ogp_tags; ?>
+<?php endif; ?>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+    <?php require_once __DIR__ . '/favicon.php'; ?>
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
+
+    <!-- 共通CSS -->
+    <link rel="stylesheet" href="<?php echo $css_base_path ?? ''; ?>assets/css/base.css">
+    <link rel="stylesheet" href="<?php echo $css_base_path ?? ''; ?>assets/css/cta.css">
+<?php
+// 追加のCSSファイル
+if (isset($additional_css) && is_array($additional_css)) {
+    foreach ($additional_css as $css_file) {
+        echo '    <link rel="stylesheet" href="' . ($css_base_path ?? '') . $css_file . '">' . "\n";
+    }
+}
+?>
+
+    <!-- Font Awesome - Async load -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+    <!-- Google Tag Manager - Async -->
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
+<?php if (isset($structured_data)): ?>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+<?php echo $structured_data; ?>
+    </script>
+<?php endif; ?>
+<?php if (isset($inline_styles)): ?>
+
+    <style>
+<?php echo $inline_styles; ?>
+    </style>
+<?php endif; ?>

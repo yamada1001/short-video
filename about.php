@@ -6,38 +6,16 @@ require_once __DIR__ . '/includes/functions.php';
 $company_data = file_get_contents(__DIR__ . '/includes/data/company.json');
 $company_json = json_decode($company_data, true);
 $company = $company_json['company'] ?? [];
+
+// Head用の変数設定
+$page_title = '会社概要 | 余日（Yojitsu）';
+$page_description = '余日（Yojitsu）の会社概要。大分県を拠点に、デジタルマーケティングで地域企業を支援しています。';
+$additional_css = ['assets/css/pages/about.css', 'assets/css/cookie-consent.css'];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="余日（Yojitsu）の会社概要。大分県を拠点に、デジタルマーケティングで地域企業を支援しています。">
-    <title>会社概要 | 余日（Yojitsu）</title>
-
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
-    <?php require_once __DIR__ . '/includes/favicon.php'; ?>
-
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/cta.css">
-    <link rel="stylesheet" href="assets/css/pages/about.css">
-    <link rel="stylesheet" href="assets/css/cookie-consent.css">
-
-    <!-- Font Awesome - Async load -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-
-    <!-- Google Tag Manager - Async -->
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
+<?php require_once __DIR__ . '/includes/head.php'; ?>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->

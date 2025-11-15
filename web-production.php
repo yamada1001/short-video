@@ -1,41 +1,14 @@
 <?php
 $current_page = 'services';
 require_once __DIR__ . '/includes/functions.php';
-?>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="10万円からのWebサイト制作。個人事業主から中小企業まで、目的に応じた最適なプランをご提供。余日（Yojitsu）">
-    <meta name="keywords" content="Web制作,ホームページ制作,格安,大分,余日,10万円,30万円,レスポンシブ">
-    <title>Webサイト制作 - 10万円から始めるプロフェッショナルなWeb制作 | 余日（Yojitsu）</title>
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+// Head用の変数設定
+$page_title = 'Webサイト制作 - 10万円から始めるプロフェッショナルなWeb制作 | 余日（Yojitsu）';
+$page_description = '10万円からのWebサイト制作。個人事業主から中小企業まで、目的に応じた最適なプランをご提供。余日（Yojitsu）';
+$page_keywords = 'Web制作,ホームページ制作,格安,大分,余日,10万円,30万円,レスポンシブ';
+$additional_css = ['assets/css/cookie-consent.css'];
 
-    <?php require_once __DIR__ . '/includes/favicon.php'; ?>
-
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/cta.css">
-    <link rel="stylesheet" href="assets/css/cookie-consent.css">
-
-    <!-- Font Awesome - Async load -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-
-    <!-- Google Tag Manager - Async -->
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
+$structured_data = <<<EOD
     {
       "@context": "https://schema.org",
       "@type": "Service",
@@ -43,8 +16,8 @@ require_once __DIR__ . '/includes/functions.php';
       "provider": {
         "@type": "LocalBusiness",
         "name": "余日（Yojitsu）",
-        "telephone": "<?php echo CONTACT_TEL; ?>",
-        "email": "<?php echo CONTACT_EMAIL; ?>",
+        "telephone": "{$CONTACT_TEL}",
+        "email": "{$CONTACT_EMAIL}",
         "address": {
           "@type": "PostalAddress",
           "addressRegion": "大分県",
@@ -79,9 +52,9 @@ require_once __DIR__ . '/includes/functions.php';
         }
       ]
     }
-    </script>
+EOD;
 
-    <style>
+$inline_styles = <<<'EOD'
         .page-header {
             background: linear-gradient(135deg, var(--color-natural-brown) 0%, var(--color-charcoal) 100%);
             padding: var(--spacing-xxl) 0;
@@ -413,7 +386,12 @@ require_once __DIR__ . '/includes/functions.php';
             font-weight: 600;
             color: var(--color-charcoal);
         }
-    </style>
+EOD;
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<?php require_once __DIR__ . '/includes/head.php'; ?>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
