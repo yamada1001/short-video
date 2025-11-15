@@ -46,24 +46,6 @@ $company = $company_json['company'] ?? [];
     <!-- End Google Tag Manager (noscript) -->
     <?php include __DIR__ . '/includes/header.php'; ?>
 
-    <!-- ページヒーロー -->
-    <section class="page-hero">
-        <div class="page-hero__bg">
-            <div class="page-hero__shape page-hero__shape--1"></div>
-            <div class="page-hero__shape page-hero__shape--2"></div>
-        </div>
-        <div class="page-hero__container">
-            <span class="page-hero__label">About Us</span>
-            <h1 class="page-hero__title">
-                <i class="fas fa-building"></i> 会社概要
-            </h1>
-            <p class="page-hero__description">
-                大分県を拠点に、<br>
-                デジタルマーケティングで地域企業を支援
-            </p>
-        </div>
-    </section>
-
     <!-- 会社情報 -->
     <section class="company-info">
         <div class="container">
@@ -264,14 +246,7 @@ $company = $company_json['company'] ?? [];
         </div>
     </footer>
 
-    <!-- GSAP Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <!-- Page Scripts -->
     <script defer src="assets/js/app.js"></script>
-    <script defer src="assets/js/about.js"></script>
-
     <!-- Cookie同意バナー -->
     <div id="cookieConsent" class="cookie-consent">
         <div class="cookie-consent__container">
