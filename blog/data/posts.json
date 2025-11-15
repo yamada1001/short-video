@@ -1104,6 +1104,97 @@
       "tags": ["月額費用", "保守費用", "サーバー代", "ドメイン代", "ホームページ運用", "ランニングコスト"],
       "thumbnail": "",
       "author": "山田 蓮"
+    },
+    {
+      "id": 86,
+      "title": "問い合わせが来るホームページと来ないホームページの決定的な違い",
+      "slug": "homepage-inquiry-difference",
+      "excerpt": "同じ業種でも問い合わせが来るホームページと来ないホームページがあります。その決定的な違いは何か？導線設計、CTA配置、信頼要素、フォーム最適化など、コンバージョン率を上げる5つのポイントを解説します。",
+      "content": "data/article-86-full.html",
+      "publishedAt": "2025-11-15T13:00:00+09:00",
+      "updatedAt": "2025-11-15T13:00:00+09:00",
+      "category": "Web集客",
+      "tags": ["問い合わせ", "コンバージョン", "CTA", "導線設計", "フォーム最適化", "信頼性"],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 87,
+      "title": "大分の観光業・宿泊業向け｜多言語対応ホームページ制作のポイント",
+      "slug": "multilingual-website-for-tourism",
+      "excerpt": "インバウンド需要が高まる大分県の観光業・宿泊業向けに、多言語対応ホームページ制作のポイントを解説。言語の優先順位、翻訳品質、決済システム、SEO対策まで網羅的に紹介します。",
+      "content": "data/article-87-full.html",
+      "publishedAt": "2025-11-15T13:30:00+09:00",
+      "updatedAt": "2025-11-15T13:30:00+09:00",
+      "category": "ホームページ制作",
+      "tags": ["多言語対応", "インバウンド", "観光業", "宿泊業", "大分県", "翻訳"],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 88,
+      "title": "WordPressって何？初心者でもわかるCMS選びのポイント",
+      "slug": "wordpress-cms-guide",
+      "excerpt": "WordPress、Shopify、Wix、Jimdoなど、主要CMSの特徴と選び方を初心者向けに解説。自社に最適なCMSを選ぶための7つの基準と、WordPress導入のメリット・デメリットを紹介します。",
+      "content": "data/article-88-full.html",
+      "publishedAt": "2025-11-15T14:00:00+09:00",
+      "updatedAt": "2025-11-15T14:00:00+09:00",
+      "category": "ホームページ制作",
+      "tags": ["WordPress", "CMS", "Shopify", "Wix", "ホームページ制作ツール", "初心者"],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 89,
+      "title": "ホームページ制作で最低限準備しておくべき素材リスト",
+      "slug": "homepage-material-preparation",
+      "excerpt": "ホームページ制作をスムーズに進めるために、事前に準備すべき素材を完全リスト化。会社情報、写真、原稿、ロゴデータなど、必要な素材と準備のコツを詳しく解説します。",
+      "content": "data/article-89-full.html",
+      "publishedAt": "2025-11-15T14:30:00+09:00",
+      "updatedAt": "2025-11-15T14:30:00+09:00",
+      "category": "ホームページ制作",
+      "tags": ["素材準備", "写真撮影", "原稿作成", "ロゴ", "ホームページ制作", "準備物"],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 90,
+      "title": "ホームページとSNSの使い分け方｜両方必要な理由とは",
+      "slug": "homepage-sns-integration",
+      "excerpt": "ホームページとSNS、どちらか一方だけでは不十分です。ストック型とフロー型の違いを理解し、それぞれの長所を活かした使い分けと連携方法を解説します。業種別のおすすめSNS活用法も紹介。",
+      "content": "data/article-90-full.html",
+      "publishedAt": "2025-11-15T15:00:00+09:00",
+      "updatedAt": "2025-11-15T15:00:00+09:00",
+      "category": "Web集客",
+      "tags": ["SNS", "Instagram", "Facebook", "Twitter", "LINE", "ホームページ連携"],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 91,
+      "title": "採用サイトとしてのホームページ活用法【大分の中小企業向け】",
+      "slug": "recruitment-website-guide",
+      "excerpt": "人手不足に悩む大分の中小企業向けに、採用サイトの必要性、掲載すべきコンテンツ、Indeed連携、低予算での制作方法を詳しく解説。求人サイトだけでは不十分な時代に、採用サイトで優秀な人材を獲得しましょう。",
+      "content": "data/article-91-full.html",
+      "publishedAt": "2025-11-15T15:30:00+09:00",
+      "updatedAt": "2025-11-15T15:30:00+09:00",
+      "category": "ホームページ制作",
+      "tags": ["採用サイト", "求人", "Indeed", "大分県", "中小企業", "人材採用"],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 92,
+      "title": "ランディングページ（LP）とホームページの違いと使い分け",
+      "slug": "landing-page-vs-homepage",
+      "excerpt": "ランディングページ（LP）とホームページの決定的な違い、それぞれが向いているケース、効果的な使い分け方法を詳しく解説。LPの構成要素、制作費用、流入経路別の戦略まで網羅的に紹介します。",
+      "content": "data/article-92-full.html",
+      "publishedAt": "2025-11-15T16:00:00+09:00",
+      "updatedAt": "2025-11-15T16:00:00+09:00",
+      "category": "ホームページ制作",
+      "tags": ["ランディングページ", "LP", "コンバージョン", "広告", "ホームページとの違い", "使い分け"],
+      "thumbnail": "",
+      "author": "山田 蓮"
     }
   ]
 }
