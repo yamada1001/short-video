@@ -1,0 +1,18 @@
+# Security Contact Information for yojitu.com
+# 余日（Yojitsu）セキュリティ連絡先
+
+Contact: mailto:info@yojitu.com
+Contact: tel:+81-80-9245-5598
+Expires: 2026-11-15T00:00:00.000Z
+Preferred-Languages: ja, en
+Canonical: https://yojitu.com/.well-known/security.txt
+
+# セキュリティに関する情報開示方針
+Policy: https://yojitu.com/privacy.html
+
+# 謝辞
+Acknowledgments: https://yojitu.com/security-acknowledgments.html
+
+# その他の情報
+# セキュリティ上の問題を発見された場合は、上記の連絡先までご報告ください。
+# 責任ある開示にご協力いただいた方には、適切な対応と謝辞を提供いたします。

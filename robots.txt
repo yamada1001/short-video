@@ -1,4 +1,30 @@
+# robots.txt for yojitu.com
+# 余日（Yojitsu）公式サイト
+
 User-agent: *
 Allow: /
 
+# 非公開ディレクトリ・ファイル
+Disallow: /includes/
+Disallow: /.git/
+Disallow: /.claude/
+Disallow: /node_modules/
+Disallow: /vendor/
+Disallow: /*.log$
+
+# 検索結果ページやフィルターページ（存在する場合）
+# Disallow: /*?
+
+# サイトマップ
 Sitemap: https://yojitu.com/sitemap.xml
+
+# クロール速度の設定（オプション）
+# Crawl-delay: 1
+
+# 特定のボットの設定例
+# User-agent: Googlebot
+# Allow: /
+
+# 悪質なボット対策（必要に応じて）
+# User-agent: BadBot
+# Disallow: /

@@ -1,0 +1,50 @@
+/* TEAM */
+    Developer & Owner: 山田 蓮 (Yamada Ren)
+    Contact: info@yojitu.com
+    Location: Oita, Japan
+
+/* SITE */
+    Standards: HTML5, CSS3, JavaScript (ES6+), PHP
+    Components: WordPress (for Blog), Custom PHP
+    Software: Claude Code, Visual Studio Code, Git
+    Design: Minimalist, Mobile-First, Accessible
+    Fonts: Noto Sans JP (Google Fonts)
+
+/* COMPANY */
+    Company: 余日（Yojitsu）
+    Business: Digital Marketing, Web Production, Video Production
+    Registration: T9810094141774
+    Established: 2025-05-14
+    Website: https://yojitu.com
+
+/* SERVICES */
+    - SEO対策
+    - Web広告運用
+    - ホームページ制作
+    - ショート動画制作
+    - デジタルマーケティングコンサルティング
+
+/* THANKS */
+    - All our clients for trusting us
+    - Open source community
+    - Anthropic for Claude AI
+    - Google for amazing tools and fonts
+
+/* MADE WITH */
+    ❤️ Passion for Digital Marketing
+    🔧 Modern Web Technologies
+    ☕ Coffee (lots of it)
+    🎵 Good Music
+
+                            _..--=--..._
+                         .-'            '-.  .-.
+                        /.'              '.\/  /
+                       |=-                -=| (
+                        \'.              .'/\  \
+                         '-.,_____ _____.-'  '-'
+                              [_____]=8
+
+    Last update: 2025/11/15
+    Language: Japanese / 日本語
+    Doctype: HTML5
+    IDE: Claude Code, VSCode
