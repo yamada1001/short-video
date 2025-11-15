@@ -84,7 +84,7 @@
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
-  opacity: 0;
+  opacity: 1; /* 初期状態は表示 */
 }
 
 .hero__label-text {
@@ -113,8 +113,8 @@
 
 .hero__title-line {
   display: block;
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 1; /* 初期状態は表示 */
+  transform: translateY(0);
 }
 
 .hero__title-line--1 {
@@ -141,8 +141,8 @@
 
 .hero__description-line {
   display: block;
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1; /* 初期状態は表示 */
+  transform: translateY(0);
 }
 
 /* CTA ボタン */
@@ -150,7 +150,7 @@
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
-  opacity: 0;
+  opacity: 1; /* 初期状態は表示 */
 }
 
 .hero__btn {
@@ -221,7 +221,7 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  opacity: 0;
+  opacity: 1; /* 初期状態は表示 */
 }
 
 .hero__meta-item {
@@ -265,7 +265,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  opacity: 0;
+  opacity: 1; /* 初期状態は表示 */
 }
 
 .hero__scroll-text {
@@ -393,8 +393,8 @@
   color: var(--color-charcoal);
   margin-bottom: 1.5rem;
   letter-spacing: 0.1em;
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 1; /* 初期状態は表示 */
+  transform: translateY(0);
 }
 
 .section__description {
@@ -405,8 +405,8 @@
   margin: 0 auto 5rem;
   line-height: 1.8;
   letter-spacing: 0.05em;
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1; /* 初期状態は表示 */
+  transform: translateY(0);
 }
 
 /* サービスグリッド */
@@ -422,8 +422,8 @@
   background-color: var(--color-bg);
   padding: 3rem 2rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 1; /* 初期状態は表示 */
+  transform: translateY(0);
 }
 
 .service-card:hover {

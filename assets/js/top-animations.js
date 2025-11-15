@@ -19,6 +19,14 @@
     // ヒーローセクション - エントランスアニメーション
     // ========================================
 
+    // アニメーション要素を初期状態に設定（非表示）
+    gsap.set('.hero__label', { opacity: 0 });
+    gsap.set('.hero__title-line', { opacity: 0, y: 30 });
+    gsap.set('.hero__description-line', { opacity: 0, y: 20 });
+    gsap.set('.hero__cta', { opacity: 0 });
+    gsap.set('.hero__meta', { opacity: 0 });
+    gsap.set('.hero__scroll-hint', { opacity: 0 });
+
     const heroTimeline = gsap.timeline({
       delay: 0.3 // ページローダーの後に開始
     });
@@ -114,6 +122,9 @@
     // ========================================
 
     gsap.utils.toArray('.section__title').forEach(title => {
+      // 初期状態を設定
+      gsap.set(title, { opacity: 0, y: 30 });
+
       gsap.to(title, {
         opacity: 1,
         y: 0,
@@ -133,6 +144,9 @@
     // ========================================
 
     gsap.utils.toArray('.section__description').forEach(desc => {
+      // 初期状態を設定
+      gsap.set(desc, { opacity: 0, y: 20 });
+
       gsap.to(desc, {
         opacity: 1,
         y: 0,
@@ -151,6 +165,9 @@
     // ========================================
 
     gsap.utils.toArray('.service-card').forEach((card, index) => {
+      // 初期状態を設定
+      gsap.set(card, { opacity: 0, y: 40 });
+
       gsap.to(card, {
         opacity: 1,
         y: 0,
