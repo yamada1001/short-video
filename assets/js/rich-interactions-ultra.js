@@ -30,6 +30,7 @@
 
         // 各機能を初期化
         setTimeout(() => {
+            initSmoothScroll();
             initHeroSwiper();
             initParticleAnimations();
             initMouseFollower();
@@ -42,9 +43,36 @@
             initParallaxEffects();
             initSectionPinning();
             initMagneticButtons();
+            initHorizontalScroll();
+            initImageReveal();
 
             log('All features initialized');
         }, 100);
+    }
+
+    /**
+     * スムーススクロール（GSAP ScrollSmoother）
+     */
+    function initSmoothScroll() {
+        // GSAP ScrollSmootherは有料プラグインなので、代わりにネイティブで実装
+        // CSS scroll-behavior: smooth を使用
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        // すべての内部リンクにスムーススクロールを適用
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        log('✅ Smooth scroll initialized');
     }
 
     /**
@@ -545,6 +573,102 @@
 
         if (magneticElements.length > 0) {
             log('✅ Magnetic buttons initialized:', magneticElements.length);
+        }
+    }
+
+    /**
+     * 13. 水平スクロールギャラリー（BOTANIST風）
+     */
+    function initHorizontalScroll() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+            log('GSAP not available for horizontal scroll');
+            return;
+        }
+
+        const horizontalSections = document.querySelectorAll('.horizontal-scroll');
+
+        horizontalSections.forEach(function(section) {
+            const scrollContent = section.querySelector('.horizontal-scroll__content');
+            if (!scrollContent) return;
+
+            const scrollWidth = scrollContent.scrollWidth - section.offsetWidth;
+
+            gsap.to(scrollContent, {
+                x: -scrollWidth,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top top',
+                    end: () => `+=${scrollWidth}`,
+                    scrub: 1,
+                    pin: true,
+                    anticipatePin: 1
+                }
+            });
+        });
+
+        if (horizontalSections.length > 0) {
+            log('✅ Horizontal scroll initialized:', horizontalSections.length);
+        }
+    }
+
+    /**
+     * 14. 画像リビールエフェクト（BOTANIST風）
+     */
+    function initImageReveal() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+            log('GSAP not available for image reveal');
+            return;
+        }
+
+        const images = document.querySelectorAll('.reveal-image');
+
+        images.forEach(function(img) {
+            // オーバーレイを作成
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #8B7355;
+                z-index: 2;
+            `;
+
+            // 親要素に追加
+            const wrapper = img.parentElement;
+            wrapper.style.position = 'relative';
+            wrapper.style.overflow = 'hidden';
+            wrapper.appendChild(overlay);
+
+            // 画像を初期状態でスケール
+            gsap.set(img, { scale: 1.3 });
+
+            // スクロール時のアニメーション
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: wrapper,
+                    start: 'top 80%',
+                    end: 'top 20%',
+                    scrub: 1
+                }
+            });
+
+            tl.to(overlay, {
+                x: '100%',
+                duration: 1,
+                ease: 'power2.inOut'
+            })
+            .to(img, {
+                scale: 1,
+                duration: 1,
+                ease: 'power2.out'
+            }, '<');
+        });
+
+        if (images.length > 0) {
+            log('✅ Image reveal initialized:', images.length);
         }
     }
 

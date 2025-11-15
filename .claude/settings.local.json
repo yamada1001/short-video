@@ -72,7 +72,8 @@
       "Bash(then)",
       "Bash(\"$file\")",
       "Bash(do php validate-article.php \"data/article-$i-full.html\")",
-      "WebFetch(domain:mikicruise.com)"
+      "WebFetch(domain:mikicruise.com)",
+      "WebFetch(domain:botanistofficial.com)"
     ],
     "deny": [],
     "ask": []

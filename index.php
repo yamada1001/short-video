@@ -242,8 +242,53 @@ $structured_data = '
         </div>
     </section>
 
+    <!-- 水平スクロールギャラリー（BOTANIST風） -->
+    <section class="horizontal-scroll" id="horizontal-gallery">
+        <div class="horizontal-scroll__content">
+            <div class="horizontal-item">
+                <div class="horizontal-item__image">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80" alt="モダンオフィス" class="reveal-image" loading="lazy">
+                </div>
+                <div class="horizontal-item__text">
+                    <h3>デジタル時代の<br>ビジネス変革</h3>
+                    <p>最新のテクノロジーでビジネスを加速</p>
+                </div>
+            </div>
+
+            <div class="horizontal-item">
+                <div class="horizontal-item__image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80" alt="チームワーク" class="reveal-image" loading="lazy">
+                </div>
+                <div class="horizontal-item__text">
+                    <h3>共に創る<br>未来のカタチ</h3>
+                    <p>お客様と二人三脚でプロジェクトを推進</p>
+                </div>
+            </div>
+
+            <div class="horizontal-item">
+                <div class="horizontal-item__image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80" alt="デザイン" class="reveal-image" loading="lazy">
+                </div>
+                <div class="horizontal-item__text">
+                    <h3>洗練された<br>デザイン体験</h3>
+                    <p>ユーザーを魅了するUI/UX設計</p>
+                </div>
+            </div>
+
+            <div class="horizontal-item">
+                <div class="horizontal-item__image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80" alt="戦略" class="reveal-image" loading="lazy">
+                </div>
+                <div class="horizontal-item__text">
+                    <h3>データドリブンな<br>マーケティング</h3>
+                    <p>数字で証明する確かな成果</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- サービスセクション -->
-    <section class="section services-section" id="services">
+    <section class="section services-section snap-section" id="services">
         <div class="container">
             <div class="section-header">
                 <span class="section-header__label animate">Services</span>
@@ -293,7 +338,7 @@ $structured_data = '
     </section>
 
     <!-- お知らせセクション -->
-    <section class="section section--gray news-section" id="news">
+    <section class="section section--gray news-section snap-section" id="news">
         <div class="container">
             <div class="section-header">
                 <span class="section-header__label animate">News</span>
@@ -328,7 +373,7 @@ $structured_data = '
     </section>
 
     <!-- ブログセクション -->
-    <section class="section blog-section" id="blog">
+    <section class="section blog-section snap-section" id="blog">
         <div class="container">
             <div class="section-header">
                 <span class="section-header__label animate">Blog</span>
