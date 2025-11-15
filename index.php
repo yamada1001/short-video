@@ -459,9 +459,6 @@ $structured_data = '
     <!-- Rich Animations (Split Text, GPU Acceleration, 60fps) -->
     <script defer src="assets/js/rich-animations.js"></script>
 
-    <!-- GSAP Scroll Animations (セクション登場・スプリット・スタガー・パララックス) -->
-    <script defer src="assets/js/gsap-scroll-animations.js"></script>
-
     <!-- Rich interactions (safe version) -->
     <script defer src="assets/js/rich-interactions-safe.js"></script>
 
