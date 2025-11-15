@@ -42,6 +42,40 @@
     const words3 = titleLine3 ? titleLine3.querySelectorAll('.hero-v2__title-word') : [];
 
     /**
+     * パーティクルを動的に生成
+     */
+    function createParticles() {
+        const particlesContainer = document.createElement('div');
+        particlesContainer.className = 'hero-v2__particles';
+        heroSection.appendChild(particlesContainer);
+
+        // 30個のパーティクルを生成
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'hero-v2__particle';
+
+            // ランダムな位置に配置
+            const randomX = Math.random() * 100;
+            const randomY = Math.random() * 100;
+            particle.style.left = randomX + '%';
+            particle.style.top = randomY + '%';
+
+            // ランダムなサイズ
+            const randomSize = 2 + Math.random() * 4;
+            particle.style.width = randomSize + 'px';
+            particle.style.height = randomSize + 'px';
+
+            // ランダムなアニメーション遅延
+            const randomDelay = Math.random() * 5;
+            particle.style.animationDelay = randomDelay + 's';
+
+            particlesContainer.appendChild(particle);
+        }
+
+        console.log('✨ パーティクル30個を生成');
+    }
+
+    /**
      * メインタイムラインアニメーション
      */
     function initHeroAnimation() {
@@ -53,7 +87,12 @@
 
         // メインタイムライン
         const tl = gsap.timeline({
-            delay: 0.3 // ページロード後の遅延
+            delay: 0.3, // ページロード後の遅延
+            onComplete: function() {
+                // アニメーション完了後にヘッダーを表示
+                showHeader();
+                console.log('✅ ヒーローアニメーション完了 - ヘッダー表示');
+            }
         });
 
         // 背景のシェイプをアニメーション
@@ -266,10 +305,32 @@
     }
 
     /**
+     * ヘッダーを表示
+     */
+    function showHeader() {
+        const header = document.querySelector('.header');
+        if (header) {
+            // is-visibleクラスを追加
+            header.classList.add('is-visible');
+
+            // GSAPアニメーションも適用
+            gsap.to(header, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            });
+        }
+    }
+
+    /**
      * 初期化関数
      */
     function init() {
         try {
+            // パーティクルを生成
+            createParticles();
+
             // メインアニメーション実行
             initHeroAnimation();
 
@@ -279,9 +340,9 @@
             // ホバーアニメーション実行
             initHoverAnimations();
 
-            console.log('Hero animations initialized successfully');
+            console.log('✅ Hero animations initialized successfully');
         } catch (error) {
-            console.error('Error initializing hero animations:', error);
+            console.error('❌ Error initializing hero animations:', error);
             // エラー時は.js-enabledクラスを削除して通常表示に戻す
             document.documentElement.classList.remove('js-enabled');
         }
