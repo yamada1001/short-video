@@ -31,6 +31,7 @@ require_once __DIR__ . '/includes/functions.php';
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
     <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/cta.css">
     <link rel="stylesheet" href="assets/css/pages/about.css">
     <link rel="stylesheet" href="assets/css/pages/top.css">
 

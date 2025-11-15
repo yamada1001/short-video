@@ -80,6 +80,7 @@ sort($all_categories);
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/loading.css">
+    <link rel="stylesheet" href="assets/css/cta.css">
     <link rel="stylesheet" href="assets/css/pages/top.css">
     <link rel="stylesheet" href="assets/css/pages/hero-v2.css">
 
