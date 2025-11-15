@@ -129,7 +129,7 @@
 
 .hero-v2__title-word {
     display: inline-block;
-    margin-right: 0.3em;
+    margin-right: 0;
     opacity: 1; /* デフォルトで表示 */
 }
 
@@ -474,7 +474,7 @@
     }
 
     .hero-v2__title-word {
-        margin-right: 0.2em;
+        margin-right: 0;
     }
 
     .hero-v2__text {
