@@ -111,6 +111,13 @@ if (!empty($post['thumbnail'])) {
                 <?php endif; ?>
             </header>
 
+            <!-- リード文 -->
+            <?php if (!empty($post['excerpt'])): ?>
+            <div class="article-lead">
+                <p><?php echo h($post['excerpt']); ?></p>
+            </div>
+            <?php endif; ?>
+
             <!-- サムネイル画像 -->
             <?php if (!empty($post['thumbnail'])): ?>
             <div class="article-thumbnail">
