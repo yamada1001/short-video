@@ -308,3 +308,55 @@ document.addEventListener('DOMContentLoaded', function() {
     init();
   }
 })();
+
+// ========================================
+// ページローディングアニメーション
+// ========================================
+(function() {
+  'use strict';
+
+  // ローダーを非表示にする関数
+  function hideLoader() {
+    const loader = document.getElementById('pageLoader');
+    if (loader) {
+      // ページが完全に読み込まれたらフェードアウト
+      loader.classList.add('loaded');
+
+      // アニメーション完了後にDOMから削除（メモリ節約）
+      setTimeout(() => {
+        loader.remove();
+      }, 500); // CSS transitionと同じ時間
+    }
+  }
+
+  // 最小表示時間を設定（速すぎる場合の対策）
+  const minLoadingTime = 500; // 0.5秒
+  const startTime = performance.now();
+
+  // ページ読み込み完了時
+  function onPageLoad() {
+    const elapsedTime = performance.now() - startTime;
+    const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+
+    // 最小表示時間を確保してからローダーを非表示
+    setTimeout(hideLoader, remainingTime);
+  }
+
+  // window.loadイベントでローダーを非表示
+  if (document.readyState === 'complete') {
+    // すでに読み込み完了している場合（キャッシュなど）
+    onPageLoad();
+  } else {
+    // まだ読み込み中の場合
+    window.addEventListener('load', onPageLoad);
+  }
+
+  // フォールバック: 5秒経過したら強制的に非表示（無限ローディング防止）
+  setTimeout(() => {
+    const loader = document.getElementById('pageLoader');
+    if (loader && !loader.classList.contains('loaded')) {
+      console.warn('Loading timeout - forcing loader to hide');
+      hideLoader();
+    }
+  }, 5000);
+})();

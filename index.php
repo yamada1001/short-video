@@ -79,6 +79,7 @@ sort($all_categories);
 
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/loading.css">
     <link rel="stylesheet" href="assets/css/pages/top.css">
 
     <!-- 非クリティカルCSS - 遅延読み込み -->
@@ -124,6 +125,22 @@ sort($all_categories);
     </script>
 </head>
 <body>
+    <!-- ローディングアニメーション -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo">Yojitsu</div>
+            <div class="loader-spinner">
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+            </div>
+            <div class="loader-text">Loading...</div>
+            <div class="loader-progress">
+                <div class="loader-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
