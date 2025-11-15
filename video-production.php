@@ -26,6 +26,7 @@ require_once __DIR__ . '/includes/functions.php';
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/cta.css">
     <link rel="stylesheet" href="assets/css/cookie-consent.css">
+    <link rel="stylesheet" href="assets/css/pages/video-production.css">
 
     <!-- Font Awesome - Async load -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
@@ -80,351 +81,6 @@ require_once __DIR__ . '/includes/functions.php';
       ]
     }
     </script>
-
-    <style>
-        .page-header {
-            background: linear-gradient(135deg, #E1306C 0%, #405DE6 50%, #5B51D8 100%);
-            padding: var(--spacing-xxl) 0;
-            text-align: center;
-            color: var(--color-bg-white);
-        }
-
-        .page-header__title {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-md);
-            letter-spacing: 0.05em;
-            color: var(--color-bg-white);
-        }
-
-        .page-header__description {
-            font-size: 18px;
-            line-height: 1.8;
-            opacity: 0.95;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .platforms-section {
-            padding: var(--spacing-xxl) 0;
-            background: var(--color-bg-white);
-        }
-
-        .platforms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-xl);
-            margin-top: var(--spacing-xl);
-        }
-
-        .platform-card {
-            background: var(--color-bg-white);
-            border: 2px solid var(--color-border);
-            border-radius: 12px;
-            padding: var(--spacing-xl);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .platform-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .platform-card--tiktok:hover {
-            border-color: #000000;
-        }
-
-        .platform-card--instagram:hover {
-            border-color: #E1306C;
-        }
-
-        .platform-card--youtube:hover {
-            border-color: #FF0000;
-        }
-
-        .platform-card__icon {
-            font-size: 64px;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .platform-card--tiktok .platform-card__icon {
-            color: #000000;
-        }
-
-        .platform-card--instagram .platform-card__icon {
-            background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .platform-card--youtube .platform-card__icon {
-            color: #FF0000;
-        }
-
-        .platform-card__name {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-sm);
-            color: var(--color-charcoal);
-        }
-
-        .platform-card__description {
-            font-size: 14px;
-            color: var(--color-text-light);
-            line-height: 1.7;
-        }
-
-        .pricing-section {
-            padding: var(--spacing-xxl) 0;
-            background: var(--color-bg-gray);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-xl);
-            margin-top: var(--spacing-xl);
-        }
-
-        .pricing-card {
-            background: var(--color-bg-white);
-            border: 2px solid var(--color-border);
-            border-radius: 12px;
-            padding: var(--spacing-xl);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            border-color: #E1306C;
-        }
-
-        .pricing-card--featured {
-            border-color: #E1306C;
-            border-width: 3px;
-            box-shadow: 0 8px 24px rgba(225, 48, 108, 0.15);
-        }
-
-        .pricing-card__badge {
-            position: absolute;
-            top: -12px;
-            right: var(--spacing-lg);
-            background: linear-gradient(45deg, #F58529, #E1306C);
-            color: var(--color-bg-white);
-            padding: 4px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-        }
-
-        .pricing-card__icon {
-            font-size: 48px;
-            background: linear-gradient(45deg, #F58529, #E1306C, #8134AF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .pricing-card__name {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-sm);
-            color: var(--color-charcoal);
-        }
-
-        .pricing-card__price {
-            font-size: 36px;
-            font-weight: 700;
-            color: #E1306C;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .pricing-card__price-unit {
-            font-size: 16px;
-            color: var(--color-text-light);
-            font-weight: 400;
-        }
-
-        .pricing-card__description {
-            font-size: 14px;
-            color: var(--color-text-light);
-            margin-bottom: var(--spacing-lg);
-            padding: var(--spacing-sm) 0;
-            border-top: 1px solid var(--color-border);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .pricing-card__features {
-            list-style: none;
-            margin: var(--spacing-lg) 0;
-        }
-
-        .pricing-card__features li {
-            padding: var(--spacing-sm) 0;
-            color: var(--color-text);
-            display: flex;
-            align-items: start;
-            gap: var(--spacing-sm);
-        }
-
-        .pricing-card__features li i {
-            color: #E1306C;
-            margin-top: 4px;
-            flex-shrink: 0;
-        }
-
-        .process-section {
-            padding: var(--spacing-xxl) 0;
-            background: var(--color-bg-white);
-        }
-
-        .process-timeline {
-            max-width: 800px;
-            margin: var(--spacing-xl) auto 0;
-            position: relative;
-        }
-
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            left: 30px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #F58529, #E1306C, #8134AF);
-        }
-
-        .process-step {
-            position: relative;
-            padding-left: 80px;
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .process-step__number {
-            position: absolute;
-            left: 0;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #F58529, #E1306C);
-            color: var(--color-bg-white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 700;
-            box-shadow: 0 4px 12px rgba(225, 48, 108, 0.3);
-        }
-
-        .process-step__title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-sm);
-            color: var(--color-charcoal);
-        }
-
-        .process-step__description {
-            font-size: 14px;
-            color: var(--color-text-light);
-            line-height: 1.7;
-        }
-
-        .benefits-section {
-            padding: var(--spacing-xxl) 0;
-            background: var(--color-bg-gray);
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-xl);
-        }
-
-        .benefit-card {
-            background: var(--color-bg-white);
-            padding: var(--spacing-lg);
-            border-radius: 8px;
-            border-left: 4px solid;
-            border-image: linear-gradient(to bottom, #F58529, #E1306C) 1;
-        }
-
-        .benefit-card__icon {
-            font-size: 32px;
-            background: linear-gradient(45deg, #F58529, #E1306C);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .benefit-card__title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-sm);
-            color: var(--color-charcoal);
-        }
-
-        .benefit-card__description {
-            font-size: 14px;
-            color: var(--color-text-light);
-            line-height: 1.7;
-        }
-
-        .section__subtitle {
-            text-align: center;
-            font-size: 28px;
-            font-weight: 700;
-            margin: var(--spacing-xxl) 0 var(--spacing-md) 0;
-            color: var(--color-charcoal);
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(245, 133, 41, 0.05), rgba(225, 48, 108, 0.05));
-            border-left: 4px solid #E1306C;
-            padding: var(--spacing-lg);
-            margin: var(--spacing-lg) 0;
-            border-radius: 8px;
-        }
-
-        .highlight-box p {
-            margin: 0;
-            font-weight: 600;
-            color: var(--color-charcoal);
-        }
-
-        .stats-section {
-            padding: var(--spacing-xxl) 0;
-            background: linear-gradient(135deg, #E1306C 0%, #405DE6 50%, #5B51D8 100%);
-            color: var(--color-bg-white);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--spacing-xl);
-            max-width: 900px;
-            margin: var(--spacing-xl) auto 0;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-item__number {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .stat-item__label {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-    </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -434,13 +90,18 @@ require_once __DIR__ . '/includes/functions.php';
 
     <?php include __DIR__ . '/includes/header.php'; ?>
 
-    <!-- ページヘッダー -->
-    <section class="page-header">
-        <div class="container">
-            <h1 class="page-header__title">
+    <!-- ページヒーロー -->
+    <section class="page-hero">
+        <div class="page-hero__bg">
+            <div class="page-hero__shape page-hero__shape--1"></div>
+            <div class="page-hero__shape page-hero__shape--2"></div>
+        </div>
+        <div class="page-hero__container">
+            <span class="page-hero__label">Video Production</span>
+            <h1 class="page-hero__title">
                 <i class="fas fa-video"></i> ショート動画制作
             </h1>
-            <p class="page-header__description">
+            <p class="page-hero__description">
                 TikTok、Instagram Reels、YouTube Shortsで成果を出す。<br>
                 企画から撮影、編集まで一貫してサポートします。
             </p>
@@ -776,7 +437,13 @@ require_once __DIR__ . '/includes/functions.php';
     <!-- フッター -->
     <?php include __DIR__ . '/includes/footer.php'; ?>
 
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Page Scripts -->
     <script defer src="assets/js/app.js"></script>
+    <script defer src="assets/js/video-production.js"></script>
 
     <!-- Cookie同意バナー -->
     <div id="cookieConsent" class="cookie-consent">
