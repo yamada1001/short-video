@@ -121,11 +121,5 @@ $next_article = isset($articles[$current_index - 1]) ? $articles[$current_index 
     <!-- フッター -->
     <?php include __DIR__ . '/../includes/footer.php'; ?>
 
-    <!-- GSAP Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <!-- Page Scripts -->
     <script defer src="../assets/js/app.js"></script>
-    <script defer src="../assets/js/news.js"></script>
 </html>
