@@ -292,6 +292,103 @@ $structured_data = '
         </div>
     </section>
 
+    <!-- 実績ギャラリーセクション -->
+    <section class="section gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-header__label animate">Gallery</span>
+                <h2 class="section__title animate">制作実績</h2>
+                <p class="section__description animate">
+                    これまでに手がけたプロジェクトの一部をご紹介します
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item animate">
+                    <div class="gallery-item__image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Webデザインプロジェクト" loading="lazy">
+                        <div class="gallery-item__overlay">
+                            <h3>コーポレートサイト制作</h3>
+                            <p>クライアント様のブランドイメージを最大限に表現</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate">
+                    <div class="gallery-item__image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="データ分析ダッシュボード" loading="lazy">
+                        <div class="gallery-item__overlay">
+                            <h3>マーケティング分析</h3>
+                            <p>データドリブンな戦略立案をサポート</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate">
+                    <div class="gallery-item__image">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80" alt="モバイルアプリUI" loading="lazy">
+                        <div class="gallery-item__overlay">
+                            <h3>モバイルファースト設計</h3>
+                            <p>スマートフォンに最適化されたUI/UX</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate">
+                    <div class="gallery-item__image">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80" alt="チームミーティング" loading="lazy">
+                        <div class="gallery-item__overlay">
+                            <h3>デジタル戦略コンサルティング</h3>
+                            <p>ビジネス成長を加速させるデジタル戦略</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate">
+                    <div class="gallery-item__image">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80" alt="ソーシャルメディア" loading="lazy">
+                        <div class="gallery-item__overlay">
+                            <h3>SNSマーケティング</h3>
+                            <p>ショート動画でエンゲージメント向上</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate">
+                    <div class="gallery-item__image">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80" alt="SEO対策" loading="lazy">
+                        <div class="gallery-item__overlay">
+                            <h3>SEO最適化</h3>
+                            <p>検索エンジンで上位表示を実現</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数値実績 -->
+            <div class="stats-section animate">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-item__number" data-countup="150">0</div>
+                        <div class="stat-item__label">制作実績</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-item__number" data-countup="95">0</div>
+                        <div class="stat-item__label">顧客満足度 %</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-item__number" data-countup="24">0</div>
+                        <div class="stat-item__label">対応時間（時）</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-item__number" data-countup="500">0</div>
+                        <div class="stat-item__label">動画制作本数</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- お知らせセクション -->
     <section class="section section--gray news-section" id="news">
         <div class="container">
@@ -449,8 +546,8 @@ $structured_data = '
     <!-- Hero section animations -->
     <script defer src="assets/js/hero-animations.js"></script>
 
-    <!-- Rich interactions (safe version) -->
-    <script defer src="assets/js/rich-interactions-safe.js"></script>
+    <!-- Rich interactions (ULTRA version - デバッグ付き) -->
+    <script defer src="assets/js/rich-interactions-ultra.js"></script>
 
     <!-- Common app scripts -->
     <script defer src="assets/js/app.js"></script>
