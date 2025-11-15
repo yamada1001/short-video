@@ -53,11 +53,18 @@ $paged_articles = array_slice($articles, $pagination['offset'], NEWS_PER_PAGE);
     <!-- ヘッダー -->
     <?php include __DIR__ . '/../includes/header.php'; ?>
 
-    <!-- ページヘッダー -->
-    <section class="page-header">
-        <div class="container">
-            <h1 class="page-header__title">お知らせ</h1>
-            <p class="page-header__description">最新情報をお届けします</p>
+    <!-- ページヒーロー -->
+    <section class="page-hero">
+        <div class="page-hero__bg">
+            <div class="page-hero__shape page-hero__shape--1"></div>
+            <div class="page-hero__shape page-hero__shape--2"></div>
+        </div>
+        <div class="page-hero__container">
+            <span class="page-hero__label">News</span>
+            <h1 class="page-hero__title">
+                <i class="fas fa-newspaper"></i> お知らせ
+            </h1>
+            <p class="page-hero__description">最新情報をお届けします</p>
         </div>
     </section>
 
@@ -109,5 +116,11 @@ $paged_articles = array_slice($articles, $pagination['offset'], NEWS_PER_PAGE);
     <!-- フッター -->
     <?php include __DIR__ . '/../includes/footer.php'; ?>
 
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Page Scripts -->
     <script defer src="../assets/js/app.js"></script>
+    <script defer src="../assets/js/news.js"></script>
 </html>
