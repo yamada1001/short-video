@@ -328,12 +328,14 @@
   .cta-buttons {
     flex-direction: column;
     gap: var(--spacing-sm);
+    align-items: center;
   }
 
   .cta-btn,
   .cta-buttons .btn {
     width: 100%;
     max-width: 320px;
+    margin: 0 auto;
   }
 
   .cta-info-grid,
