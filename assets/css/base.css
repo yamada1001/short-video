@@ -19,6 +19,22 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* Three.js背景のレイヤー構造 */
+#three-background {
+  position: fixed !important;
+  z-index: 1 !important;
+}
+
+/* コンテンツを背景の上に配置 */
+.header,
+.hero-v2,
+.section,
+footer {
+  position: relative;
+  z-index: 10;
 }
 
 img,
