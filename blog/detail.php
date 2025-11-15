@@ -49,47 +49,27 @@ function generateToc(&$content) {
 
 // 目次を生成（参照渡しでコンテンツにIDを追加）
 $toc = generateToc($post['content']);
+
+// Head用の変数設定
+$page_title = h($post['title']) . ' | ブログ | 余日（Yojitsu）';
+$page_description = h($post['excerpt']);
+$css_base_path = '../';
+$additional_css = ['assets/css/pages/blog.css', 'assets/css/toc.css', 'assets/css/cookie-consent.css'];
+
+// OGPタグ
+$ogp_tags = '    <meta property="og:title" content="' . h($post['title']) . '">
+    <meta property="og:description" content="' . h($post['excerpt']) . '">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="' . SITE_URL . '/blog/detail.php?slug=' . urlencode($post['slug']) . '">';
+if (!empty($post['thumbnail'])) {
+    $ogp_tags .= '
+    <meta property="og:image" content="' . h($post['thumbnail']) . '">';
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?php echo h($post['excerpt']); ?>">
-    <title><?php echo h($post['title']); ?> | ブログ | 余日（Yojitsu）</title>
-
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
-    <!-- End Google Tag Manager -->
-
-    <!-- OGP -->
-    <meta property="og:title" content="<?php echo h($post['title']); ?>">
-    <meta property="og:description" content="<?php echo h($post['excerpt']); ?>">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="<?php echo SITE_URL; ?>/blog/detail.php?slug=<?php echo urlencode($post['slug']); ?>">
-    <?php if (!empty($post['thumbnail'])): ?>
-    <meta property="og:image" content="<?php echo h($post['thumbnail']); ?>">
-    <?php endif; ?>
-
-    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
-
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/pages/blog.css">
-    <link rel="stylesheet" href="../assets/css/toc.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+<?php require_once __DIR__ . '/../includes/head.php'; ?>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -242,58 +222,12 @@ $toc = generateToc($post['content']);
         </div>
     </div>
 
-    <!-- フッター -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <div class="footer__section">
-                    <h3 class="footer__section-title">余日（Yojitsu）</h3>
-                    <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 16px; line-height: 1.9;">
-                        大分県を拠点に、SEO・広告運用・Web制作・ショート動画制作を提供するデジタルマーケティング会社です。
-                    </p>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.8;">
-                        <i class="fas fa-building" style="margin-right: 8px;"></i>屋号: 余日（Yojitsu）<br>
-                        <i class="fas fa-file-invoice" style="margin-right: 8px;"></i>登録番号: T9810094141774<br>
-                        <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>設立: 令和7年5月14日
-                    </p>
-                </div>
-                <div class="footer__section">
-                    <h3 class="footer__section-title">サービス</h3>
-                    <a href="../web-production.php" class="footer__link"><i class="fas fa-laptop-code"></i> Web制作</a>
-                    <a href="../video-production.php" class="footer__link"><i class="fas fa-video"></i> ショート動画制作</a>
-                    <a href="../services.php" class="footer__link" style="margin-top: 8px; opacity: 0.8;"><i class="fas fa-arrow-right"></i> サービス詳細</a>
-                </div>
-                <div class="footer__section">
-                    <h3 class="footer__section-title">企業情報</h3>
-                    <a href="../about.php" class="footer__link"><i class="fas fa-info-circle"></i> 会社概要</a>
-                    <a href="../recruit.php" class="footer__link"><i class="fas fa-handshake"></i> 業務委託募集・交流</a>
-                    <a href="../blog/" class="footer__link"><i class="fas fa-blog"></i> ブログ</a>
-                    <a href="../news/" class="footer__link"><i class="fas fa-newspaper"></i> お知らせ</a>
-                    <a href="../contact.php" class="footer__link"><i class="fas fa-envelope"></i> お問い合わせ</a>
-                    <a href="../privacy.php" class="footer__link"><i class="fas fa-shield-alt"></i> プライバシーポリシー</a>
-                    <a href="../sitemap-page.php" class="footer__link"><i class="fas fa-sitemap"></i> サイトマップ</a>
-                </div>
-                <div class="footer__section">
-                    <h3 class="footer__section-title">お問い合わせ</h3>
-                    <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 12px; line-height: 1.9;">
-                        <i class="fas fa-phone" style="margin-right: 8px;"></i>Tel: <a href="tel:<?php echo CONTACT_TEL_LINK; ?>" style="color: rgba(255, 255, 255, 0.9);"><?php echo CONTACT_TEL; ?></a><br>
-                        <i class="fas fa-envelope" style="margin-right: 8px;"></i>Email: <a href="mailto:<?php echo CONTACT_EMAIL; ?>" style="color: rgba(255, 255, 255, 0.9);"><?php echo CONTACT_EMAIL; ?></a><br>
-                        <i class="fab fa-line" style="margin-right: 8px;"></i>LINE: <a href="https://line.me/ti/p/CTOCx9YKjk" style="color: rgba(255, 255, 255, 0.9);">お問い合わせ</a>
-                    </p>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.8;">
-                        <i class="fas fa-clock" style="margin-right: 8px;"></i>営業時間: 10時~22時<br>
-                        <i class="fas fa-calendar-check" style="margin-right: 8px;"></i>定休日: なし
-                    </p>
-                    <div style="margin-top: 16px;">
-                        <a href="../contact.php" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; font-size: 14px;">お問い合わせフォーム</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__bottom">
-                <p>&copy; 2025 余日（Yojitsu）. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <?php
+    $footer_base_path = '../';
+    include __DIR__ . '/../includes/footer.php';
+    ?>
+
+    <?php include __DIR__ . '/../includes/cookie-consent.php'; ?>
 
     <script defer src="../assets/js/app.js"></script>
     <script defer src="../assets/js/toc.js"></script>
