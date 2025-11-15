@@ -87,6 +87,9 @@ FileETag None
 Options -Indexes
 AddDefaultCharset UTF-8
 
+# 404 Error Page
+ErrorDocument 404 /404.php
+
 # Rewrite .html to .php
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
