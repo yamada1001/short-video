@@ -522,8 +522,8 @@
   object-fit: contain;
 }
 
-/* リンク */
-.article-content a {
+/* リンク（ボタンを除く） */
+.article-content a:not(.btn) {
   color: var(--color-natural-brown);
   text-decoration: underline;
   text-decoration-color: rgba(139, 115, 85, 0.3);
@@ -531,8 +531,33 @@
   transition: all var(--transition-base);
 }
 
-.article-content a:hover {
+.article-content a:not(.btn):hover {
   text-decoration-color: var(--color-natural-brown);
+}
+
+/* ボタンの色を強制的に保持（二度とミスを防ぐ） */
+.article-content .btn-primary {
+  color: var(--color-bg-white) !important;
+  background-color: var(--color-natural-brown) !important;
+  border-color: var(--color-natural-brown) !important;
+  text-decoration: none !important;
+}
+
+.article-content .btn-primary:hover {
+  color: var(--color-bg-white) !important;
+  opacity: 0.8;
+}
+
+.article-content .btn-secondary {
+  color: var(--color-natural-brown) !important;
+  background-color: transparent !important;
+  border-color: var(--color-natural-brown) !important;
+  text-decoration: none !important;
+}
+
+.article-content .btn-secondary:hover {
+  color: var(--color-bg-white) !important;
+  background-color: var(--color-natural-brown) !important;
 }
 
 /* 引用 */
