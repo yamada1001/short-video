@@ -450,8 +450,8 @@ $structured_data = '
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    <!-- Three.js Hero Background -->
-    <script defer src="assets/js/three-hero.js"></script>
+    <!-- Three.js Global Background (スクロール連動) -->
+    <script defer src="assets/js/three-background.js"></script>
 
     <!-- Hero section animations -->
     <script defer src="assets/js/hero-animations.js"></script>
