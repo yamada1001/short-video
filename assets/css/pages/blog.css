@@ -329,6 +329,21 @@
   flex-wrap: wrap;
 }
 
+.article-lead {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg);
+  border-left: 4px solid var(--color-natural-brown);
+  font-size: 16px;
+  line-height: 2.0;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+}
+
+.article-lead p {
+  margin: 0;
+}
+
 .article-thumbnail {
   margin-bottom: var(--spacing-xl);
 }
