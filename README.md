@@ -145,6 +145,118 @@ git push origin main
 
 3. ファイル保存後、Gitでプッシュ
 
+### ブログ記事の追加
+
+#### ⚠️ 重要：記事フォーマットのルール
+
+ブログ記事ファイル (`blog/data/article-*-full.html`) は **純粋なコンテンツのみ** を含む必要があります。
+`detail.php` が HTML構造とヘッダーを自動生成するため、以下のタグを **絶対に含めないでください**：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+<body>
+<article>
+<header class="article-header">
+```
+
+詳細は [`blog/ARTICLE_FORMAT_GUIDE.md`](blog/ARTICLE_FORMAT_GUIDE.md) を参照してください。
+
+#### 1. 記事ファイルの作成
+
+`blog/data/article-XX-full.html` を作成：
+
+```html
+<section class="article-section">
+    <h2>はじめに</h2>
+    <p>記事の導入文...</p>
+</section>
+
+<section class="article-section">
+    <h2>ポイント1</h2>
+    <p>説明文...</p>
+</section>
+
+<!-- 構造化データ（推奨） -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "記事タイトル",
+    "description": "記事の説明",
+    ...
+}
+</script>
+```
+
+#### 2. メタデータの追加
+
+`blog/data/posts.json` に記事情報を追加：
+
+```json
+{
+  "id": 81,
+  "title": "記事タイトル",
+  "slug": "article-slug",
+  "excerpt": "記事の要約（160文字程度）",
+  "content": "data/article-81-full.html",
+  "publishedAt": "2025-11-15T10:00:00+09:00",
+  "updatedAt": "2025-11-15T10:00:00+09:00",
+  "category": "カテゴリ名",
+  "tags": ["タグ1", "タグ2"],
+  "thumbnail": "",
+  "author": "山田 蓮"
+}
+```
+
+#### 3. サイトマップの更新
+
+`sitemap.xml` に記事URLを追加：
+
+```xml
+<url>
+    <loc>https://yojitu.com/blog/detail.php?slug=article-slug</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+```
+
+#### 4. 記事の検証
+
+**必ず検証スクリプトを実行してください：**
+
+```bash
+python3 blog/validate-articles.py
+```
+
+このスクリプトは：
+- すべての記事ファイルをチェック
+- 不要な HTML構造タグを検出
+- 問題があればエラーを報告
+
+✅ すべての記事が正しい形式の場合：
+```
+✅ すべての記事ファイルが正しい形式です！
+```
+
+❌ 問題がある場合：
+```
+❌ article-XX-full.html
+  ❌ Found <title> tag
+  ❌ Found <header class="article-header"> tag
+```
+
+#### 5. Gitでプッシュ
+
+```bash
+git add blog/data/article-XX-full.html blog/data/posts.json sitemap.xml
+git commit -m "新規ブログ記事を追加"
+git push origin main
+```
+
 ## 🔧 設定ファイルの編集
 
 ### メール設定（php/config.php）
