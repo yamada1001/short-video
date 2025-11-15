@@ -81,6 +81,7 @@ sort($all_categories);
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/loading.css">
     <link rel="stylesheet" href="assets/css/pages/top.css">
+    <link rel="stylesheet" href="assets/css/pages/hero-v2.css">
 
     <!-- 非クリティカルCSS - 遅延読み込み -->
     <link rel="stylesheet" href="assets/css/cookie-consent.css" media="print" onload="this.media='all'">
@@ -149,70 +150,60 @@ sort($all_categories);
     <?php include __DIR__ . '/includes/header.php'; ?>
 
     <!-- ヒーローセクション -->
-    <section class="hero">
-        <div class="hero__background">
-            <svg class="hero__svg" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-                <!-- グラデーション定義 -->
-                <defs>
-                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:rgba(99,88,76,0.1);stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:rgba(99,88,76,0.05);stop-opacity:1" />
-                    </linearGradient>
-                </defs>
+    <section class="hero-v2">
+        <!-- 背景装飾（ミニマル） -->
+        <div class="hero-v2__bg">
+            <div class="hero-v2__circle hero-v2__circle--1"></div>
+            <div class="hero-v2__circle hero-v2__circle--2"></div>
+        </div>
 
-                <!-- 動的な波形 -->
-                <path class="hero__wave hero__wave--1" d="M0,400 Q300,300 600,400 T1200,400 L1200,800 L0,800 Z" fill="url(#grad1)" opacity="0.3"/>
-                <path class="hero__wave hero__wave--2" d="M0,450 Q300,350 600,450 T1200,450 L1200,800 L0,800 Z" fill="url(#grad1)" opacity="0.2"/>
+        <div class="hero-v2__container">
+            <!-- メインコンテンツ -->
+            <div class="hero-v2__content">
+                <div class="hero-v2__label">
+                    <span>Digital Marketing</span>
+                    <span class="hero-v2__label-line"></span>
+                </div>
 
-                <!-- データポイント（マーケティング風 - 上昇トレンド） -->
-                <circle class="hero__data-point hero__data-point--1" cx="200" cy="500" r="8" fill="#63584C" opacity="0.6"/>
-                <circle class="hero__data-point hero__data-point--2" cx="400" cy="400" r="9" fill="#63584C" opacity="0.6"/>
-                <circle class="hero__data-point hero__data-point--3" cx="600" cy="300" r="10" fill="#63584C" opacity="0.7"/>
-                <circle class="hero__data-point hero__data-point--4" cx="800" cy="200" r="11" fill="#63584C" opacity="0.7"/>
-                <circle class="hero__data-point hero__data-point--5" cx="1000" cy="150" r="12" fill="#63584C" opacity="0.8"/>
+                <h1 class="hero-v2__title">
+                    本質に向き合う余裕を、<br>
+                    デジタルで創る
+                </h1>
 
-                <!-- 接続線（上昇データフロー） -->
-                <polyline class="hero__line" points="200,500 400,400 600,300 800,200 1000,150" fill="none" stroke="#63584C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+                <p class="hero-v2__text">
+                    大分から始まる、新しいビジネスの形
+                </p>
 
-                <!-- グラフ風の棒 -->
-                <rect class="hero__bar hero__bar--1" x="100" y="500" width="40" height="200" fill="#63584C" opacity="0.15"/>
-                <rect class="hero__bar hero__bar--2" x="180" y="450" width="40" height="250" fill="#63584C" opacity="0.15"/>
-                <rect class="hero__bar hero__bar--3" x="260" y="400" width="40" height="300" fill="#63584C" opacity="0.15"/>
+                <div class="hero-v2__buttons">
+                    <a href="contact.php" class="hero-v2__btn hero-v2__btn--primary">
+                        <span>お問い合わせ</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <a href="services.php" class="hero-v2__btn hero-v2__btn--secondary">
+                        <span>サービス詳細</span>
+                    </a>
+                </div>
+            </div>
 
-            </svg>
-
-            <div class="hero__particles">
-                <div class="hero__particle"></div>
-                <div class="hero__particle"></div>
-                <div class="hero__particle"></div>
-                <div class="hero__particle"></div>
-                <div class="hero__particle"></div>
+            <!-- サイドメタ情報 -->
+            <div class="hero-v2__meta">
+                <div class="hero-v2__meta-item">
+                    <span class="hero-v2__meta-num">01</span>
+                    <span class="hero-v2__meta-text">Web制作</span>
+                </div>
+                <div class="hero-v2__meta-item">
+                    <span class="hero-v2__meta-num">02</span>
+                    <span class="hero-v2__meta-text">動画制作</span>
+                </div>
             </div>
         </div>
 
-        <div class="hero__content animate">
-            <div class="hero__label">
-                <span>Digital Marketing</span>
-            </div>
-            <p class="hero__description">
-                本質に向き合う余裕を、<br class="sp-only">
-                デジタルで創る
-            </p>
-            <div class="hero__cta">
-                <a href="contact.php" class="btn btn-primary btn--large">
-                    <span>お問い合わせ</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="services.php" class="btn btn-secondary btn--large">
-                    <span>サービス詳細</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="hero__scroll">
+        <!-- スクロールヒント -->
+        <div class="hero-v2__scroll">
             <span>Scroll</span>
-            <div class="hero__scroll-line"></div>
+            <div class="hero-v2__scroll-line"></div>
         </div>
     </section>
 
