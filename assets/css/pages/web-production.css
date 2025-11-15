@@ -1,0 +1,491 @@
+/* ========================================
+   Webサイト制作ページ - GSAP対応
+   ======================================== */
+
+/* ページヘッダー */
+.page-hero {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #8B7355 0%, #4A4A4A 100%);
+    overflow: hidden;
+    padding: 120px 20px 80px;
+}
+
+.page-hero__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.page-hero__shape {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+    filter: blur(40px);
+}
+
+.page-hero__shape--1 {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    right: -80px;
+}
+
+.page-hero__shape--2 {
+    width: 350px;
+    height: 350px;
+    bottom: -80px;
+    left: -70px;
+}
+
+.page-hero__container {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.page-hero__label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 1;
+}
+
+.page-hero__title {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.4;
+    color: #FFFFFF;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    opacity: 1;
+}
+
+.page-hero__title i {
+    margin-right: 12px;
+    opacity: 0.9;
+}
+
+.page-hero__description {
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+    opacity: 1;
+}
+
+/* JavaScript有効時のみアニメーション用に非表示 */
+.js-enabled .page-hero__label,
+.js-enabled .page-hero__title,
+.js-enabled .page-hero__description {
+    opacity: 0;
+}
+
+/* 料金プラン */
+.pricing-section {
+    padding: 5rem 0;
+    background: #FFFFFF;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.pricing-card {
+    position: relative;
+    background: #FFFFFF;
+    border: 2px solid #E5DDD5;
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #8B7355, transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.pricing-card:hover::before {
+    transform: scaleX(1);
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 45px rgba(139, 115, 85, 0.2);
+    border-color: #8B7355;
+}
+
+.pricing-card--featured {
+    border-color: #8B7355;
+    border-width: 3px;
+    box-shadow: 0 10px 35px rgba(139, 115, 85, 0.15);
+}
+
+.pricing-card__badge {
+    position: absolute;
+    top: -14px;
+    right: 2rem;
+    background: #8B7355;
+    color: #FFFFFF;
+    padding: 6px 20px;
+    border-radius: 25px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.pricing-card__icon {
+    font-size: 3rem;
+    color: #8B7355;
+    margin-bottom: 1.5rem;
+}
+
+.pricing-card__name {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #4A4A4A;
+    letter-spacing: 0.05em;
+}
+
+.pricing-card__price {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #8B7355;
+    margin-bottom: 1.5rem;
+}
+
+.pricing-card__price-unit {
+    font-size: 1rem;
+    color: #6B6B6B;
+    font-weight: 300;
+}
+
+.pricing-card__target {
+    font-size: 0.9rem;
+    color: #6B6B6B;
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid #E5DDD5;
+    border-bottom: 1px solid #E5DDD5;
+}
+
+.pricing-card__features {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.pricing-card__features li {
+    padding: 0.75rem 0;
+    color: #4A4A4A;
+    display: flex;
+    align-items: start;
+    gap: 12px;
+    font-size: 0.95rem;
+}
+
+.pricing-card__features li i {
+    color: #8B7355;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.pricing-card__cta {
+    margin-top: 2rem;
+}
+
+/* ストーリーセクション */
+.story-section {
+    padding: 5rem 0;
+    background: #F5F3F0;
+}
+
+.story-content {
+    max-width: 850px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(139, 115, 85, 0.08);
+}
+
+.story-content h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 2.5rem 0 1.2rem 0;
+    color: #4A4A4A;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: 0.05em;
+}
+
+.story-content h3:first-of-type {
+    margin-top: 0;
+}
+
+.story-content h3 i {
+    color: #8B7355;
+    font-size: 1.3rem;
+}
+
+.story-content p {
+    line-height: 1.9;
+    color: #4A4A4A;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+}
+
+/* チームセクション */
+.team-section {
+    padding: 5rem 0;
+    background: #FFFFFF;
+}
+
+.team-roles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.team-role {
+    background: #F5F3F0;
+    padding: 2rem;
+    border-radius: 6px;
+    border-left: 4px solid #8B7355;
+    transition: all 0.3s ease;
+}
+
+.team-role:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px rgba(139, 115, 85, 0.12);
+}
+
+.team-role__icon {
+    font-size: 2.5rem;
+    color: #8B7355;
+    margin-bottom: 1rem;
+}
+
+.team-role__name {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+    color: #4A4A4A;
+    letter-spacing: 0.05em;
+}
+
+.team-role__description {
+    font-size: 0.95rem;
+    color: #6B6B6B;
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+}
+
+/* ポートフォリオセクション */
+.portfolio-section {
+    padding: 5rem 0;
+    background: #F5F3F0;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.portfolio-item-wrapper {
+    text-decoration: none;
+    display: block;
+}
+
+.portfolio-item {
+    background: #FFFFFF;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(139, 115, 85, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(139, 115, 85, 0.15);
+}
+
+.portfolio-item__image {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, #8B7355, #4A4A4A);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 3.5rem;
+}
+
+.portfolio-item__content {
+    padding: 2rem;
+}
+
+.portfolio-item__title {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #4A4A4A;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+}
+
+.portfolio-item__description {
+    font-size: 0.95rem;
+    color: #6B6B6B;
+    line-height: 1.8;
+    letter-spacing: 0.03em;
+}
+
+/* セクション共通 */
+.section__subtitle {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0 0 1rem 0;
+    color: #4A4A4A;
+    letter-spacing: 0.08em;
+}
+
+.section__subtitle i {
+    color: #8B7355;
+    margin-right: 12px;
+}
+
+.team-section__title {
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #4A4A4A;
+    letter-spacing: 0.08em;
+}
+
+.team-section__title i {
+    color: #8B7355;
+    margin-right: 12px;
+}
+
+.team-section__subtitle {
+    text-align: center;
+    color: #6B6B6B;
+    margin-bottom: 3rem;
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.story-section__title {
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #4A4A4A;
+    letter-spacing: 0.08em;
+}
+
+.story-section__title i {
+    color: #8B7355;
+    margin-right: 12px;
+}
+
+.portfolio-section__title {
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #4A4A4A;
+    letter-spacing: 0.08em;
+}
+
+.portfolio-section__title i {
+    color: #8B7355;
+    margin-right: 12px;
+}
+
+.highlight-box {
+    background: linear-gradient(135deg, rgba(139, 115, 85, 0.05), rgba(139, 115, 85, 0.1));
+    border-left: 4px solid #8B7355;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 6px;
+}
+
+.highlight-box p {
+    margin: 0;
+    font-weight: 400;
+    color: #4A4A4A;
+    line-height: 1.8;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .page-hero {
+        min-height: 50vh;
+        padding: 100px 20px 60px;
+    }
+
+    .page-hero__title {
+        font-size: 2rem;
+    }
+
+    .page-hero__description {
+        font-size: 1rem;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .story-content {
+        padding: 2rem;
+    }
+
+    .team-roles {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+}
