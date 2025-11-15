@@ -8,7 +8,7 @@ $page_description = '10万円からのWebサイト制作。個人事業主から
 $page_keywords = 'Web制作,ホームページ制作,格安,大分,余日,10万円,30万円,レスポンシブ';
 $additional_css = ['assets/css/cookie-consent.css'];
 
-$structured_data = <<<EOD
+$structured_data = '
     {
       "@context": "https://schema.org",
       "@type": "Service",
@@ -16,8 +16,8 @@ $structured_data = <<<EOD
       "provider": {
         "@type": "LocalBusiness",
         "name": "余日（Yojitsu）",
-        "telephone": "{$CONTACT_TEL}",
-        "email": "{$CONTACT_EMAIL}",
+        "telephone": "' . CONTACT_TEL . '",
+        "email": "' . CONTACT_EMAIL . '",
         "address": {
           "@type": "PostalAddress",
           "addressRegion": "大分県",
@@ -52,7 +52,7 @@ $structured_data = <<<EOD
         }
       ]
     }
-EOD;
+';
 
 $inline_styles = <<<'EOD'
         .page-header {

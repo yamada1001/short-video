@@ -66,15 +66,15 @@ $inline_styles = <<<'EOD'
         .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;background-color:#f5f5f5}
 EOD;
 
-$structured_data = <<<EOD
+$structured_data = '
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "余日（Yojitsu）",
       "description": "デジタルマーケティング・Web制作会社",
       "url": "https://yojitu.com/",
-      "telephone": "{$CONTACT_TEL}",
-      "email": "{$CONTACT_EMAIL}",
+      "telephone": "' . CONTACT_TEL . '",
+      "email": "' . CONTACT_EMAIL . '",
       "foundingDate": "2025-05-14",
       "taxID": "T9810094141774",
       "address": {
@@ -89,7 +89,7 @@ $structured_data = <<<EOD
       "priceRange": "¥¥",
       "serviceType": ["Webサイト制作", "ショート動画制作"]
     }
-EOD;
+';
 ?>
 <!DOCTYPE html>
 <html lang="ja">

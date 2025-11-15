@@ -8,7 +8,7 @@ $page_description = 'TikTok、Instagram Reels、YouTube Shortsに最適化した
 $page_keywords = 'ショート動画,TikTok,Instagram Reels,YouTube Shorts,動画制作,大分,余日';
 $additional_css = ['assets/css/cookie-consent.css'];
 
-$structured_data = <<<EOD
+$structured_data = '
     {
       "@context": "https://schema.org",
       "@type": "Service",
@@ -16,8 +16,8 @@ $structured_data = <<<EOD
       "provider": {
         "@type": "LocalBusiness",
         "name": "余日（Yojitsu）",
-        "telephone": "{$CONTACT_TEL}",
-        "email": "{$CONTACT_EMAIL}",
+        "telephone": "' . CONTACT_TEL . '",
+        "email": "' . CONTACT_EMAIL . '",
         "address": {
           "@type": "PostalAddress",
           "addressRegion": "大分県",
@@ -52,7 +52,7 @@ $structured_data = <<<EOD
         }
       ]
     }
-EOD;
+';
 
 $inline_styles = <<<'EOD'
         .page-header {
