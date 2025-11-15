@@ -49,6 +49,70 @@
   flex-wrap: wrap;
 }
 
+.cta-btn {
+  min-width: 240px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.cta-btn__icon {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.cta-btn__text {
+  flex: 1;
+}
+
+.cta-btn__arrow {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.cta-btn:hover .cta-btn__arrow {
+  transform: translateX(4px);
+}
+
+.cta-btn--primary {
+  background-color: var(--color-bg-white);
+  color: var(--color-natural-brown);
+  border-color: var(--color-bg-white);
+}
+
+.cta-btn--primary:hover {
+  background-color: var(--color-beige);
+  color: var(--color-charcoal);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cta-btn--secondary {
+  background-color: transparent;
+  color: var(--color-bg-white);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.cta-btn--secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-bg-white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 旧スタイルとの互換性 */
 .cta-buttons .btn {
   min-width: 240px;
   display: inline-flex;
@@ -97,7 +161,66 @@
   opacity: 0.7;
 }
 
-/* CTA情報セクション */
+/* CTA情報グリッド（新スタイル） */
+.cta-info-grid {
+  margin-top: var(--spacing-xl);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  text-align: left;
+}
+
+.cta-info-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.cta-info-card:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.cta-info-card__icon {
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-xs);
+}
+
+.cta-info-card__icon i {
+  display: block;
+}
+
+.cta-info-card__label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+
+.cta-info-card__value {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-bg-white);
+  letter-spacing: 0.05em;
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.cta-info-card__value[href]:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* CTA情報セクション（旧スタイル互換性） */
 .cta-info {
   margin-top: var(--spacing-xl);
   display: grid;
@@ -174,11 +297,13 @@
     gap: var(--spacing-sm);
   }
 
+  .cta-btn,
   .cta-buttons .btn {
     width: 100%;
     max-width: 320px;
   }
 
+  .cta-info-grid,
   .cta-info {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
