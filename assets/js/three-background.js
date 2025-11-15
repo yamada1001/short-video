@@ -33,14 +33,16 @@
 
     // キャンバスを固定背景として配置
     const canvas = renderer.domElement;
-    canvas.id = 'three-background';
-
-    // bodyの最初に挿入
-    if (document.body.firstChild) {
-        document.body.insertBefore(canvas, document.body.firstChild);
-    } else {
-        document.body.appendChild(canvas);
-    }
+    canvas.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+    `;
+    document.body.appendChild(canvas);
 
     console.log('✅ Three.js Canvas - 固定背景として配置完了');
 
@@ -83,12 +85,11 @@
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const material = new THREE.PointsMaterial({
-        size: 3,
+        size: 2,
         vertexColors: true,
         transparent: true,
-        opacity: 0.7,
-        blending: THREE.AdditiveBlending,
-        sizeAttenuation: true
+        opacity: 0.6,
+        blending: THREE.AdditiveBlending
     });
 
     const particles = new THREE.Points(geometry, material);

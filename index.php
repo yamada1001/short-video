@@ -453,8 +453,11 @@ $structured_data = '
     <!-- Three.js Global Background (スクロール連動) -->
     <script defer src="assets/js/three-background.js"></script>
 
-    <!-- GSAP Animations (ヒーロー + スクロール統合) -->
-    <script defer src="assets/js/gsap-animations.js"></script>
+    <!-- Hero section animations -->
+    <script defer src="assets/js/hero-animations.js"></script>
+
+    <!-- Rich Animations (Split Text, GPU Acceleration, 60fps) -->
+    <script defer src="assets/js/rich-animations.js"></script>
 
     <!-- Rich interactions (safe version) -->
     <script defer src="assets/js/rich-interactions-safe.js"></script>
