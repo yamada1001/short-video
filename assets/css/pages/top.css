@@ -43,7 +43,7 @@
    ======================================== */
 
 .services-section {
-    background-color: #FFFFFF;
+    background-color: transparent;
 }
 
 .services-grid {
@@ -181,7 +181,7 @@
    ======================================== */
 
 .news-section {
-    background-color: #F5F3F0;
+    background-color: transparent;
 }
 
 .news-grid {
@@ -291,7 +291,7 @@
    ======================================== */
 
 .blog-section {
-    background-color: #FFFFFF;
+    background-color: transparent;
 }
 
 .blog-category-filter {
