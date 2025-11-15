@@ -26,6 +26,7 @@ require_once __DIR__ . '/includes/functions.php';
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/cta.css">
     <link rel="stylesheet" href="assets/css/cookie-consent.css">
+    <link rel="stylesheet" href="assets/css/pages/services.css">
 
     <!-- Font Awesome - Async load -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
@@ -33,248 +34,6 @@ require_once __DIR__ . '/includes/functions.php';
 
     <!-- Google Tag Manager - Async -->
     <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
-
-    <style>
-        .page-header {
-            background: linear-gradient(135deg, var(--color-natural-brown) 0%, var(--color-charcoal) 100%);
-            padding: var(--spacing-xxl) 0;
-            text-align: center;
-            color: var(--color-bg-white);
-        }
-
-        .page-header__title {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-md);
-            letter-spacing: 0.05em;
-            color: var(--color-bg-white);
-        }
-
-        .page-header__description {
-            font-size: 18px;
-            line-height: 1.8;
-            opacity: 0.95;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .services-section {
-            padding: var(--spacing-xxl) 0;
-            background: var(--color-bg-white);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: var(--spacing-xxl);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: var(--color-bg-white);
-            border: 2px solid var(--color-border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            position: relative;
-        }
-
-        .service-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-card--web:hover {
-            border-color: var(--color-natural-brown);
-        }
-
-        .service-card--video:hover {
-            border-color: #E1306C;
-        }
-
-        .service-card__header {
-            padding: var(--spacing-xxl);
-            text-align: center;
-            position: relative;
-        }
-
-        .service-card--web .service-card__header {
-            background: linear-gradient(135deg, var(--color-natural-brown) 0%, var(--color-charcoal) 100%);
-        }
-
-        .service-card--video .service-card__header {
-            background: linear-gradient(135deg, #E1306C 0%, #405DE6 50%, #5B51D8 100%);
-        }
-
-        .service-card__icon {
-            font-size: 72px;
-            color: var(--color-bg-white);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .service-card__title {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--color-bg-white);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .service-card__subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
-            letter-spacing: 0.1em;
-        }
-
-        .service-card__content {
-            padding: var(--spacing-xl);
-        }
-
-        .service-card__description {
-            font-size: 15px;
-            line-height: 1.9;
-            color: var(--color-text);
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .service-card__features {
-            list-style: none;
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .service-card__features li {
-            padding: var(--spacing-sm) 0;
-            display: flex;
-            align-items: start;
-            gap: var(--spacing-sm);
-            font-size: 14px;
-            color: var(--color-text);
-        }
-
-        .service-card__features li i {
-            margin-top: 4px;
-            flex-shrink: 0;
-        }
-
-        .service-card--web .service-card__features li i {
-            color: var(--color-natural-brown);
-        }
-
-        .service-card--video .service-card__features li i {
-            color: #E1306C;
-        }
-
-        .service-card__cta {
-            text-align: center;
-        }
-
-        .service-card__link {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            padding: var(--spacing-md) var(--spacing-xl);
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .service-card--web .service-card__link {
-            background: var(--color-natural-brown);
-            color: var(--color-bg-white);
-        }
-
-        .service-card--web .service-card__link:hover {
-            background: var(--color-charcoal);
-            gap: var(--spacing-md);
-        }
-
-        .service-card--video .service-card__link {
-            background: linear-gradient(45deg, #F58529, #E1306C);
-            color: var(--color-bg-white);
-        }
-
-        .service-card--video .service-card__link:hover {
-            background: linear-gradient(45deg, #E1306C, #5B51D8);
-            gap: var(--spacing-md);
-        }
-
-        .compare-section {
-            padding: var(--spacing-xxl) 0;
-            background: var(--color-bg-gray);
-        }
-
-        .compare-section__title {
-            font-size: 32px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: var(--spacing-xl);
-            color: var(--color-charcoal);
-        }
-
-        .compare-table {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--color-bg-white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .compare-table__row {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .compare-table__row:last-child {
-            border-bottom: none;
-        }
-
-        .compare-table__cell {
-            padding: var(--spacing-lg);
-            text-align: center;
-        }
-
-        .compare-table__cell--header {
-            background: var(--color-bg-gray);
-            font-weight: 700;
-            font-size: 16px;
-            color: var(--color-charcoal);
-        }
-
-        .compare-table__cell--label {
-            background: var(--color-bg-gray);
-            font-weight: 600;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-        }
-
-        .compare-table__cell i {
-            color: var(--color-natural-brown);
-        }
-
-        @media (max-width: 768px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .compare-table__row {
-                grid-template-columns: 1fr;
-            }
-
-            .compare-table__cell--header:first-child {
-                display: none;
-            }
-
-            .compare-table__cell--header {
-                background: var(--color-natural-brown);
-                color: var(--color-bg-white);
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -284,13 +43,18 @@ require_once __DIR__ . '/includes/functions.php';
 
     <?php include __DIR__ . '/includes/header.php'; ?>
 
-    <!-- ページヘッダー -->
-    <section class="page-header">
-        <div class="container">
-            <h1 class="page-header__title">
+    <!-- ページヒーロー -->
+    <section class="page-hero">
+        <div class="page-hero__bg">
+            <div class="page-hero__shape page-hero__shape--1"></div>
+            <div class="page-hero__shape page-hero__shape--2"></div>
+        </div>
+        <div class="page-hero__container">
+            <span class="page-hero__label">Our Services</span>
+            <h1 class="page-hero__title">
                 <i class="fas fa-briefcase"></i> サービス
             </h1>
-            <p class="page-header__description">
+            <p class="page-hero__description">
                 デジタルマーケティングの専門知識で、<br>
                 お客様のビジネス成長をトータルサポート
             </p>
@@ -398,7 +162,13 @@ require_once __DIR__ . '/includes/functions.php';
     <!-- フッター -->
     <?php include __DIR__ . '/includes/footer.php'; ?>
 
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Page Scripts -->
     <script defer src="assets/js/app.js"></script>
+    <script defer src="assets/js/services.js"></script>
 
     <!-- Cookie同意バナー -->
     <div id="cookieConsent" class="cookie-consent">
