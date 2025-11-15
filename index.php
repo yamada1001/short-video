@@ -111,12 +111,6 @@ $structured_data = '
     <!-- Preload critical resources -->
     <link rel="preload" href="assets/css/base.css" as="style">
     <link rel="preload" href="assets/js/app.js" as="script">
-
-    <!-- Locomotive Scroll CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
-
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 </head>
 <body>
     <!-- ローディングアニメーション -->
@@ -142,41 +136,13 @@ $structured_data = '
 
     <?php include __DIR__ . '/includes/header.php'; ?>
 
-    <!-- メインコンテナ（Locomotive Scroll用） -->
-    <div id="smooth-wrapper">
-        <div id="smooth-content">
-
     <!-- ヒーローセクション -->
     <section class="hero-v2" data-scroll-section>
-        <!-- 背景装飾（多層パララックス） -->
-        <div class="hero-v2__bg">
-            <div class="hero-v2__shape hero-v2__shape--1" data-scroll data-scroll-speed="-3"></div>
-            <div class="hero-v2__shape hero-v2__shape--2" data-scroll data-scroll-speed="-1.5"></div>
-            <div class="hero-v2__shape hero-v2__shape--3" data-scroll data-scroll-speed="-4"></div>
-            <div class="hero-v2__particles" data-scroll data-scroll-speed="-2">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-            </div>
-        </div>
-
-        <!-- 背景スライダー -->
-        <div class="hero-v2__slider">
-            <div class="swiper hero-swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="hero-slide" style="background: linear-gradient(135deg, rgba(139, 117, 97, 0.05) 0%, rgba(139, 117, 97, 0.1) 100%);"></div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="hero-slide" style="background: linear-gradient(135deg, rgba(66, 133, 112, 0.05) 0%, rgba(66, 133, 112, 0.1) 100%);"></div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="hero-slide" style="background: linear-gradient(135deg, rgba(139, 117, 97, 0.08) 0%, rgba(66, 133, 112, 0.08) 100%);"></div>
-                    </div>
-                </div>
-            </div>
+        <!-- 背景装飾 -->
+        <div class="hero-v2__bg" data-scroll data-scroll-speed="-2">
+            <div class="hero-v2__shape hero-v2__shape--1"></div>
+            <div class="hero-v2__shape hero-v2__shape--2"></div>
+            <div class="hero-v2__shape hero-v2__shape--3"></div>
         </div>
 
         <div class="hero-v2__container">
@@ -441,9 +407,6 @@ $structured_data = '
     <!-- フッター -->
     <?php include __DIR__ . '/includes/footer.php'; ?>
 
-        </div><!-- #smooth-content -->
-    </div><!-- #smooth-wrapper -->
-
     <?php include __DIR__ . '/includes/cookie-consent.php'; ?>
 
     <!-- JavaScript - Deferred for better performance -->
@@ -452,17 +415,8 @@ $structured_data = '
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- Locomotive Scroll -->
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
-
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <!-- Hero section animations -->
     <script defer src="assets/js/hero-animations.js"></script>
-
-    <!-- Rich interactions -->
-    <script defer src="assets/js/rich-interactions.js"></script>
 
     <!-- Common app scripts -->
     <script defer src="assets/js/app.js"></script>
