@@ -26,7 +26,6 @@ require_once __DIR__ . '/includes/functions.php';
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/cta.css">
     <link rel="stylesheet" href="assets/css/cookie-consent.css">
-    <link rel="stylesheet" href="assets/css/pages/web-production.css">
 
     <!-- Font Awesome - Async load -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
@@ -81,6 +80,340 @@ require_once __DIR__ . '/includes/functions.php';
       ]
     }
     </script>
+
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, var(--color-natural-brown) 0%, var(--color-charcoal) 100%);
+            padding: var(--spacing-xxl) 0;
+            text-align: center;
+            color: var(--color-bg-white);
+        }
+
+        .page-header__title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: 0.05em;
+            color: var(--color-bg-white);
+        }
+
+        .page-header__description {
+            font-size: 18px;
+            line-height: 1.8;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pricing-section {
+            padding: var(--spacing-xxl) 0;
+            background: var(--color-bg-white);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .pricing-card {
+            background: var(--color-bg-white);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: var(--spacing-xl);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--color-natural-brown);
+        }
+
+        .pricing-card--featured {
+            border-color: var(--color-natural-brown);
+            border-width: 3px;
+            box-shadow: 0 8px 24px rgba(139, 115, 85, 0.15);
+        }
+
+        .pricing-card__badge {
+            position: absolute;
+            top: -12px;
+            right: var(--spacing-lg);
+            background: var(--color-natural-brown);
+            color: var(--color-bg-white);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-card__icon {
+            font-size: 48px;
+            color: var(--color-natural-brown);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .pricing-card__name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-charcoal);
+        }
+
+        .pricing-card__price {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--color-natural-brown);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .pricing-card__price-unit {
+            font-size: 16px;
+            color: var(--color-text-light);
+            font-weight: 400;
+        }
+
+        .pricing-card__target {
+            font-size: 14px;
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-sm) 0;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .pricing-card__features {
+            list-style: none;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .pricing-card__features li {
+            padding: var(--spacing-sm) 0;
+            color: var(--color-text);
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-sm);
+        }
+
+        .pricing-card__features li i {
+            color: var(--color-natural-brown);
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .pricing-card__cta {
+            margin-top: var(--spacing-lg);
+        }
+
+        .story-section {
+            padding: var(--spacing-xxl) 0;
+            background: var(--color-bg-gray);
+        }
+
+        .story-section__title {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            color: var(--color-charcoal);
+        }
+
+        .story-section__title i {
+            color: var(--color-natural-brown);
+            margin-right: var(--spacing-sm);
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--color-bg-white);
+            padding: var(--spacing-xl);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .story-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: var(--spacing-xl) 0 var(--spacing-md) 0;
+            color: var(--color-charcoal);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .story-content h3 i {
+            color: var(--color-natural-brown);
+        }
+
+        .story-content p {
+            line-height: 1.9;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .team-section {
+            padding: var(--spacing-xxl) 0;
+            background: var(--color-bg-white);
+        }
+
+        .team-section__title {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-charcoal);
+        }
+
+        .team-section__subtitle {
+            text-align: center;
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-xl);
+            font-size: 16px;
+        }
+
+        .team-roles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .team-role {
+            background: var(--color-bg-gray);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-natural-brown);
+        }
+
+        .team-role__icon {
+            font-size: 32px;
+            color: var(--color-natural-brown);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .team-role__name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            color: var(--color-charcoal);
+        }
+
+        .team-role__description {
+            font-size: 14px;
+            color: var(--color-text-light);
+            line-height: 1.7;
+        }
+
+        .portfolio-section {
+            padding: var(--spacing-xxl) 0;
+            background: var(--color-bg-gray);
+        }
+
+        .portfolio-section__title {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            color: var(--color-charcoal);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            background: var(--color-bg-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .portfolio-item__image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--color-natural-brown), var(--color-charcoal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-bg-white);
+            font-size: 48px;
+        }
+
+        .portfolio-item__content {
+            padding: var(--spacing-lg);
+        }
+
+        .portfolio-item__title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-charcoal);
+        }
+
+        .portfolio-item__description {
+            font-size: 14px;
+            color: var(--color-text-light);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .portfolio-item__link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            color: var(--color-natural-brown);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: gap 0.3s ease;
+        }
+
+        .portfolio-item__link:hover {
+            gap: var(--spacing-sm);
+        }
+
+        .portfolio-item__link i {
+            font-size: 12px;
+        }
+
+        .section__subtitle {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin: var(--spacing-xxl) 0 var(--spacing-md) 0;
+            color: var(--color-charcoal);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 115, 85, 0.05), rgba(139, 115, 85, 0.1));
+            border-left: 4px solid var(--color-natural-brown);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-weight: 600;
+            color: var(--color-charcoal);
+        }
+    </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -90,18 +423,13 @@ require_once __DIR__ . '/includes/functions.php';
 
     <?php include __DIR__ . '/includes/header.php'; ?>
 
-    <!-- ページヒーロー -->
-    <section class="page-hero">
-        <div class="page-hero__bg">
-            <div class="page-hero__shape page-hero__shape--1"></div>
-            <div class="page-hero__shape page-hero__shape--2"></div>
-        </div>
-        <div class="page-hero__container">
-            <span class="page-hero__label">Web Production</span>
-            <h1 class="page-hero__title">
+    <!-- ページヘッダー -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-header__title">
                 <i class="fas fa-laptop-code"></i> Webサイト制作
             </h1>
-            <p class="page-hero__description">
+            <p class="page-header__description">
                 10万円から始める、プロフェッショナルなWeb制作。<br>
                 個人事業主から中小企業まで、目的に応じた最適なプランをご提供します。
             </p>
@@ -441,13 +769,7 @@ require_once __DIR__ . '/includes/functions.php';
     <!-- フッター -->
     <?php include __DIR__ . '/includes/footer.php'; ?>
 
-    <!-- GSAP Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <!-- Page Scripts -->
     <script defer src="assets/js/app.js"></script>
-    <script defer src="assets/js/web-production.js"></script>
 
     <!-- Cookie同意バナー -->
     <div id="cookieConsent" class="cookie-consent">
