@@ -12,7 +12,7 @@ $current_page = $current_page ?? '';
 <!-- ヘッダー -->
 <header class="header" id="header">
     <div class="container header__container">
-        <a href="<?php echo ($current_page === 'home') ? '/' : '/index.html'; ?>" class="header__logo">
+        <a href="<?php echo ($current_page === 'home') ? '/' : '/index.php'; ?>" class="header__logo">
             <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="20" cy="20" r="18" fill="#8B7355" opacity="0.1"/>
                 <path d="M12 10 L20 20 L28 10" stroke="#8B7355" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>

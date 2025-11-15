@@ -106,7 +106,7 @@ $toc = generateToc($post['content']);
                 <div class="article-main">
                     <!-- パンくずリスト -->
                     <nav class="breadcrumb">
-                        <a href="../index.html" class="breadcrumb__link">ホーム</a>
+                        <a href="../index.php" class="breadcrumb__link">ホーム</a>
                         <span class="breadcrumb__separator">/</span>
                         <a href="index.php" class="breadcrumb__link">ブログ</a>
                         <span class="breadcrumb__separator">/</span>
@@ -270,7 +270,7 @@ $toc = generateToc($post['content']);
                     <a href="../blog/" class="footer__link"><i class="fas fa-blog"></i> ブログ</a>
                     <a href="../news/" class="footer__link"><i class="fas fa-newspaper"></i> お知らせ</a>
                     <a href="../contact.php" class="footer__link"><i class="fas fa-envelope"></i> お問い合わせ</a>
-                    <a href="../privacy.html" class="footer__link"><i class="fas fa-shield-alt"></i> プライバシーポリシー</a>
+                    <a href="../privacy.php" class="footer__link"><i class="fas fa-shield-alt"></i> プライバシーポリシー</a>
                     <a href="../sitemap-page.php" class="footer__link"><i class="fas fa-sitemap"></i> サイトマップ</a>
                 </div>
                 <div class="footer__section">

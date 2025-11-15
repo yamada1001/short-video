@@ -26,7 +26,7 @@ $staticPages = [
     ['url' => '/recruit.php', 'priority' => '0.7', 'changefreq' => 'monthly'],
     ['url' => '/blog/', 'priority' => '0.8', 'changefreq' => 'daily'],
     ['url' => '/news/', 'priority' => '0.7', 'changefreq' => 'weekly'],
-    ['url' => '/privacy.html', 'priority' => '0.3', 'changefreq' => 'yearly'],
+    ['url' => '/privacy.php', 'priority' => '0.3', 'changefreq' => 'yearly'],
     ['url' => '/tokushoho.html', 'priority' => '0.3', 'changefreq' => 'yearly'],
 ];
 

@@ -130,13 +130,13 @@ mb_send_mail($email, $reply_subject, $reply_body, $reply_headers);
     <!-- ヘッダー -->
     <header class="header" id="header">
         <div class="container header__container">
-            <a href="../index.html" class="header__logo">余日</a>
+            <a href="../index.php" class="header__logo">余日</a>
             <nav class="nav">
                 <ul class="nav__list" id="navList">
                     <li><a href="../index.html#services" class="nav__link">サービス</a></li>
                     <li><a href="../news/" class="nav__link">お知らせ</a></li>
-                    <li><a href="../about.html" class="nav__link">会社概要</a></li>
-                    <li><a href="../contact.html" class="nav__link">お問い合わせ</a></li>
+                    <li><a href="../about.php" class="nav__link">会社概要</a></li>
+                    <li><a href="../contact.php" class="nav__link">お問い合わせ</a></li>
                 </ul>
             </nav>
         </div>
@@ -156,7 +156,7 @@ mb_send_mail($email, $reply_subject, $reply_body, $reply_headers);
                 メールが届かない場合は、迷惑メールフォルダをご確認いただくか、<br>
                 お手数ですが再度お問い合わせください。
             </p>
-            <a href="../index.html" class="btn btn-primary btn--large">トップページへ戻る</a>
+            <a href="../index.php" class="btn btn-primary btn--large">トップページへ戻る</a>
         </div>
     </section>
 

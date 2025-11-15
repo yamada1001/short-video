@@ -210,7 +210,7 @@ $current_page = 'contact';
                 メールが届かない場合は、迷惑メールフォルダをご確認いただくか、<br>
                 お手数ですが再度お問い合わせください。
             </p>
-            <a href="../index.html" class="btn btn-primary btn--large">トップページへ戻る</a>
+            <a href="../index.php" class="btn btn-primary btn--large">トップページへ戻る</a>
         </div>
     </section>
 

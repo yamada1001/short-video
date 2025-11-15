@@ -66,7 +66,7 @@ $next_article = isset($articles[$current_index - 1]) ? $articles[$current_index 
         <div class="container news-detail-container">
             <!-- パンくずリスト -->
             <nav class="breadcrumb">
-                <a href="../index.html" class="breadcrumb__link">ホーム</a>
+                <a href="../index.php" class="breadcrumb__link">ホーム</a>
                 <span class="breadcrumb__separator">/</span>
                 <a href="../news/" class="breadcrumb__link">お知らせ</a>
                 <span class="breadcrumb__separator">/</span>

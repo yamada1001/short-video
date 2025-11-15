@@ -127,7 +127,7 @@
                     <a href="blog/" class="footer__link"><i class="fas fa-blog"></i> ブログ</a>
                     <a href="news/" class="footer__link"><i class="fas fa-newspaper"></i> お知らせ</a>
                     <a href="contact.php" class="footer__link"><i class="fas fa-envelope"></i> お問い合わせ</a>
-                    <a href="privacy.html" class="footer__link"><i class="fas fa-shield-alt"></i> プライバシーポリシー</a>
+                    <a href="privacy.php" class="footer__link"><i class="fas fa-shield-alt"></i> プライバシーポリシー</a>
                     <a href="sitemap-page.php" class="footer__link"><i class="fas fa-sitemap"></i> サイトマップ</a>
                 </div>
                 <div class="footer__section">
@@ -142,7 +142,7 @@
                         <i class="fas fa-calendar-check" style="margin-right: 8px;"></i>定休日: なし
                     </p>
                     <div style="margin-top: 16px;">
-                        <a href="contact.html" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; font-size: 14px;">お問い合わせフォーム</a>
+                        <a href="contact.php" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; font-size: 14px;">お問い合わせフォーム</a>
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@
             <div class="cookie-consent__content">
                 <p class="cookie-consent__text">
                     当サイトは、ウェブサイトにおけるお客様の利用状況を把握するためにCookieを使用しています。「同意する」をクリックすると、当サイトでのCookieの使用に同意することになります。
-                    <a href="privacy.html" class="cookie-consent__link">プライバシーポリシー</a>
+                    <a href="privacy.php" class="cookie-consent__link">プライバシーポリシー</a>
                 </p>
             </div>
             <div class="cookie-consent__actions">

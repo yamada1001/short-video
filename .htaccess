@@ -95,12 +95,14 @@ ErrorDocument 500 /500.php
 ErrorDocument 503 /503.php
 
 # ====================================
-# Rewrite .html to .php
+# Redirect .html to .php (301 Permanent)
 # ====================================
 RewriteEngine On
+
+# .html へのアクセスを .php へ301リダイレクト
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.+)\.html$ $1.php [L,QSA]
+RewriteRule ^(.+)\.html$ /$1.php [R=301,L]
 
 # DirectoryIndex
-DirectoryIndex index.php index.html
+DirectoryIndex index.php
