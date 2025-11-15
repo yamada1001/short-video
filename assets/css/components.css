@@ -5,10 +5,10 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: rgba(245, 243, 240, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(139, 115, 85, 0.1);
+  background-color: rgba(245, 243, 240, 0.3);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(139, 115, 85, 0.05);
   padding: var(--spacing-md) 0;
   transition: all var(--transition-base);
   /* 常時表示を保証 */
@@ -18,8 +18,8 @@
 }
 
 .header--scrolled {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  background-color: rgba(245, 243, 240, 0.85);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  background-color: rgba(245, 243, 240, 0.5);
 }
 
 .header__container {
