@@ -73,8 +73,7 @@
       "Bash(\"$file\")",
       "Bash(do php validate-article.php \"data/article-$i-full.html\")",
       "WebFetch(domain:mikicruise.com)",
-      "WebFetch(domain:botanistofficial.com)",
-      "WebFetch(domain:www.aoimiyazaki.jp)"
+      "WebFetch(domain:botanistofficial.com)"
     ],
     "deny": [],
     "ask": []

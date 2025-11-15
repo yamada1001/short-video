@@ -45,8 +45,8 @@ $page_description = '大分県を拠点に、Web制作・ショート動画制�
 $page_keywords = '大分,Web制作,ショート動画,動画制作,ホームページ制作,余日,Yojitsu';
 $additional_css = [
     'assets/css/loading.css',
-    'assets/css/pages/hero-v2.css',
-    'assets/css/pages/top-branding.css'
+    'assets/css/pages/top.css',
+    'assets/css/pages/hero-v2.css'
 ];
 
 $ogp_tags = <<<'EOD'
@@ -449,8 +449,8 @@ $structured_data = '
     <!-- Hero section animations -->
     <script defer src="assets/js/hero-animations.js"></script>
 
-    <!-- Rich interactions (branding version with debug) -->
-    <script defer src="assets/js/rich-interactions-branding.js"></script>
+    <!-- Rich interactions (safe version) -->
+    <script defer src="assets/js/rich-interactions-safe.js"></script>
 
     <!-- Common app scripts -->
     <script defer src="assets/js/app.js"></script>
