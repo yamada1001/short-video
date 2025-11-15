@@ -228,15 +228,19 @@ sort($all_categories);
     </section>
 
     <!-- サービスセクション -->
-    <section class="section" id="services">
+    <section class="section services-section" id="services">
         <div class="container">
-            <h2 class="section__title animate">サービス</h2>
-            <p class="section__description animate">
-                デジタルマーケティングの専門知識で、<br>
-                お客様のビジネス成長をトータルサポート
-            </p>
+            <div class="section-header">
+                <span class="section-header__label animate">Services</span>
+                <h2 class="section__title animate">サービス</h2>
+                <p class="section__description animate">
+                    デジタルマーケティングの専門知識で、<br>
+                    お客様のビジネス成長をトータルサポート
+                </p>
+            </div>
             <div class="services-grid">
                 <div class="service-card animate">
+                    <div class="service-card__number">01</div>
                     <div class="service-card__icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
@@ -244,10 +248,16 @@ sort($all_categories);
                     <p class="service-card__description">
                         コーポレートサイト・LP・採用サイトの制作。レスポンシブ対応、SEO最適化を標準実装。
                     </p>
-                    <p class="service-card__price">300,000円〜</p>
-                    <a href="web-production.php" class="btn btn-secondary">詳しく見る</a>
+                    <div class="service-card__footer">
+                        <p class="service-card__price">300,000円〜</p>
+                        <a href="web-production.php" class="service-card__link">
+                            詳しく見る
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="service-card animate">
+                    <div class="service-card__number">02</div>
                     <div class="service-card__icon">
                         <i class="fas fa-video"></i>
                     </div>
@@ -255,31 +265,44 @@ sort($all_categories);
                     <p class="service-card__description">
                         TikTok・Instagram・YouTubeショート向け。企画から編集まで、SNS映えする動画を制作。
                     </p>
-                    <p class="service-card__price">1本 20,000円〜</p>
-                    <a href="video-production.php" class="btn btn-secondary">詳しく見る</a>
+                    <div class="service-card__footer">
+                        <p class="service-card__price">1本 20,000円〜</p>
+                        <a href="video-production.php" class="service-card__link">
+                            詳しく見る
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- お知らせセクション -->
-    <section class="section section--gray" id="news">
+    <section class="section section--gray news-section" id="news">
         <div class="container">
-            <h2 class="section__title animate">お知らせ</h2>
-            <div class="news-list">
+            <div class="section-header">
+                <span class="section-header__label animate">News</span>
+                <h2 class="section__title animate">お知らせ</h2>
+            </div>
+            <div class="news-grid">
                 <?php foreach ($latest_news as $index => $news): ?>
                     <?php
                     $date = new DateTime($news['publishedAt']);
                     $formatted_date = $date->format('Y.m.d');
                     $is_new = (time() - strtotime($news['publishedAt'])) < (7 * 24 * 60 * 60); // 7日以内
                     ?>
-                    <a href="news/detail.php?id=<?php echo $news['id']; ?>" class="news-item animate">
-                        <span class="news-item__date"><?php echo h($formatted_date); ?></span>
-                        <span class="news-item__category"><?php echo h($news['category']); ?></span>
-                        <span class="news-item__title"><?php echo h($news['title']); ?></span>
-                        <?php if ($is_new): ?>
-                            <span class="news-item__badge">NEW</span>
-                        <?php endif; ?>
+                    <a href="news/detail.php?id=<?php echo $news['id']; ?>" class="news-card animate">
+                        <div class="news-card__header">
+                            <span class="news-card__date"><?php echo h($formatted_date); ?></span>
+                            <?php if ($is_new): ?>
+                                <span class="news-card__badge">NEW</span>
+                            <?php endif; ?>
+                        </div>
+                        <span class="news-card__category"><?php echo h($news['category']); ?></span>
+                        <h3 class="news-card__title"><?php echo h($news['title']); ?></h3>
+                        <div class="news-card__arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
                     </a>
                 <?php endforeach; ?>
             </div>
@@ -290,19 +313,22 @@ sort($all_categories);
     </section>
 
     <!-- ブログセクション -->
-    <section class="section" id="blog">
+    <section class="section blog-section" id="blog">
         <div class="container">
-            <h2 class="section__title animate">ブログ</h2>
-            <p class="section__description animate">
-                デジタルマーケティングの最新情報と<br>
-                実践的なノウハウをお届けします
-            </p>
+            <div class="section-header">
+                <span class="section-header__label animate">Blog</span>
+                <h2 class="section__title animate">ブログ</h2>
+                <p class="section__description animate">
+                    デジタルマーケティングの最新情報と<br>
+                    実践的なノウハウをお届けします
+                </p>
+            </div>
 
             <!-- カテゴリフィルタ -->
-            <div class="blog-category-filter animate" style="text-align: center; margin-bottom: 40px;">
-                <button data-category="all" class="category-filter-btn active" style="display: inline-block; padding: 8px 20px; margin: 4px; border: 1px solid var(--color-natural-brown); border-radius: 20px; background-color: var(--color-natural-brown); color: #fff; cursor: pointer; transition: all 0.3s;">すべて</button>
+            <div class="blog-category-filter animate">
+                <button data-category="all" class="category-filter-btn active">すべて</button>
                 <?php foreach ($all_categories as $category): ?>
-                    <button data-category="<?php echo h($category); ?>" class="category-filter-btn" style="display: inline-block; padding: 8px 20px; margin: 4px; border: 1px solid var(--color-natural-brown); border-radius: 20px; background-color: transparent; color: var(--color-natural-brown); cursor: pointer; transition: all 0.3s;"><?php echo h($category); ?></button>
+                    <button data-category="<?php echo h($category); ?>" class="category-filter-btn"><?php echo h($category); ?></button>
                 <?php endforeach; ?>
             </div>
 
@@ -319,6 +345,9 @@ sort($all_categories);
                         </div>
                         <h3 class="blog-preview-card__title"><?php echo h($post['title']); ?></h3>
                         <p class="blog-preview-card__excerpt"><?php echo h($post['excerpt']); ?></p>
+                        <div class="blog-preview-card__arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
                     </a>
                 <?php endforeach; ?>
             </div>
