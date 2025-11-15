@@ -12,7 +12,6 @@
     overflow: hidden;
     padding: 120px 20px 60px;
     scroll-snap-align: start;
-    scroll-snap-stop: always;
 }
 
 /* ========================================

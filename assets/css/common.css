@@ -128,7 +128,6 @@ a:hover {
 .section {
   padding: var(--spacing-xxl) 0;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
