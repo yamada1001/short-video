@@ -764,7 +764,11 @@ require_once __DIR__ . '/includes/functions.php';
     </section>
 
     <!-- CTAセクション -->
-    <?php $cta_base_path = ''; include __DIR__ . '/includes/cta.php'; ?>
+    <?php
+    $cta_base_path = '';
+    $cta_show_info = true;
+    include __DIR__ . '/includes/cta.php';
+    ?>
 
     <!-- フッター -->
     <?php include __DIR__ . '/includes/footer.php'; ?>
