@@ -449,9 +449,6 @@ $structured_data = '
     <!-- Hero section animations -->
     <script defer src="assets/js/hero-animations.js"></script>
 
-    <!-- Smooth scroll (ぬるっとしたスクロール) -->
-    <script defer src="assets/js/smooth-scroll.js"></script>
-
     <!-- Rich interactions (safe version) -->
     <script defer src="assets/js/rich-interactions-safe.js"></script>
 
