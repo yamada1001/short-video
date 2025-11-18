@@ -43,16 +43,18 @@ $current_page = $current_page ?? '';
                 <li class="nav__item nav__item--lang">
                     <?php
                     $currentUrl = $_SERVER['REQUEST_URI'];
-                    $isEnglish = strpos($currentUrl, '/en/') === 0;
+                    $isEnglish = strpos($currentUrl, '/en/') === 0 || strpos($currentUrl, '/en') === 0;
 
                     if ($isEnglish) {
                         // 英語版 → 日本語版へのリンク
-                        $jaUrl = str_replace('/en/', '/', $currentUrl);
-                        echo '<a href="' . $jaUrl . '" class="nav__lang-link" title="日本語"><i class="fas fa-globe"></i> 日本語</a>';
+                        // /en/index.php → /index.php
+                        // /en/services.php → /services.php
+                        $jaUrl = preg_replace('#^/en(/|$)#', '/', $currentUrl);
+                        echo '<a href="' . htmlspecialchars($jaUrl) . '" class="nav__lang-link" title="日本語"><i class="fas fa-globe"></i> 日本語</a>';
                     } else {
                         // 日本語版 → 英語版へのリンク
                         $enUrl = '/en' . $currentUrl;
-                        echo '<a href="' . $enUrl . '" class="nav__lang-link" title="English"><i class="fas fa-globe"></i> English</a>';
+                        echo '<a href="' . htmlspecialchars($enUrl) . '" class="nav__lang-link" title="English"><i class="fas fa-globe"></i> English</a>';
                     }
                     ?>
                 </li>

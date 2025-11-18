@@ -68,6 +68,12 @@ if (isset($additional_css) && is_array($additional_css)) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
+    <!-- GSAP for animations (loaded globally for language switcher and other animations) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Language switcher with GSAP animations -->
+    <script defer src="<?php echo $css_base_path ?? '/'; ?>assets/js/lang-switcher.js"></script>
+
     <!-- Google Tag Manager - Async -->
     <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
 <?php if (isset($structured_data)): ?>
