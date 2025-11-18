@@ -2,7 +2,7 @@
  * ステップフォーム用CSS
  */
 
-.contact-step-form {
+section.contact-step-form {
     padding: 240px 0 200px;
     min-height: 100vh;
 }
@@ -226,7 +226,7 @@
     color: #428570;
 }
 
-.contact-step-form-inner {
+form.contact-step-form {
     max-width: 700px;
     margin: 0 auto;
     padding: 0;
@@ -248,7 +248,7 @@
 
 /* レスポンシブ */
 @media (max-width: 768px) {
-    .contact-step-form {
+    section.contact-step-form {
         padding: 100px 0 60px;
     }
 
@@ -260,7 +260,7 @@
         padding: 32px 24px;
     }
 
-    .contact-step-form-inner {
+    form.contact-step-form {
         padding: 32px 24px;
     }
 

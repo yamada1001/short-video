@@ -88,7 +88,7 @@ $additional_css = [
                     </div>
                 </div>
 
-                <form action="includes/contact-form-step.php" method="POST" class="contact-step-form-inner" id="contactForm">
+                <form action="includes/contact-form-step.php" method="POST" class="contact-step-form" id="contactForm">
                     <input type="hidden" name="type" id="contactType" value="">
 
                     <div class="form-group">
