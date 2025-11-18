@@ -247,6 +247,12 @@
 }
 
 /* レスポンシブ */
+@media (min-width: 769px) {
+    .contact-step-form {
+        padding-top: 220px;
+    }
+}
+
 @media (max-width: 768px) {
     .contact-step-form {
         padding: 100px 0 60px;
