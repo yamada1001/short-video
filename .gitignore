@@ -3,3 +3,7 @@
 .idea/
 *.log
 *.tmp
+
+# Translation cache
+cache/translations/*
+!cache/translations/.gitkeep

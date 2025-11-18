@@ -38,6 +38,24 @@ $current_page = $current_page ?? '';
                 <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'contact.php' : '/contact.php'; ?>" class="nav__link<?php echo ($current_page === 'contact') ? ' nav__link--active' : ''; ?>"><i class="fas fa-envelope nav__icon"></i><span>お問い合わせ</span></a></li>
                 <li class="nav__item nav__item--contact"><i class="fas fa-paper-plane"></i><a href="mailto:<?php echo CONTACT_EMAIL; ?>"><?php echo CONTACT_EMAIL; ?></a></li>
                 <li class="nav__item nav__item--contact"><i class="fas fa-phone"></i><a href="tel:<?php echo CONTACT_TEL_LINK; ?>"><?php echo CONTACT_TEL; ?></a></li>
+
+                <!-- 言語切り替え -->
+                <li class="nav__item nav__item--lang">
+                    <?php
+                    $currentUrl = $_SERVER['REQUEST_URI'];
+                    $isEnglish = strpos($currentUrl, '/en/') === 0;
+
+                    if ($isEnglish) {
+                        // 英語版 → 日本語版へのリンク
+                        $jaUrl = str_replace('/en/', '/', $currentUrl);
+                        echo '<a href="' . $jaUrl . '" class="nav__lang-link" title="日本語"><i class="fas fa-globe"></i> 日本語</a>';
+                    } else {
+                        // 日本語版 → 英語版へのリンク
+                        $enUrl = '/en' . $currentUrl;
+                        echo '<a href="' . $enUrl . '" class="nav__lang-link" title="English"><i class="fas fa-globe"></i> English</a>';
+                    }
+                    ?>
+                </li>
             </ul>
 
             <div class="hamburger" id="hamburger">

@@ -8,6 +8,29 @@
     <meta name="robots" content="<?php echo $robots_meta; ?>">
 <?php endif; ?>
     <title><?php echo $page_title ?? '余日（Yojitsu）'; ?></title>
+
+    <!-- hreflang tags for multilingual support -->
+<?php
+// 現在のURLを取得
+$current_url = $_SERVER['REQUEST_URI'];
+$is_english = strpos($current_url, '/en/') === 0;
+
+// ベースURLを構築
+$base_url = 'https://yojitu.com';
+
+if ($is_english) {
+    // 英語版ページの場合
+    $ja_url = $base_url . str_replace('/en/', '/', $current_url);
+    $en_url = $base_url . $current_url;
+} else {
+    // 日本語版ページの場合
+    $ja_url = $base_url . $current_url;
+    $en_url = $base_url . '/en' . $current_url;
+}
+?>
+    <link rel="alternate" hreflang="ja" href="<?php echo htmlspecialchars($ja_url); ?>">
+    <link rel="alternate" hreflang="en" href="<?php echo htmlspecialchars($en_url); ?>">
+    <link rel="alternate" hreflang="x-default" href="<?php echo htmlspecialchars($ja_url); ?>">
 <?php if (isset($ogp_tags)): ?>
 
     <!-- OGP -->

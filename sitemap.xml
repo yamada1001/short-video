@@ -1,40 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://yojitu.com/index.html</loc>
         <lastmod>2025-11-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yojitu.com/en/index.php"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://yojitu.com/index.html"/>
+    </url>
+    <url>
+        <loc>https://yojitu.com/en/index.php</loc>
+        <lastmod>2025-11-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yojitu.com/en/index.php"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://yojitu.com/index.html"/>
     </url>
     <url>
         <loc>https://yojitu.com/services.php</loc>
         <lastmod>2025-11-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yojitu.com/en/services.php"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://yojitu.com/services.php"/>
+    </url>
+    <url>
+        <loc>https://yojitu.com/en/services.php</loc>
+        <lastmod>2025-11-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yojitu.com/en/services.php"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://yojitu.com/services.php"/>
     </url>
     <url>
         <loc>https://yojitu.com/web-production.php</loc>
         <lastmod>2025-11-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yojitu.com/en/web-production.php"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://yojitu.com/web-production.php"/>
+    </url>
+    <url>
+        <loc>https://yojitu.com/en/web-production.php</loc>
+        <lastmod>2025-11-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yojitu.com/en/web-production.php"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://yojitu.com/web-production.php"/>
     </url>
     <url>
         <loc>https://yojitu.com/video-production.php</loc>
         <lastmod>2025-11-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yojitu.com/en/video-production.php"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://yojitu.com/video-production.php"/>
+    </url>
+    <url>
+        <loc>https://yojitu.com/en/video-production.php</loc>
+        <lastmod>2025-11-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yojitu.com/en/video-production.php"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://yojitu.com/video-production.php"/>
     </url>
     <url>
         <loc>https://yojitu.com/about.html</loc>
         <lastmod>2025-11-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yojitu.com/en/about.php"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://yojitu.com/about.html"/>
+    </url>
+    <url>
+        <loc>https://yojitu.com/en/about.php</loc>
+        <lastmod>2025-11-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yojitu.com/en/about.php"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://yojitu.com/about.html"/>
     </url>
     <url>
         <loc>https://yojitu.com/contact.html</loc>
         <lastmod>2025-11-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yojitu.com/en/contact.php"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://yojitu.com/contact.html"/>
+    </url>
+    <url>
+        <loc>https://yojitu.com/en/contact.php</loc>
+        <lastmod>2025-11-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yojitu.com/en/contact.php"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://yojitu.com/contact.html"/>
     </url>
     <url>
         <loc>https://yojitu.com/recruit.php</loc>

@@ -1,0 +1,11 @@
+# English version routing
+RewriteEngine On
+RewriteBase /en/
+
+# 実際のファイルやディレクトリが存在しない場合、index.phpにルーティング
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?page=$1 [QSA,L]
+
+# DirectoryIndex
+DirectoryIndex index.php
