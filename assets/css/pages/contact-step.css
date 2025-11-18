@@ -226,7 +226,7 @@
     color: #428570;
 }
 
-.contact-step-form {
+.contact-step-form-inner {
     max-width: 700px;
     margin: 0 auto;
     padding: 0;
@@ -260,7 +260,7 @@
         padding: 32px 24px;
     }
 
-    .contact-step-form {
+    .contact-step-form-inner {
         padding: 32px 24px;
     }
 
