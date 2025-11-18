@@ -114,11 +114,22 @@ function translateHTML($html) {
 function addEnPrefixToLinks($html) {
     // <a href="..."> を検索
     $html = preg_replace_callback(
-        '/<a\s+([^>]*href=["\'])(\/[^"\']*|[^h\/][^"\']*)(["\'][^>]*)>/i',
+        '/<a\s+([^>]*)>/i',
         function($matches) {
-            $before = $matches[1];
-            $url = $matches[2];
-            $after = $matches[3];
+            $fullTag = $matches[0];
+            $attributes = $matches[1];
+
+            // 言語切り替えリンク（nav__lang-link）はスキップ
+            if (strpos($attributes, 'nav__lang-link') !== false) {
+                return $fullTag;
+            }
+
+            // href属性を抽出
+            if (!preg_match('/href=["\']([^"\']*)["\']/', $attributes, $hrefMatch)) {
+                return $fullTag;
+            }
+
+            $url = $hrefMatch[1];
 
             // 外部リンク、mailto、tel、#アンカー、既に/en/で始まるリンクはスキップ
             if (str_starts_with($url, 'http') ||
@@ -126,19 +137,21 @@ function addEnPrefixToLinks($html) {
                 str_starts_with($url, 'tel:') ||
                 str_starts_with($url, '#') ||
                 str_starts_with($url, '/en/')) {
-                return $matches[0];
+                return $fullTag;
             }
 
             // 絶対パスの場合
             if (str_starts_with($url, '/')) {
-                $url = '/en' . $url;
+                $newUrl = '/en' . $url;
             }
             // 相対パスの場合
             else {
-                $url = '/en/' . $url;
+                $newUrl = '/en/' . $url;
             }
 
-            return '<a ' . $before . $url . $after . '>';
+            // href属性を置換
+            $newAttributes = preg_replace('/href=["\']([^"\']*)["\']/', 'href="' . $newUrl . '"', $attributes);
+            return '<a ' . $newAttributes . '>';
         },
         $html
     );
