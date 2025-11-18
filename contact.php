@@ -52,70 +52,25 @@ $additional_css = [
                 <h2 class="contact-step__title">お問い合わせ種別を選択してください</h2>
                 <p class="contact-step__description">該当する項目をお選びください</p>
 
-                <div class="contact-type-grid">
-                    <div class="contact-type-card" data-type="seo" data-icon="fa-search">
-                        <div class="contact-type-card__icon">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <h3 class="contact-type-card__title">SEO対策について</h3>
-                        <p class="contact-type-card__description">検索エンジン最適化のご相談</p>
+                <div class="contact-type-select-wrapper">
+                    <div class="contact-type-select-icon">
+                        <i class="fas fa-clipboard-list"></i>
                     </div>
-
-                    <div class="contact-type-card" data-type="ad" data-icon="fa-bullhorn">
-                        <div class="contact-type-card__icon">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <h3 class="contact-type-card__title">広告運用について</h3>
-                        <p class="contact-type-card__description">Web広告運用代行のご相談</p>
-                    </div>
-
-                    <div class="contact-type-card" data-type="web" data-icon="fa-laptop-code">
-                        <div class="contact-type-card__icon">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <h3 class="contact-type-card__title">Web制作について</h3>
-                        <p class="contact-type-card__description">Webサイト制作のご相談</p>
-                    </div>
-
-                    <div class="contact-type-card" data-type="video" data-icon="fa-video">
-                        <div class="contact-type-card__icon">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <h3 class="contact-type-card__title">ショート動画制作について</h3>
-                        <p class="contact-type-card__description">動画制作のご相談</p>
-                    </div>
-
-                    <div class="contact-type-card" data-type="freelance" data-icon="fa-handshake">
-                        <div class="contact-type-card__icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h3 class="contact-type-card__title">業務委託・協業について</h3>
-                        <p class="contact-type-card__description">パートナー募集・協業のご相談</p>
-                    </div>
-
-                    <div class="contact-type-card" data-type="quote" data-icon="fa-file-invoice-dollar">
-                        <div class="contact-type-card__icon">
-                            <i class="fas fa-file-invoice-dollar"></i>
-                        </div>
-                        <h3 class="contact-type-card__title">見積もり依頼</h3>
-                        <p class="contact-type-card__description">料金のお見積もり</p>
-                    </div>
-
-                    <div class="contact-type-card" data-type="sales" data-icon="fa-briefcase">
-                        <div class="contact-type-card__icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <h3 class="contact-type-card__title">営業のご連絡</h3>
-                        <p class="contact-type-card__description">営業・PR目的のご連絡</p>
-                    </div>
-
-                    <div class="contact-type-card" data-type="other" data-icon="fa-envelope">
-                        <div class="contact-type-card__icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3 class="contact-type-card__title">その他</h3>
-                        <p class="contact-type-card__description">上記以外のお問い合わせ</p>
-                    </div>
+                    <select id="contactTypeSelect" class="contact-type-select">
+                        <option value="">選択してください</option>
+                        <option value="seo" data-icon="fa-search">SEO対策について</option>
+                        <option value="ad" data-icon="fa-bullhorn">広告運用について</option>
+                        <option value="web" data-icon="fa-laptop-code">Web制作について</option>
+                        <option value="video" data-icon="fa-video">ショート動画制作について</option>
+                        <option value="freelance" data-icon="fa-handshake">業務委託・協業について</option>
+                        <option value="quote" data-icon="fa-file-invoice-dollar">見積もり依頼</option>
+                        <option value="sales" data-icon="fa-briefcase">営業のご連絡</option>
+                        <option value="other" data-icon="fa-envelope">その他</option>
+                    </select>
+                    <button type="button" class="contact-type-next-btn" id="nextButton" disabled>
+                        次へ進む
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
 

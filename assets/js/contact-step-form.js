@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 要素取得
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
-    const contactTypeCards = document.querySelectorAll('.contact-type-card');
+    const contactTypeSelect = document.getElementById('contactTypeSelect');
+    const nextButton = document.getElementById('nextButton');
     const backButton = document.getElementById('backButton');
     const contactForm = document.getElementById('contactForm');
     const contactTypeInput = document.getElementById('contactType');
@@ -27,59 +28,51 @@ document.addEventListener('DOMContentLoaded', function() {
         'other': 'その他'
     };
 
-    // 初期アニメーション（カードのスタガー表示）
-    gsap.from('.contact-type-card', {
+    // 初期アニメーション（セレクトボックスとボタン）
+    gsap.from('.contact-type-select-wrapper', {
         opacity: 0,
         y: 30,
         duration: 0.6,
-        stagger: 0.08,
         ease: 'power2.out',
         delay: 0.2
     });
 
-    // カード選択時の処理
-    contactTypeCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const type = this.getAttribute('data-type');
-            selectedType = type;
+    gsap.from('.contact-type-select-icon', {
+        scale: 0,
+        rotation: -180,
+        duration: 0.8,
+        ease: 'back.out(1.7)',
+        delay: 0.4
+    });
 
-            // カードをハイライト（一瞬）
-            gsap.to(this, {
-                scale: 0.95,
-                duration: 0.15,
-                ease: 'power2.inOut',
-                onComplete: () => {
-                    gsap.to(this, {
-                        scale: 1.05,
-                        duration: 0.15,
-                        ease: 'power2.out',
-                        onComplete: () => {
-                            // Step 1 → Step 2 への遷移
-                            transitionToStep2(type);
-                        }
-                    });
+    // セレクトボックス変更時
+    contactTypeSelect.addEventListener('change', function() {
+        const type = this.value;
+        selectedType = type;
+
+        if (type) {
+            nextButton.disabled = false;
+            // ボタンをパルスアニメーション
+            gsap.fromTo(nextButton,
+                { scale: 1 },
+                {
+                    scale: 1.05,
+                    duration: 0.3,
+                    yoyo: true,
+                    repeat: 1,
+                    ease: 'power2.inOut'
                 }
-            });
-        });
+            );
+        } else {
+            nextButton.disabled = true;
+        }
+    });
 
-        // ホバーアニメーション強化
-        card.addEventListener('mouseenter', function() {
-            gsap.to(this.querySelector('.contact-type-card__icon'), {
-                scale: 1.1,
-                rotation: 5,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        });
-
-        card.addEventListener('mouseleave', function() {
-            gsap.to(this.querySelector('.contact-type-card__icon'), {
-                scale: 1,
-                rotation: 0,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        });
+    // 次へボタンクリック時
+    nextButton.addEventListener('click', function() {
+        if (selectedType) {
+            transitionToStep2(selectedType);
+        }
     });
 
     // Step 1 → Step 2 遷移
@@ -115,14 +108,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 // フォーム項目のスタガーアニメーション
-                gsap.from('.form-group', {
-                    opacity: 0,
-                    y: 20,
-                    duration: 0.4,
-                    stagger: 0.08,
-                    ease: 'power2.out',
-                    delay: 0.2
-                });
+                gsap.fromTo('.form-group',
+                    {
+                        opacity: 0,
+                        y: 20
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.4,
+                        stagger: 0.08,
+                        ease: 'power2.out',
+                        delay: 0.2,
+                        clearProps: 'all'
+                    }
+                );
             }
         });
     }
@@ -153,15 +153,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     ease: 'power2.out'
                 });
 
-                // カードの再アニメーション
-                gsap.from('.contact-type-card', {
+                // セレクトボックスの再アニメーション
+                gsap.from('.contact-type-select-wrapper', {
                     opacity: 0,
                     y: 20,
                     duration: 0.4,
-                    stagger: 0.06,
                     ease: 'power2.out',
                     delay: 0.2
                 });
+
+                // 選択をリセット
+                contactTypeSelect.value = '';
+                nextButton.disabled = true;
             }
         });
     });
