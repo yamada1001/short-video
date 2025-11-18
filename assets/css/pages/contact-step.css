@@ -3,8 +3,12 @@
  */
 
 section.contact-step-form {
-    padding: 240px 0 200px;
+    padding: 160px 0 120px;
     min-height: 100vh;
+}
+
+section.contact-step-form .container {
+    max-width: 700px;
 }
 
 .contact-step-form__container {
