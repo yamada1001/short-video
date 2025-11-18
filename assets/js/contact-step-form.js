@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
         'ad': '広告運用について',
         'web': 'Web制作について',
         'video': 'ショート動画制作について',
-        'freelance': '業務委託・協業について',
+        'freelance': '業務委託について',
+        'partnership': '協業について',
         'quote': '見積もり依頼',
         'sales': '営業のご連絡',
         'other': 'その他'

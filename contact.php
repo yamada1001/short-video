@@ -62,7 +62,8 @@ $additional_css = [
                         <option value="ad" data-icon="fa-bullhorn">広告運用について</option>
                         <option value="web" data-icon="fa-laptop-code">Web制作について</option>
                         <option value="video" data-icon="fa-video">ショート動画制作について</option>
-                        <option value="freelance" data-icon="fa-handshake">業務委託・協業について</option>
+                        <option value="freelance" data-icon="fa-user-tie">業務委託について</option>
+                        <option value="partnership" data-icon="fa-handshake">協業について</option>
                         <option value="quote" data-icon="fa-file-invoice-dollar">見積もり依頼</option>
                         <option value="sales" data-icon="fa-briefcase">営業のご連絡</option>
                         <option value="other" data-icon="fa-envelope">その他</option>
