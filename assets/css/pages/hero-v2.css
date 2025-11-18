@@ -368,6 +368,17 @@
    レスポンシブ対応
    ======================================== */
 
+/* PC用の調整 (1200px以上) */
+@media (min-width: 1201px) {
+    .hero-v2__content {
+        margin-left: 60px; /* 左から少し余白を追加 */
+    }
+
+    .hero-v2__meta {
+        margin-right: 60px; /* 右から少し余白を追加 */
+    }
+}
+
 /* タブレット */
 @media (max-width: 1200px) {
     .hero-v2__container {
