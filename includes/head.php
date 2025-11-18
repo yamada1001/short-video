@@ -49,13 +49,17 @@ if ($is_english) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
 
     <!-- 共通CSS -->
-    <link rel="stylesheet" href="<?php echo $css_base_path ?? ''; ?>assets/css/base.css">
-    <link rel="stylesheet" href="<?php echo $css_base_path ?? ''; ?>assets/css/cta.css">
+<?php
+// CSSのベースパス（デフォルトは絶対パス）
+$css_base_path = $css_base_path ?? '/';
+?>
+    <link rel="stylesheet" href="<?php echo $css_base_path; ?>assets/css/base.css">
+    <link rel="stylesheet" href="<?php echo $css_base_path; ?>assets/css/cta.css">
 <?php
 // 追加のCSSファイル
 if (isset($additional_css) && is_array($additional_css)) {
     foreach ($additional_css as $css_file) {
-        echo '    <link rel="stylesheet" href="' . ($css_base_path ?? '') . $css_file . '">' . "\n";
+        echo '    <link rel="stylesheet" href="' . $css_base_path . $css_file . '">' . "\n";
     }
 }
 ?>
