@@ -1,6 +1,26 @@
 {
   "posts": [
     {
+      "id": 98,
+      "title": "GPT-5.1とは？新機能・ベンチマーク・使い方を徹底解説【2025年11月】",
+      "slug": "gpt-5-1-features",
+      "excerpt": "2025年11月リリースのOpenAI GPT-5.1を徹底解説。Adaptive Reasoning、GPT-5.1 Codex、ベンチマーク、Claude 4.5との比較、開発者向け機能、プロンプトテクニックを紹介します。",
+      "content": "data/article-98-full.html",
+      "publishedAt": "2025-11-19T15:00:00+09:00",
+      "updatedAt": "2025-11-19T15:00:00+09:00",
+      "category": "AI",
+      "tags": [
+        "GPT-5.1",
+        "OpenAI",
+        "ChatGPT",
+        "AI",
+        "GPT-5.1 Codex",
+        "GitHub Copilot"
+      ],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
       "id": 97,
       "title": "AI画像生成の使い方｜DALL-E・Midjourney・Stable Diffusion徹底比較",
       "slug": "ai-image-generation-guide",

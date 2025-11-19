@@ -1,0 +1,274 @@
+<p>2025年11月12日、OpenAIは最新モデル「GPT-5.1」をリリースしました。GPT-5（2025年8月発表）の次期バージョンとして、より温かみのある会話、高速な応答、そして開発者向けの新機能を搭載しています。本記事では、GPT-5.1の新機能、ベンチマーク、他モデルとの比較を詳しく解説します。</p>
+
+<h2 id="heading-0">GPT-5.1の2つのモデルバリアント</h2>
+<p>GPT-5.1には、用途に応じた2つのバリアントが用意されています。</p>
+
+<table>
+<thead>
+<tr><th>モデル</th><th>特徴</th><th>最適な用途</th></tr>
+</thead>
+<tbody>
+<tr><td>GPT-5.1 Instant</td><td>温かみのある会話、低レイテンシー</td><td>日常的な質問、カスタマーサポート</td></tr>
+<tr><td>GPT-5.1 Thinking</td><td>深い推論、複雑なタスクに強い</td><td>数学、コーディング、分析</td></tr>
+</tbody>
+</table>
+
+<h3 id="heading-1">GPT-5.1 Instant</h3>
+<p>ChatGPTで最も使用されるデフォルトモデルです。主な特徴：</p>
+<ul>
+<li><strong>温かみのある会話</strong>：テンプレート的な応答ではなく、自然な会話調</li>
+<li><strong>適応型推論</strong>：タスクの複雑さに応じて思考時間を自動調整</li>
+<li><strong>指示への忠実性向上</strong>：「6語以内で回答して」などの制約を正確に守る</li>
+</ul>
+
+<h3 id="heading-2">GPT-5.1 Thinking</h3>
+<p>複雑なタスクに特化した高度な推論モデルです：</p>
+<ul>
+<li>簡単なタスクでは従来の<strong>約2倍の速度</strong></li>
+<li>複雑なタスクでは<strong>2倍の時間をかけて</strong>より深い推論</li>
+<li>理解しやすい説明と、より持続的な問題解決能力</li>
+</ul>
+
+<p><i class="fas fa-external-link-alt"></i> <a href="https://openai.com/index/gpt-5-1/" target="_blank" rel="noopener noreferrer">OpenAI公式：GPT-5.1発表</a></p>
+
+<h2 id="heading-3">Adaptive Reasoning（適応型推論）</h2>
+<p>GPT-5.1の最大の特徴は「Adaptive Reasoning」です。タスクの複雑さに応じて、どれだけ「考える」かを動的に調整します。</p>
+
+<h3 id="heading-4">仕組み</h3>
+<ul>
+<li><strong>簡単なタスク</strong>：「no reasoning」モードで即座に回答（2秒以内）</li>
+<li><strong>複雑なタスク</strong>：深い思考プロセスを経て回答</li>
+</ul>
+
+<h3 id="heading-5">具体例</h3>
+<p>「npmでグローバルインストールされたパッケージを一覧表示するコマンドを教えて」という質問に対し：</p>
+<ul>
+<li><strong>GPT-5</strong>：10秒かかって回答</li>
+<li><strong>GPT-5.1</strong>：2秒で回答</li>
+</ul>
+<p>これにより、<strong>トークン消費量の削減</strong>と<strong>応答速度の向上</strong>を両立しています。</p>
+
+<h2 id="heading-6">Personalization Controls（パーソナライゼーション）</h2>
+<p>ユーザーは応答のトーンをカスタマイズできます。利用可能なプリセット：</p>
+
+<table>
+<thead>
+<tr><th>プリセット</th><th>説明</th></tr>
+</thead>
+<tbody>
+<tr><td>Default</td><td>バランスの取れた標準応答</td></tr>
+<tr><td>Friendly</td><td>親しみやすく温かみのある応答</td></tr>
+<tr><td>Professional</td><td>ビジネス向けのフォーマルな応答</td></tr>
+<tr><td>Candid</td><td>率直で直接的な応答</td></tr>
+<tr><td>Nerdy</td><td>技術的な詳細を含む応答</td></tr>
+<tr><td>Quirky</td><td>ユニークで個性的な応答</td></tr>
+<tr><td>Efficient</td><td>簡潔で要点を絞った応答</td></tr>
+<tr><td>Cynical</td><td>懐疑的な視点からの応答</td></tr>
+</tbody>
+</table>
+
+<p>さらに、「warmth（温かみ）」と「conciseness（簡潔さ）」の実験的なコントロールも追加されています。</p>
+
+<h2 id="heading-7">開発者向け新機能</h2>
+<p>GPT-5.1 APIには開発者向けの重要な新機能が追加されています。</p>
+
+<h3 id="heading-8">apply_patchツール</h3>
+<p>コードの編集をより確実に行うための新ツールです。従来の全文置換ではなく、差分（パッチ）形式でコードを修正できます。</p>
+
+<h3 id="heading-9">shellツール</h3>
+<p>モデルがシェルコマンドを直接実行できる機能です。エージェント型のワークフローで特に有用です。</p>
+
+<h3 id="heading-10">拡張プロンプトキャッシュ</h3>
+<p>キャッシュ保持時間が<strong>最大24時間</strong>に延長されました。これにより：</p>
+<ul>
+<li>繰り返しリクエストへの応答が高速化</li>
+<li>API利用コストの削減</li>
+</ul>
+
+<p><i class="fas fa-external-link-alt"></i> <a href="https://openai.com/index/gpt-5-1-for-developers/" target="_blank" rel="noopener noreferrer">OpenAI公式：開発者向けGPT-5.1</a></p>
+
+<h2 id="heading-11">GPT-5.1 Codexシリーズ</h2>
+<p>コーディングに特化したモデルも同時にリリースされています。</p>
+
+<table>
+<thead>
+<tr><th>モデル</th><th>特徴</th><th>用途</th></tr>
+</thead>
+<tbody>
+<tr><td>GPT-5.1-Codex</td><td>長時間のエージェント型コーディング向け</td><td>大規模プロジェクト、複雑なタスク</td></tr>
+<tr><td>GPT-5.1-Codex-Mini</td><td>軽量版、高速応答</td><td>クイック編集、コード補完</td></tr>
+</tbody>
+</table>
+
+<h3 id="heading-12">GitHub Copilotでの利用</h3>
+<p>GitHub Copilot Pro、Pro+、Business、Enterpriseユーザーは、以下の環境でGPT-5.1シリーズを利用できます：</p>
+<ul>
+<li><strong>VS Code</strong>（1.104.1以上）：chat、ask、edit、agentモード</li>
+<li><strong>JetBrains</strong>（1.5.61以上）：ask、edit、agentモード</li>
+<li><strong>Xcode</strong>（0.45.0以上）：ask、edit、agentモード</li>
+<li><strong>Eclipse</strong>（0.13.0以上）：ask、edit、agentモード</li>
+</ul>
+
+<p><i class="fas fa-external-link-alt"></i> <a href="https://github.blog/changelog/2025-11-13-openais-gpt-5-1-gpt-5-1-codex-and-gpt-5-1-codex-mini-are-now-in-public-preview-for-github-copilot/" target="_blank" rel="noopener noreferrer">GitHub Copilot：GPT-5.1対応</a></p>
+
+<h2 id="heading-13">ベンチマーク・パフォーマンス</h2>
+<p>GPT-5.1は、GPT-5からさらに性能が向上しています。</p>
+
+<h3 id="heading-14">公式ベンチマーク</h3>
+<table>
+<thead>
+<tr><th>ベンチマーク</th><th>GPT-5</th><th>GPT-5.1</th></tr>
+</thead>
+<tbody>
+<tr><td>AIME 2025（数学）</td><td>94.6%</td><td>同等〜微向上</td></tr>
+<tr><td>SWE-bench Verified（コーディング）</td><td>74.9%</td><td>向上</td></tr>
+<tr><td>Aider Polyglot</td><td>88%</td><td>向上</td></tr>
+<tr><td>Codeforces</td><td>-</td><td>向上</td></tr>
+</tbody>
+</table>
+
+<h3 id="heading-15">実運用でのパフォーマンス</h3>
+<p>資産運用会社Balyasny Asset Managementのレポートによると：</p>
+<blockquote>
+「GPT-5.1は、GPT-4.1およびGPT-5の両方を我々の完全な動的評価スイートで上回り、GPT-5の2〜3倍の速度で動作した」
+</blockquote>
+
+<h3 id="heading-16">コーディングタスクでの実測値</h3>
+<p>エージェント型コーディングタスクでの比較（Composio調べ）：</p>
+<ul>
+<li><strong>異常検知システム構築</strong>
+  <ul>
+    <li>GPT-5.1 Codex：11分、$0.76</li>
+    <li>GPT-5：18分、$0.95</li>
+    <li>Claude 4.5 Sonnet：$1.68（バグあり）</li>
+  </ul>
+</li>
+</ul>
+<p>GPT-5.1 Codexは、Claude 4.5 Sonnetより<strong>約55%低コスト</strong>で、かつ本番環境で動作するコードを生成しました。</p>
+
+<p><i class="fas fa-external-link-alt"></i> <a href="https://composio.dev/blog/kimi-k2-thinking-vs-claude-4-5-sonnet-vs-gpt-5-codex-tested-the-best-models-for-agentic-coding" target="_blank" rel="noopener noreferrer">Composio：エージェント型コーディング比較</a></p>
+
+<h2 id="heading-17">GPT-5との比較</h2>
+<p>GPT-5.1は「劇的なIQ向上」ではなく、<strong>使いやすさとエージェント型ワークフローの最適化</strong>に焦点を当てています。</p>
+
+<table>
+<thead>
+<tr><th>項目</th><th>GPT-5</th><th>GPT-5.1</th></tr>
+</thead>
+<tbody>
+<tr><td>応答速度</td><td>標準</td><td>2〜3倍高速（簡単なタスク）</td></tr>
+<tr><td>会話のトーン</td><td>標準</td><td>より温かみがある</td></tr>
+<tr><td>トークン効率</td><td>標準</td><td>大幅に改善</td></tr>
+<tr><td>開発者ツール</td><td>標準</td><td>apply_patch、shell追加</td></tr>
+<tr><td>パーソナライゼーション</td><td>限定的</td><td>8つのプリセット+詳細設定</td></tr>
+</tbody>
+</table>
+
+<p><i class="fas fa-external-link-alt"></i> <a href="https://binaryverseai.com/gpt-5-1-openai-update-instant-thinking-review/" target="_blank" rel="noopener noreferrer">GPT-5.1レビュー：7つの重要なアップグレード</a></p>
+
+<h2 id="heading-18">Claude 4.5 Sonnetとの比較</h2>
+<p>AnthropicのClaude 4.5 Sonnetとの比較では、それぞれの強みが異なります。</p>
+
+<table>
+<thead>
+<tr><th>項目</th><th>GPT-5.1</th><th>Claude 4.5 Sonnet</th></tr>
+</thead>
+<tbody>
+<tr><td>強み</td><td>速度、コスト効率</td><td>エージェント信頼性、ツール使用</td></tr>
+<tr><td>コーディング</td><td>高速、低コスト</td><td>品質重視</td></tr>
+<tr><td>最適化対象</td><td>製品エルゴノミクス、開発者体験</td><td>持続的なツール使用</td></tr>
+</tbody>
+</table>
+
+<p>用途に応じて使い分けることが重要です。</p>
+
+<p><i class="fas fa-link"></i> <a href="detail.php?slug=chatgpt-claude-gemini-comparison">ChatGPT・Claude・Gemini徹底比較｜用途別おすすめAI選び方ガイド</a></p>
+
+<h2 id="heading-19">料金と利用可能プラン</h2>
+<h3 id="heading-20">ChatGPTでの利用</h3>
+<ul>
+<li><strong>Pro</strong>：$200/月 - 全機能利用可能</li>
+<li><strong>Plus</strong>：$20/月 - GPT-5.1利用可能</li>
+<li><strong>Go</strong>：新プラン - GPT-5.1利用可能</li>
+<li><strong>Business</strong>：チーム向け - GPT-5.1利用可能</li>
+<li><strong>Free</strong>：段階的に利用可能</li>
+</ul>
+
+<h3 id="heading-21">APIでの利用</h3>
+<p>詳細な料金はOpenAI公式サイトで確認できます。GPT-5.1は、GPT-5と比較してトークン効率が大幅に向上しているため、実質的なコスト削減が期待できます。</p>
+
+<h3 id="heading-22">GPT-5の継続利用</h3>
+<p>GPT-5は、有料ユーザー向けにレガシーモデルとして<strong>3ヶ月間</strong>利用可能です。</p>
+
+<h2 id="heading-23">効果的なプロンプトの書き方</h2>
+<p>GPT-5.1の能力を最大限に引き出すためのプロンプトテクニックを紹介します。</p>
+
+<h3 id="heading-24">1. 制約条件を明確に</h3>
+<p>GPT-5.1は指示への忠実性が向上しています：</p>
+<pre><code>6語以内で回答してください：AIの未来について説明して</code></pre>
+
+<h3 id="heading-25">2. トーンの指定</h3>
+<p>パーソナライゼーション機能を活用：</p>
+<pre><code>プロフェッショナルなトーンで、このビジネス提案書を改善してください</code></pre>
+
+<h3 id="heading-26">3. 複雑なタスクは段階的に</h3>
+<p>GPT-5.1 Thinkingを活用するために：</p>
+<pre><code>以下の問題を段階的に解いてください。各ステップで思考プロセスを説明してください。</code></pre>
+
+<p><i class="fas fa-link"></i> <a href="detail.php?slug=ai-prompt-writing-guide">AIプロンプトの書き方｜効果を最大化する7つのテクニック</a></p>
+
+<h2 id="heading-27">まとめ</h2>
+<p>GPT-5.1は、GPT-5の「賢さ」をさらに使いやすく、効率的にしたアップデートです。</p>
+
+<h3 id="heading-28">主なポイント</h3>
+<ul>
+<li><strong>2つのバリアント</strong>：Instant（日常用）とThinking（複雑なタスク用）</li>
+<li><strong>Adaptive Reasoning</strong>：タスクに応じた最適な思考時間</li>
+<li><strong>2〜3倍の高速化</strong>：簡単なタスクでの応答速度向上</li>
+<li><strong>トークン効率向上</strong>：コスト削減に直結</li>
+<li><strong>開発者向け新ツール</strong>：apply_patch、shell、24時間キャッシュ</li>
+<li><strong>GPT-5.1 Codex</strong>：エージェント型コーディングに最適化</li>
+</ul>
+
+<h3 id="heading-29">おすすめの使い方</h3>
+<ul>
+<li><strong>日常的な質問</strong>：GPT-5.1 Instant</li>
+<li><strong>複雑な分析・推論</strong>：GPT-5.1 Thinking</li>
+<li><strong>コーディング</strong>：GPT-5.1 Codex（GitHub Copilot経由）</li>
+</ul>
+
+<p>GPT-5.1は、速度とコスト効率の向上により、ビジネスでのAI活用をさらに加速させるモデルです。特にエージェント型ワークフローやコーディングタスクでは、大きな恩恵を受けられるでしょう。</p>
+
+<h3 id="heading-30">AI活用のご相談</h3>
+<p>弊社では、最新AIを活用したWebサイト制作やビジネス効率化の支援を提供しています。お気軽にご相談ください。</p>
+
+<p><i class="fas fa-external-link-alt"></i> <a href="https://yojitu.com/services.php" target="_blank" rel="noopener">サービス詳細はこちら</a></p>
+
+<!-- 構造化データ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "GPT-5.1とは？新機能・ベンチマーク・使い方を徹底解説【2025年11月】",
+  "description": "2025年11月リリースのOpenAI GPT-5.1の新機能、Adaptive Reasoning、GPT-5.1 Codex、ベンチマーク、Claude 4.5との比較を詳しく解説。開発者向け機能やプロンプトテクニックも紹介。",
+  "author": {
+    "@type": "Person",
+    "name": "山田 蓮"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "余日（Yojitsu）",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://yojitu.com/assets/images/logo.png"
+    }
+  },
+  "datePublished": "2025-11-19",
+  "dateModified": "2025-11-19",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://yojitu.com/blog/detail.php?slug=gpt-5-1-features"
+  },
+  "keywords": ["GPT-5.1", "OpenAI", "ChatGPT", "AI", "Adaptive Reasoning", "GPT-5.1 Codex", "GitHub Copilot"]
+}
+</script>
