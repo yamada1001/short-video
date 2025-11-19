@@ -37,7 +37,7 @@ $isEnglish = strpos($currentUrl, '/en/') === 0 || strpos($currentUrl, '/en') ===
                         <li><a href="<?php echo ($current_page === 'home') ? 'video-production.php' : '/video-production.php'; ?>" class="nav__dropdown-link"><i class="fas fa-video"></i> 動画制作</a></li>
                     </ul>
                 </li>
-                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'blog/' : '/blog/'; ?>" class="nav__link<?php echo ($current_page === 'blog') ? ' nav__link--active' : ''; ?>"><i class="fas fa-blog nav__icon"></i><span>ブログ</span></a></li>
+                <li class="nav__item"><a href="<?php echo $isEnglish ? '/en/blog/' : (($current_page === 'home') ? 'blog/' : '/blog/'); ?>" class="nav__link<?php echo ($current_page === 'blog') ? ' nav__link--active' : ''; ?>"><i class="fas fa-blog nav__icon"></i><span>ブログ</span></a></li>
                 <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'about.php' : '/about.php'; ?>" class="nav__link<?php echo ($current_page === 'about') ? ' nav__link--active' : ''; ?>"><i class="fas fa-building nav__icon"></i><span>会社概要</span></a></li>
                 <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'contact.php' : '/contact.php'; ?>" class="nav__link<?php echo ($current_page === 'contact') ? ' nav__link--active' : ''; ?>"><i class="fas fa-envelope nav__icon"></i><span>お問い合わせ</span></a></li>
                 <li class="nav__item nav__item--contact"><i class="fas fa-paper-plane"></i><a href="mailto:<?php echo CONTACT_EMAIL; ?>"><?php echo CONTACT_EMAIL; ?></a></li>

@@ -57,7 +57,43 @@ foreach ($posts as $post) {
         }
     }
 
-    // パターン3: detail.php?slug=XXX 形式のリンクをチェック（正しいリンク）
+    // パターン3: article-XX-full.html 形式のリンクをチェック
+    if (preg_match_all('/href="article-(\d+)-full\.html"/', $content, $matches)) {
+        foreach ($matches[1] as $articleId) {
+            $errors[] = "エラー: {$post['title']} に誤ったリンク形式があります: article-{$articleId}-full.html";
+            if (isset($idToSlug[$articleId])) {
+                $errors[] = "  → 正しくは: detail.php?slug={$idToSlug[$articleId]}";
+            }
+        }
+    }
+
+    // パターン4: slug.html 形式のリンクをチェック（外部リンクを除く）
+    if (preg_match_all('/href="([a-z0-9-]+)\.html"/', $content, $matches)) {
+        foreach ($matches[1] as $slug) {
+            // 有効なslugかチェック
+            $found = false;
+            foreach ($posts as $checkPost) {
+                if ($checkPost['slug'] === $slug) {
+                    $found = true;
+                    break;
+                }
+            }
+            if ($found) {
+                $errors[] = "エラー: {$post['title']} に誤ったリンク形式があります: {$slug}.html";
+                $errors[] = "  → 正しくは: detail.php?slug={$slug}";
+            }
+        }
+    }
+
+    // パターン5: /contact.html などの不正なパスをチェック
+    if (preg_match_all('/href="\/([^"]+)\.html"/', $content, $matches)) {
+        foreach ($matches[1] as $path) {
+            $errors[] = "エラー: {$post['title']} に不正なパスがあります: /{$path}.html";
+            $errors[] = "  → 正しくは: /{$path}.php";
+        }
+    }
+
+    // パターン6: detail.php?slug=XXX 形式のリンクをチェック（正しいリンク）
     if (preg_match_all('/href="detail\.php\?slug=([^"]+)"/', $content, $matches)) {
         foreach ($matches[1] as $slug) {
             // このslugが実際に存在するかチェック
