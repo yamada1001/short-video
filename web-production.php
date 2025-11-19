@@ -418,7 +418,12 @@ $structured_data = '
     <!-- フッター -->
     <?php include __DIR__ . '/includes/footer.php'; ?>
 
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <script defer src="assets/js/app.js"></script>
+    <script defer src="assets/js/web-production.js"></script>
 
     <?php include __DIR__ . '/includes/cookie-consent.php'; ?>
 
