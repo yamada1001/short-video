@@ -23,7 +23,8 @@ if (!$post) {
 
 // Load content file (from Japanese blog data directory)
 if (isset($post['content']) && strpos($post['content'], '.html') !== false) {
-    $content_file = __DIR__ . '/../../blog/' . $post['content'];
+    // Use BASE_PATH for reliable path resolution
+    $content_file = BASE_PATH . '/blog/' . $post['content'];
     if (file_exists($content_file)) {
         $post['content'] = file_get_contents($content_file);
         // Apply mobile processing
