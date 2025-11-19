@@ -7,6 +7,7 @@ define('IS_ENGLISH', true);
 
 $current_page = 'blog';
 require_once __DIR__ . '/../../includes/functions.php';
+require_once __DIR__ . '/../../includes/translation.php';
 
 // Get blog posts (use same data as Japanese version)
 $posts = getPosts(BLOG_DATA_PATH);
@@ -27,8 +28,13 @@ if (isset($post['content']) && strpos($post['content'], '.html') !== false) {
         $post['content'] = file_get_contents($content_file);
         // Apply mobile processing
         $post['content'] = processBlogContent($post['content']);
+        // Translate content
+        $post['content'] = translateContent($post['content'], $post['id'], $post['updatedAt']);
     }
 }
+
+// Translate post metadata (title, excerpt, category, tags)
+$post = translatePost($post);
 
 // Table of contents generation function
 function generateToc(&$content) {
@@ -160,6 +166,9 @@ if (!empty($post['thumbnail'])) {
 
             // Max 3 articles
             $related_posts = array_slice($related_posts, 0, 3);
+
+            // Translate related posts
+            $related_posts = array_map('translatePost', $related_posts);
 
             if (!empty($related_posts)):
             ?>

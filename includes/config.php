@@ -52,4 +52,8 @@ define('NEW_BADGE_DAYS', 7);
 
 // セキュリティ
 define('CSRF_TOKEN_NAME', 'csrf_token');
+
+// DeepL API設定
+define('DEEPL_API_KEY', '0b6f3a3a-1cf5-4ab1-ab7a-3dae811eb357:fx');
+define('DEEPL_API_URL', 'https://api-free.deepl.com/v2/translate');
 ?>

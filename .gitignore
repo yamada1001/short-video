@@ -4,3 +4,4 @@
 *.log
 *.tmp
 data/contacts/*.json
+cache/translations/

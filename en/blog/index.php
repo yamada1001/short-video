@@ -7,6 +7,7 @@ define('IS_ENGLISH', true);
 
 $current_page = 'blog';
 require_once __DIR__ . '/../../includes/functions.php';
+require_once __DIR__ . '/../../includes/translation.php';
 
 // Get blog posts (use same data as Japanese version)
 $all_posts = getPosts(BLOG_DATA_PATH);
@@ -15,6 +16,9 @@ $all_posts = getPosts(BLOG_DATA_PATH);
 usort($all_posts, function($a, $b) {
     return strtotime($b['publishedAt']) - strtotime($a['publishedAt']);
 });
+
+// Translate all posts
+$all_posts = array_map('translatePost', $all_posts);
 
 // Search query
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
