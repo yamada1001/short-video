@@ -426,6 +426,32 @@
     margin-right: 4px;
 }
 
+/* Price Tabs (スマホ用) */
+.price-tabs {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.price-tab {
+    padding: 10px 20px;
+    border: 2px solid var(--color-light-gray);
+    background: #fff;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-charcoal);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.price-tab.active {
+    border-color: var(--color-natural-brown);
+    background: var(--color-natural-brown);
+    color: #fff;
+}
+
 .price-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -781,19 +807,22 @@
         max-width: 400px;
     }
 
-    .price-cards--three {
+    .price-tabs {
         display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        gap: 16px;
-        padding-bottom: 16px;
+    }
+
+    .price-cards--three {
+        display: block;
         max-width: 100%;
-        -webkit-overflow-scrolling: touch;
     }
 
     .price-cards--three .price-card {
-        flex: 0 0 280px;
-        scroll-snap-align: start;
+        display: none;
+        max-width: 100%;
+    }
+
+    .price-cards--three .price-card.active {
+        display: block;
     }
 
     .maintenance-card__features {

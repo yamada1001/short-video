@@ -297,9 +297,16 @@ $hide_lang_switch = true;
             <h2 class="section-title">料金プラン</h2>
             <p class="section-note"><i class="fas fa-info-circle"></i> 予算が決まっていない方も、お気軽にご相談ください。最適なプランをご提案いたします。</p>
 
+            <!-- スマホ用タブ切り替え -->
+            <div class="price-tabs">
+                <button class="price-tab" data-plan="plan-10" onclick="switchPlan('plan-10')">10万円</button>
+                <button class="price-tab active" data-plan="plan-30" onclick="switchPlan('plan-30')">30万円</button>
+                <button class="price-tab" data-plan="plan-custom" onclick="switchPlan('plan-custom')">カスタム</button>
+            </div>
+
             <div class="price-cards price-cards--three">
                 <!-- 10万円プラン -->
-                <div class="price-card">
+                <div class="price-card" data-plan="plan-10">
                     <div class="price-card__header">
                         <h3 class="price-card__name">10万円プラン</h3>
                         <div class="price-card__price">
@@ -319,7 +326,7 @@ $hide_lang_switch = true;
                 </div>
 
                 <!-- 30万円プラン -->
-                <div class="price-card price-card--highlight">
+                <div class="price-card price-card--highlight" data-plan="plan-30">
                     <div class="price-card__badge">おすすめ</div>
                     <div class="price-card__header">
                         <h3 class="price-card__name">30万円プラン</h3>
@@ -340,7 +347,7 @@ $hide_lang_switch = true;
                 </div>
 
                 <!-- カスタムプラン -->
-                <div class="price-card">
+                <div class="price-card" data-plan="plan-custom">
                     <div class="price-card__header">
                         <h3 class="price-card__name">カスタムプラン</h3>
                         <div class="price-card__price">
@@ -461,5 +468,27 @@ $hide_lang_switch = true;
     <?php include __DIR__ . '/../includes/footer.php'; ?>
 
     <script defer src="/assets/js/app.js"></script>
+    <script>
+    function switchPlan(planId) {
+        // タブの切り替え
+        document.querySelectorAll('.price-tab').forEach(tab => {
+            tab.classList.remove('active');
+            if (tab.dataset.plan === planId) {
+                tab.classList.add('active');
+            }
+        });
+        // カードの切り替え
+        document.querySelectorAll('.price-card[data-plan]').forEach(card => {
+            card.classList.remove('active');
+            if (card.dataset.plan === planId) {
+                card.classList.add('active');
+            }
+        });
+    }
+    // 初期表示で30万円プランをアクティブに
+    document.addEventListener('DOMContentLoaded', function() {
+        switchPlan('plan-30');
+    });
+    </script>
 </body>
 </html>
