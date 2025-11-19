@@ -1,6 +1,26 @@
 {
   "posts": [
     {
+      "id": 93,
+      "title": "GitHubでWebサイトを管理する理由｜WordPressとの比較",
+      "slug": "github-website-management-vs-wordpress",
+      "excerpt": "弊社がGitHubでWebサイトを管理している理由と、WordPressを使わないメリット・デメリットを解説。セキュリティ、表示速度、長期安定性の観点から比較します。",
+      "content": "data/article-93-full.html",
+      "publishedAt": "2025-11-19T10:00:00+09:00",
+      "updatedAt": "2025-11-19T10:00:00+09:00",
+      "category": "Web制作",
+      "tags": [
+        "GitHub",
+        "バージョン管理",
+        "WordPress",
+        "静的サイト",
+        "セキュリティ",
+        "Web制作"
+      ],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
       "id": 1,
       "title": "SEO対策の基本 - 初心者が知っておくべき5つのポイント",
       "slug": "seo-basics-5-points",

@@ -1,0 +1,192 @@
+<p>Webサイトの管理方法として、WordPressなどのCMSを使う方法と、GitHubなどのバージョン管理システムを使う方法があります。本記事では、弊社がGitHubでWebサイトを管理している理由と、そのメリット・デメリットを詳しく解説します。</p>
+
+<h2 id="heading-0">GitHubとは</h2>
+<p>GitHubは、ソースコードのバージョン管理を行うGitをベースにしたクラウドサービスです。主にソフトウェア開発で使われていますが、近年はWebサイトの管理にも活用されています。</p>
+
+<blockquote>
+<p>Gitとは、ファイルの変更履歴を記録・追跡するためのバージョン管理システムです。複数人での共同作業や、過去の状態への復元が容易になります。</p>
+</blockquote>
+
+<h3 id="heading-1">バージョン管理システムの基本機能</h3>
+<ul>
+<li><strong>変更履歴の記録</strong>：いつ、誰が、何を変更したかを全て記録</li>
+<li><strong>過去のバージョンへの復元</strong>：問題が発生した場合、以前の状態に戻せる</li>
+<li><strong>ブランチ機能</strong>：本番環境に影響を与えずに新機能を開発</li>
+<li><strong>分散型バックアップ</strong>：複数の場所にデータが保存される</li>
+</ul>
+
+<p><i class="fas fa-external-link-alt"></i> <a href="https://github.com/resources/articles/what-is-version-control" target="_blank" rel="noopener noreferrer">GitHub公式 - バージョン管理とは</a></p>
+
+<h2 id="heading-2">なぜGitHubでWebサイトを管理するのか</h2>
+<p>弊社がGitHubでWebサイトを管理している理由は、以下の5つのメリットがあるからです。</p>
+
+<h3 id="heading-3">1. 変更履歴の完全な追跡</h3>
+<p>すべての変更が記録されるため、「いつ」「誰が」「何を」変更したかが明確です。問題が発生した際の原因特定や、過去の状態への復元が容易になります。</p>
+
+<table>
+<thead>
+<tr><th>項目</th><th>GitHub管理</th><th>従来のFTP管理</th></tr>
+</thead>
+<tbody>
+<tr><td>変更履歴</td><td>すべて自動記録</td><td>手動でメモが必要</td></tr>
+<tr><td>過去への復元</td><td>ワンクリック</td><td>バックアップ依存</td></tr>
+<tr><td>原因特定</td><td>差分表示で明確</td><td>困難</td></tr>
+</tbody>
+</table>
+
+<h3 id="heading-4">2. セキュリティの向上</h3>
+<p>静的なHTMLファイルとして管理するため、WordPressのようなCMSに比べてセキュリティリスクが大幅に低減されます。</p>
+
+<ul>
+<li><strong>サーバーサイドの脆弱性がない</strong>：PHPなどの動的処理が不要</li>
+<li><strong>管理画面への攻撃リスクがない</strong>：ログインページが存在しない</li>
+<li><strong>プラグインの脆弱性がない</strong>：外部プラグインに依存しない</li>
+</ul>
+
+<h3 id="heading-5">3. 高速な表示速度</h3>
+<p>静的ファイルはサーバーへの負荷が軽く、データベースへのアクセスも不要なため、ページの表示速度が非常に高速です。これはSEOやユーザー体験の向上にも直結します。</p>
+
+<p><i class="fas fa-link"></i> <a href="seo-basics-5-points.html">SEO対策の基本 - 初心者が知っておくべき5つのポイント</a></p>
+
+<h3 id="heading-6">4. 長期的な安定性</h3>
+<p>WordPressのようなCMSは、本体やプラグインのアップデートが必要です。アップデートにより互換性の問題が発生することも珍しくありません。GitHubでの静的管理は、このような心配がありません。</p>
+
+<h3 id="heading-7">5. 効率的なチーム開発</h3>
+<p>GitHubは複数人での共同作業に優れています。コードレビュー、イシュートラッキング、プロジェクト管理などの機能が統合されています。</p>
+
+<h2 id="heading-8">WordPressを使わない理由</h2>
+<p>WordPressは世界中で最も使われているCMSですが、弊社では以下の理由から、通常はWordPressを使わずにサイトを構築しています。</p>
+
+<h3 id="heading-9">1. 独自関数とオリジナルテーマの相性</h3>
+<p>WordPressの独自関数（テンプレートタグ）は便利ですが、完全にオリジナルなデザインを実現しようとすると、かえって制約になることがあります。</p>
+
+<ul>
+<li>テーマ開発のルールに縛られる</li>
+<li>フック（actions/filters）の理解が必要</li>
+<li>意図しない出力が発生することがある</li>
+</ul>
+
+<h3 id="heading-10">2. プラグイン依存の問題</h3>
+<p>WordPressはプラグインを追加すればするほど、本体のアップデートが行いにくくなります。本体のバージョンを上げるだけで、入れているプラグインが動作しなくなることがあるからです。</p>
+
+<blockquote>
+<p>プラグインはセキュリティ上の脆弱性になることが多く、WordPressの導入を敬遠するケースもあります。</p>
+</blockquote>
+
+<h3 id="heading-11">3. セキュリティリスク</h3>
+<p>Web上の約35%のサイトがWordPressで制作されています。シェア率が高いということは、それだけ攻撃のターゲットになりやすいということでもあります。</p>
+
+<table>
+<thead>
+<tr><th>リスク要因</th><th>説明</th></tr>
+</thead>
+<tbody>
+<tr><td>管理画面への攻撃</td><td>wp-admin、wp-login.phpへのブルートフォース攻撃</td></tr>
+<tr><td>プラグインの脆弱性</td><td>更新されていないプラグインが攻撃の入り口に</td></tr>
+<tr><td>PHPの脆弱性</td><td>サーバーサイドで動的処理を行うリスク</td></tr>
+</tbody>
+</table>
+
+<h3 id="heading-12">4. 保守コストの増大</h3>
+<p>WordPressは継続的なメンテナンスが必要です。</p>
+
+<ul>
+<li>WordPress本体の定期アップデート</li>
+<li>プラグインの更新と互換性チェック</li>
+<li>PHPバージョンのアップグレード対応</li>
+<li>データベースの最適化</li>
+</ul>
+
+<p>これらの保守作業は、長期的に見ると大きなコストになります。</p>
+
+<h2 id="heading-13">弊社の対応方針</h2>
+<p>GitHubでの管理には、「更新作業が技術的」というデメリットがあります。しかし、弊社ではこの問題を以下のように解決しています。</p>
+
+<h3 id="heading-14">迅速な更新対応</h3>
+<p>お客様からの更新依頼には、<strong>迅速に対応</strong>させていただきます。テキストの修正、画像の差し替え、新しいページの追加など、どのような更新作業もお任せください。</p>
+
+<ul>
+<li>テキスト修正：即日〜翌営業日</li>
+<li>画像差し替え：即日〜翌営業日</li>
+<li>ページ追加：2〜3営業日</li>
+</ul>
+
+<h3 id="heading-15">WordPressが必要な場合</h3>
+<p>お客様ご自身で頻繁に更新作業を行いたい場合や、ブログを運営したい場合は、<strong>WordPressでの構築も対応可能</strong>です。ご要望に応じて最適な方法をご提案いたします。</p>
+
+<p><i class="fas fa-link"></i> <a href="homepage-creation-method-comparison.html">ホームページ制作方法を徹底比較！自作vs外注どちらを選ぶべき？</a></p>
+
+<h2 id="heading-16">GitHub管理のデメリット</h2>
+<p>公平を期すために、GitHub管理のデメリットも紹介します。</p>
+
+<h3 id="heading-17">1. 技術的なハードルがある</h3>
+<p>GitやGitHubの操作には学習コストがかかります。お客様ご自身での更新は難しくなります。</p>
+
+<h3 id="heading-18">2. 動的機能の制限</h3>
+<p>静的サイトでは、以下のような動的機能を実装するには工夫が必要です。</p>
+
+<ul>
+<li>お問い合わせフォーム（外部サービス連携で解決）</li>
+<li>検索機能（JavaScript実装で解決）</li>
+<li>会員機能（別途バックエンド必要）</li>
+</ul>
+
+<h3 id="heading-19">3. 即時反映が難しい</h3>
+<p>ビルド・デプロイのプロセスが必要なため、WordPressの「保存」ボタン一つでの即時反映に比べると、反映まで数分かかります。</p>
+
+<h2 id="heading-20">どちらを選ぶべきか</h2>
+<p>以下の表を参考に、プロジェクトに適した方法を選んでください。</p>
+
+<table>
+<thead>
+<tr><th>要件</th><th>推奨方法</th></tr>
+</thead>
+<tbody>
+<tr><td>セキュリティ重視</td><td>GitHub管理（静的サイト）</td></tr>
+<tr><td>高速表示重視</td><td>GitHub管理（静的サイト）</td></tr>
+<tr><td>自分で更新したい</td><td>WordPress</td></tr>
+<tr><td>ブログを運営したい</td><td>WordPress or 静的サイトジェネレータ</td></tr>
+<tr><td>会員機能が必要</td><td>WordPress or カスタム開発</td></tr>
+<tr><td>長期的な保守コスト削減</td><td>GitHub管理（静的サイト）</td></tr>
+</tbody>
+</table>
+
+<h2 id="heading-21">まとめ</h2>
+<p>弊社がGitHubでWebサイトを管理している理由は、<strong>セキュリティ</strong>、<strong>表示速度</strong>、<strong>長期的な安定性</strong>のメリットが大きいからです。</p>
+
+<p>一方で、お客様のニーズによってはWordPressが最適な場合もあります。どちらの方法でも対応可能ですので、お気軽にご相談ください。</p>
+
+<h3 id="heading-22">弊社の強み</h3>
+<ul>
+<li><strong>迅速な更新対応</strong>：GitHub管理でも更新作業はお任せください</li>
+<li><strong>柔軟な対応</strong>：WordPress構築も可能</li>
+<li><strong>セキュリティ重視</strong>：静的サイトで攻撃リスクを最小化</li>
+<li><strong>高速表示</strong>：SEOとユーザー体験を向上</li>
+</ul>
+
+<p><i class="fas fa-external-link-alt"></i> <a href="https://yojitu.com/web-production.php" target="_blank" rel="noopener">Web制作サービスの詳細はこちら</a></p>
+
+<p><i class="fas fa-external-link-alt"></i> <a href="https://yojitu.com/contact.php" target="_blank" rel="noopener">お問い合わせはこちら</a></p>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "GitHubでWebサイトを管理する理由｜WordPressとの比較",
+  "description": "弊社がGitHubでWebサイトを管理している理由と、WordPressを使わないメリット・デメリットを解説。セキュリティ、表示速度、長期安定性の観点から比較します。",
+  "author": {
+    "@type": "Person",
+    "name": "山田 蓮"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "余日（Yojitsu）",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://yojitu.com/assets/images/logo.png"
+    }
+  },
+  "datePublished": "2025-11-19",
+  "dateModified": "2025-11-19"
+}
+</script>
