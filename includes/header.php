@@ -13,10 +13,37 @@ $current_page = $current_page ?? '';
 $currentUrl = $_SERVER['REQUEST_URI'];
 $isEnglish = strpos($currentUrl, '/en/') === 0 || strpos($currentUrl, '/en') === 0;
 ?>
+<?php
+// 英語版用のプレフィックス
+$langPrefix = $isEnglish ? '/en' : '';
+
+// 言語別ナビゲーションテキスト
+if ($isEnglish) {
+    $navTexts = [
+        'services' => 'Services',
+        'services_top' => 'All Services',
+        'web_production' => 'Web Development',
+        'video_production' => 'Video Production',
+        'blog' => 'Blog',
+        'about' => 'About',
+        'contact' => 'Contact'
+    ];
+} else {
+    $navTexts = [
+        'services' => 'サービス',
+        'services_top' => 'サービストップ',
+        'web_production' => 'Webサイト制作',
+        'video_production' => '動画制作',
+        'blog' => 'ブログ',
+        'about' => '会社概要',
+        'contact' => 'お問い合わせ'
+    ];
+}
+?>
 <!-- ヘッダー -->
 <header class="header" id="header">
     <div class="container header__container">
-        <a href="<?php echo ($current_page === 'home') ? '/' : '/index.php'; ?>" class="header__logo">
+        <a href="<?php echo $isEnglish ? '/en/' : (($current_page === 'home') ? '/' : '/index.php'); ?>" class="header__logo">
             <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="20" cy="20" r="18" fill="#8B7355" opacity="0.1"/>
                 <path d="M12 10 L20 20 L28 10" stroke="#8B7355" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
@@ -28,18 +55,18 @@ $isEnglish = strpos($currentUrl, '/en/') === 0 || strpos($currentUrl, '/en') ===
         <nav class="nav">
             <ul class="nav__list" id="navList">
                 <li class="nav__item nav__item--dropdown">
-                    <a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__link<?php echo ($current_page === 'services') ? ' nav__link--active' : ''; ?>">
-                        <i class="fas fa-briefcase nav__icon"></i><span>サービス</span>
+                    <a href="<?php echo $langPrefix; ?>/services.php" class="nav__link<?php echo ($current_page === 'services') ? ' nav__link--active' : ''; ?>">
+                        <i class="fas fa-briefcase nav__icon"></i><span><?php echo $navTexts['services']; ?></span>
                     </a>
                     <ul class="nav__dropdown">
-                        <li><a href="<?php echo ($current_page === 'home') ? 'services.php' : '/services.php'; ?>" class="nav__dropdown-link"><i class="fas fa-th"></i> サービストップ</a></li>
-                        <li><a href="<?php echo ($current_page === 'home') ? 'web-production.php' : '/web-production.php'; ?>" class="nav__dropdown-link"><i class="fas fa-laptop-code"></i> Webサイト制作</a></li>
-                        <li><a href="<?php echo ($current_page === 'home') ? 'video-production.php' : '/video-production.php'; ?>" class="nav__dropdown-link"><i class="fas fa-video"></i> 動画制作</a></li>
+                        <li><a href="<?php echo $langPrefix; ?>/services.php" class="nav__dropdown-link"><i class="fas fa-th"></i> <?php echo $navTexts['services_top']; ?></a></li>
+                        <li><a href="<?php echo $langPrefix; ?>/web-production.php" class="nav__dropdown-link"><i class="fas fa-laptop-code"></i> <?php echo $navTexts['web_production']; ?></a></li>
+                        <li><a href="<?php echo $langPrefix; ?>/video-production.php" class="nav__dropdown-link"><i class="fas fa-video"></i> <?php echo $navTexts['video_production']; ?></a></li>
                     </ul>
                 </li>
-                <li class="nav__item"><a href="<?php echo $isEnglish ? '/en/blog/' : (($current_page === 'home') ? 'blog/' : '/blog/'); ?>" class="nav__link<?php echo ($current_page === 'blog') ? ' nav__link--active' : ''; ?>"><i class="fas fa-blog nav__icon"></i><span>ブログ</span></a></li>
-                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'about.php' : '/about.php'; ?>" class="nav__link<?php echo ($current_page === 'about') ? ' nav__link--active' : ''; ?>"><i class="fas fa-building nav__icon"></i><span>会社概要</span></a></li>
-                <li class="nav__item"><a href="<?php echo ($current_page === 'home') ? 'contact.php' : '/contact.php'; ?>" class="nav__link<?php echo ($current_page === 'contact') ? ' nav__link--active' : ''; ?>"><i class="fas fa-envelope nav__icon"></i><span>お問い合わせ</span></a></li>
+                <li class="nav__item"><a href="<?php echo $isEnglish ? '/en/blog/' : (($current_page === 'home') ? 'blog/' : '/blog/'); ?>" class="nav__link<?php echo ($current_page === 'blog') ? ' nav__link--active' : ''; ?>"><i class="fas fa-blog nav__icon"></i><span><?php echo $navTexts['blog']; ?></span></a></li>
+                <li class="nav__item"><a href="<?php echo $langPrefix; ?>/about.php" class="nav__link<?php echo ($current_page === 'about') ? ' nav__link--active' : ''; ?>"><i class="fas fa-building nav__icon"></i><span><?php echo $navTexts['about']; ?></span></a></li>
+                <li class="nav__item"><a href="<?php echo $langPrefix; ?>/contact.php" class="nav__link<?php echo ($current_page === 'contact') ? ' nav__link--active' : ''; ?>"><i class="fas fa-envelope nav__icon"></i><span><?php echo $navTexts['contact']; ?></span></a></li>
                 <li class="nav__item nav__item--contact"><i class="fas fa-paper-plane"></i><a href="mailto:<?php echo CONTACT_EMAIL; ?>"><?php echo CONTACT_EMAIL; ?></a></li>
                 <li class="nav__item nav__item--contact"><i class="fas fa-phone"></i><a href="tel:<?php echo CONTACT_TEL_LINK; ?>"><?php echo CONTACT_TEL; ?></a></li>
 

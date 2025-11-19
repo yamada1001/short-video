@@ -214,58 +214,7 @@ $categories = array_unique(array_column($all_posts, 'category'));
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <div class="footer__section">
-                    <h3 class="footer__section-title">Yojitsu</h3>
-                    <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 16px; line-height: 1.9;">
-                        A digital marketing company based in Oita Prefecture, providing SEO, advertising, web development, and short video production services.
-                    </p>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.8;">
-                        <i class="fas fa-building" style="margin-right: 8px;"></i>Business Name: Yojitsu<br>
-                        <i class="fas fa-file-invoice" style="margin-right: 8px;"></i>Registration: T9810094141774<br>
-                        <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>Established: May 14, 2025
-                    </p>
-                </div>
-                <div class="footer__section">
-                    <h3 class="footer__section-title">Services</h3>
-                    <a href="/web-production.php" class="footer__link"><i class="fas fa-laptop-code"></i> Web Development</a>
-                    <a href="/video-production.php" class="footer__link"><i class="fas fa-video"></i> Video Production</a>
-                    <a href="/services.php" class="footer__link" style="margin-top: 8px; opacity: 0.8;"><i class="fas fa-arrow-right"></i> Service Details</a>
-                </div>
-                <div class="footer__section">
-                    <h3 class="footer__section-title">Company</h3>
-                    <a href="/about.php" class="footer__link"><i class="fas fa-info-circle"></i> About Us</a>
-                    <a href="/recruit.php" class="footer__link"><i class="fas fa-handshake"></i> Recruitment</a>
-                    <a href="/en/blog/" class="footer__link"><i class="fas fa-blog"></i> Blog</a>
-                    <a href="/news/" class="footer__link"><i class="fas fa-newspaper"></i> News</a>
-                    <a href="/contact.php" class="footer__link"><i class="fas fa-envelope"></i> Contact</a>
-                    <a href="/privacy.php" class="footer__link"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
-                    <a href="/sitemap-page.php" class="footer__link"><i class="fas fa-sitemap"></i> Sitemap</a>
-                </div>
-                <div class="footer__section">
-                    <h3 class="footer__section-title">Contact</h3>
-                    <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 12px; line-height: 1.9;">
-                        <i class="fas fa-phone" style="margin-right: 8px;"></i>Tel: <a href="tel:<?php echo CONTACT_TEL_LINK; ?>" style="color: rgba(255, 255, 255, 0.9);"><?php echo CONTACT_TEL; ?></a><br>
-                        <i class="fas fa-envelope" style="margin-right: 8px;"></i>Email: <a href="mailto:<?php echo CONTACT_EMAIL; ?>" style="color: rgba(255, 255, 255, 0.9);"><?php echo CONTACT_EMAIL; ?></a><br>
-                        <i class="fab fa-line" style="margin-right: 8px;"></i>LINE: <a href="https://line.me/ti/p/CTOCx9YKjk" style="color: rgba(255, 255, 255, 0.9);">Contact</a>
-                    </p>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.8;">
-                        <i class="fas fa-clock" style="margin-right: 8px;"></i>Hours: 10:00-22:00<br>
-                        <i class="fas fa-calendar-check" style="margin-right: 8px;"></i>Open: Every day
-                    </p>
-                    <div style="margin-top: 16px;">
-                        <a href="/contact.php" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; font-size: 14px;">Contact Form</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__bottom">
-                <p>&copy; 2025 Yojitsu. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <?php include __DIR__ . '/../../includes/footer.php'; ?>
 
     <script defer src="/assets/js/app.js"></script>
 </html>
