@@ -15,6 +15,15 @@
 ### Web制作
 ホームページ制作、ランディングページ制作、ECサイト構築、WordPress開発を提供。レスポンシブデザイン対応、SEO最適化済み。
 
+#### 料金プラン
+- 10万円プラン: 個人事業主向け、1〜5ページのシンプルなサイト
+- 30万円プラン（おすすめ）: ブログ機能、CMS、詳細なSEO対策付き
+- カスタムプラン: オリジナルCMS開発、会員機能、決済機能など（要見積）
+- 保守・運用（必須）: 月額5,800円、更新し放題、サーバー管理含む
+
+#### 対応エリア
+大分県全18市町村に対応: 大分市、別府市、中津市、日田市、佐伯市、臼杵市、津久見市、竹田市、豊後高田市、杵築市、宇佐市、豊後大野市、由布市、国東市、日出町、九重町、玖珠町、姫島村
+
 ### 動画制作
 TikTok、Instagram Reels、YouTube Shorts向けのショート動画制作。企画から撮影・編集まで一貫対応。
 
@@ -37,6 +46,7 @@ Google広告、SNS広告（Facebook、Instagram、TikTok）の運用代行。
 - サービス一覧: https://yojitu.com/services.php
 - Web制作: https://yojitu.com/web-production.php
 - 動画制作: https://yojitu.com/video-production.php
+- 対応エリア: https://yojitu.com/area/
 - 会社概要: https://yojitu.com/about.php
 - ブログ: https://yojitu.com/blog/
 - お知らせ: https://yojitu.com/news/
