@@ -1,6 +1,26 @@
 {
   "posts": [
     {
+      "id": 99,
+      "title": "Gemini 3の新機能と性能比較【GPT-5.1・Claude 4.5との違い】",
+      "slug": "gemini-3-features-comparison",
+      "excerpt": "2025年11月リリースのGoogle Gemini 3を徹底解説。Deep Thinkモード、マルチモーダル機能、Gemini Agent、GPT-5.1やClaude Sonnet 4.5との比較、料金体系まで網羅的に紹介します。",
+      "content": "data/article-99-full.html",
+      "publishedAt": "2025-11-19T18:00:00+09:00",
+      "updatedAt": "2025-11-19T18:00:00+09:00",
+      "category": "AI",
+      "tags": [
+        "Gemini 3",
+        "Google",
+        "AI",
+        "Deep Think",
+        "マルチモーダル",
+        "GPT-5.1比較"
+      ],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
       "id": 98,
       "title": "GPT-5.1とは？新機能・ベンチマーク・使い方を徹底解説【2025年11月】",
       "slug": "gpt-5-1-features",
