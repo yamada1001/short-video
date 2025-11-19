@@ -326,8 +326,7 @@ $hide_lang_switch = true;
                     <div class="price-card__header">
                         <h3 class="price-card__name">カスタムプラン</h3>
                         <div class="price-card__price">
-                            <span class="price-card__amount">500万円</span>
-                            <span class="price-card__unit">〜1,200万円</span>
+                            <span class="price-card__amount">お見積り</span>
                         </div>
                     </div>
                     <p class="price-card__target"><i class="fas fa-building"></i> 本格的なWebシステム開発が必要な方向け</p>
