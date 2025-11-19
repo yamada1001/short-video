@@ -6,7 +6,7 @@ require_once __DIR__ . '/includes/functions.php';
 $page_title = 'Webサイト制作 - 10万円から始めるプロフェッショナルなWeb制作 | 余日（Yojitsu）';
 $page_description = '10万円からのWebサイト制作。個人事業主から中小企業まで、目的に応じた最適なプランをご提供。余日（Yojitsu）';
 $page_keywords = 'Web制作,ホームページ制作,格安,大分,余日,10万円,30万円,レスポンシブ';
-$additional_css = ['assets/css/cookie-consent.css'];
+$additional_css = ['assets/css/pages/web-production.css', 'assets/css/cookie-consent.css'];
 
 $structured_data = '
     {
@@ -53,340 +53,6 @@ $structured_data = '
       ]
     }
 ';
-
-$inline_styles = <<<'EOD'
-        .page-header {
-            background: linear-gradient(135deg, var(--color-natural-brown) 0%, var(--color-charcoal) 100%);
-            padding: var(--spacing-xxl) 0;
-            text-align: center;
-            color: var(--color-bg-white);
-        }
-
-        .page-header__title {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-md);
-            letter-spacing: 0.05em;
-            color: var(--color-bg-white);
-        }
-
-        .page-header__description {
-            font-size: 18px;
-            line-height: 1.8;
-            opacity: 0.95;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .pricing-section {
-            padding: var(--spacing-xxl) 0;
-            background: var(--color-bg-white);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-xl);
-            margin-top: var(--spacing-xl);
-        }
-
-        .pricing-card {
-            background: var(--color-bg-white);
-            border: 2px solid var(--color-border);
-            border-radius: 12px;
-            padding: var(--spacing-xl);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            border-color: var(--color-natural-brown);
-        }
-
-        .pricing-card--featured {
-            border-color: var(--color-natural-brown);
-            border-width: 3px;
-            box-shadow: 0 8px 24px rgba(139, 115, 85, 0.15);
-        }
-
-        .pricing-card__badge {
-            position: absolute;
-            top: -12px;
-            right: var(--spacing-lg);
-            background: var(--color-natural-brown);
-            color: var(--color-bg-white);
-            padding: 4px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-        }
-
-        .pricing-card__icon {
-            font-size: 48px;
-            color: var(--color-natural-brown);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .pricing-card__name {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-sm);
-            color: var(--color-charcoal);
-        }
-
-        .pricing-card__price {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--color-natural-brown);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .pricing-card__price-unit {
-            font-size: 16px;
-            color: var(--color-text-light);
-            font-weight: 400;
-        }
-
-        .pricing-card__target {
-            font-size: 14px;
-            color: var(--color-text-light);
-            margin-bottom: var(--spacing-lg);
-            padding: var(--spacing-sm) 0;
-            border-top: 1px solid var(--color-border);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .pricing-card__features {
-            list-style: none;
-            margin: var(--spacing-lg) 0;
-        }
-
-        .pricing-card__features li {
-            padding: var(--spacing-sm) 0;
-            color: var(--color-text);
-            display: flex;
-            align-items: start;
-            gap: var(--spacing-sm);
-        }
-
-        .pricing-card__features li i {
-            color: var(--color-natural-brown);
-            margin-top: 4px;
-            flex-shrink: 0;
-        }
-
-        .pricing-card__cta {
-            margin-top: var(--spacing-lg);
-        }
-
-        .story-section {
-            padding: var(--spacing-xxl) 0;
-            background: var(--color-bg-gray);
-        }
-
-        .story-section__title {
-            font-size: 32px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: var(--spacing-xl);
-            color: var(--color-charcoal);
-        }
-
-        .story-section__title i {
-            color: var(--color-natural-brown);
-            margin-right: var(--spacing-sm);
-        }
-
-        .story-content {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--color-bg-white);
-            padding: var(--spacing-xl);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .story-content h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin: var(--spacing-xl) 0 var(--spacing-md) 0;
-            color: var(--color-charcoal);
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-        }
-
-        .story-content h3 i {
-            color: var(--color-natural-brown);
-        }
-
-        .story-content p {
-            line-height: 1.9;
-            color: var(--color-text);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .team-section {
-            padding: var(--spacing-xxl) 0;
-            background: var(--color-bg-white);
-        }
-
-        .team-section__title {
-            font-size: 32px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: var(--spacing-md);
-            color: var(--color-charcoal);
-        }
-
-        .team-section__subtitle {
-            text-align: center;
-            color: var(--color-text-light);
-            margin-bottom: var(--spacing-xl);
-            font-size: 16px;
-        }
-
-        .team-roles {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-lg);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .team-role {
-            background: var(--color-bg-gray);
-            padding: var(--spacing-lg);
-            border-radius: 8px;
-            border-left: 4px solid var(--color-natural-brown);
-        }
-
-        .team-role__icon {
-            font-size: 32px;
-            color: var(--color-natural-brown);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .team-role__name {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-xs);
-            color: var(--color-charcoal);
-        }
-
-        .team-role__description {
-            font-size: 14px;
-            color: var(--color-text-light);
-            line-height: 1.7;
-        }
-
-        .portfolio-section {
-            padding: var(--spacing-xxl) 0;
-            background: var(--color-bg-gray);
-        }
-
-        .portfolio-section__title {
-            font-size: 32px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: var(--spacing-xl);
-            color: var(--color-charcoal);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-xl);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .portfolio-item {
-            background: var(--color-bg-white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        }
-
-        .portfolio-item__image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, var(--color-natural-brown), var(--color-charcoal));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-bg-white);
-            font-size: 48px;
-        }
-
-        .portfolio-item__content {
-            padding: var(--spacing-lg);
-        }
-
-        .portfolio-item__title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-sm);
-            color: var(--color-charcoal);
-        }
-
-        .portfolio-item__description {
-            font-size: 14px;
-            color: var(--color-text-light);
-            line-height: 1.7;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .portfolio-item__link {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--spacing-xs);
-            color: var(--color-natural-brown);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: gap 0.3s ease;
-        }
-
-        .portfolio-item__link:hover {
-            gap: var(--spacing-sm);
-        }
-
-        .portfolio-item__link i {
-            font-size: 12px;
-        }
-
-        .section__subtitle {
-            text-align: center;
-            font-size: 28px;
-            font-weight: 700;
-            margin: var(--spacing-xxl) 0 var(--spacing-md) 0;
-            color: var(--color-charcoal);
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(139, 115, 85, 0.05), rgba(139, 115, 85, 0.1));
-            border-left: 4px solid var(--color-natural-brown);
-            padding: var(--spacing-lg);
-            margin: var(--spacing-lg) 0;
-            border-radius: 8px;
-        }
-
-        .highlight-box p {
-            margin: 0;
-            font-weight: 600;
-            color: var(--color-charcoal);
-        }
-EOD;
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -444,11 +110,11 @@ EOD;
                         <li><i class="fas fa-check-circle"></i> <span>基本的なSEO対策</span></li>
                         <li><i class="fas fa-check-circle"></i> <span>お問い合わせフォーム</span></li>
                         <li><i class="fas fa-check-circle"></i> <span>SSL証明書設定</span></li>
-                        <li><i class="fas fa-times-circle" style="color: #ccc;"></i> <span style="color: #999;">ブログ機能は含まれません</span></li>
-                        <li><i class="fas fa-times-circle" style="color: #ccc;"></i> <span style="color: #999;">更新機能は含まれません</span></li>
+                        <li><i class="fas fa-times-circle"></i> <span class="feature-disabled">ブログ機能は含まれません</span></li>
+                        <li><i class="fas fa-times-circle"></i> <span class="feature-disabled">更新機能は含まれません</span></li>
                     </ul>
                     <div class="pricing-card__cta">
-                        <a href="contact.php" class="btn btn-secondary btn--large" style="width: 100%;">
+                        <a href="contact.php" class="btn btn-secondary btn--large">
                             <i class="fas fa-envelope"></i> お問い合わせ
                         </a>
                     </div>
@@ -470,14 +136,15 @@ EOD;
                     <ul class="pricing-card__features">
                         <li><i class="fas fa-check-circle"></i> <span>10万円プランの全機能</span></li>
                         <li><i class="fas fa-check-circle"></i> <span>ブログ・お知らせ機能</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>WordPress導入（または軽量CMS）</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>軽量CMS or 静的サイト生成</span></li>
                         <li><i class="fas fa-check-circle"></i> <span>Google Analytics設定・解説</span></li>
                         <li><i class="fas fa-check-circle"></i> <span>詳細なSEO対策</span></li>
                         <li><i class="fas fa-check-circle"></i> <span>SNS連携設定</span></li>
                         <li><i class="fas fa-check-circle"></i> <span>1ヶ月間の無料サポート</span></li>
+                        <li><i class="fas fa-info-circle"></i> <span class="feature-note">※WordPress対応も可能です</span></li>
                     </ul>
                     <div class="pricing-card__cta">
-                        <a href="contact.php" class="btn btn-primary btn--large" style="width: 100%;">
+                        <a href="contact.php" class="btn btn-primary btn--large">
                             <i class="fas fa-envelope"></i> お問い合わせ
                         </a>
                     </div>
@@ -505,7 +172,7 @@ EOD;
                         <li><i class="fas fa-check-circle"></i> <span>継続的な保守・運用サポート</span></li>
                     </ul>
                     <div class="pricing-card__cta">
-                        <a href="contact.php" class="btn btn-secondary btn--large" style="width: 100%;">
+                        <a href="contact.php" class="btn btn-secondary btn--large">
                             <i class="fas fa-envelope"></i> お見積もり依頼
                         </a>
                     </div>
@@ -558,7 +225,7 @@ EOD;
                 </p>
                 <p>
                     実際、あなたが見ているこのサイトも私が一人で制作しております。<br>
-                    <small style="color: var(--color-text-light);">（2ヶ月以上かかりましたが、笑）</small>
+                    <small class="story-content__note">（2ヶ月以上かかりましたが、笑）</small>
                 </p>
 
                 <h3><i class="fas fa-comments"></i> まずは相談だけでも大歓迎です</h3>
@@ -566,7 +233,7 @@ EOD;
                     全然、検討段階でも大丈夫です。<br>
                     話だけ聞いて、誰かに紹介してくれる人なんかも大歓迎です。
                 </p>
-                <div style="text-align: center; margin-top: var(--spacing-lg);">
+                <div class="story-content__cta">
                     <a href="contact.php" class="btn btn-primary btn--large">
                         <i class="fas fa-envelope"></i> お気軽にご相談ください
                     </a>
@@ -667,7 +334,7 @@ EOD;
                 </div>
             </div>
 
-            <div class="highlight-box" style="margin-top: var(--spacing-xl);">
+            <div class="highlight-box highlight-box--margin-top">
                 <p>
                     <i class="fas fa-info-circle"></i>
                     カスタムプラン（500万円〜）では、これらの専門家がチームを組んで対応するため、より高度で大規模なプロジェクトにも対応可能です。
@@ -733,7 +400,7 @@ EOD;
                 </a>
             </div>
 
-            <div style="text-align: center; margin-top: var(--spacing-xxl);">
+            <div class="portfolio-section__cta">
                 <a href="contact.php" class="btn btn-primary btn--large">
                     <i class="fas fa-envelope"></i> あなたのプロジェクトについて相談する
                 </a>
