@@ -143,7 +143,11 @@ function translateContent($content, $postId, $updatedAt) {
 function getTranslationCache($key) {
     $cacheFile = TRANSLATION_CACHE_DIR . '/' . $key . '.txt';
     if (file_exists($cacheFile)) {
-        return file_get_contents($cacheFile);
+        $content = file_get_contents($cacheFile);
+        // 空のキャッシュは無効とみなす
+        if (!empty(trim($content))) {
+            return $content;
+        }
     }
     return false;
 }
