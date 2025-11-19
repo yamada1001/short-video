@@ -8,6 +8,10 @@ if (!defined('CONTACT_EMAIL')) {
     require_once __DIR__ . '/config.php';
 }
 $current_page = $current_page ?? '';
+
+// 言語切り替え用URL処理
+$currentUrl = $_SERVER['REQUEST_URI'];
+$isEnglish = strpos($currentUrl, '/en/') === 0 || strpos($currentUrl, '/en') === 0;
 ?>
 <!-- ヘッダー -->
 <header class="header" id="header">
@@ -42,9 +46,6 @@ $current_page = $current_page ?? '';
                 <!-- 言語切り替え -->
                 <li class="nav__item nav__item--lang">
                     <?php
-                    $currentUrl = $_SERVER['REQUEST_URI'];
-                    $isEnglish = strpos($currentUrl, '/en/') === 0 || strpos($currentUrl, '/en') === 0;
-
                     if ($isEnglish) {
                         // 英語版 → 日本語版へのリンク
                         // /en/index.php → /index.php
@@ -59,6 +60,19 @@ $current_page = $current_page ?? '';
                     ?>
                 </li>
             </ul>
+
+            <!-- スマホ用言語切り替え（ハンバーガーの隣に常時表示） -->
+            <div class="nav__lang-mobile">
+                <?php
+                if ($isEnglish) {
+                    $jaUrl = preg_replace('#^/en(/|$)#', '/', $currentUrl);
+                    echo '<a href="' . htmlspecialchars($jaUrl) . '" class="nav__lang-mobile-link" title="日本語">JA</a>';
+                } else {
+                    $enUrl = '/en' . $currentUrl;
+                    echo '<a href="' . htmlspecialchars($enUrl) . '" class="nav__lang-mobile-link" title="English">EN</a>';
+                }
+                ?>
+            </div>
 
             <div class="hamburger" id="hamburger">
                 <span class="hamburger__line"></span>
