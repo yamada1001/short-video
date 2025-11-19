@@ -1,0 +1,687 @@
+/* Area Pages CSS */
+
+/* ===== Common Styles ===== */
+.price-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-right: 8px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+/* ===== Map Hero ===== */
+.map-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.map-hero__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.map-hero__sub {
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.map-hero__price {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+}
+
+.map-hero__description {
+    font-size: 1rem;
+    opacity: 0.9;
+    line-height: 1.8;
+}
+
+/* ===== Area Hero ===== */
+.area-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 60px 0;
+}
+
+.area-hero .breadcrumb {
+    margin-bottom: 24px;
+}
+
+.area-hero .breadcrumb__link,
+.area-hero .breadcrumb__separator,
+.area-hero .breadcrumb__current {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+}
+
+.area-hero .breadcrumb__link:hover {
+    color: #fff;
+}
+
+.area-hero__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.3;
+}
+
+.area-hero__location {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.area-hero__service {
+    display: block;
+}
+
+.area-hero__price {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.area-hero__description {
+    font-size: 1rem;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 24px;
+}
+
+.area-hero__cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* ===== 3D Map Section ===== */
+.map-section {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: #1a1a2e;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+#mapCanvas {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+}
+
+#mapCanvas:active {
+    cursor: grabbing;
+}
+
+.map-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 100;
+    white-space: nowrap;
+}
+
+.map-tooltip.active {
+    opacity: 1;
+}
+
+.map-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 1rem;
+}
+
+.map-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.map-control-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.map-control-btn:hover {
+    background: #fff;
+    transform: scale(1.05);
+}
+
+/* ===== Area List Section ===== */
+.area-list-section {
+    padding: 80px 0;
+}
+
+.area-category {
+    margin-bottom: 48px;
+}
+
+.area-category:last-child {
+    margin-bottom: 0;
+}
+
+.area-category__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.area-category__title i {
+    color: #667eea;
+}
+
+.area-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.area-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.area-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+    transform: translateY(-2px);
+}
+
+.area-card__name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.area-card__population {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.area-card__arrow {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #667eea;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.area-card:hover .area-card__arrow {
+    opacity: 1;
+}
+
+/* ===== Features Section ===== */
+.area-features,
+.map-features {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.feature-card {
+    background: #fff;
+    padding: 32px 24px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.feature-card__icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.feature-card__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.feature-card__text {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.7;
+}
+
+/* ===== Area Info Section ===== */
+.area-info {
+    padding: 80px 0;
+}
+
+.area-info__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.area-info__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.area-info__table th,
+.area-info__table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.area-info__table th {
+    width: 30%;
+    font-weight: 600;
+    background: #f8f9fa;
+    color: #333;
+}
+
+.area-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.area-features-list li {
+    background: #667eea;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.area-info__needs h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.needs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.needs-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.needs-list li i {
+    color: #27ae60;
+}
+
+/* ===== Price Section ===== */
+.area-price {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.price-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.price-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.price-card--highlight {
+    border: 2px solid #667eea;
+}
+
+.price-card__badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #667eea;
+    color: #fff;
+    padding: 4px 16px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.price-card__header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.price-card__name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.price-card__price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+}
+
+.price-card__amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #e74c3c;
+}
+
+.price-card__unit {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.price-card__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+}
+
+.price-card__features li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.price-card__features li i {
+    color: #27ae60;
+}
+
+.price-card__note {
+    font-size: 0.8rem;
+    color: #888;
+    text-align: center;
+}
+
+/* ===== Flow Section ===== */
+.area-flow {
+    padding: 80px 0;
+}
+
+.flow-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+}
+
+.flow-step {
+    flex: 1;
+    min-width: 180px;
+    max-width: 200px;
+    text-align: center;
+    position: relative;
+}
+
+.flow-step__number {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 16px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.flow-step__title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.flow-step__text {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ===== CTA Section ===== */
+.area-cta,
+.map-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    text-align: center;
+}
+
+.area-cta__title,
+.map-cta__title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.area-cta__text,
+.map-cta__text {
+    font-size: 1rem;
+    margin-bottom: 32px;
+    opacity: 0.95;
+    line-height: 1.8;
+}
+
+.area-cta__buttons,
+.map-cta__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-line {
+    background: #06c755;
+    color: #fff;
+}
+
+.btn-line:hover {
+    background: #05b34c;
+}
+
+/* ===== Other Areas Section ===== */
+.other-areas {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.areas-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.area-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.area-link:hover {
+    background: #667eea;
+    border-color: #667eea;
+    color: #fff;
+}
+
+.areas-note {
+    text-align: center;
+}
+
+.areas-map-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.areas-map-link:hover {
+    text-decoration: underline;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .map-hero__title,
+    .area-hero__title {
+        font-size: 1.75rem;
+    }
+
+    .map-container {
+        height: 400px;
+    }
+
+    .area-info__content {
+        grid-template-columns: 1fr;
+    }
+
+    .price-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .flow-steps {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .flow-step {
+        max-width: 100%;
+    }
+
+    .area-hero__cta,
+    .area-cta__buttons,
+    .map-cta__buttons {
+        flex-direction: column;
+    }
+
+    .btn-lg {
+        width: 100%;
+        text-align: center;
+    }
+
+    .area-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .area-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .map-container {
+        height: 300px;
+    }
+}
