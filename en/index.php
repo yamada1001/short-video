@@ -119,8 +119,9 @@ function addEnPrefixToLinks($html) {
             $fullTag = $matches[0];
             $attributes = $matches[1];
 
-            // 言語切り替えリンク（nav__lang-link）はスキップ
-            if (strpos($attributes, 'nav__lang-link') !== false) {
+            // 言語切り替えリンク（nav__lang-link, nav__lang-mobile-link）はスキップ
+            if (strpos($attributes, 'nav__lang-link') !== false ||
+                strpos($attributes, 'nav__lang-mobile-link') !== false) {
                 return $fullTag;
             }
 
