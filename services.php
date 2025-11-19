@@ -64,7 +64,7 @@ $inline_styles = <<<'EOD'
         }
 
         .service-card--video:hover {
-            border-color: #E1306C;
+            border-color: var(--color-natural-brown);
         }
 
         .service-card__header {
@@ -74,11 +74,11 @@ $inline_styles = <<<'EOD'
         }
 
         .service-card--web .service-card__header {
-            background: linear-gradient(135deg, var(--color-natural-brown) 0%, var(--color-charcoal) 100%);
+            background: var(--color-natural-brown);
         }
 
         .service-card--video .service-card__header {
-            background: linear-gradient(135deg, #E1306C 0%, #405DE6 50%, #5B51D8 100%);
+            background: var(--color-charcoal);
         }
 
         .service-card__icon {
@@ -135,7 +135,7 @@ $inline_styles = <<<'EOD'
         }
 
         .service-card--video .service-card__features li i {
-            color: #E1306C;
+            color: var(--color-natural-brown);
         }
 
         .service-card__cta {
@@ -164,13 +164,38 @@ $inline_styles = <<<'EOD'
         }
 
         .service-card--video .service-card__link {
-            background: linear-gradient(45deg, #F58529, #E1306C);
+            background: var(--color-charcoal);
             color: var(--color-bg-white);
         }
 
         .service-card--video .service-card__link:hover {
-            background: linear-gradient(45deg, #E1306C, #5B51D8);
+            background: var(--color-natural-brown);
             gap: var(--spacing-md);
+        }
+
+        /* モバイル用タブ切り替え */
+        .service-tabs {
+            display: none;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .service-tab {
+            padding: 12px 24px;
+            border: 1px solid var(--color-natural-brown);
+            background: transparent;
+            color: var(--color-natural-brown);
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .service-tab.active {
+            background: var(--color-natural-brown);
+            color: #fff;
         }
 
         .compare-section {
@@ -235,6 +260,18 @@ $inline_styles = <<<'EOD'
                 grid-template-columns: 1fr;
             }
 
+            .service-tabs {
+                display: flex;
+            }
+
+            .services-grid.has-tabs .service-card {
+                display: none;
+            }
+
+            .services-grid.has-tabs .service-card.active {
+                display: block;
+            }
+
             .compare-table__row {
                 grid-template-columns: 1fr;
             }
@@ -279,9 +316,15 @@ EOD;
     <!-- サービス一覧 -->
     <section class="services-section">
         <div class="container">
-            <div class="services-grid">
+            <!-- モバイル用タブ -->
+            <div class="service-tabs">
+                <button class="service-tab active" data-service="web" onclick="switchService('web')">Web制作</button>
+                <button class="service-tab" data-service="video" onclick="switchService('video')">ショート動画</button>
+            </div>
+
+            <div class="services-grid has-tabs">
                 <!-- Webサイト制作 -->
-                <div class="service-card service-card--web">
+                <div class="service-card service-card--web active" data-service="web">
                     <div class="service-card__header">
                         <div class="service-card__icon">
                             <i class="fas fa-laptop-code"></i>
@@ -325,7 +368,7 @@ EOD;
                 </div>
 
                 <!-- ショート動画制作 -->
-                <div class="service-card service-card--video">
+                <div class="service-card service-card--video" data-service="video">
                     <div class="service-card__header">
                         <div class="service-card__icon">
                             <i class="fas fa-video"></i>
@@ -382,6 +425,25 @@ EOD;
     <?php include __DIR__ . '/includes/footer.php'; ?>
 
     <script defer src="assets/js/app.js"></script>
+
+    <script>
+    function switchService(serviceId) {
+        // タブの切り替え
+        document.querySelectorAll('.service-tab').forEach(tab => {
+            tab.classList.remove('active');
+            if (tab.dataset.service === serviceId) {
+                tab.classList.add('active');
+            }
+        });
+        // カードの切り替え
+        document.querySelectorAll('.service-card[data-service]').forEach(card => {
+            card.classList.remove('active');
+            if (card.dataset.service === serviceId) {
+                card.classList.add('active');
+            }
+        });
+    }
+    </script>
 
     <?php include __DIR__ . '/includes/cookie-consent.php'; ?>
 

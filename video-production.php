@@ -56,24 +56,28 @@ $structured_data = '
 
 $inline_styles = <<<'EOD'
         .page-header {
-            background: linear-gradient(135deg, #E1306C 0%, #405DE6 50%, #5B51D8 100%);
+            background: var(--color-off-white);
             padding: var(--spacing-xxl) 0;
             text-align: center;
-            color: var(--color-bg-white);
+            border-bottom: 1px solid var(--color-light-gray);
         }
 
         .page-header__title {
             font-size: 36px;
-            font-weight: 700;
+            font-weight: 500;
             margin-bottom: var(--spacing-md);
-            letter-spacing: 0.05em;
-            color: var(--color-bg-white);
+            letter-spacing: 0.08em;
+            color: var(--color-charcoal);
+        }
+
+        .page-header__title i {
+            color: var(--color-natural-brown);
         }
 
         .page-header__description {
             font-size: 18px;
             line-height: 1.8;
-            opacity: 0.95;
+            color: var(--color-text-light);
             max-width: 800px;
             margin: 0 auto;
         }
@@ -104,35 +108,14 @@ $inline_styles = <<<'EOD'
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .platform-card--tiktok:hover {
-            border-color: #000000;
-        }
-
-        .platform-card--instagram:hover {
-            border-color: #E1306C;
-        }
-
-        .platform-card--youtube:hover {
-            border-color: #FF0000;
+        .platform-card:hover {
+            border-color: var(--color-natural-brown);
         }
 
         .platform-card__icon {
             font-size: 64px;
             margin-bottom: var(--spacing-md);
-        }
-
-        .platform-card--tiktok .platform-card__icon {
-            color: #000000;
-        }
-
-        .platform-card--instagram .platform-card__icon {
-            background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .platform-card--youtube .platform-card__icon {
-            color: #FF0000;
+            color: var(--color-natural-brown);
         }
 
         .platform-card__name {
@@ -171,21 +154,21 @@ $inline_styles = <<<'EOD'
 
         .pricing-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            border-color: #E1306C;
+            box-shadow: 0 12px 40px rgba(139, 115, 85, 0.15);
+            border-color: var(--color-natural-brown);
         }
 
         .pricing-card--featured {
-            border-color: #E1306C;
+            border-color: var(--color-natural-brown);
             border-width: 3px;
-            box-shadow: 0 8px 24px rgba(225, 48, 108, 0.15);
+            box-shadow: 0 8px 24px rgba(139, 115, 85, 0.15);
         }
 
         .pricing-card__badge {
             position: absolute;
             top: -12px;
             right: var(--spacing-lg);
-            background: linear-gradient(45deg, #F58529, #E1306C);
+            background: var(--color-natural-brown);
             color: var(--color-bg-white);
             padding: 4px 16px;
             border-radius: 20px;
@@ -196,9 +179,7 @@ $inline_styles = <<<'EOD'
 
         .pricing-card__icon {
             font-size: 48px;
-            background: linear-gradient(45deg, #F58529, #E1306C, #8134AF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--color-natural-brown);
             margin-bottom: var(--spacing-md);
         }
 
@@ -212,7 +193,7 @@ $inline_styles = <<<'EOD'
         .pricing-card__price {
             font-size: 36px;
             font-weight: 700;
-            color: #E1306C;
+            color: var(--color-natural-brown);
             margin-bottom: var(--spacing-md);
         }
 
@@ -245,7 +226,7 @@ $inline_styles = <<<'EOD'
         }
 
         .pricing-card__features li i {
-            color: #E1306C;
+            color: var(--color-natural-brown);
             margin-top: 4px;
             flex-shrink: 0;
         }
@@ -268,7 +249,7 @@ $inline_styles = <<<'EOD'
             top: 0;
             bottom: 0;
             width: 2px;
-            background: linear-gradient(to bottom, #F58529, #E1306C, #8134AF);
+            background: var(--color-natural-brown);
         }
 
         .process-step {
@@ -282,7 +263,7 @@ $inline_styles = <<<'EOD'
             left: 0;
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #F58529, #E1306C);
+            background: var(--color-natural-brown);
             color: var(--color-bg-white);
             border-radius: 50%;
             display: flex;
@@ -290,7 +271,7 @@ $inline_styles = <<<'EOD'
             justify-content: center;
             font-size: 24px;
             font-weight: 700;
-            box-shadow: 0 4px 12px rgba(225, 48, 108, 0.3);
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
         }
 
         .process-step__title {
@@ -322,15 +303,12 @@ $inline_styles = <<<'EOD'
             background: var(--color-bg-white);
             padding: var(--spacing-lg);
             border-radius: 8px;
-            border-left: 4px solid;
-            border-image: linear-gradient(to bottom, #F58529, #E1306C) 1;
+            border-left: 4px solid var(--color-natural-brown);
         }
 
         .benefit-card__icon {
             font-size: 32px;
-            background: linear-gradient(45deg, #F58529, #E1306C);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--color-natural-brown);
             margin-bottom: var(--spacing-sm);
         }
 
@@ -356,8 +334,8 @@ $inline_styles = <<<'EOD'
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, rgba(245, 133, 41, 0.05), rgba(225, 48, 108, 0.05));
-            border-left: 4px solid #E1306C;
+            background: var(--color-off-white);
+            border-left: 4px solid var(--color-natural-brown);
             padding: var(--spacing-lg);
             margin: var(--spacing-lg) 0;
             border-radius: 8px;
@@ -371,7 +349,7 @@ $inline_styles = <<<'EOD'
 
         .stats-section {
             padding: var(--spacing-xxl) 0;
-            background: linear-gradient(135deg, #E1306C 0%, #405DE6 50%, #5B51D8 100%);
+            background: var(--color-natural-brown);
             color: var(--color-bg-white);
         }
 

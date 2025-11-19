@@ -867,3 +867,186 @@
         height: 300px;
     }
 }
+
+/* ========================================
+   モーダル
+   ======================================== */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--color-text-light);
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: var(--color-charcoal);
+}
+
+.modal-title {
+    padding: 24px 24px 16px;
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-charcoal);
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.modal-title i {
+    color: var(--color-natural-brown);
+    margin-right: 8px;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-body p {
+    margin-bottom: 16px;
+    line-height: 1.8;
+}
+
+.modal-body h4 {
+    font-size: 1.1rem;
+    margin: 24px 0 12px;
+    color: var(--color-charcoal);
+}
+
+.modal-body h4 i {
+    margin-right: 8px;
+}
+
+.modal-body h4 .fa-check-circle {
+    color: var(--color-natural-brown);
+}
+
+.modal-body h4 .fa-exclamation-triangle {
+    color: #e74c3c;
+}
+
+.modal-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+}
+
+.modal-body ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--color-off-white);
+    line-height: 1.7;
+}
+
+.modal-body ul li:last-child {
+    border-bottom: none;
+}
+
+.modal-body ul li strong {
+    color: var(--color-charcoal);
+}
+
+.modal-body .risk-list li {
+    color: #666;
+    padding-left: 20px;
+    position: relative;
+}
+
+.modal-body .risk-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #e74c3c;
+}
+
+.modal-note {
+    background: var(--color-off-white);
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    margin-top: 16px;
+}
+
+/* ========================================
+   保守ヘルプボタン
+   ======================================== */
+
+.maintenance-help-btn {
+    background: none;
+    border: none;
+    color: var(--color-natural-brown);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 8px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.maintenance-help-btn:hover {
+    opacity: 1;
+}
+
+/* ========================================
+   機能リンク
+   ======================================== */
+
+.feature-link {
+    color: var(--color-natural-brown);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-natural-brown);
+    transition: all 0.2s;
+}
+
+.feature-link:hover {
+    color: var(--color-charcoal);
+    border-bottom-style: solid;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        max-height: 90vh;
+    }
+
+    .modal-title {
+        font-size: 1.2rem;
+        padding-right: 48px;
+    }
+
+    .modal-body h4 {
+        font-size: 1rem;
+    }
+}

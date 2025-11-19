@@ -119,7 +119,7 @@ $hide_lang_switch = true;
                     "itemOffered": {
                         "@type": "Service",
                         "name": "30万円プラン",
-                        "description": "ブログ更新やWebからの集客を目指す方向け"
+                        "description": "ブログ更新やWebからの集客を目指す方向け。構造化データ対策・LLMS.txt対策含む"
                     },
                     "price": "300000",
                     "priceCurrency": "JPY"
@@ -342,6 +342,8 @@ $hide_lang_switch = true;
                         <li><i class="fas fa-check"></i> 軽量CMS or 静的サイト生成</li>
                         <li><i class="fas fa-check"></i> Google Analytics設定・解説</li>
                         <li><i class="fas fa-check"></i> 詳細なSEO対策</li>
+                        <li><i class="fas fa-check"></i> <a href="/blog/detail.php?slug=entity-seo-business-guide" class="feature-link">構造化データ対策</a></li>
+                        <li><i class="fas fa-check"></i> <a href="/blog/detail.php?slug=what-is-llms-txt" class="feature-link">LLMS.txt対策</a></li>
                         <li><i class="fas fa-check"></i> SNS連携設定</li>
                     </ul>
                 </div>
@@ -368,7 +370,7 @@ $hide_lang_switch = true;
 
             <!-- 保守・運用（必須） -->
             <div class="maintenance-section">
-                <h3 class="maintenance-title"><i class="fas fa-shield-alt"></i> 保守・運用（必須）</h3>
+                <h3 class="maintenance-title"><i class="fas fa-shield-alt"></i> 保守・運用（必須） <button class="maintenance-help-btn" onclick="openMaintenanceModal()"><i class="fas fa-question-circle"></i></button></h3>
                 <div class="maintenance-card">
                     <div class="maintenance-card__price">
                         <span class="maintenance-card__amount">月額 5,800円</span>
@@ -382,11 +384,40 @@ $hide_lang_switch = true;
                         <li><i class="fas fa-check"></i> アクセス解析レポート</li>
                         <li><i class="fas fa-check"></i> 電話・メールサポート</li>
                     </ul>
-                    <p class="maintenance-card__note">※全プランで保守契約は必須です。最低契約期間：6ヶ月</p>
+                    <p class="maintenance-card__note">※全プランで保守契約は必須です。最低契約期間：1年</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- 保守説明モーダル -->
+    <div id="maintenanceModal" class="modal-overlay" onclick="closeMaintenanceModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeMaintenanceModal()"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title"><i class="fas fa-shield-alt"></i> 保守・運用サービスとは？</h3>
+            <div class="modal-body">
+                <p>ホームページは公開して終わりではありません。<strong>保守・運用</strong>は、サイトを安全に快適に運営し続けるための継続的なサポートサービスです。</p>
+
+                <h4><i class="fas fa-check-circle"></i> 保守・運用に含まれるサービス</h4>
+                <ul>
+                    <li><strong>テキスト・画像の変更し放題</strong><br>営業時間、料金、お知らせなどの更新を何度でも依頼できます</li>
+                    <li><strong>サーバー・ドメイン管理</strong><br>面倒な技術的管理をすべてお任せいただけます</li>
+                    <li><strong>セキュリティ対策</strong><br>SSL証明書の管理、定期的なセキュリティチェックを行います</li>
+                    <li><strong>バックアップ</strong><br>万が一のトラブルに備え、定期的にデータをバックアップします</li>
+                    <li><strong>電話・メールサポート</strong><br>困ったときにすぐ相談できる窓口をご用意しています</li>
+                </ul>
+
+                <h4><i class="fas fa-exclamation-triangle"></i> 保守なしの場合のリスク</h4>
+                <ul class="risk-list">
+                    <li>セキュリティの脆弱性を放置すると、サイト改ざんや個人情報漏洩のリスク</li>
+                    <li>サーバートラブル時に対応できず、サイトが長期間表示されなくなる可能性</li>
+                    <li>更新のたびに都度料金がかかり、結果的にコスト増</li>
+                </ul>
+
+                <p class="modal-note">保守契約により、安心してビジネスに集中していただけます。月額5,800円で、これらのサービスがすべて含まれています。</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Flow Section -->
     <section class="area-flow">
@@ -488,6 +519,25 @@ $hide_lang_switch = true;
     // 初期表示で30万円プランをアクティブに
     document.addEventListener('DOMContentLoaded', function() {
         switchPlan('plan-30');
+    });
+
+    // 保守モーダル
+    function openMaintenanceModal() {
+        document.getElementById('maintenanceModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMaintenanceModal(event) {
+        if (event && event.target !== event.currentTarget) return;
+        document.getElementById('maintenanceModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // ESCキーでモーダルを閉じる
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeMaintenanceModal();
+        }
     });
     </script>
 </body>

@@ -157,7 +157,7 @@ $structured_data = '
                     </div>
                     <h3 class="pricing-card__name">カスタムプラン</h3>
                     <div class="pricing-card__price">
-                        ¥500万<span class="pricing-card__price-unit">〜1,200万</span>
+                        お見積り
                     </div>
                     <div class="pricing-card__target">
                         <i class="fas fa-building"></i> 本格的なWebシステム開発が必要な方向け
