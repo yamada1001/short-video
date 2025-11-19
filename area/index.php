@@ -37,7 +37,6 @@ $hide_lang_switch = true;
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <!-- Google Tag Manager -->
@@ -111,32 +110,8 @@ $hide_lang_switch = true;
             </p>
             <p class="map-hero__description">
                 大分県内全18市町村でホームページ制作に対応しています。<br>
-                下の3Dマップからエリアを選択してください。
+                下のエリア一覧からお選びください。
             </p>
-        </div>
-    </section>
-
-    <!-- 3D Map Section -->
-    <section class="map-section">
-        <div class="container">
-            <div class="map-container" id="mapContainer">
-                <canvas id="mapCanvas"></canvas>
-                <div class="map-tooltip" id="mapTooltip"></div>
-                <div class="map-loading" id="mapLoading">
-                    <i class="fas fa-spinner fa-spin"></i> マップを読み込み中...
-                </div>
-            </div>
-            <div class="map-controls">
-                <button class="map-control-btn" id="resetView" title="視点をリセット">
-                    <i class="fas fa-undo"></i>
-                </button>
-                <button class="map-control-btn" id="zoomIn" title="ズームイン">
-                    <i class="fas fa-plus"></i>
-                </button>
-                <button class="map-control-btn" id="zoomOut" title="ズームアウト">
-                    <i class="fas fa-minus"></i>
-                </button>
-            </div>
         </div>
     </section>
 
@@ -238,16 +213,6 @@ $hide_lang_switch = true;
 
     <?php include __DIR__ . '/../includes/footer.php'; ?>
 
-    <!-- Three.js & GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
-    <!-- エリアデータをJSに渡す -->
-    <script>
-        const areasData = <?php echo json_encode($areas_data['areas']); ?>;
-    </script>
-
     <script defer src="/assets/js/app.js"></script>
-    <script defer src="/assets/js/area-map.js"></script>
 </body>
 </html>
