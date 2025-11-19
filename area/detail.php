@@ -118,8 +118,8 @@ $hide_lang_switch = true;
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Service",
-                        "name": "保守・運用サポート",
-                        "description": "月額制の保守・更新サービス"
+                        "name": "保守・運用（必須）",
+                        "description": "必須の月額保守・更新サービス"
                     },
                     "price": "5800",
                     "priceCurrency": "JPY"
@@ -297,9 +297,9 @@ $hide_lang_switch = true;
                     <p class="price-card__note">※制作期間：約2〜4週間</p>
                 </div>
                 <div class="price-card price-card--highlight">
-                    <div class="price-card__badge">人気</div>
+                    <div class="price-card__badge">必須</div>
                     <div class="price-card__header">
-                        <h3 class="price-card__name">保守・運用プラン</h3>
+                        <h3 class="price-card__name">保守・運用</h3>
                         <div class="price-card__price">
                             <span class="price-card__amount">5,800円</span>
                             <span class="price-card__unit">/月（税別）</span>
@@ -347,7 +347,7 @@ $hide_lang_switch = true;
                 <div class="flow-step">
                     <div class="flow-step__number">5</div>
                     <h3 class="flow-step__title">公開・運用開始</h3>
-                    <p class="flow-step__text">最終確認後、公開。保守プランで継続サポートいたします。</p>
+                    <p class="flow-step__text">最終確認後、公開。保守契約で継続サポートいたします。</p>
                 </div>
             </div>
         </div>
