@@ -86,8 +86,8 @@ $categories = array_unique(array_column($all_posts, 'category'));
 
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap">
-    <link rel="stylesheet" href="../../assets/css/base.css">
-    <link rel="stylesheet" href="../../assets/css/pages/blog.css">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/pages/blog.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 </head>
@@ -231,19 +231,19 @@ $categories = array_unique(array_column($all_posts, 'category'));
                 </div>
                 <div class="footer__section">
                     <h3 class="footer__section-title">Services</h3>
-                    <a href="../../web-production.php" class="footer__link"><i class="fas fa-laptop-code"></i> Web Development</a>
-                    <a href="../../video-production.php" class="footer__link"><i class="fas fa-video"></i> Video Production</a>
-                    <a href="../../services.php" class="footer__link" style="margin-top: 8px; opacity: 0.8;"><i class="fas fa-arrow-right"></i> Service Details</a>
+                    <a href="/web-production.php" class="footer__link"><i class="fas fa-laptop-code"></i> Web Development</a>
+                    <a href="/video-production.php" class="footer__link"><i class="fas fa-video"></i> Video Production</a>
+                    <a href="/services.php" class="footer__link" style="margin-top: 8px; opacity: 0.8;"><i class="fas fa-arrow-right"></i> Service Details</a>
                 </div>
                 <div class="footer__section">
                     <h3 class="footer__section-title">Company</h3>
-                    <a href="../../about.php" class="footer__link"><i class="fas fa-info-circle"></i> About Us</a>
-                    <a href="../../recruit.php" class="footer__link"><i class="fas fa-handshake"></i> Recruitment</a>
-                    <a href="./" class="footer__link"><i class="fas fa-blog"></i> Blog</a>
-                    <a href="../../news/" class="footer__link"><i class="fas fa-newspaper"></i> News</a>
-                    <a href="../../contact.php" class="footer__link"><i class="fas fa-envelope"></i> Contact</a>
-                    <a href="../../privacy.php" class="footer__link"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
-                    <a href="../../sitemap-page.php" class="footer__link"><i class="fas fa-sitemap"></i> Sitemap</a>
+                    <a href="/about.php" class="footer__link"><i class="fas fa-info-circle"></i> About Us</a>
+                    <a href="/recruit.php" class="footer__link"><i class="fas fa-handshake"></i> Recruitment</a>
+                    <a href="/en/blog/" class="footer__link"><i class="fas fa-blog"></i> Blog</a>
+                    <a href="/news/" class="footer__link"><i class="fas fa-newspaper"></i> News</a>
+                    <a href="/contact.php" class="footer__link"><i class="fas fa-envelope"></i> Contact</a>
+                    <a href="/privacy.php" class="footer__link"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+                    <a href="/sitemap-page.php" class="footer__link"><i class="fas fa-sitemap"></i> Sitemap</a>
                 </div>
                 <div class="footer__section">
                     <h3 class="footer__section-title">Contact</h3>
@@ -257,7 +257,7 @@ $categories = array_unique(array_column($all_posts, 'category'));
                         <i class="fas fa-calendar-check" style="margin-right: 8px;"></i>Open: Every day
                     </p>
                     <div style="margin-top: 16px;">
-                        <a href="../../contact.php" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; font-size: 14px;">Contact Form</a>
+                        <a href="/contact.php" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; font-size: 14px;">Contact Form</a>
                     </div>
                 </div>
             </div>
@@ -267,5 +267,5 @@ $categories = array_unique(array_column($all_posts, 'category'));
         </div>
     </footer>
 
-    <script defer src="../../assets/js/app.js"></script>
+    <script defer src="/assets/js/app.js"></script>
 </html>

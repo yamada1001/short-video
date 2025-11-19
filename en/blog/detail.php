@@ -65,7 +65,7 @@ $toc = generateToc($post['content']);
 // Head variables
 $page_title = h($post['title']) . ' | Blog | Yojitsu';
 $page_description = h($post['excerpt']);
-$css_base_path = '../../';
+$css_base_path = '/';
 $additional_css = ['assets/css/pages/blog.css', 'assets/css/toc.css', 'assets/css/cookie-consent.css'];
 
 // OGP tags
@@ -245,13 +245,13 @@ if (!empty($post['thumbnail'])) {
     </div>
 
     <?php
-    $footer_base_path = '../../';
+    $footer_base_path = '/';
     include __DIR__ . '/../../includes/footer.php';
     ?>
 
     <?php include __DIR__ . '/../../includes/cookie-consent.php'; ?>
 
-    <script defer src="../../assets/js/app.js"></script>
-    <script defer src="../../assets/js/toc.js"></script>
+    <script defer src="/assets/js/app.js"></script>
+    <script defer src="/assets/js/toc.js"></script>
 </body>
 </html>
