@@ -1,6 +1,85 @@
 {
   "posts": [
     {
+      "id": 97,
+      "title": "AI画像生成の使い方｜DALL-E・Midjourney・Stable Diffusion徹底比較",
+      "slug": "ai-image-generation-guide",
+      "excerpt": "AI画像生成ツールの特徴と使い方を解説。DALL-E 3、Midjourney、Stable Diffusion、Adobe Fireflyを比較し、ビジネスでの活用方法を紹介します。",
+      "content": "data/article-97-full.html",
+      "publishedAt": "2025-11-19T14:00:00+09:00",
+      "updatedAt": "2025-11-19T14:00:00+09:00",
+      "category": "AI",
+      "tags": [
+        "AI画像生成",
+        "DALL-E",
+        "Midjourney",
+        "Stable Diffusion",
+        "AI",
+        "デザイン"
+      ],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 96,
+      "title": "AIで業務効率化する方法｜中小企業が今すぐ始められる活用ガイド",
+      "slug": "ai-business-efficiency-guide",
+      "excerpt": "ChatGPTやClaudeを使った業務効率化の方法を解説。メール作成、マーケティング、データ分析など、業務別の具体的な活用方法を紹介します。",
+      "content": "data/article-96-full.html",
+      "publishedAt": "2025-11-19T13:00:00+09:00",
+      "updatedAt": "2025-11-19T13:00:00+09:00",
+      "category": "AI",
+      "tags": [
+        "AI",
+        "業務効率化",
+        "ChatGPT",
+        "Claude",
+        "中小企業",
+        "DX"
+      ],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 95,
+      "title": "AIプロンプトの書き方｜ChatGPT・Claudeで効果を最大化する7つのテクニック",
+      "slug": "ai-prompt-writing-guide",
+      "excerpt": "ChatGPTやClaudeで効果的な回答を得るためのプロンプトの書き方を解説。役割設定、ステップバイステップ、Few-shotなど実践的なテクニックを紹介。",
+      "content": "data/article-95-full.html",
+      "publishedAt": "2025-11-19T12:00:00+09:00",
+      "updatedAt": "2025-11-19T12:00:00+09:00",
+      "category": "AI",
+      "tags": [
+        "AI",
+        "プロンプト",
+        "ChatGPT",
+        "Claude",
+        "プロンプトエンジニアリング"
+      ],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
+      "id": 94,
+      "title": "ChatGPT・Claude・Gemini徹底比較｜用途別おすすめAI選び方ガイド",
+      "slug": "chatgpt-claude-gemini-comparison",
+      "excerpt": "ChatGPT、Claude、Geminiの3大AIアシスタントを徹底比較。用途別のおすすめ、料金、強み・弱みを解説します。",
+      "content": "data/article-94-full.html",
+      "publishedAt": "2025-11-19T11:00:00+09:00",
+      "updatedAt": "2025-11-19T11:00:00+09:00",
+      "category": "AI",
+      "tags": [
+        "ChatGPT",
+        "Claude",
+        "Gemini",
+        "AI",
+        "比較",
+        "AIアシスタント"
+      ],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
       "id": 93,
       "title": "GitHubでWebサイトを管理する理由｜WordPressとの比較",
       "slug": "github-website-management-vs-wordpress",
