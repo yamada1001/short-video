@@ -108,11 +108,29 @@ $hide_lang_switch = true;
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Service",
-                        "name": "ホームページ制作",
-                        "description": "<?php echo h($area['name']); ?>の企業・店舗向けホームページ制作"
+                        "name": "10万円プラン",
+                        "description": "個人事業主の方や安く早く作りたい方向け"
                     },
                     "price": "100000",
                     "priceCurrency": "JPY"
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "30万円プラン",
+                        "description": "ブログ更新やWebからの集客を目指す方向け"
+                    },
+                    "price": "300000",
+                    "priceCurrency": "JPY"
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "カスタムプラン",
+                        "description": "本格的なWebシステム開発が必要な方向け"
+                    }
                 },
                 {
                     "@type": "Offer",
