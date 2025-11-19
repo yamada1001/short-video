@@ -1,0 +1,60 @@
+# 余日（Yojitsu）
+
+> 大分県を拠点とするデジタルマーケティング会社。Web制作・動画制作・SEO・広告運用を提供。
+
+## 会社情報
+
+- 屋号: 余日（Yojitsu）
+- 代表: 山田 蓮
+- 設立: 2025年5月14日
+- 所在地: 大分県
+- 登録番号: T9810094141774
+
+## サービス
+
+### Web制作
+ホームページ制作、ランディングページ制作、ECサイト構築、WordPress開発を提供。レスポンシブデザイン対応、SEO最適化済み。
+
+### 動画制作
+TikTok、Instagram Reels、YouTube Shorts向けのショート動画制作。企画から撮影・編集まで一貫対応。
+
+### SEO対策
+検索エンジン最適化、コンテンツマーケティング、内部SEO・外部SEO対策を提供。
+
+### 広告運用
+Google広告、SNS広告（Facebook、Instagram、TikTok）の運用代行。
+
+## 連絡先
+
+- Tel: 080-4692-9681
+- Email: yamada@yojitu.com
+- LINE: https://line.me/ti/p/CTOCx9YKjk
+- 営業時間: 10:00-22:00（年中無休）
+
+## 主要ページ
+
+- トップページ: https://yojitu.com/
+- サービス一覧: https://yojitu.com/services.php
+- Web制作: https://yojitu.com/web-production.php
+- 動画制作: https://yojitu.com/video-production.php
+- 会社概要: https://yojitu.com/about.php
+- ブログ: https://yojitu.com/blog/
+- お知らせ: https://yojitu.com/news/
+- お問い合わせ: https://yojitu.com/contact.php
+- プライバシーポリシー: https://yojitu.com/privacy.php
+- サイトマップ: https://yojitu.com/sitemap-page.php
+
+## English
+
+- Home: https://yojitu.com/en/
+- Services: https://yojitu.com/en/services.php
+- Blog: https://yojitu.com/en/blog/
+- Contact: https://yojitu.com/en/contact.php
+
+## ブログカテゴリ
+
+- AI: ChatGPT、Claude、Gemini、プロンプトエンジニアリング
+- SEO: 検索エンジン最適化、コンテンツマーケティング
+- ホームページ制作: Web制作、WordPress、デザイン
+- 広告: Google広告、SNS広告、リスティング広告
+- SNS: TikTok、Instagram、YouTube運用
