@@ -776,10 +776,24 @@
         grid-template-columns: 1fr;
     }
 
-    .price-cards,
-    .price-cards--three {
+    .price-cards {
         grid-template-columns: 1fr;
         max-width: 400px;
+    }
+
+    .price-cards--three {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        padding-bottom: 16px;
+        max-width: 100%;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .price-cards--three .price-card {
+        flex: 0 0 280px;
+        scroll-snap-align: start;
     }
 
     .maintenance-card__features {
