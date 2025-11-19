@@ -29,11 +29,11 @@ if (isset($post['content']) && strpos($post['content'], '.html') !== false) {
         $post['content'] = file_get_contents($content_file);
         // Apply mobile processing
         $post['content'] = processBlogContent($post['content']);
-        // Translate content
-        $post['content'] = translateContent($post['content'], $post['id'], $post['updatedAt']);
-    } else {
-        // Debug: show path information if file not found
-        $post['content'] = '<p style="color:red;">Debug: File not found</p><p>BASE_PATH: ' . BASE_PATH . '</p><p>Content file: ' . $content_file . '</p>';
+        // Translate content (skip if cache doesn't exist yet to show original)
+        $translated = translateContent($post['content'], $post['id'], $post['updatedAt']);
+        if (!empty($translated)) {
+            $post['content'] = $translated;
+        }
     }
 }
 
