@@ -825,6 +825,10 @@
         display: block;
     }
 
+    .price-cards--three .price-card--highlight {
+        margin-top: 16px;
+    }
+
     .maintenance-card__features {
         grid-template-columns: 1fr;
     }
