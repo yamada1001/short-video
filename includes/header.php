@@ -71,6 +71,7 @@ if ($isEnglish) {
                 <li class="nav__item nav__item--contact"><i class="fas fa-phone"></i><a href="tel:<?php echo CONTACT_TEL_LINK; ?>"><?php echo CONTACT_TEL; ?></a></li>
 
                 <!-- 言語切り替え -->
+                <?php if (empty($hide_lang_switch)): ?>
                 <li class="nav__item nav__item--lang">
                     <?php
                     if ($isEnglish) {
@@ -86,9 +87,11 @@ if ($isEnglish) {
                     }
                     ?>
                 </li>
+                <?php endif; ?>
             </ul>
 
             <!-- スマホ用言語切り替え（ハンバーガーの隣に常時表示） -->
+            <?php if (empty($hide_lang_switch)): ?>
             <div class="nav__lang-mobile">
                 <?php
                 if ($isEnglish) {
@@ -100,6 +103,7 @@ if ($isEnglish) {
                 }
                 ?>
             </div>
+            <?php endif; ?>
 
             <div class="hamburger" id="hamburger">
                 <span class="hamburger__line"></span>

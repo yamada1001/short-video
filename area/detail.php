@@ -29,9 +29,12 @@ if (!$area) {
 }
 
 // ページ情報
-$page_title = $area['name'] . 'のホームページ制作｜10万円〜格安・高品質｜余日';
+$page_title = '【10万円〜】' . $area['name'] . 'のホームページ制作｜格安・高品質｜余日';
 $page_description = $area['name'] . 'でホームページ制作をお探しなら余日へ。10万円からの格安料金で高品質なWebサイトを制作。' . $area['description'];
 $page_keywords = implode(',', $area['keywords']);
+
+// エリアページでは英語ボタンを非表示
+$hide_lang_switch = true;
 ?>
 <!DOCTYPE html>
 <html lang="ja">

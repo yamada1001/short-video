@@ -1,63 +1,74 @@
-/* Area Pages CSS */
+/* Area Pages CSS - 無印良品スタイルに統一 */
 
 /* ===== Common Styles ===== */
 .price-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    background: var(--color-natural-brown);
     color: #fff;
     padding: 8px 16px;
     border-radius: 4px;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     margin-right: 8px;
 }
 
 .section-title {
     text-align: center;
-    font-size: 1.75rem;
-    font-weight: 700;
+    font-size: 1.5rem;
+    font-weight: 500;
     margin-bottom: 40px;
-    color: #333;
+    color: var(--color-charcoal);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--color-natural-brown);
+    margin: 16px auto 0;
 }
 
 /* ===== Map Hero ===== */
 .map-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff;
+    background: var(--color-off-white);
+    color: var(--color-charcoal);
     padding: 80px 0 60px;
     text-align: center;
+    border-bottom: 1px solid var(--color-light-gray);
 }
 
 .map-hero__title {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 500;
     margin-bottom: 20px;
 }
 
 .map-hero__sub {
     display: block;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 400;
-    opacity: 0.9;
+    color: var(--color-natural-brown);
     margin-bottom: 8px;
 }
 
 .map-hero__price {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     margin-bottom: 16px;
 }
 
 .map-hero__description {
-    font-size: 1rem;
-    opacity: 0.9;
+    font-size: 0.95rem;
+    color: #666;
     line-height: 1.8;
 }
 
 /* ===== Area Hero ===== */
 .area-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff;
+    background: var(--color-off-white);
+    color: var(--color-charcoal);
     padding: 60px 0;
+    border-bottom: 1px solid var(--color-light-gray);
 }
 
 .area-hero .breadcrumb {
@@ -67,25 +78,26 @@
 .area-hero .breadcrumb__link,
 .area-hero .breadcrumb__separator,
 .area-hero .breadcrumb__current {
-    color: rgba(255, 255, 255, 0.8);
+    color: #666;
     font-size: 0.875rem;
 }
 
 .area-hero .breadcrumb__link:hover {
-    color: #fff;
+    color: var(--color-natural-brown);
 }
 
 .area-hero__title {
-    font-size: 2.25rem;
-    font-weight: 700;
+    font-size: 1.75rem;
+    font-weight: 500;
     margin-bottom: 16px;
-    line-height: 1.3;
+    line-height: 1.4;
 }
 
 .area-hero__location {
     display: block;
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-natural-brown);
 }
 
 .area-hero__service {
@@ -93,7 +105,7 @@
 }
 
 .area-hero__price {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
@@ -103,9 +115,9 @@
 }
 
 .area-hero__description {
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.8;
-    opacity: 0.95;
+    color: #666;
     margin-bottom: 24px;
 }
 
@@ -118,17 +130,17 @@
 /* ===== 3D Map Section ===== */
 .map-section {
     padding: 60px 0;
-    background: #f8f9fa;
+    background: #fff;
 }
 
 .map-container {
     position: relative;
     width: 100%;
     height: 500px;
-    background: #1a1a2e;
-    border-radius: 12px;
+    background: var(--color-charcoal);
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 #mapCanvas {
@@ -143,10 +155,10 @@
 
 .map-tooltip {
     position: absolute;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(74, 74, 74, 0.95);
     color: #fff;
     padding: 10px 16px;
-    border-radius: 6px;
+    border-radius: 4px;
     font-size: 0.875rem;
     pointer-events: none;
     opacity: 0;
@@ -181,9 +193,9 @@
     width: 40px;
     height: 40px;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     background: rgba(255, 255, 255, 0.9);
-    color: #333;
+    color: var(--color-charcoal);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -199,6 +211,7 @@
 /* ===== Area List Section ===== */
 .area-list-section {
     padding: 80px 0;
+    background: #fff;
 }
 
 .area-category {
@@ -210,32 +223,32 @@
 }
 
 .area-category__title {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.125rem;
+    font-weight: 500;
     margin-bottom: 20px;
-    color: #333;
+    color: var(--color-charcoal);
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
 .area-category__title i {
-    color: #667eea;
+    color: var(--color-natural-brown);
 }
 
 .area-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
 }
 
 .area-card {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 16px;
     background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    border: 1px solid var(--color-light-gray);
+    border-radius: 4px;
     text-decoration: none;
     color: inherit;
     transition: all 0.2s;
@@ -243,29 +256,28 @@
 }
 
 .area-card:hover {
-    border-color: #667eea;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
-    transform: translateY(-2px);
+    border-color: var(--color-natural-brown);
+    box-shadow: 0 2px 8px rgba(139, 115, 85, 0.15);
 }
 
 .area-card__name {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 500;
     margin-bottom: 4px;
-    color: #333;
+    color: var(--color-charcoal);
 }
 
 .area-card__population {
-    font-size: 0.8rem;
-    color: #666;
+    font-size: 0.75rem;
+    color: #888;
 }
 
 .area-card__arrow {
     position: absolute;
-    right: 16px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #667eea;
+    color: var(--color-natural-brown);
     opacity: 0;
     transition: opacity 0.2s;
 }
@@ -278,45 +290,45 @@
 .area-features,
 .map-features {
     padding: 80px 0;
-    background: #f8f9fa;
+    background: var(--color-off-white);
 }
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 24px;
 }
 
 .feature-card {
     background: #fff;
     padding: 32px 24px;
-    border-radius: 12px;
+    border-radius: 4px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--color-light-gray);
 }
 
 .feature-card__icon {
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
     margin: 0 auto 16px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: var(--color-natural-brown);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .feature-card__title {
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 500;
     margin-bottom: 12px;
-    color: #333;
+    color: var(--color-charcoal);
 }
 
 .feature-card__text {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #666;
     line-height: 1.7;
 }
@@ -324,6 +336,7 @@
 /* ===== Area Info Section ===== */
 .area-info {
     padding: 80px 0;
+    background: #fff;
 }
 
 .area-info__content {
@@ -341,14 +354,15 @@
 .area-info__table td {
     padding: 16px;
     text-align: left;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--color-light-gray);
+    font-size: 0.9rem;
 }
 
 .area-info__table th {
     width: 30%;
-    font-weight: 600;
-    background: #f8f9fa;
-    color: #333;
+    font-weight: 500;
+    background: var(--color-off-white);
+    color: var(--color-charcoal);
 }
 
 .area-features-list {
@@ -361,18 +375,18 @@
 }
 
 .area-features-list li {
-    background: #667eea;
+    background: var(--color-natural-brown);
     color: #fff;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 0.85rem;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 0.8rem;
 }
 
 .area-info__needs h3 {
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 500;
     margin-bottom: 16px;
-    color: #333;
+    color: var(--color-charcoal);
 }
 
 .needs-list {
@@ -383,40 +397,41 @@
 
 .needs-list li {
     padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--color-light-gray);
     display: flex;
     align-items: center;
     gap: 12px;
+    font-size: 0.9rem;
 }
 
 .needs-list li i {
-    color: #27ae60;
+    color: var(--color-natural-brown);
 }
 
 /* ===== Price Section ===== */
 .area-price {
     padding: 80px 0;
-    background: #f8f9fa;
+    background: var(--color-off-white);
 }
 
 .price-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 24px;
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
 .price-card {
     background: #fff;
-    border-radius: 12px;
+    border-radius: 4px;
     padding: 32px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--color-light-gray);
     position: relative;
 }
 
 .price-card--highlight {
-    border: 2px solid #667eea;
+    border: 2px solid var(--color-natural-brown);
 }
 
 .price-card__badge {
@@ -424,26 +439,26 @@
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    background: #667eea;
+    background: var(--color-natural-brown);
     color: #fff;
     padding: 4px 16px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 500;
 }
 
 .price-card__header {
     text-align: center;
     margin-bottom: 24px;
     padding-bottom: 24px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--color-light-gray);
 }
 
 .price-card__name {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.125rem;
+    font-weight: 500;
     margin-bottom: 12px;
-    color: #333;
+    color: var(--color-charcoal);
 }
 
 .price-card__price {
@@ -454,13 +469,13 @@
 }
 
 .price-card__amount {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #e74c3c;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--color-natural-brown);
 }
 
 .price-card__unit {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #666;
 }
 
@@ -475,15 +490,15 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .price-card__features li i {
-    color: #27ae60;
+    color: var(--color-natural-brown);
 }
 
 .price-card__note {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: #888;
     text-align: center;
 }
@@ -491,6 +506,7 @@
 /* ===== Flow Section ===== */
 .area-flow {
     padding: 80px 0;
+    background: #fff;
 }
 
 .flow-steps {
@@ -502,35 +518,35 @@
 
 .flow-step {
     flex: 1;
-    min-width: 180px;
-    max-width: 200px;
+    min-width: 160px;
+    max-width: 180px;
     text-align: center;
     position: relative;
 }
 
 .flow-step__number {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 16px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 12px;
+    background: var(--color-natural-brown);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.125rem;
+    font-weight: 500;
 }
 
 .flow-step__title {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 500;
     margin-bottom: 8px;
-    color: #333;
+    color: var(--color-charcoal);
 }
 
 .flow-step__text {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #666;
     line-height: 1.6;
 }
@@ -539,23 +555,23 @@
 .area-cta,
 .map-cta {
     padding: 80px 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff;
+    background: var(--color-beige);
+    color: var(--color-charcoal);
     text-align: center;
 }
 
 .area-cta__title,
 .map-cta__title {
-    font-size: 1.75rem;
-    font-weight: 700;
+    font-size: 1.5rem;
+    font-weight: 500;
     margin-bottom: 16px;
 }
 
 .area-cta__text,
 .map-cta__text {
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin-bottom: 32px;
-    opacity: 0.95;
+    color: #555;
     line-height: 1.8;
 }
 
@@ -569,12 +585,13 @@
 
 .btn-outline {
     background: transparent;
-    border: 2px solid #fff;
-    color: #fff;
+    border: 2px solid var(--color-charcoal);
+    color: var(--color-charcoal);
 }
 
 .btn-outline:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-charcoal);
+    color: #fff;
 }
 
 .btn-line {
@@ -589,32 +606,32 @@
 /* ===== Other Areas Section ===== */
 .other-areas {
     padding: 60px 0;
-    background: #f8f9fa;
+    background: var(--color-off-white);
 }
 
 .areas-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 24px;
 }
 
 .area-link {
     display: inline-block;
-    padding: 8px 16px;
+    padding: 6px 12px;
     background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    color: #333;
+    border: 1px solid var(--color-light-gray);
+    border-radius: 3px;
+    color: var(--color-charcoal);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: all 0.2s;
 }
 
 .area-link:hover {
-    background: #667eea;
-    border-color: #667eea;
+    background: var(--color-natural-brown);
+    border-color: var(--color-natural-brown);
     color: #fff;
 }
 
@@ -623,9 +640,10 @@
 }
 
 .areas-map-link {
-    color: #667eea;
+    color: var(--color-natural-brown);
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.9rem;
 }
 
 .areas-map-link:hover {
@@ -636,7 +654,7 @@
 @media (max-width: 768px) {
     .map-hero__title,
     .area-hero__title {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     .map-container {

@@ -20,8 +20,11 @@ $areas_json = file_get_contents(__DIR__ . '/data/areas.json');
 $areas_data = json_decode($areas_json, true);
 
 // ページ情報
-$page_title = '大分県対応エリア｜ホームページ制作10万円〜｜余日';
+$page_title = '【10万円〜】大分県対応エリア｜ホームページ制作｜余日';
 $page_description = '大分県全域でホームページ制作に対応。大分市、別府市、中津市、日田市など全18市町村をカバー。10万円からの格安料金で高品質なWebサイトを制作します。';
+
+// エリアページでは英語ボタンを非表示
+$hide_lang_switch = true;
 ?>
 <!DOCTYPE html>
 <html lang="ja">
