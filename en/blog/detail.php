@@ -28,8 +28,10 @@ if (isset($post['content']) && strpos($post['content'], '.html') !== false) {
         $post['content'] = file_get_contents($content_file);
         // Apply mobile processing
         $post['content'] = processBlogContent($post['content']);
-        // Translate content
-        $post['content'] = translateContent($post['content'], $post['id'], $post['updatedAt']);
+        // Translate content (show Japanese if translation fails)
+        $original_content = $post['content'];
+        $translated = translateContent($post['content'], $post['id'], $post['updatedAt']);
+        $post['content'] = !empty($translated) ? $translated : $original_content;
     }
 }
 
