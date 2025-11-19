@@ -173,9 +173,9 @@ $inline_styles = <<<'EOD'
             gap: var(--spacing-md);
         }
 
-        /* モバイル用タブ切り替え */
+        /* タブ切り替え */
         .service-tabs {
-            display: none;
+            display: flex;
             justify-content: center;
             gap: 8px;
             margin-bottom: 24px;
@@ -196,6 +196,15 @@ $inline_styles = <<<'EOD'
         .service-tab.active {
             background: var(--color-natural-brown);
             color: #fff;
+        }
+
+        /* カード切り替え */
+        .services-grid.has-tabs .service-card {
+            display: none;
+        }
+
+        .services-grid.has-tabs .service-card.active {
+            display: block;
         }
 
         .compare-section {
@@ -258,18 +267,6 @@ $inline_styles = <<<'EOD'
         @media (max-width: 768px) {
             .services-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .service-tabs {
-                display: flex;
-            }
-
-            .services-grid.has-tabs .service-card {
-                display: none;
-            }
-
-            .services-grid.has-tabs .service-card.active {
-                display: block;
             }
 
             .compare-table__row {

@@ -342,7 +342,7 @@ $hide_lang_switch = true;
                         <li><i class="fas fa-check"></i> 軽量CMS or 静的サイト生成</li>
                         <li><i class="fas fa-check"></i> Google Analytics設定・解説</li>
                         <li><i class="fas fa-check"></i> 詳細なSEO対策</li>
-                        <li><i class="fas fa-check"></i> <a href="/blog/detail.php?slug=entity-seo-business-guide" class="feature-link">構造化データ対策</a></li>
+                        <li><i class="fas fa-check"></i> <a href="/blog/detail.php?slug=structured-data-seo-guide" class="feature-link">構造化データ対策</a></li>
                         <li><i class="fas fa-check"></i> <a href="/blog/detail.php?slug=what-is-llms-txt" class="feature-link">LLMS.txt対策</a></li>
                         <li><i class="fas fa-check"></i> SNS連携設定</li>
                     </ul>

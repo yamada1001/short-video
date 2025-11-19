@@ -383,6 +383,32 @@
     margin-top: var(--spacing-xl);
 }
 
+/* モバイル用プラン切り替えタブ */
+.plan-tabs {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.plan-tab {
+    padding: 10px 16px;
+    border: 1px solid var(--color-natural-brown);
+    background: transparent;
+    color: var(--color-natural-brown);
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.plan-tab.active {
+    background: var(--color-natural-brown);
+    color: #fff;
+}
+
 /* レスポンシブ */
 @media (max-width: 768px) {
     .page-header__title {
@@ -405,5 +431,18 @@
 
     .story-content h3 {
         font-size: 20px;
+    }
+
+    /* モバイルでタブ表示 */
+    .plan-tabs {
+        display: flex;
+    }
+
+    .pricing-grid.has-tabs .pricing-card {
+        display: none;
+    }
+
+    .pricing-grid.has-tabs .pricing-card.active {
+        display: block;
     }
 }

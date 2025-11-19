@@ -1,0 +1,400 @@
+<article class="blog-article">
+<section id="section1">
+    <h2><i class="fas fa-code"></i> 構造化データとは？</h2>
+
+    <p>構造化データとは、Webページの内容を検索エンジンが理解しやすい形式で記述したものです。<strong>schema.org</strong>という共通の語彙を使って、「このページは何について書かれているのか」「この会社の住所はどこか」「この商品の価格はいくらか」といった情報を明確に伝えることができます。</p>
+
+    <div class="info-box">
+        <h4><i class="fas fa-lightbulb"></i> わかりやすく例えると</h4>
+        <p>人間は文脈から「〒870-0000 大分市...」が住所だと理解できますが、検索エンジンはそれが住所なのか電話番号なのか判断できません。構造化データは「これは住所です」「これは電話番号です」とラベルを付けて教えてあげる仕組みです。</p>
+    </div>
+
+    <h3>構造化データの記述形式</h3>
+    <p>構造化データには主に3つの記述形式がありますが、<strong>JSON-LD形式</strong>がGoogleも推奨する現在の主流です。</p>
+
+    <ul>
+        <li><strong>JSON-LD（推奨）：</strong>HTMLとは別にscriptタグ内に記述。最も読みやすく管理しやすい</li>
+        <li><strong>Microdata：</strong>HTML要素に属性を追加する形式。やや複雑</li>
+        <li><strong>RDFa：</strong>W3C標準だが、現在はあまり使われない</li>
+    </ul>
+
+    <div class="code-example">
+        <h4>JSON-LD形式の基本例（ローカルビジネス）</h4>
+        <pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "余日（Yojitsu）",
+  "telephone": "097-XXX-XXXX",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "大分県",
+    "addressCountry": "JP"
+  }
+}
+&lt;/script&gt;</code></pre>
+    </div>
+</section>
+
+<section id="section2">
+    <h2><i class="fas fa-chart-line"></i> 構造化データのSEO効果</h2>
+
+    <p>構造化データを実装することで、検索結果での表示が大きく変わります。これを<strong>リッチリザルト</strong>（リッチスニペット）と呼びます。</p>
+
+    <h3>リッチリザルトの例</h3>
+
+    <div class="feature-grid">
+        <div class="feature-item">
+            <h4><i class="fas fa-star"></i> 星評価（レビュー）</h4>
+            <p>商品やサービスの評価が星マークで表示され、クリック率が大幅に向上します。</p>
+        </div>
+
+        <div class="feature-item">
+            <h4><i class="fas fa-question-circle"></i> FAQ</h4>
+            <p>よくある質問が検索結果に直接表示され、ユーザーの疑問に即座に回答できます。</p>
+        </div>
+
+        <div class="feature-item">
+            <h4><i class="fas fa-bread-slice"></i> パンくずリスト</h4>
+            <p>サイト階層が検索結果に表示され、ユーザーがサイト構造を理解しやすくなります。</p>
+        </div>
+
+        <div class="feature-item">
+            <h4><i class="fas fa-calendar"></i> イベント</h4>
+            <p>日時、場所、チケット情報などがカード形式で目立つように表示されます。</p>
+        </div>
+    </div>
+
+    <div class="success-box">
+        <h4><i class="fas fa-chart-bar"></i> 期待できる効果</h4>
+        <ul>
+            <li><strong>クリック率（CTR）の向上：</strong>リッチリザルトは通常の検索結果より目立つため、クリックされやすい</li>
+            <li><strong>検索エンジンの理解度向上：</strong>ページ内容を正確に伝えることで、適切なクエリで表示されやすくなる</li>
+            <li><strong>音声検索への対応：</strong>構造化データがあると、音声アシスタントが情報を読み上げやすくなる</li>
+            <li><strong>AI Overview（SGE）対策：</strong>GoogleのAI回答で引用されやすくなる可能性がある</li>
+        </ul>
+    </div>
+
+    <div class="warning-box">
+        <h4><i class="fas fa-exclamation-triangle"></i> 注意点</h4>
+        <p>構造化データを実装しても、<strong>リッチリザルトが表示される保証はありません</strong>。Googleは独自の判断で表示を決定します。また、構造化データ自体は直接的なランキング要因ではありませんが、CTR向上による間接的な効果は期待できます。</p>
+    </div>
+</section>
+
+<section id="section3">
+    <h2><i class="fas fa-list"></i> 主な構造化データの種類</h2>
+
+    <p>ビジネスでよく使われる構造化データの種類を紹介します。</p>
+
+    <h3>1. LocalBusiness（ローカルビジネス）</h3>
+    <p>店舗や事務所など、実店舗を持つビジネスに最適です。Googleマップとの連携も期待できます。</p>
+
+    <div class="code-example">
+        <pre><code>{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "店舗名",
+  "image": "https://example.com/logo.png",
+  "telephone": "097-XXX-XXXX",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "大分市XX町1-2-3",
+    "addressLocality": "大分市",
+    "addressRegion": "大分県",
+    "postalCode": "870-0000",
+    "addressCountry": "JP"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 33.2382,
+    "longitude": 131.6126
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  }
+}</code></pre>
+    </div>
+
+    <h3>2. Product（商品）</h3>
+    <p>ECサイトや商品紹介ページで使用します。価格、在庫状況、レビューなどを表示できます。</p>
+
+    <div class="code-example">
+        <pre><code>{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "商品名",
+  "image": "https://example.com/product.jpg",
+  "description": "商品の説明文",
+  "brand": {
+    "@type": "Brand",
+    "name": "ブランド名"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "3000",
+    "priceCurrency": "JPY",
+    "availability": "https://schema.org/InStock"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "24"
+  }
+}</code></pre>
+    </div>
+
+    <h3>3. FAQPage（よくある質問）</h3>
+    <p>FAQページで使用します。検索結果にQ&Aが直接表示される可能性があります。</p>
+
+    <div class="code-example">
+        <pre><code>{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "料金はいくらですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "10万円からご利用いただけます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "制作期間はどのくらいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "通常1〜2ヶ月程度です。"
+      }
+    }
+  ]
+}</code></pre>
+    </div>
+
+    <h3>4. Article / BlogPosting（記事）</h3>
+    <p>ブログ記事やニュース記事で使用します。著者情報、公開日、更新日などを明示できます。</p>
+
+    <h3>5. BreadcrumbList（パンくずリスト）</h3>
+    <p>サイトの階層構造を検索エンジンに伝えます。検索結果でURLの代わりにパンくずが表示されます。</p>
+
+    <h3>6. Organization（組織）</h3>
+    <p>企業や団体の情報を記述します。ロゴ、ソーシャルリンク、連絡先などを含められます。</p>
+
+    <div class="link-box">
+        <p><i class="fas fa-external-link-alt"></i> <strong>参考：</strong><a href="https://schema.org/docs/full.html" target="_blank" rel="noopener">schema.org 全スキーマ一覧</a> - すべての構造化データ種類を確認できます</p>
+    </div>
+</section>
+
+<section id="section4">
+    <h2><i class="fas fa-tools"></i> 構造化データの実装方法</h2>
+
+    <h3>ステップ1：必要な構造化データを決める</h3>
+    <p>ページの種類に応じて、適切な構造化データを選びます。</p>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>ページの種類</th>
+                <th>推奨する構造化データ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>トップページ</td>
+                <td>Organization, LocalBusiness, WebSite</td>
+            </tr>
+            <tr>
+                <td>サービスページ</td>
+                <td>Service, Offer</td>
+            </tr>
+            <tr>
+                <td>ブログ記事</td>
+                <td>Article, BlogPosting, BreadcrumbList</td>
+            </tr>
+            <tr>
+                <td>商品ページ</td>
+                <td>Product, Offer, AggregateRating</td>
+            </tr>
+            <tr>
+                <td>FAQページ</td>
+                <td>FAQPage</td>
+            </tr>
+            <tr>
+                <td>お問い合わせ</td>
+                <td>ContactPage</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>ステップ2：JSON-LDを作成する</h3>
+    <p>schema.orgの仕様に沿って、JSON-LD形式でデータを作成します。</p>
+
+    <div class="tips-box">
+        <h4><i class="fas fa-magic"></i> 便利なツール</h4>
+        <ul>
+            <li><strong>Google構造化データマークアップ支援ツール：</strong>URLを入力してGUI上でマークアップできる</li>
+            <li><strong>Schema.org Generator：</strong>フォームに入力するだけでJSON-LDを生成</li>
+            <li><strong>ChatGPT / Claude：</strong>「〇〇の構造化データをJSON-LDで作成して」と依頼すると作成してくれる</li>
+        </ul>
+    </div>
+
+    <h3>ステップ3：HTMLに埋め込む</h3>
+    <p>作成したJSON-LDを、HTMLの<code>&lt;head&gt;</code>タグ内または<code>&lt;body&gt;</code>タグの最後に配置します。</p>
+
+    <div class="code-example">
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;ページタイトル&lt;/title&gt;
+
+    &lt;!-- 構造化データ --&gt;
+    &lt;script type="application/ld+json"&gt;
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "店舗名",
+      ...
+    }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    ...
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+
+    <h3>ステップ4：テストと検証</h3>
+    <p>実装後は必ずテストツールで確認します。</p>
+</section>
+
+<section id="section5">
+    <h2><i class="fas fa-check-double"></i> 構造化データのテスト方法</h2>
+
+    <h3>1. リッチリザルトテスト（Google公式）</h3>
+    <p>URLまたはコードを入力して、リッチリザルトが表示される可能性があるかをテストします。</p>
+    <p><i class="fas fa-external-link-alt"></i> <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">リッチリザルトテスト</a></p>
+
+    <h3>2. スキーママークアップ検証ツール（Schema.org）</h3>
+    <p>構造化データの文法エラーをチェックします。Googleツールより詳細なエラー情報が得られます。</p>
+    <p><i class="fas fa-external-link-alt"></i> <a href="https://validator.schema.org/" target="_blank" rel="noopener">Schema Markup Validator</a></p>
+
+    <h3>3. Google Search Console</h3>
+    <p>実際にGoogleがどのように構造化データを認識しているかを確認できます。エラーや警告がある場合は通知されます。</p>
+
+    <div class="warning-box">
+        <h4><i class="fas fa-bug"></i> よくあるエラーと対処法</h4>
+        <ul>
+            <li><strong>「必須プロパティがありません」：</strong>必須項目（name, imageなど）が不足している → 追加する</li>
+            <li><strong>「無効なURL」：</strong>URLが不正または404 → 正しいURLに修正</li>
+            <li><strong>「画像サイズが小さすぎます」：</strong>Productなどは最低50x50px必要 → 大きい画像を使用</li>
+            <li><strong>「日付形式が無効」：</strong>ISO 8601形式（2025-11-20T10:00:00+09:00）で記述</li>
+        </ul>
+    </div>
+</section>
+
+<section id="section6">
+    <h2><i class="fas fa-exclamation-circle"></i> 構造化データでよくある間違い</h2>
+
+    <div class="mistake-list">
+        <div class="mistake-item">
+            <h4><i class="fas fa-times-circle"></i> 1. ページ内容と一致しない情報を記述</h4>
+            <p>構造化データの内容は、実際のページに表示されている情報と一致している必要があります。例えば、ページに表示されていない価格を構造化データに記述すると、スパムとみなされる可能性があります。</p>
+        </div>
+
+        <div class="mistake-item">
+            <h4><i class="fas fa-times-circle"></i> 2. 過剰なマークアップ</h4>
+            <p>ページに関係のない構造化データを大量に追加しても効果はありません。そのページに関連するものだけを実装しましょう。</p>
+        </div>
+
+        <div class="mistake-item">
+            <h4><i class="fas fa-times-circle"></i> 3. 自己評価のレビュー</h4>
+            <p>自社サービスに自分で5つ星をつけるなど、虚偽のレビューを構造化データに記述することはGoogleのガイドライン違反です。</p>
+        </div>
+
+        <div class="mistake-item">
+            <h4><i class="fas fa-times-circle"></i> 4. 古い情報の放置</h4>
+            <p>価格変更、営業時間変更などがあった場合、構造化データも更新する必要があります。定期的にチェックしましょう。</p>
+        </div>
+
+        <div class="mistake-item">
+            <h4><i class="fas fa-times-circle"></i> 5. JSON文法エラー</h4>
+            <p>カンマの付け忘れ、閉じカッコの不足などの文法エラーがあると、構造化データは完全に無視されます。必ずテストツールで検証しましょう。</p>
+        </div>
+    </div>
+</section>
+
+<section id="section7">
+    <h2><i class="fas fa-rocket"></i> 構造化データ実装のベストプラクティス</h2>
+
+    <div class="best-practices">
+        <div class="practice-item">
+            <h4><i class="fas fa-check"></i> 必須プロパティを確実に含める</h4>
+            <p>各スキーマタイプには必須プロパティがあります。リッチリザルトテストで「必須」と表示される項目は必ず含めましょう。</p>
+        </div>
+
+        <div class="practice-item">
+            <h4><i class="fas fa-check"></i> 推奨プロパティも可能な限り追加</h4>
+            <p>「推奨」と表示されるプロパティを追加すると、より詳細な情報が提供でき、リッチリザルトの表示確率が上がります。</p>
+        </div>
+
+        <div class="practice-item">
+            <h4><i class="fas fa-check"></i> 複数の構造化データを組み合わせる</h4>
+            <p>1ページに複数の構造化データを実装できます。例：Organization + BreadcrumbList + FAQPage</p>
+        </div>
+
+        <div class="practice-item">
+            <h4><i class="fas fa-check"></i> 定期的に検証する</h4>
+            <p>Googleのガイドラインは変更されることがあります。Search Consoleで定期的にエラーをチェックしましょう。</p>
+        </div>
+
+        <div class="practice-item">
+            <h4><i class="fas fa-check"></i> 具体的で正確な情報を記述</h4>
+            <p>曖昧な情報より、具体的な情報の方がリッチリザルトに表示されやすくなります。</p>
+        </div>
+    </div>
+</section>
+
+<section id="section8">
+    <h2><i class="fas fa-flag-checkered"></i> まとめ</h2>
+
+    <p>構造化データは、検索エンジンにページ内容を正確に伝えるための重要な技術です。適切に実装することで、リッチリザルトによる視認性向上、クリック率の改善、音声検索やAI検索への対応が期待できます。</p>
+
+    <div class="summary-box">
+        <h4>この記事のポイント</h4>
+        <ol>
+            <li><strong>構造化データとは：</strong>検索エンジンが理解しやすい形式でページ内容を記述したもの</li>
+            <li><strong>形式：</strong>JSON-LD形式がGoogleも推奨する主流</li>
+            <li><strong>効果：</strong>リッチリザルト表示によるCTR向上、AI検索対策</li>
+            <li><strong>主な種類：</strong>LocalBusiness、Product、FAQPage、Articleなど</li>
+            <li><strong>実装手順：</strong>種類を決める → 作成 → 埋め込む → テスト</li>
+            <li><strong>注意点：</strong>ページ内容と一致させる、文法エラーに注意、定期的に更新</li>
+        </ol>
+    </div>
+
+    <div class="action-box">
+        <h4><i class="fas fa-tasks"></i> 次のアクション</h4>
+        <ol>
+            <li>自社サイトの各ページに必要な構造化データの種類を洗い出す</li>
+            <li>まずはトップページにLocalBusinessまたはOrganizationを実装</li>
+            <li>リッチリザルトテストで検証</li>
+            <li>Google Search Consoleでエラーがないか確認</li>
+            <li>他のページにも順次実装を広げる</li>
+        </ol>
+    </div>
+
+    <div class="related-articles">
+        <h3><i class="fas fa-book-open"></i> 関連記事</h3>
+        <ul>
+            <li><a href="detail.php?slug=what-is-llms-txt"><i class="fas fa-robot"></i> llms.txtとは？AI時代の新しいSEO対策</a></li>
+            <li><a href="detail.php?slug=entity-seo-business-guide"><i class="fas fa-project-diagram"></i> エンティティSEOとは？Googleナレッジグラフを活用した成長戦略</a></li>
+            <li><a href="detail.php?slug=aio-implementation-guide"><i class="fas fa-brain"></i> AIO対策の始め方｜5ステップ実践ガイド</a></li>
+        </ul>
+    </div>
+
+    <?php include __DIR__ . "/../includes/article-cta.php"; ?>
+</section>
+</article>

@@ -1,6 +1,26 @@
 {
   "posts": [
     {
+      "id": 100,
+      "title": "構造化データとは？SEO効果と実装方法を徹底解説【2025年最新版】",
+      "slug": "structured-data-seo-guide",
+      "excerpt": "構造化データ（Schema.org）のSEO効果と実装方法を解説。LocalBusiness、Product、FAQPageなど主要タイプの書き方、テストツール、よくあるミスまで網羅的に紹介します。",
+      "content": "data/article-100-full.html",
+      "publishedAt": "2025-11-20T10:00:00+09:00",
+      "updatedAt": "2025-11-20T10:00:00+09:00",
+      "category": "SEO",
+      "tags": [
+        "構造化データ",
+        "Schema.org",
+        "SEO",
+        "JSON-LD",
+        "リッチリザルト",
+        "Google検索"
+      ],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
       "id": 99,
       "title": "Gemini 3の新機能と性能比較【GPT-5.1・Claude 4.5との違い】",
       "slug": "gemini-3-features-comparison",

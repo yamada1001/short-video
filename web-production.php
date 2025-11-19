@@ -91,9 +91,16 @@ $structured_data = '
                 <p><i class="fas fa-info-circle"></i> 予算が決まっていない方も、お気軽にご相談ください。最適なプランをご提案いたします。</p>
             </div>
 
-            <div class="pricing-grid">
+            <!-- モバイル用タブ -->
+            <div class="plan-tabs">
+                <button class="plan-tab active" data-plan="plan-10" onclick="switchPlan('plan-10')">10万円</button>
+                <button class="plan-tab" data-plan="plan-30" onclick="switchPlan('plan-30')">30万円</button>
+                <button class="plan-tab" data-plan="plan-custom" onclick="switchPlan('plan-custom')">カスタム</button>
+            </div>
+
+            <div class="pricing-grid has-tabs">
                 <!-- 10万円プラン -->
-                <div class="pricing-card">
+                <div class="pricing-card active" data-plan="plan-10">
                     <div class="pricing-card__icon">
                         <i class="fas fa-rocket"></i>
                     </div>
@@ -121,7 +128,7 @@ $structured_data = '
                 </div>
 
                 <!-- 30万円プラン -->
-                <div class="pricing-card pricing-card--featured">
+                <div class="pricing-card pricing-card--featured" data-plan="plan-30">
                     <div class="pricing-card__badge">おすすめ</div>
                     <div class="pricing-card__icon">
                         <i class="fas fa-star"></i>
@@ -151,7 +158,7 @@ $structured_data = '
                 </div>
 
                 <!-- カスタムプラン -->
-                <div class="pricing-card">
+                <div class="pricing-card" data-plan="plan-custom">
                     <div class="pricing-card__icon">
                         <i class="fas fa-crown"></i>
                     </div>
@@ -424,6 +431,25 @@ $structured_data = '
 
     <script defer src="assets/js/app.js"></script>
     <script defer src="assets/js/web-production.js"></script>
+
+    <script>
+    function switchPlan(planId) {
+        // タブの切り替え
+        document.querySelectorAll('.plan-tab').forEach(tab => {
+            tab.classList.remove('active');
+            if (tab.dataset.plan === planId) {
+                tab.classList.add('active');
+            }
+        });
+        // カードの切り替え
+        document.querySelectorAll('.pricing-card[data-plan]').forEach(card => {
+            card.classList.remove('active');
+            if (card.dataset.plan === planId) {
+                card.classList.add('active');
+            }
+        });
+    }
+    </script>
 
     <?php include __DIR__ . '/includes/cookie-consent.php'; ?>
 
