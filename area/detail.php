@@ -277,35 +277,80 @@ $hide_lang_switch = true;
     <section class="area-price">
         <div class="container">
             <h2 class="section-title">料金プラン</h2>
-            <div class="price-cards">
+            <p class="section-note"><i class="fas fa-info-circle"></i> 予算が決まっていない方も、お気軽にご相談ください。最適なプランをご提案いたします。</p>
+
+            <div class="price-cards price-cards--three">
+                <!-- 10万円プラン -->
                 <div class="price-card">
                     <div class="price-card__header">
-                        <h3 class="price-card__name">スタンダードプラン</h3>
+                        <h3 class="price-card__name">10万円プラン</h3>
                         <div class="price-card__price">
                             <span class="price-card__amount">10万円</span>
                             <span class="price-card__unit">〜（税別）</span>
                         </div>
                     </div>
+                    <p class="price-card__target"><i class="fas fa-user"></i> 個人事業主の方や安く早く作りたい方向け</p>
                     <ul class="price-card__features">
-                        <li><i class="fas fa-check"></i> トップページ + 下層5ページ</li>
-                        <li><i class="fas fa-check"></i> スマホ・タブレット対応</li>
+                        <li><i class="fas fa-check"></i> 1〜5ページのシンプルなサイト</li>
+                        <li><i class="fas fa-check"></i> レスポンシブデザイン（スマホ対応）</li>
+                        <li><i class="fas fa-check"></i> 基本的なSEO対策</li>
                         <li><i class="fas fa-check"></i> お問い合わせフォーム</li>
-                        <li><i class="fas fa-check"></i> SEO基本設定</li>
-                        <li><i class="fas fa-check"></i> Googleマップ埋め込み</li>
-                        <li><i class="fas fa-check"></i> SNSリンク設置</li>
+                        <li><i class="fas fa-check"></i> SSL証明書設定</li>
+                        <li class="disabled"><i class="fas fa-times"></i> ブログ機能は含まれません</li>
                     </ul>
-                    <p class="price-card__note">※制作期間：約2〜4週間</p>
                 </div>
+
+                <!-- 30万円プラン -->
                 <div class="price-card price-card--highlight">
-                    <div class="price-card__badge">必須</div>
+                    <div class="price-card__badge">おすすめ</div>
                     <div class="price-card__header">
-                        <h3 class="price-card__name">保守・運用</h3>
+                        <h3 class="price-card__name">30万円プラン</h3>
                         <div class="price-card__price">
-                            <span class="price-card__amount">5,800円</span>
-                            <span class="price-card__unit">/月（税別）</span>
+                            <span class="price-card__amount">30万円</span>
+                            <span class="price-card__unit">〜（税別）</span>
                         </div>
                     </div>
+                    <p class="price-card__target"><i class="fas fa-users"></i> ブログ更新やWebからの集客を目指す方向け</p>
                     <ul class="price-card__features">
+                        <li><i class="fas fa-check"></i> 10万円プランの全機能</li>
+                        <li><i class="fas fa-check"></i> ブログ・お知らせ機能</li>
+                        <li><i class="fas fa-check"></i> 軽量CMS or 静的サイト生成</li>
+                        <li><i class="fas fa-check"></i> Google Analytics設定・解説</li>
+                        <li><i class="fas fa-check"></i> 詳細なSEO対策</li>
+                        <li><i class="fas fa-check"></i> SNS連携設定</li>
+                    </ul>
+                </div>
+
+                <!-- カスタムプラン -->
+                <div class="price-card">
+                    <div class="price-card__header">
+                        <h3 class="price-card__name">カスタムプラン</h3>
+                        <div class="price-card__price">
+                            <span class="price-card__amount">500万円</span>
+                            <span class="price-card__unit">〜1,200万円</span>
+                        </div>
+                    </div>
+                    <p class="price-card__target"><i class="fas fa-building"></i> 本格的なWebシステム開発が必要な方向け</p>
+                    <ul class="price-card__features">
+                        <li><i class="fas fa-check"></i> 完全オリジナルデザイン</li>
+                        <li><i class="fas fa-check"></i> オリジナルCMS開発</li>
+                        <li><i class="fas fa-check"></i> 会員機能・決済機能</li>
+                        <li><i class="fas fa-check"></i> 複雑なデータベース設計</li>
+                        <li><i class="fas fa-check"></i> API連携・外部システム統合</li>
+                        <li><i class="fas fa-check"></i> 継続的な保守・運用サポート</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 保守・運用（必須） -->
+            <div class="maintenance-section">
+                <h3 class="maintenance-title"><i class="fas fa-shield-alt"></i> 保守・運用（必須）</h3>
+                <div class="maintenance-card">
+                    <div class="maintenance-card__price">
+                        <span class="maintenance-card__amount">月額 5,800円</span>
+                        <span class="maintenance-card__unit">（税別）</span>
+                    </div>
+                    <ul class="maintenance-card__features">
                         <li><i class="fas fa-check"></i> テキスト・画像の変更し放題</li>
                         <li><i class="fas fa-check"></i> ページ追加・修正対応</li>
                         <li><i class="fas fa-check"></i> サーバー・ドメイン管理</li>
@@ -313,7 +358,7 @@ $hide_lang_switch = true;
                         <li><i class="fas fa-check"></i> アクセス解析レポート</li>
                         <li><i class="fas fa-check"></i> 電話・メールサポート</li>
                     </ul>
-                    <p class="price-card__note">※最低契約期間：6ヶ月</p>
+                    <p class="maintenance-card__note">※全プランで保守契約は必須です。最低契約期間：6ヶ月</p>
                 </div>
             </div>
         </div>
