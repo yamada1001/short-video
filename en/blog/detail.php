@@ -23,17 +23,13 @@ if (!$post) {
 
 // Load content file (from Japanese blog data directory)
 if (isset($post['content']) && strpos($post['content'], '.html') !== false) {
-    // Use BASE_PATH for reliable path resolution
-    $content_file = BASE_PATH . '/blog/' . $post['content'];
+    $content_file = __DIR__ . '/../../blog/' . $post['content'];
     if (file_exists($content_file)) {
         $post['content'] = file_get_contents($content_file);
         // Apply mobile processing
         $post['content'] = processBlogContent($post['content']);
-        // Translate content (skip if cache doesn't exist yet to show original)
-        $translated = translateContent($post['content'], $post['id'], $post['updatedAt']);
-        if (!empty($translated)) {
-            $post['content'] = $translated;
-        }
+        // Translate content
+        $post['content'] = translateContent($post['content'], $post['id'], $post['updatedAt']);
     }
 }
 
