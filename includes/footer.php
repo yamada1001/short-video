@@ -14,6 +14,7 @@ if ($footerIsEnglish) {
         'services' => 'Services',
         'web_production' => 'Web Development',
         'video_production' => 'Video Production',
+        'area' => 'Service Areas',
         'service_details' => 'Service Details',
         'company_info' => 'Company',
         'about' => 'About Us',
@@ -40,6 +41,7 @@ if ($footerIsEnglish) {
         'services' => 'サービス',
         'web_production' => 'Web制作',
         'video_production' => 'ショート動画制作',
+        'area' => '対応エリア',
         'service_details' => 'サービス詳細',
         'company_info' => '企業情報',
         'about' => '会社概要',
@@ -77,6 +79,9 @@ if ($footerIsEnglish) {
                 <h3 class="footer__section-title"><?php echo $footerTexts['services']; ?></h3>
                 <a href="<?php echo $footerLangPrefix; ?>/web-production.php" class="footer__link"><i class="fas fa-laptop-code"></i> <?php echo $footerTexts['web_production']; ?></a>
                 <a href="<?php echo $footerLangPrefix; ?>/video-production.php" class="footer__link"><i class="fas fa-video"></i> <?php echo $footerTexts['video_production']; ?></a>
+                <?php if (!$footerIsEnglish): ?>
+                <a href="/area/" class="footer__link"><i class="fas fa-map-marker-alt"></i> <?php echo $footerTexts['area']; ?></a>
+                <?php endif; ?>
                 <a href="<?php echo $footerLangPrefix; ?>/services.php" class="footer__link" style="margin-top: 8px; opacity: 0.8;"><i class="fas fa-arrow-right"></i> <?php echo $footerTexts['service_details']; ?></a>
             </div>
             <div class="footer__section">
