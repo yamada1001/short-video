@@ -292,6 +292,9 @@ $structured_data = '
         </div>
     </section>
 
+    <!-- エリアセクション -->
+    <?php include __DIR__ . '/includes/area-section.php'; ?>
+
     <!-- お知らせセクション -->
     <section class="section section--gray news-section" id="news">
         <div class="container">

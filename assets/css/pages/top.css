@@ -532,3 +532,73 @@
         transition-duration: 0.5s;
     }
 }
+
+/* ========================================
+   エリアセクション
+   ======================================== */
+
+.area-section {
+    background-color: var(--color-off-white);
+}
+
+.area-section__content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.area-section__group {
+    margin-bottom: 32px;
+}
+
+.area-section__group:last-child {
+    margin-bottom: 0;
+}
+
+.area-section__group-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-charcoal);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.area-section__group-title i {
+    color: var(--color-natural-brown);
+}
+
+.area-section__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.area-section__link {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #fff;
+    border: 1px solid var(--color-light-gray);
+    border-radius: 4px;
+    color: var(--color-charcoal);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.area-section__link:hover {
+    background: var(--color-natural-brown);
+    border-color: var(--color-natural-brown);
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .area-section__links {
+        gap: 8px;
+    }
+
+    .area-section__link {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}
