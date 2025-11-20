@@ -80,7 +80,8 @@ if ($footerIsEnglish) {
                 <a href="<?php echo $footerLangPrefix; ?>/web-production.php" class="footer__link"><i class="fas fa-laptop-code"></i> <?php echo $footerTexts['web_production']; ?></a>
                 <a href="<?php echo $footerLangPrefix; ?>/video-production.php" class="footer__link"><i class="fas fa-video"></i> <?php echo $footerTexts['video_production']; ?></a>
                 <?php if (!$footerIsEnglish): ?>
-                <a href="/area/" class="footer__link"><i class="fas fa-map-marker-alt"></i> <?php echo $footerTexts['area']; ?></a>
+                <a href="/area/" class="footer__link"><i class="fas fa-map-marker-alt"></i> <?php echo $footerTexts['area']; ?>（Web制作）</a>
+                <a href="/area/video/" class="footer__link"><i class="fas fa-map-marker-alt"></i> <?php echo $footerTexts['area']; ?>（動画）</a>
                 <?php endif; ?>
                 <a href="<?php echo $footerLangPrefix; ?>/services.php" class="footer__link" style="margin-top: 8px; opacity: 0.8;"><i class="fas fa-arrow-right"></i> <?php echo $footerTexts['service_details']; ?></a>
             </div>
