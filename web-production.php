@@ -53,6 +53,55 @@ $structured_data = '
       ]
     }
 ';
+
+$faq_structured_data = '
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "ホームページ制作の料金はいくらですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "10万円プラン、30万円プラン、カスタムプランの3種類をご用意しています。10万円プランは個人事業主向けのシンプルなサイト、30万円プランはブログ機能やSEO対策込み、カスタムプランは本格的なシステム開発向けです。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "制作期間はどれくらいですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "10万円プランで約2〜3週間、30万円プランで約1〜2ヶ月が目安です。カスタムプランは規模により異なります。お急ぎの場合はご相談ください。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "保守・運用は必須ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、月額5,800円の保守契約は必須です。テキスト・画像の変更し放題、サーバー・ドメイン管理、セキュリティ対策、電話・メールサポートが含まれます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "大分県以外でも対応可能ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、全国対応可能です。オンラインでのヒアリング・打ち合わせで制作を進められます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "スマホ対応していますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、全プランでレスポンシブデザイン（スマホ・タブレット対応）を標準で含んでいます。"
+          }
+        }
+      ]
+    }
+';
 ?>
 <!DOCTYPE html>
 <html lang="ja">

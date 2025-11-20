@@ -83,6 +83,13 @@ if (isset($additional_css) && is_array($additional_css)) {
 <?php echo $structured_data; ?>
     </script>
 <?php endif; ?>
+<?php if (isset($faq_structured_data)): ?>
+
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+<?php echo $faq_structured_data; ?>
+    </script>
+<?php endif; ?>
 <?php if (isset($inline_styles)): ?>
 
     <style>

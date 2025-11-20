@@ -174,6 +174,48 @@ $hide_lang_switch = true;
         ]
     }
     </script>
+
+    <!-- FAQPage 構造化データ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "<?php echo h($area['name']); ?>でホームページ制作の料金はいくらですか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "10万円プラン、30万円プラン、カスタムプランの3種類をご用意しています。<?php echo h($area['name']); ?>への出張打ち合わせも対応可能です。月額5,800円の保守契約が必須となります。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "<?php echo h($area['name']); ?>での制作実績はありますか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "はい、大分県内での制作実績があります。<?php echo h($area['name']); ?>の地域特性を理解したうえで、最適なホームページを制作いたします。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "制作期間はどれくらいですか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "10万円プランで約2〜3週間、30万円プランで約1〜2ヶ月が目安です。お急ぎの場合はご相談ください。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "打ち合わせは対面でも可能ですか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "はい、<?php echo h($area['name']); ?>への出張打ち合わせが可能です。もちろんオンラインでの打ち合わせにも対応しています。"
+                }
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->

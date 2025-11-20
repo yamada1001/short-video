@@ -47,6 +47,55 @@ $structured_data = '
     }
 ';
 
+$faq_structured_data = '
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "ショート動画制作の料金はいくらですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "1本2万円から制作可能です。撮影・編集込みの料金です。10本セットなら15万円（25%OFF）でさらにお得です。大分県内への出張費は無料です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "どのSNSプラットフォームに対応していますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TikTok、Instagram Reels、YouTube Shortsの全プラットフォームに対応しています。各プラットフォームに最適化したサイズ・形式で納品します。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "撮影から納品までどれくらいかかりますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "通常、撮影後1週間程度で初稿をお渡しします。修正対応を含めて2週間程度での納品が目安です。お急ぎの場合はご相談ください。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "大分県外でも対応可能ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、対応可能です。ただし大分県外の場合は別途出張費が発生します。詳細はお問い合わせください。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "動画の長さはどれくらいですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "15秒〜60秒のショート動画を制作します。各プラットフォームの推奨時間に合わせて最適な長さをご提案します。"
+          }
+        }
+      ]
+    }
+';
+
 $inline_styles = <<<'EOD'
         .page-header {
             background: var(--color-off-white);

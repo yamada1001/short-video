@@ -90,6 +90,47 @@ $structured_data = '
       "serviceType": ["Webサイト制作", "ショート動画制作"]
     }
 ';
+
+$faq_structured_data = '
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "余日（Yojitsu）はどんなサービスを提供していますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "大分県を拠点に、Web制作（ホームページ制作）とショート動画制作を提供しています。Web制作は10万円から、ショート動画は1本2万円から対応可能です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "大分県以外でも対応可能ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、全国対応可能です。Web制作はオンラインで完結でき、ショート動画は大分県内は出張費無料、県外は別途ご相談となります。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "料金体系を教えてください",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Web制作は10万円プラン・30万円プラン・カスタムプランの3種類、ショート動画は1本2万円または10本セット15万円です。いずれも月額5,800円の保守は別途必要です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "お問い合わせ方法は？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "電話（080-4692-9681）、メール（yamada@yojitu.com）、LINE、お問い合わせフォームからご連絡いただけます。営業時間は10:00〜22:00、年中無休です。"
+          }
+        }
+      ]
+    }
+';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
