@@ -692,6 +692,34 @@ EOD;
         </div>
     </section>
 
+    <!-- 対応エリアセクション -->
+    <section class="area-links-section" style="padding: var(--spacing-xxl) 0; background: var(--color-bg-gray);">
+        <div class="container">
+            <h2 class="section__subtitle">
+                <i class="fas fa-map-marker-alt"></i> 大分県内の対応エリア
+            </h2>
+            <p style="text-align: center; margin-bottom: var(--spacing-lg); color: var(--color-text-light);">
+                大分県全18市町村に対応。県内出張費は<strong>無料</strong>です。
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 800px; margin: 0 auto;">
+                <?php
+                $areas_json = file_get_contents(__DIR__ . '/area/data/areas.json');
+                $areas_data = json_decode($areas_json, true);
+                foreach ($areas_data['areas'] as $area):
+                ?>
+                <a href="/area/video/?area=<?php echo urlencode($area['slug']); ?>" style="display: inline-block; padding: 8px 16px; background: #fff; border-radius: 4px; text-decoration: none; color: var(--color-text); font-size: 14px; transition: all 0.2s; border: 1px solid var(--color-light-gray);" onmouseover="this.style.background='var(--color-natural-brown)'; this.style.color='#fff';" onmouseout="this.style.background='#fff'; this.style.color='var(--color-text)';">
+                    <?php echo h($area['name']); ?>
+                </a>
+                <?php endforeach; ?>
+            </div>
+            <div style="text-align: center; margin-top: var(--spacing-lg);">
+                <a href="/area/video/" class="btn btn-secondary">
+                    <i class="fas fa-list"></i> エリア一覧を見る
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- CTAセクション -->
     <?php
     $cta_base_path = '';

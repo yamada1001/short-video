@@ -157,6 +157,48 @@ $hide_lang_switch = true;
         ]
     }
     </script>
+
+    <!-- FAQPage 構造化データ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "<?php echo h($area['name']); ?>でショート動画制作の料金はいくらですか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "1本2万円から制作可能です。撮影・編集込みの料金で、<?php echo h($area['name']); ?>への出張費は無料です。10本セットなら15万円（25%OFF）でさらにお得です。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "<?php echo h($area['name']); ?>への出張費はかかりますか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "いいえ、大分県内であれば出張費は無料です。<?php echo h($area['name']); ?>のお店や事務所に伺って撮影いたします。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "どのSNSプラットフォームに対応していますか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "TikTok、Instagram Reels、YouTube Shortsの全プラットフォームに対応しています。各プラットフォームに最適化した動画をお渡しします。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "撮影から納品までどれくらいかかりますか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "通常、撮影後1週間程度で初稿をお渡しします。修正対応を含めて2週間程度での納品が目安です。"
+                }
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -427,6 +469,14 @@ $hide_lang_switch = true;
                     <i class="fas fa-video"></i> ショート動画制作サービス詳細
                 </a>
             </p>
+
+            <!-- Web制作への内部リンク -->
+            <div class="cross-service-link">
+                <p><i class="fas fa-laptop-code"></i> <?php echo h($area['name']); ?>でホームページ制作もお探しですか？</p>
+                <a href="/area/?area=<?php echo urlencode($area['slug']); ?>" class="btn btn-secondary">
+                    <?php echo h($area['name']); ?>のホームページ制作を見る
+                </a>
+            </div>
         </div>
     </section>
 

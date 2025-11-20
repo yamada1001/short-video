@@ -493,6 +493,14 @@ $hide_lang_switch = true;
                     <i class="fas fa-map-marked-alt"></i> エリアマップで見る
                 </a>
             </p>
+
+            <!-- 動画制作への内部リンク -->
+            <div class="cross-service-link">
+                <p><i class="fas fa-video"></i> <?php echo h($area['name']); ?>でショート動画制作もお探しですか？</p>
+                <a href="/area/video/?area=<?php echo urlencode($area['slug']); ?>" class="btn btn-secondary">
+                    <?php echo h($area['name']); ?>のショート動画制作を見る
+                </a>
+            </div>
         </div>
     </section>
 

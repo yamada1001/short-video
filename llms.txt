@@ -27,6 +27,13 @@
 ### 動画制作
 TikTok、Instagram Reels、YouTube Shorts向けのショート動画制作。企画から撮影・編集まで一貫対応。
 
+#### 料金プラン
+- 基本プラン: 1本2万円（撮影・編集込み）
+- 10本セット: 15万円（25%OFF）
+
+#### 対応エリア
+大分県全18市町村に対応（県内出張費無料）: 大分市、別府市、中津市、日田市、佐伯市、臼杵市、津久見市、竹田市、豊後高田市、杵築市、宇佐市、豊後大野市、由布市、国東市、日出町、九重町、玖珠町、姫島村
+
 ### SEO対策
 検索エンジン最適化、コンテンツマーケティング、内部SEO・外部SEO対策を提供。
 
@@ -46,7 +53,8 @@ Google広告、SNS広告（Facebook、Instagram、TikTok）の運用代行。
 - サービス一覧: https://yojitu.com/services.php
 - Web制作: https://yojitu.com/web-production.php
 - 動画制作: https://yojitu.com/video-production.php
-- 対応エリア: https://yojitu.com/area/
+- 対応エリア（Web制作）: https://yojitu.com/area/
+- 対応エリア（動画制作）: https://yojitu.com/area/video/
 - 会社概要: https://yojitu.com/about.php
 - ブログ: https://yojitu.com/blog/
 - お知らせ: https://yojitu.com/news/

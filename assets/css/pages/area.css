@@ -1050,3 +1050,31 @@
         font-size: 1rem;
     }
 }
+
+/* ========================================
+   サービス間内部リンク
+   ======================================== */
+
+.cross-service-link {
+    margin-top: 40px;
+    padding: 24px;
+    background: var(--color-off-white);
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--color-light-gray);
+}
+
+.cross-service-link p {
+    margin-bottom: 16px;
+    color: var(--color-text);
+    font-size: 15px;
+}
+
+.cross-service-link p i {
+    color: var(--color-natural-brown);
+    margin-right: 8px;
+}
+
+.cross-service-link .btn {
+    font-size: 14px;
+}
