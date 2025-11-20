@@ -243,6 +243,9 @@ $hide_lang_switch = true;
                 <span class="price-badge">10万円〜</span>
                 格安・高品質なWebサイト制作
             </p>
+            <p class="area-hero__appeal">
+                <i class="fas fa-check-circle"></i> 低価格でも妥協しない品質｜コスパ重視の方に選ばれています
+            </p>
             <p class="area-hero__description"><?php echo h($area['description']); ?></p>
             <div class="area-hero__cta">
                 <a href="/contact.php" class="btn btn-primary btn-lg">
@@ -265,7 +268,7 @@ $hide_lang_switch = true;
                         <i class="fas fa-yen-sign"></i>
                     </div>
                     <h3 class="feature-card__title">10万円からの格安料金</h3>
-                    <p class="feature-card__text">初期費用を抑えた料金設定。<?php echo h($area['name']); ?>の中小企業・個人事業主様でも導入しやすい価格です。</p>
+                    <p class="feature-card__text">初期費用を抑えた低価格な料金設定。<?php echo h($area['name']); ?>の中小企業・個人事業主様でも導入しやすい安い価格です。コスパ重視の方におすすめ。</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-card__icon">
@@ -337,7 +340,7 @@ $hide_lang_switch = true;
     <section class="area-price">
         <div class="container">
             <h2 class="section-title">料金プラン</h2>
-            <p class="section-note"><i class="fas fa-info-circle"></i> 予算が決まっていない方も、お気軽にご相談ください。最適なプランをご提案いたします。</p>
+            <p class="section-note"><i class="fas fa-info-circle"></i> 格安でも高品質。予算が決まっていない方も、お気軽にご相談ください。コスパの良い最適なプランをご提案いたします。</p>
 
             <!-- スマホ用タブ切り替え -->
             <div class="price-tabs">
@@ -501,7 +504,7 @@ $hide_lang_switch = true;
             <h2 class="area-cta__title"><?php echo h($area['name']); ?>のホームページ制作はお任せください</h2>
             <p class="area-cta__text">
                 <?php echo h($area['name']); ?>で事業を営む皆様のビジネスをホームページで支援します。<br>
-                まずはお気軽にご相談ください。お見積りは無料です。
+                格安・低価格でも品質に妥協しません。まずはお気軽にご相談ください。お見積りは無料です。
             </p>
             <div class="area-cta__buttons">
                 <a href="/contact.php" class="btn btn-primary btn-lg">

@@ -29,8 +29,8 @@ if (!$area) {
 }
 
 // ページ情報
-$page_title = '【2万円〜】' . $area['name'] . 'のショート動画制作｜撮影・編集込み｜余日';
-$page_description = $area['name'] . 'でショート動画制作をお探しなら余日へ。1本2万円から撮影・編集込み。' . $area['name'] . 'への出張費無料。TikTok・Instagram・YouTube対応。';
+$page_title = '【2万円〜】' . $area['name'] . 'のショート動画制作｜格安・撮影編集込み｜余日';
+$page_description = $area['name'] . 'で格安ショート動画制作をお探しなら余日へ。1本2万円から撮影・編集込みの低価格。' . $area['name'] . 'への出張費無料。TikTok・Instagram・YouTube対応。';
 $page_keywords = $area['name'] . ',ショート動画,動画制作,TikTok,Instagram,YouTube,大分';
 
 // エリアページでは英語ボタンを非表示
@@ -224,7 +224,10 @@ $hide_lang_switch = true;
             </h1>
             <p class="area-hero__price">
                 <span class="price-badge">2万円〜/本</span>
-                撮影・編集込み
+                格安・撮影・編集込み
+            </p>
+            <p class="area-hero__appeal">
+                <i class="fas fa-check-circle"></i> 低価格でも高品質｜コスパ重視の方に選ばれています
             </p>
             <p class="area-hero__highlight">
                 <i class="fas fa-car"></i> <?php echo h($area['name']); ?>への出張費無料
@@ -250,7 +253,7 @@ $hide_lang_switch = true;
                         <i class="fas fa-yen-sign"></i>
                     </div>
                     <h3 class="feature-card__title">1本2万円〜の格安料金</h3>
-                    <p class="feature-card__text">撮影・編集込みでこの価格。<?php echo h($area['name']); ?>の中小企業・個人事業主様でも始めやすい料金設定です。</p>
+                    <p class="feature-card__text">撮影・編集込みでこの低価格。<?php echo h($area['name']); ?>の中小企業・個人事業主様でも始めやすい安い料金設定です。コスパ重視の方におすすめ。</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-card__icon">
@@ -311,7 +314,7 @@ $hide_lang_switch = true;
     <section class="area-price">
         <div class="container">
             <h2 class="section-title">料金プラン</h2>
-            <p class="section-note"><i class="fas fa-info-circle"></i> <?php echo h($area['name']); ?>への出張費は無料です。まずはお気軽にご相談ください。</p>
+            <p class="section-note"><i class="fas fa-info-circle"></i> 格安でも高品質。<?php echo h($area['name']); ?>への出張費は無料です。コスパの良いプランをご提案します。</p>
 
             <!-- スマホ用タブ切り替え -->
             <div class="price-tabs">
@@ -435,7 +438,7 @@ $hide_lang_switch = true;
             <h2 class="area-cta__title"><?php echo h($area['name']); ?>のショート動画制作はお任せください</h2>
             <p class="area-cta__text">
                 <?php echo h($area['name']); ?>で事業を営む皆様の集客をショート動画で支援します。<br>
-                まずはお気軽にご相談ください。お見積りは無料です。
+                格安・低価格でも品質に妥協しません。まずはお気軽にご相談ください。お見積りは無料です。
             </p>
             <div class="area-cta__buttons">
                 <a href="/contact.php" class="btn btn-primary btn-lg">

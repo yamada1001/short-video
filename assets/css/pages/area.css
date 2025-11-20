@@ -1098,3 +1098,18 @@
 .cross-service-link .btn {
     font-size: 14px;
 }
+
+/* ========================================
+   ヒーローアピールテキスト
+   ======================================== */
+
+.area-hero__appeal {
+    font-size: 14px;
+    color: var(--color-text-light);
+    margin-top: 12px;
+}
+
+.area-hero__appeal i {
+    color: var(--color-natural-brown);
+    margin-right: 6px;
+}
