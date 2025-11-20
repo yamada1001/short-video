@@ -124,16 +124,6 @@ $hide_lang_switch = true;
                     },
                     "price": "150000",
                     "priceCurrency": "JPY"
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "企画案のみ",
-                        "description": "動画の企画・構成案のみ"
-                    },
-                    "price": "5000",
-                    "priceCurrency": "JPY"
                 }
             ]
         }
@@ -285,10 +275,9 @@ $hide_lang_switch = true;
             <div class="price-tabs">
                 <button class="price-tab" data-plan="plan-basic" onclick="switchPlan('plan-basic')">基本</button>
                 <button class="price-tab active" data-plan="plan-set" onclick="switchPlan('plan-set')">10本セット</button>
-                <button class="price-tab" data-plan="plan-plan" onclick="switchPlan('plan-plan')">企画のみ</button>
             </div>
 
-            <div class="price-cards price-cards--three">
+            <div class="price-cards">
                 <!-- 基本プラン -->
                 <div class="price-card" data-plan="plan-basic">
                     <div class="price-card__header">
@@ -330,25 +319,6 @@ $hide_lang_switch = true;
                         <li><i class="fas fa-check"></i> 各本2回まで修正対応</li>
                     </ul>
                     <p class="price-card__calc">1本あたり <strong>15,000円</strong></p>
-                </div>
-
-                <!-- 企画案のみ -->
-                <div class="price-card" data-plan="plan-plan">
-                    <div class="price-card__header">
-                        <h3 class="price-card__name">企画案のみ</h3>
-                        <div class="price-card__price">
-                            <span class="price-card__amount">5千円</span>
-                            <span class="price-card__unit">/本（税別）</span>
-                        </div>
-                    </div>
-                    <p class="price-card__target"><i class="fas fa-lightbulb"></i> 自分で撮影・編集する方向け</p>
-                    <ul class="price-card__features">
-                        <li><i class="fas fa-check"></i> 動画の構成・台本作成</li>
-                        <li><i class="fas fa-check"></i> 撮影アングル指示書</li>
-                        <li><i class="fas fa-check"></i> 編集イメージの提案</li>
-                        <li><i class="fas fa-check"></i> ハッシュタグ提案</li>
-                        <li class="disabled"><i class="fas fa-times"></i> 撮影・編集は含みません</li>
-                    </ul>
                 </div>
             </div>
         </div>

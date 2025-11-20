@@ -42,13 +42,6 @@ $structured_data = '
           "price": "150000",
           "priceCurrency": "JPY",
           "description": "15〜60秒の動画10本（25%OFF）"
-        },
-        {
-          "@type": "Offer",
-          "name": "企画案作成のみ",
-          "price": "5000",
-          "priceCurrency": "JPY",
-          "description": "動画コンセプト・構成案の提案"
         }
       ]
     }
@@ -483,7 +476,7 @@ EOD;
             </h2>
 
             <div class="highlight-box">
-                <p><i class="fas fa-info-circle"></i> 初めての方は、まず企画案作成のみのプランで動画コンセプトを固めるのがおすすめです。</p>
+                <p><i class="fas fa-info-circle"></i> 継続的な発信には10本セットがおすすめです。1本投稿するだけでは効果測定・改善が難しいため、複数本での運用を推奨しています。</p>
             </div>
 
             <div class="pricing-grid">
@@ -537,33 +530,6 @@ EOD;
                     </ul>
                     <div class="pricing-card__cta">
                         <a href="contact.php" class="btn btn-primary btn--large" style="width: 100%;">
-                            <i class="fas fa-envelope"></i> お問い合わせ
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 企画案作成のみ -->
-                <div class="pricing-card">
-                    <div class="pricing-card__icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 class="pricing-card__name">企画案作成のみ</h3>
-                    <div class="pricing-card__price">
-                        ¥5,000<span class="pricing-card__price-unit"></span>
-                    </div>
-                    <div class="pricing-card__description">
-                        動画コンセプト・構成案の提案
-                    </div>
-                    <ul class="pricing-card__features">
-                        <li><i class="fas fa-check-circle"></i> <span>ターゲット分析</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>動画コンセプト設計</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>構成案（絵コンテ）作成</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>推奨ハッシュタグ提案</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>投稿タイミング提案</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>納期: 2営業日</span></li>
-                    </ul>
-                    <div class="pricing-card__cta">
-                        <a href="contact.php" class="btn btn-secondary btn--large" style="width: 100%;">
                             <i class="fas fa-envelope"></i> お問い合わせ
                         </a>
                     </div>
