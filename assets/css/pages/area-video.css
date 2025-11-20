@@ -1,0 +1,159 @@
+/**
+ * ショート動画制作エリアページ専用CSS
+ */
+
+/* ヒーローセクション - ビデオ版 */
+.area-hero--video {
+    background: linear-gradient(135deg, var(--color-charcoal) 0%, var(--color-natural-brown) 100%);
+}
+
+.area-hero__highlight {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: 50px;
+    font-size: 14px;
+    margin-top: var(--spacing-md);
+}
+
+.area-hero__highlight i {
+    margin-right: var(--spacing-xs);
+}
+
+/* プラットフォームセクション */
+.platform-section {
+    padding: var(--spacing-xxl) 0;
+    background: var(--color-bg-gray);
+}
+
+.platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.platform-card {
+    background: var(--color-bg-white);
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.platform-card:hover {
+    transform: translateY(-4px);
+}
+
+.platform-card__icon {
+    font-size: 48px;
+    color: var(--color-natural-brown);
+    margin-bottom: var(--spacing-md);
+}
+
+.platform-card__name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-charcoal);
+    margin-bottom: var(--spacing-xs);
+}
+
+.platform-card__desc {
+    font-size: 13px;
+    color: var(--color-text-light);
+}
+
+/* 料金カードの割引表示 */
+.price-card__discount {
+    display: inline-block;
+    background: #e74c3c;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: var(--spacing-xs);
+}
+
+.price-card__calc {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px dashed var(--color-border);
+    margin-top: var(--spacing-md);
+    font-size: 14px;
+    color: var(--color-text-light);
+}
+
+.price-card__calc strong {
+    color: var(--color-natural-brown);
+    font-size: 18px;
+}
+
+/* 活用例セクション */
+.usecases-section {
+    padding: var(--spacing-xxl) 0;
+    background: var(--color-bg-white);
+}
+
+.usecases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.usecase-card {
+    background: var(--color-bg-gray);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    text-align: center;
+    border-left: 4px solid var(--color-natural-brown);
+}
+
+.usecase-card__icon {
+    font-size: 32px;
+    color: var(--color-natural-brown);
+    margin-bottom: var(--spacing-sm);
+}
+
+.usecase-card__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-charcoal);
+    margin-bottom: var(--spacing-xs);
+}
+
+.usecase-card__text {
+    font-size: 13px;
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .platforms-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .platform-card {
+        padding: var(--spacing-lg);
+    }
+
+    .platform-card__icon {
+        font-size: 36px;
+    }
+
+    .usecases-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .usecases-grid {
+        grid-template-columns: 1fr;
+    }
+}

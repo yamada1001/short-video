@@ -74,11 +74,23 @@ if (file_exists($areasJsonPath)) {
         'priority' => '0.8'
     ];
 
-    // 各エリア詳細ページ
+    // 各エリア詳細ページ（Web制作）
     if (isset($areasData['areas'])) {
         foreach ($areasData['areas'] as $area) {
             $urls[] = [
                 'loc' => $baseUrl . '/area/?area=' . urlencode($area['slug']),
+                'lastmod' => $today,
+                'changefreq' => 'weekly',
+                'priority' => '0.7'
+            ];
+        }
+    }
+
+    // 各エリア詳細ページ（ショート動画制作）
+    if (isset($areasData['areas'])) {
+        foreach ($areasData['areas'] as $area) {
+            $urls[] = [
+                'loc' => $baseUrl . '/area/video/?area=' . urlencode($area['slug']),
                 'lastmod' => $today,
                 'changefreq' => 'weekly',
                 'priority' => '0.7'

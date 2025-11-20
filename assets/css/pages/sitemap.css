@@ -90,6 +90,27 @@
   margin-bottom: var(--spacing-xs);
 }
 
+/* コンパクト表示（エリア一覧用） */
+.sitemap-list--compact {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px var(--spacing-sm);
+}
+
+.sitemap-list--compact li {
+  margin-bottom: 0;
+}
+
+.sitemap-list--compact .sitemap-link--small {
+  font-size: 13px;
+  padding: 2px 0;
+}
+
+.sitemap-list--compact .sitemap-link--small::before {
+  content: '';
+  margin-right: 0;
+}
+
 /* サイトマップリンク */
 .sitemap-link {
   display: inline-block;
