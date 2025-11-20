@@ -283,15 +283,14 @@ $hide_lang_switch = true;
 
             <!-- スマホ用タブ切り替え -->
             <div class="price-tabs">
-                <button class="price-tab active" data-plan="plan-basic" onclick="switchPlan('plan-basic')">基本</button>
-                <button class="price-tab" data-plan="plan-set" onclick="switchPlan('plan-set')">10本セット</button>
+                <button class="price-tab" data-plan="plan-basic" onclick="switchPlan('plan-basic')">基本</button>
+                <button class="price-tab active" data-plan="plan-set" onclick="switchPlan('plan-set')">10本セット</button>
                 <button class="price-tab" data-plan="plan-plan" onclick="switchPlan('plan-plan')">企画のみ</button>
             </div>
 
             <div class="price-cards price-cards--three">
                 <!-- 基本プラン -->
-                <div class="price-card price-card--highlight" data-plan="plan-basic">
-                    <div class="price-card__badge">人気</div>
+                <div class="price-card" data-plan="plan-basic">
                     <div class="price-card__header">
                         <h3 class="price-card__name">基本プラン</h3>
                         <div class="price-card__price">
@@ -312,7 +311,8 @@ $hide_lang_switch = true;
                 </div>
 
                 <!-- 10本セット -->
-                <div class="price-card" data-plan="plan-set">
+                <div class="price-card price-card--highlight" data-plan="plan-set">
+                    <div class="price-card__badge">人気</div>
                     <div class="price-card__header">
                         <h3 class="price-card__name">10本セット</h3>
                         <div class="price-card__price">
@@ -480,9 +480,9 @@ $hide_lang_switch = true;
             }
         });
     }
-    // 初期表示で基本プランをアクティブに
+    // 初期表示で10本セットをアクティブに
     document.addEventListener('DOMContentLoaded', function() {
-        switchPlan('plan-basic');
+        switchPlan('plan-set');
     });
     </script>
 </body>

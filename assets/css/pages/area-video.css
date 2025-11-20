@@ -4,7 +4,27 @@
 
 /* ヒーローセクション - ビデオ版 */
 .area-hero--video {
-    background: linear-gradient(135deg, var(--color-charcoal) 0%, var(--color-natural-brown) 100%);
+    background: var(--color-bg-gray);
+}
+
+.area-hero--video .area-hero__title,
+.area-hero--video .area-hero__location,
+.area-hero--video .area-hero__service {
+    color: var(--color-charcoal);
+}
+
+.area-hero--video .price-badge {
+    background: var(--color-natural-brown);
+    color: #fff;
+}
+
+.area-hero--video .area-hero__price {
+    color: var(--color-charcoal);
+}
+
+.area-hero--video .area-hero__highlight {
+    background: var(--color-natural-brown);
+    color: #fff;
 }
 
 .area-hero__highlight {
