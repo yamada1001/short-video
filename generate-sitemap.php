@@ -61,6 +61,32 @@ foreach ($newsPosts as $post) {
     ];
 }
 
+// エリアページを追加
+$areasJsonPath = __DIR__ . '/area/data/areas.json';
+if (file_exists($areasJsonPath)) {
+    $areasData = json_decode(file_get_contents($areasJsonPath), true);
+
+    // エリア一覧ページ
+    $urls[] = [
+        'loc' => $baseUrl . '/area/',
+        'lastmod' => $today,
+        'changefreq' => 'weekly',
+        'priority' => '0.8'
+    ];
+
+    // 各エリア詳細ページ
+    if (isset($areasData['areas'])) {
+        foreach ($areasData['areas'] as $area) {
+            $urls[] = [
+                'loc' => $baseUrl . '/area/?area=' . urlencode($area['slug']),
+                'lastmod' => $today,
+                'changefreq' => 'weekly',
+                'priority' => '0.7'
+            ];
+        }
+    }
+}
+
 // XML生成
 $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
 $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
