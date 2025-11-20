@@ -319,7 +319,7 @@ $hide_lang_switch = true;
                 <button class="price-tab active" data-plan="plan-set" onclick="switchPlan('plan-set')">10本セット</button>
             </div>
 
-            <div class="price-cards price-cards--three">
+            <div class="price-cards price-cards--two">
                 <!-- 基本プラン -->
                 <div class="price-card" data-plan="plan-basic">
                     <div class="price-card__header">
