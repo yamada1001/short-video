@@ -1,25 +1,6 @@
 {
   "posts": [
     {
-      "id": 101,
-      "title": "結局、山田は何をやっている人なのか？｜余日という屋号に込めた意味",
-      "slug": "about-yamada-yojitsu",
-      "excerpt": "WEBマーケター山田の自己紹介。Web制作、Instagram運用、SEO対策、撮影など業務内容と、「余日」という屋号に込めた想い。",
-      "content": "data/article-101-full.html",
-      "publishedAt": "2025-11-21T12:00:00+09:00",
-      "updatedAt": "2025-11-21T12:00:00+09:00",
-      "category": "雑記",
-      "tags": [
-        "自己紹介",
-        "余日",
-        "WEBマーケター",
-        "海外",
-        "フリーランス"
-      ],
-      "thumbnail": "/assets/images/blog/taiwan/taiwan-02.jpg",
-      "author": "山田 蓮"
-    },
-    {
       "id": 100,
       "title": "構造化データとは？SEO効果と実装方法を徹底解説【2025年最新版】",
       "slug": "structured-data-seo-guide",
