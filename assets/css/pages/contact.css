@@ -1,5 +1,72 @@
 /* お問い合わせページ専用スタイル */
 
+/* 不在通知バナー */
+.absence-notice {
+  background-color: #fff8f0;
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-natural-brown);
+  padding: var(--spacing-lg) 0;
+  margin-top: 100px;
+}
+
+.absence-notice__content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.absence-notice__icon {
+  font-size: 24px;
+  color: var(--color-natural-brown);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.absence-notice__text {
+  flex: 1;
+}
+
+.absence-notice__text strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-charcoal);
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: 0.05em;
+}
+
+.absence-notice__text p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 768px) {
+  .absence-notice {
+    margin-top: 80px;
+    padding: var(--spacing-md) 0;
+  }
+
+  .absence-notice__content {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .absence-notice__icon {
+    font-size: 20px;
+  }
+
+  .absence-notice__text strong {
+    font-size: 15px;
+  }
+
+  .absence-notice__text p {
+    font-size: 13px;
+  }
+}
+
 /* ページヘッダー */
 .page-header {
   background-color: var(--color-bg);

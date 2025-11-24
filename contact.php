@@ -23,6 +23,29 @@ $additional_css = [
     <!-- End Google Tag Manager (noscript) -->
     <?php include __DIR__ . '/includes/header.php'; ?>
 
+    <?php
+    // 不在期間の設定（11/25-11/27）
+    $absence_start = strtotime('2024-11-25 00:00:00');
+    $absence_end = strtotime('2024-11-27 23:59:59');
+    $current_time = time();
+    $is_absence_period = ($current_time >= $absence_start && $current_time <= $absence_end);
+    ?>
+
+    <?php if ($is_absence_period): ?>
+    <!-- 不在通知バナー -->
+    <div class="absence-notice">
+        <div class="container">
+            <div class="absence-notice__content">
+                <i class="fas fa-plane-departure absence-notice__icon"></i>
+                <div class="absence-notice__text">
+                    <strong>海外出張中のお知らせ（11/25〜11/27）</strong>
+                    <p>現在、海外出張中のため電話でのお問い合わせ対応ができません。お急ぎの方は下記のメールフォームよりお問い合わせください。11/28以降、順次ご対応させていただきます。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <!-- お問い合わせフォーム（ステップ形式） -->
     <section class="contact-step-form">
         <div class="container contact-step-form__container">
