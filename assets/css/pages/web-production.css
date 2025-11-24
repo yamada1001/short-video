@@ -207,6 +207,116 @@
     margin-top: var(--spacing-lg);
 }
 
+/* プロセス比較 */
+.process-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.process-box {
+    background: var(--color-bg-gray);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    border-left: 4px solid var(--color-text-light);
+}
+
+.process-box--traditional {
+    border-left-color: #999;
+}
+
+.process-box--ai {
+    border-left-color: var(--color-natural-brown);
+    background: linear-gradient(135deg, rgba(139, 115, 85, 0.05), rgba(139, 115, 85, 0.08));
+}
+
+.process-box h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-charcoal);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.process-box h4 i {
+    color: var(--color-natural-brown);
+}
+
+.process-box ol {
+    margin: var(--spacing-md) 0;
+    padding-left: var(--spacing-lg);
+}
+
+.process-box ol li {
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.8;
+    color: var(--color-text);
+}
+
+.process-box p {
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.8;
+}
+
+.process-note {
+    font-size: 14px;
+    color: var(--color-text-light);
+    padding: var(--spacing-sm);
+    background: var(--color-bg-white);
+    border-radius: 4px;
+    margin-top: var(--spacing-md);
+}
+
+/* スピードメリット */
+.speed-benefits {
+    list-style: none;
+    margin: var(--spacing-md) 0 0 0;
+    padding: 0;
+}
+
+.speed-benefits li {
+    display: flex;
+    align-items: start;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) 0;
+    color: var(--color-text);
+    line-height: 1.8;
+}
+
+.speed-benefits li i {
+    color: var(--color-natural-brown);
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+/* ロスリスト */
+.loss-list {
+    list-style: none;
+    margin: var(--spacing-md) 0;
+    padding: 0;
+    background: var(--color-bg-gray);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+}
+
+.loss-list li {
+    display: flex;
+    align-items: start;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) 0;
+    color: var(--color-text);
+    line-height: 1.8;
+}
+
+.loss-list li i {
+    color: #e74c3c;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
 /* チームセクション */
 .team-section {
     padding: var(--spacing-xxl) 0;
@@ -431,6 +541,19 @@
 
     .story-content h3 {
         font-size: 20px;
+    }
+
+    /* プロセス比較を縦並びに */
+    .process-comparison {
+        grid-template-columns: 1fr;
+    }
+
+    .process-box h4 {
+        font-size: 16px;
+    }
+
+    .process-box ol {
+        padding-left: var(--spacing-md);
     }
 
     /* モバイルでタブ表示 */
