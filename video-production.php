@@ -3,9 +3,9 @@ $current_page = 'services';
 require_once __DIR__ . '/includes/functions.php';
 
 // Head用の変数設定
-$page_title = 'ショート動画制作 - SNSで成果を出す動画マーケティング | 余日（Yojitsu）';
-$page_description = 'TikTok、Instagram Reels、YouTube Shortsに最適化したショート動画制作。企画から撮影、編集まで一貫サポート。余日（Yojitsu）';
-$page_keywords = 'ショート動画,TikTok,Instagram Reels,YouTube Shorts,動画制作,大分,余日';
+$page_title = '【1本2万円〜】大分のショート動画制作｜TikTok・Instagram・YouTube対応｜余日';
+$page_description = '大分県のショート動画制作なら余日へ。TikTok、Instagram Reels、YouTube Shortsに最適化。1本2万円から、企画・撮影・編集まで一貫対応。10本セット15万円（25%OFF）。大分県内出張費無料。個人事業主・中小企業のSNSマーケティングをサポート。';
+$page_keywords = 'ショート動画,動画制作,TikTok,Instagram Reels,YouTube Shorts,大分,大分市,別府市,SNSマーケティング,余日';
 $additional_css = ['assets/css/cookie-consent.css'];
 
 $structured_data = '
@@ -24,10 +24,27 @@ $structured_data = '
           "addressCountry": "JP"
         }
       },
-      "areaServed": {
-        "@type": "Country",
-        "name": "日本"
-      },
+      "areaServed": [
+        { "@type": "City", "name": "大分市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "別府市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "中津市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "日田市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "佐伯市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "臼杵市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "津久見市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "竹田市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "豊後高田市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "杵築市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "宇佐市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "豊後大野市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "由布市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "国東市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "AdministrativeArea", "name": "日出町", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "AdministrativeArea", "name": "九重町", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "AdministrativeArea", "name": "玖珠町", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "AdministrativeArea", "name": "姫島村", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "State", "name": "大分県", "addressCountry": "JP" }
+      ],
       "offers": [
         {
           "@type": "Offer",

@@ -3,9 +3,9 @@ $current_page = 'services';
 require_once __DIR__ . '/includes/functions.php';
 
 // Head用の変数設定
-$page_title = 'Webサイト制作 - 10万円から始めるプロフェッショナルなWeb制作 | 余日（Yojitsu）';
-$page_description = '10万円からのWebサイト制作。個人事業主から中小企業まで、目的に応じた最適なプランをご提供。余日（Yojitsu）';
-$page_keywords = 'Web制作,ホームページ制作,格安,大分,余日,10万円,30万円,レスポンシブ';
+$page_title = '【10万円〜】大分のホームページ制作・Web制作｜AI活用で1週間で初稿｜余日';
+$page_description = '大分県のホームページ制作・Web制作なら余日へ。10万円から、AI活用で約1週間で初稿提出。月額5,800円で更新し放題。大分市・別府市など県内全域対応。レスポンシブデザイン、SEO最適化、WordPress対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作。';
+$page_keywords = 'ホームページ制作,Web制作,大分,大分市,別府市,格安,10万円,30万円,AI,レスポンシブ,SEO,WordPress,余日';
 $additional_css = ['assets/css/pages/web-production.css', 'assets/css/cookie-consent.css'];
 
 $structured_data = '
@@ -24,10 +24,27 @@ $structured_data = '
           "addressCountry": "JP"
         }
       },
-      "areaServed": {
-        "@type": "Country",
-        "name": "日本"
-      },
+      "areaServed": [
+        { "@type": "City", "name": "大分市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "別府市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "中津市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "日田市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "佐伯市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "臼杵市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "津久見市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "竹田市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "豊後高田市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "杵築市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "宇佐市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "豊後大野市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "由布市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "City", "name": "国東市", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "AdministrativeArea", "name": "日出町", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "AdministrativeArea", "name": "九重町", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "AdministrativeArea", "name": "玖珠町", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "AdministrativeArea", "name": "姫島村", "addressRegion": "大分県", "addressCountry": "JP" },
+        { "@type": "State", "name": "大分県", "addressCountry": "JP" }
+      ],
       "offers": [
         {
           "@type": "Offer",
@@ -335,6 +352,12 @@ $faq_structured_data = '
                 <p>
                     もちろん、特別に<strong>3D表現を用いた高度なブランディングサイト</strong>など、時間をかけるべきケースもあります。<br>
                     それ以外であれば、ぜひ一度ご相談ください。
+                </p>
+
+                <h3><i class="fas fa-map-marked-alt"></i> 大分県全域に対応しています</h3>
+                <p>
+                    大分市、別府市、中津市、日田市など、大分県全18市町村に対応しています。<br>
+                    各エリアの詳細情報は <a href="/area/" style="color: var(--color-natural-brown); text-decoration: underline;">対応エリアページ</a> をご覧ください。
                 </p>
 
                 <h3><i class="fas fa-comments"></i> まずは相談だけでも大歓迎です</h3>

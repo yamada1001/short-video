@@ -3,9 +3,9 @@ $current_page = 'services';
 require_once __DIR__ . '/includes/functions.php';
 
 // Head用の変数設定
-$page_title = 'サービス | 余日（Yojitsu）';
-$page_description = '余日（Yojitsu）のサービス一覧。Web制作・ショート動画制作など、大分県を拠点にデジタルマーケティングをトータルサポート。';
-$page_keywords = 'Web制作,ショート動画,動画制作,ホームページ制作,大分,デジタルマーケティング';
+$page_title = '大分のデジタルマーケティングサービス｜Web制作・動画制作・SEO・広告運用｜余日';
+$page_description = '大分県を拠点にデジタルマーケティングをトータルサポート。ホームページ制作（10万円〜）、ショート動画制作（1本2万円〜）、SEO対策、Google広告・SNS広告運用。大分市・別府市など県内全域対応。個人事業主・中小企業向けのプロフェッショナルなサービス。';
+$page_keywords = 'デジタルマーケティング,Web制作,ホームページ制作,ショート動画,動画制作,SEO,広告運用,大分,大分市,別府市,余日';
 $additional_css = ['assets/css/cookie-consent.css'];
 
 $inline_styles = <<<'EOD'
