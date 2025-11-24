@@ -59,6 +59,31 @@ $categories = array_unique(array_column($all_posts, 'category'));
     <meta name="description" content="余日（Yojitsu）のブログ。SEO、広告運用、Web制作に関する最新情報とノウハウをお届けします。">
     <title>ブログ | 余日（Yojitsu）</title>
 
+    <!-- Canonical & Robots meta tags -->
+<?php
+// 検索結果の場合はnoindex
+if ($search) {
+    echo '    <meta name="robots" content="noindex, follow">' . "\n";
+} else {
+    // Canonical URL の構築
+    $canonical_url = 'https://yojitu.com/blog/';
+    $params = [];
+
+    if ($category) {
+        $params[] = 'category=' . urlencode($category);
+    }
+    if ($page > 1) {
+        $params[] = 'page=' . $page;
+    }
+
+    if (!empty($params)) {
+        $canonical_url .= '?' . implode('&', $params);
+    }
+
+    echo '    <link rel="canonical" href="' . htmlspecialchars($canonical_url) . '">' . "\n";
+}
+?>
+
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
