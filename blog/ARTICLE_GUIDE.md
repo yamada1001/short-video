@@ -86,43 +86,115 @@ php validate-article.php --all
 
 ## 利用可能な装飾クラス
 
-### 情報ボックス
+### ボックス系クラス（統一デザイン）
+
+以下のクラスは全て無印良品スタイルの統一デザインで表示されます：
 
 ```html
+<!-- 情報ボックス -->
 <div class="info-box">
-    <h3><i class="fas fa-info-circle"></i> 情報</h3>
+    <h4><i class="fas fa-info-circle"></i> 情報</h4>
     <p>補足情報を記載します。</p>
 </div>
+
+<!-- 警告ボックス -->
+<div class="warning-box">
+    <h4><i class="fas fa-exclamation-triangle"></i> 注意</h4>
+    <p>注意事項を記載します。</p>
+</div>
+
+<!-- 成功ボックス -->
+<div class="success-box">
+    <h4><i class="fas fa-check-circle"></i> ポイント</h4>
+    <p>重要なポイントを記載します。</p>
+</div>
+
+<!-- その他のボックス -->
+<div class="summary-box">まとめの内容</div>
+<div class="highlight-box">強調したい内容</div>
+<div class="example-box">具体例</div>
+<div class="definition-box">用語の定義</div>
+<div class="tips-box">Tips</div>
+<div class="note-box">補足</div>
+<div class="caution-box">注意点</div>
 ```
 
-### 警告ボックス
+### リンクボックス
 
 ```html
-<div class="warning-box">
-    <h3><i class="fas fa-exclamation-triangle"></i> 注意</h3>
-    <p>注意事項を記載します。</p>
+<div class="internal-link-box">
+    <h4><i class="fas fa-link"></i> 関連記事</h4>
+    <ul>
+        <li><a href="/blog/detail.php?slug=example">記事タイトル</a></li>
+    </ul>
 </div>
 ```
 
-### 比較表
+### 比較ボックス
 
 ```html
-<table class="comparison-table">
-    <thead>
-        <tr>
-            <th>項目</th>
-            <th>A</th>
-            <th>B</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>価格</td>
-            <td>10万円</td>
-            <td>20万円</td>
-        </tr>
-    </tbody>
-</table>
+<div class="comparison-box">
+    <div class="comparison-item">
+        <h4>方法A</h4>
+        <p>説明文</p>
+    </div>
+    <div class="comparison-item">
+        <h4>方法B</h4>
+        <p>説明文</p>
+    </div>
+</div>
+```
+
+### FAQ
+
+```html
+<div class="faq-section">
+    <div class="faq-item">
+        <h4>Q. 質問内容</h4>
+        <p>A. 回答内容</p>
+    </div>
+</div>
+```
+
+### リスト
+
+```html
+<!-- チェックリスト -->
+<ul class="checklist">
+    <li>項目1</li>
+    <li>項目2</li>
+</ul>
+
+<!-- ステップリスト -->
+<ol class="step-list">
+    <li>ステップ1</li>
+    <li>ステップ2</li>
+</ol>
+```
+
+### リンク
+
+```html
+<!-- 内部リンク -->
+<a href="/blog/detail.php?slug=example" class="internal-link">関連記事へ</a>
+
+<!-- 外部リンク -->
+<a href="https://example.com" class="external-link" target="_blank">外部サイトへ</a>
+```
+
+### グリッドレイアウト
+
+```html
+<div class="feature-grid">
+    <div class="feature-item">
+        <h4>特徴1</h4>
+        <p>説明文</p>
+    </div>
+    <div class="feature-item">
+        <h4>特徴2</h4>
+        <p>説明文</p>
+    </div>
+</div>
 ```
 
 ## トラブルシューティング
@@ -138,6 +210,8 @@ php validate-article.php --all
 - **`<h1>` タグが含まれています**: H1を削除し、H2から開始してください
 - **インラインスタイルが含まれています**: `<style>` タグを削除し、既存のCSSクラスを使用してください
 - **目次が含まれています**: `table-of-contents` を削除してください（自動生成されます）
+- **未定義のCSSクラスが使用されています**: 上記の「利用可能な装飾クラス」に記載されているクラスを使用してください
+- **テーブルが多すぎます**: テーブルが6個以上あると、スマホで表示が崩れる可能性があります。必要最小限に抑えてください
 
 ## 自動修正ツール
 

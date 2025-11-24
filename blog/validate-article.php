@@ -19,6 +19,46 @@ define('COLOR_RESET', "\033[0m");
 $totalErrors = 0;
 $totalWarnings = 0;
 
+// 定義済みCSSクラスをキャッシュ
+$definedCssClasses = null;
+
+/**
+ * CSSファイルから定義されているクラスを抽出
+ */
+function getDefinedCssClasses() {
+    global $definedCssClasses;
+
+    if ($definedCssClasses !== null) {
+        return $definedCssClasses;
+    }
+
+    $cssFile = __DIR__ . '/../assets/css/pages/blog.css';
+    if (!file_exists($cssFile)) {
+        return [];
+    }
+
+    $content = file_get_contents($cssFile);
+    preg_match_all('/\.([a-zA-Z0-9_-]+)\s*[{,:]/', $content, $matches);
+    $definedCssClasses = array_unique($matches[1]);
+
+    return $definedCssClasses;
+}
+
+/**
+ * HTMLファイルから使用されているクラスを抽出
+ */
+function getUsedClasses($content) {
+    preg_match_all('/class="([^"]+)"/', $content, $matches);
+
+    $classes = [];
+    foreach ($matches[1] as $classStr) {
+        $classList = preg_split('/\s+/', trim($classStr));
+        $classes = array_merge($classes, $classList);
+    }
+
+    return array_unique($classes);
+}
+
 /**
  * 記事ファイルを検証
  */
@@ -100,6 +140,42 @@ function validateArticle($filepath) {
     // 13. cta-boxやarticle-ctaセクションのチェック
     if (preg_match('/<(div|section) class=["\'][^"\']*cta-(box|section|buttons)/i', $content)) {
         $warnings[] = "古い形式のCTAセクション(cta-box/cta-section/cta-buttons)が含まれています。article-cta.phpのPHPインクルードを使用してください";
+    }
+
+    // 14. 未定義CSSクラスのチェック（警告のみ）
+    $definedClasses = getDefinedCssClasses();
+    $usedClasses = getUsedClasses($content);
+
+    // Font Awesome、Bootstrap風クラスは除外
+    $ignoreClasses = ['fas', 'fa', 'fab', 'far', 'fal', 'fad', 'container', 'row', 'col', 'blog-article'];
+    $ignorePatterns = ['/^fa-/', '/^col-/', '/^d-/', '/^text-/', '/^bg-/', '/^border-/', '/^m[tblrxy]?-/', '/^p[tblrxy]?-/'];
+
+    $undefinedClasses = [];
+    foreach ($usedClasses as $class) {
+        if (in_array($class, $ignoreClasses)) continue;
+
+        $shouldIgnore = false;
+        foreach ($ignorePatterns as $pattern) {
+            if (preg_match($pattern, $class)) {
+                $shouldIgnore = true;
+                break;
+            }
+        }
+        if ($shouldIgnore) continue;
+
+        if (!in_array($class, $definedClasses)) {
+            $undefinedClasses[] = $class;
+        }
+    }
+
+    if (!empty($undefinedClasses)) {
+        $warnings[] = "未定義のCSSクラスが使用されています: " . implode(', ', array_slice($undefinedClasses, 0, 10)) . (count($undefinedClasses) > 10 ? '...' : '');
+    }
+
+    // 15. テーブル数のチェック（警告のみ）
+    $tableCount = substr_count($content, '<table');
+    if ($tableCount > 5) {
+        $warnings[] = "テーブルが多すぎます（{$tableCount}個）。スマホ表示に注意してください";
     }
 
     // 結果表示
