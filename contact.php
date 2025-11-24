@@ -28,10 +28,7 @@ $additional_css = [
     $absence_start = strtotime('2024-11-25 00:00:00');
     $absence_end = strtotime('2024-11-27 23:59:59');
     $current_time = time();
-    // テスト用：一時的に常に表示
-    $is_absence_period = true;
-    // 本番用（上記を削除して下記を使用）
-    // $is_absence_period = ($current_time >= $absence_start && $current_time <= $absence_end);
+    $is_absence_period = ($current_time >= $absence_start && $current_time <= $absence_end);
     ?>
 
     <?php if ($is_absence_period): ?>
