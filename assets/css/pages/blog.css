@@ -1267,3 +1267,202 @@
     font-size: 12px;
   }
 }
+
+/* ============================================
+   記事内コンテンツボックス（無印良品スタイル）
+   ============================================ */
+
+.info-box,
+.warning-box,
+.success-box,
+.comparison-box,
+.internal-link-box {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+}
+
+.info-box h4,
+.warning-box h4,
+.success-box h4,
+.comparison-box h4,
+.internal-link-box h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-charcoal);
+  letter-spacing: 0.05em;
+}
+
+.info-box p,
+.warning-box p,
+.success-box p,
+.comparison-box p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.info-box p:last-child,
+.warning-box p:last-child,
+.success-box p:last-child,
+.comparison-box p:last-child {
+  margin-bottom: 0;
+}
+
+.info-box ul,
+.warning-box ul,
+.success-box ul,
+.comparison-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.info-box li,
+.warning-box li,
+.success-box li,
+.comparison-box li {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.internal-link-box ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.internal-link-box li {
+  margin-bottom: 8px;
+}
+
+.internal-link-box a {
+  color: var(--color-natural-brown);
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.8;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color var(--transition-base);
+}
+
+.internal-link-box a:hover {
+  color: var(--color-charcoal);
+}
+
+/* Feature Grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+}
+
+.feature-item {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--spacing-lg);
+}
+
+.feature-item h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-charcoal);
+  letter-spacing: 0.05em;
+}
+
+.feature-item p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+/* FAQ Section */
+.faq-section {
+  margin: var(--spacing-xl) 0;
+}
+
+.faq-item {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.faq-item h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-charcoal);
+  letter-spacing: 0.05em;
+}
+
+.faq-item p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* Price Table */
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--spacing-lg) 0;
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.price-table thead {
+  background-color: var(--color-beige);
+}
+
+.price-table th {
+  padding: var(--spacing-md);
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-charcoal);
+  border-bottom: 1px solid var(--color-border);
+  letter-spacing: 0.05em;
+}
+
+.price-table td {
+  padding: var(--spacing-md);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.price-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .price-table {
+    font-size: 13px;
+  }
+
+  .price-table th,
+  .price-table td {
+    padding: var(--spacing-sm);
+  }
+}
