@@ -498,8 +498,10 @@ $faq_structured_data = '
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
-                        <span class="faq-a-icon">A.</span>
-                        <p>大分県を拠点に、Web制作（ホームページ制作）とショート動画制作を提供しています。Web制作は10万円から、ショート動画は1本2万円から対応可能です。</p>
+                        <div class="faq-answer-content">
+                            <span class="faq-a-icon">A.</span>
+                            <p>大分県を拠点に、Web制作（ホームページ制作）とショート動画制作を提供しています。Web制作は10万円から、ショート動画は1本2万円から対応可能です。</p>
+                        </div>
                     </div>
                 </div>
 
@@ -510,8 +512,10 @@ $faq_structured_data = '
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
-                        <span class="faq-a-icon">A.</span>
-                        <p>はい、全国対応可能です。Web制作はオンラインで完結でき、ショート動画は大分県内は出張費無料、県外は別途ご相談となります。</p>
+                        <div class="faq-answer-content">
+                            <span class="faq-a-icon">A.</span>
+                            <p>はい、全国対応可能です。Web制作はオンラインで完結でき、ショート動画は大分県内は出張費無料、県外は別途ご相談となります。</p>
+                        </div>
                     </div>
                 </div>
 
@@ -522,8 +526,10 @@ $faq_structured_data = '
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
-                        <span class="faq-a-icon">A.</span>
-                        <p>Web制作は10万円プラン・30万円プラン・カスタムプランの3種類、ショート動画は1本2万円または10本セット15万円です。いずれも月額5,800円の保守は別途必要です。</p>
+                        <div class="faq-answer-content">
+                            <span class="faq-a-icon">A.</span>
+                            <p>Web制作は10万円プラン・30万円プラン・カスタムプランの3種類、ショート動画は1本2万円または10本セット15万円です。いずれも月額5,800円の保守は別途必要です。</p>
+                        </div>
                     </div>
                 </div>
 
@@ -534,8 +540,10 @@ $faq_structured_data = '
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
-                        <span class="faq-a-icon">A.</span>
-                        <p>電話（080-4692-9681）、メール（yamada@yojitu.com）、LINE、お問い合わせフォームからご連絡いただけます。営業時間は10:00〜22:00、年中無休です。</p>
+                        <div class="faq-answer-content">
+                            <span class="faq-a-icon">A.</span>
+                            <p>電話（080-4692-9681）、メール（yamada@yojitu.com）、LINE、お問い合わせフォームからご連絡いただけます。営業時間は10:00〜22:00、年中無休です。</p>
+                        </div>
                     </div>
                 </div>
 
@@ -546,8 +554,10 @@ $faq_structured_data = '
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
-                        <span class="faq-a-icon">A.</span>
-                        <p>30万円プランでも約1週間で初稿を提出できます。繁忙期を除き、ほとんどの案件が1ヶ月以内に納品可能です。AI活用により、従来より大幅にスピードアップしています。</p>
+                        <div class="faq-answer-content">
+                            <span class="faq-a-icon">A.</span>
+                            <p>30万円プランでも約1週間で初稿を提出できます。繁忙期を除き、ほとんどの案件が1ヶ月以内に納品可能です。AI活用により、従来より大幅にスピードアップしています。</p>
+                        </div>
                     </div>
                 </div>
 
@@ -558,8 +568,10 @@ $faq_structured_data = '
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
-                        <span class="faq-a-icon">A.</span>
-                        <p>代表一人で対応しているため人件費を抑えられること、またAIを活用して制作工程を大幅に短縮していることが理由です。品質を落とさずコストダウンを実現しています。</p>
+                        <div class="faq-answer-content">
+                            <span class="faq-a-icon">A.</span>
+                            <p>代表一人で対応しているため人件費を抑えられること、またAIを活用して制作工程を大幅に短縮していることが理由です。品質を落とさずコストダウンを実現しています。</p>
+                        </div>
                     </div>
                 </div>
             </div>

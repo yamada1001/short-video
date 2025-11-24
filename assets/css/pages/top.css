@@ -732,23 +732,29 @@
     padding: 0 1.5rem 1.5rem 1.5rem;
 }
 
+.faq-answer-content {
+    display: flex;
+    gap: 1rem;
+    align-items: start;
+}
+
 .faq-a-icon {
-    display: inline-block;
+    flex-shrink: 0;
     width: 32px;
     height: 32px;
     background: #F0EDE8;
     color: var(--color-natural-brown);
     border-radius: 50%;
-    text-align: center;
-    line-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 700;
     font-size: 0.9rem;
-    margin-right: 1rem;
-    vertical-align: top;
 }
 
 .faq-answer p {
-    display: inline;
+    flex: 1;
+    margin: 0;
     color: var(--color-text);
     line-height: 1.8;
 }
