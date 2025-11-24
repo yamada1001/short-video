@@ -498,10 +498,8 @@ $faq_structured_data = '
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <span class="faq-a-icon">A.</span>
-                            <p>大分県を拠点に、Web制作（ホームページ制作）とショート動画制作を提供しています。Web制作は10万円から、ショート動画は1本2万円から対応可能です。</p>
-                        </div>
+                        <span class="faq-a-icon">A.</span>
+                        <p>大分県を拠点に、Web制作（ホームページ制作）とショート動画制作を提供しています。Web制作は10万円から、ショート動画は1本2万円から対応可能です。</p>
                     </div>
                 </div>
 
@@ -512,10 +510,8 @@ $faq_structured_data = '
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <span class="faq-a-icon">A.</span>
-                            <p>はい、全国対応可能です。Web制作はオンラインで完結でき、ショート動画は大分県内は出張費無料、県外は別途ご相談となります。</p>
-                        </div>
+                        <span class="faq-a-icon">A.</span>
+                        <p>はい、全国対応可能です。Web制作はオンラインで完結でき、ショート動画は大分県内は出張費無料、県外は別途ご相談となります。</p>
                     </div>
                 </div>
 
@@ -526,10 +522,8 @@ $faq_structured_data = '
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <span class="faq-a-icon">A.</span>
-                            <p>Web制作は10万円プラン・30万円プラン・カスタムプランの3種類、ショート動画は1本2万円または10本セット15万円です。いずれも月額5,800円の保守は別途必要です。</p>
-                        </div>
+                        <span class="faq-a-icon">A.</span>
+                        <p>Web制作は10万円プラン・30万円プラン・カスタムプランの3種類、ショート動画は1本2万円または10本セット15万円です。いずれも月額5,800円の保守は別途必要です。</p>
                     </div>
                 </div>
 
@@ -540,10 +534,8 @@ $faq_structured_data = '
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <span class="faq-a-icon">A.</span>
-                            <p>電話（080-4692-9681）、メール（yamada@yojitu.com）、LINE、お問い合わせフォームからご連絡いただけます。営業時間は10:00〜22:00、年中無休です。</p>
-                        </div>
+                        <span class="faq-a-icon">A.</span>
+                        <p>電話（080-4692-9681）、メール（yamada@yojitu.com）、LINE、お問い合わせフォームからご連絡いただけます。営業時間は10:00〜22:00、年中無休です。</p>
                     </div>
                 </div>
 
@@ -554,10 +546,8 @@ $faq_structured_data = '
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <span class="faq-a-icon">A.</span>
-                            <p>30万円プランでも約1週間で初稿を提出できます。繁忙期を除き、ほとんどの案件が1ヶ月以内に納品可能です。AI活用により、従来より大幅にスピードアップしています。</p>
-                        </div>
+                        <span class="faq-a-icon">A.</span>
+                        <p>30万円プランでも約1週間で初稿を提出できます。繁忙期を除き、ほとんどの案件が1ヶ月以内に納品可能です。AI活用により、従来より大幅にスピードアップしています。</p>
                     </div>
                 </div>
 
@@ -568,10 +558,8 @@ $faq_structured_data = '
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <span class="faq-a-icon">A.</span>
-                            <p>代表一人で対応しているため人件費を抑えられること、またAIを活用して制作工程を大幅に短縮していることが理由です。品質を落とさずコストダウンを実現しています。</p>
-                        </div>
+                        <span class="faq-a-icon">A.</span>
+                        <p>代表一人で対応しているため人件費を抑えられること、またAIを活用して制作工程を大幅に短縮していることが理由です。品質を落とさずコストダウンを実現しています。</p>
                     </div>
                 </div>
             </div>
@@ -579,126 +567,20 @@ $faq_structured_data = '
     </section>
 
     <script>
-    // GSAP を使ったリッチなFAQアニメーション
     function toggleFaq(button) {
         const faqItem = button.parentElement;
-        const faqAnswer = faqItem.querySelector('.faq-answer');
-        const arrow = button.querySelector('.faq-arrow');
         const isActive = faqItem.classList.contains('active');
 
         // すべてのFAQを閉じる
         document.querySelectorAll('.faq-item').forEach(item => {
-            if (item !== faqItem && item.classList.contains('active')) {
-                const otherAnswer = item.querySelector('.faq-answer');
-                const otherArrow = item.querySelector('.faq-arrow');
-
-                // 閉じるアニメーション
-                gsap.to(otherAnswer, {
-                    height: 0,
-                    opacity: 0,
-                    duration: 0.4,
-                    ease: 'power2.inOut',
-                    onComplete: () => {
-                        item.classList.remove('active');
-                    }
-                });
-
-                gsap.to(otherArrow, {
-                    rotation: 0,
-                    duration: 0.3,
-                    ease: 'power2.inOut'
-                });
-            }
+            item.classList.remove('active');
         });
 
-        // クリックされたFAQを開く/閉じる
+        // クリックされたFAQを開く（既に開いていた場合は閉じる）
         if (!isActive) {
-            // 開くアニメーション
             faqItem.classList.add('active');
-
-            // まず高さを測定
-            faqAnswer.style.height = 'auto';
-            const autoHeight = faqAnswer.offsetHeight;
-            faqAnswer.style.height = '0';
-
-            // アニメーション実行
-            const tl = gsap.timeline();
-
-            tl.to(faqAnswer, {
-                height: autoHeight,
-                duration: 0.5,
-                ease: 'power2.out'
-            })
-            .to(faqAnswer, {
-                opacity: 1,
-                duration: 0.3,
-                ease: 'power1.inOut'
-            }, '-=0.3')
-            .to(arrow, {
-                rotation: 180,
-                duration: 0.4,
-                ease: 'back.out(1.7)'
-            }, 0);
-
-            // テキストをフェードイン
-            gsap.fromTo(faqAnswer.querySelectorAll('.faq-a-icon, p'), {
-                opacity: 0,
-                y: 10
-            }, {
-                opacity: 1,
-                y: 0,
-                duration: 0.4,
-                stagger: 0.1,
-                delay: 0.2,
-                ease: 'power2.out'
-            });
-
-            // カード全体に軽くバウンス効果
-            gsap.to(faqItem, {
-                scale: 1.02,
-                duration: 0.1,
-                ease: 'power1.out',
-                yoyo: true,
-                repeat: 1
-            });
-
-        } else {
-            // 閉じるアニメーション
-            gsap.to(faqAnswer, {
-                height: 0,
-                opacity: 0,
-                duration: 0.4,
-                ease: 'power2.inOut',
-                onComplete: () => {
-                    faqItem.classList.remove('active');
-                }
-            });
-
-            gsap.to(arrow, {
-                rotation: 0,
-                duration: 0.3,
-                ease: 'power2.inOut'
-            });
         }
     }
-
-    // ページロード時にFAQアイテムをフェードイン
-    document.addEventListener('DOMContentLoaded', function() {
-        if (typeof gsap !== 'undefined') {
-            gsap.from('.faq-item', {
-                opacity: 0,
-                y: 30,
-                duration: 0.6,
-                stagger: 0.1,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: '.faq-section',
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                }
-            });
-        }
-    });
     </script>
 
     <!-- CTAセクション -->
