@@ -5,3 +5,5 @@
 *.tmp
 data/contacts/*.json
 cache/translations/
+blog/credentials.json
+blog/logs/

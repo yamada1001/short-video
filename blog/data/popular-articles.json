@@ -1,0 +1,36 @@
+{
+  "updated_at": "2025-11-24 12:00:00",
+  "period": "過去30日間",
+  "articles": [
+    {
+      "id": 110,
+      "slug": "homepage-accounting-budget",
+      "page_views": 1250,
+      "users": 980
+    },
+    {
+      "id": 109,
+      "slug": "inner-branding-failure",
+      "page_views": 1100,
+      "users": 890
+    },
+    {
+      "id": 108,
+      "slug": "branding-site-guide",
+      "page_views": 950,
+      "users": 750
+    },
+    {
+      "id": 107,
+      "slug": "brand-collapse-prevention",
+      "page_views": 820,
+      "users": 680
+    },
+    {
+      "id": 106,
+      "slug": "video-marketing-strategy",
+      "page_views": 750,
+      "users": 610
+    }
+  ]
+}

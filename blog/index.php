@@ -204,6 +204,13 @@ $categories = array_unique(array_column($all_posts, 'category'));
         </div>
     </section>
 
+    <!-- 人気記事 -->
+    <section class="popular-articles-section">
+        <div class="container">
+            <?php include __DIR__ . '/includes/popular-articles.php'; ?>
+        </div>
+    </section>
+
     <!-- フッター -->
     <footer class="footer">
         <div class="container">

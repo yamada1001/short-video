@@ -1109,3 +1109,194 @@
     right: 8px;
   }
 }
+
+/* ============================================
+   人気記事セクション
+   ============================================ */
+.popular-articles-section {
+  padding: var(--spacing-2xl) 0;
+  background-color: var(--color-background-light);
+}
+
+.popular-articles {
+  margin: var(--spacing-2xl) 0;
+}
+
+.popular-articles__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.popular-articles__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.popular-articles__title .fa-fire {
+  color: #ff6b35;
+  animation: fireFlicker 1.5s ease-in-out infinite;
+}
+
+@keyframes fireFlicker {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+.popular-articles__period {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.popular-articles__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.popular-article-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.popular-article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.popular-article-card__link {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+  padding: var(--spacing-lg);
+  gap: var(--spacing-md);
+  min-height: 140px;
+}
+
+.popular-article-card__rank {
+  flex-shrink: 0;
+}
+
+.rank-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.rank-badge--1 {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  box-shadow: 0 2px 12px rgba(255, 215, 0, 0.5);
+  animation: rankPulse 2s ease-in-out infinite;
+}
+
+.rank-badge--2 {
+  background: linear-gradient(135deg, #C0C0C0 0%, #808080 100%);
+  box-shadow: 0 2px 8px rgba(192, 192, 192, 0.4);
+}
+
+.rank-badge--3 {
+  background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
+  box-shadow: 0 2px 8px rgba(205, 127, 50, 0.4);
+}
+
+@keyframes rankPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.popular-article-card__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.popular-article-card__meta {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.popular-article-card__date {
+  color: var(--color-text-muted);
+}
+
+.popular-article-card__category {
+  color: var(--color-natural-brown);
+  font-weight: 500;
+}
+
+.popular-article-card__title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-dark);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.popular-article-card__excerpt {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .popular-articles-section {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .popular-articles__title {
+    font-size: 24px;
+  }
+
+  .popular-articles__grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .popular-article-card__link {
+    padding: var(--spacing-md);
+    min-height: 120px;
+  }
+
+  .rank-badge {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .popular-article-card__title {
+    font-size: 15px;
+  }
+
+  .popular-article-card__excerpt {
+    font-size: 13px;
+  }
+}

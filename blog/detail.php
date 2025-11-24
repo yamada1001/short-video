@@ -180,6 +180,9 @@ if (!empty($post['thumbnail'])) {
             </section>
             <?php endif; ?>
 
+            <!-- 人気記事 -->
+            <?php include __DIR__ . '/includes/popular-articles.php'; ?>
+
                     <!-- 一覧に戻る -->
                     <div class="article-back">
                         <a href="index.php" class="btn btn-secondary">ブログ一覧に戻る</a>
