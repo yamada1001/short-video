@@ -74,8 +74,13 @@ if (isset($additional_css) && is_array($additional_css)) {
     <!-- Language switcher with GSAP animations -->
     <script defer src="<?php echo $css_base_path ?? '/'; ?>assets/js/lang-switcher.js"></script>
 
-    <!-- Google Tag Manager - Async -->
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T7NGQDC2"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
+    <!-- End Google Tag Manager -->
 <?php if (isset($structured_data)): ?>
 
     <!-- Structured Data -->
