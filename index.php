@@ -567,20 +567,126 @@ $faq_structured_data = '
     </section>
 
     <script>
+    // GSAP を使ったリッチなFAQアニメーション
     function toggleFaq(button) {
         const faqItem = button.parentElement;
+        const faqAnswer = faqItem.querySelector('.faq-answer');
+        const arrow = button.querySelector('.faq-arrow');
         const isActive = faqItem.classList.contains('active');
 
         // すべてのFAQを閉じる
         document.querySelectorAll('.faq-item').forEach(item => {
-            item.classList.remove('active');
+            if (item !== faqItem && item.classList.contains('active')) {
+                const otherAnswer = item.querySelector('.faq-answer');
+                const otherArrow = item.querySelector('.faq-arrow');
+
+                // 閉じるアニメーション
+                gsap.to(otherAnswer, {
+                    height: 0,
+                    opacity: 0,
+                    duration: 0.4,
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                        item.classList.remove('active');
+                    }
+                });
+
+                gsap.to(otherArrow, {
+                    rotation: 0,
+                    duration: 0.3,
+                    ease: 'power2.inOut'
+                });
+            }
         });
 
-        // クリックされたFAQを開く（既に開いていた場合は閉じる）
+        // クリックされたFAQを開く/閉じる
         if (!isActive) {
+            // 開くアニメーション
             faqItem.classList.add('active');
+
+            // まず高さを測定
+            faqAnswer.style.height = 'auto';
+            const autoHeight = faqAnswer.offsetHeight;
+            faqAnswer.style.height = '0';
+
+            // アニメーション実行
+            const tl = gsap.timeline();
+
+            tl.to(faqAnswer, {
+                height: autoHeight,
+                duration: 0.5,
+                ease: 'power2.out'
+            })
+            .to(faqAnswer, {
+                opacity: 1,
+                duration: 0.3,
+                ease: 'power1.inOut'
+            }, '-=0.3')
+            .to(arrow, {
+                rotation: 180,
+                duration: 0.4,
+                ease: 'back.out(1.7)'
+            }, 0);
+
+            // テキストをフェードイン
+            gsap.fromTo(faqAnswer.querySelectorAll('.faq-a-icon, p'), {
+                opacity: 0,
+                y: 10
+            }, {
+                opacity: 1,
+                y: 0,
+                duration: 0.4,
+                stagger: 0.1,
+                delay: 0.2,
+                ease: 'power2.out'
+            });
+
+            // カード全体に軽くバウンス効果
+            gsap.to(faqItem, {
+                scale: 1.02,
+                duration: 0.1,
+                ease: 'power1.out',
+                yoyo: true,
+                repeat: 1
+            });
+
+        } else {
+            // 閉じるアニメーション
+            gsap.to(faqAnswer, {
+                height: 0,
+                opacity: 0,
+                duration: 0.4,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                    faqItem.classList.remove('active');
+                }
+            });
+
+            gsap.to(arrow, {
+                rotation: 0,
+                duration: 0.3,
+                ease: 'power2.inOut'
+            });
         }
     }
+
+    // ページロード時にFAQアイテムをフェードイン
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof gsap !== 'undefined') {
+            gsap.from('.faq-item', {
+                opacity: 0,
+                y: 30,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.faq-section',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        }
+    });
     </script>
 
     <!-- CTAセクション -->
