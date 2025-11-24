@@ -1120,7 +1120,6 @@
 }
 
 .popular-articles {
-  margin-top: var(--spacing-xxl);
   padding-top: var(--spacing-xxl);
   border-top: 1px solid var(--color-border);
 }
@@ -1152,6 +1151,7 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--spacing-lg);
   margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-xxl);
 }
 
 .popular-article-card {
