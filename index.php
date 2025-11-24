@@ -40,9 +40,9 @@ $all_categories = array_filter($all_categories); // 空の値を除外
 sort($all_categories);
 
 // Head用の変数設定
-$page_title = '余日（Yojitsu） - 大分のデジタルマーケティング';
-$page_description = '大分県を拠点に、Web制作・ショート動画制作を提供する余日（Yojitsu）。デジタルマーケティングで地域企業の成長を支援します。';
-$page_keywords = '大分,Web制作,ショート動画,動画制作,ホームページ制作,余日,Yojitsu';
+$page_title = '【10万円〜】大分のホームページ制作・Web制作｜余日（Yojitsu）';
+$page_description = '大分県のホームページ制作・Web制作なら余日へ。10万円からの格安料金、AI活用で1週間で初稿提出、月額5,800円で更新し放題。大分市・別府市など県内全域対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作。';
+$page_keywords = '大分,ホームページ制作,Web制作,格安,10万円,AI,大分市,別府市,中小企業,個人事業主,余日,Yojitsu';
 $additional_css = [
     'assets/css/loading.css',
     'assets/css/pages/top.css',
@@ -50,8 +50,8 @@ $additional_css = [
 ];
 
 $ogp_tags = <<<'EOD'
-    <meta property="og:title" content="余日（Yojitsu） - 大分のデジタルマーケティング">
-    <meta property="og:description" content="大分県を拠点に、Web制作・ショート動画制作を提供。地域企業のデジタル化を支援します。">
+    <meta property="og:title" content="【10万円〜】大分のホームページ制作・Web制作｜余日（Yojitsu）">
+    <meta property="og:description" content="大分県のホームページ制作なら余日へ。10万円からの格安料金、AI活用で1週間で初稿提出、月額5,800円で更新し放題。大分市・別府市など県内全域対応。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yojitu.com/">
     <meta property="og:image" content="https://yojitu.com/assets/images/ogp.jpg">
@@ -71,7 +71,7 @@ $structured_data = '
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "余日（Yojitsu）",
-      "description": "デジタルマーケティング・Web制作会社",
+      "description": "大分県のホームページ制作・Web制作会社。10万円からの格安料金、AI活用で1週間で初稿提出、月額5,800円で更新し放題。大分市・別府市など県内全域対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作。",
       "url": "https://yojitu.com/",
       "telephone": "' . CONTACT_TEL . '",
       "email": "' . CONTACT_EMAIL . '",
@@ -82,12 +82,25 @@ $structured_data = '
         "addressRegion": "大分県",
         "addressCountry": "JP"
       },
-      "areaServed": {
-        "@type": "Country",
-        "name": "日本"
-      },
-      "priceRange": "¥¥",
-      "serviceType": ["Webサイト制作", "ショート動画制作"]
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "大分市",
+          "addressRegion": "大分県"
+        },
+        {
+          "@type": "City",
+          "name": "別府市",
+          "addressRegion": "大分県"
+        },
+        {
+          "@type": "State",
+          "name": "大分県"
+        }
+      ],
+      "priceRange": "¥100,000〜",
+      "serviceType": ["ホームページ制作", "Webサイト制作", "ショート動画制作"],
+      "keywords": ["大分", "ホームページ制作", "Web制作", "格安", "10万円", "AI", "中小企業", "個人事業主"]
     }
 ';
 
@@ -467,6 +480,107 @@ $faq_structured_data = '
             });
         });
     });
+    </script>
+
+    <!-- FAQセクション -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-question-circle"></i> よくあるご質問
+            </h2>
+            <p class="section-subtitle">お客様からよくいただくご質問をまとめました</p>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-q-icon">Q.</span>
+                        <span class="faq-q-text">余日（Yojitsu）はどんなサービスを提供していますか？</span>
+                        <i class="fas fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <span class="faq-a-icon">A.</span>
+                        <p>大分県を拠点に、Web制作（ホームページ制作）とショート動画制作を提供しています。Web制作は10万円から、ショート動画は1本2万円から対応可能です。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-q-icon">Q.</span>
+                        <span class="faq-q-text">大分県以外でも対応可能ですか？</span>
+                        <i class="fas fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <span class="faq-a-icon">A.</span>
+                        <p>はい、全国対応可能です。Web制作はオンラインで完結でき、ショート動画は大分県内は出張費無料、県外は別途ご相談となります。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-q-icon">Q.</span>
+                        <span class="faq-q-text">料金体系を教えてください</span>
+                        <i class="fas fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <span class="faq-a-icon">A.</span>
+                        <p>Web制作は10万円プラン・30万円プラン・カスタムプランの3種類、ショート動画は1本2万円または10本セット15万円です。いずれも月額5,800円の保守は別途必要です。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-q-icon">Q.</span>
+                        <span class="faq-q-text">お問い合わせ方法は？</span>
+                        <i class="fas fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <span class="faq-a-icon">A.</span>
+                        <p>電話（080-4692-9681）、メール（yamada@yojitu.com）、LINE、お問い合わせフォームからご連絡いただけます。営業時間は10:00〜22:00、年中無休です。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-q-icon">Q.</span>
+                        <span class="faq-q-text">制作期間はどれくらいですか？</span>
+                        <i class="fas fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <span class="faq-a-icon">A.</span>
+                        <p>30万円プランでも約1週間で初稿を提出できます。繁忙期を除き、ほとんどの案件が1ヶ月以内に納品可能です。AI活用により、従来より大幅にスピードアップしています。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-q-icon">Q.</span>
+                        <span class="faq-q-text">なぜこの価格で提供できるのですか？</span>
+                        <i class="fas fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <span class="faq-a-icon">A.</span>
+                        <p>代表一人で対応しているため人件費を抑えられること、またAIを活用して制作工程を大幅に短縮していることが理由です。品質を落とさずコストダウンを実現しています。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    function toggleFaq(button) {
+        const faqItem = button.parentElement;
+        const isActive = faqItem.classList.contains('active');
+
+        // すべてのFAQを閉じる
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+
+        // クリックされたFAQを開く（既に開いていた場合は閉じる）
+        if (!isActive) {
+            faqItem.classList.add('active');
+        }
+    }
     </script>
 
     <!-- CTAセクション -->
