@@ -48,9 +48,7 @@ if (empty($popular_posts)) {
 
 <section class="popular-articles">
     <div class="popular-articles__header">
-        <h2 class="popular-articles__title">
-            <i class="fas fa-fire"></i> 人気の記事
-        </h2>
+        <h2 class="popular-articles__title">人気の記事</h2>
         <p class="popular-articles__period">
             <?php echo htmlspecialchars($popular_articles_data['period'], ENT_QUOTES, 'UTF-8'); ?>のデータ
         </p>
@@ -60,7 +58,7 @@ if (empty($popular_posts)) {
         <article class="popular-article-card">
             <a href="detail.php?slug=<?php echo urlencode($popular['slug']); ?>" class="popular-article-card__link">
                 <div class="popular-article-card__rank">
-                    <span class="rank-badge rank-badge--<?php echo $index + 1; ?>">
+                    <span class="rank-badge">
                         <?php echo $index + 1; ?>
                     </span>
                 </div>
