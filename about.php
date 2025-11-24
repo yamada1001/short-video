@@ -83,6 +83,10 @@ $additional_css = ['assets/css/pages/about.css', 'assets/css/cookie-consent.css'
                     <th>メールアドレス</th>
                     <td><?php echo CONTACT_EMAIL; ?></td>
                 </tr>
+                <tr>
+                    <th>Googleビジネスプロフィール</th>
+                    <td><a href="https://share.google/a1I8CoPFkxa4plijz" target="_blank" rel="noopener">プロフィールを見る</a></td>
+                </tr>
             </table>
         </div>
     </section>

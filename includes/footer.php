@@ -100,7 +100,8 @@ if ($footerIsEnglish) {
                 <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 12px; line-height: 1.9;">
                     <i class="fas fa-phone" style="margin-right: 8px;"></i>Tel: <a href="tel:<?php echo CONTACT_TEL_LINK; ?>" style="color: rgba(255, 255, 255, 0.9);"><?php echo CONTACT_TEL; ?></a><br>
                     <i class="fas fa-envelope" style="margin-right: 8px;"></i>Email: <a href="mailto:<?php echo CONTACT_EMAIL; ?>" style="color: rgba(255, 255, 255, 0.9);"><?php echo CONTACT_EMAIL; ?></a><br>
-                    <i class="fab fa-line" style="margin-right: 8px;"></i>LINE: <a href="<?php echo CONTACT_LINE_URL; ?>" style="color: rgba(255, 255, 255, 0.9);"><?php echo $footerTexts['line_contact']; ?></a>
+                    <i class="fab fa-line" style="margin-right: 8px;"></i>LINE: <a href="<?php echo CONTACT_LINE_URL; ?>" style="color: rgba(255, 255, 255, 0.9);"><?php echo $footerTexts['line_contact']; ?></a><br>
+                    <i class="fab fa-google" style="margin-right: 8px;"></i>Google: <a href="https://share.google/a1I8CoPFkxa4plijz" target="_blank" rel="noopener" style="color: rgba(255, 255, 255, 0.9);">ビジネスプロフィール</a>
                 </p>
                 <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.8;">
                     <i class="fas fa-clock" style="margin-right: 8px;"></i><?php echo $footerTexts['hours']; ?>: <?php echo BUSINESS_HOURS; ?><br>
