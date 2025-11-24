@@ -546,14 +546,67 @@
     /* プロセス比較を縦並びに */
     .process-comparison {
         grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .process-box {
+        padding: var(--spacing-md);
     }
 
     .process-box h4 {
-        font-size: 16px;
+        font-size: 15px;
+        margin-bottom: var(--spacing-sm);
     }
 
     .process-box ol {
         padding-left: var(--spacing-md);
+        font-size: 14px;
+    }
+
+    .process-box ol li {
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .process-box p {
+        font-size: 14px;
+    }
+
+    .process-note {
+        font-size: 13px;
+        padding: var(--spacing-xs);
+        margin-top: var(--spacing-sm);
+    }
+
+    .speed-benefits {
+        font-size: 14px;
+    }
+
+    .speed-benefits li {
+        padding: var(--spacing-xs) 0;
+        font-size: 14px;
+    }
+
+    .loss-list {
+        padding: var(--spacing-md);
+        font-size: 14px;
+    }
+
+    .loss-list li {
+        padding: var(--spacing-xs) 0;
+        font-size: 14px;
+    }
+
+    .story-content {
+        padding: var(--spacing-md);
+    }
+
+    .story-content p {
+        font-size: 15px;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .story-content ul {
+        font-size: 14px;
     }
 
     /* モバイルでタブ表示 */
