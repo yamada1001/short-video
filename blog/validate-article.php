@@ -178,6 +178,22 @@ function validateArticle($filepath) {
         $warnings[] = "テーブルが多すぎます（{$tableCount}個）。スマホ表示に注意してください";
     }
 
+    // 16. データ・統計の引用チェック（警告のみ）
+    // 数値データのパターンを検出
+    if (preg_match('/(\d+[\.%％]|[0-9０-９]+割|[0-9０-９]+人|[0-9０-９]+社|[0-9０-９]+件)/', $content)) {
+        // 参考文献セクションの存在チェック
+        if (!preg_match('/<h[2-4]>.*参考文献.*<\/h[2-4]>|<h4>.*参考文献.*<\/h4>/i', $content) &&
+            !preg_match('/note-box.*参考文献/is', $content)) {
+            $warnings[] = "数値データが含まれていますが、参考文献セクションが見つかりません。データの出典を明記してください";
+        }
+
+        // 外部リンク（出典URL）の存在チェック
+        if (!preg_match('/<a[^>]+href=["\']https?:\/\/[^"\']+["\'][^>]*class=["\'][^"\']*external-link/i', $content) &&
+            !preg_match('/<a[^>]+class=["\'][^"\']*external-link[^"\']*["\'][^>]+href=["\']https?:\/\//i', $content)) {
+            $warnings[] = "数値データが含まれていますが、外部リンク（出典URL）が見つかりません。参考文献にURLを記載してください";
+        }
+    }
+
     // 結果表示
     if (empty($errors) && empty($warnings)) {
         echo COLOR_GREEN . "✓ 検証成功！記事フォーマットは正しいです。" . COLOR_RESET . "\n";

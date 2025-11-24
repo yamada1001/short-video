@@ -65,11 +65,45 @@ if (!empty($post['thumbnail'])) {
     $ogp_tags .= '
     <meta property="og:image" content="' . h($post['thumbnail']) . '">';
 }
+// 構造化データ（JSON-LD）の生成
+$structured_data = [
+    '@context' => 'https://schema.org',
+    '@type' => 'Article',
+    'headline' => $post['title'],
+    'description' => $post['excerpt'],
+    'datePublished' => $post['publishedAt'],
+    'dateModified' => $post['updatedAt'],
+    'author' => [
+        '@type' => 'Person',
+        'name' => $post['author']
+    ],
+    'publisher' => [
+        '@type' => 'Organization',
+        'name' => '余日（Yojitsu）',
+        'logo' => [
+            '@type' => 'ImageObject',
+            'url' => SITE_URL . '/assets/images/logo.png'
+        ]
+    ],
+    'mainEntityOfPage' => [
+        '@type' => 'WebPage',
+        '@id' => SITE_URL . '/blog/detail.php?slug=' . urlencode($post['slug'])
+    ]
+];
+
+// サムネイルがある場合は追加
+if (!empty($post['thumbnail'])) {
+    $structured_data['image'] = $post['thumbnail'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <?php require_once __DIR__ . '/../includes/head.php'; ?>
+<!-- 構造化データ（JSON-LD） -->
+<script type="application/ld+json">
+<?php echo json_encode($structured_data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); ?>
+</script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
