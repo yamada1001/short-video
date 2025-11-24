@@ -3,9 +3,9 @@ $current_page = 'services';
 require_once __DIR__ . '/includes/functions.php';
 
 // Head用の変数設定
-$page_title = '【10万円〜】大分のホームページ制作・Web制作｜AI活用で1週間で初稿｜余日';
-$page_description = '大分県のホームページ制作・Web制作なら余日へ。10万円から、AI活用で約1週間で初稿提出。月額5,800円で更新し放題。大分市・別府市など県内全域対応。レスポンシブデザイン、SEO最適化、WordPress対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作。';
-$page_keywords = 'ホームページ制作,Web制作,大分,大分市,別府市,格安,10万円,30万円,AI,レスポンシブ,SEO,WordPress,余日';
+$page_title = 'ホームページ制作の料金プラン・制作の流れ｜10万円〜30万円｜余日（Yojitsu）';
+$page_description = 'ホームページ制作の料金プラン（10万円・30万円・カスタム）、制作の流れ、AI活用による短納期を詳しく解説。月額5,800円で更新し放題。レスポンシブデザイン、SEO最適化、WordPress対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作サービスの詳細はこちら。';
+$page_keywords = 'ホームページ制作,料金,プラン,制作の流れ,10万円,30万円,AI,月額,更新,レスポンシブ,SEO,WordPress,余日';
 $additional_css = ['assets/css/pages/web-production.css', 'assets/css/cookie-consent.css'];
 
 $structured_data = '
