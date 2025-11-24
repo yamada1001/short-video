@@ -5,8 +5,112 @@
     <link>https://yojitu.com</link>
     <description>余日（Yojitsu）のお知らせとブログの最新情報をお届けします。</description>
     <language>ja</language>
-    <lastBuildDate>Wed, 19 Nov 2025 13:38:59 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 24 Nov 2025 20:47:12 +0900</lastBuildDate>
     <atom:link href="https://yojitu.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>APIとは？わかりやすく仕組みやメリット・活用事例を徹底解説</title>
+      <link>https://yojitu.com/blog/detail.php?slug=api-explained-guide</link>
+      <description>APIの基本概念から仕組み、メリット・デメリット、具体的な活用事例まで初心者にもわかりやすく解説。Web制作やアプリ開発、システム連携に欠かせないAPIの全てを学べます。</description>
+      <pubDate>Mon, 24 Nov 2025 15:00:00 +0900</pubDate>
+      <category>Web制作</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=api-explained-guide</guid>
+    </item>
+    <item>
+      <title>開業前にホームページは必要？最適なタイミングと準備のポイント</title>
+      <link>https://yojitu.com/blog/detail.php?slug=homepage-before-opening</link>
+      <description>開業前にホームページを作るべき理由、最適な作成タイミング、準備すべき内容を徹底解説。SEO効果、集客、信頼性構築など、開業成功のために知っておくべきポイントを紹介します。</description>
+      <pubDate>Mon, 24 Nov 2025 12:00:00 +0900</pubDate>
+      <category>ホームページ制作</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=homepage-before-opening</guid>
+    </item>
+    <item>
+      <title>ホームページ制作費用の仕訳と予算の組み方【経理担当者向け完全ガイド】</title>
+      <link>https://yojitu.com/blog/detail.php?slug=homepage-accounting-budget</link>
+      <description>ホームページ制作費用の会計処理（仕訳・勘定科目・資産計上）と予算の組み方を経理担当者向けに解説。消費税の取扱い、減価償却、税務調査対策まで網羅的に紹介します。</description>
+      <pubDate>Fri, 21 Nov 2025 11:00:00 +0900</pubDate>
+      <category>ホームページ制作</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=homepage-accounting-budget</guid>
+    </item>
+    <item>
+      <title>インナーブランディングの失敗事例と対策｜社内浸透を成功させるポイント</title>
+      <link>https://yojitu.com/blog/detail.php?slug=inner-branding-failure</link>
+      <description>インナーブランディングの失敗事例と原因を分析し、社内浸透を成功させるポイントを解説。経営層の関与、評価制度との連動、継続的な施策など具体的な対策を紹介します。</description>
+      <pubDate>Fri, 21 Nov 2025 10:00:00 +0900</pubDate>
+      <category>ブランディング</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=inner-branding-failure</guid>
+    </item>
+    <item>
+      <title>ブランディングサイトとは？構築のポイントと成功事例を徹底解説</title>
+      <link>https://yojitu.com/blog/detail.php?slug=branding-site-guide</link>
+      <description>ブランディングサイトの定義、コーポレートサイトとの違い、構築のポイントを解説。デザイン、コンテンツ、UX、SEOなど成功するブランディングサイトの作り方を紹介します。</description>
+      <pubDate>Fri, 21 Nov 2025 09:00:00 +0900</pubDate>
+      <category>ブランディング</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=branding-site-guide</guid>
+    </item>
+    <item>
+      <title>ブランドが崩れる原因と対策｜ブランド崩壊を防ぐための完全ガイド</title>
+      <link>https://yojitu.com/blog/detail.php?slug=brand-collapse-prevention</link>
+      <description>ブランドが崩れる6つの原因、崩壊の兆候、回復のための対策を解説。一貫性の欠如、品質低下、不祥事対応など、ブランドリスクへの対処法を紹介します。</description>
+      <pubDate>Fri, 21 Nov 2025 08:00:00 +0900</pubDate>
+      <category>ブランディング</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=brand-collapse-prevention</guid>
+    </item>
+    <item>
+      <title>ブランディングのよくある間違い7選｜失敗しないための正しい進め方</title>
+      <link>https://yojitu.com/blog/detail.php?slug=branding-common-mistakes</link>
+      <description>ブランディングでよくある7つの間違いと正しい進め方を解説。ロゴ・デザインの過信、社内浸透の軽視、効果測定の欠如など、失敗を防ぐためのポイントを紹介します。</description>
+      <pubDate>Fri, 21 Nov 2025 07:00:00 +0900</pubDate>
+      <category>ブランディング</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=branding-common-mistakes</guid>
+    </item>
+    <item>
+      <title>Webサイト構築ツール徹底比較【2025年版】目的別おすすめツール15選</title>
+      <link>https://yojitu.com/blog/detail.php?slug=website-building-tools-comparison</link>
+      <description>Webサイト構築ツールを目的別に徹底比較。WordPress、Wix、STUDIO、Shopify、Notionなど15ツールの特徴、料金、メリット・デメリットを解説します。</description>
+      <pubDate>Fri, 21 Nov 2025 06:00:00 +0900</pubDate>
+      <category>ホームページ制作</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=website-building-tools-comparison</guid>
+    </item>
+    <item>
+      <title>Web制作の発注完全ガイド｜失敗しない依頼の進め方と注意点</title>
+      <link>https://yojitu.com/blog/detail.php?slug=web-production-ordering-guide</link>
+      <description>Web制作を発注する際の完全ガイド。RFP作成、制作会社選定、契約時の注意点、プロジェクト管理のコツを解説。発注者として知っておくべきポイントを紹介します。</description>
+      <pubDate>Fri, 21 Nov 2025 05:00:00 +0900</pubDate>
+      <category>ホームページ制作</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=web-production-ordering-guide</guid>
+    </item>
+    <item>
+      <title>ショート動画編集の業務委託完全ガイド｜外注先選びから費用相場まで</title>
+      <link>https://yojitu.com/blog/detail.php?slug=short-video-editing-outsourcing-guide</link>
+      <description>ショート動画編集を業務委託する方法を徹底解説。TikTok・Reels・YouTubeショート向け編集の外注先選び、費用相場、依頼のコツ、おすすめサービスを紹介します。</description>
+      <pubDate>Fri, 21 Nov 2025 04:00:00 +0900</pubDate>
+      <category>動画制作</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=short-video-editing-outsourcing-guide</guid>
+    </item>
+    <item>
+      <title>動画撮影を業務委託で依頼する方法｜費用相場・外注先の選び方を徹底解説</title>
+      <link>https://yojitu.com/blog/detail.php?slug=video-shooting-outsourcing-guide</link>
+      <description>動画撮影を業務委託で依頼する方法を徹底解説。費用相場、外注先の選び方、契約時の注意点、おすすめの発注先まで網羅的に紹介します。</description>
+      <pubDate>Fri, 21 Nov 2025 03:00:00 +0900</pubDate>
+      <category>動画制作</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=video-shooting-outsourcing-guide</guid>
+    </item>
+    <item>
+      <title>構造化データとは？SEO効果と実装方法を徹底解説【2025年最新版】</title>
+      <link>https://yojitu.com/blog/detail.php?slug=structured-data-seo-guide</link>
+      <description>構造化データ（Schema.org）のSEO効果と実装方法を解説。LocalBusiness、Product、FAQPageなど主要タイプの書き方、テストツール、よくあるミスまで網羅的に紹介します。</description>
+      <pubDate>Thu, 20 Nov 2025 10:00:00 +0900</pubDate>
+      <category>SEO</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=structured-data-seo-guide</guid>
+    </item>
+    <item>
+      <title>Gemini 3の新機能と性能比較【GPT-5.1・Claude 4.5との違い】</title>
+      <link>https://yojitu.com/blog/detail.php?slug=gemini-3-features-comparison</link>
+      <description>2025年11月リリースのGoogle Gemini 3を徹底解説。Deep Thinkモード、マルチモーダル機能、Gemini Agent、GPT-5.1やClaude Sonnet 4.5との比較、料金体系まで網羅的に紹介します。</description>
+      <pubDate>Wed, 19 Nov 2025 18:00:00 +0900</pubDate>
+      <category>AI</category>
+      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=gemini-3-features-comparison</guid>
+    </item>
     <item>
       <title>GPT-5.1とは？新機能・ベンチマーク・使い方を徹底解説【2025年11月】</title>
       <link>https://yojitu.com/blog/detail.php?slug=gpt-5-1-features</link>
@@ -62,110 +166,6 @@
       <pubDate>Sat, 15 Nov 2025 16:00:00 +0900</pubDate>
       <category>ホームページ制作</category>
       <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=landing-page-vs-homepage</guid>
-    </item>
-    <item>
-      <title>採用サイトとしてのホームページ活用法【大分の中小企業向け】</title>
-      <link>https://yojitu.com/blog/detail.php?slug=recruitment-website-guide</link>
-      <description>人手不足に悩む大分の中小企業向けに、採用サイトの必要性、掲載すべきコンテンツ、Indeed連携、低予算での制作方法を詳しく解説。求人サイトだけでは不十分な時代に、採用サイトで優秀な人材を獲得しましょう。</description>
-      <pubDate>Sat, 15 Nov 2025 15:30:00 +0900</pubDate>
-      <category>ホームページ制作</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=recruitment-website-guide</guid>
-    </item>
-    <item>
-      <title>ホームページとSNSの使い分け方｜両方必要な理由とは</title>
-      <link>https://yojitu.com/blog/detail.php?slug=homepage-sns-integration</link>
-      <description>ホームページとSNS、どちらか一方だけでは不十分です。ストック型とフロー型の違いを理解し、それぞれの長所を活かした使い分けと連携方法を解説します。業種別のおすすめSNS活用法も紹介。</description>
-      <pubDate>Sat, 15 Nov 2025 15:00:00 +0900</pubDate>
-      <category>Web集客</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=homepage-sns-integration</guid>
-    </item>
-    <item>
-      <title>ホームページ制作で最低限準備しておくべき素材リスト</title>
-      <link>https://yojitu.com/blog/detail.php?slug=homepage-material-preparation</link>
-      <description>ホームページ制作をスムーズに進めるために、事前に準備すべき素材を完全リスト化。会社情報、写真、原稿、ロゴデータなど、必要な素材と準備のコツを詳しく解説します。</description>
-      <pubDate>Sat, 15 Nov 2025 14:30:00 +0900</pubDate>
-      <category>ホームページ制作</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=homepage-material-preparation</guid>
-    </item>
-    <item>
-      <title>WordPressって何？初心者でもわかるCMS選びのポイント</title>
-      <link>https://yojitu.com/blog/detail.php?slug=wordpress-cms-guide</link>
-      <description>WordPress、Shopify、Wix、Jimdoなど、主要CMSの特徴と選び方を初心者向けに解説。自社に最適なCMSを選ぶための7つの基準と、WordPress導入のメリット・デメリットを紹介します。</description>
-      <pubDate>Sat, 15 Nov 2025 14:00:00 +0900</pubDate>
-      <category>ホームページ制作</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=wordpress-cms-guide</guid>
-    </item>
-    <item>
-      <title>大分の観光業・宿泊業向け｜多言語対応ホームページ制作のポイント</title>
-      <link>https://yojitu.com/blog/detail.php?slug=multilingual-website-for-tourism</link>
-      <description>インバウンド需要が高まる大分県の観光業・宿泊業向けに、多言語対応ホームページ制作のポイントを解説。言語の優先順位、翻訳品質、決済システム、SEO対策まで網羅的に紹介します。</description>
-      <pubDate>Sat, 15 Nov 2025 13:30:00 +0900</pubDate>
-      <category>ホームページ制作</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=multilingual-website-for-tourism</guid>
-    </item>
-    <item>
-      <title>問い合わせが来るホームページと来ないホームページの決定的な違い</title>
-      <link>https://yojitu.com/blog/detail.php?slug=homepage-inquiry-difference</link>
-      <description>同じ業種でも問い合わせが来るホームページと来ないホームページがあります。その決定的な違いは何か？導線設計、CTA配置、信頼要素、フォーム最適化など、コンバージョン率を上げる5つのポイントを解説します。</description>
-      <pubDate>Sat, 15 Nov 2025 13:00:00 +0900</pubDate>
-      <category>Web集客</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=homepage-inquiry-difference</guid>
-    </item>
-    <item>
-      <title>月額費用・保守費用って何？ホームページ運用にかかるコストを解説</title>
-      <link>https://yojitu.com/blog/detail.php?slug=homepage-maintenance-costs</link>
-      <description>ホームページの月額費用・保守費用の内訳を詳しく解説。サーバー代、ドメイン代、SSL証明書、保守サポートなど、運用にかかるコストを理解しましょう。</description>
-      <pubDate>Sat, 15 Nov 2025 12:00:00 +0900</pubDate>
-      <category>ホームページ制作</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=homepage-maintenance-costs</guid>
-    </item>
-    <item>
-      <title>ホームページを作っただけでは集客できない理由とその対策</title>
-      <link>https://yojitu.com/blog/detail.php?slug=homepage-marketing-strategies</link>
-      <description>ホームページを作っただけでは集客できません。SEO、コンテンツマーケティング、SNS活用など、公開後の集客施策を具体的に解説します。</description>
-      <pubDate>Sat, 15 Nov 2025 11:30:00 +0900</pubDate>
-      <category>Web集客</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=homepage-marketing-strategies</guid>
-    </item>
-    <item>
-      <title>【業種別】大分の事業者におすすめのホームページ活用法</title>
-      <link>https://yojitu.com/blog/detail.php?slug=homepage-by-industry-oita</link>
-      <description>飲食店、美容室、建設業、医療機関など、業種ごとに最適なホームページ活用法を解説。大分県内の事業者が成果を出すための具体的な戦略をご紹介します。</description>
-      <pubDate>Sat, 15 Nov 2025 11:00:00 +0900</pubDate>
-      <category>ホームページ制作</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=homepage-by-industry-oita</guid>
-    </item>
-    <item>
-      <title>古いホームページを放置していませんか？リニューアルすべき5つのサイン</title>
-      <link>https://yojitu.com/blog/detail.php?slug=homepage-renewal-5-signs</link>
-      <description>ホームページのリニューアル時期を見極める5つのサインを解説。デザインの古さ、スマホ非対応、セキュリティリスクなど、放置すると機会損失につながる兆候をチェックしましょう。</description>
-      <pubDate>Sat, 15 Nov 2025 10:30:00 +0900</pubDate>
-      <category>ホームページ制作</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=homepage-renewal-5-signs</guid>
-    </item>
-    <item>
-      <title>大分でホームページ制作を依頼する前に知っておきたい5つのポイント</title>
-      <link>https://yojitu.com/blog/detail.php?slug=homepage-request-oita-5-points</link>
-      <description>大分県内でホームページ制作を依頼する前に押さえておくべき5つの重要ポイントを解説。制作会社選びで失敗しないための具体的なチェック項目と注意点をご紹介します。</description>
-      <pubDate>Sat, 15 Nov 2025 10:00:00 +0900</pubDate>
-      <category>ホームページ制作</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=homepage-request-oita-5-points</guid>
-    </item>
-    <item>
-      <title>エンティティSEOとは？Googleナレッジグラフを活用したビジネス成長戦略【2025年完全版】</title>
-      <link>https://yojitu.com/blog/detail.php?slug=entity-seo-business-guide</link>
-      <description>2025年、SEOは「キーワード」から「エンティティ」へシフト。Googleが50億のエンティティを管理する今、発信者の実体を明確にするエンティティSEOが成功の鍵です。構造化データ実装、ナレッジグラフ活用、E-E-A-T強化まで、ビジネスで実践すべき具体的手法を徹底解説します。</description>
-      <pubDate>Fri, 14 Nov 2025 02:30:00 +0900</pubDate>
-      <category>SEO</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=entity-seo-business-guide</guid>
-    </item>
-    <item>
-      <title>AIO対策の始め方｜5ステップ実践ガイドで学ぶAI時代のSEO戦略</title>
-      <link>https://yojitu.com/blog/detail.php?slug=aio-implementation-guide</link>
-      <description>AIO（AI Optimization / AI Overview対策）の具体的な実践方法を5ステップで解説。現状分析、構造化データ実装、FAQ最適化、E-E-A-Tシグナル強化、効果測定まで、今日から始められる実践的なチェックリストとツールを紹介します。</description>
-      <pubDate>Fri, 14 Nov 2025 02:00:00 +0900</pubDate>
-      <category>SEO</category>
-      <guid isPermaLink="true">https://yojitu.com/blog/detail.php?slug=aio-implementation-guide</guid>
     </item>
   </channel>
 </rss>

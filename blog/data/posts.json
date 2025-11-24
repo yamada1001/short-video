@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "id": 112,
+      "title": "APIとは？わかりやすく仕組みやメリット・活用事例を徹底解説",
+      "slug": "api-explained-guide",
+      "excerpt": "APIの基本概念から仕組み、メリット・デメリット、具体的な活用事例まで初心者にもわかりやすく解説。Web制作やアプリ開発、システム連携に欠かせないAPIの全てを学べます。",
+      "content": "data/article-112-full.html",
+      "publishedAt": "2025-11-24T15:00:00+09:00",
+      "updatedAt": "2025-11-24T15:00:00+09:00",
+      "category": "Web制作",
+      "tags": ["API", "Web制作", "システム連携", "開発", "プログラミング", "デジタルマーケティング"],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
       "id": 111,
       "title": "開業前にホームページは必要？最適なタイミングと準備のポイント",
       "slug": "homepage-before-opening",
