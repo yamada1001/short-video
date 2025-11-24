@@ -131,9 +131,14 @@ if (!empty($post['thumbnail'])) {
                     <header class="article-header">
                 <div class="article-meta">
                     <time class="article-date" datetime="<?php echo h($post['publishedAt']); ?>">
-                        <?php echo formatDate($post['publishedAt'], 'Y年m月d日'); ?>
+                        <i class="far fa-calendar-alt"></i> <?php echo formatDate($post['publishedAt'], 'Y年m月d日'); ?>
                     </time>
-                    <span class="article-category"><?php echo h($post['category']); ?></span>
+                    <?php if ($post['updatedAt'] !== $post['publishedAt']): ?>
+                    <time class="article-updated" datetime="<?php echo h($post['updatedAt']); ?>">
+                        <i class="far fa-clock"></i> 更新: <?php echo formatDate($post['updatedAt'], 'Y年m月d日'); ?>
+                    </time>
+                    <?php endif; ?>
+                    <span class="article-category"><i class="fas fa-folder"></i> <?php echo h($post['category']); ?></span>
                 </div>
                 <h1 class="article-title"><?php echo h($post['title']); ?></h1>
                 <?php if (!empty($post['tags'])): ?>
