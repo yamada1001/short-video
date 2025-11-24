@@ -1,5 +1,10 @@
 # ブログ記事作成ガイド
 
+## ⚠️ 重要：記事フォーマットの厳守
+
+記事フォーマットを守らないと、ページが正しく表示されません。
+**必ずこのガイドに従ってください。**
+
 ## 記事フォーマットのルール
 
 ### ✅ 必須事項
@@ -21,6 +26,8 @@
 6. **リード文禁止**: HTMLには含めず、posts.json の excerpt に記載してください
 7. **CTAセクション禁止**: 独自の `cta-section`, `cta-box`, `cta-buttons` は不要（PHP インクルードを使用）
 8. **CTAボタン禁止**: 記事内で `btn btn-primary` クラスを直接使用しないでください（PHP インクルードを使用）
+9. **構造化データ禁止**: `<script type="application/ld+json">` は detail.php で自動生成されます。記事に含めないでください
+10. **インラインJavaScript禁止**: `<script>` タグは使用不可
 
 ## 新規記事の作成手順
 
@@ -132,8 +139,32 @@ php validate-article.php --all
 - **インラインスタイルが含まれています**: `<style>` タグを削除し、既存のCSSクラスを使用してください
 - **目次が含まれています**: `table-of-contents` を削除してください（自動生成されます）
 
+## 自動修正ツール
+
+記事フォーマットに問題がある場合、自動修正ツールを使用できます：
+
+```bash
+php blog/fix-all-articles.php
+```
+
+このスクリプトは以下を自動で行います：
+- 不要な `<script>` タグ（構造化データ）を削除
+- `<article class="blog-article">` タグを追加
+- `<?php include ...article-cta.php... ?>` を追加
+- `</article>` タグで終了
+
+## Git Pre-commit Hook
+
+コミット時に自動的に記事を検証するフックが設定されています。
+記事に問題がある場合、コミットが拒否され、エラーが表示されます。
+
+**エラーが出た場合の対処法：**
+1. `php blog/fix-all-articles.php` で自動修正
+2. 再度 `git add .` と `git commit`
+
 ## 参考
 
-- 既存記事: `blog/data/article-86-full.html` ～ `article-92-full.html`
+- 既存記事: `blog/data/article-100-full.html`（正しいフォーマット例）
 - CSSクラス: `assets/css/pages/blog.css`
 - 検証スクリプト: `blog/validate-article.php`
+- 自動修正スクリプト: `blog/fix-all-articles.php`

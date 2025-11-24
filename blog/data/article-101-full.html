@@ -1,4 +1,5 @@
 <article class="blog-article">
+
 <section id="intro">
     <h2><i class="fas fa-bullseye"></i> この記事の目的</h2>
     <p>ちょっとでも、山田と事業のことを知ってもらおうかな〜って。</p>
@@ -232,90 +233,7 @@
         弱小ドメインですので、SEO的な効果は期待しないでください笑</p>
     </div>
 </section>
+
+<?php include __DIR__ . "/../includes/article-cta.php"; ?>
+
 </article>
-
-<script>
-// カルーセル機能
-document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.getElementById('photo-carousel');
-    if (!carousel) return;
-
-    const track = carousel.querySelector('.carousel-track');
-    const slides = carousel.querySelectorAll('.carousel-slide');
-    const prevBtn = carousel.querySelector('.carousel-prev');
-    const nextBtn = carousel.querySelector('.carousel-next');
-    const dotsContainer = carousel.querySelector('.carousel-dots');
-
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-
-    // ドットを生成
-    slides.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.classList.add('carousel-dot');
-        dot.setAttribute('aria-label', `写真${i + 1}へ移動`);
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(i));
-        dotsContainer.appendChild(dot);
-    });
-
-    const dots = dotsContainer.querySelectorAll('.carousel-dot');
-
-    function updateCarousel() {
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentIndex);
-        });
-    }
-
-    function goToSlide(index) {
-        currentIndex = index;
-        updateCarousel();
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateCarousel();
-    }
-
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        updateCarousel();
-    }
-
-    prevBtn.addEventListener('click', prevSlide);
-    nextBtn.addEventListener('click', nextSlide);
-
-    // スワイプ対応
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    track.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    track.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        if (touchStartX - touchEndX > 50) nextSlide();
-        if (touchEndX - touchStartX > 50) prevSlide();
-    }, { passive: true });
-
-    // キーボード対応
-    carousel.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft') prevSlide();
-        if (e.key === 'ArrowRight') nextSlide();
-    });
-
-    // 自動スライド（3秒ごと）
-    let autoSlideInterval = setInterval(nextSlide, 3000);
-
-    // ホバー時は一時停止
-    carousel.addEventListener('mouseenter', () => {
-        clearInterval(autoSlideInterval);
-    });
-
-    carousel.addEventListener('mouseleave', () => {
-        autoSlideInterval = setInterval(nextSlide, 3000);
-    });
-});
-</script>
