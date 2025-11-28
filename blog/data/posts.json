@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "id": 113,
+      "title": "Claude Opus 4.5とは？性能・料金・活用方法を徹底解説【2025年最新版】",
+      "slug": "claude-opus-4-5-guide",
+      "excerpt": "Claude Opus 4.5の特徴、性能ベンチマーク、他のClaudeモデルとの比較、料金、具体的な活用方法を徹底解説。コーディング、エージェント機能、コンピュータ操作において世界最高峰の性能を誇る最新AIモデルの全てがわかります。",
+      "content": "data/article-113-full.html",
+      "publishedAt": "2025-11-28T10:00:00+09:00",
+      "updatedAt": "2025-11-28T10:00:00+09:00",
+      "category": "AI・機械学習",
+      "tags": ["Claude", "AI", "機械学習", "LLM", "Anthropic", "コーディング", "エージェント", "Claude Opus 4.5"],
+      "thumbnail": "",
+      "author": "山田 蓮"
+    },
+    {
       "id": 112,
       "title": "APIとは？わかりやすく仕組みやメリット・活用事例を徹底解説",
       "slug": "api-explained-guide",

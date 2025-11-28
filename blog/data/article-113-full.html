@@ -1,0 +1,608 @@
+<article class="blog-article">
+
+<p>2025年11月24日、Anthropic社から最新の大規模言語モデル「Claude Opus 4.5」がリリースされました。コーディング、エージェント機能、コンピュータ操作において世界最高峰の性能を誇るこのモデルは、AI開発の世界に大きなインパクトを与えています。</p>
+
+<p>本記事では、<strong>Claude Opus 4.5の特徴、性能ベンチマーク、他のClaudeモデルとの比較、料金、具体的な活用方法</strong>まで、徹底的に解説します。AIを活用したシステム開発やビジネス効率化を検討している方は、ぜひ最後までご覧ください。</p>
+
+<div class="point-box">
+    <h4><i class="fas fa-info-circle"></i> この記事でわかること</h4>
+    <ul>
+        <li>Claude Opus 4.5の概要と主な特徴</li>
+        <li>性能ベンチマークと他のAIモデルとの比較</li>
+        <li>Sonnet、Haiku、Opus 4.1との違いと使い分け</li>
+        <li>料金体系と費用対効果</li>
+        <li>具体的な活用事例と導入方法</li>
+    </ul>
+</div>
+
+<h2 id="heading-0"><i class="fas fa-robot"></i> Claude Opus 4.5とは？</h2>
+
+<h3>Claude Opus 4.5の概要</h3>
+
+<p>Claude Opus 4.5は、Anthropic社が開発した大規模言語モデル（LLM）の最新版で、Claude 4シリーズの最上位モデルに位置づけられています。2025年11月24日にリリースされ、<strong>コーディング、AIエージェント、コンピュータ操作の分野で業界最高水準の性能</strong>を実現しています。</p>
+
+<p>Claude 4シリーズは、2025年9月の「Sonnet 4.5」、10月の「Haiku 4.5」に続き、このOpus 4.5で三部作が完成しました。それぞれのモデルは異なる用途に最適化されており、ユーザーのニーズに応じて使い分けることができます。</p>
+
+<div class="note-box">
+    <h4><i class="fas fa-exclamation-circle"></i> 注目ポイント</h4>
+    <p>Opus 4.5は、<a href="https://www.anthropic.com/news/claude-opus-4-5" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Anthropic公式発表</a>において「インテリジェント、効率的で、コーディング、エージェント、コンピュータ利用の最高のモデル」と紹介されています。</p>
+</div>
+
+<h3>Claude 4シリーズのラインナップ</h3>
+
+<table>
+<thead>
+<tr>
+    <th>モデル名</th>
+    <th>リリース時期</th>
+    <th>主な特徴</th>
+    <th>最適用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td><strong>Opus 4.5</strong></td>
+    <td>2025年11月</td>
+    <td>最高性能・コーディング特化</td>
+    <td>複雑なコーディング、エージェント、長時間タスク</td>
+</tr>
+<tr>
+    <td><strong>Sonnet 4.5</strong></td>
+    <td>2025年9月</td>
+    <td>バランス型・高コスパ</td>
+    <td>一般的な開発、ビジネス用途</td>
+</tr>
+<tr>
+    <td><strong>Haiku 4.5</strong></td>
+    <td>2025年10月</td>
+    <td>高速・低コスト</td>
+    <td>大量処理、リアルタイム応答</td>
+</tr>
+<tr>
+    <td><strong>Opus 4.1</strong></td>
+    <td>2025年初頭</td>
+    <td>深い推論能力</td>
+    <td>複雑な思考・難問解決</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="heading-1"><i class="fas fa-trophy"></i> Claude Opus 4.5の主な特徴</h2>
+
+<h3>1. 世界最高水準のコーディング性能</h3>
+
+<p>Opus 4.5は、ソフトウェアエンジニアリングの実力を測る「<strong>SWE-bench Verified</strong>」で<strong>80.9%</strong>という驚異的なスコアを達成しました。これは、Sonnet 4.5の77.2%、Opus 4.1の74.5%を上回る成績です。</p>
+
+<div class="highlight-box">
+    <h4><i class="fas fa-star"></i> 注目の性能</h4>
+    <p><strong>Anthropic社の内部エンジニア採用試験（2時間制限）において、過去のどの人間候補者よりも高いスコアを記録</strong>しました。AIがプロのエンジニアを超える実力を持つことが証明された瞬間です。</p>
+</div>
+
+<h3>2. 多言語コーディング対応</h3>
+
+<p>「SWE-bench Multilingual」では、主要8言語を対象にしたコード問題のテストで、<strong>7つの言語で最高スコアを記録</strong>しました。Python、JavaScript、Java、C++、Go、Rustなど、幅広いプログラミング言語に対応しています。</p>
+
+<h3>3. 長時間稼働のエージェント機能</h3>
+
+<p>Opus 4.5は、<strong>最大30時間連続で動作するエージェント機能</strong>を持っています。複雑なマルチステップタスクや、長期的な自律実行が必要なプロジェクトに最適です。</p>
+
+<ul>
+    <li>複雑なマルチシステムバグの修正</li>
+    <li>Excel自動化やデータ処理</li>
+    <li>金融モデリングとシミュレーション</li>
+    <li>長文コンテンツの生成と編集</li>
+    <li>エージェントベースのワークフロー管理</li>
+</ul>
+
+<h3>4. 柔軟な「effort」パラメータ</h3>
+
+<p>Opus 4.5には新しい「<strong>effort</strong>」パラメータが導入されています。デフォルトは「high」ですが、「medium」または「low」に設定することで、<strong>タスクに応じて徹底性と速度をトレードオフ</strong>できます。</p>
+
+<table>
+<thead>
+<tr>
+    <th>設定</th>
+    <th>特徴</th>
+    <th>推奨用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td>high</td>
+    <td>最高精度・低速</td>
+    <td>複雑な問題解決、重要な開発タスク</td>
+</tr>
+<tr>
+    <td>medium</td>
+    <td>バランス型</td>
+    <td>一般的な開発作業</td>
+</tr>
+<tr>
+    <td>low</td>
+    <td>高速・軽量</td>
+    <td>簡単なタスク、プロトタイピング</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="heading-2"><i class="fas fa-chart-bar"></i> 性能ベンチマークと他モデルとの比較</h2>
+
+<h3>主要ベンチマークの結果</h3>
+
+<p>Opus 4.5は、複数のベンチマークで業界トップクラスの成績を収めています：</p>
+
+<table>
+<thead>
+<tr>
+    <th>ベンチマーク</th>
+    <th>Opus 4.5</th>
+    <th>Sonnet 4.5</th>
+    <th>Opus 4.1</th>
+    <th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td><strong>SWE-bench Verified</strong></td>
+    <td>80.9%</td>
+    <td>77.2%</td>
+    <td>74.5%</td>
+    <td>ソフトウェアエンジニアリング能力</td>
+</tr>
+<tr>
+    <td><strong>Aider Polyglot</strong></td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>Sonnet 4.5を10.6ポイント上回る</td>
+</tr>
+<tr>
+    <td><strong>Vending-Bench</strong></td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>29%の改善を達成</td>
+</tr>
+<tr>
+    <td><strong>AIME 2025</strong></td>
+    <td>-</td>
+    <td>100%</td>
+    <td>-</td>
+    <td>高難度数学コンテスト（Sonnet 4.5）</td>
+</tr>
+<tr>
+    <td><strong>GPQA Diamond</strong></td>
+    <td>-</td>
+    <td>83.4%</td>
+    <td>-</td>
+    <td>大学院レベルの推論</td>
+</tr>
+<tr>
+    <td><strong>MMLU</strong></td>
+    <td>-</td>
+    <td>89.1%</td>
+    <td>-</td>
+    <td>多言語理解力</td>
+</tr>
+</tbody>
+</table>
+
+<div class="tip-box">
+    <h4><i class="fas fa-lightbulb"></i> ベンチマークの見方</h4>
+    <p>SWE-benchは実際のGitHubのissueを解決する能力を測定します。80.9%という数字は、<strong>8割以上の実務的な問題を自動で解決できる</strong>ことを意味しています。</p>
+</div>
+
+<h3>GPT-5.1、Gemini 3 Proとの比較</h3>
+
+<p>2025年11月時点で、Opus 4.5は<a href="https://www.sotatek.com/jp/blogs/claude-opus-4-5/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> GPT-5.1やGemini 3 Proを上回る性能</a>を示しています。特に、コーディングとエージェント機能において、他の最先端モデルを凌駕する結果を記録しています。</p>
+
+<h3>プロンプトインジェクション攻撃への耐性</h3>
+
+<p>セキュリティ面でも優れており、<strong>プロンプトインジェクション攻撃への耐性は業界の他のフロンティアモデルより優れている</strong>とAnthropic社が公式に発表しています。</p>
+
+<h2 id="heading-3"><i class="fas fa-code-branch"></i> 他のClaudeモデルとの違いと使い分け</h2>
+
+<h3>Opus 4.5 vs Sonnet 4.5</h3>
+
+<p>Sonnet 4.5は2025年9月にリリースされ、<strong>コストパフォーマンスに優れたバランス型</strong>として高い評価を得ています。</p>
+
+<table>
+<thead>
+<tr>
+    <th>項目</th>
+    <th>Opus 4.5</th>
+    <th>Sonnet 4.5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td><strong>性能</strong></td>
+    <td>最高レベル</td>
+    <td>実用十分レベル</td>
+</tr>
+<tr>
+    <td><strong>料金</strong></td>
+    <td>入力$5/出力$25（100万トークン）</td>
+    <td>入力$3/出力$15（100万トークン）</td>
+</tr>
+<tr>
+    <td><strong>速度</strong></td>
+    <td>やや遅い（高精度優先）</td>
+    <td>速い</td>
+</tr>
+<tr>
+    <td><strong>推奨用途</strong></td>
+    <td>複雑なコード、エージェント、長時間タスク</td>
+    <td>一般的な開発、ビジネス、日常業務</td>
+</tr>
+</tbody>
+</table>
+
+<div class="point-box">
+    <h4><i class="fas fa-check-circle"></i> 使い分けのポイント</h4>
+    <p>まずは<strong>Sonnet 4.5</strong>から始めることをおすすめします。品質や深い思考が必要になったら<strong>Opus 4.5</strong>に切り替え、速度やコストが課題になったら<strong>Haiku 4.5</strong>を検討しましょう。</p>
+</div>
+
+<h3>Opus 4.5 vs Opus 4.1</h3>
+
+<p>Opus 4.1は深い推論能力で知られていますが、Opus 4.5は<strong>料金が3分の1（Opus 4.1は入力$15/出力$75）</strong>でありながら、コーディングとエージェント機能で大幅な性能向上を実現しています。</p>
+
+<ul>
+    <li><strong>Opus 4.1</strong>：深い推論、複雑な思考、難問解決に強い</li>
+    <li><strong>Opus 4.5</strong>：実務コーディング、連続タスク、30時間稼働のエージェント機能に強い</li>
+</ul>
+
+<h3>Opus 4.5 vs Haiku 4.5</h3>
+
+<p>Haiku 4.5は<strong>高速・低コスト</strong>を重視したモデルで、大量処理やリアルタイム応答が求められるシーンに最適です。</p>
+
+<table>
+<thead>
+<tr>
+    <th>項目</th>
+    <th>Opus 4.5</th>
+    <th>Haiku 4.5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td><strong>料金</strong></td>
+    <td>入力$5/出力$25</td>
+    <td>入力$1/出力$5</td>
+</tr>
+<tr>
+    <td><strong>速度</strong></td>
+    <td>中〜低</td>
+    <td>超高速</td>
+</tr>
+<tr>
+    <td><strong>推奨用途</strong></td>
+    <td>高品質・複雑タスク</td>
+    <td>大量処理・リアルタイム応答</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="heading-4"><i class="fas fa-dollar-sign"></i> 料金・価格設定</h2>
+
+<h3>Claude Opus 4.5の料金体系</h3>
+
+<p>Opus 4.5のAPI利用料金は、<strong>100万トークンあたり入力$5、出力$25</strong>です。前世代のOpus 4.1と比較すると、<strong>約3分の1のコスト</strong>でより高性能なモデルを利用できるようになりました。</p>
+
+<table>
+<thead>
+<tr>
+    <th>モデル</th>
+    <th>入力（100万トークン）</th>
+    <th>出力（100万トークン）</th>
+    <th>コスト比較</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td><strong>Opus 4.5</strong></td>
+    <td>$5</td>
+    <td>$25</td>
+    <td>-</td>
+</tr>
+<tr>
+    <td><strong>Opus 4.1</strong></td>
+    <td>$15</td>
+    <td>$75</td>
+    <td>Opus 4.5の3倍</td>
+</tr>
+<tr>
+    <td><strong>Sonnet 4.5</strong></td>
+    <td>$3</td>
+    <td>$15</td>
+    <td>Opus 4.5の約0.6倍</td>
+</tr>
+<tr>
+    <td><strong>Haiku 4.5</strong></td>
+    <td>$1</td>
+    <td>$5</td>
+    <td>Opus 4.5の0.2倍</td>
+</tr>
+</tbody>
+</table>
+
+<div class="note-box">
+    <h4><i class="fas fa-calculator"></i> コスト試算例</h4>
+    <p>例えば、1万トークン（約7,500文字）の入力と2万トークンの出力を行う場合：<br>
+    <strong>Opus 4.5</strong>：$0.05（入力）+ $0.50（出力）= <strong>$0.55</strong><br>
+    <strong>Opus 4.1</strong>：$0.15（入力）+ $1.50（出力）= <strong>$1.65</strong></p>
+</div>
+
+<h3>費用対効果の考え方</h3>
+
+<p>Opus 4.5は、Sonnetの約1.67倍のコストですが、<strong>SWE-benchで4.3ポイント高い性能</strong>を発揮します。複雑なコーディングタスクや重要なプロジェクトでは、わずかなコスト増で大幅な品質向上が得られるため、費用対効果が高いと言えます。</p>
+
+<ul>
+    <li><strong>コスト重視</strong>：Haiku 4.5 → Sonnet 4.5 → Opus 4.5</li>
+    <li><strong>品質重視</strong>：Opus 4.5 → Opus 4.1 → Sonnet 4.5</li>
+</ul>
+
+<h2 id="heading-5"><i class="fas fa-briefcase"></i> Claude Opus 4.5の活用事例</h2>
+
+<h3>1. 複雑なソフトウェア開発</h3>
+
+<p>Opus 4.5は、<strong>マルチシステムにまたがる複雑なバグの修正</strong>や、大規模なコードベースのリファクタリングに最適です。</p>
+
+<div class="example-box">
+    <h4><i class="fas fa-code"></i> 活用例</h4>
+    <ul>
+        <li>レガシーコードの現代化とリファクタリング</li>
+        <li>複数のマイクロサービス間の整合性修正</li>
+        <li>大規模なデータベース移行スクリプトの自動生成</li>
+        <li>APIの設計と実装（関連記事：<a href="/blog/detail.php?slug=api-explained-guide"><i class="fas fa-link"></i> APIとは？わかりやすく仕組みやメリット・活用事例を徹底解説</a>）</li>
+    </ul>
+</div>
+
+<h3>2. AIエージェントの構築</h3>
+
+<p>30時間連続稼働のエージェント機能により、<strong>自律的なタスク実行システム</strong>の構築が可能です。</p>
+
+<ul>
+    <li>カスタマーサポートの自動化</li>
+    <li>データ収集と分析の自動化</li>
+    <li>定期的なレポート生成</li>
+    <li>ワークフロー管理とタスク振り分け</li>
+</ul>
+
+<h3>3. Excel自動化と金融モデリング</h3>
+
+<p>複雑なExcel操作や金融計算を自動化できます。</p>
+
+<ul>
+    <li>大量データの集計と分析</li>
+    <li>財務モデルの自動構築</li>
+    <li>予測シミュレーションの実行</li>
+    <li>レポートの自動生成</li>
+</ul>
+
+<h3>4. 長文コンテンツの生成</h3>
+
+<p>技術文書、マニュアル、記事など、長文で高品質なコンテンツの生成に活用できます。</p>
+
+<ul>
+    <li>技術ドキュメントの作成</li>
+    <li>製品マニュアルの自動生成</li>
+    <li>SEO最適化された記事の執筆</li>
+    <li>多言語翻訳とローカライゼーション</li>
+</ul>
+
+<h3>5. Web制作とデジタルマーケティング</h3>
+
+<p>Webサイトの開発や<a href="/blog/detail.php?slug=web-production-services"><i class="fas fa-link"></i> Web制作</a>、デジタルマーケティングにも活用できます。</p>
+
+<ul>
+    <li>動的Webアプリケーションの開発</li>
+    <li>レスポンシブデザインのコーディング</li>
+    <li>SEO最適化の提案と実装</li>
+    <li>A/Bテストの設計と分析</li>
+</ul>
+
+<h2 id="heading-6"><i class="fas fa-rocket"></i> Claude Opus 4.5の使い方・アクセス方法</h2>
+
+<h3>1. Claude.aiでの利用</h3>
+
+<p><a href="https://claude.ai" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Claude.ai</a>にアクセスし、アカウントを作成すれば、Webインターフェースから直接Opus 4.5を利用できます。</p>
+
+<ol>
+    <li>Claude.aiにアクセス</li>
+    <li>アカウント作成（Googleアカウントでも可）</li>
+    <li>モデル選択で「Claude Opus 4.5」を選択</li>
+    <li>チャット開始</li>
+</ol>
+
+<h3>2. APIでの利用</h3>
+
+<p>開発者向けには、<a href="https://www.anthropic.com/api" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Anthropic API</a>を使用してプログラムから直接アクセスできます。</p>
+
+<pre><code>import anthropic
+
+client = anthropic.Anthropic(
+    api_key="your-api-key"
+)
+
+message = client.messages.create(
+    model="claude-opus-4.5-20251124",
+    max_tokens=1024,
+    messages=[
+        {"role": "user", "content": "Hello, Claude!"}
+    ]
+)
+
+print(message.content)
+</code></pre>
+
+<h3>3. 主要開発ツールとの連携</h3>
+
+<p>Opus 4.5は、以下のような開発ツールと連携できます：</p>
+
+<ul>
+    <li><strong>Cursor</strong>：AIペアプログラミングツール</li>
+    <li><strong>Continue</strong>：VSCode拡張機能</li>
+    <li><strong>Aider</strong>：ターミナルベースのコーディングツール</li>
+    <li><strong>ChatGPT Code</strong>：コード生成特化ツール</li>
+</ul>
+
+<h2 id="heading-7"><i class="fas fa-book"></i> まとめ：Claude Opus 4.5を活用してビジネスを加速</h2>
+
+<p>Claude Opus 4.5は、<strong>コーディング、エージェント、コンピュータ操作において世界最高峰の性能</strong>を持つAIモデルです。</p>
+
+<div class="summary-box">
+    <h4><i class="fas fa-check-double"></i> Claude Opus 4.5のポイント</h4>
+    <ul>
+        <li><strong>SWE-bench Verifiedで80.9%</strong>を達成し、実務的なコーディング能力が極めて高い</li>
+        <li><strong>30時間連続稼働</strong>のエージェント機能で長期タスクを自動化</li>
+        <li><strong>Opus 4.1の3分の1の料金</strong>で、より高性能なモデルを利用可能</li>
+        <li><strong>多言語コーディング、Excel自動化、金融モデリング</strong>など幅広い用途に対応</li>
+        <li><strong>effortパラメータ</strong>で精度と速度をタスクに応じて調整可能</li>
+    </ul>
+</div>
+
+<h3>使い分けのおすすめ</h3>
+
+<table>
+<thead>
+<tr>
+    <th>シーン</th>
+    <th>推奨モデル</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td>複雑なコーディング、重要なプロジェクト</td>
+    <td><strong>Opus 4.5</strong></td>
+</tr>
+<tr>
+    <td>一般的な開発、ビジネス用途</td>
+    <td><strong>Sonnet 4.5</strong></td>
+</tr>
+<tr>
+    <td>大量処理、リアルタイム応答</td>
+    <td><strong>Haiku 4.5</strong></td>
+</tr>
+<tr>
+    <td>深い推論、難問解決</td>
+    <td><strong>Opus 4.1</strong></td>
+</tr>
+</tbody>
+</table>
+
+<h3>まずは試してみよう</h3>
+
+<p>Claude Opus 4.5を活用することで、開発効率の大幅な向上、業務の自動化、新しいビジネスチャンスの創出が期待できます。まずは<a href="https://claude.ai" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Claude.ai</a>から無料で試してみて、その実力を体感してみてください。</p>
+
+<div class="cta-section">
+    <h4><i class="fas fa-hands-helping"></i> Web制作・AI活用でお悩みの方へ</h4>
+    <p>余日（Yojitsu）では、AIを活用したWeb制作、デジタルマーケティング、業務効率化のご支援を行っています。Claude Opus 4.5をはじめとする最新のAI技術を活用したシステム開発や、<a href="/services/web-production.php"><i class="fas fa-link"></i> ホームページ制作</a>、<a href="/services/seo.php"><i class="fas fa-link"></i> SEO対策</a>など、お気軽にご相談ください。</p>
+    <p style="text-align: center; margin-top: 20px;">
+        <a href="/contact.php" class="cta-button"><i class="fas fa-envelope"></i> 無料相談はこちら</a>
+    </p>
+</div>
+
+<h3>参考文献</h3>
+
+<ul class="reference-list">
+    <li><a href="https://www.anthropic.com/news/claude-opus-4-5" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Introducing Claude Opus 4.5 - Anthropic</a></li>
+    <li><a href="https://platform.claude.com/docs/ja/about-claude/models/whats-new-claude-4-5" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Claude 4.5の新機能 - Claude Docs</a></li>
+    <li><a href="https://www.sotatek.com/jp/blogs/claude-opus-4-5/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Claude Opus 4.5とは？性能評価とChatGPT 5.1・Gemini 3 Proとの比較</a></li>
+    <li><a href="https://weel.co.jp/media/tech/claude-opus-4-5/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> コーディングも事務作業も高速化する「Claude Opus 4.5」の実力とは - WEEL</a></li>
+</ul>
+
+<!-- 構造化データ（JSON-LD） -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Claude Opus 4.5とは？性能・料金・活用方法を徹底解説【2025年最新版】",
+  "description": "Claude Opus 4.5の特徴、性能ベンチマーク、他のClaudeモデルとの比較、料金、具体的な活用方法を徹底解説。コーディング、エージェント機能、コンピュータ操作において世界最高峰の性能を誇る最新AIモデルの全てがわかります。",
+  "image": "",
+  "author": {
+    "@type": "Person",
+    "name": "山田 蓮"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "余日（Yojitsu）",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://yojitu.com/assets/images/logo.png"
+    }
+  },
+  "datePublished": "2025-11-28T10:00:00+09:00",
+  "dateModified": "2025-11-28T10:00:00+09:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://yojitu.com/blog/detail.php?slug=claude-opus-4-5-guide"
+  },
+  "articleSection": "AI・機械学習",
+  "keywords": ["Claude Opus 4.5", "Anthropic", "AI", "機械学習", "LLM", "コーディング", "エージェント", "Claude", "Sonnet", "Haiku"],
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Claude Opus 4.5",
+      "description": "Anthropic社が開発した大規模言語モデルの最新版"
+    },
+    {
+      "@type": "Thing",
+      "name": "AIエージェント",
+      "description": "自律的にタスクを実行するAIシステム"
+    }
+  ]
+}
+</script>
+
+<!-- FAQ構造化データ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Claude Opus 4.5とは何ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Claude Opus 4.5は、Anthropic社が2025年11月24日にリリースした大規模言語モデル（LLM）の最新版です。コーディング、AIエージェント、コンピュータ操作の分野で世界最高水準の性能を実現しています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Claude Opus 4.5とSonnet 4.5の違いは？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Opus 4.5は最高性能を誇り、複雑なコーディングやエージェント機能に優れています。Sonnet 4.5はバランス型で、一般的な開発やビジネス用途に適しています。料金はOpus 4.5が入力$5/出力$25、Sonnet 4.5が入力$3/出力$15（100万トークンあたり）です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Claude Opus 4.5の料金はいくらですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Claude Opus 4.5のAPI利用料金は、100万トークンあたり入力$5、出力$25です。前世代のOpus 4.1と比較すると約3分の1のコストで利用できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Claude Opus 4.5はどのような用途に最適ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "複雑なソフトウェア開発、AIエージェントの構築、Excel自動化、金融モデリング、長文コンテンツ生成、Web制作など、幅広い用途に活用できます。特にコーディングとエージェント機能において業界トップクラスの性能を発揮します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Claude Opus 4.5の性能はどのくらいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SWE-bench Verifiedで80.9%を達成し、実務的なコーディング能力が極めて高いです。Anthropic社の内部エンジニア採用試験では、過去のどの人間候補者よりも高いスコアを記録しました。"
+      }
+    }
+  ]
+}
+</script>
+
+</article>
