@@ -138,7 +138,7 @@ if (!empty($post['thumbnail'])) {
                         <i class="far fa-clock"></i> 更新: <?php echo formatDate($post['updatedAt'], 'Y年m月d日'); ?>
                     </time>
                     <?php endif; ?>
-                    <span class="article-category"><i class="fas fa-folder"></i> <?php echo h($post['category']); ?></span>
+                    <a href="index.php?category=<?php echo urlencode($post['category']); ?>" class="article-category"><i class="fas fa-folder"></i> <?php echo h($post['category']); ?></a>
                 </div>
                 <h1 class="article-title"><?php echo h($post['title']); ?></h1>
                 <?php if (!empty($post['tags'])): ?>
