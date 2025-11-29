@@ -948,28 +948,64 @@ a.team-name:hover {
     }
 }
 
-/* スマホ・タブレット縦向き: 普通の縦長LP */
+/* スマホ・タブレット縦向き: 余日スタイル */
 @media (max-width: 768px) {
     /* 通常の縦スクロール */
     .container {
         overflow-y: scroll;
         overflow-x: hidden;
         height: auto;
-        /* pull-to-refresh防止 */
+        background: #fff;
         overscroll-behavior-y: none;
     }
 
     .section {
         min-width: 100vw;
         min-height: auto;
-        padding: var(--spacing-xl) var(--spacing-sm);
+        padding: 48px 20px;
         display: block;
+    }
+
+    /* セクション背景を交互に変える（余日スタイル） */
+    .section:nth-child(even) {
+        background: #f5f5f5;
+    }
+
+    .section:nth-child(odd) {
+        background: #fff;
+    }
+
+    /* 表紙と最終セクションは特別 */
+    .section--cover,
+    .section--contact {
+        background: var(--color-dark-bg);
+        color: #fff;
     }
 
     .section__inner {
         width: 100%;
         max-width: 100%;
         padding: 0;
+    }
+
+    /* セクションタイトルに余日スタイルの装飾 */
+    .section__title {
+        position: relative;
+        padding-bottom: 16px;
+        margin-bottom: 32px;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+    }
+
+    .section__title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 2px;
+        background: var(--color-natural-brown);
     }
 
     /* ナビゲーションドットを非表示 */
@@ -989,78 +1025,126 @@ a.team-name:hover {
         transform: translateY(0);
     }
 
-    /* カードのタップエフェクト強化 */
+    /* カードデザイン - 余日スタイル */
     .reason-card,
     .service-block,
     .case-card,
     .video-card,
-    .plan-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .plan-card,
+    .flow__item {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+        overflow: hidden;
     }
 
     .reason-card:active,
     .service-block:active,
     .case-card:active,
     .video-card:active,
-    .plan-card:active {
-        transform: scale(0.98);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    .plan-card:active,
+    .flow__item:active {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        background: rgba(139, 115, 85, 0.02);
     }
 
-    /* 表紙 */
+    /* カード内部の余白統一 */
+    .reason-card,
+    .service-block,
+    .plan-card {
+        padding: 24px 20px;
+    }
+
+    .flow__item {
+        padding: 20px;
+    }
+
+    /* 表紙 - 余日スタイル */
     .cover__title {
-        font-size: clamp(1.75rem, 6vw, 2.5rem);
-        line-height: 1.4;
+        font-size: clamp(2rem, 6vw, 2.75rem);
+        line-height: 1.5;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        margin-bottom: 20px;
+        color: #fff;
     }
 
     .cover__subtitle {
-        font-size: clamp(0.875rem, 3vw, 1rem);
+        font-size: clamp(0.95rem, 3vw, 1.125rem);
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 32px;
     }
 
     .cover__team {
-        gap: var(--spacing-xs);
+        gap: 12px;
     }
 
     .team-name {
-        font-size: clamp(0.875rem, 3vw, 1rem);
+        font-size: clamp(0.9rem, 3vw, 1.05rem);
+        color: rgba(255, 255, 255, 0.85);
+        letter-spacing: 0.05em;
     }
 
-    /* フロー */
-    /* なぜ映像×Web: 高さを削減してナビと重ならないように */
+    .team-name a {
+        color: #fff;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        transition: all 0.3s ease;
+    }
+
+    .team-name a:hover {
+        border-bottom-color: #fff;
+    }
+
+    /* フロー - 余日スタイル */
     .section--why .section__inner {
         padding: 0;
     }
 
     .flow {
         flex-direction: column;
-        gap: var(--spacing-xs);
-        margin: var(--spacing-xs) 0;
+        gap: 12px;
+        margin: 0;
     }
 
     .flow__item {
         min-width: auto;
         width: 100%;
-        padding: var(--spacing-xs) 2%;
+        padding: 20px;
     }
 
     .flow__step {
-        font-size: 0.65rem;
-        margin-bottom: var(--spacing-xs);
+        font-size: 0.7rem;
+        margin-bottom: 8px;
+        color: var(--color-natural-brown);
+        font-weight: 500;
+        letter-spacing: 0.1em;
     }
 
     .flow__title {
-        font-size: 1rem;
-        margin-bottom: var(--spacing-xs);
+        font-size: 1.125rem;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--color-charcoal);
+        letter-spacing: 0.05em;
+        line-height: 1.6;
     }
 
     .flow__desc {
-        font-size: 0.75rem;
+        font-size: 0.875rem;
+        line-height: 1.8;
+        color: #666;
     }
 
     .flow__arrow {
         transform: rotate(90deg);
-        font-size: 1rem;
+        font-size: 1.2rem;
         margin: 0;
+        color: var(--color-natural-brown);
+        opacity: 0.5;
     }
 
     .section__title {
@@ -1075,60 +1159,56 @@ a.team-name:hover {
         line-height: 1.5;
     }
 
-    /* 選ばれる理由 */
-    .section--reason .section__inner {
-        padding: 0;
-    }
-
+    /* 選ばれる理由 - 余日スタイル */
     .reasons {
         grid-template-columns: 1fr;
-        gap: var(--spacing-xs);
+        gap: 16px;
         max-width: 100%;
-        margin: 0 10%;
-    }
-
-    .reason-card {
-        padding: var(--spacing-sm) 2%;
+        margin: 0;
     }
 
     .reason-card__number {
-        font-size: 2rem;
-        margin-bottom: var(--spacing-xs);
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: var(--color-natural-brown);
+        margin-bottom: 12px;
+        letter-spacing: 0.05em;
     }
 
     .reason-card__title {
-        font-size: 1rem;
-        margin-bottom: var(--spacing-xs);
+        font-size: 1.125rem;
+        font-weight: 500;
+        margin-bottom: 8px;
+        line-height: 1.6;
+        letter-spacing: 0.05em;
     }
 
     .reason-card__desc {
-        font-size: 0.8rem;
+        font-size: 0.875rem;
+        line-height: 1.8;
+        color: #666;
     }
 
-    /* サービス内容 */
-    .section--service .section__inner {
-        padding: 0;
-    }
-
+    /* サービス内容 - 余日スタイル */
     .services {
         grid-template-columns: 1fr;
-        gap: var(--spacing-xs);
+        gap: 16px;
         max-width: 100%;
-        margin: 0 10%;
-    }
-
-    .service-block {
-        padding: var(--spacing-sm) 2%;
+        margin: 0;
     }
 
     .service-block__title {
-        font-size: 1.1rem;
-        margin-bottom: var(--spacing-xs);
+        font-size: 1.125rem;
+        font-weight: 500;
+        margin-bottom: 8px;
+        letter-spacing: 0.05em;
+        color: var(--color-natural-brown);
     }
 
     .service-block__company {
-        font-size: 0.7rem;
-        margin-bottom: var(--spacing-xs);
+        font-size: 0.75rem;
+        margin-bottom: 16px;
+        color: #999;
     }
 
     .service-block__list {
@@ -1136,56 +1216,58 @@ a.team-name:hover {
     }
 
     .service-block__list li {
-        padding: 6px 0;
-        font-size: 0.75rem;
+        padding: 8px 0;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        border-bottom: 1px solid #f0f0f0;
     }
 
-    /* Web・LP制作事例 */
-    .section--case .section__inner {
-        padding: 0;
+    .service-block__list li:last-child {
+        border-bottom: none;
     }
 
-    .section--case .section__title {
-        font-size: clamp(1.25rem, 4vw, 1.75rem);
-        margin-bottom: var(--spacing-sm);
-    }
-
+    /* Web・LP制作事例 - 余日スタイル */
     .cases {
         grid-template-columns: 1fr;
-        gap: var(--spacing-xs);
-        margin: 0 auto;
+        gap: 16px;
+        margin: 0;
     }
 
     .case-card {
         flex-direction: column;
         text-align: center;
-        padding: var(--spacing-sm) 2%;
-        gap: var(--spacing-xs);
+        padding: 24px 20px;
+        gap: 16px;
     }
 
     .case-card__qr {
-        padding: 10px;
+        padding: 12px;
+        background: #f9f9f9;
+        border-radius: 12px;
     }
 
-
     .case-card__qr img {
-        width: 90px;
-        height: 90px;
-        border-width: 2px;
+        width: 100px;
+        height: 100px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
     }
 
     .case-card__title {
-        font-size: 0.85rem;
-        line-height: 1.3;
-        margin-bottom: 0;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.6;
+        margin-bottom: 4px;
+        letter-spacing: 0.05em;
     }
 
     .case-card__url {
-        font-size: 0.6rem;
+        font-size: 0.75rem;
+        color: var(--color-natural-brown);
         margin-bottom: 0;
     }
 
-    /* 映像制作実績 */
+    /* 映像制作実績 - 余日スタイル */
     .section--video .section__inner {
         padding: 0;
         display: flex;
@@ -1193,29 +1275,10 @@ a.team-name:hover {
         justify-content: center;
     }
 
-    .coming-soon {
-        padding: var(--spacing-sm) 2%;
-    }
-
-    .coming-soon__text {
-        font-size: 1rem;
-        margin-bottom: var(--spacing-xs);
-    }
-
-    .coming-soon__desc {
-        font-size: 0.75rem;
-    }
-
-    /* 映像制作実績 */
-    .section--video .section__title {
-        font-size: clamp(1.1rem, 3.5vw, 1.4rem);
-        margin-bottom: var(--spacing-xs);
-    }
-
     .video-grid {
         grid-template-columns: 1fr;
-        gap: var(--spacing-xs);
-        padding: 0 4%;
+        gap: 16px;
+        padding: 0;
         max-height: none;
         overflow: visible;
     }
@@ -1225,127 +1288,185 @@ a.team-name:hover {
         display: none;
     }
 
-    .video-card {
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-
     .video-card__title {
-        font-size: 0.8rem;
+        font-size: 0.875rem;
         min-height: auto;
-        padding: var(--spacing-xs);
-        line-height: 1.25;
+        padding: 12px 16px;
+        line-height: 1.6;
+        font-weight: 400;
+        color: var(--color-text);
+        letter-spacing: 0.05em;
     }
 
     .video-card__play {
-        width: 45px;
-        height: 45px;
-        font-size: 1.1rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        background: rgba(139, 115, 85, 0.9);
+        transition: all 0.3s ease;
+    }
+
+    .video-card__play:hover {
+        background: var(--color-natural-brown);
+        transform: scale(1.1);
     }
 
     .video-card__badge {
         font-size: 0.65rem;
-        padding: 2px 5px;
+        padding: 3px 8px;
+        background: var(--color-natural-brown);
+        font-weight: 500;
     }
 
     .video-more-link {
         display: block;
         text-align: center;
-        margin: var(--spacing-xs) auto 0;
-        max-width: 160px;
-        padding: 6px var(--spacing-sm);
-        font-size: 0.8rem;
+        margin: 24px auto 0;
+        max-width: 200px;
+        padding: 10px 24px;
+        font-size: 0.875rem;
+        background: #fff;
+        color: var(--color-natural-brown);
+        border: 1px solid var(--color-natural-brown);
+        border-radius: 24px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        transition: all 0.3s ease;
     }
 
-    /* 料金プラン */
+    .video-more-link:hover {
+        background: var(--color-natural-brown);
+        color: #fff;
+    }
+
+    /* 料金プラン - 余日スタイル */
     .section--price .section__inner {
         padding: 0;
     }
 
-    .section--price .section__title {
-        margin-bottom: var(--spacing-sm);
-    }
-
     .plans {
         grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
+        gap: 20px;
         max-width: 100%;
-        margin: 0 10%;
+        margin: 0;
     }
 
     .plan-card {
-        padding: var(--spacing-sm) 2%;
+        padding: 28px 24px;
     }
 
     .plan-card__label {
-        padding: 6px 20px;
-        font-size: 0.7rem;
-        margin-bottom: var(--spacing-sm);
+        padding: 6px 16px;
+        font-size: 0.75rem;
+        margin-bottom: 16px;
+        background: var(--color-natural-brown);
+        color: #fff;
+        border-radius: 16px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
     }
 
     .plan-card__title {
-        font-size: 1.1rem;
-        margin-bottom: var(--spacing-sm);
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin-bottom: 12px;
+        color: var(--color-charcoal);
+        letter-spacing: 0.05em;
+        line-height: 1.6;
+    }
+
+    .plan-card__desc {
+        font-size: 0.875rem;
+        line-height: 1.8;
+        color: #666;
+        margin-bottom: 20px;
     }
 
     .plan-card__price {
-        margin-top: var(--spacing-sm);
-        padding: var(--spacing-xs) 0;
+        margin-top: 20px;
+        padding: 16px 0;
+        border-top: 1px solid #e0e0e0;
     }
 
     .price-amount {
-        font-size: clamp(1.5rem, 5vw, 2rem);
+        font-size: clamp(1.75rem, 5vw, 2.25rem);
+        font-weight: 500;
+        color: var(--color-natural-brown);
     }
 
     .price-tax {
         font-size: 0.75rem;
+        color: #999;
+        margin-left: 4px;
     }
 
     .section__note {
-        margin-top: var(--spacing-sm);
-        font-size: 0.7rem;
+        margin-top: 24px;
+        font-size: 0.75rem;
+        color: #999;
+        line-height: 1.6;
     }
 
-    /* お問い合わせ */
+    /* お問い合わせ - 余日スタイル */
     .section--contact .section__inner {
         padding: 0;
     }
 
     .contact__title {
         font-size: clamp(1.75rem, 6vw, 2.5rem);
-        margin-bottom: var(--spacing-sm);
+        margin-bottom: 16px;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        color: #fff;
     }
 
     .contact__subtitle {
-        font-size: 0.9rem;
-        margin-bottom: var(--spacing-lg);
-    }
-
-    .contact__team {
-        gap: var(--spacing-sm);
-    }
-
-    .contact-team {
-        padding: var(--spacing-sm);
-    }
-
-    .contact-team__role {
-        font-size: 0.75rem;
-        margin-bottom: var(--spacing-xs);
-    }
-
-    .contact-team__name {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        margin-bottom: 32px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.9);
     }
 
     .contact__team {
         grid-template-columns: 1fr;
-        gap: var(--spacing-md);
+        gap: 16px;
         max-width: 100%;
-        margin: 0 10%;
+        margin: 0;
     }
 
     .contact-team {
-        padding: var(--spacing-sm) 2%;
+        padding: 24px 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .contact-team:active {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+    }
+
+    .contact-team__role {
+        font-size: 0.75rem;
+        margin-bottom: 8px;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 0.05em;
+    }
+
+    .contact-team__name {
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: #fff;
+        letter-spacing: 0.05em;
+    }
+
+    .contact-team__name a {
+        color: #fff;
+        text-decoration: underline;
+        text-decoration-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .contact-team__name a:hover {
+        text-decoration-color: #fff;
     }
 }
 
