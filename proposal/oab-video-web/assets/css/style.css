@@ -796,7 +796,7 @@ body {
     .section__inner {
         width: 100%;
         max-width: 100%;
-        padding: 0 var(--spacing-xs);
+        padding: 0 4px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -849,7 +849,7 @@ body {
     /* フロー */
     /* なぜ映像×Web: 高さを削減してナビと重ならないように */
     .section--why .section__inner {
-        padding: 0 var(--spacing-xs);
+        padding: 0 4px;
     }
 
     .flow {
@@ -898,7 +898,7 @@ body {
 
     /* 選ばれる理由 */
     .section--reason .section__inner {
-        padding: 0 var(--spacing-xs);
+        padding: 0 4px;
     }
 
     .reasons {
@@ -926,7 +926,7 @@ body {
 
     /* サービス内容 */
     .section--service .section__inner {
-        padding: 0 var(--spacing-xs);
+        padding: 0 4px;
     }
 
     .services {
@@ -959,7 +959,7 @@ body {
 
     /* Web・LP制作事例 */
     .section--case .section__inner {
-        padding: var(--spacing-xs);
+        padding: 4px;
     }
 
     .section--case .section__title {
@@ -1004,7 +1004,7 @@ body {
 
     /* 映像制作実績 */
     .section--video .section__inner {
-        padding: var(--spacing-xs);
+        padding: 4px;
     }
 
     .section--video .section__title {
@@ -1027,7 +1027,7 @@ body {
 
     /* 料金プラン */
     .section--price .section__inner {
-        padding: 0 var(--spacing-xs);
+        padding: 0 4px;
     }
 
     .section--price .section__title {
@@ -1074,7 +1074,7 @@ body {
 
     /* お問い合わせ */
     .section--contact .section__inner {
-        padding: 0 var(--spacing-xs);
+        padding: 0 4px;
     }
 
     .contact__title {
@@ -1249,14 +1249,14 @@ body {
     transform: scale(0.95);
 }
 
-/* モバイルでメニューボタンを表示（ナビドットと入れ替え） */
+/* モバイルでメニューボタンを表示（ドットは非表示） */
 @media (max-width: 768px) {
-    .nav-menu-btn {
-        display: flex;
+    .nav-dot {
+        display: none;
     }
 
-    .nav-dots {
-        display: none;
+    .nav-menu-btn {
+        display: flex;
     }
 }
 
