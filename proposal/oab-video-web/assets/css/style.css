@@ -531,6 +531,11 @@ body {
     transform: translateY(-50%);
     z-index: 999;
     display: none; /* デフォルトは非表示、PC/タブレット横向きで表示 */
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
 }
 
 .toc__list {
@@ -559,6 +564,7 @@ body {
     border-radius: 50%;
     background: var(--color-natural-brown);
     flex-shrink: 0;
+    transition: var(--transition);
 }
 
 .toc__item.active .toc__dot {
@@ -571,6 +577,7 @@ body {
     color: var(--color-text);
     white-space: nowrap;
     letter-spacing: 0.05em;
+    font-weight: 400;
 }
 
 /* ========================================
@@ -604,7 +611,16 @@ body {
         min-height: 100vh;
         scroll-snap-align: start;
         flex-shrink: 0;
-        padding: var(--spacing-md) var(--spacing-sm);
+        padding: var(--spacing-lg) var(--spacing-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .section__inner {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 var(--spacing-sm);
     }
 
     /* ナビゲーションドットを下部に横並び */
@@ -616,6 +632,10 @@ body {
         transform: translateX(-50%);
         flex-direction: row;
         gap: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 8px 16px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
     }
 
     .nav-dot {
@@ -628,22 +648,138 @@ body {
         height: 8px;
     }
 
+    /* 表紙 */
+    .cover__title {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+        line-height: 1.4;
+    }
+
+    .cover__subtitle {
+        font-size: clamp(0.875rem, 3vw, 1rem);
+    }
+
+    .cover__team {
+        gap: var(--spacing-xs);
+    }
+
+    .team-name {
+        font-size: clamp(0.875rem, 3vw, 1rem);
+    }
+
+    /* フロー */
     .flow {
         flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .flow__item {
+        min-width: auto;
+        width: 100%;
+        padding: var(--spacing-md);
     }
 
     .flow__arrow {
         transform: rotate(90deg);
+        font-size: 1.5rem;
+    }
+
+    .section__title {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .section__message {
+        font-size: clamp(0.875rem, 3vw, 1rem);
+        margin-top: var(--spacing-md);
+        padding: 0 var(--spacing-sm);
+    }
+
+    /* 選ばれる理由 */
+    .reasons {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .reason-card {
+        padding: var(--spacing-lg);
+    }
+
+    .reason-card__number {
+        font-size: 2.5rem;
+    }
+
+    /* サービス内容 */
+    .services {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .service-block {
+        padding: var(--spacing-lg);
+    }
+
+    .service-block__list li {
+        padding: var(--spacing-sm) 0;
+        font-size: 0.875rem;
+    }
+
+    /* 制作事例 */
+    .cases {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
     }
 
     .case-card {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row;
+        text-align: left;
+        padding: var(--spacing-md);
+    }
+
+    .case-card__title {
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+    .case-card__url {
+        font-size: 0.65rem;
     }
 
     .case-card__qr img {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
+    }
+
+    /* 料金プラン */
+    .plans {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .plan-card {
+        padding: var(--spacing-lg);
+    }
+
+    .price-amount {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+
+    /* お問い合わせ */
+    .contact__title {
+        font-size: clamp(2rem, 7vw, 3rem);
+    }
+
+    .contact__subtitle {
+        font-size: clamp(0.875rem, 3vw, 1rem);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .contact__team {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .contact-team {
+        padding: var(--spacing-md);
     }
 }
 
