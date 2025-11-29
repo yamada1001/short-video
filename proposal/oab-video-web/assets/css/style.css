@@ -112,12 +112,6 @@ body {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    max-height: calc(100vh - var(--spacing-xl) * 2);
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .section__title {
@@ -782,10 +776,11 @@ body {
     .section__inner {
         width: 100%;
         max-width: 100%;
-        max-height: calc(100vh - 80px);
-        overflow-y: auto;
-        overflow-x: hidden;
         padding: 0 var(--spacing-xs);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
     }
 
     /* ナビゲーションドットを下部に横並び */
