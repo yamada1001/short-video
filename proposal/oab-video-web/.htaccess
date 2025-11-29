@@ -7,7 +7,7 @@ DirectoryIndex index.html
 AuthType Basic
 AuthName "OAB Proposal - Restricted Access"
 AuthUserFile /home/xs545151/yojitu.com/public_html/proposal/oab-video-web/.htpasswd
-Require valid-user
+require valid-user
 
 # キャッシュ設定（親の設定を継承）
 # セキュリティヘッダーも親から継承
