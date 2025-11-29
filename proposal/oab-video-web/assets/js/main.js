@@ -68,49 +68,82 @@
     }
 
     /**
-     * セクションへスクロール（リッチアニメーション付き）
+     * セクションへスクロール（GSAP リッチアニメーション）
      */
     function scrollToSection(index) {
         if (index < 0 || index >= sections.length) return;
         if (isScrolling) return;
 
         isScrolling = true;
+        checkLayoutMode();
 
-        // 現在のセクションにleaveアニメーションを追加
         const currentSectionEl = sections[currentSection];
-        currentSectionEl.classList.add('section--leaving');
-        currentSectionEl.classList.remove('section--active');
-
-        // 次のセクションにenterアニメーションを追加
         const nextSectionEl = sections[index];
-        nextSectionEl.classList.add('section--entering');
-        nextSectionEl.classList.remove('section--active');
+        const isHorizontal = isHorizontalLayout;
 
-        // 少し遅らせてからスクロール開始（よりスムーズに）
-        setTimeout(() => {
-            sections[index].scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-
-            updateActiveSection(index);
-
-            // スクロール中に次のセクションをフェードイン
-            setTimeout(() => {
-                nextSectionEl.classList.remove('section--entering');
+        // GSAPタイムライン作成
+        const tl = gsap.timeline({
+            onComplete: () => {
+                isScrolling = false;
+                currentSectionEl.classList.remove('section--leaving');
                 nextSectionEl.classList.add('section--active');
+            }
+        });
 
-                // 前のセクションのクラスをクリーンアップ
-                setTimeout(() => {
-                    currentSectionEl.classList.remove('section--leaving');
-                }, 600);
-            }, 400);
-        }, 100);
+        // 現在のセクションをフェードアウト
+        tl.to(currentSectionEl, {
+            opacity: 0.3,
+            scale: 0.95,
+            duration: 0.6,
+            ease: 'power2.in',
+            onStart: () => {
+                currentSectionEl.classList.add('section--leaving');
+            }
+        }, 0);
 
-        // スクロール完了後にフラグをリセット（時間を延長）
-        setTimeout(() => {
-            isScrolling = false;
-        }, 1500);
+        // スクロールアニメーション（GSAPのScrollToPlugin使用）
+        if (isHorizontal) {
+            // SP版: 横スクロール
+            tl.to(container, {
+                scrollTo: {
+                    x: nextSectionEl.offsetLeft,
+                    autoKill: false
+                },
+                duration: 1.2,
+                ease: 'power3.inOut'
+            }, 0.3);
+        } else {
+            // PC版: 縦スクロール
+            tl.to(container, {
+                scrollTo: {
+                    y: nextSectionEl.offsetTop,
+                    autoKill: false
+                },
+                duration: 1.2,
+                ease: 'power3.inOut'
+            }, 0.3);
+        }
+
+        // 次のセクションをフェードイン
+        tl.fromTo(nextSectionEl,
+            {
+                opacity: 0,
+                scale: 1.05,
+                x: isHorizontal ? 30 : 0,
+                y: isHorizontal ? 0 : 20
+            },
+            {
+                opacity: 1,
+                scale: 1,
+                x: 0,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                onStart: () => {
+                    nextSectionEl.classList.remove('section--entering');
+                    updateActiveSection(index);
+                }
+            }, 0.6);
     }
 
     /**
@@ -374,9 +407,15 @@
         // デフォルトは最初のセクション
         updateActiveSection(0);
 
-        // 最初のセクションをアクティブ状態に
+        // 最初のセクションをGSAPでセット（即座に表示）
         if (sections.length > 0) {
+            gsap.set(sections[0], { opacity: 1, scale: 1, x: 0, y: 0 });
             sections[0].classList.add('section--active');
+
+            // 他のセクションは非表示状態からスタート
+            for (let i = 1; i < sections.length; i++) {
+                gsap.set(sections[i], { opacity: 0 });
+            }
         }
     }
 
