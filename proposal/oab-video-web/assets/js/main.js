@@ -247,29 +247,34 @@
         const minSwipeDistance = 50;
 
         if (isHorizontalLayout) {
-            // 横スワイプ
-            const swipeDistance = touchStartX - touchEndX;
+            // SP版: 横スワイプと縦スワイプの両方を検知
+            const horizontalSwipe = touchStartX - touchEndX;
+            const verticalSwipe = touchStartY - touchEndY;
+
+            // より大きい方のスワイプを採用
+            const swipeDistance = Math.abs(horizontalSwipe) > Math.abs(verticalSwipe)
+                ? horizontalSwipe
+                : verticalSwipe;
+
             if (Math.abs(swipeDistance) < minSwipeDistance) return;
             if (isScrolling) return;
 
             if (swipeDistance > 0 && currentSection < sections.length - 1) {
-                // 左へスワイプ（次へ）
+                // 左へスワイプ または 下へスワイプ（次へ）
                 scrollToSection(currentSection + 1);
             } else if (swipeDistance < 0 && currentSection > 0) {
-                // 右へスワイプ（前へ）
+                // 右へスワイプ または 上へスワイプ（前へ）
                 scrollToSection(currentSection - 1);
             }
         } else {
-            // 縦スワイプ
+            // PC版: 縦スワイプのみ
             const swipeDistance = touchStartY - touchEndY;
             if (Math.abs(swipeDistance) < minSwipeDistance) return;
             if (isScrolling) return;
 
             if (swipeDistance > 0 && currentSection < sections.length - 1) {
-                // 下へスワイプ
                 scrollToSection(currentSection + 1);
             } else if (swipeDistance < 0 && currentSection > 0) {
-                // 上へスワイプ
                 scrollToSection(currentSection - 1);
             }
         }
