@@ -55,6 +55,16 @@
                 item.classList.remove('active');
             }
         });
+
+        // 目次のデザインを切り替え（セクション0と6は暗い背景なので白背景を追加）
+        const toc = document.querySelector('.toc');
+        if (toc) {
+            if (index === 0 || index === 6) {
+                toc.classList.add('toc--light');
+            } else {
+                toc.classList.remove('toc--light');
+            }
+        }
     }
 
     /**
