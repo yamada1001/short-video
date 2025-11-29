@@ -234,11 +234,48 @@
         updateActiveSection(0);
     }
 
+    /**
+     * スクロールフェードインアニメーション（SP版のみ）
+     */
+    function initScrollAnimations() {
+        // SP版（768px以下）のみ有効
+        if (window.innerWidth > 768) return;
+
+        // アニメーション対象の要素を取得
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+        if (!animateElements.length) return;
+
+        // Intersection Observer設定
+        const observerOptions = {
+            root: null,
+            rootMargin: '-50px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // すべての要素を監視
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+
     // ページ読み込み完了後に初期化
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+            initScrollAnimations();
+        });
     } else {
         init();
+        initScrollAnimations();
     }
 
 })();

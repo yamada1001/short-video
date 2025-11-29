@@ -977,6 +977,36 @@ a.team-name:hover {
         display: none;
     }
 
+    /* スクロールフェードインアニメーション */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .animate-on-scroll.animated {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* カードのタップエフェクト強化 */
+    .reason-card,
+    .service-block,
+    .case-card,
+    .video-card,
+    .plan-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .reason-card:active,
+    .service-block:active,
+    .case-card:active,
+    .video-card:active,
+    .plan-card:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
     /* 表紙 */
     .cover__title {
         font-size: clamp(1.75rem, 6vw, 2.5rem);
