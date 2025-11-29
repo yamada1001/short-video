@@ -81,12 +81,17 @@
         const nextSectionEl = sections[index];
         const isHorizontal = isHorizontalLayout;
 
+        // 背景エフェクトにアニメーション開始を通知
+        window.dispatchEvent(new Event('pageAnimationStart'));
+
         // GSAPタイムライン作成
         const tl = gsap.timeline({
             onComplete: () => {
                 isScrolling = false;
                 currentSectionEl.classList.remove('section--leaving');
                 nextSectionEl.classList.add('section--active');
+                // 背景エフェクトにアニメーション終了を通知
+                window.dispatchEvent(new Event('pageAnimationEnd'));
             }
         });
 

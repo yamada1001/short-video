@@ -10,12 +10,15 @@
     let mouseX = 0, mouseY = 0;
     let windowHalfX = window.innerWidth / 2;
     let windowHalfY = window.innerHeight / 2;
+    let frameCount = 0;
+    let isAnimating = false; // アニメーション中フラグ
 
     // デバイス判定
     const isMobile = window.innerWidth <= 768;
-    const particleCount = isMobile ? 800 : 1000; // PC版もすっきりさせる
+    const particleCount = isMobile ? 600 : 800; // さらに削減
     const maxDistance = isMobile ? 100 : 120; // パーティクル間の最大接続距離
-    const maxConnections = isMobile ? 3 : 3; // 各パーティクルの最大接続数
+    const maxConnections = isMobile ? 2 : 3; // 各パーティクルの最大接続数
+    const lineUpdateInterval = isMobile ? 5 : 3; // 線の更新頻度（フレーム数）
 
     /**
      * 初期化
@@ -62,6 +65,14 @@
         // イベントリスナー
         document.addEventListener('mousemove', onDocumentMouseMove, false);
         window.addEventListener('resize', onWindowResize, false);
+
+        // アニメーション状態の監視
+        window.addEventListener('pageAnimationStart', () => {
+            isAnimating = true;
+        });
+        window.addEventListener('pageAnimationEnd', () => {
+            isAnimating = false;
+        });
 
         // アニメーション開始
         animate();
@@ -237,39 +248,34 @@
         camera.position.y += (-mouseY - camera.position.y) * 0.05;
         camera.lookAt(scene.position);
 
-        // パーティクルを波のように動かす
+        // パーティクルを波のように動かす（簡素化）
         const positions = particles.geometry.attributes.position.array;
-        const colors = particles.geometry.attributes.color.array;
 
         for (let i = 0; i < particleCount; i++) {
             const i3 = i * 3;
 
-            // 波のようなうねり
-            positions[i3] = positions[i3] + Math.sin(time + i) * 0.5;
-            positions[i3 + 1] = positions[i3 + 1] + Math.cos(time + i * 1.1) * 0.5;
+            // 波のようなうねり（簡素化）
+            positions[i3] = positions[i3] + Math.sin(time + i) * 0.3;
+            positions[i3 + 1] = positions[i3 + 1] + Math.cos(time + i * 1.1) * 0.3;
 
             // 境界チェック（パーティクルが画面外に出たら反対側に戻す）
             if (positions[i3] > 1000) positions[i3] = -1000;
             if (positions[i3] < -1000) positions[i3] = 1000;
             if (positions[i3 + 1] > 1000) positions[i3 + 1] = -1000;
             if (positions[i3 + 1] < -1000) positions[i3 + 1] = 1000;
-
-            // カラーを時間で変化させる（微妙に）
-            const colorShift = Math.sin(time + i * 0.1) * 0.1;
-            colors[i3] = Math.max(0, Math.min(1, colors[i3] + colorShift * 0.01));
-            colors[i3 + 1] = Math.max(0, Math.min(1, colors[i3 + 1] + colorShift * 0.01));
-            colors[i3 + 2] = Math.max(0, Math.min(1, colors[i3 + 2] + colorShift * 0.01));
         }
 
         particles.geometry.attributes.position.needsUpdate = true;
-        particles.geometry.attributes.color.needsUpdate = true;
 
         // パーティクル全体をゆっくり回転
         particles.rotation.y = time * 0.3;
         particles.rotation.x = time * 0.2;
 
-        // 接続線を更新
-        updateLines();
+        // 接続線を更新（フレーム間引き & アニメーション中はスキップ）
+        frameCount++;
+        if (!isAnimating && frameCount % lineUpdateInterval === 0) {
+            updateLines();
+        }
 
         // 線もパーティクルと同じ回転を適用
         lines.rotation.y = particles.rotation.y;
