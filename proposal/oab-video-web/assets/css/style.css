@@ -1258,30 +1258,27 @@ a.team-name:hover {
     position: fixed;
     left: 20px;
     top: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
-    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    color: #333;
+    font-size: 2rem;
     cursor: pointer;
     z-index: 1001;
     display: none; /* デフォルトは非表示 */
     align-items: center;
     justify-content: center;
-    transition: var(--transition);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 .nav-menu-btn:hover {
-    background: var(--color-bg-white);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    transform: scale(1.05);
+    opacity: 0.7;
+    transform: scale(1.1);
 }
 
 .nav-menu-btn:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 /* モバイルでメニューボタンを表示（ドットは非表示） */
