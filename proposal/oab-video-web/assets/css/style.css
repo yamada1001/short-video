@@ -1262,7 +1262,7 @@ a.team-name:hover {
     height: 40px;
     background: transparent;
     border: none;
-    color: #333;
+    color: #ffffff;
     font-size: 2rem;
     cursor: pointer;
     z-index: 1001;
@@ -1270,6 +1270,7 @@ a.team-name:hover {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .nav-menu-btn:hover {
