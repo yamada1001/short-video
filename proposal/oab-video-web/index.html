@@ -71,7 +71,30 @@
         <button class="nav-dot" data-section="4" aria-label="セクション5"></button>
         <button class="nav-dot" data-section="5" aria-label="セクション6"></button>
         <button class="nav-dot" data-section="6" aria-label="セクション7"></button>
+        <button class="nav-menu-btn" aria-label="目次を開く">☰</button>
     </nav>
+
+    <!-- Mobile Menu (SP用目次モーダル) -->
+    <div class="mobile-menu">
+        <div class="mobile-menu__overlay"></div>
+        <div class="mobile-menu__content">
+            <button class="mobile-menu__close" aria-label="閉じる">×</button>
+            <h2 class="mobile-menu__title">目次</h2>
+            <ul class="mobile-menu__list">
+                <li class="mobile-menu__item" data-section="0">表紙</li>
+                <li class="mobile-menu__item" data-section="1">なぜ映像×Web</li>
+                <li class="mobile-menu__item" data-section="2">選ばれる理由</li>
+                <li class="mobile-menu__item" data-section="3">サービス内容</li>
+                <li class="mobile-menu__item" data-section="4">制作事例</li>
+                <li class="mobile-menu__item" data-section="5">料金プラン</li>
+                <li class="mobile-menu__item" data-section="6">お問い合わせ</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide Navigation Buttons (SP用左右ボタン) -->
+    <button class="slide-btn slide-btn--prev" aria-label="前のセクション">‹</button>
+    <button class="slide-btn slide-btn--next" aria-label="次のセクション">›</button>
 
     <!-- Main Container -->
     <main class="container">
@@ -188,7 +211,7 @@
                 <h2 class="section__title">Web・LP制作事例</h2>
 
                 <div class="cases">
-                    <div class="case-card">
+                    <a href="https://migration.oita-creative.jp/lp2/" target="_blank" rel="noopener noreferrer" class="case-card">
                         <div class="case-card__content">
                             <h3 class="case-card__title">大分IT移住<br>プロジェクトLP①</h3>
                             <p class="case-card__url">migration.oita-creative.jp/lp2/</p>
@@ -196,9 +219,9 @@
                         <div class="case-card__qr">
                             <img src="assets/images/qr-lp1.png" alt="QRコード" width="120" height="120">
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="case-card">
+                    <a href="https://migration.oita-creative.jp/2025/lp/" target="_blank" rel="noopener noreferrer" class="case-card">
                         <div class="case-card__content">
                             <h3 class="case-card__title">大分IT移住<br>プロジェクトLP②</h3>
                             <p class="case-card__url">migration.oita-creative.jp/2025/lp/</p>
@@ -206,9 +229,9 @@
                         <div class="case-card__qr">
                             <img src="assets/images/qr-lp2.png" alt="QRコード" width="120" height="120">
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="case-card">
+                    <a href="https://yojitu.com/" target="_blank" rel="noopener noreferrer" class="case-card">
                         <div class="case-card__content">
                             <h3 class="case-card__title">余日<br>コーポレートサイト</h3>
                             <p class="case-card__url">yojitu.com</p>
@@ -216,7 +239,7 @@
                         <div class="case-card__qr">
                             <img src="assets/images/qr-yojitu.png" alt="QRコード" width="120" height="120">
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>

@@ -12,6 +12,13 @@
     const navDots = document.querySelectorAll('.nav-dot');
     const tocItems = document.querySelectorAll('.toc__item');
     const container = document.querySelector('.container');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileMenuBtn = document.querySelector('.nav-menu-btn');
+    const mobileMenuClose = document.querySelector('.mobile-menu__close');
+    const mobileMenuOverlay = document.querySelector('.mobile-menu__overlay');
+    const mobileMenuItems = document.querySelectorAll('.mobile-menu__item');
+    const slideBtnPrev = document.querySelector('.slide-btn--prev');
+    const slideBtnNext = document.querySelector('.slide-btn--next');
 
     let currentSection = 0;
     let isScrolling = false;
@@ -91,6 +98,66 @@
             scrollToSection(index);
         });
     });
+
+    /**
+     * モバイルメニューの開閉
+     */
+    function openMobileMenu() {
+        if (mobileMenu) {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeMobileMenu() {
+        if (mobileMenu) {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // メニューボタンクリック
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+    }
+
+    // 閉じるボタンクリック
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+    }
+
+    // オーバーレイクリック
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+    }
+
+    // メニュー項目クリック
+    mobileMenuItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            const sectionIndex = parseInt(item.dataset.section);
+            scrollToSection(sectionIndex);
+            closeMobileMenu();
+        });
+    });
+
+    /**
+     * スライドナビゲーションボタン
+     */
+    if (slideBtnPrev) {
+        slideBtnPrev.addEventListener('click', () => {
+            if (currentSection > 0) {
+                scrollToSection(currentSection - 1);
+            }
+        });
+    }
+
+    if (slideBtnNext) {
+        slideBtnNext.addEventListener('click', () => {
+            if (currentSection < sections.length - 1) {
+                scrollToSection(currentSection + 1);
+            }
+        });
+    }
 
     /**
      * キーボードナビゲーション
