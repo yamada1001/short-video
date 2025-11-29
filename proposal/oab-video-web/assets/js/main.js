@@ -127,8 +127,15 @@
 
     function closeMobileMenu() {
         if (mobileMenu) {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
+            // 閉じるアニメーション開始
+            mobileMenu.classList.add('closing');
+
+            // アニメーション終了後にメニューを非表示
+            setTimeout(() => {
+                mobileMenu.classList.remove('active');
+                mobileMenu.classList.remove('closing');
+                document.body.style.overflow = '';
+            }, 800); // アニメーション時間と同じ
         }
     }
 
