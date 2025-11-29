@@ -6,10 +6,7 @@ DirectoryIndex index.html
 # ベーシック認証設定
 AuthType Basic
 AuthName "OAB Proposal - Restricted Access"
-# 重要: 以下のパスをXserverの実際のサーバーIDに置き換えてください
-# Xserverサーバーパネル > サーバー情報 > サーバーID を確認
-# 例: /home/xs123456/yojitu.com/public_html/proposal/oab-video-web/.htpasswd
-AuthUserFile /home/YOUR_SERVER_ID/yojitu.com/public_html/proposal/oab-video-web/.htpasswd
+AuthUserFile /home/sv16695/yojitu.com/public_html/proposal/oab-video-web/.htpasswd
 Require valid-user
 
 # キャッシュ設定（親の設定を継承）
