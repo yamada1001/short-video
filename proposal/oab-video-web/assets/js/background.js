@@ -13,9 +13,9 @@
 
     // デバイス判定
     const isMobile = window.innerWidth <= 768;
-    const particleCount = isMobile ? 800 : 2000; // SP版はパーティクル数を減らす
-    const maxDistance = isMobile ? 100 : 150; // パーティクル間の最大接続距離
-    const maxConnections = isMobile ? 3 : 5; // 各パーティクルの最大接続数
+    const particleCount = isMobile ? 800 : 1000; // PC版もすっきりさせる
+    const maxDistance = isMobile ? 100 : 120; // パーティクル間の最大接続距離
+    const maxConnections = isMobile ? 3 : 3; // 各パーティクルの最大接続数
 
     /**
      * 初期化
@@ -133,7 +133,7 @@
         const material = new THREE.LineBasicMaterial({
             vertexColors: true,
             transparent: true,
-            opacity: 0.3,
+            opacity: 0.15,
             blending: THREE.AdditiveBlending
         });
 
