@@ -13,7 +13,7 @@
 
     // デバイス判定
     const isMobile = window.innerWidth <= 768;
-    const particleCount = isMobile ? 1200 : 3000; // パーティクル数を増やす
+    const particleCount = isMobile ? 800 : 2000; // SP版はパーティクル数を減らす
 
     /**
      * 初期化
@@ -71,10 +71,10 @@
         const colors = [];
         const sizes = [];
 
-        // カラーパレット（余日のブランドカラー・強化版）
-        const color1 = new THREE.Color(0x5FA8FF); // アクセントブルー（少し明るく）
-        const color2 = new THREE.Color(0xA08968); // ナチュラルブラウン（少し明るく）
-        const color3 = new THREE.Color(0xFFFFFF); // 白（より明るく）
+        // カラーパレット（余日のブランドカラー）
+        const color1 = new THREE.Color(0x4A90E2); // アクセントブルー
+        const color2 = new THREE.Color(0x8B7355); // ナチュラルブラウン
+        const color3 = new THREE.Color(0xF5F3F0); // 背景ベージュ
 
         for (let i = 0; i < particleCount; i++) {
             // ランダムな位置
@@ -98,23 +98,22 @@
 
             colors.push(color.r, color.g, color.b);
 
-            // ランダムなサイズ（大きく）
-            sizes.push(Math.random() * 6 + 2);
+            // ランダムなサイズ
+            sizes.push(Math.random() * 3 + 1);
         }
 
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
         geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
         geometry.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1));
 
-        // マテリアル（強化版）
+        // マテリアル
         const material = new THREE.PointsMaterial({
-            size: 4,
+            size: 2,
             vertexColors: true,
             transparent: true,
-            opacity: 0.85,
+            opacity: 0.6,
             blending: THREE.AdditiveBlending,
-            sizeAttenuation: true,
-            depthWrite: false
+            sizeAttenuation: true
         });
 
         particles = new THREE.Points(geometry, material);
