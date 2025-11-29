@@ -1457,7 +1457,7 @@ a.team-name:hover {
 }
 
 .mobile-menu__item {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     font-size: 1.25rem;
     font-weight: 300;
     color: rgba(0, 0, 0, 0.8);
@@ -1465,14 +1465,12 @@ a.team-name:hover {
     cursor: pointer;
     border-radius: 16px;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    margin-bottom: var(--spacing-sm);
-    background: rgba(255, 255, 255, 0.2);
+    margin-bottom: var(--spacing-xs);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .mobile-menu__item:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.3);
     transform: scale(1.02);
     color: rgba(0, 0, 0, 0.9);
 }
