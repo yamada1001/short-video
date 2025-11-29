@@ -21,7 +21,6 @@
 
     /* Typography */
     --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-serif: 'Noto Serif JP', '游明朝', 'Yu Mincho', serif;
 
     /* Spacing */
     --spacing-xs: 8px;
@@ -116,7 +115,6 @@ body {
 }
 
 .section__title {
-    font-family: var(--font-serif);
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 300;
     text-align: center;
@@ -148,7 +146,6 @@ body {
 }
 
 .cover__title {
-    font-family: var(--font-serif);
     font-size: clamp(2.5rem, 7vw, 4.5rem);
     font-weight: 300;
     text-align: center;
@@ -224,7 +221,6 @@ body {
 }
 
 .flow__title {
-    font-family: var(--font-serif);
     font-size: clamp(1.25rem, 3vw, 1.5rem);
     font-weight: 400;
     margin-bottom: var(--spacing-sm);
@@ -269,7 +265,6 @@ body {
 }
 
 .reason-card__number {
-    font-family: var(--font-serif);
     font-size: 3rem;
     font-weight: 300;
     color: var(--color-natural-brown);
@@ -308,7 +303,6 @@ body {
 }
 
 .service-block__title {
-    font-family: var(--font-serif);
     font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 400;
     margin-bottom: var(--spacing-sm);
@@ -353,17 +347,39 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-md);
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: var(--spacing-lg);
-    transition: var(--transition);
+    gap: var(--spacing-lg);
+    background: linear-gradient(145deg, #FFFFFF 0%, #FAFAF8 100%);
+    border: 2px solid var(--color-natural-brown);
+    border-radius: 12px;
+    padding: var(--spacing-xl);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 20px rgba(139, 115, 85, 0.12), 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+.case-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #8B7355 0%, #A68968 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 .case-card:hover {
-    border-color: var(--color-accent);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-6px) scale(1.01);
+    border-color: #A68968;
+    box-shadow: 0 12px 35px rgba(139, 115, 85, 0.25), 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.case-card:hover::before {
+    opacity: 1;
 }
 
 .case-card__content {
@@ -371,7 +387,6 @@ body {
 }
 
 .case-card__title {
-    font-family: var(--font-serif);
     font-size: clamp(1.125rem, 2.5vw, 1.375rem);
     font-weight: 400;
     margin-bottom: var(--spacing-sm);
@@ -386,12 +401,16 @@ body {
 
 .case-card__qr {
     flex-shrink: 0;
+    padding: 8px;
+    background: var(--color-bg-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(139, 115, 85, 0.1);
 }
 
 .case-card__qr img {
     display: block;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
+    border: 2px solid var(--color-natural-brown);
+    border-radius: 6px;
 }
 
 /* ========================================
@@ -406,35 +425,54 @@ body {
 }
 
 .plan-card {
-    background: var(--color-bg-white);
+    background: linear-gradient(145deg, #FFFFFF 0%, #F5F3F0 100%);
     border: 3px solid var(--color-natural-brown);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: var(--spacing-xl);
     text-align: center;
-    transition: var(--transition);
-    box-shadow: 0 8px 24px rgba(139, 115, 85, 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(139, 115, 85, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.plan-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8B7355 0%, #A68968 50%, #8B7355 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 .plan-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 40px rgba(139, 115, 85, 0.25);
-    border-color: var(--color-natural-brown);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(139, 115, 85, 0.35), 0 8px 20px rgba(0, 0, 0, 0.12);
+    border-color: #A68968;
+}
+
+.plan-card:hover::before {
+    opacity: 1;
 }
 
 .plan-card__label {
     display: inline-block;
-    padding: var(--spacing-xs) var(--spacing-md);
-    background: var(--color-accent);
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #8B7355 0%, #A68968 100%);
     color: #ffffff;
     font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    border-radius: 20px;
-    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    border-radius: 24px;
+    margin-bottom: var(--spacing-lg);
+    box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+    text-transform: uppercase;
 }
 
 .plan-card__title {
-    font-family: var(--font-serif);
     font-size: clamp(1.375rem, 3vw, 1.75rem);
     font-weight: 400;
     margin-bottom: var(--spacing-lg);
@@ -446,7 +484,6 @@ body {
 }
 
 .price-amount {
-    font-family: var(--font-serif);
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 300;
     display: block;
@@ -459,7 +496,6 @@ body {
 }
 
 .price-text {
-    font-family: var(--font-serif);
     font-size: clamp(1.5rem, 4vw, 2rem);
     font-weight: 300;
 }
@@ -473,7 +509,6 @@ body {
 }
 
 .contact__title {
-    font-family: var(--font-serif);
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 300;
     text-align: center;
@@ -517,7 +552,6 @@ body {
 }
 
 .contact-team__name {
-    font-family: var(--font-serif);
     font-size: clamp(1.25rem, 3vw, 1.5rem);
     font-weight: 400;
     letter-spacing: 0.1em;
@@ -533,9 +567,12 @@ body {
     transform: translateY(-50%);
     z-index: 999;
     display: none; /* デフォルトは非表示、PC/タブレット横向きで表示 */
-    background: transparent;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     padding: 20px 16px;
     border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(139, 115, 85, 0.1);
 }
 
 .toc__list {
@@ -574,22 +611,14 @@ body {
 
 .toc__label {
     font-size: 12px;
-    color: var(--color-bg-white);
+    color: var(--color-text);
     white-space: nowrap;
     letter-spacing: 0.05em;
     font-weight: 500;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* 黒背景セクションでは白文字、白背景では黒文字 */
-.section--cover ~ .toc .toc__label,
-.section--contact ~ .toc .toc__label {
-    color: var(--color-bg-white);
 }
 
 .toc__dot {
-    background: var(--color-bg-white);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background: var(--color-natural-brown);
 }
 
 /* ========================================
@@ -879,7 +908,6 @@ body {
 }
 
 .mobile-menu__title {
-    font-family: var(--font-serif);
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: var(--spacing-lg);
@@ -904,54 +932,6 @@ body {
 .mobile-menu__item:hover {
     background: var(--color-bg-secondary);
     color: var(--color-natural-brown);
-}
-
-/* ========================================
-   Slide Navigation Buttons (SP用左右ボタン)
-   ======================================== */
-.slide-btn {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 100;
-    display: none; /* デフォルトは非表示、モバイルで表示 */
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.slide-btn:hover {
-    background: var(--color-bg-white);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    transform: translateY(-50%) scale(1.05);
-}
-
-.slide-btn:active {
-    transform: translateY(-50%) scale(0.95);
-}
-
-.slide-btn--prev {
-    left: 10px;
-}
-
-.slide-btn--next {
-    right: 10px;
-}
-
-/* モバイルでスライドボタンを表示 */
-@media (max-width: 768px) {
-    .slide-btn {
-        display: flex;
-    }
 }
 
 /* ========================================

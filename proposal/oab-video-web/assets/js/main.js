@@ -17,8 +17,6 @@
     const mobileMenuClose = document.querySelector('.mobile-menu__close');
     const mobileMenuOverlay = document.querySelector('.mobile-menu__overlay');
     const mobileMenuItems = document.querySelectorAll('.mobile-menu__item');
-    const slideBtnPrev = document.querySelector('.slide-btn--prev');
-    const slideBtnNext = document.querySelector('.slide-btn--next');
 
     let currentSection = 0;
     let isScrolling = false;
@@ -139,25 +137,6 @@
             closeMobileMenu();
         });
     });
-
-    /**
-     * スライドナビゲーションボタン
-     */
-    if (slideBtnPrev) {
-        slideBtnPrev.addEventListener('click', () => {
-            if (currentSection > 0) {
-                scrollToSection(currentSection - 1);
-            }
-        });
-    }
-
-    if (slideBtnNext) {
-        slideBtnNext.addEventListener('click', () => {
-            if (currentSection < sections.length - 1) {
-                scrollToSection(currentSection + 1);
-            }
-        });
-    }
 
     /**
      * キーボードナビゲーション
