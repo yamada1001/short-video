@@ -55,24 +55,28 @@ $inline_styles = <<<'EOD'
         .error-link {
             display: inline-block;
             padding: 12px 30px;
-            background: #2c5aa0;
+            background: #8B7355;
             color: #fff;
             text-decoration: none;
-            border-radius: 4px;
-            transition: background 0.3s;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.08em;
         }
 
         .error-link:hover {
-            background: #1e4278;
+            background: #725f46;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 115, 85, 0.3);
         }
 
         .error-link.secondary {
-            background: #f5f5f5;
-            color: #333;
+            background: transparent;
+            color: #8B7355;
+            border: 1px solid #8B7355;
         }
 
         .error-link.secondary:hover {
-            background: #e0e0e0;
+            background: #F5F3F0;
         }
 
         @media (max-width: 768px) {
