@@ -796,7 +796,7 @@ body {
     .section__inner {
         width: 100%;
         max-width: 100%;
-        padding: 0 4px;
+        padding: 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -849,7 +849,7 @@ body {
     /* フロー */
     /* なぜ映像×Web: 高さを削減してナビと重ならないように */
     .section--why .section__inner {
-        padding: 0 4px;
+        padding: 0;
     }
 
     .flow {
@@ -861,7 +861,7 @@ body {
     .flow__item {
         min-width: auto;
         width: 100%;
-        padding: var(--spacing-xs) 8px;
+        padding: var(--spacing-xs) 2%;
     }
 
     .flow__step {
@@ -898,7 +898,7 @@ body {
 
     /* 選ばれる理由 */
     .section--reason .section__inner {
-        padding: 0 4px;
+        padding: 0;
     }
 
     .reasons {
@@ -907,7 +907,7 @@ body {
     }
 
     .reason-card {
-        padding: var(--spacing-sm) 8px;
+        padding: var(--spacing-sm) 2%;
     }
 
     .reason-card__number {
@@ -926,7 +926,7 @@ body {
 
     /* サービス内容 */
     .section--service .section__inner {
-        padding: 0 4px;
+        padding: 0;
     }
 
     .services {
@@ -935,7 +935,7 @@ body {
     }
 
     .service-block {
-        padding: var(--spacing-sm) 8px;
+        padding: var(--spacing-sm) 2%;
     }
 
     .service-block__title {
@@ -959,7 +959,7 @@ body {
 
     /* Web・LP制作事例 */
     .section--case .section__inner {
-        padding: 4px;
+        padding: 0;
     }
 
     .section--case .section__title {
@@ -976,7 +976,7 @@ body {
     .case-card {
         flex-direction: column;
         text-align: center;
-        padding: var(--spacing-sm) 8px;
+        padding: var(--spacing-sm) 2%;
         gap: var(--spacing-xs);
     }
 
@@ -1004,7 +1004,7 @@ body {
 
     /* 映像制作実績 */
     .section--video .section__inner {
-        padding: 4px;
+        padding: 0;
     }
 
     .section--video .section__title {
@@ -1013,7 +1013,7 @@ body {
     }
 
     .coming-soon {
-        padding: var(--spacing-sm) 8px;
+        padding: var(--spacing-sm) 2%;
     }
 
     .coming-soon__text {
@@ -1027,7 +1027,7 @@ body {
 
     /* 料金プラン */
     .section--price .section__inner {
-        padding: 0 4px;
+        padding: 0;
     }
 
     .section--price .section__title {
@@ -1040,7 +1040,7 @@ body {
     }
 
     .plan-card {
-        padding: var(--spacing-sm) 8px;
+        padding: var(--spacing-sm) 2%;
     }
 
     .plan-card__label {
@@ -1074,7 +1074,7 @@ body {
 
     /* お問い合わせ */
     .section--contact .section__inner {
-        padding: 0 4px;
+        padding: 0;
     }
 
     .contact__title {
@@ -1110,7 +1110,7 @@ body {
     }
 
     .contact-team {
-        padding: var(--spacing-sm) 8px;
+        padding: var(--spacing-sm) 2%;
     }
 }
 
