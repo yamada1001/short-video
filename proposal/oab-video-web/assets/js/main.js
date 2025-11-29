@@ -79,7 +79,6 @@
 
         const currentSectionEl = sections[currentSection];
         const nextSectionEl = sections[index];
-        const isHorizontal = isHorizontalLayout;
 
         // 背景エフェクトにアニメーション開始を通知
         window.dispatchEvent(new Event('pageAnimationStart'));
@@ -106,41 +105,26 @@
             }
         }, 0);
 
-        // スクロールアニメーション（GSAPのScrollToPlugin使用）
-        if (isHorizontal) {
-            // SP版: 横スクロール
-            tl.to(container, {
-                scrollTo: {
-                    x: nextSectionEl.offsetLeft,
-                    autoKill: false
-                },
-                duration: 1.2,
-                ease: 'power3.inOut'
-            }, 0.3);
-        } else {
-            // PC版: 縦スクロール
-            tl.to(container, {
-                scrollTo: {
-                    y: nextSectionEl.offsetTop,
-                    autoKill: false
-                },
-                duration: 1.2,
-                ease: 'power3.inOut'
-            }, 0.3);
-        }
+        // スクロールアニメーション（PC・SP共に縦スクロール）
+        tl.to(container, {
+            scrollTo: {
+                y: nextSectionEl.offsetTop,
+                autoKill: false
+            },
+            duration: 1.2,
+            ease: 'power3.inOut'
+        }, 0.3);
 
         // 次のセクションをフェードイン
         tl.fromTo(nextSectionEl,
             {
                 opacity: 0,
                 scale: 1.05,
-                x: isHorizontal ? 30 : 0,
-                y: isHorizontal ? 0 : 20
+                y: 20
             },
             {
                 opacity: 1,
                 scale: 1,
-                x: 0,
                 y: 0,
                 duration: 0.8,
                 ease: 'power2.out',
@@ -331,31 +315,17 @@
         checkLayoutMode();
         const minSwipeDistance = 50;
 
-        if (isHorizontalLayout) {
-            // SP版: 横スワイプのみ検知（pull-to-refresh対策で縦スクロール無効化）
-            const horizontalSwipe = touchStartX - touchEndX;
+        // PC版・SP版共に縦スワイプで操作
+        const swipeDistance = touchStartY - touchEndY;
+        if (Math.abs(swipeDistance) < minSwipeDistance) return;
+        if (isScrolling) return;
 
-            if (Math.abs(horizontalSwipe) < minSwipeDistance) return;
-            if (isScrolling) return;
-
-            if (horizontalSwipe > 0 && currentSection < sections.length - 1) {
-                // 左へスワイプ（次へ）
-                scrollToSection(currentSection + 1);
-            } else if (horizontalSwipe < 0 && currentSection > 0) {
-                // 右へスワイプ（前へ）
-                scrollToSection(currentSection - 1);
-            }
-        } else {
-            // PC版: 縦スワイプのみ
-            const swipeDistance = touchStartY - touchEndY;
-            if (Math.abs(swipeDistance) < minSwipeDistance) return;
-            if (isScrolling) return;
-
-            if (swipeDistance > 0 && currentSection < sections.length - 1) {
-                scrollToSection(currentSection + 1);
-            } else if (swipeDistance < 0 && currentSection > 0) {
-                scrollToSection(currentSection - 1);
-            }
+        if (swipeDistance > 0 && currentSection < sections.length - 1) {
+            // 下へスワイプ（次へ）
+            scrollToSection(currentSection + 1);
+        } else if (swipeDistance < 0 && currentSection > 0) {
+            // 上へスワイプ（前へ）
+            scrollToSection(currentSection - 1);
         }
     }
 
