@@ -849,11 +849,34 @@ a.team-name:hover {
     .nav-dot {
         width: 6px;
         height: 6px;
+        opacity: 0.4;
+        background: #999;
+        transition: all 0.3s ease;
     }
 
     .nav-dot.active {
-        width: 8px;
-        height: 8px;
+        width: 24px;
+        height: 6px;
+        border-radius: 3px;
+        opacity: 1;
+        background: linear-gradient(90deg, var(--color-accent), var(--color-natural-brown));
+        box-shadow:
+            0 0 8px rgba(74, 144, 226, 0.6),
+            0 2px 4px rgba(0, 0, 0, 0.2);
+        animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+        0%, 100% {
+            box-shadow:
+                0 0 8px rgba(74, 144, 226, 0.6),
+                0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        50% {
+            box-shadow:
+                0 0 16px rgba(74, 144, 226, 0.8),
+                0 2px 6px rgba(0, 0, 0, 0.3);
+        }
     }
 
     /* 表紙 */
