@@ -114,6 +114,14 @@
         if (mobileMenu) {
             mobileMenu.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            // ハンバーガーボタンにクリックアニメーションを追加
+            if (mobileMenuBtn) {
+                mobileMenuBtn.classList.add('clicked');
+                setTimeout(() => {
+                    mobileMenuBtn.classList.remove('clicked');
+                }, 600); // アニメーション時間と同じ
+            }
         }
     }
 

@@ -843,6 +843,7 @@ a.team-name:hover {
         padding: 8px 16px;
         border-radius: 20px;
         backdrop-filter: blur(10px);
+        animation: navDotsFloat 3s ease-in-out infinite;
     }
 
     .nav-dot {
@@ -1182,12 +1183,16 @@ a.team-name:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--color-bg);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 16px;
     padding: var(--spacing-xl);
     width: 90%;
     max-width: 400px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.6) inset;
     animation: slideUp 0.3s ease-out;
 }
 
@@ -1289,6 +1294,31 @@ a.team-name:hover {
     transform: scale(0.95) rotate(90deg);
 }
 
+/* ハンバーガーボタンクリック時のリッチなアニメーション */
+.nav-menu-btn.clicked {
+    animation: menuButtonClick 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes menuButtonClick {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(0.8) rotate(180deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(360deg);
+        background: radial-gradient(circle, rgba(74, 144, 226, 0.3) 0%, rgba(74, 144, 226, 0.15) 100%);
+        box-shadow: 0 0 30px rgba(74, 144, 226, 0.6);
+    }
+    75% {
+        transform: scale(0.9) rotate(450deg);
+    }
+    100% {
+        transform: scale(1) rotate(540deg);
+    }
+}
+
 @keyframes menuPulse {
     0%, 100% {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(255, 255, 255, 0.4);
@@ -1320,6 +1350,26 @@ a.team-name:hover {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* ナビゲーションドットの浮遊アニメーション（SP版） */
+@keyframes navDotsFloat {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    25% {
+        transform: translateX(-50%) translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        transform: translateX(-50%) translateY(0);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    75% {
+        transform: translateX(-50%) translateY(-3px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
     }
 }
 
