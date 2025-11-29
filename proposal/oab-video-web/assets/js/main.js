@@ -1,7 +1,7 @@
 /**
  * OAB × ゼロイチオオイタ × 余日
  * 映像×Web制作パッケージ提案LP
- * スワイプ/スクロール制御とナビゲーション
+ * 普通の縦長LP（シンプル版）
  */
 
 (function() {
@@ -19,16 +19,6 @@
     const mobileMenuItems = document.querySelectorAll('.mobile-menu__item');
 
     let currentSection = 0;
-    let isScrolling = false;
-    let scrollTimeout;
-    let isHorizontalLayout = false;
-
-    /**
-     * レイアウトモードを判定
-     */
-    function checkLayoutMode() {
-        isHorizontalLayout = window.innerWidth <= 768;
-    }
 
     /**
      * アクティブセクションを更新
@@ -68,71 +58,13 @@
     }
 
     /**
-     * セクションへスクロール（GSAP リッチアニメーション）
+     * セクションへスクロール
      */
     function scrollToSection(index) {
         if (index < 0 || index >= sections.length) return;
-        if (isScrolling) return;
 
-        isScrolling = true;
-        checkLayoutMode();
-
-        const currentSectionEl = sections[currentSection];
-        const nextSectionEl = sections[index];
-
-        // 背景エフェクトにアニメーション開始を通知
-        window.dispatchEvent(new Event('pageAnimationStart'));
-
-        // GSAPタイムライン作成
-        const tl = gsap.timeline({
-            onComplete: () => {
-                isScrolling = false;
-                currentSectionEl.classList.remove('section--leaving');
-                nextSectionEl.classList.add('section--active');
-                // 背景エフェクトにアニメーション終了を通知
-                window.dispatchEvent(new Event('pageAnimationEnd'));
-            }
-        });
-
-        // 現在のセクションをフェードアウト
-        tl.to(currentSectionEl, {
-            opacity: 0.3,
-            scale: 0.95,
-            duration: 0.6,
-            ease: 'power2.in',
-            onStart: () => {
-                currentSectionEl.classList.add('section--leaving');
-            }
-        }, 0);
-
-        // スクロールアニメーション（PC・SP共に縦スクロール）
-        tl.to(container, {
-            scrollTo: {
-                y: nextSectionEl.offsetTop,
-                autoKill: false
-            },
-            duration: 1.2,
-            ease: 'power3.inOut'
-        }, 0.3);
-
-        // 次のセクションをフェードイン
-        tl.fromTo(nextSectionEl,
-            {
-                opacity: 0,
-                scale: 1.05,
-                y: 20
-            },
-            {
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                duration: 0.8,
-                ease: 'power2.out',
-                onStart: () => {
-                    nextSectionEl.classList.remove('section--entering');
-                    updateActiveSection(index);
-                }
-            }, 0.6);
+        sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        updateActiveSection(index);
     }
 
     /**
@@ -173,7 +105,7 @@
                 mobileMenuBtn.classList.add('clicked');
                 setTimeout(() => {
                     mobileMenuBtn.classList.remove('clicked');
-                }, 1800); // アニメーション時間と同じ
+                }, 1800);
             }
         }
     }
@@ -189,7 +121,7 @@
                 mobileMenu.classList.remove('closing');
                 mobileMenu.classList.remove('mobile-menu--dark');
                 document.body.style.overflow = '';
-            }, 800); // アニメーション時間と同じ
+            }, 800);
         }
     }
 
@@ -218,10 +150,11 @@
     });
 
     /**
-     * キーボードナビゲーション
+     * キーボードナビゲーション（PC版）
      */
     document.addEventListener('keydown', (e) => {
-        if (isScrolling) return;
+        // SP版（768px以下）では十字キー無効化
+        if (window.innerWidth <= 768) return;
 
         switch(e.key) {
             case 'ArrowDown':
@@ -253,31 +186,17 @@
     });
 
     /**
-     * スクロールイベントの監視
-     * （縦スクロール・横スクロール両対応）
+     * スクロール監視（PC版のみ）
      */
-    container.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
+    let scrollTimeout;
+    if (container && window.innerWidth > 768) {
+        container.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
 
-        scrollTimeout = setTimeout(() => {
-            checkLayoutMode();
-            let scrollPosition;
-            let activeIndex = 0;
+            scrollTimeout = setTimeout(() => {
+                const scrollPosition = container.scrollTop;
+                let activeIndex = 0;
 
-            if (isHorizontalLayout) {
-                // 横スクロール
-                scrollPosition = container.scrollLeft;
-                sections.forEach((section, index) => {
-                    const sectionLeft = section.offsetLeft;
-                    const sectionWidth = section.offsetWidth;
-
-                    if (scrollPosition >= sectionLeft - sectionWidth / 3) {
-                        activeIndex = index;
-                    }
-                });
-            } else {
-                // 縦スクロール
-                scrollPosition = container.scrollTop;
                 sections.forEach((section, index) => {
                     const sectionTop = section.offsetTop;
                     const sectionHeight = section.offsetHeight;
@@ -286,78 +205,16 @@
                         activeIndex = index;
                     }
                 });
-            }
 
-            updateActiveSection(activeIndex);
-        }, 100);
-    });
-
-    /**
-     * タッチスワイプ対応（モバイル - 横スライド）
-     */
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let touchStartY = 0;
-    let touchEndY = 0;
-
-    container.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-
-    container.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].clientX;
-        touchEndY = e.changedTouches[0].clientY;
-        handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-        checkLayoutMode();
-        const minSwipeDistance = 50;
-
-        // PC版・SP版共に縦スワイプで操作
-        const swipeDistance = touchStartY - touchEndY;
-        if (Math.abs(swipeDistance) < minSwipeDistance) return;
-        if (isScrolling) return;
-
-        if (swipeDistance > 0 && currentSection < sections.length - 1) {
-            // 下へスワイプ（次へ）
-            scrollToSection(currentSection + 1);
-        } else if (swipeDistance < 0 && currentSection > 0) {
-            // 上へスワイプ（前へ）
-            scrollToSection(currentSection - 1);
-        }
+                updateActiveSection(activeIndex);
+            }, 100);
+        });
     }
-
-    /**
-     * ホイールイベント（精度向上版・ゆっくりリッチアニメーション対応）
-     */
-    let wheelTimeout;
-    let wheelDelta = 0;
-
-    container.addEventListener('wheel', (e) => {
-        clearTimeout(wheelTimeout);
-        wheelDelta += e.deltaY;
-
-        wheelTimeout = setTimeout(() => {
-            // 閾値を上げて、より意図的なスクロールのみを検知
-            if (Math.abs(wheelDelta) > 150 && !isScrolling) {
-                if (wheelDelta > 0 && currentSection < sections.length - 1) {
-                    scrollToSection(currentSection + 1);
-                } else if (wheelDelta < 0 && currentSection > 0) {
-                    scrollToSection(currentSection - 1);
-                }
-            }
-            wheelDelta = 0;
-        }, 100);
-    }, { passive: true });
 
     /**
      * 初期化
      */
     function init() {
-        checkLayoutMode();
-
         // URLハッシュがあれば該当セクションへ
         const hash = window.location.hash;
         if (hash) {
@@ -375,17 +232,6 @@
 
         // デフォルトは最初のセクション
         updateActiveSection(0);
-
-        // 最初のセクションをGSAPでセット（即座に表示）
-        if (sections.length > 0) {
-            gsap.set(sections[0], { opacity: 1, scale: 1, x: 0, y: 0 });
-            sections[0].classList.add('section--active');
-
-            // 他のセクションは非表示状態からスタート
-            for (let i = 1; i < sections.length; i++) {
-                gsap.set(sections[i], { opacity: 0 });
-            }
-        }
     }
 
     // ページ読み込み完了後に初期化
@@ -394,18 +240,5 @@
     } else {
         init();
     }
-
-    /**
-     * リサイズ時の処理
-     */
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            checkLayoutMode();
-            // 現在のセクション位置を再計算
-            updateActiveSection(currentSection);
-        }, 200);
-    });
 
 })();
