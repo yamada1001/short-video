@@ -773,7 +773,7 @@ body {
         min-height: 100vh;
         scroll-snap-align: start;
         flex-shrink: 0;
-        padding: var(--spacing-lg) var(--spacing-md);
+        padding: var(--spacing-sm) var(--spacing-xs);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -782,7 +782,10 @@ body {
     .section__inner {
         width: 100%;
         max-width: 100%;
-        padding: 0 var(--spacing-sm);
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 0 var(--spacing-xs);
     }
 
     /* ナビゲーションドットを下部に横並び */
@@ -831,84 +834,112 @@ body {
     /* フロー */
     /* なぜ映像×Web: 高さを削減してナビと重ならないように */
     .section--why .section__inner {
-        padding: var(--spacing-md) var(--spacing-sm);
-        gap: var(--spacing-sm);
+        padding: 0 var(--spacing-xs);
     }
 
     .flow {
         flex-direction: column;
-        gap: var(--spacing-sm);
-        margin: var(--spacing-sm) 0;
+        gap: var(--spacing-xs);
+        margin: var(--spacing-xs) 0;
     }
 
     .flow__item {
         min-width: auto;
         width: 100%;
-        padding: var(--spacing-sm) var(--spacing-md);
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .flow__step {
+        font-size: 0.65rem;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .flow__title {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .flow__desc {
+        font-size: 0.75rem;
     }
 
     .flow__arrow {
         transform: rotate(90deg);
-        font-size: 1.25rem;
+        font-size: 1rem;
         margin: 0;
     }
 
     .section__title {
-        font-size: clamp(1.5rem, 5vw, 2rem);
-        margin-bottom: var(--spacing-md);
+        font-size: clamp(1.25rem, 4.5vw, 1.75rem);
+        margin-bottom: var(--spacing-sm);
     }
 
     .section__message {
-        font-size: clamp(0.875rem, 3vw, 1rem);
-        margin-top: var(--spacing-sm);
-        padding: 0 var(--spacing-sm);
+        font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+        margin-top: var(--spacing-xs);
+        padding: 0;
+        line-height: 1.5;
     }
 
     /* 選ばれる理由 */
+    .section--reason .section__inner {
+        padding: 0 var(--spacing-xs);
+    }
+
     .reasons {
         grid-template-columns: 1fr;
-        gap: var(--spacing-md);
+        gap: var(--spacing-xs);
     }
 
     .reason-card {
-        padding: var(--spacing-lg);
+        padding: var(--spacing-sm) var(--spacing-md);
     }
 
     .reason-card__number {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .reason-card__title {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .reason-card__desc {
+        font-size: 0.8rem;
     }
 
     /* サービス内容 */
     .section--service .section__inner {
-        padding: var(--spacing-sm);
+        padding: 0 var(--spacing-xs);
     }
 
     .services {
         grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
+        gap: var(--spacing-xs);
     }
 
     .service-block {
-        padding: var(--spacing-md) var(--spacing-lg);
+        padding: var(--spacing-sm) var(--spacing-md);
     }
 
     .service-block__title {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
         margin-bottom: var(--spacing-xs);
     }
 
     .service-block__company {
-        font-size: 0.75rem;
-        margin-bottom: var(--spacing-sm);
+        font-size: 0.7rem;
+        margin-bottom: var(--spacing-xs);
     }
 
     .service-block__list {
-        gap: var(--spacing-xs);
+        gap: 0;
     }
 
     .service-block__list li {
-        padding: var(--spacing-xs) 0;
-        font-size: 0.8rem;
+        padding: 6px 0;
+        font-size: 0.75rem;
     }
 
     /* Web・LP制作事例 */
@@ -980,27 +1011,82 @@ body {
     }
 
     /* 料金プラン */
+    .section--price .section__inner {
+        padding: 0 var(--spacing-xs);
+    }
+
+    .section--price .section__title {
+        margin-bottom: var(--spacing-sm);
+    }
+
     .plans {
         grid-template-columns: 1fr;
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
     }
 
     .plan-card {
-        padding: var(--spacing-lg);
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .plan-card__label {
+        padding: 6px 20px;
+        font-size: 0.7rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .plan-card__title {
+        font-size: 1.1rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .plan-card__price {
+        margin-top: var(--spacing-sm);
+        padding: var(--spacing-xs) 0;
     }
 
     .price-amount {
-        font-size: clamp(1.75rem, 6vw, 2.5rem);
+        font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    .price-tax {
+        font-size: 0.75rem;
+    }
+
+    .section__note {
+        margin-top: var(--spacing-sm);
+        font-size: 0.7rem;
     }
 
     /* お問い合わせ */
+    .section--contact .section__inner {
+        padding: 0 var(--spacing-xs);
+    }
+
     .contact__title {
-        font-size: clamp(2rem, 7vw, 3rem);
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+        margin-bottom: var(--spacing-sm);
     }
 
     .contact__subtitle {
-        font-size: clamp(0.875rem, 3vw, 1rem);
+        font-size: 0.9rem;
         margin-bottom: var(--spacing-lg);
+    }
+
+    .contact__team {
+        gap: var(--spacing-sm);
+    }
+
+    .contact-team {
+        padding: var(--spacing-sm);
+    }
+
+    .contact-team__role {
+        font-size: 0.75rem;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .contact-team__name {
+        font-size: 1rem;
     }
 
     .contact__team {
