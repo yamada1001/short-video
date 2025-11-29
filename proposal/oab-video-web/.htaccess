@@ -1,0 +1,12 @@
+# proposal/oab-video-web/ 専用設定
+
+# index.htmlをデフォルトページに設定
+DirectoryIndex index.html
+
+# アクセス許可
+<IfModule mod_authz_core.c>
+    Require all granted
+</IfModule>
+
+# キャッシュ設定（親の設定を継承）
+# セキュリティヘッダーも親から継承
