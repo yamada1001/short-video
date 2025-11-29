@@ -671,40 +671,47 @@ body {
     z-index: 999;
     display: none; /* デフォルトは非表示、PC/タブレット横向きで表示 */
     background: transparent;
-    padding: 20px 16px;
-    transition: all 0.3s ease;
+    padding: 20px 10px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 最初と最後のページ用（暗い背景） */
-.toc.toc--light {
+/* ホバー時に背景を表示 */
+.toc:hover {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(139, 115, 85, 0.1);
+    padding: 20px 16px;
 }
 
-.toc.toc--light .toc__label {
+/* 最初と最後のページ用（暗い背景） */
+.toc.toc--light:hover {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.toc.toc--light:hover .toc__label {
     color: var(--color-text);
     text-shadow: none;
 }
 
-.toc.toc--light .toc__dot {
+.toc.toc--light .toc__dot,
+.toc:hover .toc__dot {
     background: var(--color-natural-brown);
 }
 
 .toc__list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
 }
 
 .toc__item {
     display: flex;
     align-items: center;
     gap: 12px;
-    opacity: 0.5;
-    transition: var(--transition);
+    opacity: 0.6;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 }
 
@@ -714,17 +721,19 @@ body {
 }
 
 .toc__dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: var(--color-natural-brown);
+    background: #333;
     flex-shrink: 0;
-    transition: var(--transition);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .toc__item.active .toc__dot {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
+    background: var(--color-natural-brown);
 }
 
 .toc__label {
@@ -733,7 +742,18 @@ body {
     white-space: nowrap;
     letter-spacing: 0.05em;
     font-weight: 500;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 4px rgba(255, 255, 255, 0.8);
+    text-shadow: none;
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ホバー時にラベルを表示 */
+.toc:hover .toc__label {
+    opacity: 1;
+    max-width: 200px;
+    margin-left: 0;
 }
 
 /* ========================================
