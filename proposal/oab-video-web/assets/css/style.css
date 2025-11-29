@@ -861,7 +861,7 @@ body {
     .flow__item {
         min-width: auto;
         width: 100%;
-        padding: var(--spacing-xs) var(--spacing-sm);
+        padding: var(--spacing-xs) 8px;
     }
 
     .flow__step {
@@ -907,7 +907,7 @@ body {
     }
 
     .reason-card {
-        padding: var(--spacing-sm) var(--spacing-md);
+        padding: var(--spacing-sm) 8px;
     }
 
     .reason-card__number {
@@ -935,7 +935,7 @@ body {
     }
 
     .service-block {
-        padding: var(--spacing-sm) var(--spacing-md);
+        padding: var(--spacing-sm) 8px;
     }
 
     .service-block__title {
@@ -976,7 +976,7 @@ body {
     .case-card {
         flex-direction: column;
         text-align: center;
-        padding: var(--spacing-sm);
+        padding: var(--spacing-sm) 8px;
         gap: var(--spacing-xs);
     }
 
@@ -1013,7 +1013,7 @@ body {
     }
 
     .coming-soon {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm) 8px;
     }
 
     .coming-soon__text {
@@ -1040,7 +1040,7 @@ body {
     }
 
     .plan-card {
-        padding: var(--spacing-sm) var(--spacing-md);
+        padding: var(--spacing-sm) 8px;
     }
 
     .plan-card__label {
@@ -1110,7 +1110,7 @@ body {
     }
 
     .contact-team {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm) 8px;
     }
 }
 
