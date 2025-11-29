@@ -46,7 +46,8 @@ $page_keywords = '大分,ホームページ制作,Web制作,格安,10万円,AI,�
 $additional_css = [
     'assets/css/loading.css',
     'assets/css/pages/top.css',
-    'assets/css/pages/hero-v2.css'
+    'assets/css/pages/hero-v2.css',
+    'assets/css/pages/modern-effects.css'
 ];
 
 $ogp_tags = <<<'EOD'
@@ -612,6 +613,9 @@ $faq_structured_data = '
 
     <!-- Rich interactions (safe version) -->
     <script defer src="assets/js/rich-interactions-safe.js"></script>
+
+    <!-- Modern Rich Interactions -->
+    <script defer src="assets/js/modern-interactions.js"></script>
 
     <!-- Common app scripts -->
     <script defer src="assets/js/app.js"></script>
