@@ -112,6 +112,12 @@ body {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
+    max-height: calc(100vh - var(--spacing-xl) * 2);
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .section__title {
@@ -134,7 +140,7 @@ body {
     text-align: center;
     font-size: 0.875rem;
     color: var(--color-text-light);
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-md);
 }
 
 /* ========================================
@@ -335,18 +341,22 @@ body {
 /* ========================================
    Section 5: Cases (制作事例)
    ======================================== */
+.section--case .section__title {
+    margin-bottom: var(--spacing-md);
+}
+
 .subsection__title {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
     font-weight: 400;
     text-align: center;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
     color: var(--color-text);
     letter-spacing: 0.05em;
 }
 
 .coming-soon {
     text-align: center;
-    padding: var(--spacing-xxl);
+    padding: var(--spacing-lg);
     background: linear-gradient(145deg, #F5F3F0 0%, #FFFFFF 100%);
     border-radius: 12px;
     max-width: 600px;
@@ -354,17 +364,17 @@ body {
 }
 
 .coming-soon__text {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
     font-weight: 300;
     color: var(--color-natural-brown);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     letter-spacing: 0.1em;
 }
 
 .coming-soon__desc {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--color-text-light);
-    line-height: 1.8;
+    line-height: 1.6;
 }
 
 .cases {
@@ -372,7 +382,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--spacing-md);
     max-width: 1100px;
-    margin: 0 auto;
+    margin: 0 auto var(--spacing-md) auto;
 }
 
 .case-card {
@@ -463,12 +473,17 @@ body {
 /* ========================================
    Section 6: Price (料金プラン)
    ======================================== */
+.section--price .section__title {
+    margin-bottom: var(--spacing-lg);
+}
+
 .plans {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
     max-width: 800px;
     margin: 0 auto;
+    flex-shrink: 0;
 }
 
 .plan-card {
@@ -476,7 +491,7 @@ body {
     border: 3px solid transparent;
     background-clip: padding-box;
     border-radius: 20px;
-    padding: var(--spacing-xxl);
+    padding: var(--spacing-lg) var(--spacing-xl);
     text-align: center;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow:
@@ -534,14 +549,14 @@ body {
 
 .plan-card__label {
     display: inline-block;
-    padding: 12px 28px;
+    padding: 8px 24px;
     background: linear-gradient(135deg, #8B7355 0%, #A68968 50%, #8B7355 100%);
     color: #ffffff;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.25em;
     border-radius: 30px;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
     box-shadow:
         0 6px 20px rgba(139, 115, 85, 0.4),
         inset 0 -2px 4px rgba(0, 0, 0, 0.2),
@@ -552,26 +567,26 @@ body {
 }
 
 .plan-card__title {
-    font-size: clamp(1.375rem, 3vw, 1.75rem);
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
     font-weight: 400;
-    margin-bottom: var(--spacing-xl);
-    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.5;
     position: relative;
     z-index: 1;
 }
 
 .plan-card__price {
-    margin-top: var(--spacing-xl);
-    padding: var(--spacing-lg) 0;
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
     position: relative;
     z-index: 1;
 }
 
 .price-amount {
-    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-size: clamp(2rem, 5vw, 2.75rem);
     font-weight: 700;
     display: block;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 0;
     background: linear-gradient(135deg, #8B7355 0%, #A68968 50%, #725f46 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
