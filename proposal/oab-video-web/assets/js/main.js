@@ -349,7 +349,7 @@
         gsap.set('.flow__item', { opacity: 0, y: 30 });
         gsap.set('.reason-card', { opacity: 0, y: 40, scale: 0.95 });
         gsap.set('.service-block', { opacity: 0, x: -30 });
-        gsap.set('.case-card', { opacity: 0, y: 40, scale: 0.98 });
+        gsap.set('.case-card__qr', { rotationY: -90, opacity: 0 });
         gsap.set('.plan-card', { opacity: 0, y: 40, rotationY: -10 });
         gsap.set('.contact-team', { opacity: 0, y: 30 });
 
@@ -417,41 +417,24 @@
             });
         });
 
-        // 制作事例カードのアニメーション（QRコード回転付き）
+        // 制作事例カードのアニメーション（QRコード回転のみ）
         gsap.utils.toArray('.case-card').forEach((card, index) => {
             const qr = card.querySelector('.case-card__qr');
 
-            gsap.to(card, {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 0.8,
-                delay: index * 0.15,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: card.parentElement,
-                    start: 'top 75%',
-                    toggleActions: 'play none none reverse'
-                }
-            });
-
             // QRコードの回転アニメーション
             if (qr) {
-                gsap.fromTo(qr,
-                    { rotationY: -90, opacity: 0 },
-                    {
-                        rotationY: 0,
-                        opacity: 1,
-                        duration: 0.8,
-                        delay: index * 0.15 + 0.3,
-                        ease: 'back.out(1.5)',
-                        scrollTrigger: {
-                            trigger: card.parentElement,
-                            start: 'top 75%',
-                            toggleActions: 'play none none reverse'
-                        }
+                gsap.to(qr, {
+                    rotationY: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    delay: index * 0.15,
+                    ease: 'back.out(1.5)',
+                    scrollTrigger: {
+                        trigger: card.parentElement,
+                        start: 'top 75%',
+                        toggleActions: 'play none none reverse'
                     }
-                );
+                });
             }
         });
 
