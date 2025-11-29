@@ -904,6 +904,8 @@ body {
     .reasons {
         grid-template-columns: 1fr;
         gap: var(--spacing-xs);
+        max-width: 100%;
+        margin: 0;
     }
 
     .reason-card {
@@ -932,6 +934,8 @@ body {
     .services {
         grid-template-columns: 1fr;
         gap: var(--spacing-xs);
+        max-width: 100%;
+        margin: 0;
     }
 
     .service-block {
@@ -970,7 +974,8 @@ body {
     .cases {
         grid-template-columns: 1fr;
         gap: var(--spacing-xs);
-        margin: 0 auto;
+        max-width: 100%;
+        margin: 0;
     }
 
     .case-card {
@@ -1037,6 +1042,8 @@ body {
     .plans {
         grid-template-columns: 1fr;
         gap: var(--spacing-sm);
+        max-width: 100%;
+        margin: 0;
     }
 
     .plan-card {
@@ -1107,6 +1114,8 @@ body {
     .contact__team {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
+        max-width: 100%;
+        margin: 0;
     }
 
     .contact-team {
