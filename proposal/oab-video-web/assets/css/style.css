@@ -787,7 +787,7 @@ body {
         min-height: 100vh;
         scroll-snap-align: start;
         flex-shrink: 0;
-        padding: var(--spacing-sm) var(--spacing-xs);
+        padding: 16px 2px;
         display: flex;
         align-items: center;
         justify-content: center;
