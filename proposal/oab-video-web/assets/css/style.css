@@ -503,6 +503,26 @@ a.team-name:hover {
     align-items: center;
 }
 
+/* もっと見るリンク（SP版のみ表示） */
+.video-more-link {
+    display: none; /* デフォルトは非表示（PC版） */
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: linear-gradient(135deg, var(--color-accent), var(--color-natural-brown));
+    color: #fff;
+    text-decoration: none;
+    border-radius: 24px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+.video-more-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+}
+
 .cases {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1200,8 +1220,13 @@ a.team-name:hover {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
         padding: 0 4%;
-        max-height: 60vh;
-        padding-right: 10px;
+        max-height: none; /* スクロール不要 */
+        overflow: visible;
+    }
+
+    /* PC版専用カードをSP版では非表示 */
+    .video-card--desktop-only {
+        display: none;
     }
 
     .video-card__title {
@@ -1219,6 +1244,13 @@ a.team-name:hover {
     .video-card__badge {
         font-size: 0.75rem;
         padding: 4px 8px;
+    }
+
+    .video-more-link {
+        display: block;
+        text-align: center;
+        margin: var(--spacing-lg) auto 0;
+        max-width: 200px;
     }
 
     /* 料金プラン */
