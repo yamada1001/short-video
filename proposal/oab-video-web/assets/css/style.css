@@ -1258,28 +1258,44 @@ a.team-name:hover {
     position: fixed;
     left: 20px;
     top: 20px;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: none;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
     color: #ffffff;
-    font-size: 2rem;
+    font-size: 1.75rem;
     cursor: pointer;
     z-index: 1001;
     display: none; /* デフォルトは非表示 */
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: menuPulse 2s ease-in-out infinite;
 }
 
 .nav-menu-btn:hover {
-    opacity: 0.7;
-    transform: scale(1.1);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.15) rotate(90deg);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+    animation: none;
 }
 
 .nav-menu-btn:active {
-    transform: scale(0.9);
+    transform: scale(0.95) rotate(90deg);
+}
+
+@keyframes menuPulse {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0);
+    }
 }
 
 /* モバイルでメニューボタンを表示（ドットは非表示） */
