@@ -911,62 +911,72 @@ body {
         font-size: 0.8rem;
     }
 
-    /* 制作事例 */
+    /* Web・LP制作事例 */
     .section--case .section__inner {
-        padding: var(--spacing-sm);
+        padding: var(--spacing-xs);
     }
 
-    .subsection__title {
-        font-size: 1.25rem;
-        margin-bottom: var(--spacing-md);
+    .section--case .section__title {
+        font-size: clamp(1.25rem, 4vw, 1.75rem);
+        margin-bottom: var(--spacing-sm);
     }
 
     .cases {
         grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
-        margin-bottom: var(--spacing-md);
+        gap: var(--spacing-xs);
+        margin: 0 auto;
     }
 
     .case-card {
         flex-direction: column;
         text-align: center;
-        padding: var(--spacing-md);
-        gap: var(--spacing-sm);
+        padding: var(--spacing-sm);
+        gap: var(--spacing-xs);
     }
 
     .case-card__qr {
-        padding: 12px;
+        padding: 10px;
     }
 
 
     .case-card__qr img {
-        width: 100px;
-        height: 100px;
+        width: 90px;
+        height: 90px;
         border-width: 2px;
     }
 
     .case-card__title {
-        font-size: 0.9rem;
-        line-height: 1.4;
-        margin-bottom: var(--spacing-xs);
-    }
-
-    .case-card__url {
-        font-size: 0.65rem;
+        font-size: 0.85rem;
+        line-height: 1.3;
         margin-bottom: 0;
     }
 
+    .case-card__url {
+        font-size: 0.6rem;
+        margin-bottom: 0;
+    }
+
+    /* 映像制作実績 */
+    .section--video .section__inner {
+        padding: var(--spacing-xs);
+    }
+
+    .section--video .section__title {
+        font-size: clamp(1.25rem, 4vw, 1.75rem);
+        margin-bottom: var(--spacing-md);
+    }
+
     .coming-soon {
-        padding: var(--spacing-lg);
+        padding: var(--spacing-md);
     }
 
     .coming-soon__text {
-        font-size: 1.25rem;
-        margin-bottom: var(--spacing-sm);
+        font-size: 1rem;
+        margin-bottom: var(--spacing-xs);
     }
 
     .coming-soon__desc {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
 
     /* 料金プラン */
