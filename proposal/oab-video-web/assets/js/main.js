@@ -327,23 +327,17 @@
         const minSwipeDistance = 50;
 
         if (isHorizontalLayout) {
-            // SP版: 横スワイプと縦スワイプの両方を検知
+            // SP版: 横スワイプのみ検知（pull-to-refresh対策で縦スクロール無効化）
             const horizontalSwipe = touchStartX - touchEndX;
-            const verticalSwipe = touchStartY - touchEndY;
 
-            // より大きい方のスワイプを採用
-            const swipeDistance = Math.abs(horizontalSwipe) > Math.abs(verticalSwipe)
-                ? horizontalSwipe
-                : verticalSwipe;
-
-            if (Math.abs(swipeDistance) < minSwipeDistance) return;
+            if (Math.abs(horizontalSwipe) < minSwipeDistance) return;
             if (isScrolling) return;
 
-            if (swipeDistance > 0 && currentSection < sections.length - 1) {
-                // 左へスワイプ または 下へスワイプ（次へ）
+            if (horizontalSwipe > 0 && currentSection < sections.length - 1) {
+                // 左へスワイプ（次へ）
                 scrollToSection(currentSection + 1);
-            } else if (swipeDistance < 0 && currentSection > 0) {
-                // 右へスワイプ または 上へスワイプ（前へ）
+            } else if (horizontalSwipe < 0 && currentSection > 0) {
+                // 右へスワイプ（前へ）
                 scrollToSection(currentSection - 1);
             }
         } else {
