@@ -96,6 +96,13 @@ body {
     overflow-y: scroll;
     height: 100vh;
     scroll-behavior: smooth;
+    scroll-padding: 0;
+}
+
+/* スクロールバーのスタイル（オプション） */
+.container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 .section {
@@ -106,6 +113,25 @@ body {
     padding: var(--spacing-xl) var(--spacing-md);
     scroll-snap-align: start;
     scroll-snap-stop: always;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* セクション遷移中のフェード効果 */
+.section--entering {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.section--leaving {
+    opacity: 0.3;
+}
+
+.section--active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .section__inner {
@@ -956,6 +982,26 @@ a.team-name:hover {
         display: flex;
         align-items: center;
         justify-content: center;
+        opacity: 1;
+        transform: translateX(0);
+        transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* SP版: 横スライド用のフェード効果 */
+    .section--entering {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    .section--leaving {
+        opacity: 0.3;
+        transform: translateX(-30px);
+    }
+
+    .section--active {
+        opacity: 1;
+        transform: translateX(0);
     }
 
     .section__inner {

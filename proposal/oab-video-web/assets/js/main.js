@@ -68,7 +68,7 @@
     }
 
     /**
-     * セクションへスクロール
+     * セクションへスクロール（リッチアニメーション付き）
      */
     function scrollToSection(index) {
         if (index < 0 || index >= sections.length) return;
@@ -76,17 +76,41 @@
 
         isScrolling = true;
 
-        sections[index].scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+        // 現在のセクションにleaveアニメーションを追加
+        const currentSectionEl = sections[currentSection];
+        currentSectionEl.classList.add('section--leaving');
+        currentSectionEl.classList.remove('section--active');
 
-        updateActiveSection(index);
+        // 次のセクションにenterアニメーションを追加
+        const nextSectionEl = sections[index];
+        nextSectionEl.classList.add('section--entering');
+        nextSectionEl.classList.remove('section--active');
 
-        // スクロール完了後にフラグをリセット
+        // 少し遅らせてからスクロール開始（よりスムーズに）
+        setTimeout(() => {
+            sections[index].scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+            updateActiveSection(index);
+
+            // スクロール中に次のセクションをフェードイン
+            setTimeout(() => {
+                nextSectionEl.classList.remove('section--entering');
+                nextSectionEl.classList.add('section--active');
+
+                // 前のセクションのクラスをクリーンアップ
+                setTimeout(() => {
+                    currentSectionEl.classList.remove('section--leaving');
+                }, 600);
+            }, 400);
+        }, 100);
+
+        // スクロール完了後にフラグをリセット（時間を延長）
         setTimeout(() => {
             isScrolling = false;
-        }, 800);
+        }, 1500);
     }
 
     /**
@@ -304,7 +328,7 @@
     }
 
     /**
-     * ホイールイベント（精度向上版）
+     * ホイールイベント（精度向上版・ゆっくりリッチアニメーション対応）
      */
     let wheelTimeout;
     let wheelDelta = 0;
@@ -314,7 +338,8 @@
         wheelDelta += e.deltaY;
 
         wheelTimeout = setTimeout(() => {
-            if (Math.abs(wheelDelta) > 100 && !isScrolling) {
+            // 閾値を上げて、より意図的なスクロールのみを検知
+            if (Math.abs(wheelDelta) > 150 && !isScrolling) {
                 if (wheelDelta > 0 && currentSection < sections.length - 1) {
                     scrollToSection(currentSection + 1);
                 } else if (wheelDelta < 0 && currentSection > 0) {
@@ -322,7 +347,7 @@
                 }
             }
             wheelDelta = 0;
-        }, 50);
+        }, 100);
     }, { passive: true });
 
     /**
@@ -348,6 +373,11 @@
 
         // デフォルトは最初のセクション
         updateActiveSection(0);
+
+        // 最初のセクションをアクティブ状態に
+        if (sections.length > 0) {
+            sections[0].classList.add('section--active');
+        }
     }
 
     // ページ読み込み完了後に初期化
