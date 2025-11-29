@@ -335,6 +335,38 @@ body {
 /* ========================================
    Section 5: Cases (制作事例)
    ======================================== */
+.subsection__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-text);
+    letter-spacing: 0.05em;
+}
+
+.coming-soon {
+    text-align: center;
+    padding: var(--spacing-xxl);
+    background: linear-gradient(145deg, #F5F3F0 0%, #FFFFFF 100%);
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.coming-soon__text {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--color-natural-brown);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: 0.1em;
+}
+
+.coming-soon__desc {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    line-height: 1.8;
+}
+
 .cases {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -345,37 +377,39 @@ body {
 
 .case-card {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: var(--spacing-lg);
     background: linear-gradient(145deg, #FFFFFF 0%, #FAFAF8 100%);
     border: 2px solid var(--color-natural-brown);
-    border-radius: 12px;
-    padding: var(--spacing-xl);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 16px;
+    padding: var(--spacing-xxl) var(--spacing-xl);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 6px 20px rgba(139, 115, 85, 0.12), 0 2px 8px rgba(0, 0, 0, 0.05);
     text-decoration: none;
     color: inherit;
     position: relative;
     overflow: hidden;
+    text-align: center;
 }
 
 .case-card::before {
     content: '';
     position: absolute;
-    left: 0;
     top: 0;
-    bottom: 0;
-    width: 4px;
-    background: linear-gradient(180deg, #8B7355 0%, #A68968 100%);
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8B7355 0%, #A68968 50%, #8B7355 100%);
     opacity: 0;
     transition: opacity 0.4s ease;
 }
 
 .case-card:hover {
-    transform: translateY(-6px) scale(1.01);
+    transform: translateY(-8px) scale(1.02);
     border-color: #A68968;
-    box-shadow: 0 12px 35px rgba(139, 115, 85, 0.25), 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 16px 40px rgba(139, 115, 85, 0.3), 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .case-card:hover::before {
@@ -383,34 +417,63 @@ body {
 }
 
 .case-card__content {
-    flex: 1;
+    width: 100%;
+    order: 2;
 }
 
 .case-card__title {
-    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-    font-weight: 400;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-weight: 500;
     margin-bottom: var(--spacing-sm);
     line-height: 1.5;
+    color: var(--color-text);
 }
 
 .case-card__url {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--color-text-light);
     word-break: break-all;
+    margin-bottom: var(--spacing-md);
 }
 
 .case-card__qr {
-    flex-shrink: 0;
-    padding: 8px;
-    background: var(--color-bg-white);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(139, 115, 85, 0.1);
+    order: 1;
+    position: relative;
+    padding: 20px;
+    background: linear-gradient(145deg, #FFFFFF 0%, #F5F3F0 100%);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(139, 115, 85, 0.15), inset 0 1px 3px rgba(255, 255, 255, 0.5);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.case-card:hover .case-card__qr {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 12px 32px rgba(139, 115, 85, 0.25), inset 0 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+.case-card__qr::before {
+    content: 'QRコードでアクセス';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #8B7355 0%, #A68968 100%);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+    white-space: nowrap;
 }
 
 .case-card__qr img {
     display: block;
-    border: 2px solid var(--color-natural-brown);
-    border-radius: 6px;
+    border: 3px solid var(--color-natural-brown);
+    border-radius: 8px;
+    width: 160px;
+    height: 160px;
 }
 
 /* ========================================
@@ -567,12 +630,8 @@ body {
     transform: translateY(-50%);
     z-index: 999;
     display: none; /* デフォルトは非表示、PC/タブレット横向きで表示 */
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: transparent;
     padding: 20px 16px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(139, 115, 85, 0.1);
 }
 
 .toc__list {
@@ -611,14 +670,11 @@ body {
 
 .toc__label {
     font-size: 12px;
-    color: var(--color-text);
+    color: #333;
     white-space: nowrap;
     letter-spacing: 0.05em;
     font-weight: 500;
-}
-
-.toc__dot {
-    background: var(--color-natural-brown);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 4px rgba(255, 255, 255, 0.8);
 }
 
 /* ========================================
@@ -758,44 +814,99 @@ body {
     }
 
     /* サービス内容 */
+    .section--service .section__inner {
+        padding: var(--spacing-sm);
+    }
+
     .services {
         grid-template-columns: 1fr;
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
     }
 
     .service-block {
-        padding: var(--spacing-lg);
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    .service-block__title {
+        font-size: 1.25rem;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .service-block__company {
+        font-size: 0.75rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .service-block__list {
+        gap: var(--spacing-xs);
     }
 
     .service-block__list li {
-        padding: var(--spacing-sm) 0;
-        font-size: 0.875rem;
+        padding: var(--spacing-xs) 0;
+        font-size: 0.8rem;
     }
 
     /* 制作事例 */
+    .section--case .section__inner {
+        padding: var(--spacing-sm);
+    }
+
+    .subsection__title {
+        font-size: 1.25rem;
+        margin-bottom: var(--spacing-md);
+    }
+
     .cases {
         grid-template-columns: 1fr;
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
     }
 
     .case-card {
-        flex-direction: row;
-        text-align: left;
+        flex-direction: column;
+        text-align: center;
         padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+    }
+
+    .case-card__qr {
+        padding: 12px;
+    }
+
+    .case-card__qr::before {
+        font-size: 0.6rem;
+        padding: 4px 12px;
+        top: -10px;
+    }
+
+    .case-card__qr img {
+        width: 100px;
+        height: 100px;
+        border-width: 2px;
     }
 
     .case-card__title {
-        font-size: 1rem;
+        font-size: 0.9rem;
         line-height: 1.4;
+        margin-bottom: var(--spacing-xs);
     }
 
     .case-card__url {
         font-size: 0.65rem;
+        margin-bottom: 0;
     }
 
-    .case-card__qr img {
-        width: 80px;
-        height: 80px;
+    .coming-soon {
+        padding: var(--spacing-lg);
+    }
+
+    .coming-soon__text {
+        font-size: 1.25rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .coming-soon__desc {
+        font-size: 0.8rem;
     }
 
     /* 料金プラン */
