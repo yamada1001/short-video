@@ -387,6 +387,7 @@ body {
 .case-card__content {
     width: 100%;
     order: 2;
+    display: block;
 }
 
 .case-card__title {
@@ -395,6 +396,7 @@ body {
     margin-bottom: var(--spacing-sm);
     line-height: 1.5;
     color: var(--color-text);
+    display: block;
 }
 
 .case-card__url {
