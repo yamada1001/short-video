@@ -904,6 +904,8 @@ body {
     .reasons {
         grid-template-columns: 1fr;
         gap: var(--spacing-xs);
+        max-width: 100%;
+        margin: 0;
     }
 
     .reason-card {
