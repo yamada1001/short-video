@@ -120,7 +120,7 @@
                 mobileMenuBtn.classList.add('clicked');
                 setTimeout(() => {
                     mobileMenuBtn.classList.remove('clicked');
-                }, 1000); // アニメーション時間と同じ
+                }, 1800); // アニメーション時間と同じ
             }
         }
     }
