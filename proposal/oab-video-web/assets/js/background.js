@@ -6,7 +6,7 @@
 (function() {
     'use strict';
 
-    let scene, camera, renderer, particles;
+    let scene, camera, renderer, particles, lines;
     let mouseX = 0, mouseY = 0;
     let windowHalfX = window.innerWidth / 2;
     let windowHalfY = window.innerHeight / 2;
@@ -14,6 +14,8 @@
     // デバイス判定
     const isMobile = window.innerWidth <= 768;
     const particleCount = isMobile ? 800 : 2000; // SP版はパーティクル数を減らす
+    const maxDistance = isMobile ? 100 : 150; // パーティクル間の最大接続距離
+    const maxConnections = isMobile ? 3 : 5; // 各パーティクルの最大接続数
 
     /**
      * 初期化
@@ -53,6 +55,9 @@
 
         // パーティクル作成
         createParticles();
+
+        // 接続線作成
+        createLines();
 
         // イベントリスナー
         document.addEventListener('mousemove', onDocumentMouseMove, false);
@@ -118,6 +123,78 @@
 
         particles = new THREE.Points(geometry, material);
         scene.add(particles);
+    }
+
+    /**
+     * パーティクル間の接続線を作成
+     */
+    function createLines() {
+        const geometry = new THREE.BufferGeometry();
+        const material = new THREE.LineBasicMaterial({
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.3,
+            blending: THREE.AdditiveBlending
+        });
+
+        lines = new THREE.LineSegments(geometry, material);
+        scene.add(lines);
+    }
+
+    /**
+     * パーティクル間の線を更新
+     */
+    function updateLines() {
+        const positions = particles.geometry.attributes.position.array;
+        const colors = particles.geometry.attributes.color.array;
+        const linePositions = [];
+        const lineColors = [];
+
+        // 各パーティクルから近いパーティクルを探して線でつなぐ
+        for (let i = 0; i < particleCount; i++) {
+            const i3 = i * 3;
+            const x1 = positions[i3];
+            const y1 = positions[i3 + 1];
+            const z1 = positions[i3 + 2];
+
+            let connections = 0;
+
+            // 他のパーティクルとの距離を計算
+            for (let j = i + 1; j < particleCount && connections < maxConnections; j++) {
+                const j3 = j * 3;
+                const x2 = positions[j3];
+                const y2 = positions[j3 + 1];
+                const z2 = positions[j3 + 2];
+
+                const dx = x1 - x2;
+                const dy = y1 - y2;
+                const dz = z1 - z2;
+                const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                // 一定距離以内なら線で結ぶ
+                if (distance < maxDistance) {
+                    linePositions.push(x1, y1, z1);
+                    linePositions.push(x2, y2, z2);
+
+                    // 距離に応じて線の不透明度を変化（近いほど濃く）
+                    const opacity = 1 - (distance / maxDistance);
+
+                    // 線の色は両端のパーティクルの色を平均
+                    const r = (colors[i3] + colors[j3]) / 2 * opacity;
+                    const g = (colors[i3 + 1] + colors[j3 + 1]) / 2 * opacity;
+                    const b = (colors[i3 + 2] + colors[j3 + 2]) / 2 * opacity;
+
+                    lineColors.push(r, g, b);
+                    lineColors.push(r, g, b);
+
+                    connections++;
+                }
+            }
+        }
+
+        // ジオメトリを更新
+        lines.geometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+        lines.geometry.setAttribute('color', new THREE.Float32BufferAttribute(lineColors, 3));
     }
 
     /**
@@ -190,6 +267,13 @@
         // パーティクル全体をゆっくり回転
         particles.rotation.y = time * 0.3;
         particles.rotation.x = time * 0.2;
+
+        // 接続線を更新
+        updateLines();
+
+        // 線もパーティクルと同じ回転を適用
+        lines.rotation.y = particles.rotation.y;
+        lines.rotation.x = particles.rotation.x;
 
         renderer.render(scene, camera);
     }
