@@ -1,5 +1,5 @@
 /* ========================================
-   ローディングアニメーション - モダンリッチスタイル
+   ローディングアニメーション - 無印良品スタイル
    ======================================== */
 
 .page-loader {
@@ -8,50 +8,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background:
-        radial-gradient(ellipse at 30% 20%, rgba(139, 115, 85, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 80%, rgba(66, 133, 112, 0.06) 0%, transparent 50%),
-        linear-gradient(135deg, #faf9f7 0%, #f5f3f0 50%, #ebe7e2 100%);
+    background-color: #F5F3F0; /* 無印良品のオフホワイト */
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s ease;
-    overflow: hidden;
-}
-
-/* 背景のフローティングシェイプ */
-.page-loader::before {
-    content: '';
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(139, 115, 85, 0.1) 0%, transparent 70%);
-    top: -100px;
-    right: -100px;
-    animation: loaderShapeFloat 8s ease-in-out infinite;
-}
-
-.page-loader::after {
-    content: '';
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(66, 133, 112, 0.08) 0%, transparent 70%);
-    bottom: -80px;
-    left: -80px;
-    animation: loaderShapeFloat 10s ease-in-out infinite reverse;
-}
-
-@keyframes loaderShapeFloat {
-    0%, 100% {
-        transform: translate(0, 0) scale(1);
-    }
-    50% {
-        transform: translate(30px, -30px) scale(1.1);
-    }
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .page-loader.loaded {
@@ -62,56 +24,39 @@
 .loader-content {
     text-align: center;
     position: relative;
-    z-index: 1;
 }
 
 .loader-logo {
-    font-size: 2.8rem;
-    font-weight: 300;
-    background: linear-gradient(135deg, #8B7355 0%, #A18A6C 50%, #C4B19A 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 2.5rem;
+    font-weight: 400; /* 無印は細めのウェイト */
+    color: #4A4A4A; /* チャコールグレー */
     margin-bottom: 2rem;
-    letter-spacing: 0.25em;
-    animation: logoFade 2.5s ease-in-out infinite, logoGradientShift 4s ease-in-out infinite;
-    text-shadow: 0 4px 20px rgba(139, 115, 85, 0.2);
+    letter-spacing: 0.2em; /* 無印風に広めの字間 */
+    animation: logoFade 2s ease-in-out infinite;
 }
 
 @keyframes logoFade {
     0%, 100% {
-        opacity: 0.5;
-        transform: scale(0.98);
+        opacity: 0.4;
     }
     50% {
         opacity: 1;
-        transform: scale(1);
     }
 }
 
-@keyframes logoGradientShift {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-}
-
-/* スピナー（3つの円） - グラデーション＆グロー */
+/* スピナー（3つの円） - ナチュラルカラー */
 .loader-spinner {
     display: flex;
-    gap: 0.8rem;
+    gap: 0.6rem;
     justify-content: center;
 }
 
 .loader-dot {
-    width: 0.85rem;
-    height: 0.85rem;
-    background: linear-gradient(135deg, #8B7355 0%, #A18A6C 100%);
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #8B7355; /* ナチュラルブラウン */
     border-radius: 50%;
     animation: dotBounce 1.8s infinite ease-in-out both;
-    box-shadow: 0 0 15px rgba(139, 115, 85, 0.4);
 }
 
 .loader-dot:nth-child(1) {
@@ -120,108 +65,68 @@
 
 .loader-dot:nth-child(2) {
     animation-delay: -0.16s;
-    background: linear-gradient(135deg, #A18A6C 0%, #C4B19A 100%);
-}
-
-.loader-dot:nth-child(3) {
-    background: linear-gradient(135deg, #C4B19A 0%, #8B7355 100%);
 }
 
 @keyframes dotBounce {
     0%, 80%, 100% {
-        transform: translateY(0) scale(1);
-        opacity: 0.4;
-        box-shadow: 0 0 10px rgba(139, 115, 85, 0.3);
+        transform: translateY(0);
+        opacity: 0.3;
     }
     40% {
-        transform: translateY(-16px) scale(1.15);
+        transform: translateY(-12px);
         opacity: 1;
-        box-shadow: 0 8px 25px rgba(139, 115, 85, 0.5);
     }
 }
 
 /* ローディングテキスト */
 .loader-text {
     margin-top: 2rem;
-    color: #6B6B6B;
-    font-size: 0.8rem;
-    letter-spacing: 0.25em;
+    color: #6B6B6B; /* ライトグレーテキスト */
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
     font-weight: 300;
-    opacity: 0.8;
-    text-transform: uppercase;
-    animation: textPulse 2s ease-in-out infinite;
+    opacity: 0.7;
 }
 
-@keyframes textPulse {
-    0%, 100% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 1;
-    }
-}
-
-/* プログレスバー - グラデーション＆グロー */
+/* プログレスバー - ミニマルデザイン */
 .loader-progress {
-    width: 180px;
-    height: 3px;
-    background: rgba(229, 221, 213, 0.5);
+    width: 160px;
+    height: 1px; /* 細いライン */
+    background-color: #E5DDD5; /* ベージュ */
     overflow: hidden;
-    margin: 1.8rem auto 0;
-    border-radius: 3px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+    margin: 1.5rem auto 0;
 }
 
 .loader-progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, #8B7355 0%, #A18A6C 50%, #C4B19A 100%);
-    background-size: 200% 100%;
-    animation: progressAnimation 2.5s ease-in-out infinite, progressGradient 3s linear infinite;
-    border-radius: 3px;
-    box-shadow: 0 0 15px rgba(139, 115, 85, 0.5);
+    background-color: #8B7355; /* ナチュラルブラウン */
+    animation: progressAnimation 2.5s ease-in-out infinite;
 }
 
 @keyframes progressAnimation {
     0% {
         width: 0%;
+        transform: translateX(0);
     }
     50% {
-        width: 70%;
+        width: 60%;
     }
     100% {
         width: 100%;
-    }
-}
-
-@keyframes progressGradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 200% 50%;
+        transform: translateX(0);
     }
 }
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
-    .page-loader::before {
-        width: 250px;
-        height: 250px;
-    }
-
-    .page-loader::after {
-        width: 200px;
-        height: 200px;
-    }
-
     .loader-logo {
-        font-size: 2rem;
+        font-size: 1.8rem;
         margin-bottom: 1.5rem;
     }
 
     .loader-dot {
-        width: 0.7rem;
-        height: 0.7rem;
+        width: 0.6rem;
+        height: 0.6rem;
     }
 
     .loader-text {
@@ -229,23 +134,6 @@
     }
 
     .loader-progress {
-        width: 140px;
-        height: 2px;
-    }
-}
-
-/* アクセシビリティ: reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .page-loader::before,
-    .page-loader::after,
-    .loader-logo,
-    .loader-dot,
-    .loader-text,
-    .loader-progress-bar {
-        animation: none;
-    }
-
-    .loader-progress-bar {
-        width: 100%;
+        width: 120px;
     }
 }
