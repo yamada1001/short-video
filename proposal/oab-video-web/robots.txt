@@ -1,0 +1,5 @@
+# robots.txt for proposal/oab-video-web/
+# 営業提案用LP - インデックス拒否
+
+User-agent: *
+Disallow: /

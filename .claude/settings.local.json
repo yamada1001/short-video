@@ -122,7 +122,8 @@
       "Bash(do echo '=== Article-$i ===' grep -n \"倍\\|%\\|万円\\|→\" blog/data/article-$i-full.html)",
       "Bash(do echo \"=== $f ===\")",
       "Bash(git diff-tree:*)",
-      "WebFetch(domain:www.anthropic.com)"
+      "WebFetch(domain:www.anthropic.com)",
+      "Bash(npm init:*)"
     ],
     "deny": [],
     "ask": []
