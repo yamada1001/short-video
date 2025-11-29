@@ -115,6 +115,13 @@
             mobileMenu.classList.add('active');
             document.body.style.overflow = 'hidden';
 
+            // 現在のセクションが0または7（暗い背景）の場合、テキストを白に
+            if (currentSection === 0 || currentSection === 7) {
+                mobileMenu.classList.add('mobile-menu--dark');
+            } else {
+                mobileMenu.classList.remove('mobile-menu--dark');
+            }
+
             // ハンバーガーボタンにクリックアニメーションを追加
             if (mobileMenuBtn) {
                 mobileMenuBtn.classList.add('clicked');
@@ -134,6 +141,7 @@
             setTimeout(() => {
                 mobileMenu.classList.remove('active');
                 mobileMenu.classList.remove('closing');
+                mobileMenu.classList.remove('mobile-menu--dark');
                 document.body.style.overflow = '';
             }, 800); // アニメーション時間と同じ
         }

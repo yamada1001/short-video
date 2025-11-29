@@ -1477,13 +1477,33 @@ a.team-name:hover {
     border-radius: 16px;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     margin-bottom: var(--spacing-xs);
-    backdrop-filter: blur(10px);
 }
 
 .mobile-menu__item:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: scale(1.02);
     color: rgba(0, 0, 0, 0.9);
+}
+
+/* 暗い背景のセクション（0, 7）でのテキスト色 */
+.mobile-menu--dark .mobile-menu__item {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.mobile-menu--dark .mobile-menu__item:hover {
+    color: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.mobile-menu--dark .mobile-menu__close {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.mobile-menu--dark .mobile-menu__close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 1);
 }
 
 /* ========================================
