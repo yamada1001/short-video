@@ -112,6 +112,8 @@ button {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-lg);
+    position: relative;
+    z-index: 1;
 }
 
 section {
@@ -131,6 +133,8 @@ section {
 .section-header {
     text-align: center;
     margin-bottom: var(--spacing-xl);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
 }
 
 .section-title {
@@ -269,12 +273,94 @@ section {
 }
 
 /* ========================================
+   背景装飾要素
+   ======================================== */
+/* ぼかし円 - 温かみのあるアクセント */
+.decorative-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.decorative-blob--orange {
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.6), transparent);
+}
+
+.decorative-blob--yellow {
+    background: radial-gradient(circle, rgba(255, 214, 0, 0.5), transparent);
+}
+
+/* Wave Divider */
+.wave-divider {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+.wave-divider svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* フェードインアニメーション */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* 微細な浮遊感 */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.float-animation {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* スクロールアニメーション */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
    Hero - 左右非対称、視線誘導を意識
    ======================================== */
 .hero {
+    position: relative;
     padding-top: calc(72px + var(--spacing-xxl));
     padding-bottom: var(--spacing-xxl);
-    background: linear-gradient(180deg, #FFFBF5 0%, #FFFFFF 100%);
+    background: linear-gradient(180deg, #FFFAF0 0%, #FFFFFF 100%);
+    overflow: hidden;
 }
 
 .hero__background {
@@ -283,11 +369,36 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    opacity: 0.4;
-    background:
-        radial-gradient(circle at 10% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(255, 214, 0, 0.1) 0%, transparent 40%);
+    opacity: 1;
     z-index: 0;
+}
+
+/* ぼかし円装飾 */
+.hero__background::before,
+.hero__background::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+.hero__background::before {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.2), transparent);
+    top: -100px;
+    left: -100px;
+    animation: float 8s ease-in-out infinite;
+}
+
+.hero__background::after {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 214, 0, 0.15), transparent);
+    bottom: -80px;
+    right: -80px;
+    animation: float 10s ease-in-out infinite reverse;
 }
 
 .hero__content {
@@ -388,7 +499,9 @@ section {
    Features - カードサイズに変化（リズム感）
    ======================================== */
 .features {
+    position: relative;
     background: var(--color-bg);
+    overflow: hidden;
 }
 
 .features__grid {
@@ -434,7 +547,9 @@ section {
    Functions - 大きな画像で視線を引き付ける
    ======================================== */
 .functions {
+    position: relative;
     background: var(--color-bg-section);
+    overflow: hidden;
 }
 
 .function-list {
@@ -524,8 +639,10 @@ section {
    Stats - 数字を大きく、インパクト重視
    ======================================== */
 .stats {
+    position: relative;
     padding: var(--spacing-xl) 0;
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-yellow) 100%);
+    overflow: hidden;
 }
 
 .stats__grid {
@@ -557,7 +674,9 @@ section {
    Testimonials - 人の顔を目立たせる
    ======================================== */
 .testimonials {
+    position: relative;
     background: var(--color-bg);
+    overflow: hidden;
 }
 
 .testimonials__grid {
@@ -628,7 +747,9 @@ section {
    Pricing - 中央を強調して視線誘導
    ======================================== */
 .pricing {
+    position: relative;
     background: var(--color-bg-section);
+    overflow: hidden;
 }
 
 .pricing__grid {
@@ -803,8 +924,10 @@ section {
    CTA - シンプルで力強い
    ======================================== */
 .cta {
+    position: relative;
     padding: var(--spacing-xl) 0;
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-yellow) 100%);
+    overflow: hidden;
 }
 
 .cta__content {

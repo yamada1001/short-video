@@ -105,8 +105,19 @@ $gtm_id = 'GTM-T7NGQDC2';
         </div>
     </section>
 
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path d="M0,40 C480,100 960,0 1440,40 L1440,100 L0,100 Z" fill="#FFFFFF"/>
+        </svg>
+    </div>
+
     <!-- 特徴セクション -->
     <section class="features" id="features">
+        <!-- Decorative elements -->
+        <div class="decorative-blob" style="width: 300px; height: 300px; background: radial-gradient(circle, rgba(255, 107, 53, 0.08), transparent); top: 10%; right: 5%; animation: float 10s ease-in-out infinite;"></div>
+        <div class="decorative-blob" style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(255, 214, 0, 0.06), transparent); bottom: 15%; left: 8%; animation: float 12s ease-in-out infinite reverse;"></div>
+
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">LeadFlowが選ばれる理由</h2>
@@ -187,8 +198,19 @@ $gtm_id = 'GTM-T7NGQDC2';
         </div>
     </section>
 
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path d="M0,60 C360,20 720,80 1080,40 C1260,20 1350,10 1440,60 L1440,100 L0,100 Z" fill="#F9FAFB"/>
+        </svg>
+    </div>
+
     <!-- 主要機能セクション -->
     <section class="functions" id="functions">
+        <!-- Decorative elements -->
+        <div class="decorative-blob" style="width: 350px; height: 350px; background: radial-gradient(circle, rgba(255, 107, 53, 0.05), transparent); top: 20%; left: -5%; animation: float 14s ease-in-out infinite;"></div>
+        <div class="decorative-blob" style="width: 280px; height: 280px; background: radial-gradient(circle, rgba(255, 214, 0, 0.04), transparent); bottom: 10%; right: -3%; animation: float 16s ease-in-out infinite reverse;"></div>
+
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">主要機能</h2>
@@ -241,6 +263,13 @@ $gtm_id = 'GTM-T7NGQDC2';
         </div>
     </section>
 
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path d="M0,50 C480,10 960,90 1440,50 L1440,0 L0,0 Z" fill="#F9FAFB"/>
+        </svg>
+    </div>
+
     <!-- 数字で見る実績 -->
     <section class="stats">
         <div class="container">
@@ -265,8 +294,25 @@ $gtm_id = 'GTM-T7NGQDC2';
         </div>
     </section>
 
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path d="M0,40 C360,80 720,20 1080,60 C1260,80 1350,90 1440,40 L1440,0 L0,0 Z" fill="url(#statsGradient)"/>
+            <defs>
+                <linearGradient id="statsGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#FFD600;stop-opacity:1" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
     <!-- お客様の声 -->
     <section class="testimonials">
+        <!-- Decorative elements -->
+        <div class="decorative-blob" style="width: 320px; height: 320px; background: radial-gradient(circle, rgba(255, 107, 53, 0.06), transparent); top: 15%; right: 10%; animation: float 11s ease-in-out infinite;"></div>
+        <div class="decorative-blob" style="width: 260px; height: 260px; background: radial-gradient(circle, rgba(255, 214, 0, 0.05), transparent); bottom: 20%; left: 5%; animation: float 13s ease-in-out infinite reverse;"></div>
+
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">お客様の声</h2>
@@ -322,8 +368,19 @@ $gtm_id = 'GTM-T7NGQDC2';
         </div>
     </section>
 
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path d="M0,50 C480,90 960,10 1440,50 L1440,100 L0,100 Z" fill="#FFFFFF"/>
+        </svg>
+    </div>
+
     <!-- 料金プラン -->
     <section class="pricing" id="pricing">
+        <!-- Decorative elements -->
+        <div class="decorative-blob" style="width: 340px; height: 340px; background: radial-gradient(circle, rgba(255, 107, 53, 0.07), transparent); top: 10%; left: 2%; animation: float 15s ease-in-out infinite;"></div>
+        <div class="decorative-blob" style="width: 290px; height: 290px; background: radial-gradient(circle, rgba(255, 214, 0, 0.05), transparent); bottom: 5%; right: 5%; animation: float 17s ease-in-out infinite reverse;"></div>
+
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">料金プラン</h2>
@@ -392,6 +449,13 @@ $gtm_id = 'GTM-T7NGQDC2';
             <p class="pricing__note">すべてのプランで14日間の無料トライアルをご利用いただけます</p>
         </div>
     </section>
+
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path d="M0,60 C360,30 720,70 1080,35 C1260,25 1350,20 1440,60 L1440,100 L0,100 Z" fill="#F9FAFB"/>
+        </svg>
+    </div>
 
     <!-- FAQ -->
     <section class="faq" id="faq">
@@ -471,9 +535,20 @@ $gtm_id = 'GTM-T7NGQDC2';
         </div>
     </section>
 
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path d="M0,45 C480,85 960,5 1440,45 L1440,100 L0,100 Z" fill="#FFFFFF"/>
+        </svg>
+    </div>
+
     <!-- 最終CTA -->
     <section class="cta" id="cta">
         <div class="cta__background"></div>
+        <!-- Decorative elements -->
+        <div class="decorative-blob" style="width: 380px; height: 380px; background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent); top: 5%; right: 8%; animation: float 12s ease-in-out infinite;"></div>
+        <div class="decorative-blob" style="width: 310px; height: 310px; background: radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent); bottom: 8%; left: 10%; animation: float 14s ease-in-out infinite reverse;"></div>
+
         <div class="container">
             <div class="cta__content">
                 <h2 class="cta__title">今すぐLeadFlowを始めよう</h2>
