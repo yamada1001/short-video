@@ -96,7 +96,102 @@ $gtm_id = 'GTM-T7NGQDC2';
                                 <span></span>
                             </div>
                             <div class="mockup__content">
-                                <!-- モックアップのイメージ -->
+                                <!-- CRMダッシュボードSVGイラスト -->
+                                <svg viewBox="0 0 600 400" class="dashboard-illustration">
+                                    <!-- 背景 -->
+                                    <rect width="600" height="400" fill="#FAFAFA"/>
+
+                                    <!-- サイドバー -->
+                                    <rect width="80" height="400" fill="#FFFFFF"/>
+                                    <circle cx="40" cy="30" r="12" fill="#FF6B35" opacity="0.2"/>
+                                    <circle cx="40" cy="70" r="12" fill="#FFD600" opacity="0.2"/>
+                                    <circle cx="40" cy="110" r="12" fill="#FF6B35" opacity="0.2"/>
+                                    <circle cx="40" cy="150" r="12" fill="#FFD600" opacity="0.2"/>
+
+                                    <!-- ヘッダー -->
+                                    <rect x="80" width="520" height="50" fill="#FFFFFF"/>
+                                    <rect x="100" y="18" width="120" height="14" rx="7" fill="#E0E0E0"/>
+                                    <circle cx="540" cy="25" r="15" fill="#FF6B35" opacity="0.1"/>
+
+                                    <!-- メインコンテンツ -->
+                                    <!-- カード1: 売上グラフ -->
+                                    <g transform="translate(100, 70)">
+                                        <rect width="220" height="140" rx="12" fill="#FFFFFF" filter="url(#cardShadow)"/>
+                                        <text x="15" y="25" font-size="12" font-weight="600" fill="#333333">今月の売上</text>
+                                        <text x="15" y="50" font-size="24" font-weight="700" fill="#FF6B35">¥2,450,000</text>
+                                        <!-- 折れ線グラフ -->
+                                        <polyline points="15,110 40,95 65,100 90,80 115,85 140,65 165,70 190,50"
+                                                  fill="none" stroke="url(#orangeGradient)" stroke-width="3" stroke-linecap="round"/>
+                                        <polyline points="15,110 40,95 65,100 90,80 115,85 140,65 165,70 190,50 190,130 15,130"
+                                                  fill="url(#orangeGradientFill)" opacity="0.2"/>
+                                    </g>
+
+                                    <!-- カード2: 成約率 -->
+                                    <g transform="translate(340, 70)">
+                                        <rect width="220" height="140" rx="12" fill="#FFFFFF" filter="url(#cardShadow)"/>
+                                        <text x="15" y="25" font-size="12" font-weight="600" fill="#333333">成約率</text>
+                                        <text x="15" y="50" font-size="24" font-weight="700" fill="#FFD600">68%</text>
+                                        <!-- 円グラフ -->
+                                        <circle cx="110" cy="95" r="35" fill="none" stroke="#E0E0E0" stroke-width="8"/>
+                                        <circle cx="110" cy="95" r="35" fill="none" stroke="url(#yellowGradient)" stroke-width="8"
+                                                stroke-dasharray="150 220" stroke-dashoffset="0" transform="rotate(-90 110 95)"/>
+                                        <text x="110" y="100" text-anchor="middle" font-size="18" font-weight="700" fill="#333333">68%</text>
+                                    </g>
+
+                                    <!-- カード3: リードリスト -->
+                                    <g transform="translate(100, 230)">
+                                        <rect width="460" height="140" rx="12" fill="#FFFFFF" filter="url(#cardShadow)"/>
+                                        <text x="15" y="25" font-size="12" font-weight="600" fill="#333333">最新のリード</text>
+
+                                        <!-- リスト項目1 -->
+                                        <circle cx="30" cy="55" r="12" fill="#FF6B35" opacity="0.2"/>
+                                        <rect x="50" y="48" width="100" height="8" rx="4" fill="#333333" opacity="0.8"/>
+                                        <rect x="50" y="60" width="60" height="6" rx="3" fill="#666666" opacity="0.5"/>
+                                        <rect x="360" y="48" width="80" height="14" rx="7" fill="#FF6B35" opacity="0.15"/>
+                                        <text x="380" y="58" font-size="10" font-weight="600" fill="#FF6B35">商談中</text>
+
+                                        <!-- リスト項目2 -->
+                                        <circle cx="30" cy="95" r="12" fill="#FFD600" opacity="0.2"/>
+                                        <rect x="50" y="88" width="120" height="8" rx="4" fill="#333333" opacity="0.8"/>
+                                        <rect x="50" y="100" width="70" height="6" rx="3" fill="#666666" opacity="0.5"/>
+                                        <rect x="360" y="88" width="80" height="14" rx="7" fill="#FFD600" opacity="0.15"/>
+                                        <text x="380" y="98" font-size="10" font-weight="600" fill="#8B7300">フォロー中</text>
+
+                                        <!-- リスト項目3 -->
+                                        <circle cx="30" cy="125" r="12" fill="#00AA55" opacity="0.2"/>
+                                        <rect x="50" y="118" width="90" height="8" rx="4" fill="#333333" opacity="0.8"/>
+                                        <rect x="50" y="130" width="50" height="6" rx="3" fill="#666666" opacity="0.5"/>
+                                        <rect x="360" y="118" width="80" height="14" rx="7" fill="#00AA55" opacity="0.15"/>
+                                        <text x="380" y="128" font-size="10" font-weight="600" fill="#00AA55">新規</text>
+                                    </g>
+
+                                    <!-- グラデーション定義 -->
+                                    <defs>
+                                        <filter id="cardShadow">
+                                            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+                                            <feOffset dx="0" dy="2" result="offsetblur"/>
+                                            <feComponentTransfer>
+                                                <feFuncA type="linear" slope="0.1"/>
+                                            </feComponentTransfer>
+                                            <feMerge>
+                                                <feMergeNode/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                        <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#FFD600;stop-opacity:1" />
+                                        </linearGradient>
+                                        <linearGradient id="orangeGradientFill" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:0.3" />
+                                            <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:0" />
+                                        </linearGradient>
+                                        <linearGradient id="yellowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#FFD600;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
                             </div>
                         </div>
                     </div>
