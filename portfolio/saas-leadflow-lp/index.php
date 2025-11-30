@@ -1,10 +1,10 @@
 <?php
-// LeadFlow - SaaS CRM LP
+// LeadFlow - Awwwards-style Ultra Rich LP
 http_response_code(200);
 
 // メタデータ
-$page_title = 'LeadFlow - 営業チームの生産性を最大化するCRM';
-$page_description = 'LeadFlow - 営業チームの生産性を最大化するCRMツール。直感的なUI、簡単な導入、充実したサポートで営業活動を加速します。';
+$page_title = 'LeadFlow - Next Generation CRM Platform';
+$page_description = 'Experience the future of sales management. A showcase of cutting-edge web technology and interaction design.';
 $gtm_id = 'GTM-T7NGQDC2';
 ?>
 <!DOCTYPE html>
@@ -24,682 +24,294 @@ $gtm_id = 'GTM-T7NGQDC2';
     </script>
     <script defer src="https://www.googletagmanager.com/gtag/js?id=<?php echo htmlspecialchars($gtm_id); ?>"></script>
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- ヘッダー -->
-    <header class="header">
-        <div class="container">
-            <div class="header__inner">
-                <div class="header__logo">
-                    <span class="logo">LeadFlow</span>
-                </div>
-                <nav class="header__nav">
-                    <a href="#features" class="nav-link">特徴</a>
-                    <a href="#functions" class="nav-link">機能</a>
-                    <a href="#pricing" class="nav-link">料金</a>
-                    <a href="#faq" class="nav-link">FAQ</a>
-                    <a href="#cta" class="btn btn--primary btn--small">無料で始める</a>
-                </nav>
-                <button class="header__menu-btn" aria-label="メニュー">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader__content">
+            <div class="loader__logo">LeadFlow</div>
+            <div class="loader__progress">
+                <div class="loader__progress-bar" id="loaderProgress"></div>
             </div>
+            <div class="loader__text">Loading Experience...</div>
         </div>
-    </header>
-
-    <!-- ヒーローセクション -->
-    <section class="hero" id="hero">
-        <canvas id="particles-hero" class="particles-canvas"></canvas>
-        <div class="hero__background"></div>
-        <div class="container">
-            <div class="hero__content">
-                <div class="hero__text">
-                    <h1 class="hero__title">
-                        営業チームの
-                        <span class="gradient-text">生産性を最大化</span>
-                    </h1>
-                    <p class="hero__subtitle">
-                        LeadFlowは、営業活動のすべてを一元管理。<br>
-                        直感的なUIで、チーム全員がすぐに使いこなせます。
-                    </p>
-                    <div class="hero__cta">
-                        <a href="#cta" class="btn btn--primary btn--large">
-                            無料で始める
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                        <a href="#demo" class="btn btn--secondary btn--large">デモを見る</a>
-                    </div>
-                    <div class="hero__social-proof">
-                        <div class="social-proof__item">
-                            <span class="social-proof__number">10,000+</span>
-                            <span class="social-proof__label">導入企業</span>
-                        </div>
-                        <div class="social-proof__item">
-                            <span class="social-proof__number">98%</span>
-                            <span class="social-proof__label">満足度</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero__visual">
-                    <div class="mockup">
-                        <div class="mockup__window">
-                            <div class="mockup__header">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div class="mockup__content">
-                                <!-- CRMダッシュボードSVGイラスト -->
-                                <svg viewBox="0 0 600 400" class="dashboard-illustration">
-                                    <!-- 背景 -->
-                                    <rect width="600" height="400" fill="#FAFAFA"/>
-
-                                    <!-- サイドバー -->
-                                    <rect width="80" height="400" fill="#FFFFFF"/>
-                                    <circle cx="40" cy="30" r="12" fill="#FF6B35" opacity="0.2"/>
-                                    <circle cx="40" cy="70" r="12" fill="#FFD600" opacity="0.2"/>
-                                    <circle cx="40" cy="110" r="12" fill="#FF6B35" opacity="0.2"/>
-                                    <circle cx="40" cy="150" r="12" fill="#FFD600" opacity="0.2"/>
-
-                                    <!-- ヘッダー -->
-                                    <rect x="80" width="520" height="50" fill="#FFFFFF"/>
-                                    <rect x="100" y="18" width="120" height="14" rx="7" fill="#E0E0E0"/>
-                                    <circle cx="540" cy="25" r="15" fill="#FF6B35" opacity="0.1"/>
-
-                                    <!-- メインコンテンツ -->
-                                    <!-- カード1: 売上グラフ -->
-                                    <g transform="translate(100, 70)">
-                                        <rect width="220" height="140" rx="12" fill="#FFFFFF" filter="url(#cardShadow)"/>
-                                        <text x="15" y="25" font-size="12" font-weight="600" fill="#333333">今月の売上</text>
-                                        <text x="15" y="50" font-size="24" font-weight="700" fill="#FF6B35">¥2,450,000</text>
-                                        <!-- 折れ線グラフ -->
-                                        <polyline points="15,110 40,95 65,100 90,80 115,85 140,65 165,70 190,50"
-                                                  fill="none" stroke="url(#orangeGradient)" stroke-width="3" stroke-linecap="round"/>
-                                        <polyline points="15,110 40,95 65,100 90,80 115,85 140,65 165,70 190,50 190,130 15,130"
-                                                  fill="url(#orangeGradientFill)" opacity="0.2"/>
-                                    </g>
-
-                                    <!-- カード2: 成約率 -->
-                                    <g transform="translate(340, 70)">
-                                        <rect width="220" height="140" rx="12" fill="#FFFFFF" filter="url(#cardShadow)"/>
-                                        <text x="15" y="25" font-size="12" font-weight="600" fill="#333333">成約率</text>
-                                        <text x="15" y="50" font-size="24" font-weight="700" fill="#FFD600">68%</text>
-                                        <!-- 円グラフ -->
-                                        <circle cx="110" cy="95" r="35" fill="none" stroke="#E0E0E0" stroke-width="8"/>
-                                        <circle cx="110" cy="95" r="35" fill="none" stroke="url(#yellowGradient)" stroke-width="8"
-                                                stroke-dasharray="150 220" stroke-dashoffset="0" transform="rotate(-90 110 95)"/>
-                                        <text x="110" y="100" text-anchor="middle" font-size="18" font-weight="700" fill="#333333">68%</text>
-                                    </g>
-
-                                    <!-- カード3: リードリスト -->
-                                    <g transform="translate(100, 230)">
-                                        <rect width="460" height="140" rx="12" fill="#FFFFFF" filter="url(#cardShadow)"/>
-                                        <text x="15" y="25" font-size="12" font-weight="600" fill="#333333">最新のリード</text>
-
-                                        <!-- リスト項目1 -->
-                                        <circle cx="30" cy="55" r="12" fill="#FF6B35" opacity="0.2"/>
-                                        <rect x="50" y="48" width="100" height="8" rx="4" fill="#333333" opacity="0.8"/>
-                                        <rect x="50" y="60" width="60" height="6" rx="3" fill="#666666" opacity="0.5"/>
-                                        <rect x="360" y="48" width="80" height="14" rx="7" fill="#FF6B35" opacity="0.15"/>
-                                        <text x="380" y="58" font-size="10" font-weight="600" fill="#FF6B35">商談中</text>
-
-                                        <!-- リスト項目2 -->
-                                        <circle cx="30" cy="95" r="12" fill="#FFD600" opacity="0.2"/>
-                                        <rect x="50" y="88" width="120" height="8" rx="4" fill="#333333" opacity="0.8"/>
-                                        <rect x="50" y="100" width="70" height="6" rx="3" fill="#666666" opacity="0.5"/>
-                                        <rect x="360" y="88" width="80" height="14" rx="7" fill="#FFD600" opacity="0.15"/>
-                                        <text x="380" y="98" font-size="10" font-weight="600" fill="#8B7300">フォロー中</text>
-
-                                        <!-- リスト項目3 -->
-                                        <circle cx="30" cy="125" r="12" fill="#00AA55" opacity="0.2"/>
-                                        <rect x="50" y="118" width="90" height="8" rx="4" fill="#333333" opacity="0.8"/>
-                                        <rect x="50" y="130" width="50" height="6" rx="3" fill="#666666" opacity="0.5"/>
-                                        <rect x="360" y="118" width="80" height="14" rx="7" fill="#00AA55" opacity="0.15"/>
-                                        <text x="380" y="128" font-size="10" font-weight="600" fill="#00AA55">新規</text>
-                                    </g>
-
-                                    <!-- グラデーション定義 -->
-                                    <defs>
-                                        <filter id="cardShadow">
-                                            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
-                                            <feOffset dx="0" dy="2" result="offsetblur"/>
-                                            <feComponentTransfer>
-                                                <feFuncA type="linear" slope="0.1"/>
-                                            </feComponentTransfer>
-                                            <feMerge>
-                                                <feMergeNode/>
-                                                <feMergeNode in="SourceGraphic"/>
-                                            </feMerge>
-                                        </filter>
-                                        <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                            <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
-                                            <stop offset="100%" style="stop-color:#FFD600;stop-opacity:1" />
-                                        </linearGradient>
-                                        <linearGradient id="orangeGradientFill" x1="0%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:0.3" />
-                                            <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:0" />
-                                        </linearGradient>
-                                        <linearGradient id="yellowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#FFD600;stop-opacity:1" />
-                                            <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:1" />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-            <path d="M0,40 C480,100 960,0 1440,40 L1440,100 L0,100 Z" fill="#FFFFFF"/>
-        </svg>
     </div>
 
-    <!-- 特徴セクション -->
-    <section class="features" id="features">
-        <canvas id="particles-features" class="particles-canvas"></canvas>
-        <!-- Decorative elements -->
-        <div class="decorative-blob" style="width: 300px; height: 300px; background: radial-gradient(circle, rgba(255, 107, 53, 0.08), transparent); top: 10%; right: 5%; animation: float 10s ease-in-out infinite;"></div>
-        <div class="decorative-blob" style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(255, 214, 0, 0.06), transparent); bottom: 15%; left: 8%; animation: float 12s ease-in-out infinite reverse;"></div>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
 
-        <div class="container">
+    <!-- Three.js Background Canvas -->
+    <canvas id="webgl"></canvas>
+
+    <!-- Main Content -->
+    <div class="main-wrapper" id="mainWrapper">
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="nav__logo">LeadFlow</div>
+            <div class="nav__links">
+                <a href="#features" class="nav__link">Features</a>
+                <a href="#demo" class="nav__link">Demo</a>
+                <a href="#pricing" class="nav__link">Pricing</a>
+                <a href="#contact" class="nav__link nav__link--cta">Get Started</a>
+            </div>
+            <button class="nav__burger" id="navBurger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="section hero" id="hero">
+            <div class="hero__content">
+                <h1 class="hero__title">
+                    <span class="hero__title-line">Transform</span>
+                    <span class="hero__title-line">Your Sales</span>
+                    <span class="hero__title-line hero__title-line--gradient">Performance</span>
+                </h1>
+                <p class="hero__subtitle">
+                    Next-generation CRM platform powered by AI.<br>
+                    Built for teams that demand excellence.
+                </p>
+                <div class="hero__cta">
+                    <button class="btn btn--primary">
+                        <span>Start Free Trial</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20">
+                            <path d="M7 3L14 10L7 17" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </button>
+                    <button class="btn btn--secondary">Watch Demo</button>
+                </div>
+                <div class="hero__scroll">
+                    <span>Scroll to explore</span>
+                    <div class="hero__scroll-icon"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="section stats" id="stats">
+            <div class="stats__grid">
+                <div class="stat-item">
+                    <div class="stat-item__number" data-count="10000">0</div>
+                    <div class="stat-item__label">Active Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-item__number" data-count="98">0</div>
+                    <div class="stat-item__label">Satisfaction Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-item__number" data-count="45">0</div>
+                    <div class="stat-item__label">Countries</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-item__number" data-count="24">0</div>
+                    <div class="stat-item__label">7 Support</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section features" id="features">
             <div class="section-header">
-                <h2 class="section-title">LeadFlowが選ばれる理由</h2>
-                <p class="section-subtitle">営業チームの課題を解決する、充実した機能とサポート</p>
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-subtitle">Everything you need to scale your sales</p>
             </div>
             <div class="features__grid">
                 <div class="feature-card">
                     <div class="feature-card__icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <rect width="48" height="48" rx="12" fill="url(#gradient1)"/>
-                            <path d="M24 16L28 20L24 24L20 20L24 16Z" stroke="white" stroke-width="2"/>
-                            <path d="M16 24L20 28L16 32L12 28L16 24Z" stroke="white" stroke-width="2"/>
-                            <path d="M32 24L36 28L32 32L28 28L32 24Z" stroke="white" stroke-width="2"/>
+                        <svg width="48" height="48" viewBox="0 0 48 48">
+                            <rect width="48" height="48" rx="12" fill="url(#grad1)"/>
+                            <path d="M16 24L22 30L32 20" stroke="white" stroke-width="3" fill="none"/>
                             <defs>
-                                <linearGradient id="gradient1" x1="0" y1="0" x2="48" y2="48">
-                                    <stop stop-color="#8B5CF6"/>
-                                    <stop offset="1" stop-color="#EC4899"/>
+                                <linearGradient id="grad1" x1="0" y1="0" x2="48" y2="48">
+                                    <stop offset="0%" stop-color="#667eea"/>
+                                    <stop offset="100%" stop-color="#764ba2"/>
                                 </linearGradient>
                             </defs>
                         </svg>
                     </div>
-                    <h3 class="feature-card__title">直感的なUI</h3>
-                    <p class="feature-card__desc">複雑な操作は一切不要。営業メンバーが初日から使いこなせるシンプルな設計。</p>
+                    <h3 class="feature-card__title">AI-Powered Insights</h3>
+                    <p class="feature-card__desc">Machine learning algorithms predict customer behavior and optimize your sales pipeline automatically.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-card__icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <rect width="48" height="48" rx="12" fill="url(#gradient2)"/>
-                            <circle cx="24" cy="24" r="8" stroke="white" stroke-width="2"/>
-                            <path d="M24 16V12M24 36V32M32 24H36M12 24H16" stroke="white" stroke-width="2"/>
+                        <svg width="48" height="48" viewBox="0 0 48 48">
+                            <rect width="48" height="48" rx="12" fill="url(#grad2)"/>
+                            <circle cx="24" cy="24" r="8" stroke="white" stroke-width="3" fill="none"/>
                             <defs>
-                                <linearGradient id="gradient2" x1="0" y1="0" x2="48" y2="48">
-                                    <stop stop-color="#06B6D4"/>
-                                    <stop offset="1" stop-color="#3B82F6"/>
+                                <linearGradient id="grad2" x1="0" y1="0" x2="48" y2="48">
+                                    <stop offset="0%" stop-color="#f093fb"/>
+                                    <stop offset="100%" stop-color="#f5576c"/>
                                 </linearGradient>
                             </defs>
                         </svg>
                     </div>
-                    <h3 class="feature-card__title">スピード導入</h3>
-                    <p class="feature-card__desc">最短3日で導入完了。既存のツールからのデータ移行も簡単に行えます。</p>
+                    <h3 class="feature-card__title">Real-time Analytics</h3>
+                    <p class="feature-card__desc">Monitor your team's performance with beautiful dashboards and instant notifications.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-card__icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <rect width="48" height="48" rx="12" fill="url(#gradient3)"/>
-                            <path d="M16 28L22 22L26 26L32 20" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M28 20H32V24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <svg width="48" height="48" viewBox="0 0 48 48">
+                            <rect width="48" height="48" rx="12" fill="url(#grad3)"/>
+                            <path d="M14 24H34M24 14V34" stroke="white" stroke-width="3"/>
                             <defs>
-                                <linearGradient id="gradient3" x1="0" y1="0" x2="48" y2="48">
-                                    <stop stop-color="#10B981"/>
-                                    <stop offset="1" stop-color="#059669"/>
+                                <linearGradient id="grad3" x1="0" y1="0" x2="48" y2="48">
+                                    <stop offset="0%" stop-color="#4facfe"/>
+                                    <stop offset="100%" stop-color="#00f2fe"/>
                                 </linearGradient>
                             </defs>
                         </svg>
                     </div>
-                    <h3 class="feature-card__title">売上向上を実感</h3>
-                    <p class="feature-card__desc">導入企業の平均売上は30%向上。リアルタイム分析で改善ポイントがすぐわかる。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-card__icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <rect width="48" height="48" rx="12" fill="url(#gradient4)"/>
-                            <circle cx="20" cy="20" r="4" stroke="white" stroke-width="2"/>
-                            <circle cx="28" cy="28" r="4" stroke="white" stroke-width="2"/>
-                            <path d="M24 20L24 28" stroke="white" stroke-width="2"/>
-                            <defs>
-                                <linearGradient id="gradient4" x1="0" y1="0" x2="48" y2="48">
-                                    <stop stop-color="#F59E0B"/>
-                                    <stop offset="1" stop-color="#EF4444"/>
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                    <h3 class="feature-card__title">充実サポート</h3>
-                    <p class="feature-card__desc">専任のカスタマーサクセスが導入から運用まで徹底サポート。安心してご利用いただけます。</p>
+                    <h3 class="feature-card__title">Seamless Integration</h3>
+                    <p class="feature-card__desc">Connect with 1000+ apps and tools you already use. API-first architecture for developers.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-            <path d="M0,60 C360,20 720,80 1080,40 C1260,20 1350,10 1440,60 L1440,100 L0,100 Z" fill="#F9FAFB"/>
-        </svg>
-    </div>
-
-    <!-- 主要機能セクション -->
-    <section class="functions" id="functions">
-        <canvas id="particles-functions" class="particles-canvas"></canvas>
-        <!-- Decorative elements -->
-        <div class="decorative-blob" style="width: 350px; height: 350px; background: radial-gradient(circle, rgba(255, 107, 53, 0.05), transparent); top: 20%; left: -5%; animation: float 14s ease-in-out infinite;"></div>
-        <div class="decorative-blob" style="width: 280px; height: 280px; background: radial-gradient(circle, rgba(255, 214, 0, 0.04), transparent); bottom: 10%; right: -3%; animation: float 16s ease-in-out infinite reverse;"></div>
-
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">主要機能</h2>
-                <p class="section-subtitle">営業活動を加速させる、充実の機能群</p>
-            </div>
-            <div class="function-list">
-                <div class="function-item">
-                    <div class="function-item__visual">
-                        <div class="function-screenshot function-screenshot--1"></div>
-                    </div>
-                    <div class="function-item__content">
-                        <h3 class="function-item__title">リード管理</h3>
-                        <p class="function-item__desc">すべてのリード情報を一元管理。自動スコアリングで優先度の高い見込み客を逃しません。ドラッグ&ドロップの簡単操作で、営業フェーズの移動もスムーズに。</p>
-                        <ul class="function-item__features">
-                            <li>自動スコアリング</li>
-                            <li>カスタマイズ可能なパイプライン</li>
-                            <li>活動履歴の自動記録</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="function-item function-item--reverse">
-                    <div class="function-item__visual">
-                        <div class="function-screenshot function-screenshot--2"></div>
-                    </div>
-                    <div class="function-item__content">
-                        <h3 class="function-item__title">レポート&分析</h3>
-                        <p class="function-item__desc">売上予測、成約率、活動量など、重要な指標をリアルタイムで可視化。データに基づいた意思決定で、チーム全体の生産性を向上させます。</p>
-                        <ul class="function-item__features">
-                            <li>カスタマイズ可能なダッシュボード</li>
-                            <li>売上予測レポート</li>
-                            <li>個人・チーム別パフォーマンス分析</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="function-item">
-                    <div class="function-item__visual">
-                        <div class="function-screenshot function-screenshot--3"></div>
-                    </div>
-                    <div class="function-item__content">
-                        <h3 class="function-item__title">タスク自動化</h3>
-                        <p class="function-item__desc">フォローアップメールの自動送信、リマインダー設定、タスクの自動割り当てなど、営業活動の効率化を実現。重要な商談に集中できます。</p>
-                        <ul class="function-item__features">
-                            <li>メール自動送信</li>
-                            <li>タスクの自動生成</li>
-                            <li>Slack/Teams連携</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-            <path d="M0,50 C480,10 960,90 1440,50 L1440,0 L0,0 Z" fill="#F9FAFB"/>
-        </svg>
-    </div>
-
-    <!-- 数字で見る実績 -->
-    <section class="stats">
-        <canvas id="particles-stats" class="particles-canvas"></canvas>
-        <div class="container">
-            <div class="stats__grid">
-                <div class="stat-card">
-                    <div class="stat-card__number">10,000+</div>
-                    <div class="stat-card__label">導入企業数</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card__number">30%</div>
-                    <div class="stat-card__label">平均売上向上率</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card__number">98%</div>
-                    <div class="stat-card__label">顧客満足度</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card__number">3日</div>
-                    <div class="stat-card__label">平均導入期間</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-            <path d="M0,40 C360,80 720,20 1080,60 C1260,80 1350,90 1440,40 L1440,0 L0,0 Z" fill="url(#statsGradient)"/>
-            <defs>
-                <linearGradient id="statsGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#FFD600;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-        </svg>
-    </div>
-
-    <!-- お客様の声 -->
-    <section class="testimonials">
-        <canvas id="particles-testimonials" class="particles-canvas"></canvas>
-        <!-- Decorative elements -->
-        <div class="decorative-blob" style="width: 320px; height: 320px; background: radial-gradient(circle, rgba(255, 107, 53, 0.06), transparent); top: 15%; right: 10%; animation: float 11s ease-in-out infinite;"></div>
-        <div class="decorative-blob" style="width: 260px; height: 260px; background: radial-gradient(circle, rgba(255, 214, 0, 0.05), transparent); bottom: 20%; left: 5%; animation: float 13s ease-in-out infinite reverse;"></div>
-
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">お客様の声</h2>
-                <p class="section-subtitle">LeadFlowを導入した企業様からの声</p>
-            </div>
-            <div class="testimonials__grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-card__rating">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-                    <p class="testimonial-card__text">
-                        「導入前は案件管理がExcelで大変でしたが、LeadFlowに切り替えてからチーム全体の生産性が劇的に向上しました。営業メンバーからも使いやすいと好評です。」
+        <!-- Demo Section -->
+        <section class="section demo" id="demo">
+            <div class="demo__content">
+                <div class="demo__text">
+                    <h2 class="demo__title">See it in action</h2>
+                    <p class="demo__description">
+                        Experience the power of LeadFlow with our interactive demo.
+                        No signup required.
                     </p>
-                    <div class="testimonial-card__author">
-                        <div class="testimonial-card__avatar">T</div>
-                        <div class="testimonial-card__info">
-                            <div class="testimonial-card__name">田中 太郎</div>
-                            <div class="testimonial-card__company">株式会社テックソリューション / 営業部長</div>
-                        </div>
-                    </div>
+                    <button class="btn btn--primary">Launch Demo</button>
                 </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-card__rating">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-                    <p class="testimonial-card__text">
-                        「レポート機能が本当に便利です。売上予測の精度が上がり、経営判断のスピードが格段に速くなりました。サポートも迅速で安心して使えています。」
-                    </p>
-                    <div class="testimonial-card__author">
-                        <div class="testimonial-card__avatar">S</div>
-                        <div class="testimonial-card__info">
-                            <div class="testimonial-card__name">佐藤 花子</div>
-                            <div class="testimonial-card__company">マーケティングラボ株式会社 / 代表取締役</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-card__rating">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-                    <p class="testimonial-card__text">
-                        「以前は他社のCRMを使っていましたが、複雑すぎて営業メンバーが使いこなせませんでした。LeadFlowはシンプルで誰でもすぐに使えるのが最大の魅力です。」
-                    </p>
-                    <div class="testimonial-card__author">
-                        <div class="testimonial-card__avatar">Y</div>
-                        <div class="testimonial-card__info">
-                            <div class="testimonial-card__name">山田 一郎</div>
-                            <div class="testimonial-card__company">グローバルセールス株式会社 / セールスマネージャー</div>
-                        </div>
+                <div class="demo__visual">
+                    <div class="demo__screen">
+                        <!-- Placeholder for demo visual -->
+                        <div class="demo__screen-inner"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-            <path d="M0,50 C480,90 960,10 1440,50 L1440,100 L0,100 Z" fill="#FFFFFF"/>
-        </svg>
-    </div>
-
-    <!-- 料金プラン -->
-    <section class="pricing" id="pricing">
-        <canvas id="particles-pricing" class="particles-canvas"></canvas>
-        <!-- Decorative elements -->
-        <div class="decorative-blob" style="width: 340px; height: 340px; background: radial-gradient(circle, rgba(255, 107, 53, 0.07), transparent); top: 10%; left: 2%; animation: float 15s ease-in-out infinite;"></div>
-        <div class="decorative-blob" style="width: 290px; height: 290px; background: radial-gradient(circle, rgba(255, 214, 0, 0.05), transparent); bottom: 5%; right: 5%; animation: float 17s ease-in-out infinite reverse;"></div>
-
-        <div class="container">
+        <!-- Pricing Section -->
+        <section class="section pricing" id="pricing">
             <div class="section-header">
-                <h2 class="section-title">料金プラン</h2>
-                <p class="section-subtitle">チームの規模に合わせて選べるプラン</p>
+                <h2 class="section-title">Simple Pricing</h2>
+                <p class="section-subtitle">Choose the plan that fits your team</p>
             </div>
             <div class="pricing__grid">
                 <div class="pricing-card">
                     <div class="pricing-card__header">
-                        <h3 class="pricing-card__name">スターター</h3>
-                        <p class="pricing-card__desc">小規模チーム向け</p>
-                    </div>
-                    <div class="pricing-card__price">
-                        <span class="price-amount">¥9,800</span>
-                        <span class="price-unit">/月</span>
+                        <h3 class="pricing-card__name">Starter</h3>
+                        <div class="pricing-card__price">
+                            <span class="price-currency">¥</span>
+                            <span class="price-amount">9,800</span>
+                            <span class="price-period">/month</span>
+                        </div>
                     </div>
                     <ul class="pricing-card__features">
-                        <li>ユーザー数: 最大5名</li>
-                        <li>リード管理</li>
-                        <li>基本レポート</li>
-                        <li>メールサポート</li>
-                        <li>データ保存: 1年</li>
+                        <li>Up to 5 users</li>
+                        <li>Basic CRM features</li>
+                        <li>Email support</li>
+                        <li>1GB storage</li>
                     </ul>
-                    <a href="#cta" class="btn btn--outline">始める</a>
+                    <button class="btn btn--outline">Get Started</button>
                 </div>
                 <div class="pricing-card pricing-card--featured">
-                    <div class="pricing-card__badge">人気</div>
+                    <div class="pricing-card__badge">Popular</div>
                     <div class="pricing-card__header">
-                        <h3 class="pricing-card__name">プロフェッショナル</h3>
-                        <p class="pricing-card__desc">成長企業向け</p>
-                    </div>
-                    <div class="pricing-card__price">
-                        <span class="price-amount">¥24,800</span>
-                        <span class="price-unit">/月</span>
+                        <h3 class="pricing-card__name">Professional</h3>
+                        <div class="pricing-card__price">
+                            <span class="price-currency">¥</span>
+                            <span class="price-amount">24,800</span>
+                            <span class="price-period">/month</span>
+                        </div>
                     </div>
                     <ul class="pricing-card__features">
-                        <li>ユーザー数: 最大20名</li>
-                        <li>リード管理 + 自動スコアリング</li>
-                        <li>高度なレポート&分析</li>
-                        <li>タスク自動化</li>
-                        <li>チャットサポート</li>
-                        <li>データ保存: 無制限</li>
-                        <li>API連携</li>
+                        <li>Up to 20 users</li>
+                        <li>Advanced analytics</li>
+                        <li>Priority support</li>
+                        <li>50GB storage</li>
+                        <li>API access</li>
                     </ul>
-                    <a href="#cta" class="btn btn--primary">始める</a>
+                    <button class="btn btn--primary">Get Started</button>
                 </div>
                 <div class="pricing-card">
                     <div class="pricing-card__header">
-                        <h3 class="pricing-card__name">エンタープライズ</h3>
-                        <p class="pricing-card__desc">大規模組織向け</p>
-                    </div>
-                    <div class="pricing-card__price">
-                        <span class="price-amount">お問い合わせ</span>
+                        <h3 class="pricing-card__name">Enterprise</h3>
+                        <div class="pricing-card__price">
+                            <span class="price-amount">Custom</span>
+                        </div>
                     </div>
                     <ul class="pricing-card__features">
-                        <li>ユーザー数: 無制限</li>
-                        <li>すべてのプロ機能</li>
-                        <li>専任カスタマーサクセス</li>
-                        <li>カスタマイズ対応</li>
-                        <li>オンプレミス対応</li>
-                        <li>SLA保証</li>
-                        <li>優先サポート</li>
+                        <li>Unlimited users</li>
+                        <li>Custom integrations</li>
+                        <li>Dedicated support</li>
+                        <li>Unlimited storage</li>
+                        <li>SLA guarantee</li>
                     </ul>
-                    <a href="#cta" class="btn btn--outline">相談する</a>
+                    <button class="btn btn--outline">Contact Sales</button>
                 </div>
             </div>
-            <p class="pricing__note">すべてのプランで14日間の無料トライアルをご利用いただけます</p>
-        </div>
-    </section>
+        </section>
 
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-            <path d="M0,60 C360,30 720,70 1080,35 C1260,25 1350,20 1440,60 L1440,100 L0,100 Z" fill="#F9FAFB"/>
-        </svg>
-    </div>
-
-    <!-- FAQ -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">よくある質問</h2>
-                <p class="section-subtitle">LeadFlowについてのご質問</p>
-            </div>
-            <div class="faq__list">
-                <div class="faq-item">
-                    <button class="faq-item__question">
-                        <span>導入にはどのくらいの時間がかかりますか？</span>
-                        <svg class="faq-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
-                    <div class="faq-item__answer">
-                        <p>通常、3〜5営業日で導入が完了します。既存データの移行が必要な場合は、データ量に応じて1〜2週間程度かかる場合がございます。専任のカスタマーサクセスがサポートいたしますので、ご安心ください。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-item__question">
-                        <span>無料トライアル期間中に解約はできますか？</span>
-                        <svg class="faq-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
-                    <div class="faq-item__answer">
-                        <p>はい、可能です。無料トライアル期間中はいつでも解約でき、料金は一切発生しません。トライアル終了後も、月単位での契約となりますので、いつでも解約いただけます。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-item__question">
-                        <span>既存のツールからデータを移行できますか？</span>
-                        <svg class="faq-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
-                    <div class="faq-item__answer">
-                        <p>はい、可能です。Salesforce、HubSpot、Zoho CRMなど、主要なCRMツールからのデータ移行に対応しています。CSVファイルでのインポートも可能です。移行作業はカスタマーサクセスがサポートいたします。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-item__question">
-                        <span>モバイルアプリはありますか？</span>
-                        <svg class="faq-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
-                    <div class="faq-item__answer">
-                        <p>iOS・Android両方のネイティブアプリをご提供しています。外出先でもリード情報の確認・更新、タスク管理が可能です。プッシュ通知機能もあり、重要な案件を逃しません。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-item__question">
-                        <span>セキュリティ対策はどうなっていますか？</span>
-                        <svg class="faq-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
-                    <div class="faq-item__answer">
-                        <p>すべてのデータは256ビットSSL暗号化により保護されています。また、ISO 27001認証を取得しており、定期的なセキュリティ監査を実施しています。データは国内のデータセンターで安全に管理されています。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-item__question">
-                        <span>サポート体制について教えてください</span>
-                        <svg class="faq-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
-                    <div class="faq-item__answer">
-                        <p>プランに応じて、メール・チャット・電話でのサポートをご提供しています。プロフェッショナルプラン以上では、専任のカスタマーサクセスが定期的にフォローアップいたします。平日9:00〜18:00の対応となります。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-            <path d="M0,45 C480,85 960,5 1440,45 L1440,100 L0,100 Z" fill="#FFFFFF"/>
-        </svg>
-    </div>
-
-    <!-- 最終CTA -->
-    <section class="cta" id="cta">
-        <canvas id="particles-cta" class="particles-canvas"></canvas>
-        <div class="cta__background"></div>
-        <!-- Decorative elements -->
-        <div class="decorative-blob" style="width: 380px; height: 380px; background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent); top: 5%; right: 8%; animation: float 12s ease-in-out infinite;"></div>
-        <div class="decorative-blob" style="width: 310px; height: 310px; background: radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent); bottom: 8%; left: 10%; animation: float 14s ease-in-out infinite reverse;"></div>
-
-        <div class="container">
+        <!-- CTA Section -->
+        <section class="section cta" id="contact">
             <div class="cta__content">
-                <h2 class="cta__title">今すぐLeadFlowを始めよう</h2>
-                <p class="cta__subtitle">14日間の無料トライアルで、すべての機能をお試しいただけます</p>
+                <h2 class="cta__title">Ready to transform your sales?</h2>
+                <p class="cta__subtitle">Start your 14-day free trial. No credit card required.</p>
                 <form class="cta__form">
-                    <input type="email" class="cta__input" placeholder="メールアドレスを入力" required>
-                    <button type="submit" class="btn btn--primary btn--large">無料で始める</button>
+                    <input type="email" class="cta__input" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn--primary">Start Free Trial</button>
                 </form>
-                <p class="cta__note">クレジットカード登録不要 / いつでもキャンセル可能</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- フッター -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__inner">
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer__content">
                 <div class="footer__brand">
                     <div class="footer__logo">LeadFlow</div>
-                    <p class="footer__tagline">営業チームの生産性を最大化</p>
+                    <p class="footer__tagline">Next-generation CRM platform</p>
                 </div>
                 <div class="footer__links">
                     <div class="footer__column">
-                        <h4 class="footer__heading">製品</h4>
-                        <a href="#features">特徴</a>
-                        <a href="#functions">機能</a>
-                        <a href="#pricing">料金</a>
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#pricing">Pricing</a>
+                        <a href="#demo">Demo</a>
                     </div>
                     <div class="footer__column">
-                        <h4 class="footer__heading">サポート</h4>
-                        <a href="#faq">FAQ</a>
-                        <a href="#">ヘルプセンター</a>
-                        <a href="#">お問い合わせ</a>
+                        <h4>Company</h4>
+                        <a href="#">About</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Careers</a>
                     </div>
                     <div class="footer__column">
-                        <h4 class="footer__heading">会社情報</h4>
-                        <a href="#">会社概要</a>
-                        <a href="#">プライバシーポリシー</a>
-                        <a href="#">利用規約</a>
+                        <h4>Support</h4>
+                        <a href="#">Help Center</a>
+                        <a href="#">Contact</a>
+                        <a href="#">API Docs</a>
                     </div>
                 </div>
             </div>
             <div class="footer__bottom">
                 <p>&copy; 2024 LeadFlow. All rights reserved.</p>
             </div>
-        </div>
-    </footer>
+        </footer>
 
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/particles.js"></script>
+    </div>
+
+    <script src="assets/js/awwwards.js"></script>
 </body>
 </html>
