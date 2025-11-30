@@ -9,6 +9,12 @@
 **ユーザー名**: `portfolio`
 **パスワード**: `BsySXRdeiQMthu7n`
 
+## .htpasswdのアップロード先
+
+**ローカル**: `/Users/yamadaren/Movies/claude-code-projects/yojitu.com/portfolio/saas-leadflow-lp/.htpasswd`
+
+**サーバー**: `/home/xs545151/yojitu.com/public_html/portfolio/saas-leadflow-lp/.htpasswd`
+
 ## SEO対策
 
 - `<meta name="robots" content="noindex, nofollow">` を設定

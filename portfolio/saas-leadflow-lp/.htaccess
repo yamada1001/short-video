@@ -1,6 +1,6 @@
 AuthType Basic
 AuthName "Portfolio Access Required"
-AuthUserFile /home/yamadaren/yojitu.com/portfolio/saas-leadflow-lp/.htpasswd
+AuthUserFile /home/xs545151/yojitu.com/public_html/portfolio/saas-leadflow-lp/.htpasswd
 Require valid-user
 
 # SEO対策: noindex
