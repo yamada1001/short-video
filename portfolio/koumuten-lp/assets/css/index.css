@@ -458,6 +458,15 @@
 
 .lCTA__button_icon {
     font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lCTA__button_icon svg {
+    width: 32px;
+    height: 32px;
+    stroke: currentColor;
 }
 
 .lCTA__button_text {

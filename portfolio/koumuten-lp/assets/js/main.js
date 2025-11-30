@@ -4,6 +4,19 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // ========================================
+    // ヘッダーのスクロール時のスタイル変更
+    // ========================================
+    const header = document.querySelector('.cHeader');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // ========================================
     // ハンバーガーメニューの開閉
     // ========================================
     const menuButton = document.querySelector('.js-menu-button');
