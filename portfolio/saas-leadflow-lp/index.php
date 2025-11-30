@@ -55,6 +55,7 @@ $gtm_id = 'GTM-T7NGQDC2';
 
     <!-- ヒーローセクション -->
     <section class="hero" id="hero">
+        <canvas id="particles-hero" class="particles-canvas"></canvas>
         <div class="hero__background"></div>
         <div class="container">
             <div class="hero__content">
@@ -209,6 +210,7 @@ $gtm_id = 'GTM-T7NGQDC2';
 
     <!-- 特徴セクション -->
     <section class="features" id="features">
+        <canvas id="particles-features" class="particles-canvas"></canvas>
         <!-- Decorative elements -->
         <div class="decorative-blob" style="width: 300px; height: 300px; background: radial-gradient(circle, rgba(255, 107, 53, 0.08), transparent); top: 10%; right: 5%; animation: float 10s ease-in-out infinite;"></div>
         <div class="decorative-blob" style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(255, 214, 0, 0.06), transparent); bottom: 15%; left: 8%; animation: float 12s ease-in-out infinite reverse;"></div>
@@ -302,6 +304,7 @@ $gtm_id = 'GTM-T7NGQDC2';
 
     <!-- 主要機能セクション -->
     <section class="functions" id="functions">
+        <canvas id="particles-functions" class="particles-canvas"></canvas>
         <!-- Decorative elements -->
         <div class="decorative-blob" style="width: 350px; height: 350px; background: radial-gradient(circle, rgba(255, 107, 53, 0.05), transparent); top: 20%; left: -5%; animation: float 14s ease-in-out infinite;"></div>
         <div class="decorative-blob" style="width: 280px; height: 280px; background: radial-gradient(circle, rgba(255, 214, 0, 0.04), transparent); bottom: 10%; right: -3%; animation: float 16s ease-in-out infinite reverse;"></div>
@@ -367,6 +370,7 @@ $gtm_id = 'GTM-T7NGQDC2';
 
     <!-- 数字で見る実績 -->
     <section class="stats">
+        <canvas id="particles-stats" class="particles-canvas"></canvas>
         <div class="container">
             <div class="stats__grid">
                 <div class="stat-card">
@@ -404,6 +408,7 @@ $gtm_id = 'GTM-T7NGQDC2';
 
     <!-- お客様の声 -->
     <section class="testimonials">
+        <canvas id="particles-testimonials" class="particles-canvas"></canvas>
         <!-- Decorative elements -->
         <div class="decorative-blob" style="width: 320px; height: 320px; background: radial-gradient(circle, rgba(255, 107, 53, 0.06), transparent); top: 15%; right: 10%; animation: float 11s ease-in-out infinite;"></div>
         <div class="decorative-blob" style="width: 260px; height: 260px; background: radial-gradient(circle, rgba(255, 214, 0, 0.05), transparent); bottom: 20%; left: 5%; animation: float 13s ease-in-out infinite reverse;"></div>
@@ -472,6 +477,7 @@ $gtm_id = 'GTM-T7NGQDC2';
 
     <!-- 料金プラン -->
     <section class="pricing" id="pricing">
+        <canvas id="particles-pricing" class="particles-canvas"></canvas>
         <!-- Decorative elements -->
         <div class="decorative-blob" style="width: 340px; height: 340px; background: radial-gradient(circle, rgba(255, 107, 53, 0.07), transparent); top: 10%; left: 2%; animation: float 15s ease-in-out infinite;"></div>
         <div class="decorative-blob" style="width: 290px; height: 290px; background: radial-gradient(circle, rgba(255, 214, 0, 0.05), transparent); bottom: 5%; right: 5%; animation: float 17s ease-in-out infinite reverse;"></div>
@@ -639,6 +645,7 @@ $gtm_id = 'GTM-T7NGQDC2';
 
     <!-- 最終CTA -->
     <section class="cta" id="cta">
+        <canvas id="particles-cta" class="particles-canvas"></canvas>
         <div class="cta__background"></div>
         <!-- Decorative elements -->
         <div class="decorative-blob" style="width: 380px; height: 380px; background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent); top: 5%; right: 8%; animation: float 12s ease-in-out infinite;"></div>
@@ -693,5 +700,6 @@ $gtm_id = 'GTM-T7NGQDC2';
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/particles.js"></script>
 </body>
 </html>
