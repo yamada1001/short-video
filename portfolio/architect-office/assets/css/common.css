@@ -1,0 +1,483 @@
+/**
+ * 建築設計事務所 - 共通スタイル
+ * Minimal & Sophisticated Design System
+ */
+
+/* ========================================
+   CSS Variables / Design Tokens
+   ======================================== */
+:root {
+    /* Colors */
+    --color-black: #1a1a1a;
+    --color-gray-dark: #333333;
+    --color-gray-medium: #666666;
+    --color-gray-light: #999999;
+    --color-gray-bg: #f5f5f5;
+    --color-white: #ffffff;
+    --color-accent: #2c2c2c;
+
+    /* Typography */
+    --font-ja: 'Noto Sans JP', sans-serif;
+    --font-en: 'Montserrat', sans-serif;
+
+    /* Font Weights */
+    --font-light: 300;
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 40px;
+    --spacing-xl: 60px;
+    --spacing-xxl: 80px;
+
+    /* Layout */
+    --container-max: 1400px;
+    --container-padding: 6%;
+
+    /* Transitions */
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.6s ease;
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media screen and (min-width: 768px) {
+    :root {
+        --container-padding: 4%;
+    }
+}
+
+/* ========================================
+   CSS Reset
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-ja);
+    font-weight: var(--font-regular);
+    color: var(--color-black);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-white);
+    padding-top: 80px;
+}
+
+body.preload * {
+    transition: none !important;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity var(--transition-base);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* ========================================
+   Common Components
+   ======================================== */
+
+/* Container */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* Hover Effects */
+.cHover__opacity:hover {
+    opacity: 0.6;
+}
+
+.cHover__underline {
+    position: relative;
+    display: inline-block;
+}
+
+.cHover__underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width var(--transition-base);
+}
+
+.cHover__underline:hover::after {
+    width: 100%;
+}
+
+/* ========================================
+   Header
+   ======================================== */
+.cHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--color-white);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all var(--transition-base);
+}
+
+.cHeader.scrolled {
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+.cHeader__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cHeader__logo_link {
+    display: block;
+    font-family: var(--font-en);
+    font-size: 0.875rem;
+    font-weight: var(--font-bold);
+    letter-spacing: 0.1em;
+    line-height: 1.3;
+    color: var(--color-black);
+}
+
+.cHeader__nav {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .cHeader__nav {
+        display: block;
+    }
+
+    .cHeader__nav_list {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .cHeader__nav_link {
+        font-family: var(--font-en);
+        font-size: 0.8125rem;
+        font-weight: var(--font-medium);
+        letter-spacing: 0.08em;
+        color: var(--color-black);
+        transition: opacity var(--transition-base);
+    }
+
+    .cHeader__nav_link:hover {
+        opacity: 0.6;
+    }
+
+    .cHeader__nav_link--inactive {
+        opacity: 0.3;
+    }
+
+    .cHeader__nav_item--lang {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .cHeader__nav_separator {
+        font-family: var(--font-en);
+        font-size: 0.8125rem;
+        color: var(--color-gray-light);
+    }
+}
+
+/* Hamburger Menu */
+.cHeader__menu {
+    width: 24px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.cHeader__menu_line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-black);
+    transition: all var(--transition-base);
+}
+
+body.menu-open .cHeader__menu_line:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+body.menu-open .cHeader__menu_line:nth-child(2) {
+    opacity: 0;
+}
+
+body.menu-open .cHeader__menu_line:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+@media screen and (min-width: 768px) {
+    .cHeader__menu {
+        display: none;
+    }
+}
+
+/* ========================================
+   Mobile Menu
+   ======================================== */
+.cMobileMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-white);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+}
+
+body.menu-open .cMobileMenu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cMobileMenu__list {
+    text-align: center;
+}
+
+.cMobileMenu__item {
+    margin-bottom: 32px;
+}
+
+.cMobileMenu__item--lang {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+}
+
+.cMobileMenu__link {
+    font-family: var(--font-en);
+    font-size: 1.25rem;
+    font-weight: var(--font-medium);
+    letter-spacing: 0.08em;
+    color: var(--color-black);
+}
+
+.cMobileMenu__link--inactive {
+    opacity: 0.3;
+}
+
+.cMobileMenu__separator {
+    font-family: var(--font-en);
+    color: var(--color-gray-light);
+}
+
+@media screen and (min-width: 768px) {
+    .cMobileMenu {
+        display: none;
+    }
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.cFooter {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: 60px var(--container-padding) 40px;
+}
+
+.cFooter__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+.cFooter__top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+    .cFooter {
+        padding: 80px var(--container-padding) 50px;
+    }
+
+    .cFooter__top {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        padding-bottom: 50px;
+        margin-bottom: 40px;
+    }
+}
+
+.cFooter__info_logo {
+    font-family: var(--font-en);
+    font-size: 1rem;
+    font-weight: var(--font-bold);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+}
+
+.cFooter__info_logo a {
+    transition: opacity var(--transition-base);
+}
+
+.cFooter__info_logo a:hover {
+    opacity: 0.6;
+}
+
+.cFooter__info_address,
+.cFooter__info_contact {
+    font-size: 0.875rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+}
+
+.cFooter__info_contact a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: color var(--transition-base);
+}
+
+.cFooter__info_contact a:hover {
+    color: var(--color-white);
+}
+
+.cFooter__nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media screen and (min-width: 768px) {
+    .cFooter__nav {
+        grid-template-columns: auto auto;
+        gap: 60px;
+        justify-content: flex-start;
+    }
+}
+
+.cFooter__nav_title {
+    font-family: var(--font-en);
+    font-size: 0.6875rem;
+    font-weight: var(--font-semibold);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.cFooter__nav_item {
+    margin-bottom: 12px;
+}
+
+.cFooter__nav_item a {
+    font-family: var(--font-en);
+    font-size: 0.875rem;
+    font-weight: var(--font-regular);
+    color: rgba(255, 255, 255, 0.7);
+    transition: color var(--transition-base);
+}
+
+.cFooter__nav_item a:hover {
+    color: var(--color-white);
+}
+
+.cFooter__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cFooter__copyright {
+    font-family: var(--font-en);
+    font-size: 0.6875rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.05em;
+}
+
+.cFooter__pageTop_link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-en);
+    font-size: 0.75rem;
+    font-weight: var(--font-medium);
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color var(--transition-base);
+}
+
+.cFooter__pageTop_link:hover {
+    color: var(--color-white);
+}
+
+.cFooter__pageTop_link svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ========================================
+   Responsive Utilities
+   ======================================== */
+@media screen and (max-width: 767px) {
+    .md {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .sp {
+        display: none !important;
+    }
+}
