@@ -346,7 +346,7 @@ body {
 .cHeader__inner {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .cHeader__leftWrapper {
@@ -370,7 +370,6 @@ body {
 .cHeader__info {
     font-family: var(--font-en);
     font-weight: var(--font-medium);
-    margin-top: -7px;
 }
 
 .cHeader__info_address {
@@ -465,7 +464,7 @@ body {
 
 @media screen and (min-width: 768px) {
     .cHeader {
-        padding: 55px 3.66vw 0;
+        padding: 30px 3.66vw;
     }
 
     .cHeader__logo_text {
@@ -474,7 +473,7 @@ body {
 
     .cHeader__contact {
         position: fixed;
-        top: 52px;
+        top: 27px;
         left: auto;
         right: calc(3.66vw + 78px + 1.17vw);
         bottom: auto;
@@ -499,7 +498,7 @@ body {
     }
 
     .cHeader__button {
-        top: 71px;
+        top: 46px;
         right: 3.66vw;
         width: 78px;
         height: 31px;
