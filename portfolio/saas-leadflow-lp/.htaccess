@@ -1,7 +1,8 @@
-AuthType Basic
-AuthName "Portfolio Access Required"
-AuthUserFile /home/xs545151/yojitu.com/public_html/portfolio/saas-leadflow-lp/.htpasswd
-Require valid-user
+# Basic認証（一時的に無効化）
+# AuthType Basic
+# AuthName "Portfolio Access Required"
+# AuthUserFile /home/xs545151/yojitu.com/public_html/portfolio/saas-leadflow-lp/.htpasswd
+# Require valid-user
 
 # SEO対策: noindex
 <IfModule mod_headers.c>
