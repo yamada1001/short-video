@@ -524,3 +524,169 @@
         align-items: center;
     }
 }
+
+/* ========================================
+   HONEYCOMB.LABO風 リッチアニメーション
+   ======================================== */
+
+/* ヘッダーアニメーション */
+.cHeader__inner > * {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.8s var(--ease-out) 1.4s, transform 0.8s var(--ease-out) 1.4s;
+}
+
+.cHeader__inner.is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* メインビジュアルアニメーション */
+.lMV {
+    opacity: 0;
+    transition: opacity 0.8s var(--ease-in-out) 1.4s;
+}
+
+.lMV.is-visible {
+    opacity: 1;
+}
+
+.lMV__hexagon_item {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+}
+
+.lMV__hexagon_item.is-visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* セクションアニメーション */
+.lMessage,
+.lWorks,
+.lVoice,
+.lCTA {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.lMessage.is-active,
+.lWorks.is-active,
+.lVoice.is-active,
+.lCTA.is-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 背景ヘキサゴン装飾 */
+.section-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.section-bg::before,
+.section-bg::after {
+    content: '';
+    position: absolute;
+    clip-path: var(--hexagon);
+    background-color: var(--beige);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* メッセージセクション背景 */
+.lMessage.section-bg::before {
+    width: 300px;
+    height: 260px;
+    top: -50px;
+    right: -80px;
+}
+
+.lMessage.section-bg::after {
+    width: 200px;
+    height: 173px;
+    bottom: -60px;
+    left: -50px;
+    background-color: var(--wood-light);
+    opacity: 0.15;
+}
+
+/* ワークスセクション背景 */
+.lWorks.section-bg::before {
+    width: 400px;
+    height: 346px;
+    top: -100px;
+    left: -120px;
+    background-color: var(--green-light);
+    opacity: 0.1;
+}
+
+.lWorks.section-bg::after {
+    width: 350px;
+    height: 303px;
+    bottom: -90px;
+    right: -100px;
+}
+
+/* CTAセクション背景 */
+.lCTA.section-bg::before {
+    width: 250px;
+    height: 216px;
+    top: 50%;
+    left: -80px;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.lCTA.section-bg::after {
+    width: 280px;
+    height: 242px;
+    top: 50%;
+    right: -90px;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+@media screen and (min-width: 768px) {
+    .lMessage.section-bg::before {
+        width: 500px;
+        height: 433px;
+        top: -100px;
+        right: -150px;
+    }
+
+    .lMessage.section-bg::after {
+        width: 350px;
+        height: 303px;
+        bottom: -100px;
+        left: -100px;
+    }
+
+    .lWorks.section-bg::before {
+        width: 600px;
+        height: 520px;
+        top: -150px;
+        left: -200px;
+    }
+
+    .lWorks.section-bg::after {
+        width: 500px;
+        height: 433px;
+        bottom: -150px;
+        right: -180px;
+    }
+
+    .lCTA.section-bg::before {
+        width: 400px;
+        height: 346px;
+        left: -120px;
+    }
+
+    .lCTA.section-bg::after {
+        width: 420px;
+        height: 363px;
+        right: -140px;
+    }
+}

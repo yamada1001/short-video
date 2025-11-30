@@ -1,8 +1,35 @@
 /**
- * 工務店LP - メインJavaScript
+ * 工務店LP - メインJavaScript（HONEYCOMB.LABO風リッチ版）
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // ========================================
+    // オープニングアニメーション（初回訪問時のみ）
+    // ========================================
+    const opening = document.querySelector('.lOpening');
+    const hasVisited = localStorage.getItem('koumuten_visited');
+
+    if (!hasVisited && opening) {
+        // 初回訪問
+        opening.classList.add('active');
+
+        // 2.8秒後にアニメーション終了
+        setTimeout(() => {
+            opening.classList.add('visited');
+            opening.classList.remove('active');
+            localStorage.setItem('koumuten_visited', 'true');
+
+            // ヘッダー、メインビジュアルのアニメーション開始
+            initAnimations();
+        }, 2800);
+    } else {
+        // 2回目以降の訪問
+        if (opening) {
+            opening.classList.add('visited');
+        }
+        initAnimations();
+    }
+
     // ========================================
     // ヘッダーのスクロール時のスタイル変更
     // ========================================
@@ -21,12 +48,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // ========================================
     const menuButton = document.querySelector('.js-menu-button');
     const body = document.body;
+    const menuLinks = document.querySelectorAll('.cMenu a');
 
     if (menuButton) {
         menuButton.addEventListener('click', () => {
             body.classList.toggle('menu-open');
         });
     }
+
+    // メニューのリンクをクリックしたらメニューを閉じる
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            body.classList.remove('menu-open');
+        });
+    });
 
     // ========================================
     // スムーズスクロール
@@ -67,7 +102,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ========================================
-    // スクロールアニメーション（Intersection Observer）
+    // アニメーション初期化
+    // ========================================
+    function initAnimations() {
+        // ヘッダー・コンタクトボタン・MVのフェードイン
+        const headerInner = document.querySelector('.cHeader__inner');
+        const mvSection = document.querySelector('.lMV');
+
+        setTimeout(() => {
+            if (headerInner) {
+                headerInner.classList.add('is-visible');
+            }
+            if (mvSection) {
+                mvSection.classList.add('is-visible');
+            }
+        }, 100);
+    }
+
+    // ========================================
+    // ヘキサゴンの複雑なアニメーション（スクロール時）
     // ========================================
     const observerOptions = {
         root: null,
@@ -78,8 +131,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const observerCallback = (entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
+                entry.target.classList.add('is-active');
+
+                // セクション内のヘキサゴン要素をアニメーション
+                const hexagons = entry.target.querySelectorAll('.lMV__hexagon_item');
+                hexagons.forEach((hex, index) => {
+                    setTimeout(() => {
+                        hex.classList.add('is-visible');
+                    }, index * 150);
+                });
             }
         });
     };
@@ -87,25 +147,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
     // アニメーション対象の要素
-    const animateElements = document.querySelectorAll('.lMessage, .lWorks, .lVoice, .lCTA');
+    const animateElements = document.querySelectorAll('.lMessage, .lWorks, .lVoice, .lCTA, .lMV');
 
     animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-
         observer.observe(el);
     });
-
-    // is-visibleクラスが付与されたらアニメーション
-    const style = document.createElement('style');
-    style.textContent = `
-        .is-visible {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    `;
-    document.head.appendChild(style);
 
     // ========================================
     // お問い合わせボタンの表示/非表示制御
@@ -144,5 +190,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    console.log('工務店LP: JavaScript initialized');
+    console.log('工務店LP（リッチ版）: JavaScript initialized');
 });

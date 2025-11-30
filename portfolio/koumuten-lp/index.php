@@ -67,7 +67,7 @@ include('includes/header.php');
 </section>
 
 <!-- メッセージセクション -->
-<section id="about" class="lMessage">
+<section id="about" class="lMessage section-bg">
     <div class="lMessage__inner">
         <div class="lMessage__lead">
             想いを、かたちに。
@@ -92,7 +92,7 @@ include('includes/header.php');
 </section>
 
 <!-- 施工事例セクション -->
-<section id="works" class="lWorks">
+<section id="works" class="lWorks section-bg">
     <div class="lWorks__inner">
         <h2 class="lWorks__title">
             <span class="lWorks__title_en">WORKS</span>
@@ -217,7 +217,7 @@ include('includes/header.php');
 </section>
 
 <!-- CTAセクション -->
-<section id="contact" class="lCTA">
+<section id="contact" class="lCTA section-bg">
     <div class="lCTA__inner">
         <h2 class="lCTA__title">
             まずはお気軽に<br class="sp">ご相談ください
