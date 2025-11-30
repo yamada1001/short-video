@@ -1,0 +1,9 @@
+AuthType Basic
+AuthName "Portfolio Access Required"
+AuthUserFile /home/yamadaren/yojitu.com/portfolio/saas-leadflow-lp/.htpasswd
+Require valid-user
+
+# SEO対策: noindex
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
