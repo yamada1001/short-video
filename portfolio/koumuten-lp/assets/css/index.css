@@ -1,0 +1,1875 @@
+/* ====================================
+   工務店LP - 最高峰リッチCSS
+   ==================================== */
+
+/* ====================================
+   カスタムプロパティ（CSS変数）
+   ==================================== */
+:root {
+  /* カラーパレット */
+  --primary-color: #2c5f2d;
+  --primary-dark: #1a3a1b;
+  --primary-light: #4a8f4c;
+  --secondary-color: #d4a574;
+  --accent-color: #ff6b35;
+  --text-dark: #1a1a1a;
+  --text-light: #f5f5f5;
+  --bg-light: #fafafa;
+  --bg-dark: #1a1a1a;
+  --white: #ffffff;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+
+  /* タイポグラフィ */
+  --font-primary: "Noto Sans JP", sans-serif;
+  --font-secondary: "Roboto", sans-serif;
+  --font-serif: "Noto Serif JP", serif;
+
+  /* スペーシング */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+  --spacing-xxl: 8rem;
+
+  /* トランジション */
+  --transition-base: 0.3s ease-in-out;
+  --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* シャドウ */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.2);
+  --shadow-2xl: 0 30px 70px rgba(0, 0, 0, 0.3);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* ボーダーラディウス */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Z-index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+}
+
+/* ====================================
+   リセット & ベーススタイル
+   ==================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--text-dark);
+  line-height: 1.7;
+  overflow-x: hidden;
+  background-color: var(--bg-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-base);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* ====================================
+   ユーティリティクラス
+   ==================================== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.section-padding {
+  padding: var(--spacing-xxl) 0;
+}
+
+/* スクロールアニメーション用クラス */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scale-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ====================================
+   装飾用ヘキサゴン（六角形）
+   ==================================== */
+.hexagon-decoration {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hexagon-decoration::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  opacity: 0.1;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  animation: float 6s ease-in-out infinite;
+}
+
+.hexagon-decoration.hex-large {
+  width: 150px;
+  height: 150px;
+}
+
+.hexagon-decoration.hex-small {
+  width: 60px;
+  height: 60px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(20px) rotate(-5deg);
+  }
+}
+
+.hexagon-decoration:nth-child(2)::before {
+  animation: float-reverse 7s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.hexagon-decoration:nth-child(3)::before {
+  animation: float 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* ====================================
+   1. lHero（メインビジュアル）
+   ==================================== */
+.lHero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 背景画像パララックス */
+.lHero__bg {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background-image: url('../images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  transform: scale(1.1);
+  transition: transform 0.3s ease-out;
+  z-index: 1;
+}
+
+.lHero__bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(44, 95, 45, 0.85) 0%,
+    rgba(26, 58, 27, 0.75) 50%,
+    rgba(44, 95, 45, 0.85) 100%
+  );
+  z-index: 2;
+}
+
+/* グラデーションオーバーレイ */
+.lHero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  z-index: 3;
+}
+
+/* メインコンテンツ */
+.lHero__content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: var(--text-light);
+  max-width: 900px;
+  padding: 0 var(--spacing-md);
+}
+
+.lHero__subtitle {
+  font-size: 1.125rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  margin-bottom: var(--spacing-sm);
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.3s forwards;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+}
+
+.lHero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.6s forwards;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.lHero__description {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: var(--spacing-lg);
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.9s forwards;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ボタングループ */
+.lHero__buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 1.2s forwards;
+}
+
+.lHero__button {
+  position: relative;
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-lg);
+}
+
+.lHero__button--primary {
+  background: linear-gradient(135deg, var(--accent-color), #ff8c5f);
+  color: var(--white);
+  border: 2px solid transparent;
+}
+
+.lHero__button--primary::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.lHero__button--primary:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.lHero__button--primary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2xl);
+}
+
+.lHero__button--secondary {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+  backdrop-filter: blur(10px);
+}
+
+.lHero__button--secondary:hover {
+  background: var(--white);
+  color: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+}
+
+.lHero__button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* スクロールインジケーター */
+.lHero__scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.lHero__scroll-indicator::before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 50px;
+  border: 2px solid var(--white);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--spacing-xs);
+  position: relative;
+}
+
+.lHero__scroll-indicator::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 10px;
+  background: var(--white);
+  border-radius: 3px;
+  animation: scroll-down 2s infinite;
+}
+
+@keyframes scroll-down {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+}
+
+/* 装飾用ヘキサゴン配置 */
+.lHero .hexagon-decoration:nth-of-type(1) {
+  top: 10%;
+  left: 5%;
+  width: 120px;
+  height: 120px;
+}
+
+.lHero .hexagon-decoration:nth-of-type(2) {
+  top: 60%;
+  right: 8%;
+  width: 90px;
+  height: 90px;
+}
+
+.lHero .hexagon-decoration:nth-of-type(3) {
+  bottom: 15%;
+  left: 15%;
+  width: 70px;
+  height: 70px;
+}
+
+/* ====================================
+   2. lAbout（想いセクション）
+   ==================================== */
+.lAbout {
+  position: relative;
+  padding: var(--spacing-xxl) 0;
+  background: linear-gradient(180deg, var(--bg-light) 0%, var(--white) 100%);
+  overflow: hidden;
+}
+
+.lAbout__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+/* テキストエリア */
+.lAbout__text {
+  position: relative;
+  z-index: 2;
+}
+
+.lAbout__subtitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+}
+
+.lAbout__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-dark);
+}
+
+.lAbout__description {
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: var(--gray-700);
+  margin-bottom: var(--spacing-md);
+}
+
+.lAbout__signature {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 2px solid var(--gray-300);
+}
+
+/* 画像エリア */
+.lAbout__image-wrapper {
+  position: relative;
+  z-index: 2;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-2xl);
+  transform: perspective(1000px) rotateY(-2deg);
+  transition: all var(--transition-slow);
+}
+
+.lAbout__image-wrapper:hover {
+  transform: perspective(1000px) rotateY(0deg) scale(1.02);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+.lAbout__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.lAbout__image-wrapper:hover .lAbout__image {
+  transform: scale(1.1);
+}
+
+.lAbout__image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(44, 95, 45, 0.3) 0%,
+    transparent 100%
+  );
+  opacity: 1;
+  transition: opacity var(--transition-base);
+}
+
+.lAbout__image-wrapper:hover .lAbout__image-overlay {
+  opacity: 0;
+}
+
+/* 特徴カード */
+.lAbout__features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.lAbout__feature-card {
+  position: relative;
+  padding: var(--spacing-lg);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.lAbout__feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-slow);
+}
+
+.lAbout__feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.lAbout__feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-xl);
+}
+
+.lAbout__feature-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.lAbout__feature-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.lAbout__feature-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.lAbout__feature-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: transform var(--transition-bounce);
+}
+
+.lAbout__feature-card:hover .lAbout__feature-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.lAbout__feature-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-dark);
+}
+
+.lAbout__feature-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--gray-600);
+}
+
+/* 装飾用ヘキサゴン配置 */
+.lAbout .hexagon-decoration:nth-of-type(1) {
+  top: 10%;
+  right: 5%;
+  width: 100px;
+  height: 100px;
+}
+
+.lAbout .hexagon-decoration:nth-of-type(2) {
+  bottom: 20%;
+  left: 10%;
+  width: 80px;
+  height: 80px;
+}
+
+/* ====================================
+   3. lWorks（施工事例セクション）
+   ==================================== */
+.lWorks {
+  position: relative;
+  padding: var(--spacing-xxl) 0;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.lWorks__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.lWorks__subtitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+}
+
+.lWorks__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-dark);
+}
+
+.lWorks__description {
+  font-size: 1.125rem;
+  color: var(--gray-700);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* グリッドレイアウト */
+.lWorks__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+.lWorks__card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-slow);
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+}
+
+.lWorks__card:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: var(--shadow-2xl);
+}
+
+.lWorks__card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.lWorks__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.lWorks__card:hover .lWorks__card-image {
+  transform: scale(1.15);
+}
+
+/* オーバーレイ */
+.lWorks__card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--spacing-lg);
+  opacity: 1;
+  transition: all var(--transition-base);
+}
+
+.lWorks__card:hover .lWorks__card-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(44, 95, 45, 0.7) 0%,
+    rgba(26, 58, 27, 0.85) 100%
+  );
+}
+
+.lWorks__card-category {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin-bottom: var(--spacing-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+}
+
+.lWorks__card:hover .lWorks__card-category {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.lWorks__card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: var(--spacing-sm);
+  transform: translateY(0);
+  transition: all var(--transition-base);
+}
+
+.lWorks__card:hover .lWorks__card-title {
+  transform: translateY(-5px);
+}
+
+.lWorks__card-description {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+  max-height: 0;
+  overflow: hidden;
+}
+
+.lWorks__card:hover .lWorks__card-description {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 200px;
+  transition-delay: 0.2s;
+}
+
+.lWorks__card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-top: var(--spacing-sm);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+}
+
+.lWorks__card:hover .lWorks__card-link {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.lWorks__card-link::after {
+  content: "→";
+  transition: transform var(--transition-base);
+}
+
+.lWorks__card-link:hover::after {
+  transform: translateX(5px);
+}
+
+/* ====================================
+   4. lVoice（お客様の声セクション）
+   ==================================== */
+.lVoice {
+  position: relative;
+  padding: var(--spacing-xxl) 0;
+  background: linear-gradient(180deg, var(--gray-100) 0%, var(--white) 100%);
+  overflow: hidden;
+}
+
+.lVoice__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.lVoice__subtitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+}
+
+.lVoice__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-dark);
+}
+
+.lVoice__description {
+  font-size: 1.125rem;
+  color: var(--gray-700);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* スライダーコンテナ */
+.lVoice__slider {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.lVoice__cards {
+  display: flex;
+  gap: var(--spacing-lg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: var(--spacing-md) 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.lVoice__cards::-webkit-scrollbar {
+  display: none;
+}
+
+.lVoice__card {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-slow);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.lVoice__card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-2xl);
+}
+
+/* カード画像 */
+.lVoice__card-image-wrapper {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 4 / 3;
+}
+
+.lVoice__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.lVoice__card:hover .lVoice__card-image {
+  transform: scale(1.1);
+}
+
+/* カードコンテンツ */
+.lVoice__card-content {
+  padding: var(--spacing-md);
+}
+
+.lVoice__card-quote {
+  position: relative;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--gray-700);
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-md);
+}
+
+.lVoice__card-quote::before {
+  content: """;
+  position: absolute;
+  left: 0;
+  top: -10px;
+  font-size: 4rem;
+  font-family: var(--font-serif);
+  color: var(--primary-color);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.lVoice__card-author {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 2px solid var(--gray-200);
+}
+
+.lVoice__card-author-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary-color);
+}
+
+.lVoice__card-author-info {
+  flex: 1;
+}
+
+.lVoice__card-author-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.lVoice__card-author-location {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.lVoice__card-rating {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: var(--spacing-sm);
+}
+
+.lVoice__card-rating-star {
+  color: var(--accent-color);
+  font-size: 1.25rem;
+}
+
+/* スライダーナビゲーション */
+.lVoice__slider-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.lVoice__slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gray-300);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.lVoice__slider-dot.active {
+  width: 40px;
+  border-radius: var(--radius-full);
+  background: var(--primary-color);
+}
+
+.lVoice__slider-dot:hover {
+  background: var(--primary-light);
+}
+
+/* 装飾用ヘキサゴン配置 */
+.lVoice .hexagon-decoration:nth-of-type(1) {
+  top: 15%;
+  left: 5%;
+  width: 90px;
+  height: 90px;
+}
+
+/* ====================================
+   5. lFlow（家づくりの流れセクション）
+   ==================================== */
+.lFlow {
+  position: relative;
+  padding: var(--spacing-xxl) 0;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.lFlow__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.lFlow__subtitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+}
+
+.lFlow__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-dark);
+}
+
+.lFlow__description {
+  font-size: 1.125rem;
+  color: var(--gray-700);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ステップコンテナ */
+.lFlow__steps {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) 0;
+}
+
+/* 連結線 */
+.lFlow__steps::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+  transform: translateX(-50%);
+  border-radius: var(--radius-full);
+}
+
+/* ステップカード */
+.lFlow__step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  align-items: center;
+}
+
+.lFlow__step:nth-child(even) .lFlow__step-content {
+  order: 3;
+  text-align: left;
+}
+
+.lFlow__step:nth-child(even) .lFlow__step-empty {
+  order: 1;
+}
+
+.lFlow__step:nth-child(odd) .lFlow__step-content {
+  order: 1;
+  text-align: right;
+}
+
+.lFlow__step:nth-child(odd) .lFlow__step-empty {
+  order: 3;
+}
+
+/* ステップ番号 */
+.lFlow__step-number-wrapper {
+  position: relative;
+  order: 2;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.lFlow__step-number {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-bounce);
+  border: 5px solid var(--white);
+}
+
+.lFlow__step:hover .lFlow__step-number {
+  transform: scale(1.15) rotate(10deg);
+  box-shadow: var(--shadow-2xl);
+}
+
+/* ステップコンテンツ */
+.lFlow__step-content {
+  background: var(--white);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-slow);
+  border: 2px solid transparent;
+}
+
+.lFlow__step:hover .lFlow__step-content {
+  transform: translateX(0) scale(1.03);
+  box-shadow: var(--shadow-2xl);
+  border-color: var(--primary-color);
+}
+
+.lFlow__step-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+.lFlow__step-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--gray-600);
+}
+
+.lFlow__step-empty {
+  /* 空のスペース */
+}
+
+/* CTAセクション */
+.lFlow__cta {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-xl);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-2xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.lFlow__cta::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.lFlow__cta-title {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: var(--spacing-md);
+}
+
+.lFlow__cta-description {
+  position: relative;
+  z-index: 1;
+  font-size: 1.125rem;
+  color: var(--text-light);
+  margin-bottom: var(--spacing-lg);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lFlow__cta-button {
+  position: relative;
+  z-index: 1;
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  background: var(--white);
+  color: var(--primary-color);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-base);
+}
+
+.lFlow__cta-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: var(--shadow-2xl);
+}
+
+/* ====================================
+   6. lContact（お問い合わせセクション）
+   ==================================== */
+.lContact {
+  position: relative;
+  padding: var(--spacing-xxl) 0;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--gray-900) 100%);
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+.lContact::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/contact-pattern.png');
+  background-size: cover;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.lContact__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  z-index: 2;
+}
+
+.lContact__subtitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--secondary-color);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+}
+
+.lContact__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-md);
+  color: var(--white);
+}
+
+.lContact__description {
+  font-size: 1.125rem;
+  color: var(--gray-400);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* 2カラムレイアウト */
+.lContact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.lContact__card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-2xl);
+  transition: all var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+}
+
+.lContact__card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.lContact__card:hover::before {
+  opacity: 1;
+}
+
+.lContact__card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary-color);
+  box-shadow: 0 30px 80px rgba(44, 95, 45, 0.3);
+}
+
+.lContact__card-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-md);
+  box-shadow: var(--shadow-xl);
+  transition: transform var(--transition-bounce);
+}
+
+.lContact__card:hover .lContact__card-icon {
+  transform: scale(1.1) rotate(10deg);
+}
+
+.lContact__card-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  color: var(--white);
+}
+
+.lContact__card-subtitle {
+  font-size: 1rem;
+  color: var(--gray-400);
+  margin-bottom: var(--spacing-md);
+}
+
+.lContact__card-info {
+  margin-bottom: var(--spacing-lg);
+}
+
+.lContact__card-info-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 1.125rem;
+  color: var(--white);
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.lContact__card-info-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.lContact__card-button {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent-color), #ff8c5f);
+  color: var(--white);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.lContact__card-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.lContact__card-button:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.lContact__card-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2xl);
+}
+
+.lContact__card-button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* 装飾用ヘキサゴン配置 */
+.lContact .hexagon-decoration:nth-of-type(1) {
+  top: 10%;
+  right: 5%;
+  width: 100px;
+  height: 100px;
+}
+
+.lContact .hexagon-decoration:nth-of-type(2) {
+  bottom: 15%;
+  left: 8%;
+  width: 80px;
+  height: 80px;
+}
+
+/* ====================================
+   レスポンシブデザイン
+   ==================================== */
+
+/* タブレット（1024px以下） */
+@media (max-width: 1024px) {
+  :root {
+    --spacing-xl: 4rem;
+    --spacing-xxl: 6rem;
+  }
+
+  .lHero__title {
+    font-size: clamp(2rem, 7vw, 4rem);
+  }
+
+  .lAbout__inner {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .lAbout__image-wrapper {
+    order: -1;
+    transform: perspective(1000px) rotateY(0deg);
+  }
+
+  .lWorks__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lVoice__card {
+    grid-template-columns: 1fr;
+  }
+
+  .lFlow__steps::before {
+    left: 40px;
+  }
+
+  .lFlow__step {
+    grid-template-columns: 80px 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .lFlow__step-number-wrapper {
+    order: 1;
+  }
+
+  .lFlow__step-content {
+    order: 2;
+    text-align: left !important;
+  }
+
+  .lFlow__step-empty {
+    display: none;
+  }
+
+  .lContact__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* モバイル（768px以下） */
+@media (max-width: 768px) {
+  :root {
+    --spacing-md: 1.5rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 3rem;
+    --spacing-xxl: 4rem;
+  }
+
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .lHero {
+    min-height: 500px;
+  }
+
+  .lHero__bg {
+    background-attachment: scroll;
+  }
+
+  .lHero__subtitle {
+    font-size: 0.875rem;
+  }
+
+  .lHero__title {
+    font-size: clamp(1.75rem, 10vw, 3rem);
+  }
+
+  .lHero__description {
+    font-size: 1rem;
+  }
+
+  .lHero__buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .lHero__button {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .lHero .hexagon-decoration {
+    display: none;
+  }
+
+  .lAbout__features {
+    grid-template-columns: 1fr;
+  }
+
+  .lAbout__feature-card {
+    padding: var(--spacing-md);
+  }
+
+  .lWorks__grid {
+    gap: var(--spacing-sm);
+  }
+
+  .lWorks__card-overlay {
+    padding: var(--spacing-md);
+  }
+
+  .lWorks__card-title {
+    font-size: 1.25rem;
+  }
+
+  .lVoice__card {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .lVoice__card-quote {
+    font-size: 1rem;
+  }
+
+  .lFlow__steps::before {
+    left: 30px;
+  }
+
+  .lFlow__step {
+    grid-template-columns: 60px 1fr;
+  }
+
+  .lFlow__step-number {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    border-width: 3px;
+  }
+
+  .lFlow__step-content {
+    padding: var(--spacing-md);
+  }
+
+  .lFlow__step-title {
+    font-size: 1.25rem;
+  }
+
+  .lFlow__cta {
+    padding: var(--spacing-lg);
+  }
+
+  .lContact__card {
+    padding: var(--spacing-lg);
+  }
+
+  .lContact__card-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+
+  .lContact__card-title {
+    font-size: 1.5rem;
+  }
+
+  .lContact .hexagon-decoration {
+    display: none;
+  }
+}
+
+/* 小型モバイル（480px以下） */
+@media (max-width: 480px) {
+  .lHero__scroll-indicator {
+    bottom: 20px;
+  }
+
+  .lAbout__title,
+  .lWorks__title,
+  .lVoice__title,
+  .lFlow__title,
+  .lContact__title {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+  }
+
+  .lFlow__step {
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+/* ====================================
+   アニメーション用キーフレーム
+   ==================================== */
+
+/* フェードイン（上から） */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* スライドイン（左から） */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* スライドイン（右から） */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ズームイン */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 回転フェードイン */
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+/* ====================================
+   プリント用スタイル
+   ==================================== */
+@media print {
+  .lHero__scroll-indicator,
+  .hexagon-decoration {
+    display: none;
+  }
+
+  .lHero {
+    height: auto;
+    min-height: auto;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
+
+/* ====================================
+   アクセシビリティ
+   ==================================== */
+
+/* フォーカス時のスタイル */
+*:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* 縮小モーション設定時のアニメーション無効化 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ハイコントラストモード */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #1a5f1b;
+    --text-dark: #000000;
+    --text-light: #ffffff;
+  }
+}
+
+/* ====================================
+   パフォーマンス最適化
+   ==================================== */
+
+/* GPU加速 */
+.lHero__bg,
+.lWorks__card-image,
+.lVoice__card-image,
+.lAbout__image {
+  will-change: transform;
+}
+
+/* スクロール時のパフォーマンス向上 */
+.fade-in,
+.fade-in-left,
+.fade-in-right,
+.scale-in {
+  will-change: opacity, transform;
+}
+
+/* ホバーエフェクト用 */
+.lHero__button,
+.lWorks__card,
+.lVoice__card,
+.lAbout__feature-card,
+.lContact__card {
+  will-change: transform;
+}
