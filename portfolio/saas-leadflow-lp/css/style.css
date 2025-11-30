@@ -1,13 +1,36 @@
 /**
- * タスクル - カスタムCSS
- * TailwindCSSで足りない部分を補完
+ * タスクル - カスタムCSS (Modern Design)
+ * Stripe/Linear風のモダンデザイン
  */
+
+/* ========================================
+   グラデーションテキスト
+   ======================================== */
+.text-gradient {
+    background: linear-gradient(135deg, #06B6D4, #8B5CF6, #EC4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 5s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
 
 /* ========================================
    ヘッダー固定時の影
    ======================================== */
 .header.scrolled {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.9);
 }
 
 /* ========================================
@@ -76,6 +99,49 @@
     50% {
         transform: translateY(-10px);
     }
+}
+
+/* ========================================
+   ブロブシェイプ
+   ======================================== */
+.blob {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    filter: blur(60px);
+    opacity: 0.5;
+}
+
+.blob-1 {
+    top: -10%;
+    right: -5%;
+}
+
+.blob-2 {
+    bottom: -10%;
+    left: -5%;
+}
+
+/* ========================================
+   グリッドパターン背景
+   ======================================== */
+.bg-grid-pattern {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* ========================================
+   グロー効果
+   ======================================== */
+.glow-button {
+    position: relative;
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+}
+
+.glow-button:hover {
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.8);
 }
 
 /* ========================================
