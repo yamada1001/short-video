@@ -984,6 +984,16 @@ body {
     transform: rotate(-45deg);
 }
 
+/* ハンバーガーボタンをクリック可能にする（最重要） */
+.menu-open .cHeader__button {
+    pointer-events: auto;
+}
+
+/* お問い合わせボタンもクリック可能にする */
+.menu-open .cHeader__contact {
+    pointer-events: auto;
+}
+
 @media screen and (min-width: 768px) {
     .cMenu {
         overflow-y: auto;
@@ -1013,8 +1023,21 @@ body {
         height: auto;
         clip-path: none;
         background-color: transparent;
-        overflow: hidden;
+        overflow: visible;
         transform: none;
+    }
+
+    /* PC: メインメニューとサブメニューをヘキサゴン型に */
+    .cMenu__hexagon_sp:nth-child(1) .cMenu__main {
+        clip-path: var(--hexagon);
+        min-width: min(518px, 37.92vw);
+        min-height: min(448px, 32.8vw);
+    }
+
+    .cMenu__hexagon_sp:nth-child(2) .cMenu__sub {
+        clip-path: var(--hexagon);
+        min-width: min(518px, 37.92vw);
+        min-height: min(448px, 32.8vw);
     }
 
     .cMenu__hexagon {
@@ -1032,48 +1055,45 @@ body {
     .cMenu__wrapper {
         --gap: 25px;
         overflow: visible;
-        display: grid;
-        justify-content: flex-start;
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
         height: fit-content;
         padding: 0;
-        margin-top: -12px;
-        margin-left: min(46px, 3.37vw);
+        margin: 0;
     }
 
-    .cMenu__wrapper .cMenu__hexagon:nth-child(2) {
-        --y: calc(50% + 0.5 * var(--gap));
-        --x: calc(75% + 0.87 * var(--gap));
-        transition-delay: calc(0.2s * (3 - 2));
-    }
-
-    .cMenu__wrapper .cMenu__hexagon:nth-child(3) {
-        --y: calc(-50% - 0.5 * var(--gap));
-        --x: calc(75% + 0.87 * var(--gap));
-        transition-delay: calc(0.2s * (4 - 2));
-    }
-
-    .cMenu__wrapper .cMenu__hexagon:nth-child(4) {
-        --y: calc(-100% - var(--gap));
-        transition-delay: calc(0.2s * (5 - 2));
-    }
-
-    .cMenu__wrapper .cMenu__hexagon:nth-child(5) {
-        --y: calc(100% + var(--gap));
-        transition-delay: calc(0.2s * (6 - 2));
+    /* PC: 装飾用ヘキサゴンは非表示（シンプルなデザインのため） */
+    .cMenu__wrapper .cMenu__hexagon {
+        display: none;
     }
 
     .cMenu__main {
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 100%;
+        height: 100%;
         background-color: var(--white);
         padding: 40px;
+    }
+
+    .cMenu__main_inner {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .cMenu__sub {
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 100%;
+        height: 100%;
         background-color: var(--white);
         padding: 40px;
     }
