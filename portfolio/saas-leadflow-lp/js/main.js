@@ -1,11 +1,169 @@
 /**
  * タスクル - メインJavaScript
- * GSAP + ScrollTriggerアニメーション
+ * Three.js + GSAP + ScrollTriggerアニメーション
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     // Lucideアイコンの初期化
     lucide.createIcons();
+
+    // ========================================
+    // Three.js 3D Background
+    // ========================================
+    const canvas = document.getElementById('three-bg');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    camera.position.z = 5;
+
+    // グラデーション背景色
+    scene.background = null; // 透過
+    scene.fog = new THREE.Fog(0x0a0a0a, 1, 15);
+
+    // 波形メッシュ
+    const geometry = new THREE.PlaneGeometry(20, 20, 80, 80);
+    const material = new THREE.ShaderMaterial({
+        uniforms: {
+            uTime: { value: 0 },
+            uMouseX: { value: 0 },
+            uMouseY: { value: 0 }
+        },
+        vertexShader: `
+            uniform float uTime;
+            uniform float uMouseX;
+            uniform float uMouseY;
+            varying vec2 vUv;
+            varying float vElevation;
+
+            void main() {
+                vUv = uv;
+                vec3 pos = position;
+
+                // 波のアニメーション
+                float elevation = sin(pos.x * 0.5 + uTime * 0.5) * 0.5;
+                elevation += sin(pos.y * 0.3 + uTime * 0.3) * 0.3;
+                elevation += sin(pos.x * 0.2 + pos.y * 0.2 + uTime * 0.2) * 0.4;
+
+                // マウスインタラクション
+                float distX = pos.x - uMouseX * 10.0;
+                float distY = pos.y - uMouseY * 10.0;
+                float dist = sqrt(distX * distX + distY * distY);
+                elevation += sin(dist - uTime) * 0.3 * (1.0 - dist / 10.0);
+
+                pos.z = elevation;
+                vElevation = elevation;
+
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+            }
+        `,
+        fragmentShader: `
+            uniform float uTime;
+            varying vec2 vUv;
+            varying float vElevation;
+
+            void main() {
+                // グラデーションカラー (violet → blue → cyan)
+                vec3 color1 = vec3(0.545, 0.361, 0.965); // violet
+                vec3 color2 = vec3(0.231, 0.518, 0.965); // blue
+                vec3 color3 = vec3(0.024, 0.714, 0.831); // cyan
+
+                float mixValue = (vElevation + 1.0) * 0.5;
+                vec3 color = mix(color1, color2, mixValue);
+                color = mix(color, color3, sin(uTime * 0.2 + vUv.x * 2.0) * 0.5 + 0.5);
+
+                float alpha = 0.3 + vElevation * 0.2;
+                gl_FragColor = vec4(color, alpha);
+            }
+        `,
+        transparent: true,
+        wireframe: false
+    });
+
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.rotation.x = -Math.PI * 0.3;
+    mesh.position.z = -3;
+    scene.add(mesh);
+
+    // パーティクルシステム
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 1000;
+    const positions = new Float32Array(particlesCount * 3);
+    const colors = new Float32Array(particlesCount * 3);
+
+    for (let i = 0; i < particlesCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 30;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 30;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 30;
+
+        // ランダムなカラー (violet, blue, cyan, pink)
+        const colorChoice = Math.random();
+        if (colorChoice < 0.25) {
+            colors[i * 3] = 0.545; colors[i * 3 + 1] = 0.361; colors[i * 3 + 2] = 0.965; // violet
+        } else if (colorChoice < 0.5) {
+            colors[i * 3] = 0.231; colors[i * 3 + 1] = 0.518; colors[i * 3 + 2] = 0.965; // blue
+        } else if (colorChoice < 0.75) {
+            colors[i * 3] = 0.024; colors[i * 3 + 1] = 0.714; colors[i * 3 + 2] = 0.831; // cyan
+        } else {
+            colors[i * 3] = 0.925; colors[i * 3 + 1] = 0.282; colors[i * 3 + 2] = 0.6; // pink
+        }
+    }
+
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.05,
+        transparent: true,
+        opacity: 0.8,
+        vertexColors: true,
+        blending: THREE.AdditiveBlending,
+        sizeAttenuation: true
+    });
+
+    const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particles);
+
+    // マウス座標
+    let mouseX = 0;
+    let mouseY = 0;
+
+    document.addEventListener('mousemove', (event) => {
+        mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    // アニメーションループ
+    const clock = new THREE.Clock();
+
+    function animateThree() {
+        const elapsedTime = clock.getElapsedTime();
+
+        // 波形メッシュの更新
+        material.uniforms.uTime.value = elapsedTime;
+        material.uniforms.uMouseX.value = mouseX;
+        material.uniforms.uMouseY.value = mouseY;
+        mesh.rotation.z = elapsedTime * 0.05;
+
+        // パーティクルの回転
+        particles.rotation.y = elapsedTime * 0.05;
+        particles.rotation.x = elapsedTime * 0.02;
+
+        renderer.render(scene, camera);
+        requestAnimationFrame(animateThree);
+    }
+
+    animateThree();
+
+    // リサイズ対応
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    });
 
     // ========================================
     // ヘッダースクロール時の影
