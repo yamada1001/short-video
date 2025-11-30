@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="タスク管理・進捗共有・レポート作成をシンプルに。導入初日から使える、直感的なプロジェクト管理ツールです。">
+    <title>タスクル - チームのタスク、ひと目で分かる。</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0EA5E9',
+              'primary-hover': '#0284C7',
+              accent: '#F97316',
+              'accent-hover': '#EA580C',
+            },
+            fontFamily: {
+              sans: ['Noto Sans JP', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans text-slate-800 bg-white">
+
+    <!-- ヘッダー -->
+    <header class="header fixed top-0 left-0 right-0 bg-white z-50 transition-shadow duration-300">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- ロゴ -->
+                <div class="text-2xl font-bold text-primary">タスクル</div>
+
+                <!-- PC Navigation -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#features" class="text-sm hover:text-primary transition-colors">機能</a>
+                    <a href="#pricing" class="text-sm hover:text-primary transition-colors">料金</a>
+                    <a href="#cases" class="text-sm hover:text-primary transition-colors">導入事例</a>
+                    <a href="#faq" class="text-sm hover:text-primary transition-colors">お知らせ</a>
+                </nav>
+
+                <!-- CTA Buttons -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#cta" class="px-6 py-2 border border-slate-300 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors">資料請求</a>
+                    <a href="#cta" class="px-6 py-2 bg-accent text-white rounded-full text-sm font-medium hover:bg-accent-hover transition-all hover:shadow-lg">無料で始める</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden burger-btn" id="burgerBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="flex flex-col items-center gap-6 py-8">
+                <a href="#features" class="text-lg hover:text-primary transition-colors">機能</a>
+                <a href="#pricing" class="text-lg hover:text-primary transition-colors">料金</a>
+                <a href="#cases" class="text-lg hover:text-primary transition-colors">導入事例</a>
+                <a href="#faq" class="text-lg hover:text-primary transition-colors">お知らせ</a>
+                <div class="flex flex-col gap-4 w-full px-8 mt-4">
+                    <a href="#cta" class="px-6 py-3 border border-slate-300 rounded-full text-center font-medium">資料請求</a>
+                    <a href="#cta" class="px-6 py-3 bg-accent text-white rounded-full text-center font-medium">無料で始める</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero pt-32 pb-20 lg:pt-40 lg:pb-32">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left: Text Content -->
+                <div class="fade-in-section">
+                    <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">
+                        チームのタスク、<br>ひと目で分かる。
+                    </h1>
+                    <p class="text-lg text-slate-600 leading-relaxed mb-8">
+                        タスク管理・進捗共有・レポート作成をシンプルに。<br>
+                        導入初日から使える、直感的なプロジェクト管理ツールです。
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 mb-10">
+                        <a href="#cta" class="px-8 py-4 bg-accent text-white rounded-full font-medium text-center hover:bg-accent-hover transition-all hover:shadow-lg hover:-translate-y-1">無料で試す</a>
+                        <a href="#cta" class="px-8 py-4 border-2 border-slate-300 rounded-full font-medium text-center hover:bg-slate-50 transition-colors">資料をダウンロード</a>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="flex flex-col sm:flex-row gap-6 text-sm text-slate-600">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-primary"></i>
+                            <span>導入社数 <strong class="text-slate-800">1,500社</strong>突破</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="award" class="w-5 h-5 text-primary"></i>
+                            <span>ITreview Grid Award <strong class="text-slate-800">2024</strong> 受賞</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Hero Illustration -->
+                <div class="hero-illustration">
+                    <svg viewBox="0 0 400 300" class="w-full">
+                        <!-- Monitor Frame -->
+                        <rect x="20" y="30" width="360" height="220" rx="8" fill="#E2E8F0"/>
+                        <rect x="30" y="40" width="340" height="190" rx="4" fill="white"/>
+
+                        <!-- Monitor Stand -->
+                        <rect x="160" y="250" width="80" height="4" rx="2" fill="#CBD5E1"/>
+                        <rect x="120" y="254" width="160" height="8" rx="4" fill="#94A3B8"/>
+
+                        <!-- Dashboard Content -->
+                        <!-- Header -->
+                        <rect x="40" y="50" width="320" height="30" rx="4" fill="#0EA5E9"/>
+                        <circle cx="60" cy="65" r="8" fill="white" opacity="0.9"/>
+                        <rect x="80" y="60" width="100" height="10" rx="2" fill="white" opacity="0.8"/>
+
+                        <!-- Kanban Columns -->
+                        <!-- Column 1 -->
+                        <rect x="45" y="95" width="90" height="120" rx="4" fill="#F1F5F9"/>
+                        <rect x="50" y="100" width="80" height="8" rx="2" fill="#0EA5E9" opacity="0.7"/>
+                        <rect x="50" y="115" width="80" height="30" rx="3" fill="white"/>
+                        <rect x="50" y="150" width="80" height="30" rx="3" fill="white"/>
+
+                        <!-- Column 2 -->
+                        <rect x="150" y="95" width="90" height="120" rx="4" fill="#F1F5F9"/>
+                        <rect x="155" y="100" width="80" height="8" rx="2" fill="#0EA5E9" opacity="0.7"/>
+                        <rect x="155" y="115" width="80" height="30" rx="3" fill="white"/>
+                        <rect x="155" y="150" width="80" height="30" rx="3" fill="white"/>
+                        <rect x="155" y="185" width="80" height="30" rx="3" fill="white"/>
+
+                        <!-- Column 3 -->
+                        <rect x="255" y="95" width="90" height="120" rx="4" fill="#F1F5F9"/>
+                        <rect x="260" y="100" width="80" height="8" rx="2" fill="#10B981" opacity="0.7"/>
+                        <rect x="260" y="115" width="80" height="30" rx="3" fill="white"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 導入企業ロゴセクション -->
+    <section class="py-16 bg-slate-50">
+        <div class="container mx-auto px-4 lg:px-8">
+            <h2 class="text-center text-slate-600 text-sm mb-10">多くの企業にご利用いただいています</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center opacity-50">
+                <div class="flex items-center justify-center h-12 bg-white rounded px-4 py-2 text-slate-400 font-semibold">Company A</div>
+                <div class="flex items-center justify-center h-12 bg-white rounded px-4 py-2 text-slate-400 font-semibold">Company B</div>
+                <div class="flex items-center justify-center h-12 bg-white rounded px-4 py-2 text-slate-400 font-semibold">Company C</div>
+                <div class="flex items-center justify-center h-12 bg-white rounded px-4 py-2 text-slate-400 font-semibold">Company D</div>
+                <div class="flex items-center justify-center h-12 bg-white rounded px-4 py-2 text-slate-400 font-semibold">Company E</div>
+                <div class="flex items-center justify-center h-12 bg-white rounded px-4 py-2 text-slate-400 font-semibold">Company F</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 課題提起セクション -->
+    <section class="py-20" id="problems">
+        <div class="container mx-auto px-4 lg:px-8">
+            <h2 class="text-3xl lg:text-4xl font-bold text-center mb-16 fade-in-section">こんなお悩みありませんか？</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Problem 1 -->
+                <div class="problem-card bg-white border border-slate-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="sticky-note" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">タスクが見えない</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">誰が何をしているか分からず、進捗が把握できない</p>
+                </div>
+
+                <!-- Problem 2 -->
+                <div class="problem-card bg-white border border-slate-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="app-window" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">ツールがバラバラ</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">チャット、メール、スプレッドシート…情報が散らばっている</p>
+                </div>
+
+                <!-- Problem 3 -->
+                <div class="problem-card bg-white border border-slate-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="clock" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">報告に時間がかかる</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">週次報告のたびに情報を集めて資料を作るのが大変</p>
+                </div>
+
+                <!-- Problem 4 -->
+                <div class="problem-card bg-white border border-slate-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="wifi-off" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">リモートで把握しづらい</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">在宅勤務のメンバーの状況が見えず不安</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 解決策セクション -->
+    <section class="py-20 bg-slate-50" id="solution">
+        <div class="container mx-auto px-4 lg:px-8">
+            <h2 class="text-3xl lg:text-4xl font-bold text-center mb-20 fade-in-section">タスクルなら、こう変わります</h2>
+
+            <!-- Benefit 1 -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20 fade-in-section">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">チーム全員の状況が、ひと目で分かる</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        カンバンボード形式でタスクを可視化。<br>
+                        誰が・何を・いつまでに、がリアルタイムで共有されます。<br>
+                        もう「あの件どうなった？」と聞く必要はありません。
+                    </p>
+                </div>
+                <div class="order-first lg:order-last">
+                    <div class="bg-white rounded-lg shadow-md p-8">
+                        <svg viewBox="0 0 300 200" class="w-full">
+                            <!-- Kanban Board -->
+                            <rect x="10" y="10" width="80" height="180" rx="4" fill="#F1F5F9"/>
+                            <rect x="15" y="15" width="70" height="10" rx="2" fill="#0EA5E9"/>
+                            <rect x="15" y="30" width="70" height="35" rx="3" fill="white" stroke="#E2E8F0"/>
+                            <rect x="15" y="70" width="70" height="35" rx="3" fill="white" stroke="#E2E8F0"/>
+
+                            <rect x="105" y="10" width="80" height="180" rx="4" fill="#F1F5F9"/>
+                            <rect x="110" y="15" width="70" height="10" rx="2" fill="#F59E0B"/>
+                            <rect x="110" y="30" width="70" height="35" rx="3" fill="white" stroke="#E2E8F0"/>
+                            <rect x="110" y="70" width="70" height="35" rx="3" fill="white" stroke="#E2E8F0"/>
+                            <rect x="110" y="110" width="70" height="35" rx="3" fill="white" stroke="#E2E8F0"/>
+
+                            <rect x="200" y="10" width="80" height="180" rx="4" fill="#F1F5F9"/>
+                            <rect x="205" y="15" width="70" height="10" rx="2" fill="#10B981"/>
+                            <rect x="205" y="30" width="70" height="35" rx="3" fill="white" stroke="#E2E8F0"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20 fade-in-section">
+                <div class="order-last lg:order-first">
+                    <div class="bg-white rounded-lg shadow-md p-8">
+                        <svg viewBox="0 0 300 200" class="w-full">
+                            <!-- Simple UI -->
+                            <rect x="20" y="20" width="260" height="160" rx="8" fill="white" stroke="#E2E8F0" stroke-width="2"/>
+                            <rect x="30" y="30" width="240" height="25" rx="4" fill="#0EA5E9" opacity="0.1"/>
+                            <circle cx="45" cy="42" r="8" fill="#0EA5E9"/>
+                            <rect x="60" y="37" width="100" height="10" rx="2" fill="#0EA5E9"/>
+
+                            <rect x="40" y="70" width="220" height="20" rx="3" fill="#F1F5F9"/>
+                            <rect x="40" y="100" width="220" height="20" rx="3" fill="#F1F5F9"/>
+                            <rect x="40" y="130" width="220" height="20" rx="3" fill="#F1F5F9"/>
+
+                            <circle cx="250" cy="165" r="15" fill="#F97316"/>
+                            <path d="M 245 165 L 255 165 M 250 160 L 250 170" stroke="white" stroke-width="2"/>
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">導入初日から、迷わず使える</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        複雑な設定は不要。直感的なUIで、<br>
+                        ITに詳しくないメンバーでもすぐに使いこなせます。<br>
+                        導入研修のコストを大幅に削減できます。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center fade-in-section">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">週次報告が、3分で完了</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        進捗データから自動でレポートを生成。<br>
+                        グラフや数値も自動で反映されるので、<br>
+                        毎週の報告資料作成から解放されます。
+                    </p>
+                </div>
+                <div class="order-first lg:order-last">
+                    <div class="bg-white rounded-lg shadow-md p-8">
+                        <svg viewBox="0 0 300 200" class="w-full">
+                            <!-- Report -->
+                            <rect x="20" y="20" width="260" height="160" rx="8" fill="white" stroke="#E2E8F0" stroke-width="2"/>
+                            <rect x="40" y="40" width="220" height="15" rx="3" fill="#0EA5E9" opacity="0.2"/>
+                            <rect x="40" y="65" width="150" height="8" rx="2" fill="#CBD5E1"/>
+
+                            <!-- Bar Chart -->
+                            <rect x="50" y="130" width="30" height="30" fill="#0EA5E9" opacity="0.8"/>
+                            <rect x="90" y="110" width="30" height="50" fill="#0EA5E9" opacity="0.8"/>
+                            <rect x="130" y="95" width="30" height="65" fill="#0EA5E9"/>
+                            <rect x="170" y="115" width="30" height="45" fill="#0EA5E9" opacity="0.8"/>
+                            <rect x="210" y="100" width="30" height="60" fill="#0EA5E9" opacity="0.8"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 機能セクション -->
+    <section class="py-20" id="features">
+        <div class="container mx-auto px-4 lg:px-8">
+            <h2 class="text-3xl lg:text-4xl font-bold text-center mb-16 fade-in-section">主な機能</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white border border-slate-200 rounded-lg p-8 hover:shadow-lg transition-all">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="layout-dashboard" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">ダッシュボード</h3>
+                    <p class="text-slate-600">チームの状況をひと目で把握</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white border border-slate-200 rounded-lg p-8 hover:shadow-lg transition-all">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="users" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">メンバー管理</h3>
+                    <p class="text-slate-600">権限設定も柔軟に対応</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white border border-slate-200 rounded-lg p-8 hover:shadow-lg transition-all">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="bell" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">通知・リマインド</h3>
+                    <p class="text-slate-600">期限前に自動でお知らせ</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card bg-white border border-slate-200 rounded-lg p-8 hover:shadow-lg transition-all">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="bar-chart-2" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">レポート出力</h3>
+                    <p class="text-slate-600">ワンクリックで進捗レポート</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card bg-white border border-slate-200 rounded-lg p-8 hover:shadow-lg transition-all">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="calendar" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">カレンダー連携</h3>
+                    <p class="text-slate-600">Googleカレンダーと同期</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card bg-white border border-slate-200 rounded-lg p-8 hover:shadow-lg transition-all">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="shield-check" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">セキュリティ</h3>
+                    <p class="text-slate-600">SSL暗号化・IP制限対応</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 料金セクション -->
+    <section class="py-20 bg-slate-50" id="pricing">
+        <div class="container mx-auto px-4 lg:px-8">
+            <h2 class="text-3xl lg:text-4xl font-bold text-center mb-4 fade-in-section">料金プラン</h2>
+            <p class="text-center text-slate-600 mb-16">14日間の無料トライアル付き。クレジットカード不要で始められます。</p>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Starter Plan -->
+                <div class="pricing-card bg-white rounded-lg border border-slate-200 p-8 hover:shadow-lg transition-all">
+                    <h3 class="text-2xl font-bold mb-4">スターター</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">¥980</span>
+                        <span class="text-slate-600">/ユーザー</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 text-sm">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>タスク数無制限</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>ストレージ 5GB</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>メンバー数 10名まで</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>基本レポート</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>メールサポート</span>
+                        </li>
+                    </ul>
+                    <a href="#cta" class="block w-full px-6 py-3 bg-accent text-white text-center rounded-full font-medium hover:bg-accent-hover transition-all hover:shadow-lg">無料で試す</a>
+                </div>
+
+                <!-- Standard Plan (Featured) -->
+                <div class="pricing-card bg-white rounded-lg border-2 border-primary p-8 hover:shadow-xl transition-all relative">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-medium">人気No.1</div>
+                    <h3 class="text-2xl font-bold mb-4">スタンダード</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">¥1,980</span>
+                        <span class="text-slate-600">/ユーザー</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 text-sm">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>タスク数無制限</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>ストレージ 50GB</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>メンバー数 50名まで</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>高度な分析</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>メール+チャットサポート</span>
+                        </li>
+                    </ul>
+                    <a href="#cta" class="block w-full px-6 py-3 bg-accent text-white text-center rounded-full font-medium hover:bg-accent-hover transition-all hover:shadow-lg">無料で試す</a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card bg-white rounded-lg border border-slate-200 p-8 hover:shadow-lg transition-all">
+                    <h3 class="text-2xl font-bold mb-4">エンタープライズ</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">お問い合わせ</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 text-sm">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>タスク数無制限</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>ストレージ無制限</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>メンバー数無制限</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>カスタム対応</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                            <span>専任担当者</span>
+                        </li>
+                    </ul>
+                    <a href="#cta" class="block w-full px-6 py-3 border-2 border-slate-300 text-center rounded-full font-medium hover:bg-slate-50 transition-colors">お問い合わせ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 導入事例セクション -->
+    <section class="py-20" id="cases">
+        <div class="container mx-auto px-4 lg:px-8">
+            <h2 class="text-3xl lg:text-4xl font-bold text-center mb-16 fade-in-section">導入事例</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Case 1 -->
+                <div class="case-card bg-white border border-slate-200 rounded-lg p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg">Y</div>
+                        <div>
+                            <div class="font-bold">株式会社〇〇製作所</div>
+                            <div class="text-sm text-slate-600">製造業 / 120名</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-slate-700 mb-1">課題</div>
+                        <p class="text-sm text-slate-600">部門間の進捗共有ができず、納期遅延が頻発</p>
+                    </div>
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-slate-700 mb-1">成果</div>
+                        <p class="text-sm text-slate-600">タスクの可視化により納期遵守率が95%に向上</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded text-sm italic text-slate-700">
+                        「導入後、部門間の連携がスムーズになりました。もう以前には戻れません。」
+                        <div class="mt-2 text-xs text-slate-500">- 生産管理部 山田様</div>
+                    </div>
+                </div>
+
+                <!-- Case 2 -->
+                <div class="case-card bg-white border border-slate-200 rounded-lg p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg">S</div>
+                        <div>
+                            <div class="font-bold">株式会社△△コンサルティング</div>
+                            <div class="text-sm text-slate-600">コンサル / 45名</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-slate-700 mb-1">課題</div>
+                        <p class="text-sm text-slate-600">プロジェクトごとに管理方法がバラバラ</p>
+                    </div>
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-slate-700 mb-1">成果</div>
+                        <p class="text-sm text-slate-600">全プロジェクトを一元管理、工数を30%削減</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded text-sm italic text-slate-700">
+                        「シンプルなUIで、コンサルタント全員がすぐに使いこなせました。」
+                        <div class="mt-2 text-xs text-slate-500">- 代表取締役 佐藤様</div>
+                    </div>
+                </div>
+
+                <!-- Case 3 -->
+                <div class="case-card bg-white border border-slate-200 rounded-lg p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg">S</div>
+                        <div>
+                            <div class="font-bold">株式会社□□システム</div>
+                            <div class="text-sm text-slate-600">IT / 200名</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-slate-700 mb-1">課題</div>
+                        <p class="text-sm text-slate-600">リモートワーク移行でタスク管理が混乱</p>
+                    </div>
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-slate-700 mb-1">成果</div>
+                        <p class="text-sm text-slate-600">リモート環境でも進捗が見える化、生産性維持に成功</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded text-sm italic text-slate-700">
+                        「出社していた頃より、むしろ状況把握がしやすくなりました。」
+                        <div class="mt-2 text-xs text-slate-500">- 開発部長 鈴木様</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block px-8 py-3 border-2 border-slate-300 rounded-full font-medium hover:bg-slate-50 transition-colors">もっと見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQセクション -->
+    <section class="py-20 bg-slate-50" id="faq">
+        <div class="container mx-auto px-4 lg:px-8 max-w-3xl">
+            <h2 class="text-3xl lg:text-4xl font-bold text-center mb-16 fade-in-section">よくあるご質問</h2>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item bg-white border border-slate-200 rounded-lg">
+                    <button class="faq-question w-full px-6 py-5 text-left font-semibold flex items-center justify-between">
+                        <span>無料トライアル期間はどのくらいですか？</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 text-slate-600 leading-relaxed">
+                        14日間、すべての機能を無料でお試しいただけます。クレジットカードの登録も不要です。
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-white border border-slate-200 rounded-lg">
+                    <button class="faq-question w-full px-6 py-5 text-left font-semibold flex items-center justify-between">
+                        <span>契約期間の縛りはありますか？</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 text-slate-600 leading-relaxed hidden">
+                        月額プランは1ヶ月単位でいつでも解約可能です。年額プランは1年契約となりますが、2ヶ月分お得になります。
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-white border border-slate-200 rounded-lg">
+                    <button class="faq-question w-full px-6 py-5 text-left font-semibold flex items-center justify-between">
+                        <span>他のツールからデータ移行できますか？</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 text-slate-600 leading-relaxed hidden">
+                        CSVインポート機能により、既存データの移行が可能です。Trello、Asana、Notionからの移行もサポートしています。
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item bg-white border border-slate-200 rounded-lg">
+                    <button class="faq-question w-full px-6 py-5 text-left font-semibold flex items-center justify-between">
+                        <span>セキュリティ対策は万全ですか？</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 text-slate-600 leading-relaxed hidden">
+                        SSL暗号化通信、IP制限、二段階認証に対応。データセンターは国内にあり、ISO27001認証を取得しています。
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item bg-white border border-slate-200 rounded-lg">
+                    <button class="faq-question w-full px-6 py-5 text-left font-semibold flex items-center justify-between">
+                        <span>導入後のサポート体制を教えてください。</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-5 text-slate-600 leading-relaxed hidden">
+                        スタータープランはメールサポート、スタンダード以上はチャットサポートもご利用いただけます。エンタープライズプランは専任担当者がつきます。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTAセクション -->
+    <section class="py-24 bg-gradient-to-br from-sky-50 to-blue-100" id="cta">
+        <div class="container mx-auto px-4 lg:px-8 text-center">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4 fade-in-section">まずは無料でお試しください</h2>
+            <p class="text-lg text-slate-600 mb-10">
+                14日間無料・クレジットカード不要<br>
+                5分で登録完了、すぐに使い始められます
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#" class="px-10 py-4 bg-white text-primary rounded-full font-bold text-lg hover:shadow-xl transition-all hover:-translate-y-1">無料トライアルを始める</a>
+                <a href="#" class="px-10 py-4 border-2 border-white text-slate-700 bg-white/50 rounded-full font-bold text-lg hover:bg-white transition-colors">資料をダウンロード</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-slate-800 text-white py-16">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Logo & Description -->
+                <div>
+                    <div class="text-2xl font-bold mb-4">タスクル</div>
+                    <p class="text-sm text-slate-400">チームのタスク管理を<br>シンプルに。</p>
+                </div>
+
+                <!-- Product -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-sm uppercase tracking-wider">製品</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#features" class="text-slate-400 hover:text-white transition-colors">機能</a></li>
+                        <li><a href="#pricing" class="text-slate-400 hover:text-white transition-colors">料金</a></li>
+                        <li><a href="#cases" class="text-slate-400 hover:text-white transition-colors">導入事例</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">セキュリティ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-sm uppercase tracking-wider">会社情報</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">会社概要</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">採用情報</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">ニュース</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-sm uppercase tracking-wider">サポート</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">ヘルプセンター</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">お問い合わせ</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">ステータス</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-slate-400">© 2024 Taskle Inc. All rights reserved.</p>
+                <div class="flex gap-6 text-sm">
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors">利用規約</a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors">プライバシーポリシー</a>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center hover:bg-slate-600 transition-colors">
+                        <i data-lucide="twitter" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center hover:bg-slate-600 transition-colors">
+                        <i data-lucide="facebook" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center hover:bg-slate-600 transition-colors">
+                        <i data-lucide="linkedin" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
