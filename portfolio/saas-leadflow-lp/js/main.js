@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     camera.position.z = 5;
 
-    // グラデーション背景色
-    scene.background = null; // 透過
-    scene.fog = new THREE.Fog(0x0a0a0a, 1, 15);
+    // 薄いグレー背景
+    scene.background = new THREE.Color(0xf8fafc); // slate-50相当
+    scene.fog = new THREE.Fog(0xf8fafc, 5, 20);
 
-    // 波形メッシュ
+    // 波形メッシュ（控えめな色）
     const geometry = new THREE.PlaneGeometry(20, 20, 80, 80);
     const material = new THREE.ShaderMaterial({
         uniforms: {
@@ -42,16 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 vUv = uv;
                 vec3 pos = position;
 
-                // 波のアニメーション
-                float elevation = sin(pos.x * 0.5 + uTime * 0.5) * 0.5;
-                elevation += sin(pos.y * 0.3 + uTime * 0.3) * 0.3;
-                elevation += sin(pos.x * 0.2 + pos.y * 0.2 + uTime * 0.2) * 0.4;
+                // 波のアニメーション（より緩やかに）
+                float elevation = sin(pos.x * 0.4 + uTime * 0.3) * 0.3;
+                elevation += sin(pos.y * 0.25 + uTime * 0.25) * 0.2;
+                elevation += sin(pos.x * 0.15 + pos.y * 0.15 + uTime * 0.15) * 0.25;
 
-                // マウスインタラクション
-                float distX = pos.x - uMouseX * 10.0;
-                float distY = pos.y - uMouseY * 10.0;
+                // マウスインタラクション（弱め）
+                float distX = pos.x - uMouseX * 8.0;
+                float distY = pos.y - uMouseY * 8.0;
                 float dist = sqrt(distX * distX + distY * distY);
-                elevation += sin(dist - uTime) * 0.3 * (1.0 - dist / 10.0);
+                elevation += sin(dist - uTime) * 0.2 * (1.0 - dist / 12.0);
 
                 pos.z = elevation;
                 vElevation = elevation;
@@ -65,16 +65,16 @@ document.addEventListener('DOMContentLoaded', () => {
             varying float vElevation;
 
             void main() {
-                // グラデーションカラー (violet → blue → cyan)
-                vec3 color1 = vec3(0.545, 0.361, 0.965); // violet
-                vec3 color2 = vec3(0.231, 0.518, 0.965); // blue
-                vec3 color3 = vec3(0.024, 0.714, 0.831); // cyan
+                // 薄いグラデーション (薄い青〜シアン)
+                vec3 color1 = vec3(0.85, 0.88, 0.95); // 薄いバイオレット
+                vec3 color2 = vec3(0.88, 0.92, 0.98); // 薄いブルー
+                vec3 color3 = vec3(0.90, 0.95, 0.98); // 薄いシアン
 
                 float mixValue = (vElevation + 1.0) * 0.5;
                 vec3 color = mix(color1, color2, mixValue);
-                color = mix(color, color3, sin(uTime * 0.2 + vUv.x * 2.0) * 0.5 + 0.5);
+                color = mix(color, color3, sin(uTime * 0.15 + vUv.x * 1.5) * 0.5 + 0.5);
 
-                float alpha = 0.3 + vElevation * 0.2;
+                float alpha = 0.08 + vElevation * 0.08; // 非常に薄く
                 gl_FragColor = vec4(color, alpha);
             }
         `,
@@ -87,9 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
     mesh.position.z = -3;
     scene.add(mesh);
 
-    // パーティクルシステム
+    // パーティクルシステム（大幅削減＋薄い色）
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 1000;
+    const particlesCount = 150; // 1000→150に削減
     const positions = new Float32Array(particlesCount * 3);
     const colors = new Float32Array(particlesCount * 3);
 
@@ -98,16 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
         positions[i * 3 + 1] = (Math.random() - 0.5) * 30;
         positions[i * 3 + 2] = (Math.random() - 0.5) * 30;
 
-        // ランダムなカラー (violet, blue, cyan, pink)
+        // 薄い白〜グレー系のカラー
         const colorChoice = Math.random();
-        if (colorChoice < 0.25) {
-            colors[i * 3] = 0.545; colors[i * 3 + 1] = 0.361; colors[i * 3 + 2] = 0.965; // violet
-        } else if (colorChoice < 0.5) {
-            colors[i * 3] = 0.231; colors[i * 3 + 1] = 0.518; colors[i * 3 + 2] = 0.965; // blue
-        } else if (colorChoice < 0.75) {
-            colors[i * 3] = 0.024; colors[i * 3 + 1] = 0.714; colors[i * 3 + 2] = 0.831; // cyan
+        if (colorChoice < 0.5) {
+            // 薄い白
+            colors[i * 3] = 0.95; colors[i * 3 + 1] = 0.96; colors[i * 3 + 2] = 0.98;
         } else {
-            colors[i * 3] = 0.925; colors[i * 3 + 1] = 0.282; colors[i * 3 + 2] = 0.6; // pink
+            // 薄いグレー
+            colors[i * 3] = 0.88; colors[i * 3 + 1] = 0.90; colors[i * 3 + 2] = 0.93;
         }
     }
 
@@ -115,9 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
     particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.05,
+        size: 0.04,
         transparent: true,
-        opacity: 0.8,
+        opacity: 0.3, // 0.8→0.3に削減
         vertexColors: true,
         blending: THREE.AdditiveBlending,
         sizeAttenuation: true
