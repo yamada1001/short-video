@@ -123,7 +123,12 @@
       "Bash(do echo \"=== $f ===\")",
       "Bash(git diff-tree:*)",
       "WebFetch(domain:www.anthropic.com)",
-      "Bash(npm init:*)"
+      "Bash(npm init:*)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com push --force)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff portfolio/saas-leadflow-lp/index.php)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff portfolio/saas-leadflow-lp/assets/css/style.css)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com rm portfolio/saas-leadflow-lp/index.php portfolio/saas-leadflow-lp/assets/css/style.css portfolio/saas-leadflow-lp/assets/js/awwwards.js)",
+      "Bash(xargs:*)"
     ],
     "deny": [],
     "ask": []
