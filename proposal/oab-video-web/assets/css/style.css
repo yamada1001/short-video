@@ -978,7 +978,7 @@ a.team-name:hover {
     /* 表紙と最終セクションは特別 */
     .section--cover,
     .section--contact {
-        background: var(--color-dark-bg);
+        background: var(--color-dark-bg) !important;
         color: #fff;
     }
 
