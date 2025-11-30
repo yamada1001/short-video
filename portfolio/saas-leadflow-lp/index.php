@@ -1,11 +1,20 @@
+<?php
+// LeadFlow - SaaS CRM LP
+http_response_code(200);
+
+// メタデータ
+$page_title = 'LeadFlow - 営業チームの生産性を最大化するCRM';
+$page_description = 'LeadFlow - 営業チームの生産性を最大化するCRMツール。直感的なUI、簡単な導入、充実したサポートで営業活動を加速します。';
+$gtm_id = 'GTM-T7NGQDC2';
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="LeadFlow - 営業チームの生産性を最大化するCRMツール。直感的なUI、簡単な導入、充実したサポートで営業活動を加速します。">
-    <title>LeadFlow - 営業チームの生産性を最大化するCRM</title>
+    <meta name="description" content="<?php echo htmlspecialchars($page_description); ?>">
+    <title><?php echo htmlspecialchars($page_title); ?></title>
 
     <!-- Google Tag Manager -->
     <script>
@@ -13,7 +22,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     </script>
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=GTM-T7NGQDC2"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=<?php echo htmlspecialchars($gtm_id); ?>"></script>
 
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

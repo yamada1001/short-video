@@ -1,3 +1,6 @@
+# デフォルトページ設定
+DirectoryIndex index.php
+
 # Basic認証（一時的に無効化）
 # AuthType Basic
 # AuthName "Portfolio Access Required"
