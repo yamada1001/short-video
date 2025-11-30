@@ -1065,9 +1065,25 @@ body {
         margin: 0;
     }
 
-    /* PC: 装飾用ヘキサゴンは非表示（シンプルなデザインのため） */
+    /* PC: 装飾用ヘキサゴンを段階的に表示 */
     .cMenu__wrapper .cMenu__hexagon {
-        display: none;
+        opacity: 0;
+        transition: opacity 0.8s var(--ease-in-out) calc(0.2s * var(--index, 1));
+    }
+
+    .menu-open .cMenu__wrapper .cMenu__hexagon {
+        opacity: 1;
+    }
+
+    /* 各装飾ヘキサゴンに遅延時間を設定 */
+    .cMenu__hexagon:nth-child(4) {
+        --index: 1;
+        --y: calc(-100% - var(--gap));
+    }
+
+    .cMenu__hexagon:nth-child(5) {
+        --index: 2;
+        --y: calc(100% + var(--gap));
     }
 
     .cMenu__main {
