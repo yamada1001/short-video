@@ -102,37 +102,6 @@
 }
 
 /* ========================================
-   ブロブシェイプ
-   ======================================== */
-.blob {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    filter: blur(60px);
-    opacity: 0.5;
-}
-
-.blob-1 {
-    top: -10%;
-    right: -5%;
-}
-
-.blob-2 {
-    bottom: -10%;
-    left: -5%;
-}
-
-/* ========================================
-   グリッドパターン背景
-   ======================================== */
-.bg-grid-pattern {
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-}
-
-/* ========================================
    グロー効果
    ======================================== */
 .glow-button {
