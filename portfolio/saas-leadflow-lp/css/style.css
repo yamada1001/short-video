@@ -111,30 +111,34 @@
 /* ========================================
    グラスモーフィズム（視認性向上）
    ======================================== */
-section {
+body {
     position: relative;
-    margin: 0;
 }
 
-section::before {
+/* 全体に統一した半透明背景を適用 */
+body::before {
     content: '';
-    position: absolute;
-    top: -1px; /* 境界を隠すために-1px */
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
-    bottom: -1px; /* 境界を隠すために-1px */
-    background: rgba(255, 255, 255, 0.6);
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    z-index: -1;
+    z-index: 1;
     pointer-events: none;
 }
 
-/* ヒーローセクションは透明度を下げる */
-.hero::before {
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+/* すべてのコンテンツを背景より前面に */
+header, section, footer {
+    position: relative;
+    z-index: 2;
+}
+
+section {
+    margin: 0;
+    border: none;
 }
 
 /* ========================================
