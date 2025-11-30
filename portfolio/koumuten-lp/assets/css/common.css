@@ -1,0 +1,724 @@
+/**
+ * 工務店LP - 共通スタイル
+ * HONEYCOMB.LABOのデザインシステムをベースにした工務店向けカスタマイズ
+ */
+
+/* ========================================
+   リセットCSS（Modern CSS Reset）
+   ======================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* ========================================
+   CSS変数（デザインシステム）
+   ======================================== */
+:root {
+    /* カラーパレット */
+    --black: #000000;
+    --black-base: #111111;
+    --black-checked: #333333;
+
+    --gray: #efefef;
+    --gray-light: #f1f1f1;
+    --gray-dark: #ededed;
+    --gray-black: #bfbfbf;
+
+    --white: #fff;
+    --white-gray: #fcfcfc;
+
+    --brown: #1a1311;
+    --brown-light: #5a4a42;
+
+    --beige-light: #f7f6f2;
+    --beige: #ebe8db;
+
+    --wood-dark: #3e2723;      /* 工務店向け：ダークウッド */
+    --wood-medium: #6d4c41;    /* 工務店向け：ミディアムウッド */
+    --wood-light: #a1887f;     /* 工務店向け：ライトウッド */
+
+    --green-accent: #4a7c59;   /* 工務店向け：自然の緑 */
+    --green-light: #81c784;    /* 工務店向け：ライトグリーン */
+
+    --red-error: #ff5000;
+
+    /* フォント */
+    --font-ja: "Noto Sans JP", sans-serif;
+    --font-en: "Work Sans", sans-serif;
+
+    --font-light: 300;
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+
+    /* ハニカム（六角形）クリップパス */
+    --hexagon: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+
+    /* アニメーション */
+    --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+    --ease-in-out: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+    /* z-index管理 */
+    --z-base: 0;
+    --z-header-logo: 101;
+    --z-header-contact: 102;
+    --z-menu: 103;
+    --z-header-button: 104;
+    --z-modal: 105;
+    --z-opening: 106;
+
+    /* ホバーエフェクト */
+    --hover-opacity: 0.5;
+}
+
+/* ========================================
+   基本スタイル
+   ======================================== */
+body {
+    font-family: var(--font-ja);
+    color: var(--black-base);
+    background-color: var(--white);
+    overflow-x: hidden;
+}
+
+/* ========================================
+   レスポンシブ制御
+   ======================================== */
+.sp {
+    display: block;
+}
+
+.md {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .sp {
+        display: none;
+    }
+
+    .md {
+        display: block;
+    }
+}
+
+/* ========================================
+   ユーティリティクラス
+   ======================================== */
+.visuallyHidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+.preload * {
+    transition: none !important;
+}
+
+/* ========================================
+   コンテナ
+   ======================================== */
+.cContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.cMain {
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ========================================
+   ホバーエフェクト
+   ======================================== */
+.cHover__opacity {
+    transition: opacity 0.4s var(--ease-in-out);
+}
+
+.cHover__opacity:hover {
+    opacity: var(--hover-opacity);
+    transition: opacity 0.4s var(--ease-out);
+}
+
+.cHover__underline {
+    position: relative;
+    overflow: hidden;
+}
+
+.cHover__underline::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: var(--black);
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.5s var(--ease-out);
+}
+
+.cHover__underline:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+/* ========================================
+   ヘキサゴン（六角形）クリップパス
+   ======================================== */
+.cHexagon {
+    clip-path: var(--hexagon);
+    overflow: hidden;
+}
+
+/* ========================================
+   アニメーション
+   ======================================== */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scrollDown {
+    0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0);
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(80px) rotate(-360deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(80px) rotate(-360deg);
+    }
+}
+
+@keyframes yura {
+    0% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(-5deg);
+    }
+}
+
+/* ========================================
+   スクロールインジケーター
+   ======================================== */
+.cScroll {
+    position: absolute;
+    bottom: 40px;
+    left: 6.93vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.cScroll__text {
+    writing-mode: vertical-rl;
+    font-family: var(--font-en);
+    font-size: 0.625rem;
+    font-weight: var(--font-medium);
+    line-height: 1.2;
+}
+
+.cScroll__bar {
+    position: relative;
+    width: 1px;
+    height: 80px;
+    background-color: var(--black-base);
+}
+
+.cScroll__bar_hexagon {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 5px);
+    width: 10px;
+    height: 9px;
+    clip-path: var(--hexagon);
+    background-color: var(--brown);
+    opacity: 0;
+    animation: scrollDown 3s var(--ease-in-out) infinite;
+}
+
+@media screen and (min-width: 768px) {
+    .cScroll {
+        left: 3.66vw;
+    }
+}
+
+/* ========================================
+   ヘッダー
+   ======================================== */
+.cHeader {
+    padding: 22px 6.67vw 0;
+    position: relative;
+}
+
+.cHeader__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.cHeader__leftWrapper {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.cHeader__logo {
+    position: relative;
+    z-index: var(--z-header-logo);
+}
+
+.cHeader__logo_text {
+    font-size: 1.5rem;
+    font-weight: var(--font-bold);
+    color: var(--wood-dark);
+    letter-spacing: 0.05em;
+}
+
+.cHeader__info {
+    font-family: var(--font-en);
+    font-weight: var(--font-medium);
+    margin-top: -7px;
+}
+
+.cHeader__info_address {
+    font-size: 0.6875rem;
+    line-height: 1.2;
+}
+
+.cHeader__info_contact {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cHeader__info_contact--tel {
+    font-size: 0.75rem;
+    line-height: 1.2;
+    pointer-events: none;
+}
+
+.cHeader__info_contact--hour {
+    font-size: 0.625rem;
+    line-height: 1.2;
+}
+
+/* お問い合わせボタン */
+.cHeader__contact {
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 0 56px;
+    z-index: var(--z-header-contact);
+}
+
+.cHeader__contact_link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: var(--wood-dark);
+    clip-path: polygon(
+        calc(0% + 15px) 0%,
+        calc(100% - 15px) 0%,
+        100% 50%,
+        calc(100% - 15px) 100%,
+        calc(0% + 15px) 100%,
+        0% 50%
+    );
+}
+
+.cHeader__contact_text {
+    font-size: 1rem;
+    font-weight: var(--font-medium);
+    letter-spacing: 0.05em;
+    color: var(--white);
+}
+
+/* ハンバーガーメニューボタン */
+.cHeader__button {
+    z-index: var(--z-header-button);
+    position: fixed;
+    top: 34px;
+    right: 6.67vw;
+    width: 51px;
+    height: 20px;
+}
+
+.cHeader__button_line {
+    position: absolute;
+    width: 39px;
+    height: 1px;
+    background-color: var(--black);
+    transition: all 0.4s var(--ease-out);
+}
+
+.cHeader__button_line:nth-of-type(1) {
+    top: 0;
+    left: 0;
+}
+
+.cHeader__button_line:nth-of-type(2) {
+    top: 50%;
+    left: calc(50% - 19.5px);
+}
+
+.cHeader__button_line:nth-of-type(3) {
+    top: 100%;
+    left: 12px;
+}
+
+@media screen and (min-width: 768px) {
+    .cHeader {
+        padding: 55px 3.66vw 0;
+    }
+
+    .cHeader__logo_text {
+        font-size: 1.75rem;
+    }
+
+    .cHeader__contact {
+        position: fixed;
+        top: 52px;
+        left: auto;
+        right: calc(3.66vw + 78px + 1.17vw);
+        bottom: auto;
+        width: 186px;
+        padding: 0;
+    }
+
+    .cHeader__contact_link {
+        height: 40px;
+        clip-path: polygon(
+            calc(0% + 12px) 0%,
+            calc(100% - 12px) 0%,
+            100% 50%,
+            calc(100% - 12px) 100%,
+            calc(0% + 12px) 100%,
+            0% 50%
+        );
+    }
+
+    .cHeader__contact_text {
+        font-size: 0.875rem;
+    }
+
+    .cHeader__button {
+        top: 71px;
+        right: 3.66vw;
+        width: 78px;
+        height: 31px;
+    }
+
+    .cHeader__button_line {
+        width: 60px;
+    }
+
+    .cHeader__button_line:nth-of-type(2) {
+        left: calc(50% - 30px);
+    }
+
+    .cHeader__button_line:nth-of-type(3) {
+        left: 18px;
+    }
+
+    .cHeader__button:hover .cHeader__button_line:nth-of-type(1) {
+        transform: translateY(-4px);
+    }
+
+    .cHeader__button:hover .cHeader__button_line:nth-of-type(3) {
+        transform: translateY(4px);
+    }
+}
+
+/* ========================================
+   フッター
+   ======================================== */
+.cFooter {
+    padding: 67px 10.4vw 60px;
+    background-color: var(--beige-light);
+}
+
+.cFooter__inner {
+    position: relative;
+}
+
+.cFooter__info {
+    font-size: 0.75rem;
+    font-weight: var(--font-medium);
+}
+
+.cFooter__info_underline {
+    position: relative;
+    width: fit-content;
+    font-family: var(--font-en);
+    line-height: 1.2;
+}
+
+.cFooter__info_underline::before {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: var(--black-base);
+}
+
+.cFooter__info_name {
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+}
+
+.cFooter__info_address {
+    font-weight: var(--font-regular);
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+}
+
+.cFooter__info_map {
+    margin-top: 8px;
+}
+
+.cFooter__info_number {
+    display: flex;
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.cFooter__info_hour {
+    font-weight: var(--font-regular);
+    margin-top: 8px;
+}
+
+.cFooter__info_hour .hour {
+    font-family: var(--font-en);
+    line-height: 1.2;
+}
+
+.cFooter__info_hour .holiday {
+    display: inline-block;
+    font-size: 0.625rem;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    margin-left: -4px;
+}
+
+.cFooter__info_license {
+    font-size: 0.625rem;
+    font-weight: var(--font-regular);
+    line-height: 1.8;
+    margin-top: 15px;
+}
+
+.cFooter__rightWrapper {
+    margin-top: 54px;
+}
+
+.cFooter__logo {
+    font-size: 1.5rem;
+    font-weight: var(--font-bold);
+    color: var(--wood-dark);
+}
+
+.cFooter small {
+    display: block;
+    font-family: var(--font-en);
+    font-size: 0.6875rem;
+    font-weight: var(--font-medium);
+    line-height: 1.2;
+    margin-top: 17px;
+}
+
+.cFooter__pageTop {
+    position: absolute;
+    top: 4px;
+    right: 1px;
+}
+
+.cFooter__pageTop_arrow {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 17px;
+}
+
+.cFooter__pageTop_arrow span:first-of-type {
+    display: block;
+    width: 1px;
+    height: 43px;
+    background-color: var(--black-base);
+}
+
+.cFooter__pageTop_arrow span:last-of-type {
+    position: absolute;
+    top: 1px;
+    left: calc(50% - 6.5px);
+    width: 13px;
+    height: 13px;
+    background-color: transparent;
+    border-top: solid 1px var(--black-base);
+    border-left: solid 1px var(--black-base);
+    transform: rotate(45deg);
+}
+
+.cFooter__pageTop_text {
+    writing-mode: vertical-rl;
+    font-family: var(--font-en);
+    font-size: 0.625rem;
+    font-weight: var(--font-medium);
+    line-height: 1.2;
+    margin-top: 4px;
+}
+
+@media screen and (min-width: 768px) {
+    .cFooter {
+        border-top: solid 1px var(--black-base);
+        padding: 78px 0 75px;
+        margin: 0 9.74vw;
+    }
+
+    .cFooter__inner {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .cFooter__leftWrapper {
+        display: flex;
+        gap: 65px;
+    }
+
+    .cFooter__nav {
+        font-family: var(--font-en);
+        font-size: 0.875rem;
+        font-weight: var(--font-medium);
+        line-height: 1.2;
+        margin: 2px -7.5px;
+    }
+
+    .cFooter__nav_wrapper {
+        display: flex;
+        gap: 20px;
+    }
+
+    .cFooter__nav_item {
+        padding: 0 7.5px;
+    }
+
+    .cFooter__rightWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 2px;
+        margin-left: 30px;
+    }
+
+    .cFooter__logo {
+        font-size: 1.75rem;
+    }
+
+    .cFooter small {
+        margin-top: 0;
+    }
+
+    .cFooter__pageTop_arrow span {
+        transition: transform 0.4s var(--ease-out);
+    }
+
+    .cFooter__pageTop_arrow span:first-of-type {
+        transform-origin: bottom;
+    }
+
+    .cFooter__pageTop:hover .cFooter__pageTop_arrow span:first-of-type {
+        transform: scaleY(1.1);
+    }
+
+    .cFooter__pageTop:hover .cFooter__pageTop_arrow span:last-of-type {
+        transform: rotate(45deg) translate(-3px, -3px);
+    }
+
+    .cFooter__info_number {
+        pointer-events: none;
+    }
+}

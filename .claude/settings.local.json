@@ -128,7 +128,11 @@
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff portfolio/saas-leadflow-lp/index.php)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff portfolio/saas-leadflow-lp/assets/css/style.css)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com rm portfolio/saas-leadflow-lp/index.php portfolio/saas-leadflow-lp/assets/css/style.css portfolio/saas-leadflow-lp/assets/js/awwwards.js)",
-      "Bash(xargs:*)"
+      "Bash(xargs:*)",
+      "WebFetch(domain:mihoncho.com)",
+      "WebFetch(domain:www.ozaki-koumuten.jp)",
+      "WebFetch(domain:imamura-k.co.jp)",
+      "WebFetch(domain:www.hikarikoumuten.com)"
     ],
     "deny": [],
     "ask": []
