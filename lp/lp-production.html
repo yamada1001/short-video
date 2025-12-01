@@ -162,12 +162,103 @@
     }
 
     .hero-inner {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       width: 100%;
       position: relative;
       z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
     }
+
+    .hero-content {
+      /* Left column for text */
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-mockup {
+      width: 100%;
+      height: 100%;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      position: relative;
+      transform: perspective(1000px) rotateY(-5deg);
+      transition: transform 0.6s var(--ease);
+    }
+
+    .hero-mockup:hover {
+      transform: perspective(1000px) rotateY(0deg) scale(1.02);
+    }
+
+    .hero-mockup::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
+      border-bottom: 1px solid #d0d0d0;
+      z-index: 10;
+    }
+
+    .hero-mockup::after {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff5f56;
+      box-shadow:
+        20px 0 0 #ffbd2e,
+        40px 0 0 #27c93f;
+      z-index: 11;
+    }
+
+    .hero-mockup-content {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 40px);
+      padding: 40px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #FFF9F0 0%, #FFF5E6 100%);
+    }
+
+    .mockup-text {
+      font-size: 48px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .mockup-bar {
+      width: 80%;
+      height: 12px;
+      background: rgba(139, 69, 19, 0.1);
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .mockup-bar:nth-child(2) { width: 60%; }
+    .mockup-bar:nth-child(3) { width: 90%; }
 
     .hero-catchcopy {
       font-size: clamp(48px, 8vw, 96px);
@@ -928,6 +1019,55 @@
       color: var(--color-secondary);
     }
 
+    /* Loading Screen */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      transition: opacity 0.6s var(--ease), visibility 0.6s var(--ease);
+    }
+
+    .loading-screen.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loading-logo {
+      font-family: var(--font-accent);
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--color-primary);
+      margin-bottom: 32px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(0.98); }
+    }
+
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--color-border);
+      border-top-color: var(--color-accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     /* Modal */
     .modal {
       position: fixed;
@@ -1044,6 +1184,21 @@
     }
 
     /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-visual {
+        height: 400px;
+      }
+
+      .hero-mockup {
+        transform: perspective(1000px) rotateY(0deg);
+      }
+    }
+
     @media (max-width: 768px) {
       .header-inner {
         padding: 16px 20px;
@@ -1053,12 +1208,29 @@
         padding: 100px 20px 60px;
       }
 
+      .hero-catchcopy {
+        font-size: clamp(32px, 10vw, 56px);
+      }
+
       .section {
         padding: 60px 20px;
       }
 
+      .section-number {
+        font-size: clamp(80px, 20vw, 160px);
+        top: 20px;
+      }
+
       .comparison-grid {
         grid-template-columns: 1fr;
+      }
+
+      .comparison-column {
+        transform: none;
+      }
+
+      .comparison-column.highlight {
+        transform: none;
       }
 
       .pricing-grid,
@@ -1083,6 +1255,12 @@
 </head>
 <body>
 
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-logo">YOJITU.COM</div>
+    <div class="loading-spinner"></div>
+  </div>
+
   <!-- Header -->
   <header class="header">
     <div class="header-inner">
@@ -1094,26 +1272,39 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-inner">
-      <h1 class="hero-catchcopy" id="catchcopy">
-        <!-- A/Bテストで動的に挿入 -->
-      </h1>
-      <div class="hero-features">
-        <span class="feature-badge">
-          <i class="fas fa-yen-sign feature-icon"></i>
-          5万円〜10万円
-        </span>
-        <span class="feature-badge">
-          <i class="fas fa-bolt feature-icon"></i>
-          最短3営業日
-        </span>
-        <span class="feature-badge">
-          <i class="fas fa-microchip feature-icon"></i>
-          AI活用
-        </span>
+      <div class="hero-content">
+        <h1 class="hero-catchcopy" id="catchcopy">
+          <!-- A/Bテストで動的に挿入 -->
+        </h1>
+        <div class="hero-features">
+          <span class="feature-badge">
+            <i class="fas fa-yen-sign feature-icon"></i>
+            5万円〜10万円
+          </span>
+          <span class="feature-badge">
+            <i class="fas fa-bolt feature-icon"></i>
+            最短3営業日
+          </span>
+          <span class="feature-badge">
+            <i class="fas fa-microchip feature-icon"></i>
+            AI活用
+          </span>
+        </div>
+        <div class="hero-cta-group">
+          <a href="#contact" class="btn-primary" onclick="openModal(event)">無料相談する</a>
+          <a href="https://line.me/R/ti/p/@123abcde" class="btn-secondary" target="_blank" rel="noopener">LINEで相談</a>
+        </div>
       </div>
-      <div class="hero-cta-group">
-        <a href="#contact" class="btn-primary" onclick="openModal(event)">無料相談する</a>
-        <a href="https://line.me/R/ti/p/@123abcde" class="btn-secondary" target="_blank" rel="noopener">LINEで相談</a>
+      <div class="hero-visual">
+        <div class="hero-mockup">
+          <div class="hero-mockup-content">
+            <div class="mockup-text">LP</div>
+            <div class="mockup-bar"></div>
+            <div class="mockup-bar"></div>
+            <div class="mockup-bar"></div>
+            <div class="mockup-bar"></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1520,9 +1711,9 @@
   <script>
     // A/Bテスト管理
     const catchCopies = {
-      1: 'あなたの商品、ちゃんと伝わっていますか？\n\n「もっと知ってほしい」を形にする、\n特別な1ページ。5万円〜、最短3日。',
-      2: '伝えたいことがある。\nでも、どう届けたらいいかわからない。\n\nこの想いを、1枚のページで届けませんか？\n5万円〜、最短3日。',
-      6: 'もっと多くの人に、この良さを知ってもらいたい。\n\nそんな想いを、形にします。\n5万円〜、最短3日。'
+      1: 'あなたの商品、ちゃんと伝わっていますか？\n5万円〜、最短3日でLPを。',
+      2: '伝えたいことを、届けたい人へ。\n5万円〜、最短3日でLPを。',
+      6: 'その想いを、形にします。\n5万円〜、最短3日でLPを。'
     };
 
     // LocalStorageからパターンを取得、なければランダム割り当て
@@ -1537,6 +1728,13 @@
     // キャッチコピーを挿入
     document.getElementById('catchcopy').innerHTML = catchCopies[pattern].replace(/\n/g, '<br>');
 
+    // Loading Screen
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loadingScreen').classList.add('loaded');
+      }, 800);
+    });
+
     // GSAP Animations
     gsap.registerPlugin(ScrollTrigger);
 
@@ -1547,6 +1745,7 @@
     gsap.set('.hero-catchcopy', { opacity: 0, y: 60, scale: 0.95 });
     gsap.set('.hero-features', { opacity: 0, y: 40 });
     gsap.set('.hero-cta-group', { opacity: 0, y: 40 });
+    gsap.set('.hero-mockup', { opacity: 0, x: 100, rotateY: -15 });
 
     heroTimeline
       .to('.hero-catchcopy', {
@@ -1554,7 +1753,7 @@
         y: 0,
         scale: 1,
         duration: 1.2,
-        delay: 0.3,
+        delay: 1,
         ease: 'back.out(1.2)'
       })
       .to('.hero-features', {
@@ -1567,7 +1766,14 @@
         opacity: 1,
         y: 0,
         duration: 1
-      }, '-=0.7');
+      }, '-=0.7')
+      .to('.hero-mockup', {
+        opacity: 1,
+        x: 0,
+        rotateY: -5,
+        duration: 1.2,
+        ease: 'power3.out'
+      }, '-=1.5');
 
     // Scroll Animations - Cards (より滑らかに)
     gsap.utils.toArray('.problem-card').forEach((card, i) => {
