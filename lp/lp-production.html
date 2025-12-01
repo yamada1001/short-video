@@ -321,25 +321,26 @@
 
     .section-illustration {
       position: absolute;
-      width: 250px;
-      height: 250px;
-      opacity: 0.08;
+      width: 400px;
+      height: 400px;
+      opacity: 0.25;
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
+      filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.05));
     }
 
     .section-illustration-top-right {
-      top: 40px;
-      right: 5%;
+      top: 80px;
+      right: 8%;
     }
 
     .section-illustration-top-left {
-      top: 60px;
-      left: 5%;
+      top: 80px;
+      left: 8%;
     }
 
     .section-illustration-bottom-right {
-      bottom: 60px;
+      bottom: 80px;
       right: 8%;
     }
 
@@ -360,6 +361,8 @@
     .section-inner {
       max-width: 1000px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
 
     .section-title {
