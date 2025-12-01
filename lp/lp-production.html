@@ -710,14 +710,14 @@
 
     .comparison-column {
       padding: 64px 48px;
-      background: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.75);
       backdrop-filter: blur(40px) saturate(180%);
       border-radius: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.6);
       transition: all 0.5s var(--ease);
       box-shadow:
-        0 8px 32px rgba(139, 69, 19, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        0 8px 32px rgba(139, 69, 19, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
       position: relative;
       z-index: 10;
     }
@@ -725,27 +725,27 @@
     .comparison-column:hover {
       transform: translateY(-8px);
       box-shadow:
-        0 16px 48px rgba(139, 69, 19, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
-      background: rgba(255, 255, 255, 0.5);
-      border-color: rgba(255, 255, 255, 0.7);
+        0 16px 48px rgba(139, 69, 19, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+      background: rgba(255, 255, 255, 0.85);
+      border-color: rgba(255, 255, 255, 0.8);
     }
 
     .comparison-column.highlight {
-      background: rgba(255, 249, 240, 0.5);
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      background: rgba(255, 252, 245, 0.85);
+      border: 1px solid rgba(16, 185, 129, 0.4);
       position: relative;
       transform: scale(1.02);
       box-shadow:
-        0 12px 40px rgba(16, 185, 129, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        0 0 0 1px rgba(16, 185, 129, 0.1);
+        0 12px 40px rgba(16, 185, 129, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        0 0 0 1px rgba(16, 185, 129, 0.15);
     }
 
     .comparison-column.highlight:hover {
       transform: translateY(-8px) scale(1.02);
-      background: rgba(255, 249, 240, 0.6);
-      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(255, 252, 245, 0.95);
+      border-color: rgba(16, 185, 129, 0.5);
     }
 
     .comparison-column.highlight::before {
