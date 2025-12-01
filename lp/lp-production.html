@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LP制作サービス｜YOJITU.COM - 5万円〜、最短3営業日でLP制作</title>
-  <meta name="description" content="あなたの想いを形にする、特別な1ページ。5万円〜、最短3営業日でLP制作。AI活用で圧倒的なスピードと低価格を実現。">
+  <title>Webページ制作サービス｜YOJITU.COM - 5万円〜、最短3営業日</title>
+  <meta name="description" content="あなたの想いを形にする、特別な1ページ。5万円〜、最短3営業日でWebページ制作。AI活用で圧倒的なスピードと低価格を実現。">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,39 +64,6 @@
       position: relative;
     }
 
-    body::before {
-      content: '';
-      position: fixed;
-      top: 10%;
-      right: 5%;
-      width: 200px;
-      height: 200px;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M100,30 Q120,50 100,70 T100,110 Q85,125 70,110 T50,70 Q50,50 70,40 Z" fill="none" stroke="%23D2691E" stroke-width="2" opacity="0.15" stroke-linecap="round"/><circle cx="60" cy="60" r="3" fill="%23D2691E" opacity="0.2"/><circle cx="140" cy="80" r="2" fill="%238B4513" opacity="0.2"/><path d="M120,150 Q130,160 140,155 T160,140" fill="none" stroke="%23A0522D" stroke-width="1.5" opacity="0.1" stroke-linecap="round"/></svg>') no-repeat center;
-      background-size: contain;
-      pointer-events: none;
-      z-index: 0;
-      animation: float-doodle 20s ease-in-out infinite;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      bottom: 15%;
-      left: 8%;
-      width: 150px;
-      height: 150px;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150"><path d="M75,20 L85,40 L105,45 L90,60 L95,80 L75,70 L55,80 L60,60 L45,45 L65,40 Z" fill="none" stroke="%238B4513" stroke-width="2" opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="120" r="5" fill="none" stroke="%23D2691E" stroke-width="1" opacity="0.1"/><path d="M100,100 Q110,110 100,120" fill="none" stroke="%23A0522D" stroke-width="1.5" opacity="0.1" stroke-linecap="round"/></svg>') no-repeat center;
-      background-size: contain;
-      pointer-events: none;
-      z-index: 0;
-      animation: float-doodle 25s ease-in-out infinite reverse;
-    }
-
-    @keyframes float-doodle {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      33% { transform: translate(20px, -30px) rotate(5deg); }
-      66% { transform: translate(-15px, 20px) rotate(-3deg); }
-    }
 
     /* Header */
     .header {
@@ -352,6 +319,30 @@
       background: var(--color-bg-alt);
     }
 
+    .section-illustration {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .section-illustration-top-right {
+      top: 40px;
+      right: 5%;
+    }
+
+    .section-illustration-top-left {
+      top: 60px;
+      left: 5%;
+    }
+
+    .section-illustration-bottom-right {
+      bottom: 60px;
+      right: 8%;
+    }
+
     .section-number {
       position: absolute;
       top: 40px;
@@ -409,16 +400,6 @@
       padding-left: 120px;
     }
 
-    .problem-timeline::before {
-      content: '';
-      position: absolute;
-      left: 60px;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-gradient-3) 100%);
-      opacity: 0.3;
-    }
 
     .problem-item {
       position: relative;
@@ -1064,39 +1045,86 @@
     /* Contact Section */
     .contact-section {
       padding: 140px 40px;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(30px) saturate(180%);
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .contact-section::after {
+      content: '';
+      position: absolute;
+      bottom: -50%;
+      left: -20%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
     }
 
     .contact-container {
       max-width: 800px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     .contact-title {
-      font-size: clamp(32px, 5vw, 56px);
-      font-weight: 300;
-      line-height: 1.4;
-      margin-bottom: 16px;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 20px;
       text-align: center;
-      letter-spacing: 0.02em;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .contact-lead {
-      font-size: 16px;
+      font-size: 18px;
       color: var(--color-secondary);
       text-align: center;
-      margin-bottom: 64px;
-      font-weight: 300;
-      letter-spacing: 0.05em;
+      margin-bottom: 72px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      line-height: 1.8;
     }
 
     .contact-form {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 56px 48px;
-      border-radius: 8px;
-      border: 1px solid rgba(45, 36, 32, 0.08);
-      box-shadow: 0 8px 32px rgba(45, 36, 32, 0.04);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 64px 56px;
+      border-radius: 24px;
+      border: 1px solid rgba(45, 36, 32, 0.06);
+      box-shadow:
+        0 20px 60px rgba(45, 36, 32, 0.08),
+        0 4px 16px rgba(45, 36, 32, 0.04);
+      backdrop-filter: blur(20px);
+      position: relative;
+    }
+
+    .contact-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+      border-radius: 24px 24px 0 0;
     }
 
     /* Footer */
@@ -1235,54 +1263,89 @@
 
 
     .form-group {
-      margin-bottom: 24px;
+      margin-bottom: 32px;
     }
 
     .form-label {
       display: block;
       font-weight: 600;
-      margin-bottom: 8px;
-      font-size: 14px;
+      margin-bottom: 12px;
+      font-size: 15px;
+      color: var(--color-primary);
+      letter-spacing: 0.02em;
     }
 
     .form-input,
     .form-textarea {
       width: 100%;
-      padding: 12px 16px;
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
+      padding: 16px 20px;
+      border: 2px solid rgba(45, 36, 32, 0.08);
+      border-radius: 12px;
       font-family: var(--font-primary);
-      font-size: 15px;
-      transition: border-color 0.3s var(--ease);
+      font-size: 16px;
+      transition: all 0.3s var(--ease);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-input:hover,
+    .form-textarea:hover {
+      border-color: rgba(37, 99, 235, 0.2);
+      background: rgba(255, 255, 255, 1);
     }
 
     .form-input:focus,
     .form-textarea:focus {
       outline: none;
-      border-color: var(--color-accent);
+      border-color: var(--color-primary);
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
     }
 
     .form-textarea {
-      min-height: 120px;
+      min-height: 160px;
       resize: vertical;
+      line-height: 1.7;
     }
 
     .form-submit {
       width: 100%;
-      padding: 16px;
-      background: var(--color-accent);
+      padding: 20px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 18px;
       cursor: pointer;
-      transition: all 0.3s var(--ease);
+      transition: all 0.4s var(--ease);
+      letter-spacing: 0.05em;
+      position: relative;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .form-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s var(--ease);
     }
 
     .form-submit:hover {
-      background: var(--color-accent-hover);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(37, 99, 235, 0.3);
+    }
+
+    .form-submit:hover::before {
+      left: 100%;
+    }
+
+    .form-submit:active {
+      transform: translateY(-1px);
     }
 
     /* Responsive */
@@ -1427,6 +1490,7 @@
 
   <!-- Problem -->
   <section class="section">
+    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/undraw-questions.svg" alt="" class="section-illustration section-illustration-top-right">
     <div class="section-number">01</div>
     <div class="section-inner">
       <h2 class="section-title">この商品・サービスのこと、<br>もっと知ってほしい。<br>そう思ったことはありませんか？</h2>
@@ -1490,12 +1554,13 @@
     </div>
   </section>
 
-  <!-- What is LP -->
+  <!-- What is Special Page -->
   <section class="section section-alt">
+    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/undraw-website.svg" alt="" class="section-illustration section-illustration-top-left">
     <div class="section-number">02</div>
     <div class="section-inner">
-      <h2 class="section-title">LPとは、1つの目的に特化した、<br>1枚のページです。</h2>
-      <p class="section-lead">ホームページ（HP）との違いを比較してみましょう。</p>
+      <h2 class="section-title">特設ページとは、<br>1つの目的に特化した1枚のページです。</h2>
+      <p class="section-lead">通常のホームページとの違いを比較してみましょう。</p>
 
       <table class="comparison-table">
         <thead>
@@ -1538,9 +1603,10 @@
 
   <!-- Timing -->
   <section class="section">
+    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/undraw-time_management.svg" alt="" class="section-illustration section-illustration-top-right">
     <div class="section-number">03</div>
     <div class="section-inner">
-      <h2 class="section-title">こんな時に、LPが必要です</h2>
+      <h2 class="section-title">こんな時に、特設ページが必要です</h2>
 
       <div class="timing-list">
         <div class="timing-bar">
@@ -1588,6 +1654,7 @@
 
   <!-- Why Cheap & Fast -->
   <section class="section section-alt">
+    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/undraw-fast_loading.svg" alt="" class="section-illustration section-illustration-top-left">
     <div class="section-number">04</div>
     <div class="section-inner">
       <h2 class="section-title">なぜ、5万円〜・最短3日で<br>作れるのか？</h2>
@@ -1615,6 +1682,7 @@
 
   <!-- Quality -->
   <section class="section">
+    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/undraw-quality_control.svg" alt="" class="section-illustration section-illustration-top-right">
     <div class="section-number">05</div>
     <div class="section-inner">
       <h2 class="section-title">品質は大丈夫？</h2>
@@ -1649,6 +1717,7 @@
 
   <!-- Pricing -->
   <section class="section section-alt">
+    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/undraw-savings.svg" alt="" class="section-illustration section-illustration-top-left">
     <div class="section-number">06</div>
     <div class="section-inner">
       <h2 class="section-title">料金プラン</h2>
@@ -1660,12 +1729,12 @@
             ¥50,000<span class="pricing-price-unit">〜</span>
           </div>
           <div class="pricing-features">
-            <div class="pricing-feature">LP制作（1ページ）</div>
+            <div class="pricing-feature">ページ制作（1ページ）</div>
             <div class="pricing-feature">レスポンシブ対応</div>
             <div class="pricing-feature">修正2回まで</div>
             <div class="pricing-feature">納期：最短3営業日</div>
           </div>
-          <p class="pricing-note">シンプルなLPをスピーディに制作したい方向け。</p>
+          <p class="pricing-note">シンプルなページをスピーディに制作したい方向け。</p>
         </div>
 
         <div class="pricing-card">
@@ -1674,7 +1743,7 @@
             ¥100,000
           </div>
           <div class="pricing-features">
-            <div class="pricing-feature">LP制作（1ページ）</div>
+            <div class="pricing-feature">ページ制作（1ページ）</div>
             <div class="pricing-feature">お問い合わせフォーム</div>
             <div class="pricing-feature">サンクスページ</div>
             <div class="pricing-feature">レスポンシブ対応</div>
@@ -1689,6 +1758,7 @@
 
   <!-- Flow -->
   <section class="section">
+    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/undraw-process.svg" alt="" class="section-illustration section-illustration-top-right">
     <div class="section-number">07</div>
     <div class="section-inner">
       <h2 class="section-title">制作の流れ</h2>
@@ -1720,6 +1790,7 @@
 
   <!-- FAQ -->
   <section class="section section-alt">
+    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/undraw-faq.svg" alt="" class="section-illustration section-illustration-top-left">
     <div class="section-number">08</div>
     <div class="section-inner">
       <h2 class="section-title">よくある質問</h2>
@@ -1790,6 +1861,7 @@
 
   <!-- Contact -->
   <section class="contact-section" id="contact">
+    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/undraw-message.svg" alt="" class="section-illustration section-illustration-bottom-right">
     <div class="contact-container">
       <h2 class="contact-title">お問い合わせ</h2>
       <p class="contact-lead">まずはお気軽にご相談ください。3営業日以内にご返信いたします。</p>
@@ -1827,7 +1899,7 @@
         <div>
           <h3 class="footer-section-title">サービス</h3>
           <a href="/services/web-production/" class="footer-link">Web制作</a>
-          <a href="/services/lp-production/" class="footer-link">LP制作</a>
+          <a href="/services/lp-production/" class="footer-link">Webページ制作</a>
           <a href="/services/consulting/" class="footer-link">コンサルティング</a>
         </div>
         <div>
@@ -1851,9 +1923,9 @@
   <script>
     // A/Bテスト管理
     const catchCopies = {
-      1: 'あなたの商品、ちゃんと伝わっていますか？\n5万円〜、最短3日でLPを。',
-      2: '伝えたいことを、届けたい人へ。\n5万円〜、最短3日でLPを。',
-      6: 'その想いを、形にします。\n5万円〜、最短3日でLPを。'
+      1: 'あなたの商品、ちゃんと伝わっていますか？\n5万円〜、最短3日でページを。',
+      2: '伝えたいことを、届けたい人へ。\n5万円〜、最短3日でページを。',
+      6: 'その想いを、形にします。\n5万円〜、最短3日でページを。'
     };
 
     // LocalStorageからパターンを取得、なければランダム割り当て
