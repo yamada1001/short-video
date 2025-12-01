@@ -11,19 +11,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
     :root {
-      --color-primary: #1a1a1a;
-      --color-secondary: #4a4a4a;
-      --color-accent: #0066FF;
-      --color-accent-hover: #0052CC;
-      --color-bg: #ffffff;
-      --color-bg-alt: #f8f9fa;
-      --color-border: #e5e7eb;
+      --color-primary: #2D2420;
+      --color-secondary: #6B5D57;
+      --color-accent: #8B4513;
+      --color-accent-hover: #6B3410;
+      --color-bg: #FFF9F0;
+      --color-bg-alt: #FFF5E6;
+      --color-border: #E8DED0;
       --font-primary: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-accent: 'Inter', sans-serif;
       --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -49,7 +52,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 249, 240, 0.95);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--color-border);
       z-index: 1000;
@@ -136,18 +139,20 @@
     .feature-badge {
       display: inline-flex;
       align-items: center;
-      padding: 12px 24px;
-      background: var(--color-bg-alt);
-      border: 1px solid var(--color-border);
-      border-radius: 100px;
+      padding: 12px 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
       font-weight: 600;
       font-size: 14px;
       white-space: nowrap;
+      color: var(--color-secondary);
     }
 
     .feature-icon {
       margin-right: 8px;
       font-size: 18px;
+      color: var(--color-accent);
     }
 
     .hero-cta-group {
@@ -243,22 +248,22 @@
     }
 
     .problem-card {
-      padding: 32px;
-      background: white;
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
+      padding: 48px 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
       transition: all 0.3s var(--ease);
     }
 
     .problem-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-      border-color: var(--color-accent);
+      transform: none;
+      box-shadow: none;
     }
 
     .problem-icon {
       font-size: 32px;
       margin-bottom: 16px;
+      color: var(--color-accent);
     }
 
     .problem-title {
@@ -278,10 +283,10 @@
       width: 100%;
       border-collapse: collapse;
       margin: 48px 0;
-      background: white;
-      border-radius: 12px;
+      background: transparent;
+      border-radius: 0;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      box-shadow: none;
     }
 
     .comparison-table th,
@@ -317,22 +322,23 @@
     }
 
     .timing-card {
-      padding: 32px 24px;
-      background: white;
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
+      padding: 48px 24px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
       text-align: center;
       transition: all 0.3s var(--ease);
     }
 
     .timing-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      transform: none;
+      box-shadow: none;
     }
 
     .timing-icon {
       font-size: 48px;
       margin-bottom: 16px;
+      color: var(--color-accent);
     }
 
     .timing-title {
@@ -356,29 +362,30 @@
     }
 
     .comparison-column {
-      padding: 40px;
-      background: white;
-      border-radius: 12px;
-      border: 2px solid var(--color-border);
+      padding: 48px 32px;
+      background: transparent;
+      border-radius: 0;
+      border: none;
+      border-left: 3px solid transparent;
     }
 
     .comparison-column.highlight {
-      border-color: var(--color-accent);
+      border-left-color: var(--color-accent);
       position: relative;
     }
 
     .comparison-column.highlight::before {
       content: 'YOJITU.COM';
       position: absolute;
-      top: -12px;
-      left: 24px;
-      padding: 4px 16px;
+      top: 0;
+      left: 0;
+      padding: 4px 12px;
       background: var(--color-accent);
       color: white;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      border-radius: 4px;
-      letter-spacing: 0.05em;
+      border-radius: 0;
+      letter-spacing: 0.1em;
     }
 
     .comparison-label {
@@ -410,16 +417,16 @@
     }
 
     .portfolio-item {
-      background: white;
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
       overflow: hidden;
       transition: all 0.3s var(--ease);
     }
 
     .portfolio-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      transform: none;
+      box-shadow: none;
     }
 
     .portfolio-image {
@@ -463,17 +470,16 @@
     }
 
     .pricing-card {
-      padding: 48px 32px;
-      background: white;
-      border: 2px solid var(--color-border);
-      border-radius: 16px;
+      padding: 64px 48px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
       transition: all 0.3s var(--ease);
     }
 
     .pricing-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
-      border-color: var(--color-accent);
+      transform: none;
+      box-shadow: none;
     }
 
     .pricing-plan {
@@ -576,10 +582,11 @@
     }
 
     .faq-item {
-      margin-bottom: 16px;
-      background: white;
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
+      margin-bottom: 0;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--color-border);
+      border-radius: 0;
       overflow: hidden;
     }
 
@@ -885,15 +892,15 @@
       </h1>
       <div class="hero-features">
         <span class="feature-badge">
-          <span class="feature-icon">💰</span>
+          <i class="fas fa-yen-sign feature-icon"></i>
           5万円〜10万円
         </span>
         <span class="feature-badge">
-          <span class="feature-icon">⚡</span>
+          <i class="fas fa-bolt feature-icon"></i>
           最短3営業日
         </span>
         <span class="feature-badge">
-          <span class="feature-icon">🤖</span>
+          <i class="fas fa-microchip feature-icon"></i>
           AI活用
         </span>
       </div>
@@ -911,27 +918,27 @@
 
       <div class="problem-grid">
         <div class="problem-card">
-          <div class="problem-icon">📢</div>
+          <i class="fas fa-bullhorn problem-icon"></i>
           <h3 class="problem-title">商品の魅力が伝わらない</h3>
           <p class="problem-text">HPはあるけど、情報が多すぎて伝えたいことが埋もれてしまう。</p>
         </div>
         <div class="problem-card">
-          <div class="problem-icon">💬</div>
+          <i class="fas fa-comments problem-icon"></i>
           <h3 class="problem-title">問い合わせが来ない</h3>
           <p class="problem-text">せっかく作ったのに、問い合わせや申し込みにつながらない。</p>
         </div>
         <div class="problem-card">
-          <div class="problem-icon">🎯</div>
+          <i class="fas fa-bullseye problem-icon"></i>
           <h3 class="problem-title">広告の受け皿がない</h3>
           <p class="problem-text">SNS広告を出したいけど、クリック後の専用ページがない。</p>
         </div>
         <div class="problem-card">
-          <div class="problem-icon">🚀</div>
+          <i class="fas fa-rocket problem-icon"></i>
           <h3 class="problem-title">新商品のPRが弱い</h3>
           <p class="problem-text">新しい商品・サービスを集中的にPRするページが欲しい。</p>
         </div>
         <div class="problem-card">
-          <div class="problem-icon">⏱️</div>
+          <i class="fas fa-clock problem-icon"></i>
           <h3 class="problem-title">制作期間が長すぎる</h3>
           <p class="problem-text">他社に依頼すると1ヶ月以上。その間の機会損失が気になる。</p>
         </div>
@@ -991,27 +998,27 @@
 
       <div class="timing-grid">
         <div class="timing-card">
-          <div class="timing-icon">🎁</div>
+          <i class="fas fa-gift timing-icon"></i>
           <h3 class="timing-title">新商品リリース</h3>
           <p class="timing-text">新商品・新サービスを集中的にPRしたい時</p>
         </div>
         <div class="timing-card">
-          <div class="timing-icon">🎉</div>
+          <i class="fas fa-star timing-icon"></i>
           <h3 class="timing-title">キャンペーン告知</h3>
           <p class="timing-text">期間限定のキャンペーンや特典を訴求したい時</p>
         </div>
         <div class="timing-card">
-          <div class="timing-icon">📩</div>
+          <i class="fas fa-envelope timing-icon"></i>
           <h3 class="timing-title">問い合わせ獲得</h3>
           <p class="timing-text">資料請求や無料相談など、具体的なアクションを促したい時</p>
         </div>
         <div class="timing-card">
-          <div class="timing-icon">📱</div>
+          <i class="fas fa-mobile-alt timing-icon"></i>
           <h3 class="timing-title">広告運用</h3>
           <p class="timing-text">SNS広告・リスティング広告の受け皿ページが欲しい時</p>
         </div>
         <div class="timing-card">
-          <div class="timing-icon">✨</div>
+          <i class="fas fa-certificate timing-icon"></i>
           <h3 class="timing-title">ブランディング</h3>
           <p class="timing-text">特定の商品・サービスのブランドイメージを確立したい時</p>
         </div>
