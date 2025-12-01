@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LP制作サービス｜YOJITU.COM - 5万円〜、最短3営業日でLP制作</title>
+  <meta name="description" content="あなたの想いを形にする、特別な1ページ。5万円〜、最短3営業日でLP制作。AI活用で圧倒的なスピードと低価格を実現。">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --color-primary: #1a1a1a;
+      --color-secondary: #4a4a4a;
+      --color-accent: #0066FF;
+      --color-accent-hover: #0052CC;
+      --color-bg: #ffffff;
+      --color-bg-alt: #f8f9fa;
+      --color-border: #e5e7eb;
+      --font-primary: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-accent: 'Inter', sans-serif;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      color: var(--color-primary);
+      background: var(--color-bg);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 1000;
+      transition: transform 0.3s var(--ease);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-accent);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .header-cta {
+      display: inline-block;
+      padding: 10px 24px;
+      background: var(--color-accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s var(--ease);
+    }
+
+    .header-cta:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 24px 80px;
+      background: var(--color-bg);
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-catchcopy {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: -0.03em;
+      margin-bottom: 32px;
+      opacity: 0;
+    }
+
+    .hero-subcopy {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 500;
+      color: var(--color-secondary);
+      line-height: 1.7;
+      margin-bottom: 48px;
+      opacity: 0;
+    }
+
+    .hero-features {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+      opacity: 0;
+    }
+
+    .feature-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 24px;
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .feature-icon {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 40px;
+      background: var(--color-accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 102, 255, 0.25);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 40px;
+      background: white;
+      color: var(--color-primary);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 16px;
+      border: 2px solid var(--color-border);
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      white-space: nowrap;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    /* Section */
+    .section {
+      padding: 100px 24px;
+      position: relative;
+    }
+
+    .section-alt {
+      background: var(--color-bg-alt);
+    }
+
+    .section-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 900;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    .section-lead {
+      font-size: 18px;
+      color: var(--color-secondary);
+      text-align: center;
+      margin-bottom: 64px;
+      line-height: 1.8;
+    }
+
+    /* Problem Cards */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .problem-card {
+      padding: 32px;
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      transition: all 0.3s var(--ease);
+    }
+
+    .problem-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      border-color: var(--color-accent);
+    }
+
+    .problem-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .problem-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .problem-text {
+      font-size: 15px;
+      color: var(--color-secondary);
+      line-height: 1.7;
+    }
+
+    /* Comparison Table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 48px 0;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 24px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .comparison-table th {
+      background: var(--color-bg-alt);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-secondary);
+    }
+
+    .comparison-table td:first-child {
+      font-weight: 600;
+      width: 30%;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Timing Cards */
+    .timing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .timing-card {
+      padding: 32px 24px;
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.3s var(--ease);
+    }
+
+    .timing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .timing-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .timing-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .timing-text {
+      font-size: 14px;
+      color: var(--color-secondary);
+      line-height: 1.7;
+    }
+
+    /* Comparison Section */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .comparison-column {
+      padding: 40px;
+      background: white;
+      border-radius: 12px;
+      border: 2px solid var(--color-border);
+    }
+
+    .comparison-column.highlight {
+      border-color: var(--color-accent);
+      position: relative;
+    }
+
+    .comparison-column.highlight::before {
+      content: 'YOJITU.COM';
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      padding: 4px 16px;
+      background: var(--color-accent);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .comparison-label {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .comparison-item {
+      margin-bottom: 16px;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .comparison-item::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+
+    /* Portfolio */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .portfolio-item {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s var(--ease);
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .portfolio-image {
+      width: 100%;
+      height: 200px;
+      background: var(--color-bg-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--color-secondary);
+    }
+
+    .portfolio-content {
+      padding: 24px;
+    }
+
+    .portfolio-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .portfolio-link {
+      font-size: 14px;
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .portfolio-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Pricing */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .pricing-card {
+      padding: 48px 32px;
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: 16px;
+      transition: all 0.3s var(--ease);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+      border-color: var(--color-accent);
+    }
+
+    .pricing-plan {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .pricing-price {
+      font-size: 48px;
+      font-weight: 900;
+      font-family: var(--font-accent);
+      margin-bottom: 8px;
+    }
+
+    .pricing-price-unit {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-secondary);
+    }
+
+    .pricing-features {
+      margin: 32px 0;
+      padding: 32px 0;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .pricing-feature {
+      margin-bottom: 16px;
+      padding-left: 28px;
+      position: relative;
+      font-size: 15px;
+    }
+
+    .pricing-feature::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .pricing-note {
+      font-size: 14px;
+      color: var(--color-secondary);
+      margin-top: 24px;
+      line-height: 1.6;
+    }
+
+    /* Flow */
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+      position: relative;
+    }
+
+    .flow-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .flow-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      background: var(--color-accent);
+      color: white;
+      font-size: 24px;
+      font-weight: 900;
+      font-family: var(--font-accent);
+      border-radius: 50%;
+      margin-bottom: 24px;
+    }
+
+    .flow-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .flow-text {
+      font-size: 14px;
+      color: var(--color-secondary);
+      line-height: 1.7;
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 800px;
+      margin: 48px auto 0;
+    }
+
+    .faq-item {
+      margin-bottom: 16px;
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 24px;
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s var(--ease);
+    }
+
+    .faq-question:hover {
+      background: var(--color-bg-alt);
+    }
+
+    .faq-icon {
+      font-size: 20px;
+      transition: transform 0.3s var(--ease);
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s var(--ease);
+    }
+
+    .faq-answer-inner {
+      padding: 0 24px 24px;
+      color: var(--color-secondary);
+      line-height: 1.8;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 120px 24px;
+      background: var(--color-primary);
+      color: white;
+      text-align: center;
+    }
+
+    .cta-title {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 32px;
+    }
+
+    .cta-text {
+      font-size: 18px;
+      margin-bottom: 48px;
+      opacity: 0.9;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--color-primary);
+    }
+
+    .btn-white:hover {
+      background: var(--color-bg-alt);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 64px 24px 32px;
+      background: var(--color-bg-alt);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-section-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      color: var(--color-secondary);
+    }
+
+    .footer-link {
+      display: block;
+      color: var(--color-primary);
+      text-decoration: none;
+      margin-bottom: 12px;
+      font-size: 14px;
+      transition: color 0.3s var(--ease);
+    }
+
+    .footer-link:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 32px;
+      border-top: 1px solid var(--color-border);
+      font-size: 14px;
+      color: var(--color-secondary);
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s var(--ease);
+    }
+
+    .modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 48px;
+      border-radius: 16px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s var(--ease);
+    }
+
+    .modal.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 32px;
+      height: 32px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--color-secondary);
+      transition: color 0.3s var(--ease);
+    }
+
+    .modal-close:hover {
+      color: var(--color-primary);
+    }
+
+    .modal-title {
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-family: var(--font-primary);
+      font-size: 15px;
+      transition: border-color 0.3s var(--ease);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--color-accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+    }
+
+    .form-submit:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-inner {
+        padding: 16px 20px;
+      }
+
+      .hero {
+        padding: 100px 20px 60px;
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-grid,
+      .flow-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section {
+        padding: 80px 20px;
+      }
+
+      .modal-content {
+        padding: 32px 24px;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">YOJITU.COM</a>
+      <a href="#contact" class="header-cta" onclick="openModal(event)">お問い合わせ</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-catchcopy" id="catchcopy">
+        <!-- A/Bテストで動的に挿入 -->
+      </h1>
+      <div class="hero-features">
+        <span class="feature-badge">
+          <span class="feature-icon">💰</span>
+          5万円〜10万円
+        </span>
+        <span class="feature-badge">
+          <span class="feature-icon">⚡</span>
+          最短3営業日
+        </span>
+        <span class="feature-badge">
+          <span class="feature-icon">🤖</span>
+          AI活用
+        </span>
+      </div>
+      <div class="hero-cta-group">
+        <a href="#contact" class="btn-primary" onclick="openModal(event)">無料相談する</a>
+        <a href="https://line.me/R/ti/p/@123abcde" class="btn-secondary" target="_blank" rel="noopener">LINEで相談</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-title">この商品・サービスのこと、<br>もっと知ってほしい。<br>そう思ったことはありませんか？</h2>
+
+      <div class="problem-grid">
+        <div class="problem-card">
+          <div class="problem-icon">📢</div>
+          <h3 class="problem-title">商品の魅力が伝わらない</h3>
+          <p class="problem-text">HPはあるけど、情報が多すぎて伝えたいことが埋もれてしまう。</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">💬</div>
+          <h3 class="problem-title">問い合わせが来ない</h3>
+          <p class="problem-text">せっかく作ったのに、問い合わせや申し込みにつながらない。</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">🎯</div>
+          <h3 class="problem-title">広告の受け皿がない</h3>
+          <p class="problem-text">SNS広告を出したいけど、クリック後の専用ページがない。</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">🚀</div>
+          <h3 class="problem-title">新商品のPRが弱い</h3>
+          <p class="problem-text">新しい商品・サービスを集中的にPRするページが欲しい。</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">⏱️</div>
+          <h3 class="problem-title">制作期間が長すぎる</h3>
+          <p class="problem-text">他社に依頼すると1ヶ月以上。その間の機会損失が気になる。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is LP -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <h2 class="section-title">LPとは、1つの目的に特化した、<br>1枚のページです。</h2>
+      <p class="section-lead">ホームページ（HP）との違いを比較してみましょう。</p>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>比較項目</th>
+            <th>HP（ホームページ）</th>
+            <th>LP（ランディングページ）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>目的</td>
+            <td>会社・サービス全体の情報提供</td>
+            <td>1つの商品・サービスに特化</td>
+          </tr>
+          <tr>
+            <td>構成</td>
+            <td>複数ページで構成</td>
+            <td>1ページ完結</td>
+          </tr>
+          <tr>
+            <td>情報量</td>
+            <td>多い（会社情報、事業内容など）</td>
+            <td>必要最小限に絞る</td>
+          </tr>
+          <tr>
+            <td>導線</td>
+            <td>複数のリンクで回遊</td>
+            <td>直線的に1つのゴールへ</td>
+          </tr>
+          <tr>
+            <td>最適な用途</td>
+            <td>信頼性の担保、総合案内</td>
+            <td>商品PR、広告受け皿、問い合わせ獲得</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Timing -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-title">こんな時に、LPが必要です</h2>
+
+      <div class="timing-grid">
+        <div class="timing-card">
+          <div class="timing-icon">🎁</div>
+          <h3 class="timing-title">新商品リリース</h3>
+          <p class="timing-text">新商品・新サービスを集中的にPRしたい時</p>
+        </div>
+        <div class="timing-card">
+          <div class="timing-icon">🎉</div>
+          <h3 class="timing-title">キャンペーン告知</h3>
+          <p class="timing-text">期間限定のキャンペーンや特典を訴求したい時</p>
+        </div>
+        <div class="timing-card">
+          <div class="timing-icon">📩</div>
+          <h3 class="timing-title">問い合わせ獲得</h3>
+          <p class="timing-text">資料請求や無料相談など、具体的なアクションを促したい時</p>
+        </div>
+        <div class="timing-card">
+          <div class="timing-icon">📱</div>
+          <h3 class="timing-title">広告運用</h3>
+          <p class="timing-text">SNS広告・リスティング広告の受け皿ページが欲しい時</p>
+        </div>
+        <div class="timing-card">
+          <div class="timing-icon">✨</div>
+          <h3 class="timing-title">ブランディング</h3>
+          <p class="timing-text">特定の商品・サービスのブランドイメージを確立したい時</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Cheap & Fast -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <h2 class="section-title">なぜ、5万円〜・最短3日で<br>作れるのか？</h2>
+
+      <div class="comparison-grid">
+        <div class="comparison-column">
+          <h3 class="comparison-label">一般的な制作会社</h3>
+          <div class="comparison-item">ディレクター、デザイナー、コーダーの分業体制</div>
+          <div class="comparison-item">各工程で待ち時間が発生</div>
+          <div class="comparison-item">人件費が積み重なり高額に</div>
+          <div class="comparison-item">納期：1〜2ヶ月</div>
+          <div class="comparison-item">価格：30万円〜</div>
+        </div>
+        <div class="comparison-column highlight">
+          <h3 class="comparison-label">YOJITU.COMの場合</h3>
+          <div class="comparison-item">AI活用で1人が全工程を同時進行</div>
+          <div class="comparison-item">ワイヤー・デザイン・コーディングを並行作業</div>
+          <div class="comparison-item">待ち時間ゼロ、無駄な人件費なし</div>
+          <div class="comparison-item">納期：最短3営業日</div>
+          <div class="comparison-item">価格：5万円〜</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quality -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-title">品質は大丈夫？</h2>
+      <p class="section-lead">
+        実は、<strong>このサイト全体</strong>と<strong>今ご覧いただいているこのページ</strong>も、<br>
+        すべてAI活用で制作されています。<br><br>
+        クオリティを実際に体感いただけているのではないでしょうか。
+      </p>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <div class="portfolio-image">実績サンプル1</div>
+          <div class="portfolio-content">
+            <h3 class="portfolio-title">マイグレーションサービスLP</h3>
+            <a href="https://migration.oita-creative.jp/lp2/" class="portfolio-link" target="_blank" rel="noopener">サイトを見る →</a>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-image">実績サンプル2</div>
+          <div class="portfolio-content">
+            <h3 class="portfolio-title">2025年サービスLP</h3>
+            <a href="https://migration.oita-creative.jp/2025/lp/" class="portfolio-link" target="_blank" rel="noopener">サイトを見る →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <h2 class="section-title">料金プラン</h2>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-plan">Basic</div>
+          <div class="pricing-price">
+            ¥50,000<span class="pricing-price-unit">〜</span>
+          </div>
+          <div class="pricing-features">
+            <div class="pricing-feature">LP制作（1ページ）</div>
+            <div class="pricing-feature">レスポンシブ対応</div>
+            <div class="pricing-feature">修正2回まで</div>
+            <div class="pricing-feature">納期：最短3営業日</div>
+          </div>
+          <p class="pricing-note">シンプルなLPをスピーディに制作したい方向け。</p>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-plan">Standard</div>
+          <div class="pricing-price">
+            ¥100,000
+          </div>
+          <div class="pricing-features">
+            <div class="pricing-feature">LP制作（1ページ）</div>
+            <div class="pricing-feature">お問い合わせフォーム</div>
+            <div class="pricing-feature">サンクスページ</div>
+            <div class="pricing-feature">レスポンシブ対応</div>
+            <div class="pricing-feature">修正3回まで</div>
+            <div class="pricing-feature">納期：最短1週間</div>
+          </div>
+          <p class="pricing-note">フォームを設置することで、機会損失を防ぎます。おすすめプランです。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flow -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-title">制作の流れ</h2>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-number">01</div>
+          <h3 class="flow-title">ヒアリング</h3>
+          <p class="flow-text">商品・サービスの特徴、ターゲット、目的などをお伺いします。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">02</div>
+          <h3 class="flow-title">構成案</h3>
+          <p class="flow-text">ページの構成案をご提案。ご確認いただいた後、制作に入ります。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">03</div>
+          <h3 class="flow-title">制作</h3>
+          <p class="flow-text">AI活用で、ワイヤー・デザイン・コーディングを同時進行。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">04</div>
+          <h3 class="flow-title">納品</h3>
+          <p class="flow-text">完成したページを納品。修正対応も承ります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <h2 class="section-title">よくある質問</h2>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>本当に3営業日で納品できるんですか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              はい、可能です。AI活用により、ワイヤーフレーム・デザイン・コーディングを同時進行できるため、通常1〜2ヶ月かかる工程を大幅に短縮できます。ただし、内容の複雑さや修正回数によっては、もう少しお時間をいただく場合もございます。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>AIで作って、品質は大丈夫ですか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              ご安心ください。このサイト全体と今ご覧いただいているこのページも、すべてAI活用で制作しています。AIはあくまでツールであり、最終的には人間がチェック・調整を行いますので、品質には自信を持っております。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>広告を出さないのですが、LPは必要ですか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              はい、必要です。特に地方では、口コミや紹介で「〇〇で検索してみて」と言われることが多いですよね。その時に、HPだと情報が多すぎて伝わりにくい。LPなら、1ページで要点がまとまっているので、紹介された方が理解しやすく、問い合わせにつながりやすくなります。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>修正は何回までできますか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Basicプランは2回、Standardプランは3回まで修正対応いたします。大幅な内容変更でなければ、柔軟に対応いたしますのでご相談ください。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>公開後のサポートはありますか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              はい、ございます。公開後の軽微な修正（誤字脱字など）は無償対応いたします。大幅な内容変更や追加機能については、別途お見積もりとなります。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="section-inner">
+      <h2 class="cta-title">あなたの想いを、<br>1ページに。</h2>
+      <p class="cta-text">まずは無料相談から。お気軽にお問い合わせください。</p>
+      <div class="cta-buttons">
+        <a href="#contact" class="btn-primary btn-white" onclick="openModal(event)">無料相談する</a>
+        <a href="https://line.me/R/ti/p/@123abcde" class="btn-secondary" target="_blank" rel="noopener" style="color: white; border-color: rgba(255,255,255,0.3)">LINEで相談</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-section-title">サービス</h3>
+          <a href="/services/web-production/" class="footer-link">Web制作</a>
+          <a href="/services/lp-production/" class="footer-link">LP制作</a>
+          <a href="/services/consulting/" class="footer-link">コンサルティング</a>
+        </div>
+        <div>
+          <h3 class="footer-section-title">会社情報</h3>
+          <a href="/company/" class="footer-link">会社概要</a>
+          <a href="/blog/" class="footer-link">ブログ</a>
+          <a href="/contact/" class="footer-link">お問い合わせ</a>
+        </div>
+        <div>
+          <h3 class="footer-section-title">その他</h3>
+          <a href="/privacy/" class="footer-link">プライバシーポリシー</a>
+          <a href="/terms/" class="footer-link">利用規約</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 YOJITU.COM All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="contactModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h2 class="modal-title">お問い合わせ</h2>
+      <form action="/contact/submit.php" method="POST">
+        <div class="form-group">
+          <label class="form-label">お名前 *</label>
+          <input type="text" name="name" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">メールアドレス *</label>
+          <input type="email" name="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">電話番号</label>
+          <input type="tel" name="phone" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">お問い合わせ内容 *</label>
+          <textarea name="message" class="form-textarea" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">送信する</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // A/Bテスト管理
+    const catchCopies = {
+      1: 'あなたの商品、ちゃんと伝わっていますか？\n\n「もっと知ってほしい」を形にする、\n特別な1ページ。5万円〜、最短3日。',
+      2: '伝えたいことがある。\nでも、どう届けたらいいかわからない。\n\nこの想いを、1枚のページで届けませんか？\n5万円〜、最短3日。',
+      6: 'もっと多くの人に、この良さを知ってもらいたい。\n\nそんな想いを、形にします。\n5万円〜、最短3日。'
+    };
+
+    // LocalStorageからパターンを取得、なければランダム割り当て
+    let pattern = localStorage.getItem('lp_pattern');
+    if (!pattern) {
+      const catchOptions = [1, 2, 6];
+      const randomCatch = catchOptions[Math.floor(Math.random() * catchOptions.length)];
+      pattern = randomCatch;
+      localStorage.setItem('lp_pattern', pattern);
+    }
+
+    // キャッチコピーを挿入
+    document.getElementById('catchcopy').innerHTML = catchCopies[pattern].replace(/\n/g, '<br>');
+
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero Animation
+    const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTimeline
+      .to('.hero-catchcopy', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: 0.2
+      })
+      .to('.hero-features', {
+        opacity: 1,
+        y: 0,
+        duration: 0.8
+      }, '-=0.5')
+      .to('.hero-cta-group', {
+        opacity: 1,
+        y: 0,
+        duration: 0.8
+      }, '-=0.6');
+
+    // Set initial state for hero elements
+    gsap.set('.hero-catchcopy', { opacity: 0, y: 30 });
+    gsap.set('.hero-features', { opacity: 0, y: 20 });
+    gsap.set('.hero-cta-group', { opacity: 0, y: 20 });
+
+    // Scroll Animations - Cards
+    gsap.utils.toArray('.problem-card, .timing-card, .pricing-card, .portfolio-item').forEach((card, i) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top bottom-=100',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        y: 40,
+        duration: 0.6,
+        delay: i * 0.1,
+        ease: 'power2.out'
+      });
+    });
+
+    // Scroll Animations - Sections
+    gsap.utils.toArray('.section-title').forEach(title => {
+      gsap.from(title, {
+        scrollTrigger: {
+          trigger: title,
+          start: 'top bottom-=50',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    });
+
+    // Flow Steps Animation
+    gsap.utils.toArray('.flow-step').forEach((step, i) => {
+      gsap.from(step, {
+        scrollTrigger: {
+          trigger: step,
+          start: 'top bottom-=100',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.6,
+        delay: i * 0.15,
+        ease: 'back.out(1.4)'
+      });
+    });
+
+    // Comparison Grid Animation
+    gsap.from('.comparison-column', {
+      scrollTrigger: {
+        trigger: '.comparison-grid',
+        start: 'top bottom-=100',
+        toggleActions: 'play none none none'
+      },
+      opacity: 0,
+      x: (i) => i === 0 ? -40 : 40,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power2.out'
+    });
+
+    // Header Hide on Scroll Down, Show on Scroll Up
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      const header = document.querySelector('.header');
+
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
+      lastScroll = currentScroll;
+    });
+
+    // Modal Functions
+    function openModal(e) {
+      e.preventDefault();
+      const modal = document.getElementById('contactModal');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('contactModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on outside click
+    document.getElementById('contactModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    // FAQ Toggle
+    function toggleFAQ(button) {
+      const item = button.parentElement;
+      const isActive = item.classList.contains('active');
+
+      // Close all FAQ items
+      document.querySelectorAll('.faq-item').forEach(faq => {
+        faq.classList.remove('active');
+      });
+
+      // Open clicked item if it wasn't active
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    }
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#' || href === '#contact') return;
+
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const headerHeight = document.querySelector('.header').offsetHeight;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
