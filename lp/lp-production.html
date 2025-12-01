@@ -52,6 +52,9 @@
       font-family: var(--font-primary);
       color: var(--color-primary);
       background: var(--color-bg);
+      background-image:
+        radial-gradient(circle, rgba(139, 69, 19, 0.03) 1px, transparent 1px);
+      background-size: 24px 24px;
       line-height: 1.8;
       overflow-x: hidden;
     }
@@ -269,12 +272,25 @@
 
     /* Section */
     .section {
-      padding: 100px 24px;
+      padding: 140px 24px;
       position: relative;
     }
 
     .section-alt {
       background: var(--color-bg-alt);
+    }
+
+    .section-number {
+      position: absolute;
+      top: 40px;
+      right: 5%;
+      font-size: clamp(120px, 15vw, 240px);
+      font-weight: 900;
+      font-family: var(--font-accent);
+      color: rgba(139, 69, 19, 0.03);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
     }
 
     .section-divider {
@@ -478,21 +494,36 @@
     .comparison-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-top: 48px;
+      gap: 48px;
+      margin-top: 64px;
+      perspective: 1000px;
     }
 
     .comparison-column {
-      padding: 48px 32px;
-      background: transparent;
-      border-radius: 0;
-      border: none;
-      border-left: 3px solid transparent;
+      padding: 56px 40px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 2px solid rgba(139, 69, 19, 0.08);
+      border-left: 4px solid transparent;
+      transform: rotateY(-2deg);
+      transition: all 0.4s var(--ease);
+    }
+
+    .comparison-column:hover {
+      transform: rotateY(0deg) translateY(-8px);
+      box-shadow: 0 20px 60px rgba(139, 69, 19, 0.15);
     }
 
     .comparison-column.highlight {
       border-left-color: var(--color-accent);
+      border-left-width: 6px;
       position: relative;
+      transform: rotateY(2deg) scale(1.02);
+    }
+
+    .comparison-column.highlight:hover {
+      transform: rotateY(0deg) translateY(-8px) scale(1.02);
     }
 
     .comparison-column.highlight::before {
@@ -552,13 +583,48 @@
 
     .portfolio-image {
       width: 100%;
-      height: 200px;
-      background: var(--color-bg-alt);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: var(--color-secondary);
+      height: 600px;
+      background: #f5f5f7;
+      position: relative;
+      border-radius: 12px 12px 0 0;
+      overflow: hidden;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1) inset;
+    }
+
+    .portfolio-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(to bottom, #e8e8e8, #d8d8d8);
+      border-bottom: 1px solid #c0c0c0;
+    }
+
+    .portfolio-image::after {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff5f56;
+      box-shadow:
+        20px 0 0 #ffbd2e,
+        40px 0 0 #27c93f;
+    }
+
+    .portfolio-image iframe,
+    .portfolio-image img {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 40px);
+      object-fit: cover;
+      object-position: top;
     }
 
     .portfolio-content {
@@ -1054,6 +1120,7 @@
 
   <!-- Problem -->
   <section class="section">
+    <div class="section-number">01</div>
     <div class="section-inner">
       <h2 class="section-title">この商品・サービスのこと、<br>もっと知ってほしい。<br>そう思ったことはありませんか？</h2>
 
@@ -1094,6 +1161,7 @@
 
   <!-- What is LP -->
   <section class="section section-alt">
+    <div class="section-number">02</div>
     <div class="section-inner">
       <h2 class="section-title">LPとは、1つの目的に特化した、<br>1枚のページです。</h2>
       <p class="section-lead">ホームページ（HP）との違いを比較してみましょう。</p>
@@ -1146,6 +1214,7 @@
 
   <!-- Timing -->
   <section class="section">
+    <div class="section-number">03</div>
     <div class="section-inner">
       <h2 class="section-title">こんな時に、LPが必要です</h2>
 
@@ -1181,6 +1250,7 @@
 
   <!-- Why Cheap & Fast -->
   <section class="section section-alt">
+    <div class="section-number">04</div>
     <div class="section-inner">
       <h2 class="section-title">なぜ、5万円〜・最短3日で<br>作れるのか？</h2>
 
@@ -1207,6 +1277,7 @@
 
   <!-- Quality -->
   <section class="section">
+    <div class="section-number">05</div>
     <div class="section-inner">
       <h2 class="section-title">品質は大丈夫？</h2>
       <p class="section-lead">
@@ -1217,14 +1288,18 @@
 
       <div class="portfolio-grid">
         <div class="portfolio-item">
-          <div class="portfolio-image">実績サンプル1</div>
+          <div class="portfolio-image">
+            <iframe src="https://migration.oita-creative.jp/lp2/" frameborder="0" scrolling="no" loading="lazy"></iframe>
+          </div>
           <div class="portfolio-content">
             <h3 class="portfolio-title">マイグレーションサービスLP</h3>
             <a href="https://migration.oita-creative.jp/lp2/" class="portfolio-link" target="_blank" rel="noopener">サイトを見る →</a>
           </div>
         </div>
         <div class="portfolio-item">
-          <div class="portfolio-image">実績サンプル2</div>
+          <div class="portfolio-image">
+            <iframe src="https://migration.oita-creative.jp/2025/lp/" frameborder="0" scrolling="no" loading="lazy"></iframe>
+          </div>
           <div class="portfolio-content">
             <h3 class="portfolio-title">2025年サービスLP</h3>
             <a href="https://migration.oita-creative.jp/2025/lp/" class="portfolio-link" target="_blank" rel="noopener">サイトを見る →</a>
@@ -1236,6 +1311,7 @@
 
   <!-- Pricing -->
   <section class="section section-alt">
+    <div class="section-number">06</div>
     <div class="section-inner">
       <h2 class="section-title">料金プラン</h2>
 
@@ -1275,6 +1351,7 @@
 
   <!-- Flow -->
   <section class="section">
+    <div class="section-number">07</div>
     <div class="section-inner">
       <h2 class="section-title">制作の流れ</h2>
 
@@ -1305,6 +1382,7 @@
 
   <!-- FAQ -->
   <section class="section section-alt">
+    <div class="section-number">08</div>
     <div class="section-inner">
       <h2 class="section-title">よくある質問</h2>
 
