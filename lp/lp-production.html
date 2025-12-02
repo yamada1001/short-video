@@ -233,22 +233,21 @@
       overflow: hidden;
     }
 
-    /* 大きなイラスト（右側） */
+    /* Slack風イラスト背景 */
     .hero::before {
       content: '';
       position: absolute;
-      top: 50%;
-      right: 5%;
-      transform: translateY(-50%);
-      width: 500px;
-      height: 500px;
-      background-image: url('https://illustrations.popsy.co/amber/product-launch.svg');
-      background-size: contain;
-      background-repeat: no-repeat;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none"><g opacity="0.5"><circle cx="150" cy="100" r="8" fill="%2310B981"/><circle cx="1050" cy="150" r="6" fill="%236366F1"/><circle cx="200" cy="600" r="10" fill="%23F59E0B"/><circle cx="1100" cy="700" r="7" fill="%2310B981"/><path d="M100 200 Q150 180 200 200" stroke="%236366F1" stroke-width="3" fill="none" opacity="0.6"/><path d="M1000 250 Q1050 230 1100 250" stroke="%2310B981" stroke-width="3" fill="none" opacity="0.6"/><rect x="80" y="450" width="60" height="40" rx="8" fill="%236366F1" opacity="0.3"/><rect x="1050" y="500" width="70" height="45" rx="8" fill="%2310B981" opacity="0.3"/><ellipse cx="300" cy="150" rx="30" ry="40" fill="%23F59E0B" opacity="0.25"/><ellipse cx="900" cy="650" rx="35" ry="45" fill="%236366F1" opacity="0.25"/><path d="M250 500 L270 480 L290 500 L310 485 L330 500" stroke="%2310B981" stroke-width="2.5" fill="none" opacity="0.5"/><circle cx="500" cy="120" r="12" fill="none" stroke="%236366F1" stroke-width="2.5" opacity="0.4"/><circle cx="700" cy="680" r="15" fill="none" stroke="%2310B981" stroke-width="2.5" opacity="0.4"/><polygon points="950,150 970,180 930,180" fill="%23F59E0B" opacity="0.35"/><polygon points="200,700 220,730 180,730" fill="%236366F1" opacity="0.35"/><path d="M400 300 L420 290 L440 300 L460 290" stroke="%23F59E0B" stroke-width="2" fill="none" opacity="0.4"/><rect x="850" y="350" width="50" height="35" rx="6" fill="%2310B981" opacity="0.25"/></g></svg>');
+      background-size: cover;
       background-position: center;
-      opacity: 0.12;
+      background-repeat: no-repeat;
       pointer-events: none;
       z-index: 1;
+      opacity: 1;
     }
 
     .hero-inner {
@@ -2329,11 +2328,10 @@
     // Hero Animation - タイプライター効果 + イラストフェードイン
     const heroTimeline = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-    // 背景イラスト: フェードイン
-    gsap.set('.hero::before', { opacity: 0, scale: 1.1 });
+    // SVG背景: フェードイン
+    gsap.set('.hero::before', { opacity: 0 });
     gsap.to('.hero::before', {
-      opacity: 0.12,
-      scale: 1,
+      opacity: 1,
       duration: 2,
       delay: 0.8,
       ease: 'power2.out'
