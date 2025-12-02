@@ -185,7 +185,8 @@
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com status lp/lp-production/assets/js/)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com ls-files:*)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add -A)",
-      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com commit -m \"Fix: JSファイル名から=を削除してscript.jsにリネーム\")"
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com commit -m \"Fix: JSファイル名から=を削除してscript.jsにリネーム\")",
+      "Bash(git reset:*)"
     ],
     "deny": [],
     "ask": []

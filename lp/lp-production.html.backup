@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes" />
+    <title>LP制作サービス｜YOJITU.COM - 5万円〜、最短3営業日</title>
+    <meta name="description" content="あなたの想いを形にする、特別な1ページ。5万円〜、最短3営業日でLP制作。AI活用で圧倒的なスピードと低価格を実現。" />
+    <link rel="stylesheet" href="lp-production/style.css" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="lp-production/assets/images/common/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" href="lp-production/assets/images/common/favicon/apple-touch-icon.png" />
+    <link
+        rel="icon"
+        type="image/png"
+        href="lp-production/assets/images/common/favicon/android-chrome-256%C3%97256.png" />
+    <!-- jQuery -->
+    <script src="lp-production/assets/js/jquery/jquery-3.7.1.min.js"></script>
+    <!-- slick.js -->
+    <link rel="stylesheet" href="lp-production/assets/slick/slick.css" />
+    <script src="lp-production/assets/slick/slick.min.js" type="text/javascript"></script>
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- OGP -->
+    <meta
+        property="og:url"
+        content="https://yojitu.com/lp/lp-production.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="LP制作サービス｜YOJITU.COM - 5万円〜、最短3営業日" />
+    <meta
+        property="og:description"
+        content="あなたの想いを形にする、特別な1ページ。5万円〜、最短3営業日でLP制作。AI活用で圧倒的なスピードと低価格を実現。" />
+    <meta property="og:site_name" content="YOJITU.COM" />
+    <meta
+        property="og:image"
+        content="https://yojitu.com/lp/lp-production/assets/images/common/ogp_thumb.jpg" />
+    <meta property="og:local" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-Z88R78SGG0"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-Z88R78SGG0");
+        </script> -->
+</head>
+<header class="l-header">
+    <h1 class="l-header__logo js-loadItem">
+        <a href="/" class="l-header__logoLink">
+            <img class="l-header__logoImg" src="lp-production/assets/images/common/logo_h_white.png" alt="YOJITU.COM">
+        </a>
+    </h1>
+
+    <div class="c-menu__menuBtn js-menuBtn a-menuBtn">
+        <div class="c-menu__menuBtnInner">
+            <span class="line1"></span>
+            <span class="line2"></span>
+        </div>
+        <span class="c-menu__menuBtnText en"></span>
+    </div>
+
+    <div class="c-menu js-menu a-header__menu">
+        <nav class="c-menu__nav">
+            <ul class="c-menu__navList">
+                <li class="c-menu__navItem">
+                    <a class="c-menu__navLink js-menuLink" href="#hero">
+                        <span class="ja">トップ</span>
+                        <span class="en">TOP</span>
+                    </a>
+                </li>
+                <li class="c-menu__navItem">
+                    <a class="c-menu__navLink js-menuLink" href="#about">
+                        <span class="ja">LPとは</span>
+                        <span class="en">ABOUT</span>
+                    </a>
+                </li>
+                <li class="c-menu__navItem">
+                    <a class="c-menu__navLink js-menuLink" href="#problem">
+                        <span class="ja">課題</span>
+                        <span class="en">PROBLEM</span>
+                    </a>
+                </li>
+                <li class="c-menu__navItem">
+                    <a class="c-menu__navLink js-menuLink" href="#pricing">
+                        <span class="ja">料金プラン</span>
+                        <span class="en">PRICING</span>
+                    </a>
+                </li>
+                <li class="c-menu__navItem">
+                    <a class="c-menu__navLink js-menuLink" href="#contact">
+                        <span class="ja">お問い合わせ</span>
+                        <span class="en">CONTACT</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="c-menu__info">
+            <span class="c-menu__name">YOJITU.COM</span>
+            <span class="c-menu__address">AI活用でスピーディーかつ高品質なWeb制作を実現</span>
+        </div>
+
+    </div>
+
+</header>
+
+<body class="js-load"><main>
+    <section class="p-front__hero" id="hero">
+        <picture class="p-front__heroWave--top">
+            <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/wave/wave_logo.svg" width="861" height="222"><img class="p-front__heroWaveImg--top" src="lp-production/assets/images/top/wave/wave_logo_sp.svg" alt="" width="360" height="93">
+        </picture>
+        <div class="p-front__heroSlide js-heroSlide">
+            <picture class="p-front__heroSlideBox">
+                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/heroSlide/top_kv_01_pc.jpg" width="1440" height="960"><img class="p-front__heroSlideImg js-kvimg" src="lp-production/assets/images/top/heroSlide/top_kv_01_sp.jpg" alt="" width="500" height="500">
+            </picture>
+            <picture class="p-front__heroSlideBox">
+                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/heroSlide/top_kv_02_pc.jpg" width="1440" height="960"><img class="p-front__heroSlideImg js-kvimg" src="lp-production/assets/images/top/heroSlide/top_kv_02_sp.jpg" alt="" width="500" height="500">
+            </picture>
+            <picture class="p-front__heroSlideBox">
+                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/heroSlide/top_kv_03_pc.jpg" width="1440" height="960"><img class="p-front__heroSlideImg js-kvimg" src="lp-production/assets/images/top/heroSlide/top_kv_03_sp.jpg" alt="" width="500" height="500">
+            </picture>
+            <picture class="p-front__heroSlideBox">
+                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/heroSlide/top_kv_04_pc.jpg" width="1440" height="960"><img class="p-front__heroSlideImg js-kvimg" src="lp-production/assets/images/top/heroSlide/top_kv_04_sp.jpg" alt="" width="500" height="500">
+            </picture>
+
+        </div>
+        <div class="p-font__heroLocation">
+            <i class="icon"></i>
+            <span class="ja">5万円〜、最短3営業日</span>
+            <span class="en">Fast & Affordable</span>
+        </div>
+        <img class="p-front__heroCopy js-loadItem" src="lp-production/assets/images/top/copy.svg" alt="その想いを、形にします。" width="28" height="390">
+        <picture class="p-front__heroWave--bottom">
+            <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/wave/wave_kv.svg" width="1440" height="209"><img class="p-front__heroWaveImg--bottom" src="lp-production/assets/images/top/wave/wave_kv_sp.svg" alt="" width="375" height="70">
+        </picture>
+
+    </section>
+    <section class="p-front__about" id="about">
+        <nav class="c-gnav-pc js-fixNav" id="js-fixNav">
+            <ul class="c-gnav-pc__list">
+                <li class="c-gnav-pc__item">
+                    <a class="c-gnav-pc__itemLink a-navLink" href="#hero">
+                        <span class="ja">トップ</span>
+                        <span class="en">TOP</span>
+                    </a>
+                </li>
+                <li class="c-gnav-pc__item">
+                    <a class="c-gnav-pc__itemLink a-navLink" href="#about">
+                        <span class="ja">LPとは</span>
+                        <span class="en">ABOUT</span>
+                    </a>
+                </li>
+                <li class="c-gnav-pc__item">
+                    <a class="c-gnav-pc__itemLink a-navLink" href="#problem">
+                        <span class="ja">課題</span>
+                        <span class="en">PROBLEM</span>
+                    </a>
+                </li>
+                <li class="c-gnav-pc__item">
+                    <a class="c-gnav-pc__itemLink a-navLink" href="#pricing">
+                        <span class="ja">料金プラン</span>
+                        <span class="en">PRICING</span>
+                    </a>
+                </li>
+                <li class="c-gnav-pc__item">
+                    <a class="c-gnav-pc__itemLink a-navLink" href="#contact">
+                        <span class="ja">お問い合わせ</span>
+                        <span class="en">CONTACT</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="p-front__aboutTop">
+            <div class="p-front__aboutTextBox">
+                <picture class="p-front__aboutTtl">
+                    <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/intro_pc.svg" width="538.54" height="127"><img class="p-front__aboutTtlImg" src="lp-production/assets/images/top/intro_sp.svg" alt="" width="275.63" height="65">
+                </picture>
+                <p class="p-front__aboutText ja js-fade">あなたの商品・サービスの魅力を、1枚のページで最大限に伝える。それがLP（ランディングページ）です。<br>
+                    YOJITU.COMでは、AI技術を活用し、従来の制作会社では考えられなかった「5万円〜」「最短3営業日」という価格とスピードを実現。機会損失を最小限に抑え、すぐにビジネスを加速させることができます。</p>
+                <p class="p-front__aboutText en js-fade u-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+            </div>
+            <div class="p-front__aboutImgBox -top" style="display: none;">
+                <img class="p-front__aboutImg chochin js-fade" src="lp-production/assets/images/top/chochinV2.png" alt="岐阜提灯" width="159.69" height="142" loading="lazy">
+                <img class="p-front__aboutImg wagasa js-fade" src="lp-production/assets/images/top/wagasa.png" alt="岐阜和傘" width="189.78" height="178" loading="lazy">
+            </div>
+        </div>
+        <div class="p-front__aboutMiddle" style="display: none;">
+            <div class="p-front__aboutImgBox -bottom">
+                <img class="p-front__aboutImg akari js-fade" src="lp-production/assets/images/top/akari.png" alt="AKARI" width="190.08" height="178" loading="lazy">
+                <img class="p-front__aboutImg kimono js-fade" src="lp-production/assets/images/top/kimono.png" alt="着物" width="159.76" height="147" loading="lazy">
+            </div>
+            <img class="p-front__aboutGraphic" src="lp-production/assets/images/top/nagaragawa.png" alt="長良川" width="280" height="394">
+        </div>
+        <div class="p-front__aboutPhoto" style="display: none;">
+            <div class="p-front__aboutPhoto__list js-photoRoll a-photoscroll">
+                <picture class="p-front__aboutPhoto__item">
+                    <source media="(min-width: 980px)" srcset="lp-production/assets/images/photoroll/top_photoRoll_01_pc.jpg" width="720" height="720" loading="lazy">
+                    <img class="p-front__aboutPhoto__img" src="lp-production/assets/images/photoroll/top_photoRoll_01_sp.jpg" alt="" width="240" height="240" loading="lazy">
+                </picture>
+                <picture class="p-front__aboutPhoto__item">
+                    <source media="(min-width: 980px)" srcset="lp-production/assets/images/photoroll/top_photoRoll_02_pc.jpg" width="720" height="720" loading="lazy">
+                    <img class="p-front__aboutPhoto__img" src="lp-production/assets/images/photoroll/top_photoRoll_02_sp.jpg" alt="" width="240" height="240" loading="lazy">
+                </picture>
+                <picture class="p-front__aboutPhoto__item">
+                    <source media="(min-width: 980px)" srcset="lp-production/assets/images/photoroll/top_photoRoll_03_pc.jpg" width="720" height="720" loading="lazy">
+                    <img class="p-front__aboutPhoto__img" src="lp-production/assets/images/photoroll/top_photoRoll_03_sp.jpg" alt="" width="240" height="240" loading="lazy">
+                </picture>
+                <picture class="p-front__aboutPhoto__item">
+                    <source media="(min-width: 980px)" srcset="lp-production/assets/images/photoroll/top_photoRoll_04_pc.jpg" width="720" height="720" loading="lazy">
+                    <img class="p-front__aboutPhoto__img" src="lp-production/assets/images/photoroll/top_photoRoll_04_sp.jpg" alt="" width="240" height="240" loading="lazy">
+                </picture>
+                <picture class="p-front__aboutPhoto__item">
+                    <source media="(min-width: 980px)" srcset="lp-production/assets/images/photoroll/top_photoRoll_05_pc.jpg" width="720" height="720" loading="lazy">
+                    <img class="p-front__aboutPhoto__img" src="lp-production/assets/images/photoroll/top_photoRoll_05_sp.jpg" alt="" width="240" height="240" loading="lazy">
+                </picture>
+            </div>
+            <div class="p-front__aboutPhoto__list js-photoRoll a-photoscroll clone">
+                <picture class="p-front__aboutPhoto__item">
+                    <source media="(min-width: 980px)" srcset="lp-production/assets/images/photoroll/top_photoRoll_01_pc.jpg" width="720" height="720" loading="lazy">
+                    <img class="p-front__aboutPhoto__img" src="lp-production/assets/images/photoroll/top_photoRoll_01_sp.jpg" alt="" width="240" height="240" loading="lazy">
+                </picture>
+                <picture class="p-front__aboutPhoto__item">
+                    <source media="(min-width: 980px)" srcset="lp-production/assets/images/photoroll/top_photoRoll_02_pc.jpg" width="720" height="720" loading="lazy">
+                    <img class="p-front__aboutPhoto__img" src="lp-production/assets/images/photoroll/top_photoRoll_02_sp.jpg" alt="" width="240" height="240" loading="lazy">
+                </picture>
+                <picture class="p-front__aboutPhoto__item">
+                    <source media="(min-width: 980px)" srcset="lp-production/assets/images/photoroll/top_photoRoll_03_pc.jpg" width="720" height="720" loading="lazy">
+                    <img class="p-front__aboutPhoto__img" src="lp-production/assets/images/photoroll/top_photoRoll_03_sp.jpg" alt="" width="240" height="240" loading="lazy">
+                </picture>
+                <picture class="p-front__aboutPhoto__item">
+                    <source media="(min-width: 980px)" srcset="lp-production/assets/images/photoroll/top_photoRoll_04_pc.jpg" width="720" height="720" loading="lazy">
+                    <img class="p-front__aboutPhoto__img" src="lp-production/assets/images/photoroll/top_photoRoll_04_sp.jpg" alt="" width="240" height="240" loading="lazy">
+                </picture>
+                <picture class="p-front__aboutPhoto__item">
+                    <source media="(min-width: 980px)" srcset="lp-production/assets/images/photoroll/top_photoRoll_05_pc.jpg" width="720" height="720" loading="lazy">
+                    <img class="p-front__aboutPhoto__img" src="lp-production/assets/images/photoroll/top_photoRoll_05_sp.jpg" alt="" width="240" height="240" loading="lazy">
+                </picture>
+            </div>
+        </div>
+
+
+    </section>
+    <section class="p-front__floor l-inner" id="problem">
+        <div class="p-front-floor__ttlBox">
+            <h2 class="c-front__secTtl">
+                <div class="c-front__secTtlInner">
+                    <img class="en" src="lp-production/assets/images/top/ttl/floor.svg" alt="PROBLEM" width="130" height="40">
+                    <span class="ja">こんなお悩み、ありませんか？</span>
+                </div>
+            </h2>
+            <p class="p-front-exp__text ja js-fade" style="text-align: center; margin-bottom: 40px;">商品・サービスの魅力を伝えたいのに、こんな課題を感じていませんか？</p>
+            <ul class="p-front-floor__problemList" style="list-style: none; padding: 0; max-width: 800px; margin: 0 auto;">
+                <div class="p-front-floor__map first">
+                    <span class="floor-num en">2F</span>
+                    <svg class="p-front-floor__floorMapImg" alt="2F MAP" width="413" height="162" viewBox="0 0 413 162" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M101.1 148.04L68.1289 129.005L112.798 103.212L145.769 122.248L101.1 148.04Z" fill="#787E88" />
+                        <path d="M156.398 0.800537L67.8323 51.9303L45.9048 64.5885L89.6288 89.8359L110.825 77.5918L133.38 90.6159L222.671 39.0651L156.398 0.800537Z" fill="#787E88" />
+                        <path d="M156.53 0L0 90.3744L123.518 161.686L280.047 71.3111L156.53 0ZM104.627 81.8712L109.583 84.7355L107.816 85.757L102.86 82.8926L104.627 81.8712ZM110.48 85.2531L115.139 87.938L113.372 88.9595L108.713 86.2746L110.48 85.2531ZM116.015 87.4341L111.356 84.7493L113.123 83.7278L117.782 86.4126L116.015 87.4341ZM110.459 84.2247L105.504 81.3604L107.27 80.3389L112.226 83.2032L110.459 84.2247ZM101.977 83.4034L106.932 86.2677L105.165 87.2892L100.21 84.4249L101.977 83.4034ZM107.829 86.7785L112.488 89.4633L110.721 90.4848L106.063 87.7999L107.829 86.7785ZM118.666 85.9019L114.007 83.217L115.511 82.3474L114.614 81.8297L113.109 82.6994L108.154 79.8351L110.818 78.2959L121.33 84.3628L118.666 85.9019ZM122.572 85.0806L133.387 91.3269L178.202 65.4583L187.637 70.9039L122.924 108.264C122.924 108.264 122.883 108.299 122.862 108.319L102.591 96.6138L122.572 85.0806ZM188.872 70.193H188.865L179.43 64.7474L222.837 39.6863L267.037 65.2029L223.638 90.257L188.872 70.1861V70.193ZM221.588 38.9685L133.374 89.8981L110.804 76.8672L89.6014 89.1044L47.1405 64.5886L156.557 1.42181L221.588 38.9685ZM45.9188 65.2995L89.6221 90.5331L99.3262 84.9287L104.282 87.793L99.6782 90.4503L97.8906 89.4219L96.3239 92.9074L102.356 92.0032L100.569 90.9748L105.172 88.3176L109.831 91.0025L100.127 96.6069L144.534 122.248L101.086 147.329L69.3648 129.012L80.4908 122.593C80.829 122.4 80.8221 122.082 80.477 121.882C80.1319 121.682 79.5797 121.682 79.2415 121.882L68.1155 128.301L2.47091 90.3882L45.9188 65.3064V65.2995ZM123.49 160.264L102.329 148.047L146.998 122.255L124.077 109.017C124.077 109.017 124.146 108.996 124.173 108.982L188.893 71.6148L223.658 91.6858L268.28 65.9276L277.583 71.2973L123.497 160.257L123.49 160.264Z" fill="white" />
+                        <g class="js-marker" id="marker-2d">
+                            <g class="numBase">
+                                <path d="M97.1802 137.25H119.13L108.15 145.2L97.1802 137.25Z" fill="#D3594C" />
+                                <path d="M132.8 122.4C133.08 132.42 123.69 138.48 108.15 138.3C92.62 138.49 83.23 132.43 83.51 122.4C83.23 112.38 92.62 106.32 108.15 106.5C123.68 106.32 133.08 112.38 132.8 122.4Z" fill="#FAFAFA" stroke="#D3594C" stroke-miterlimit="10" />
+                            </g>
+                            <g class="num">
+                                <path d="M99.6002 125.51C99.6002 125.51 99.6002 125.56 99.5802 125.63L98.6802 128.07C98.4002 128.81 98.2802 128.98 97.8402 128.98H97.7202C95.5202 128.89 92.7502 128.86 89.1802 128.98C89.0402 128.98 88.9502 128.72 88.9502 128.47C88.9502 128.33 89.0002 128.17 89.0702 128.05C90.6002 125.82 95.7802 122.6 95.7302 119.44C95.7102 117.7 94.4802 117.03 93.1302 117.03C92.1102 117.03 91.2302 117.42 90.5802 118.03C90.2802 118.31 89.3302 117.57 89.7202 117.19C90.8102 116.1 92.4802 115.43 93.9002 115.43C96.2202 115.43 98.4302 116.5 98.5002 119.12C98.5902 122.67 93.5102 125.29 91.7702 127.13L96.2302 126.92C97.0202 126.87 97.9902 126.43 98.7802 125.18C98.9702 124.9 99.6202 125.16 99.6202 125.53L99.6002 125.51Z" />
+                                <path d="M108.95 123.09C109.13 123.09 109.2 123.39 109.2 123.72C109.2 124.14 109.06 124.6 108.85 124.6H103.02C102.83 124.6 102.77 124.3 102.77 123.97C102.77 123.55 102.91 123.09 103.12 123.09H108.95Z" />
+                                <path d="M126.86 122.56C126.86 126.2 124.4 129.06 119.69 129.06H119.46C118.21 129.04 117.05 128.92 115.28 128.92C114.31 128.92 113.49 128.94 112.56 128.97C112.47 128.97 112.42 128.88 112.42 128.74C112.42 128.46 112.58 128.07 112.75 128.04C113.4 127.9 114 127.76 114 127.09L114.02 117.36C114.02 116.76 113.42 116.76 112.58 116.76C112.44 116.76 112.37 116.6 112.37 116.39C112.37 116.09 112.51 115.69 112.81 115.69H112.86C112.86 115.69 114.21 115.74 114.76 115.74C116.06 115.74 116.87 115.67 119.03 115.67C124.79 115.67 126.85 118.55 126.85 122.56H126.86ZM123.75 122.84C123.75 120.08 122.91 116.69 118.57 116.69C117.85 116.69 117.27 116.74 116.67 116.9L116.65 127.09C116.65 127.67 118.14 128 119.39 128C122.08 128 123.75 127.14 123.75 122.85V122.84Z" />
+                            </g>
+                        </g>
+                        <g class="js-marker" id="marker-2e">
+                            <g class="numBase">
+                                <path d="M130.676 58.7539H152.626L141.646 66.7039L130.676 58.7539Z" fill="#D3594C" />
+                                <path d="M166.296 43.9039C166.576 53.9239 157.186 59.9839 141.646 59.8039C126.116 59.9939 116.726 53.9339 117.006 43.9039C116.726 33.8839 126.116 27.8239 141.646 28.0039C157.176 27.8239 166.576 33.8839 166.296 43.9039Z" fill="#FAFAFA" stroke="#D3594C" stroke-miterlimit="10" />
+                            </g>
+                            <g class="num">
+                                <path d="M134.226 47.0138C134.226 47.0138 134.226 47.0638 134.206 47.1338L133.306 49.5738C133.026 50.3138 132.906 50.4838 132.466 50.4838H132.346C130.146 50.3938 127.376 50.3638 123.806 50.4838C123.666 50.4838 123.576 50.2238 123.576 49.9738C123.576 49.8338 123.626 49.6738 123.696 49.5538C125.226 47.3238 130.406 44.1038 130.356 40.9438C130.336 39.2038 129.106 38.5338 127.756 38.5338C126.736 38.5338 125.856 38.9238 125.206 39.5338C124.906 39.8138 123.956 39.0738 124.346 38.6938C125.436 37.6038 127.106 36.9338 128.526 36.9338C130.846 36.9338 133.056 38.0038 133.126 40.6238C133.216 44.1738 128.136 46.7938 126.396 48.6338L130.856 48.4238C131.646 48.3738 132.616 47.9338 133.406 46.6838C133.596 46.4038 134.246 46.6638 134.246 47.0338L134.226 47.0138Z" />
+                                <path d="M143.576 44.6038C143.756 44.6038 143.826 44.9038 143.826 45.2338C143.826 45.6538 143.686 46.1138 143.476 46.1138H137.646C137.456 46.1138 137.396 45.8138 137.396 45.4838C137.396 45.0638 137.536 44.6038 137.746 44.6038H143.576Z" />
+                                <path d="M159.726 46.9938L159.706 47.0838L158.826 49.8938C158.666 50.4038 158.366 50.4738 158.056 50.4738C154.276 50.4038 149.216 50.4038 147.216 50.4738C146.916 50.4738 147.096 49.5938 147.356 49.5438C148.006 49.4038 148.656 49.2638 148.656 48.5938V38.8638C148.656 38.2638 148.056 38.2638 147.216 38.2338C147.076 38.2338 147.006 38.0738 147.006 37.8638C147.006 37.5638 147.166 37.1938 147.466 37.1938C150.926 37.2638 154.406 37.2638 157.866 37.1938C158.056 37.1938 158.216 37.3538 158.236 37.4938L158.626 39.9338C158.696 40.3938 157.976 40.7738 157.836 40.4238C157.066 38.8938 156.166 38.5438 155.556 38.4738C154.646 38.3538 152.906 38.3138 151.286 38.5238V43.3538L155.206 43.3338C155.836 43.3338 156.136 42.6838 156.316 41.9638C156.366 41.7538 157.106 41.7738 157.106 42.0838V45.4238C157.106 45.8838 156.226 45.6538 156.196 45.4938C156.056 44.7038 155.686 44.5238 154.736 44.5238H151.276V48.6538C151.276 49.0538 151.346 49.2338 151.996 49.2538C153.966 49.3038 155.016 49.2738 155.986 49.1638C157.196 49.0238 157.936 48.1438 158.796 46.5838C158.936 46.3338 159.706 46.5838 159.706 47.0038L159.726 46.9938Z" />
+                            </g>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_4464_2590">
+                                <rect width="50.31" height="39.2" fill="white" transform="translate(83 106)" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="p-front-floor__map first">
+                    <span class="floor-num en">1F</span>
+                    <svg class="p-front-floor__floorMapImg" alt="1F MAP" width="413" height="240" viewBox="0 0 413 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_4464_2598)">
+                            <path d="M166.351 129.798L154.5 122.952L121.847 104.102L1.23535 173.736L33.8886 192.586L88.138 161.264L99.5263 167.842L146.57 140.676L158.29 147.447L177.608 136.293L166.351 129.798Z" fill="#787E88" />
+                            <path d="M388.643 64.5679L176.573 187.009L167.324 181.674L115.628 211.518L125.305 217.108L111.197 225.253L133.87 238.346L411.75 77.9094L388.643 64.5679Z" fill="#787E88" />
+                            <path d="M167.324 181.674L176.573 187.009L264.69 136.135L221.505 111.198L111.453 174.73L145.403 194.332L167.324 181.674Z" fill="#787E88" />
+                            <path d="M346.61 39.5897L352.311 35.2415L279.295 0L176.145 72.0289L0 173.729L66.6523 212.208L77.6333 205.872C77.9715 205.679 77.9646 205.361 77.6195 205.161C77.2744 204.961 76.7223 204.961 76.3841 205.161L66.6247 210.793L2.4709 173.743L165.537 79.5935L220.055 111.066L154.404 148.972C154.066 149.165 154.073 149.483 154.418 149.683C154.763 149.883 155.315 149.883 155.653 149.683L221.305 111.777L263.462 136.114L179.782 184.428L179.168 184.78L176.428 186.36L167.186 181.025L114.4 211.504L137.991 225.122L154.1 215.825C154.438 215.631 154.432 215.314 154.086 215.114C153.741 214.914 153.189 214.914 152.851 215.114L137.963 223.707L116.864 211.525L167.207 182.46L176.449 187.796L179.803 185.863L191.661 192.71L161.126 210.337C160.788 210.531 160.795 210.848 161.14 211.048C161.485 211.249 162.038 211.249 162.376 211.048L194.132 192.717L181.032 185.152L388.664 65.2788L410.529 77.9025L133.871 237.635L131.945 236.524C131.6 236.323 131.048 236.323 130.709 236.524C130.371 236.724 130.378 237.034 130.723 237.234L133.898 239.063L413 77.9232L346.624 39.6035L346.61 39.5897ZM344.795 39.2929L239.74 99.9474L211.255 83.5L209.413 66.0656L291.898 7.38511L349.916 35.3933L344.788 39.2998L344.795 39.2929ZM264.684 135.417L166.765 78.8826L177.45 72.7122L279.55 1.42181L290.552 6.72942L207.839 65.5687L207.632 65.7206L209.551 83.9348L239.761 101.376L345.471 40.342L387.414 64.561L264.684 135.417Z" fill="white" />
+                            <path d="M111.812 224.901L100.927 218.62C100.582 218.42 100.03 218.42 99.692 218.62C99.3538 218.82 99.3607 219.131 99.7058 219.331L110.59 225.612C110.935 225.812 111.488 225.812 111.826 225.612C112.164 225.411 112.157 225.101 111.812 224.901Z" fill="white" />
+                            <path d="M130.944 185.277L112.688 174.737L133.746 162.576C134.085 162.383 134.078 162.065 133.733 161.865C133.387 161.665 132.835 161.665 132.497 161.865L130.592 162.963L125.74 160.16L127.9 158.911L127.003 158.393L124.843 159.643L119.901 156.792L121.806 155.695C122.144 155.502 122.137 155.184 121.792 154.984C121.447 154.784 120.895 154.784 120.557 154.984L99.4988 167.145L88.1105 160.568L54.6636 179.879C54.3254 180.073 54.3323 180.39 54.6774 180.59C55.0225 180.79 55.5746 180.79 55.9128 180.59L88.1381 161.982L129.709 185.988C130.054 186.188 130.606 186.188 130.944 185.988C131.282 185.787 131.275 185.477 130.93 185.277H130.944ZM125.305 166.02L120.453 163.218L122.22 162.196L127.072 164.999L125.305 166.02ZM119.556 162.7L114.614 159.85L116.381 158.828L121.323 161.679L119.556 162.7ZM113.738 160.354L118.679 163.204L116.912 164.226L111.971 161.375L113.738 160.354ZM119.57 163.729L124.422 166.531L122.655 167.552L117.803 164.75L119.57 163.729ZM129.716 163.466L127.949 164.488L123.097 161.686L124.864 160.664L129.716 163.466ZM123.973 160.153L122.206 161.175L117.264 158.324L119.031 157.303L123.973 160.153ZM111.087 161.886L116.029 164.736L112.081 167.014L110.293 165.986L108.727 169.471L114.759 168.567L112.971 167.539L116.919 165.261L121.771 168.063L111.439 174.026L100.755 167.856L111.087 161.893V161.886Z" fill="white" />
+                            <g class="js-marker" id="marker-1b">
+                                <g class="numBase">
+                                    <path d="M88.1802 154.564H110.13L99.1502 162.514L88.1802 154.564Z" fill="#D3594C" />
+                                    <path d="M123.8 139.714C124.08 149.734 114.69 155.794 99.15 155.614C83.62 155.804 74.23 149.744 74.51 139.714C74.23 129.694 83.62 123.634 99.15 123.814C114.68 123.634 124.08 129.694 123.8 139.714Z" fill="#FAFAFA" stroke="#D3594C" stroke-miterlimit="10" />
+                                </g>
+                                <g class="num">
+                                    <path d="M90.1298 145.654C90.1298 145.934 89.9898 146.284 89.7998 146.284C87.7598 146.214 85.1998 146.214 82.9498 146.284H82.8998C82.5298 146.284 82.8098 145.284 83.1098 145.264C84.3198 145.194 85.3598 145.074 85.3598 144.384V136.264C85.3598 135.824 85.3398 135.754 85.0098 135.754C84.7098 135.754 84.1498 135.844 83.0798 135.944C82.7798 135.964 82.5898 135.664 82.5898 135.384C82.5898 135.194 82.6598 135.034 82.8198 134.994C84.3298 134.504 85.5098 133.784 86.5598 132.924C86.6298 132.854 86.7698 132.804 86.9098 132.804C87.3698 132.804 87.9998 133.104 87.9498 133.404C87.8598 134.144 87.7898 134.824 87.7898 135.564V144.404C87.7898 145.104 88.5798 145.144 89.8298 145.244C90.0198 145.244 90.1098 145.434 90.1098 145.664L90.1298 145.654Z" />
+                                    <path d="M99.7401 140.404C99.9201 140.404 99.9901 140.704 99.9901 141.034C99.9901 141.454 99.8501 141.914 99.6401 141.914H93.8101C93.6201 141.914 93.5601 141.614 93.5601 141.284C93.5601 140.864 93.7001 140.404 93.9101 140.404H99.7401Z" />
+                                    <path d="M115.82 142.544C115.82 144.634 114.33 146.394 110.25 146.394C108.93 146.394 107.28 146.254 105.31 146.254C104.73 146.254 104.08 146.254 103.38 146.274C103.08 146.274 103.26 145.394 103.52 145.344C104.17 145.204 104.82 145.064 104.82 144.394V134.664C104.82 134.064 104.22 134.064 103.38 134.034C103.24 134.034 103.17 133.894 103.17 133.664C103.17 133.364 103.31 132.994 103.61 132.994H103.66C104.26 133.014 105.01 133.044 105.56 133.044C106.86 133.044 107.67 132.974 109.2 132.974C109.66 132.974 110.06 132.974 110.64 133.024C112.92 133.164 114.7 134.394 114.7 136.574C114.7 137.804 114.14 138.774 112.17 139.334C114.91 139.794 115.81 140.984 115.81 142.534L115.82 142.544ZM113.01 142.884C113.01 141.744 112.66 140.234 109.76 140.164C109.18 140.144 108.83 140.164 108.44 140.184C108.09 140.204 108.35 139.044 108.67 139.044C109.06 139.044 109.62 139.044 109.9 139.024C111.2 138.974 111.99 138.494 111.99 137.074C111.99 136.264 111.78 133.944 109.07 133.944C108.51 133.944 107.93 134.014 107.47 134.204V144.484C107.47 145.154 108.38 145.274 110.05 145.274C111.72 145.274 113.02 144.534 113.02 142.884H113.01Z" />
+                                </g>
+                            </g>
+                            <g class="js-marker" id="marker-1c">
+                                <g class="numBase">
+                                    <path d="M251.676 169.068H273.626L262.646 177.018L251.676 169.068Z" fill="#D3594C" />
+                                    <path d="M287.296 154.218C287.576 164.238 278.186 170.298 262.646 170.118C247.116 170.308 237.726 164.248 238.006 154.218C237.726 144.198 247.116 138.138 262.646 138.318C278.176 138.138 287.576 144.198 287.296 154.218Z" fill="#FAFAFA" stroke="#D3594C" stroke-miterlimit="10" />
+                                </g>
+                                <g class="num">
+                                    <path d="M252.946 160.148C252.946 160.428 252.806 160.778 252.616 160.778C250.576 160.708 248.016 160.708 245.766 160.778H245.716C245.346 160.778 245.626 159.778 245.926 159.758C247.136 159.688 248.176 159.568 248.176 158.878V150.758C248.176 150.318 248.156 150.248 247.826 150.248C247.526 150.248 246.966 150.338 245.896 150.438C245.596 150.458 245.406 150.158 245.406 149.878C245.406 149.688 245.476 149.528 245.636 149.488C247.146 148.998 248.326 148.278 249.376 147.418C249.446 147.348 249.586 147.298 249.726 147.298C250.186 147.298 250.816 147.598 250.766 147.898C250.676 148.638 250.606 149.318 250.606 150.058V158.898C250.606 159.598 251.396 159.638 252.646 159.738C252.836 159.738 252.926 159.928 252.926 160.158L252.946 160.148Z" />
+                                    <path d="M262.556 154.908C262.736 154.908 262.806 155.208 262.806 155.538C262.806 155.958 262.666 156.418 262.456 156.418H256.626C256.436 156.418 256.376 156.118 256.376 155.788C256.376 155.368 256.516 154.908 256.726 154.908H262.556Z" />
+                                    <path d="M280.126 158.298C280.126 158.438 280.106 158.548 279.986 158.688C278.986 159.898 277.196 161.058 274.066 161.058C270.466 161.058 266.916 158.858 266.916 154.348C266.916 150.658 269.326 147.178 274.766 147.178C276.806 147.178 278.476 147.758 279.156 148.148C279.386 148.288 279.506 148.518 279.596 148.848C279.736 149.338 279.896 150.518 279.946 151.238C279.966 151.538 279.246 151.748 279.136 151.538C277.926 149.358 276.306 148.408 273.986 148.408C271.666 148.408 269.996 150.128 269.996 153.468C269.996 157.878 272.456 159.598 275.076 159.598C276.836 159.598 278.346 158.808 279.486 157.628C279.606 157.508 280.136 157.858 280.136 158.298H280.126Z" />
+                                </g>
+                            </g>
+                            <g class="js-marker" id="marker-1a">
+                                <g class="numBase">
+                                    <path d="M182.676 165.068H204.626L193.646 173.018L182.676 165.068Z" fill="#D3594C" />
+                                    <path d="M218.296 150.218C218.576 160.238 209.186 166.298 193.646 166.118C178.116 166.308 168.726 160.248 169.006 150.218C168.726 140.198 178.116 134.138 193.646 134.318C209.176 134.138 218.576 140.198 218.296 150.218Z" fill="#FAFAFA" stroke="#D3594C" stroke-miterlimit="10" />
+                                </g>
+                                <g class="num">
+                                    <path d="M184.226 156.169C184.226 156.449 184.086 156.799 183.896 156.799C181.856 156.729 179.306 156.729 177.046 156.799H176.996C176.626 156.799 176.906 155.799 177.206 155.779C178.416 155.709 179.456 155.589 179.456 154.899V146.779C179.456 146.339 179.436 146.269 179.106 146.269C178.806 146.269 178.246 146.359 177.176 146.459C176.876 146.479 176.686 146.179 176.686 145.899C176.686 145.709 176.756 145.549 176.916 145.509C178.426 145.019 179.606 144.299 180.656 143.439C180.726 143.369 180.866 143.319 181.006 143.319C181.466 143.319 182.096 143.619 182.046 143.919C181.956 144.659 181.886 145.339 181.886 146.079V154.919C181.886 155.619 182.676 155.659 183.926 155.759C184.116 155.759 184.206 155.949 184.206 156.179L184.226 156.169Z" />
+                                    <path d="M193.836 150.929C194.016 150.929 194.086 151.229 194.086 151.559C194.086 151.979 193.946 152.439 193.736 152.439H187.906C187.716 152.439 187.656 152.139 187.656 151.809C187.656 151.389 187.796 150.929 188.006 150.929H193.836Z" />
+                                    <path d="M211.566 156.129C211.566 156.499 211.376 156.799 211.146 156.799H211.096C210.426 156.749 208.476 156.679 205.856 156.799H205.806C205.546 156.799 205.716 155.889 205.966 155.869C206.876 155.749 207.516 155.569 207.246 154.959L206.266 152.829H200.396L199.356 155.219C199.146 155.709 199.686 155.729 200.906 155.749C201.276 155.749 201.136 156.789 200.696 156.789H200.646C198.926 156.699 198.186 156.699 196.536 156.789C196.416 156.789 196.376 156.669 196.376 156.529C196.376 156.249 196.516 155.899 196.676 155.859C197.346 155.699 197.656 155.579 197.956 154.909L202.966 143.719C203.126 143.349 203.776 142.999 204.246 142.999C204.476 142.999 204.636 143.069 204.736 143.249L210.256 155.159C210.486 155.649 210.816 155.689 211.346 155.739C211.486 155.739 211.556 155.899 211.556 156.109L211.566 156.129ZM205.736 151.649L203.296 146.269L200.926 151.649H205.736Z" />
+                                </g>
+                            </g>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_4464_2598">
+                                <rect width="413" height="239.063" fill="white" />
+                            </clipPath>
+                            <clipPath id="clip1_4464_2598">
+                                <rect width="50.31" height="39.2" fill="white" transform="translate(74 123.314)" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+
+                </div>
+            </div>
+        </div>
+        <div class="p-front-floor__guide">
+            <div class="p-front-floor__Floor first">
+                <h3 class="p-front-floor__ttl en">1F</h3>
+                <img class="p-front-floor__map-light first" src="lp-production/assets/images/top/1f_floor_light_v2.svg" alt="1F FLOOR MAP" width="300" height="160">
+                <ul class="p-front-floor__shopList">
+                    <li class="p-front-floor__shopItem js-shop js-fade" data-shop-id="1a">
+                        <img class="p-front-floor__shopAddress" srcset="lp-production/assets/images/top/shop/1-A.svg" width="64" height="42">
+                        <div class="p-front-floor__shopSlide js-shopSlide">
+                            <picture class="p-front-floor__shopSlideItem">
+                                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/shop/wagasacasa01.jpg" width="640" height="427" loading="lazy">
+                                <img class="p-front-floor__shopImg" src="lp-production/assets/images/top/shop/wagasacasa01.jpg" alt="店内内観" width="300" height="200">
+                            </picture>
+                            <picture class="p-front-floor__shopSlideItem">
+                                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/shop/wagasacasa02.jpg" width="640" height="427" loading="lazy">
+                                <img class="p-front-floor__shopImg" src="lp-production/assets/images/top/shop/wagasacasa02.jpg" alt="店舗内観" width="300" height="200">
+                            </picture>
+                        </div>
+                        <div class="p-front-floor__shopBody">
+                            <h4 class="p-front-floor__shopTtl">
+                                <span class="ja">和傘CASA</span>
+                                <span class="en u-none">Wagasa CASA</span>
+                            </h4>
+                            <div class="p-front-floor__shopInfo">
+                                <span class="hl"></span>
+                                <div class="g-ja">
+                                    <p class="p-front-floor__shopText">岐阜和傘専門店</p>
+                                    <dl class="p-front-floor__shopInfoList">
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>営業時間</dt>
+                                            <dd>11:00〜18:00</dd>
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>定休日</dt>
+                                            <dd>水・木
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>電話番号</dt>
+                                            <dd>090-8335-9759
+                                        </div>
+                                    </dl>
+                                </div>
+                                <span class="hl u-none"></span>
+                                <div class="g-en u-none">
+                                    <p class="p-front-floor__shopText en">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                    <dl class="p-front-floor__shopInfoList en">
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>Buisiness Hours</dt>
+                                            <dd>11:00~18:00</dd>
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>regular Holiday</dt>
+                                            <dd>Wed,Thu
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>Phone</dt>
+                                            <dd>090-8335-9759
+                                        </div>
+                                    </dl>
+                                </div>
+                                </di>
+                            </div>
+                        </div>
+                        <a class="c-link" href="https://wagasa.shop" target="_blank"><span class="ja">公式WEB</span><span class="en  u-none">Web</span></a>
+                    </li>
+                    <li class="p-front-floor__shopItem js-shop js-fade" data-shop-id="1b">
+                        <img class="p-front-floor__shopAddress" srcset="lp-production/assets/images/top/shop/1-B.svg" width="64" height="42">
+                        <div class="p-front-floor__shopSlide js-shopSlide">
+                            <picture class="p-front-floor__shopSlideItem">
+                                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/shop/organkimono01.jpg" width="640" height="427" loading="lazy">
+                                <img class="p-front-floor__shopImg" src="lp-production/assets/images/top/shop/organkimono01.jpg" alt="町歩きイメージ" width="300" height="200">
+                            </picture>
+                            <picture class="p-front-floor__shopSlideItem">
+                                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/shop/organkimono02.jpg" width="640" height="427" loading="lazy">
+                                <img class="p-front-floor__shopImg" src="lp-production/assets/images/top/shop/organkimono02.jpg" alt="店舗内観" width="300" height="200">
+                            </picture>
+                        </div>
+                        <div class="p-front-floor__shopBody">
+                            <h4 class="p-front-floor__shopTtl">
+                                <span class="ja">ORGAN キモノ</span>
+                                <span class="en  u-none">ORGAN KIMONO</span>
+                            </h4>
+                            <div class="p-front-floor__shopInfo">
+                                <span class="hl"></span>
+                                <div class="g-ja">
+                                    <p class="p-front-floor__shopText">アンティーク着付けレンタル＆リサイクル着物販売</p>
+                                    <dl class="p-front-floor__shopInfoList">
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>営業時間</dt>
+                                            <dd>＜当日OK＞11:00〜14:00<br>＜予約制＞9:30〜10:30／14:00〜18:00</dd>
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>定休日</dt>
+                                            <dd>水・木
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>e-mail</dt>
+                                            <dd>organkimono@onpaku.asia
+                                        </div>
+                                    </dl>
+                                </div>
+                                <span class="hl u-none"></span>
+                                <div class="g-en  u-none">
+                                    <p class="p-front-floor__shopText en">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                    <dl class="p-front-floor__shopInfoList en">
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>Buisiness Hours</dt>
+                                            <dd>9:30~18:00</dd>
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>regular Holiday</dt>
+                                            <dd>Wed,Thu
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>e-mail</dt>
+                                            <dd>organkimono@onpaku.asia
+                                        </div>
+                                    </dl>
+                                </div>
+                                </di>
+                            </div>
+                        </div>
+                        <a class="c-link" href="https://www.organkimono.jp" target="_blank"><span class="ja">公式WEB</span><span class="en  u-none">Web</span></a>
+                    </li>
+                    <li class="p-front-floor__shopItem js-shop js-fade" data-shop-id="1c">
+                        <img class="p-front-floor__shopAddress" srcset="lp-production/assets/images/top/shop/1-C.svg" width="64" height="42">
+                        <div class="p-front-floor__shopSlide js-shopSlide">
+                            <picture class="p-front-floor__shopSlideItem">
+                                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/shop/hiyashitanuki01.jpg" width="640" height="427" loading="lazy">
+                                <img class="p-front-floor__shopImg" src="lp-production/assets/images/top/shop/hiyashitanuki01.jpg" alt="冷やしたぬき" width="300" height="200">
+                            </picture>
+                            <picture class="p-front-floor__shopSlideItem">
+                                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/shop/hiyashitanuki02.jpg" width="640" height="427" loading="lazy">
+                                <img class="p-front-floor__shopImg" src="lp-production/assets/images/top/shop/hiyashitanuki02.jpg" alt="店舗内観" width="300" height="200">
+                            </picture>
+                        </div>
+                        <div class="p-front-floor__shopBody">
+                            <h4 class="p-front-floor__shopTtl">
+                                <span class="ja">冷やしたぬき天国<span class="small">川原町店</span></span>
+                                <span class="en  u-none">COOL TANUKI PARADISE Kawaramachi</span>
+                            </h4>
+                            <div class="p-front-floor__shopInfo">
+                                <span class="hl"></span>
+                                <div class="g-ja">
+                                    <p class="p-front-floor__shopText">岐阜が誇るソウルフード冷やしたぬきそばを提供</p>
+                                    <dl class="p-front-floor__shopInfoList">
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>営業時間</dt>
+                                            <dd>平日 11:00〜17:00<br>
+                                                土日祝 11:00〜14:30/17:00〜20:00</dd>
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>定休日</dt>
+                                            <dd>木
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>電話番号</dt>
+                                            <dd>070-6533-9233
+                                        </div>
+                                    </dl>
+                                </div>
+                                <span class="hl u-none"></span>
+                                <div class="g-en  u-none">
+                                    <p class="p-front-floor__shopText en">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                    <dl class="p-front-floor__shopInfoList en">
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>Buisiness Hours</dt>
+                                            <dd>weekday 11:00〜17:00<br>
+                                                Weekends & National Holidays 11:00〜14:30/17:00〜20:00</dd>
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>regular Holiday</dt>
+                                            <dd>Thu
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>Phone</dt>
+                                            <dd>XXX-XXXX-XXXX
+                                        </div>
+                                    </dl>
+                                </div>
+                                </di>
+                            </div>
+                        </div>
+                        <a class="c-link" href="https://www.instagram.com/hiyaten_kawaramachi?igsh=MXB0cm41a211bzdldQ==" target="_blank"><span class="ja">Instagram</span><span class="en  u-none">Instagram</span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="p-front-floor__Floor first">
+                <h3 class="p-front-floor__ttl en">2F</h3>
+                <img class="p-front-floor__map-light first" src="lp-production/assets/images/top/2f_floor_light_v2.svg" alt="2F FLOOR MAP" width="300" height="160">
+                <ul class="p-front-floor__shopList">
+                    <li class="p-front-floor__shopItem js-shop js-fade" data-shop-id="2d">
+                        <img class="p-front-floor__shopAddress" srcset="lp-production/assets/images/top/shop/2-D.svg" width="64" height="42">
+                        <div class="p-front-floor__shopSlide js-shopSlide">
+                            <picture class="p-front-floor__shopSlideItem">
+                                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/shop/ozeki01.jpg" width="640" height="427" loading="lazy">
+                                <img class="p-front-floor__shopImg" src="lp-production/assets/images/top/shop/ozeki01.jpg" alt="ギャラリー内観" width="300" height="200">
+                            </picture>
+                            <picture class="p-front-floor__shopSlideItem">
+                                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/shop/ozeki02.jpg?ver=2" width="640" height="427" loading="lazy">
+                                <img class="p-front-floor__shopImg" src="lp-production/assets/images/top/shop/ozeki02-ver=2.jpg" alt="岐阜提灯" width="300" height="200">
+                            </picture>
+                        </div>
+                        <div class="p-front-floor__shopBody">
+                            <h4 class="p-front-floor__shopTtl">
+                                <span class="ja">OZEKI 川原町gallery</span>
+                                <span class="en  u-none">OZEKI Kawaramachi gallery</span>
+                            </h4>
+                            <div class="p-front-floor__shopInfo">
+                                <span class="hl"></span>
+                                <div class="g-ja">
+                                    <p class="p-front-floor__shopText">株式会社オゼキによる岐阜提灯のギャラリー。</p>
+                                    <dl class="p-front-floor__shopInfoList">
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>営業時間</dt>
+                                            <dd>11:00〜18:00</dd>
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>定休日</dt>
+                                            <dd>水・木
+                                        </div>
+
+                                    </dl>
+                                </div>
+                                <span class="hl  u-none"></span>
+                                <div class="g-en  u-none">
+                                    <p class="p-front-floor__shopText en ">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                    <dl class="p-front-floor__shopInfoList en">
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>Buisiness Hours</dt>
+                                            <dd>11:00~18:00</dd>
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>regular Holiday</dt>
+                                            <dd>Wed,Thu
+                                        </div>
+
+                                    </dl>
+                                </div>
+                                </di>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="p-front-floor__shopItem js-shop js-fade" data-shop-id="2e">
+                        <img class="p-front-floor__shopAddress" srcset="lp-production/assets/images/top/shop/2-E.svg" width="64" height="42">
+                        <div class="p-front-floor__shopSlide js-shopSlide">
+                            <picture class="p-front-floor__shopSlideItem">
+                                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/shop/akarigallery01.jpg" width="640" height="427" loading="lazy">
+                                <img class="p-front-floor__shopImg" src="lp-production/assets/images/top/shop/akarigallery01.jpg" alt="ギャラリー内観" width="300" height="200">
+                            </picture>
+                            <picture class="p-front-floor__shopSlideItem">
+                                <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/shop/akarigallery02.jpg" width="640" height="427" loading="lazy">
+                                <img class="p-front-floor__shopImg" src="lp-production/assets/images/top/shop/akarigallery02.jpg" alt="AKARI" width="300" height="200">
+                            </picture>
+                        </div>
+                        <div class="p-front-floor__shopBody">
+                            <h4 class="p-front-floor__shopTtl">
+                                <span class="ja">AKARI gallery</span>
+                                <span class="en  u-none">AKARI garelly</span>
+                            </h4>
+                            <div class="p-front-floor__shopInfo">
+                                <span class="hl"></span>
+                                <div class="g-ja">
+                                    <p class="p-front-floor__shopText">彫刻家イサム・ノグチがデザインした照明「AKARI」の常設ギャラリー。</p>
+                                    <dl class="p-front-floor__shopInfoList">
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>営業時間</dt>
+                                            <dd>11:00〜18:00</dd>
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem">
+                                            <dt>定休日</dt>
+                                            <dd>水・木
+                                        </div>
+
+                                    </dl>
+                                </div>
+                                <span class="hl  u-none"></span>
+                                <div class="g-en  u-none">
+                                    <p class="p-front-floor__shopText en">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                    <dl class="p-front-floor__shopInfoList en">
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>Buisiness Hours</dt>
+                                            <dd>11:00~18:00</dd>
+                                        </div>
+                                        <div class="p-front-floor__shopInfoItem en">
+                                            <dt>regular Holiday</dt>
+                                            <dd>Wed,Thu
+                                        </div>
+
+                                    </dl>
+                                </div>
+                                </di>
+                            </div>
+                        </div>
+
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+    </section>
+    <div class="u-bg-white p-front-white">
+        <section class="p-front-exp" id="pricing">
+            <div class="p-front-exp__body l-inner">
+                <div class="p-front-exp__textBox">
+                    <h2 class="c-front__secTtl">
+                        <div class="c-front__secTtlInner">
+                            <img class="en" src="lp-production/assets/images/top/ttl/experience.svg" alt="PRICING" width="130" height="40">
+                            <span class="ja">料金プラン</span>
+                        </div>
+                    </h2>
+                    <p class="p-front-exp__text ja js-fade">シンプルで分かりやすい料金体系。AI活用により、従来の制作会社では考えられなかった価格とスピードを実現しています。</p>
+                    <p class="p-front-exp__text en js-fade u-none">Simple and affordable pricing. AI-powered production enables unprecedented speed and cost-effectiveness.</p>
+                </div>
+                <div class="p-front-exp__imgBox" style="display: none;">
+                    <img class="p-front-exp__mapImg" src="lp-production/assets/images/top/mapV4.png" alt="casastella" width="300" height="300">
+                </div>
+            </div>
+            <div class="p-front-exp__slideOuter">
+                <div class="p-front-exp__slide js-expSLide">
+
+                    <div class="p-front-exp__item">
+                        <a class="p-front-exp__itemLink a-expLink" href="https://gifu-nagaragawa.jp/programs/6656cf04421aa90001c72df7" target="_blank">
+                            <h3 class="p-front-exp__itemTtl">
+                                <span class="ja">ぎふ雪洞（ぼんぼり）絵付け体験</span>
+                                <span class="en u-none">Bonbori Painting</span>
+
+                            </h3>
+                            <picture class="p-front-exp__itemImBox">
+                                <img class="p-front-exp__itemImg" src="lp-production/assets/images/top/experience/exp-bonbori.jpg" alt="" width="270" height="180" loading="lazy">
+                            </picture>
+                            <div class="p-front-exp__itemInfoOuter">
+                                <div class="p-front-exp__itemInfo">
+                                    <span class="hl"></span>
+                                    <dl class="g-ja">
+                                        <div class="p-front-exp__infoItem">
+                                            <dt>体験料：</dt>
+                                            <dd>3,600円/1名</dd>
+                                        </div>
+                                        <div class="p-front-exp__infoItem">
+                                            <dt>所要時間：</dt>
+                                            <dd>60分</dd>
+                                        </div>
+                                    </dl>
+                                    <dl class="g-en u-none">
+                                        <div class="p-front-exp__infoItem en">
+                                            <dt>Fee:</dt>
+                                            <dd>￥3,600/person</dd>
+                                        </div>
+                                        <div class="p-front-exp__infoItem en">
+                                            <dt>Duration:</dt>
+                                            <dd>60 min</dd>
+                                        </div>
+                                    </dl>
+                                </div>
+                                <div class="c-link2">VIEW MORE</div>
+
+                            </div>
+                            <span class="p-front-exp__itemCoopy">レトロかわいい和のあかり</span>
+                        </a>
+                    </div>
+                    <div class="p-front-exp__item">
+                        <a class="p-front-exp__itemLink a-expLink" href="https://gifu-nagaragawa.jp/programs/64631a7f421aa90001ede10c" target="_blank">
+                            <h3 class="p-front-exp__itemTtl">
+                                <span class="ja">ぎふ提灯絵付け体験</span>
+                                <span class="en u-none">Gifu Chochin Painting</span>
+
+                            </h3>
+                            <picture class="p-front-exp__itemImBox">
+                                <img class="p-front-exp__itemImg" src="lp-production/assets/images/top/experience/exp-chochin.jpg" alt="" width="270" height="180" loading="lazy">
+                            </picture>
+                            <div class="p-front-exp__itemInfoOuter">
+                                <div class="p-front-exp__itemInfo">
+                                    <span class="hl"></span>
+                                    <dl class="g-ja">
+                                        <div class="p-front-exp__infoItem">
+                                            <dt>体験料：</dt>
+                                            <dd>3,600円/1名</dd>
+                                        </div>
+                                        <div class="p-front-exp__infoItem">
+                                            <dt>所要時間：</dt>
+                                            <dd>60分</dd>
+                                        </div>
+                                    </dl>
+                                    <dl class="g-en u-none">
+                                        <div class="p-front-exp__infoItem en">
+                                            <dt>Fee:</dt>
+                                            <dd>￥3,600/person</dd>
+                                        </div>
+                                        <div class="p-front-exp__infoItem en">
+                                            <dt>Duration:</dt>
+                                            <dd>60 min</dd>
+                                        </div>
+                                    </dl>
+                                </div>
+                                <div class="c-link2">VIEW MORE</div>
+
+                            </div>
+                            <span class="p-front-exp__itemCoopy">日本一の提灯のまち、岐阜で</span>
+                        </a>
+                    </div>
+                    <!-- <div class="p-front-exp__item">
+                        <a class="p-front-exp__itemLink a-expLink" href="https://gifu-nagaragawa.jp/programs/64ed9be6421aa90001610ff2" target="_blank">
+                            <h3 class="p-front-exp__itemTtl">
+                                <span class="ja">ミ二ぎふ和傘絵付け体験</span>
+                                <span class="en u-none">Mini Wagasa Painting</span>
+
+                            </h3>
+                            <picture class="p-front-exp__itemImBox">
+                                <img class="p-front-exp__itemImg" src="lp-production/assets/images/top/experience/exp-miniwagasa.jpg" alt="" width="270" height="180" loading="lazy">
+                            </picture>
+                            <div class="p-front-exp__itemInfoOuter">
+                                <div class="p-front-exp__itemInfo">
+                                    <dl class="g-ja">
+                                        <div class="p-front-exp__infoItem">
+                                            <dt>体験料：</dt>
+                                            <dd>3,600円/1名</dd>
+                                        </div>
+                                        <div class="p-front-exp__infoItem">
+                                            <dt>所要時間：</dt>
+                                            <dd>60分</dd>
+                                        </div>
+                                    </dl>
+                                    <dl class="g-en u-none">
+                                        <div class="p-front-exp__infoItem en">
+                                            <dt>Fee:</dt>
+                                            <dd>￥3,600/person</dd>
+                                        </div>
+                                        <div class="p-front-exp__infoItem en">
+                                            <dt>Duration:</dt>
+                                            <dd>60 min</dd>
+                                        </div>
+                                    </dl>
+                                </div>
+                                <div class="c-link2">VIEW MORE</div>
+
+                            </div>
+                            <span class="p-front-exp__itemCoopy">日本一の和傘のまち、岐阜で</span>
+                        </a>
+                    </div> -->
+                    <div class="p-front-exp__item">
+                        <a class="p-front-exp__itemLink a-expLink" href="https://gifu-nagaragawa.jp/programs/6465a16d421aa90001f99868" target="_blank">
+                            <h3 class="p-front-exp__itemTtl">
+                                <span class="ja">可愛い岐阜和傘 一日レンタル</span>
+                                <span class="en u-none">Gifu Wagasa Rental for a day</span>
+
+                            </h3>
+                            <picture class="p-front-exp__itemImBox">
+                                <img class="p-front-exp__itemImg" src="lp-production/assets/images/top/experience/exp-wagasa.jpg" alt="" width="270" height="180" loading="lazy">
+                            </picture>
+                            <div class="p-front-exp__itemInfoOuter">
+                                <div class="p-front-exp__itemInfo">
+                                    <dl class="g-ja">
+                                        <div class="p-front-exp__infoItem">
+                                            <dt>体験料：</dt>
+                                            <dd>2,200円/1名</dd>
+                                        </div>
+                                        <div class="p-front-exp__infoItem">
+                                            <dt>体験時間：</dt>
+                                            <dd>1日</dd>
+                                        </div>
+                                    </dl>
+                                    <dl class="g-en u-none">
+                                        <div class="p-front-exp__infoItem en">
+                                            <dt>Fee:</dt>
+                                            <dd>￥2,200/person</dd>
+                                        </div>
+                                        <div class="p-front-exp__infoItem en">
+                                            <dt>Duration:</dt>
+                                            <dd>a day</dd>
+                                        </div>
+                                    </dl>
+                                </div>
+                                <div class="c-link2">VIEW MORE</div>
+
+                            </div>
+                            <span class="p-front-exp__itemCoopy">撮影、まちあるきに！</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section class="p-front__access l-inner" id="contact">
+            <h2 class="c-front__secTtl">
+                <div class="c-front__secTtlInner">
+                    <img class="en" src="lp-production/assets/images/top/ttl/access.svg" alt="CONTACT" width="130" height="40">
+                    <span class="ja">お問い合わせ</span>
+                </div>
+            </h2>
+
+            <div class="p-front-access__adressBox">
+                <p class="p-front-access__name">YOJITU.COM</p>
+                <p class="p-front-access__adress">まずはお気軽にご相談ください。<br>
+                    3営業日以内にご返信いたします。</p>
+                <p class="p-front-access__adressEn en u-none">Feel free to contact us.<br>
+                    We'll respond within 3 business days.</p>
+            </div>
+            <div class="p-front-access__gmap" style="display: none;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d386.64736243204317!2d136.77107199927408!3d35.4370939794546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f35!3m3!1m2!1s0x6003ab00453e84f9:0x9fd67de152fdb800!2sCASA%20stella!5e0!3m2!1sja!2sjp!4v1746001161524!5m2!1sja!2sjp" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <a class="p-front-access__gmapLink a-gmapLink en" href="https://maps.app.goo.gl/w86dY5565ts5Ya8T6" target="_blank">Google Maps<i class="icon"></i></a>
+            </div>
+            <div class="p-front-access__transportation" style="display: none;">
+                <div class="p-front-access__tpItem public">
+                    <h3 class="p-front-access_tpTtl">
+                        <div class="text"><span class="ja">公共交通機関の場合</span><span class="en u-none">By public transportation</span></div>
+                    </h3>
+                    <ul class="p-front-access__tpLoute">
+                        <li>
+                            <h4 class="p-front-access__louteTtl">名古屋から岐阜まで</h4>
+                            <p class="p-front-access__louteText">JR名古屋駅(JR東海道本線)〜JR岐阜駅（快速・約20分）<br>名鉄名古屋駅(名鉄名古屋本線)〜名鉄岐阜駅（特急・約30分）</p>
+                        </li>
+                        <li>
+                            <h4 class="p-front-access__louteTtl">岐阜駅からCASA stella まで</h4>
+                            <p class="p-front-access__louteText">JR岐阜駅北口バスターミナル 12・13番〜「長良橋南・川原町」バス停 （約20分）〜徒歩（約5分）</p>
+                        </li>
+                    </ul>
+                    <ul class="p-front-access__tpLoute en u-none">
+                        <li>
+                            <h4 class="p-front-access__louteTtl en">From Nagoya to Gifu</h4>
+                            <p class="p-front-access__louteText en">JR Nagoya Station (JR Tokaido Honsen Line) - JR Gifu Station (Rapid, approx. 20 min) <br>
+                                Meitetsu Nagoya Station (Meitetsu Nagoya Honsen Line) - Meitetsu Gifu Station (Limited Express, approx. 30 min)</p>
+                        </li>
+                        <li>
+                            <h4 class="p-front-access__louteTtl en">From Gifu station to CASA stella</h4>
+                            <p class="p-front-access__louteText en">JR Gifu Station North Exit Bus Terminal No. 12 or 13 - “Nagarabashi” bus stop (approx. 20 minutes) - walk (approx. 5 minutes)</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="p-front-access__tpItem car">
+                    <h3 class="p-front-access_tpTtl">
+                        <div class="text"><span class="ja">お車の場合</span><span class="en u-none">By car</span></div>
+                    </h3>
+                    <ul class="p-front-access__tpLoute">
+                        <li>
+                            <p class="p-front-access__louteText">東海北陸自動車道・岐阜各務原ICから20分。
+                                駐車場は共同駐車場（第1駐車場：25台、第2駐車場：9台）をご利用ください。</p>
+                        </li>
+                    </ul>
+                    <ul class="p-front-access__tpLoute en u-none">
+                        <li>
+                            <p class="p-front-access__louteText en">20 minutes from the Gifu-Kakamigahara IC of the Tokai-Hokuriku Expressway.<br>
+                                Please use the shared parking lot (1st: 25 spaces, 2nd: 9 spaces).
+                        </li>
+                    </ul>
+                    <picture class="p-front-access__parking">
+                        <img class="p-front-access__parkingMap" src="lp-production/assets/images/top/parking.png" alt="駐車場地図" width="325" height="210" loading="lazy">
+                    </picture>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    <picture class="p-front__footerPhoto">
+        <source media="(min-width: 980px)" srcset="lp-production/assets/images/top/footer_kv_pc.jpg" width="1440" height="800" loading="lazy">
+        <img class="p-front__footerImg" src="lp-production/assets/images/top/footer_kv_sp.jpg" alt="外観" width="375" height="375" loading="lazy">
+    </picture>
+</main>
+<footer class="l-footer l-inner">
+    <div class="l-footer__inner">
+        <div class="l-footer__textBox">
+            <img class="l-footer__logo" src="lp-production/assets/images/common/logo_h_bk.png" alt="YOJITU.COM" width="240" height="117">
+            <div class="l-footer__info">
+                <span class="l-footer__name">YOJITU.COM</span>
+                <span class="l-footer__address-ja">AI活用でスピーディーかつ高品質なWeb制作を実現</span>
+                <span class="l-footer__address-en en u-none">AI-powered web production for speed and quality</span>
+            </div>
+        </div>
+        <div class="l-footer__linkList" style="display: none;">
+            <a class="l-footer__linkItem a-link" href="https://wagasa.shop" target="_blank"><img class="l-footer__linkLogo wagsacasa" src="lp-production/assets/images/common/wagasacasa_logo.png" alt="和傘CASA" width="209" height="67"></a>
+            <a class="l-footer__linkItem a-link" href="https://www.organkimono.jp" target="_blank"><img class="l-footer__linkLogo organkimono" src="lp-production/assets/images/common/organ_kimono.png" alt="ORGANキモノ" width="209" height="28"></a>
+        </div>
+    </div>
+    <div class="l-footer__credit">
+        <p class="l-footer__creditText" style="display: none;">運営：NPO法人ORGAN</p>
+        <p class="l-footer__copyright en">© 2025 YOJITU.COM All rights reserved.</p>
+    </div>
+</footer>
+<!-- js -->
+<script src="lp-production/assets/js/script.js" type="text/javascript"></script>
+
+
+</body>
+
+</html>
