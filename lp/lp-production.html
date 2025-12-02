@@ -2458,19 +2458,19 @@
       });
     });
 
-    // Comparison Grid Animation
-    gsap.from('.comparison-column', {
-      scrollTrigger: {
-        trigger: '.comparison-grid',
-        start: 'top bottom-=100',
-        toggleActions: 'play none none none'
-      },
-      opacity: 0,
-      x: (i) => i === 0 ? -40 : 40,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: 'power2.out'
-    });
+    // Comparison Grid Animation - Disabled to prevent opacity issue
+    // gsap.from('.comparison-column', {
+    //   scrollTrigger: {
+    //     trigger: '.comparison-grid',
+    //     start: 'top bottom-=100',
+    //     toggleActions: 'play none none none'
+    //   },
+    //   opacity: 0,
+    //   x: (i) => i === 0 ? -40 : 40,
+    //   duration: 0.8,
+    //   stagger: 0.2,
+    //   ease: 'power2.out'
+    // });
 
     // Header Hide on Scroll Down, Show on Scroll Up
     let lastScroll = 0;
