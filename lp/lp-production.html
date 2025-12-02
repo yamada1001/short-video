@@ -1,2502 +1,708 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LP制作サービス｜YOJITU.COM - 5万円〜、最短3営業日</title>
-  <meta name="description" content="あなたの想いを形にする、特別な1ページ。5万円〜、最短3営業日でLP制作。AI活用で圧倒的なスピードと低価格を実現。">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Reddit+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
-
-  <style>
-    @property --gradient-angle {
-      syntax: '<angle>';
-      initial-value: 0deg;
-      inherits: false;
-    }
-
-    :root {
-      --color-primary: #303f5d;
-      --color-secondary: #787e88;
-      --color-accent: #d3594c;
-      --color-accent-hover: #b54539;
-      --color-bg: #fafafa;
-      --color-bg-alt: #f5f3ed;
-      --color-border: #bcc5c2;
-      --color-text-light: #787e88;
-      --color-bg-wave: #f2efd2;
-      --font-primary: 'Zen Kaku Gothic New', "游ゴシック体", YuGothic, sans-serif;
-      --font-accent: 'Reddit Sans', serif;
-      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      --gradient-angle: 0deg;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      overflow-x: hidden;
-    }
-
-    body {
-      font-family: var(--font-primary);
-      color: var(--color-primary);
-      background: var(--color-bg);
-      line-height: 1.8;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-
-
-    /* Header */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(250, 250, 250, 0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--color-border);
-      z-index: 1000;
-      transition: all 0.4s var(--ease);
-    }
-
-    .header:hover {
-      background: var(--color-bg);
-      box-shadow: 0 2px 20px rgba(48, 63, 93, 0.08);
-    }
-
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 28px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-family: var(--font-accent);
-      font-size: 22px;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      color: var(--color-primary);
-      text-decoration: none;
-      transition: all 0.3s var(--ease);
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .logo-icon {
-      font-size: 24px;
-      color: var(--color-accent);
-      transition: transform 0.3s var(--ease);
-    }
-
-    .logo:hover .logo-icon {
-      transform: translateY(-3px) rotate(-10deg);
-    }
-
-    .logo::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--color-accent);
-      transition: width 0.4s var(--ease);
-    }
-
-    .logo:hover::after {
-      width: 100%;
-    }
-
-    .header-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 32px;
-      background: transparent;
-      color: var(--color-primary);
-      text-decoration: none;
-      border-radius: 0;
-      font-weight: 500;
-      font-size: 14px;
-      letter-spacing: 0.05em;
-      transition: all 0.3s var(--ease);
-      border: 1px solid var(--color-primary);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-arrow {
-      font-size: 12px;
-      transition: transform 0.3s var(--ease);
-    }
-
-    .header-cta:hover .cta-arrow {
-      transform: translateX(5px);
-    }
-
-    .header-cta::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 100%;
-      background: var(--color-primary);
-      transition: width 0.4s var(--ease);
-      z-index: -1;
-    }
-
-    .header-cta:hover {
-      color: white;
-    }
-
-    .header-cta:hover::before {
-      width: 100%;
-    }
-
-    /* Hero */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 24px 80px;
-      background: var(--color-bg);
-      overflow: hidden;
-    }
-
-    /* 波装飾（上部） */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 200px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" fill="none"><path d="M0,80 Q360,20 720,80 T1440,80 L1440,0 L0,0 Z" fill="%23f5f3ed"/></svg>') no-repeat top center;
-      background-size: 100% 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* 波装飾（下部） */
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 200px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" fill="none"><path d="M0,120 Q360,180 720,120 T1440,120 L1440,200 L0,200 Z" fill="%23f5f3ed"/></svg>') no-repeat bottom center;
-      background-size: 100% 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .hero-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      width: 100%;
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-
-    .hero-catchcopy {
-      font-size: clamp(40px, 7vw, 72px);
-      font-weight: 900;
-      line-height: 1.3;
-      letter-spacing: -0.04em;
-      margin-bottom: 48px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .catchcopy-main {
-      opacity: 1;
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      min-height: 1.3em;
-    }
-
-    .catchcopy-sub {
-      opacity: 1;
-      font-size: clamp(18px, 3vw, 28px);
-      font-weight: 500;
-      color: var(--color-secondary);
-      letter-spacing: 0.02em;
-      min-height: 1.3em;
-    }
-
-    .hero-subcopy {
-      font-size: clamp(18px, 2.5vw, 24px);
-      font-weight: 500;
-      color: var(--color-secondary);
-      line-height: 1.7;
-      margin-bottom: 48px;
-      opacity: 0;
-    }
-
-    .hero-features {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 0;
-      opacity: 0;
-    }
-
-    .feature-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 0;
-      background: transparent;
-      border: none;
-      border-radius: 0;
-      font-weight: 500;
-      font-size: 13px;
-      white-space: nowrap;
-      color: rgba(107, 93, 87, 0.7);
-      opacity: 0.8;
-    }
-
-    .feature-icon {
-      margin-right: 6px;
-      font-size: 14px;
-      color: rgba(139, 69, 19, 0.5);
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px 40px;
-      background: var(--color-accent);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s var(--ease);
-      white-space: nowrap;
-    }
-
-    .btn-primary:hover {
-      background: var(--color-accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 102, 255, 0.25);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px 40px;
-      background: white;
-      color: var(--color-primary);
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 16px;
-      border: 2px solid var(--color-border);
-      cursor: pointer;
-      transition: all 0.3s var(--ease);
-      white-space: nowrap;
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--color-primary);
-      transform: translateY(-2px);
-    }
-
-    /* Section */
-    .section {
-      padding: 140px 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-alt {
-      background: var(--color-bg-alt);
-    }
-
-
-    .section-number {
-      position: absolute;
-      top: 40px;
-      right: 5%;
-      font-size: clamp(120px, 15vw, 240px);
-      font-weight: 900;
-      font-family: var(--font-accent);
-      color: rgba(48, 63, 93, 0.05);
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-
-
-    .section-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    .section-title {
-      font-size: clamp(32px, 5vw, 64px);
-      font-weight: 900;
-      line-height: 1.3;
-      letter-spacing: -0.03em;
-      margin-bottom: 56px;
-      text-align: center;
-      position: relative;
-      padding-bottom: 24px;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-    }
-
-    .section-lead {
-      font-size: 18px;
-      color: var(--color-secondary);
-      text-align: center;
-      margin-bottom: 64px;
-      line-height: 1.8;
-    }
-
-    /* Problem Timeline */
-    .problem-timeline {
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-      padding-left: 120px;
-    }
-
-
-    .problem-item {
-      position: relative;
-      padding: 32px 0;
-      transition: all 0.4s var(--ease);
-    }
-
-    .problem-item:hover {
-      transform: translateX(8px);
-    }
-
-    .problem-number {
-      position: absolute;
-      left: -120px;
-      top: 32px;
-      width: 80px;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 36px;
-      font-weight: 900;
-      font-family: var(--font-accent);
-      color: var(--color-accent);
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(15px);
-      border-radius: 50%;
-      border: 3px solid var(--color-accent);
-      box-shadow: 0 8px 24px rgba(139, 69, 19, 0.15);
-      z-index: 2;
-      transition: all 0.4s var(--ease);
-    }
-
-    .problem-item:hover .problem-number {
-      transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 12px 32px rgba(139, 69, 19, 0.25);
-    }
-
-    .problem-content {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(15px);
-      padding: 32px 40px;
-      border-radius: 16px;
-      border-left: 4px solid var(--color-accent);
-      border: 1px solid rgba(139, 69, 19, 0.08);
-      box-shadow: 0 4px 16px rgba(139, 69, 19, 0.08);
-      transition: all 0.4s var(--ease);
-      position: relative;
-    }
-
-    .problem-item:hover .problem-content {
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 12px 40px rgba(139, 69, 19, 0.15);
-      border-left-width: 6px;
-    }
-
-    .problem-content::before {
-      content: '';
-      position: absolute;
-      left: -13px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-      border-right: 10px solid rgba(139, 69, 19, 0.15);
-    }
-
-    .problem-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--color-primary);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .problem-icon {
-      font-size: 24px;
-      color: var(--color-accent);
-    }
-
-    .problem-text {
-      font-size: 16px;
-      color: var(--color-secondary);
-      line-height: 1.8;
-    }
-
-    /* Comparison Table */
-    .comparison-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      margin: 48px 0;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(139, 69, 19, 0.08);
-      border: 1px solid rgba(139, 69, 19, 0.08);
-    }
-
-    .comparison-table th,
-    .comparison-table td {
-      padding: 28px 24px;
-      text-align: left;
-      border-bottom: 1px solid rgba(139, 69, 19, 0.08);
-      transition: all 0.3s var(--ease);
-    }
-
-    .comparison-table th {
-      background: linear-gradient(135deg, rgba(139, 69, 19, 0.08) 0%, rgba(139, 69, 19, 0.04) 100%);
-      font-weight: 700;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-accent);
-      position: relative;
-    }
-
-    .comparison-table th::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--color-accent), transparent);
-      opacity: 0.3;
-    }
-
-    .comparison-table tbody tr {
-      transition: all 0.3s var(--ease);
-    }
-
-    .comparison-table tbody tr:hover {
-      background: rgba(139, 69, 19, 0.03);
-      transform: translateX(4px);
-    }
-
-    .comparison-table td:first-child {
-      font-weight: 700;
-      width: 30%;
-      color: var(--color-primary);
-      position: relative;
-      padding-left: 32px;
-    }
-
-    .comparison-table td:first-child::before {
-      content: '▸';
-      position: absolute;
-      left: 16px;
-      color: var(--color-accent);
-      opacity: 0;
-      transition: opacity 0.3s var(--ease);
-    }
-
-    .comparison-table tbody tr:hover td:first-child::before {
-      opacity: 1;
-    }
-
-    .comparison-table td:nth-child(2),
-    .comparison-table td:nth-child(3) {
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    .comparison-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* Timing Bars */
-    .timing-list {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .timing-bar {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      padding: 28px 40px;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(20px);
-      border-radius: 16px;
-      border-left: 4px solid var(--color-accent);
-      border: 1px solid rgba(139, 69, 19, 0.1);
-      box-shadow: 0 4px 16px rgba(139, 69, 19, 0.06);
-      transition: all 0.4s var(--ease);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .timing-bar::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 0;
-      background: linear-gradient(90deg, rgba(139, 69, 19, 0.06) 0%, transparent 100%);
-      transition: width 0.5s var(--ease);
-    }
-
-    .timing-bar:hover {
-      transform: translateX(8px);
-      box-shadow: 0 8px 32px rgba(139, 69, 19, 0.15);
-      background: rgba(255, 255, 255, 0.95);
-      border-left-width: 6px;
-    }
-
-    .timing-bar:hover::before {
-      width: 100%;
-    }
-
-    .timing-icon {
-      font-size: 32px;
-      color: var(--color-accent);
-      flex-shrink: 0;
-      width: 48px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      transition: transform 0.3s var(--ease);
-    }
-
-    .timing-bar:hover .timing-icon {
-      transform: scale(1.15);
-    }
-
-    .timing-content {
-      flex: 1;
-      position: relative;
-      z-index: 1;
-    }
-
-    .timing-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--color-primary);
-    }
-
-    .timing-text {
-      font-size: 15px;
-      color: var(--color-secondary);
-      line-height: 1.6;
-    }
-
-    /* Comparison Section */
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 64px;
-      perspective: 1000px;
-      position: relative;
-      z-index: 100;
-    }
-
-    .comparison-column {
-      padding: 64px 48px;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(40px) saturate(180%);
-      border-radius: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      transition: all 0.5s var(--ease);
-      box-shadow:
-        0 8px 32px rgba(139, 69, 19, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
-      position: relative;
-      z-index: 100;
-    }
-
-    .comparison-column:hover {
-      transform: translateY(-8px);
-      box-shadow:
-        0 16px 48px rgba(139, 69, 19, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 1);
-      background: rgba(255, 255, 255, 0.85);
-      border-color: rgba(255, 255, 255, 0.8);
-    }
-
-    .comparison-column.highlight {
-      background: rgba(255, 252, 245, 0.85);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      position: relative;
-      transform: scale(1.02);
-      box-shadow:
-        0 12px 40px rgba(16, 185, 129, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 1),
-        0 0 0 1px rgba(16, 185, 129, 0.15);
-    }
-
-    .comparison-column.highlight:hover {
-      transform: translateY(-8px) scale(1.02);
-      background: rgba(255, 252, 245, 0.95);
-      border-color: rgba(16, 185, 129, 0.5);
-    }
-
-    .comparison-column.highlight::before {
-      content: 'YOJITU.COM';
-      position: absolute;
-      top: 24px;
-      right: 24px;
-      padding: 8px 20px;
-      background: rgba(16, 185, 129, 0.15);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      color: var(--color-accent);
-      font-size: 11px;
-      font-weight: 800;
-      border-radius: 20px;
-      letter-spacing: 0.15em;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
-    }
-
-    .comparison-label {
-      font-size: 24px;
-      font-weight: 800;
-      margin-bottom: 32px;
-      color: var(--color-primary);
-      padding-bottom: 16px;
-      border-bottom: 2px solid rgba(139, 69, 19, 0.15);
-    }
-
-    .comparison-item {
-      margin-bottom: 20px;
-      padding-left: 32px;
-      position: relative;
-      font-size: 17px;
-      line-height: 1.8;
-      color: var(--color-primary);
-      font-weight: 500;
-    }
-
-    .comparison-item::before {
-      content: '▸';
-      position: absolute;
-      left: 8px;
-      color: var(--color-accent);
-      font-weight: 900;
-      font-size: 18px;
-    }
-
-    .comparison-column.highlight .comparison-item {
-      font-weight: 600;
-    }
-
-    .comparison-column.highlight .comparison-item::before {
-      content: '✓';
-      font-size: 20px;
-    }
-
-    /* Portfolio */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      margin-top: 48px;
-    }
-
-    .portfolio-item {
-      background: transparent;
-      border: none;
-      border-radius: 0;
-      overflow: hidden;
-      transition: all 0.3s var(--ease);
-    }
-
-    .portfolio-item:hover {
-      transform: none;
-      box-shadow: none;
-    }
-
-    .portfolio-image {
-      width: 100%;
-      height: 600px;
-      background: #f5f5f7;
-      position: relative;
-      border-radius: 12px 12px 0 0;
-      overflow: hidden;
-      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1) inset;
-    }
-
-    .portfolio-image::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 40px;
-      background: linear-gradient(to bottom, #e8e8e8, #d8d8d8);
-      border-bottom: 1px solid #c0c0c0;
-    }
-
-    .portfolio-image::after {
-      content: '';
-      position: absolute;
-      top: 12px;
-      left: 16px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #ff5f56;
-      box-shadow:
-        20px 0 0 #ffbd2e,
-        40px 0 0 #27c93f;
-    }
-
-    .portfolio-image iframe,
-    .portfolio-image img {
-      position: absolute;
-      top: 40px;
-      left: 0;
-      width: 100%;
-      height: calc(100% - 40px);
-      object-fit: cover;
-      object-position: top;
-    }
-
-    .portfolio-content {
-      padding: 24px;
-    }
-
-    .portfolio-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .portfolio-link {
-      font-size: 14px;
-      color: var(--color-accent);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .portfolio-link:hover {
-      text-decoration: underline;
-    }
-
-    /* Pricing */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 32px;
-      margin-top: 48px;
-    }
-
-    .pricing-card {
-      padding: 64px 48px;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(20px);
-      border: 2px solid rgba(139, 69, 19, 0.15);
-      border-radius: 28px;
-      transition: all 0.5s var(--ease);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pricing-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(210, 105, 30, 0.1) 0%, transparent 50%);
-      transform: scale(0) rotate(0deg);
-      transition: all 0.8s var(--ease);
-    }
-
-    .pricing-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--color-gradient-1), var(--color-gradient-2), var(--color-gradient-3));
-      opacity: 0;
-      transition: opacity 0.4s var(--ease);
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-16px) scale(1.03);
-      box-shadow: 0 28px 80px rgba(139, 69, 19, 0.25);
-      border-color: var(--color-accent);
-      background: rgba(255, 255, 255, 0.95);
-    }
-
-    .pricing-card:hover::before {
-      transform: scale(1) rotate(45deg);
-    }
-
-    .pricing-card:hover::after {
-      opacity: 1;
-    }
-
-    .pricing-plan {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--color-accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 16px;
-    }
-
-    .pricing-price {
-      font-size: 48px;
-      font-weight: 900;
-      font-family: var(--font-accent);
-      margin-bottom: 8px;
-    }
-
-    .pricing-price-unit {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--color-secondary);
-    }
-
-    .pricing-features {
-      margin: 32px 0;
-      padding: 32px 0;
-      border-top: 1px solid var(--color-border);
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .pricing-feature {
-      margin-bottom: 16px;
-      padding-left: 28px;
-      position: relative;
-      font-size: 15px;
-    }
-
-    .pricing-feature::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: var(--color-accent);
-      font-weight: 700;
-      font-size: 18px;
-    }
-
-    .pricing-note {
-      font-size: 14px;
-      color: var(--color-secondary);
-      margin-top: 24px;
-      line-height: 1.6;
-    }
-
-    /* Flow */
-    .flow-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 32px;
-      margin-top: 48px;
-      position: relative;
-    }
-
-    .flow-step {
-      text-align: center;
-      position: relative;
-    }
-
-    .flow-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 64px;
-      height: 64px;
-      background: var(--color-accent);
-      color: white;
-      font-size: 24px;
-      font-weight: 900;
-      font-family: var(--font-accent);
-      border-radius: 50%;
-      margin-bottom: 24px;
-    }
-
-    .flow-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .flow-text {
-      font-size: 14px;
-      color: var(--color-secondary);
-      line-height: 1.7;
-    }
-
-    /* FAQ */
-    .faq-list {
-      max-width: 800px;
-      margin: 48px auto 0;
-    }
-
-    .faq-item {
-      margin-bottom: 0;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid var(--color-border);
-      border-radius: 0;
-      overflow: hidden;
-    }
-
-    .faq-question {
-      width: 100%;
-      padding: 24px;
-      background: none;
-      border: none;
-      text-align: left;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.3s var(--ease);
-    }
-
-    .faq-question:hover {
-      background: var(--color-bg-alt);
-    }
-
-    .faq-icon {
-      font-size: 20px;
-      transition: transform 0.3s var(--ease);
-    }
-
-    .faq-item.active .faq-icon {
-      transform: rotate(45deg);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s var(--ease);
-    }
-
-    .faq-answer-inner {
-      padding: 0 24px 24px;
-      color: var(--color-secondary);
-      line-height: 1.8;
-    }
-
-    .faq-item.active .faq-answer {
-      max-height: 500px;
-    }
-
-    /* Contact Section */
-    .contact-section {
-      padding: 140px 40px;
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-section::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .contact-section::after {
-      content: '';
-      position: absolute;
-      bottom: -50%;
-      left: -20%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .contact-container {
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .contact-title {
-      font-size: clamp(36px, 5vw, 64px);
-      font-weight: 900;
-      line-height: 1.3;
-      margin-bottom: 20px;
-      text-align: center;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .contact-lead {
-      font-size: 18px;
-      color: var(--color-secondary);
-      text-align: center;
-      margin-bottom: 72px;
-      font-weight: 400;
-      letter-spacing: 0.03em;
-      line-height: 1.8;
-    }
-
-    .contact-form {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 64px 56px;
-      border-radius: 24px;
-      border: 1px solid rgba(45, 36, 32, 0.06);
-      box-shadow:
-        0 20px 60px rgba(45, 36, 32, 0.08),
-        0 4px 16px rgba(45, 36, 32, 0.04);
-      backdrop-filter: blur(20px);
-      position: relative;
-    }
-
-    .contact-form::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
-      border-radius: 24px 24px 0 0;
-    }
-
-    /* Footer */
-    .footer {
-      padding: 120px 40px 48px;
-      background: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(30px) saturate(180%);
-      border-top: 1px solid rgba(45, 36, 32, 0.08);
-      position: relative;
-    }
-
-    .footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 1px;
-      background: var(--color-primary);
-      opacity: 0.2;
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: 1.5fr 2fr;
-      gap: 80px;
-      margin-bottom: 64px;
-    }
-
-    .footer-brand {
-      max-width: 400px;
-    }
-
-    .footer-logo {
-      font-family: var(--font-accent);
-      font-size: 24px;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      color: var(--color-primary);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .footer-logo i {
-      color: var(--color-accent);
-      font-size: 28px;
-    }
-
-    .footer-description {
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--color-secondary);
-      margin-bottom: 32px;
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 16px;
-    }
-
-    .social-link {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 1px solid rgba(45, 36, 32, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-primary);
-      transition: all 0.3s var(--ease);
-      text-decoration: none;
-    }
-
-    .social-link:hover {
-      background: var(--color-accent);
-      color: white;
-      border-color: var(--color-accent);
-      transform: translateY(-3px);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
-    }
-
-    .footer-section-title {
-      font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 24px;
-      color: var(--color-secondary);
-    }
-
-    .footer-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--color-primary);
-      text-decoration: none;
-      margin-bottom: 16px;
-      font-size: 14px;
-      font-weight: 300;
-      transition: all 0.3s var(--ease);
-    }
-
-    .footer-link i {
-      font-size: 10px;
-      color: var(--color-accent);
-      transition: transform 0.3s var(--ease);
-    }
-
-    .footer-link:hover {
-      color: var(--color-accent);
-    }
-
-    .footer-link:hover i {
-      transform: translateX(3px);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 48px;
-      border-top: 1px solid rgba(45, 36, 32, 0.06);
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: var(--color-secondary);
-    }
-
-    /* Loading Screen */
-    .loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--color-bg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 99999;
-      transition: opacity 0.6s var(--ease), visibility 0.6s var(--ease);
-    }
-
-    .loading-screen.loaded {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .loading-logo {
-      font-family: var(--font-accent);
-      font-size: 48px;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: var(--color-primary);
-      margin-bottom: 32px;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.7; transform: scale(0.98); }
-    }
-
-    .loading-spinner {
-      width: 48px;
-      height: 48px;
-      border: 3px solid var(--color-border);
-      border-top-color: var(--color-accent);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-
-    .form-group {
-      margin-bottom: 32px;
-      position: relative;
-    }
-
-    .form-icon {
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--color-secondary);
-      font-size: 18px;
-      transition: all 0.3s var(--ease);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .form-label {
-      position: absolute;
-      left: 56px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-weight: 500;
-      font-size: 16px;
-      color: var(--color-secondary);
-      letter-spacing: 0.02em;
-      transition: all 0.3s var(--ease);
-      pointer-events: none;
-      background: transparent;
-      padding: 0 4px;
-    }
-
-    .form-input,
-    .form-textarea {
-      width: 100%;
-      padding: 18px 20px 18px 56px;
-      border: 2px solid rgba(45, 36, 32, 0.1);
-      border-radius: 16px;
-      font-family: var(--font-primary);
-      font-size: 16px;
-      transition: all 0.3s var(--ease);
-      background: rgba(255, 255, 255, 0.7);
-      position: relative;
-    }
-
-    .form-input:hover,
-    .form-textarea:hover {
-      border-color: rgba(37, 99, 235, 0.3);
-      background: rgba(255, 255, 255, 0.9);
-    }
-
-    .form-input:focus,
-    .form-textarea:focus,
-    .form-input:not(:placeholder-shown),
-    .form-textarea:not(:placeholder-shown) {
-      outline: none;
-      border-color: var(--color-primary);
-      background: rgba(255, 255, 255, 1);
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
-    }
-
-    .form-input:focus ~ .form-label,
-    .form-input:not(:placeholder-shown) ~ .form-label,
-    .form-textarea:focus ~ .form-label,
-    .form-textarea:not(:placeholder-shown) ~ .form-label {
-      top: -10px;
-      left: 52px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--color-primary);
-      background: white;
-      padding: 0 8px;
-      transform: translateY(0);
-    }
-
-    .form-input:focus ~ .form-icon,
-    .form-input:not(:placeholder-shown) ~ .form-icon,
-    .form-textarea:focus ~ .form-icon,
-    .form-textarea:not(:placeholder-shown) ~ .form-icon {
-      color: var(--color-primary);
-    }
-
-    .form-textarea {
-      min-height: 160px;
-      resize: vertical;
-      line-height: 1.7;
-      padding-top: 20px;
-    }
-
-    .form-group:has(.form-textarea) .form-label {
-      top: 30px;
-    }
-
-    .form-group:has(.form-textarea) .form-icon {
-      top: 30px;
-      transform: translateY(0);
-    }
-
-    .form-error {
-      display: none;
-      font-size: 13px;
-      color: #EF4444;
-      margin-top: 8px;
-      padding-left: 56px;
-      font-weight: 500;
-    }
-
-    .form-group.error .form-error {
-      display: block;
-    }
-
-    .form-group.error .form-input,
-    .form-group.error .form-textarea {
-      border-color: #EF4444;
-      background: rgba(239, 68, 68, 0.05);
-    }
-
-    .form-group.error .form-icon,
-    .form-group.error .form-label {
-      color: #EF4444;
-    }
-
-    .form-group.success .form-input::after,
-    .form-group.success .form-textarea::after {
-      content: '\f00c';
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--color-accent);
-    }
-
-    .form-submit {
-      width: 100%;
-      padding: 20px;
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-      color: white;
-      border: none;
-      border-radius: 16px;
-      font-weight: 700;
-      font-size: 18px;
-      cursor: pointer;
-      transition: all 0.4s var(--ease);
-      letter-spacing: 0.05em;
-      position: relative;
-      overflow: hidden;
-      margin-top: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .form-submit::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.6s var(--ease);
-    }
-
-    .form-submit:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(37, 99, 235, 0.3);
-    }
-
-    .form-submit:hover::before {
-      left: 100%;
-    }
-
-    .form-submit:hover .submit-icon {
-      transform: translateX(4px);
-    }
-
-    .form-submit:active {
-      transform: translateY(-1px);
-    }
-
-    .submit-text,
-    .submit-icon {
-      position: relative;
-      z-index: 1;
-    }
-
-    .submit-icon {
-      transition: transform 0.3s var(--ease);
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .hero-visual {
-        height: 400px;
-      }
-
-      .hero-mockup {
-        transform: perspective(1000px) rotateY(0deg);
-      }
-    }
-
-    @media (max-width: 768px) {
-      body, html {
-        max-width: 100vw;
-        overflow-x: hidden;
-      }
-
-      .header-inner {
-        padding: 16px 20px;
-      }
-
-      .hero {
-        padding: 100px 20px 60px;
-        overflow: hidden;
-      }
-
-      .hero::before,
-      .hero::after {
-        display: none;
-      }
-
-      .hero-catchcopy {
-        font-size: clamp(20px, 5vw, 36px);
-        margin-bottom: 24px;
-      }
-
-      .catchcopy-main {
-        font-size: clamp(24px, 6vw, 38px);
-      }
-
-      .catchcopy-sub {
-        font-size: clamp(12px, 3vw, 18px);
-      }
-
-      .section {
-        padding: 48px 20px;
-      }
-
-      .section-number {
-        font-size: clamp(50px, 12vw, 100px);
-        top: 16px;
-      }
-
-      .section-title {
-        font-size: clamp(24px, 5vw, 40px);
-      }
-
-      .section-lead {
-        font-size: 14px;
-      }
-
-      .comparison-grid {
-        grid-template-columns: 1fr;
-      }
-
-
-      /* MV装飾を縮小 */
-      .comparison-column {
-        transform: none;
-      }
-
-      .comparison-column.highlight {
-        transform: none;
-      }
-
-      .problem-timeline {
-        padding-left: 0;
-      }
-
-      .problem-timeline::before {
-        left: 20px;
-      }
-
-      .problem-number {
-        left: 0;
-        width: 56px;
-        height: 56px;
-        font-size: 24px;
-      }
-
-      .problem-content {
-        margin-left: 72px;
-      }
-
-      .timing-list {
-        gap: 16px;
-      }
-
-      .timing-bar {
-        padding: 20px 24px;
-        flex-direction: row;
-      }
-
-      .timing-icon {
-        font-size: 28px;
-        width: 40px;
-      }
-
-      .pricing-grid,
-      .flow-steps {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-section {
-        padding: 80px 20px;
-      }
-
-      .modal-content {
-        padding: 32px 24px;
-      }
-
-      .btn-primary,
-      .btn-secondary {
-        width: 100%;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .social-link {
-        width: 36px;
-        height: 36px;
-      }
-    }
-  </style>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes" />
+    <title>LP制作サービス｜YOJITU.COM - 5万円〜、最短3営業日</title>
+    <meta name="description" content="あなたの想いを形にする、特別な1ページ。5万円〜、最短3営業日でLP制作。AI活用で圧倒的なスピードと低価格を実現。" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Reddit+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <style>
+        /* ===== Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Zen Kaku Gothic New', "游ゴシック体", YuGothic, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #fafafa;
+            background-color: #303f5d;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: #fafafa;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .en {
+            font-family: 'Reddit Sans', serif;
+        }
+
+        /* ===== Header ===== */
+        .l-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            z-index: 1000;
+            background: rgba(48, 63, 93, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .l-header__logo {
+            display: inline-block;
+        }
+
+        .l-header__logoImg {
+            height: 40px;
+            width: auto;
+        }
+
+        /* ===== Hero Section ===== */
+        .p-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #303f5d 0%, #4a5f7f 100%);
+        }
+
+        /* 波装飾（上部） */
+        .p-hero__wave--top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            z-index: 1;
+        }
+
+        .p-hero__waveImg--top {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 波装飾（下部） */
+        .p-hero__wave--bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            z-index: 1;
+        }
+
+        .p-hero__waveImg--bottom {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* スライダー */
+        .p-hero__slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .p-hero__slideBox {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .p-hero__slideImg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        /* キャッチコピー（縦書き） */
+        .p-hero__copy {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            color: #fafafa;
+            z-index: 2;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ロケーション */
+        .p-hero__location {
+            position: absolute;
+            bottom: 80px;
+            left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: #fafafa;
+            z-index: 2;
+        }
+
+        .p-hero__location .icon {
+            width: 16px;
+            height: 16px;
+            background: #d3594c;
+            border-radius: 50%;
+        }
+
+        /* ===== About Section ===== */
+        .p-about {
+            padding: 120px 40px;
+            background: #fafafa;
+            color: #303f5d;
+            position: relative;
+        }
+
+        .l-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .c-secTtl {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .c-secTtlInner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .c-secTtlInner .en {
+            font-size: 3.6rem;
+            font-weight: 700;
+            color: #303f5d;
+        }
+
+        .c-secTtlInner .ja {
+            font-size: 1.6rem;
+            color: #787e88;
+            letter-spacing: 0.1em;
+        }
+
+        .p-about__text {
+            font-size: 1.6rem;
+            line-height: 2.2;
+            color: #303f5d;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== Problem Section ===== */
+        .p-problem {
+            padding: 120px 40px;
+            background: #f5f3ed;
+            color: #303f5d;
+        }
+
+        .problem-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .problem-item {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        .problem-number {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: #303f5d;
+            color: #fafafa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Reddit Sans', serif;
+        }
+
+        .problem-content {
+            flex: 1;
+        }
+
+        .problem-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #303f5d;
+        }
+
+        .problem-text {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            color: #787e88;
+        }
+
+        /* ===== Comparison Section ===== */
+        .p-comparison {
+            padding: 120px 40px;
+            background: #fafafa;
+            color: #303f5d;
+        }
+
+        .comparison-table {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 20px rgba(48, 63, 93, 0.1);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px;
+            text-align: left;
+            border: 1px solid #e8e8e8;
+            font-size: 1.6rem;
+        }
+
+        .comparison-table th {
+            background: #303f5d;
+            color: #fafafa;
+            font-weight: 700;
+        }
+
+        .comparison-table td {
+            color: #303f5d;
+        }
+
+        /* ===== Pricing Section ===== */
+        .p-pricing {
+            padding: 120px 40px;
+            background: #f5f3ed;
+            color: #303f5d;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 40px;
+            border-radius: 0;
+            box-shadow: 0 4px 20px rgba(48, 63, 93, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .pricing-card__title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #303f5d;
+        }
+
+        .pricing-card__price {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #d3594c;
+            margin-bottom: 30px;
+            font-family: 'Reddit Sans', serif;
+        }
+
+        .pricing-card__features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-card__features li {
+            font-size: 1.6rem;
+            padding: 12px 0;
+            border-bottom: 1px solid #e8e8e8;
+            color: #303f5d;
+        }
+
+        .pricing-card__features li:last-child {
+            border-bottom: none;
+        }
+
+        /* ===== Contact Section ===== */
+        .p-contact {
+            padding: 120px 40px;
+            background: #303f5d;
+            color: #fafafa;
+            text-align: center;
+        }
+
+        .p-contact__title {
+            font-size: 3.6rem;
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: #fafafa;
+        }
+
+        .p-contact__btn {
+            display: inline-block;
+            padding: 20px 60px;
+            background: #d3594c;
+            color: #fafafa;
+            font-size: 1.8rem;
+            font-weight: 700;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .p-contact__btn:hover {
+            background: #b54539;
+            transform: translateY(-2px);
+        }
+
+        /* ===== Footer ===== */
+        .l-footer {
+            padding: 40px;
+            background: #252f43;
+            color: #bcc5c2;
+            text-align: center;
+        }
+
+        .l-footer__copy {
+            font-size: 1.4rem;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .l-header {
+                padding: 16px 20px;
+            }
+
+            .l-header__logoImg {
+                height: 32px;
+            }
+
+            .p-hero__copy {
+                right: 20px;
+                font-size: clamp(20px, 6vw, 32px);
+            }
+
+            .p-hero__location {
+                left: 20px;
+                bottom: 60px;
+                font-size: 1.2rem;
+            }
+
+            .p-about,
+            .p-problem,
+            .p-comparison,
+            .p-pricing,
+            .p-contact {
+                padding: 80px 20px;
+            }
+
+            .c-secTtlInner .en {
+                font-size: 2.8rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .problem-item {
+                flex-direction: column;
+            }
+
+            .comparison-table {
+                font-size: 1.4rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px;
+            }
+        }
+    </style>
 </head>
+
 <body>
+    <!-- Header -->
+    <header class="l-header">
+        <h1 class="l-header__logo">
+            <a href="/">
+                <span style="font-size: 2rem; font-weight: 700; letter-spacing: 0.1em;">YOJITU.COM</span>
+            </a>
+        </h1>
+    </header>
 
-  <!-- Loading Screen -->
-  <div class="loading-screen" id="loadingScreen">
-    <div class="loading-logo">YOJITU.COM</div>
-    <div class="loading-spinner"></div>
-  </div>
-
-  <!-- Header -->
-  <header class="header">
-    <div class="header-inner">
-      <a href="/" class="logo">
-        <i class="fas fa-rocket logo-icon"></i>
-        <span>YOJITU.COM</span>
-      </a>
-      <a href="#contact" class="header-cta">
-        <span>お問い合わせ</span>
-        <i class="fas fa-arrow-right cta-arrow"></i>
-      </a>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1 class="hero-catchcopy" id="catchcopy"></h1>
-      <div class="hero-features">
-        <span class="feature-badge">
-          <i class="fas fa-yen-sign feature-icon"></i>
-          5万円〜10万円
-        </span>
-        <span class="feature-badge">
-          <i class="fas fa-bolt feature-icon"></i>
-          最短3営業日
-        </span>
-        <span class="feature-badge">
-          <i class="fas fa-microchip feature-icon"></i>
-          AI活用
-        </span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Problem -->
-  <section class="section">
-    <div class="section-number">01</div>
-    <div class="section-inner">
-      <h2 class="section-title">この商品・サービスのこと、<br>もっと知ってほしい。<br>そう思ったことはありませんか？</h2>
-
-      <div class="problem-timeline">
-        <div class="problem-item">
-          <div class="problem-number">01</div>
-          <div class="problem-content">
-            <h3 class="problem-title">
-              <i class="fas fa-bullhorn problem-icon"></i>
-              商品の魅力が伝わらない
-            </h3>
-            <p class="problem-text">HPはあるけど、情報が多すぎて伝えたいことが埋もれてしまう。</p>
-          </div>
-        </div>
-
-        <div class="problem-item">
-          <div class="problem-number">02</div>
-          <div class="problem-content">
-            <h3 class="problem-title">
-              <i class="fas fa-comments problem-icon"></i>
-              問い合わせが来ない
-            </h3>
-            <p class="problem-text">せっかく作ったのに、問い合わせや申し込みにつながらない。</p>
-          </div>
-        </div>
-
-        <div class="problem-item">
-          <div class="problem-number">03</div>
-          <div class="problem-content">
-            <h3 class="problem-title">
-              <i class="fas fa-bullseye problem-icon"></i>
-              広告の受け皿がない
-            </h3>
-            <p class="problem-text">SNS広告を出したいけど、クリック後の専用ページがない。</p>
-          </div>
-        </div>
-
-        <div class="problem-item">
-          <div class="problem-number">04</div>
-          <div class="problem-content">
-            <h3 class="problem-title">
-              <i class="fas fa-rocket problem-icon"></i>
-              新商品のPRが弱い
-            </h3>
-            <p class="problem-text">新しい商品・サービスを集中的にPRするページが欲しい。</p>
-          </div>
-        </div>
-
-        <div class="problem-item">
-          <div class="problem-number">05</div>
-          <div class="problem-content">
-            <h3 class="problem-title">
-              <i class="fas fa-clock problem-icon"></i>
-              制作期間が長すぎる
-            </h3>
-            <p class="problem-text">他社に依頼すると1ヶ月以上。その間の機会損失が気になる。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- What is Special Page -->
-  <section class="section section-alt">
-    <div class="section-number">02</div>
-    <div class="section-inner">
-      <h2 class="section-title">LPとは、<br>1つの目的に特化した1枚のページです。</h2>
-      <p class="section-lead">通常のホームページとの違いを比較してみましょう。</p>
-
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th>比較項目</th>
-            <th>HP（ホームページ）</th>
-            <th>LP（ランディングページ）</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>目的</td>
-            <td>会社・サービス全体の情報提供</td>
-            <td>1つの商品・サービスに特化</td>
-          </tr>
-          <tr>
-            <td>構成</td>
-            <td>複数ページで構成</td>
-            <td>1ページ完結</td>
-          </tr>
-          <tr>
-            <td>情報量</td>
-            <td>多い（会社情報、事業内容など）</td>
-            <td>必要最小限に絞る</td>
-          </tr>
-          <tr>
-            <td>導線</td>
-            <td>複数のリンクで回遊</td>
-            <td>直線的に1つのゴールへ</td>
-          </tr>
-          <tr>
-            <td>最適な用途</td>
-            <td>信頼性の担保、総合案内</td>
-            <td>商品PR、広告受け皿、問い合わせ獲得</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- Timing -->
-  <section class="section">
-    <div class="section-number">03</div>
-    <div class="section-inner">
-      <h2 class="section-title">こんな時に、LPが必要です</h2>
-
-      <div class="timing-list">
-        <div class="timing-bar">
-          <i class="fas fa-gift timing-icon"></i>
-          <div class="timing-content">
-            <h3 class="timing-title">新商品リリース</h3>
-            <p class="timing-text">新商品・新サービスを集中的にPRしたい時</p>
-          </div>
-        </div>
-
-        <div class="timing-bar">
-          <i class="fas fa-star timing-icon"></i>
-          <div class="timing-content">
-            <h3 class="timing-title">キャンペーン告知</h3>
-            <p class="timing-text">期間限定のキャンペーンや特典を訴求したい時</p>
-          </div>
-        </div>
-
-        <div class="timing-bar">
-          <i class="fas fa-envelope timing-icon"></i>
-          <div class="timing-content">
-            <h3 class="timing-title">問い合わせ獲得</h3>
-            <p class="timing-text">資料請求や無料相談など、具体的なアクションを促したい時</p>
-          </div>
-        </div>
-
-        <div class="timing-bar">
-          <i class="fas fa-mobile-alt timing-icon"></i>
-          <div class="timing-content">
-            <h3 class="timing-title">広告運用</h3>
-            <p class="timing-text">SNS広告・リスティング広告の受け皿ページが欲しい時</p>
-          </div>
-        </div>
-
-        <div class="timing-bar">
-          <i class="fas fa-certificate timing-icon"></i>
-          <div class="timing-content">
-            <h3 class="timing-title">ブランディング</h3>
-            <p class="timing-text">特定の商品・サービスのブランドイメージを確立したい時</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Cheap & Fast -->
-  <section class="section section-alt">
-    <div class="section-number">04</div>
-    <div class="section-inner">
-      <h2 class="section-title">なぜ、5万円〜・最短3日で<br>作れるのか？</h2>
-
-      <div class="comparison-grid">
-        <div class="comparison-column">
-          <h3 class="comparison-label">一般的な制作会社</h3>
-          <div class="comparison-item">ディレクター、デザイナー、コーダーの分業体制</div>
-          <div class="comparison-item">各工程で待ち時間が発生</div>
-          <div class="comparison-item">人件費が積み重なり高額に</div>
-          <div class="comparison-item">納期：1〜2ヶ月</div>
-          <div class="comparison-item">価格：30万円〜</div>
-        </div>
-        <div class="comparison-column highlight">
-          <h3 class="comparison-label">YOJITU.COMの場合</h3>
-          <div class="comparison-item">AI活用で1人が全工程を同時進行</div>
-          <div class="comparison-item">ワイヤー・デザイン・コーディングを並行作業</div>
-          <div class="comparison-item">待ち時間ゼロ、無駄な人件費なし</div>
-          <div class="comparison-item">納期：最短3営業日</div>
-          <div class="comparison-item">価格：5万円〜</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Quality -->
-  <section class="section">
-    <div class="section-number">05</div>
-    <div class="section-inner">
-      <h2 class="section-title">品質は大丈夫？</h2>
-      <p class="section-lead">
-        実は、<strong>このサイト全体</strong>と<strong>今ご覧いただいているこのページ</strong>も、<br>
-        すべてAI活用で制作されています。<br><br>
-        クオリティを実際に体感いただけているのではないでしょうか。
-      </p>
-
-      <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <div class="portfolio-image">
-            <iframe src="https://migration.oita-creative.jp/lp2/" frameborder="0" scrolling="no" loading="lazy"></iframe>
-          </div>
-          <div class="portfolio-content">
-            <h3 class="portfolio-title">マイグレーションサービスLP</h3>
-            <a href="https://migration.oita-creative.jp/lp2/" class="portfolio-link" target="_blank" rel="noopener">サイトを見る →</a>
-          </div>
-        </div>
-        <div class="portfolio-item">
-          <div class="portfolio-image">
-            <iframe src="https://migration.oita-creative.jp/2025/lp/" frameborder="0" scrolling="no" loading="lazy"></iframe>
-          </div>
-          <div class="portfolio-content">
-            <h3 class="portfolio-title">2025年サービスLP</h3>
-            <a href="https://migration.oita-creative.jp/2025/lp/" class="portfolio-link" target="_blank" rel="noopener">サイトを見る →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section class="section section-alt">
-    <div class="section-number">06</div>
-    <div class="section-inner">
-      <h2 class="section-title">料金プラン</h2>
-
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <div class="pricing-plan">Basic</div>
-          <div class="pricing-price">
-            ¥50,000<span class="pricing-price-unit">〜</span>
-          </div>
-          <div class="pricing-features">
-            <div class="pricing-feature">ページ制作（1ページ）</div>
-            <div class="pricing-feature">レスポンシブ対応</div>
-            <div class="pricing-feature">修正2回まで</div>
-            <div class="pricing-feature">納期：最短3営業日</div>
-          </div>
-          <p class="pricing-note">シンプルなページをスピーディに制作したい方向け。</p>
-        </div>
-
-        <div class="pricing-card">
-          <div class="pricing-plan">Standard</div>
-          <div class="pricing-price">
-            ¥100,000
-          </div>
-          <div class="pricing-features">
-            <div class="pricing-feature">ページ制作（1ページ）</div>
-            <div class="pricing-feature">お問い合わせフォーム</div>
-            <div class="pricing-feature">サンクスページ</div>
-            <div class="pricing-feature">レスポンシブ対応</div>
-            <div class="pricing-feature">修正3回まで</div>
-            <div class="pricing-feature">納期：最短1週間</div>
-          </div>
-          <p class="pricing-note">フォームを設置することで、機会損失を防ぎます。おすすめプランです。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Flow -->
-  <section class="section">
-    <div class="section-number">07</div>
-    <div class="section-inner">
-      <h2 class="section-title">制作の流れ</h2>
-
-      <div class="flow-steps">
-        <div class="flow-step">
-          <div class="flow-number">01</div>
-          <h3 class="flow-title">ヒアリング</h3>
-          <p class="flow-text">商品・サービスの特徴、ターゲット、目的などをお伺いします。</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-number">02</div>
-          <h3 class="flow-title">構成案</h3>
-          <p class="flow-text">ページの構成案をご提案。ご確認いただいた後、制作に入ります。</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-number">03</div>
-          <h3 class="flow-title">制作</h3>
-          <p class="flow-text">AI活用で、ワイヤー・デザイン・コーディングを同時進行。</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-number">04</div>
-          <h3 class="flow-title">納品</h3>
-          <p class="flow-text">完成したページを納品。修正対応も承ります。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section section-alt">
-    <div class="section-number">08</div>
-    <div class="section-inner">
-      <h2 class="section-title">よくある質問</h2>
-
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>本当に3営業日で納品できるんですか？</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              はい、可能です。AI活用により、ワイヤーフレーム・デザイン・コーディングを同時進行できるため、通常1〜2ヶ月かかる工程を大幅に短縮できます。ただし、内容の複雑さや修正回数によっては、もう少しお時間をいただく場合もございます。
+    <main>
+        <!-- Hero Section -->
+        <section class="p-hero">
+            <!-- 波装飾（上部） -->
+            <div class="p-hero__wave--top">
+                <svg class="p-hero__waveImg--top" viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0,80 Q360,20 720,80 T1440,80 L1440,0 L0,0 Z" fill="#f5f3ed"/>
+                </svg>
             </div>
-          </div>
-        </div>
 
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>AIで作って、品質は大丈夫ですか？</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              ご安心ください。このサイト全体と今ご覧いただいているこのページも、すべてAI活用で制作しています。AIはあくまでツールであり、最終的には人間がチェック・調整を行いますので、品質には自信を持っております。
+            <!-- スライダー（ダミー画像） -->
+            <div class="p-hero__slide">
+                <div class="p-hero__slideBox">
+                    <img class="p-hero__slideImg" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop" alt="">
+                </div>
+                <div class="p-hero__slideBox">
+                    <img class="p-hero__slideImg" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=800&fit=crop" alt="">
+                </div>
+                <div class="p-hero__slideBox">
+                    <img class="p-hero__slideImg" src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=1200&h=800&fit=crop" alt="">
+                </div>
             </div>
-          </div>
-        </div>
 
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>広告を出さないのですが、LPは必要ですか？</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              はい、必要です。特に地方では、口コミや紹介で「〇〇で検索してみて」と言われることが多いですよね。その時に、HPだと情報が多すぎて伝わりにくい。LPなら、1ページで要点がまとまっているので、紹介された方が理解しやすく、問い合わせにつながりやすくなります。
+            <!-- キャッチコピー（縦書き） -->
+            <p class="p-hero__copy">想いを、カタチに。</p>
+
+            <!-- ロケーション -->
+            <div class="p-hero__location">
+                <i class="icon"></i>
+                <span class="ja">5万円〜、最短3営業日</span>
+                <span class="en">Fast & Affordable</span>
             </div>
-          </div>
-        </div>
 
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>修正は何回までできますか？</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              Basicプランは2回、Standardプランは3回まで修正対応いたします。大幅な内容変更でなければ、柔軟に対応いたしますのでご相談ください。
+            <!-- 波装飾（下部） -->
+            <div class="p-hero__wave--bottom">
+                <svg class="p-hero__waveImg--bottom" viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0,120 Q360,180 720,120 T1440,120 L1440,200 L0,200 Z" fill="#fafafa"/>
+                </svg>
             </div>
-          </div>
-        </div>
+        </section>
 
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>公開後のサポートはありますか？</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              はい、ございます。公開後の軽微な修正（誤字脱字など）は無償対応いたします。大幅な内容変更や追加機能については、別途お見積もりとなります。
+        <!-- About Section -->
+        <section class="p-about l-inner">
+            <h2 class="c-secTtl">
+                <div class="c-secTtlInner">
+                    <span class="en">ABOUT</span>
+                    <span class="ja">LP制作サービスについて</span>
+                </div>
+            </h2>
+            <p class="p-about__text">
+                あなたの商品・サービスの魅力を、1枚のページで最大限に伝える。それがLP（ランディングページ）です。<br>
+                YOJITU.COMでは、AI技術を活用し、従来の制作会社では考えられなかった「5万円〜」「最短3営業日」という価格とスピードを実現。<br>
+                機会損失を最小限に抑え、すぐにビジネスを加速させることができます。
+            </p>
+        </section>
+
+        <!-- Problem Section -->
+        <section class="p-problem">
+            <div class="l-inner">
+                <h2 class="c-secTtl">
+                    <div class="c-secTtlInner">
+                        <span class="en">PROBLEM</span>
+                        <span class="ja">こんなお悩みはありませんか？</span>
+                    </div>
+                </h2>
+
+                <div class="problem-timeline">
+                    <div class="problem-item">
+                        <div class="problem-number">01</div>
+                        <div class="problem-content">
+                            <h3 class="problem-title">商品の魅力が伝わらない</h3>
+                            <p class="problem-text">HPはあるけど、情報が多すぎて伝えたいことが埋もれてしまう。</p>
+                        </div>
+                    </div>
+
+                    <div class="problem-item">
+                        <div class="problem-number">02</div>
+                        <div class="problem-content">
+                            <h3 class="problem-title">問い合わせが来ない</h3>
+                            <p class="problem-text">せっかく作ったのに、問い合わせや申し込みにつながらない。</p>
+                        </div>
+                    </div>
+
+                    <div class="problem-item">
+                        <div class="problem-number">03</div>
+                        <div class="problem-content">
+                            <h3 class="problem-title">広告の受け皿がない</h3>
+                            <p class="problem-text">SNS広告を出したいけど、クリック後の専用ページがない。</p>
+                        </div>
+                    </div>
+
+                    <div class="problem-item">
+                        <div class="problem-number">04</div>
+                        <div class="problem-content">
+                            <h3 class="problem-title">新商品のPRが弱い</h3>
+                            <p class="problem-text">新しい商品・サービスを集中的にPRするページが欲しい。</p>
+                        </div>
+                    </div>
+
+                    <div class="problem-item">
+                        <div class="problem-number">05</div>
+                        <div class="problem-content">
+                            <h3 class="problem-title">制作期間が長すぎる</h3>
+                            <p class="problem-text">他社に依頼すると1ヶ月以上。その間の機会損失が気になる。</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </section>
 
-  <!-- Contact -->
-  <section class="contact-section" id="contact">
-    <div class="contact-container">
-      <h2 class="contact-title">お問い合わせ</h2>
-      <p class="contact-lead">まずはお気軽にご相談ください。3営業日以内にご返信いたします。</p>
+        <!-- Comparison Section -->
+        <section class="p-comparison">
+            <div class="l-inner">
+                <h2 class="c-secTtl">
+                    <div class="c-secTtlInner">
+                        <span class="en">COMPARISON</span>
+                        <span class="ja">HP vs LP</span>
+                    </div>
+                </h2>
 
-      <form action="/contact/submit.php" method="POST" class="contact-form" id="contactForm">
-        <div class="form-group">
-          <i class="fas fa-user form-icon"></i>
-          <input type="text" name="name" class="form-input" required placeholder=" ">
-          <label class="form-label">お名前 *</label>
-          <span class="form-error">お名前を入力してください</span>
-        </div>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>比較項目</th>
+                            <th>HP（ホームページ）</th>
+                            <th>LP（ランディングページ）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>目的</td>
+                            <td>企業情報の総合的な発信</td>
+                            <td>1つの商品・サービスに特化</td>
+                        </tr>
+                        <tr>
+                            <td>ページ数</td>
+                            <td>複数ページ</td>
+                            <td>1ページ完結</td>
+                        </tr>
+                        <tr>
+                            <td>コンバージョン</td>
+                            <td>情報提供がメイン</td>
+                            <td>問い合わせ・購入に特化</td>
+                        </tr>
+                        <tr>
+                            <td>制作期間</td>
+                            <td>1〜3ヶ月</td>
+                            <td>最短3営業日</td>
+                        </tr>
+                        <tr>
+                            <td>価格</td>
+                            <td>30万円〜100万円</td>
+                            <td>5万円〜10万円</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-        <div class="form-group">
-          <i class="fas fa-envelope form-icon"></i>
-          <input type="email" name="email" class="form-input" required placeholder=" ">
-          <label class="form-label">メールアドレス *</label>
-          <span class="form-error">正しいメールアドレスを入力してください</span>
-        </div>
+        <!-- Pricing Section -->
+        <section class="p-pricing">
+            <div class="l-inner">
+                <h2 class="c-secTtl">
+                    <div class="c-secTtlInner">
+                        <span class="en">PRICING</span>
+                        <span class="ja">料金プラン</span>
+                    </div>
+                </h2>
 
-        <div class="form-group">
-          <i class="fas fa-phone form-icon"></i>
-          <input type="tel" name="phone" class="form-input" placeholder=" ">
-          <label class="form-label">電話番号</label>
-        </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3 class="pricing-card__title">Basicプラン</h3>
+                        <p class="pricing-card__price">¥50,000<span style="font-size: 1.8rem;">〜</span></p>
+                        <ul class="pricing-card__features">
+                            <li>LP制作（1ページ）</li>
+                            <li>修正2回まで</li>
+                            <li>最短3営業日納品</li>
+                            <li>レスポンシブ対応</li>
+                        </ul>
+                    </div>
 
-        <div class="form-group">
-          <i class="fas fa-comment form-icon"></i>
-          <textarea name="message" class="form-textarea" required placeholder=" "></textarea>
-          <label class="form-label">お問い合わせ内容 *</label>
-          <span class="form-error">お問い合わせ内容を入力してください</span>
-        </div>
+                    <div class="pricing-card">
+                        <h3 class="pricing-card__title">Standardプラン</h3>
+                        <p class="pricing-card__price">¥100,000<span style="font-size: 1.8rem;">〜</span></p>
+                        <ul class="pricing-card__features">
+                            <li>LP制作（1ページ）</li>
+                            <li>お問い合わせフォーム</li>
+                            <li>サンクスページ</li>
+                            <li>修正3回まで</li>
+                            <li>最短1週間納品</li>
+                            <li>レスポンシブ対応</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <button type="submit" class="form-submit">
-          <span class="submit-text">送信する</span>
-          <i class="fas fa-paper-plane submit-icon"></i>
-        </button>
-      </form>
-    </div>
-  </section>
+        <!-- Contact Section -->
+        <section class="p-contact">
+            <div class="l-inner">
+                <h2 class="p-contact__title">まずはお気軽にご相談ください</h2>
+                <a href="#contact" class="p-contact__btn">お問い合わせ</a>
+            </div>
+        </section>
+    </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <h3 class="footer-logo">
-            <i class="fas fa-rocket"></i>
-            YOJITU.COM
-          </h3>
-          <p class="footer-description">
-            AI活用でスピーディーかつ高品質なWeb制作を実現。<br>
-            あなたのビジネスを加速させるパートナーです。
-          </p>
-          <div class="footer-social">
-            <a href="#" class="social-link" aria-label="Twitter">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
-        </div>
-        <div class="footer-grid">
-          <div>
-            <h3 class="footer-section-title">サービス</h3>
-            <a href="/services/web-production/" class="footer-link">
-              <i class="fas fa-chevron-right"></i>Web制作
-            </a>
-            <a href="/services/lp-production/" class="footer-link">
-              <i class="fas fa-chevron-right"></i>LP制作
-            </a>
-            <a href="/services/consulting/" class="footer-link">
-              <i class="fas fa-chevron-right"></i>コンサルティング
-            </a>
-          </div>
-          <div>
-            <h3 class="footer-section-title">会社情報</h3>
-            <a href="/company/" class="footer-link">
-              <i class="fas fa-chevron-right"></i>会社概要
-            </a>
-            <a href="/blog/" class="footer-link">
-              <i class="fas fa-chevron-right"></i>ブログ
-            </a>
-            <a href="/contact/" class="footer-link">
-              <i class="fas fa-chevron-right"></i>お問い合わせ
-            </a>
-          </div>
-          <div>
-            <h3 class="footer-section-title">その他</h3>
-            <a href="/privacy/" class="footer-link">
-              <i class="fas fa-chevron-right"></i>プライバシーポリシー
-            </a>
-            <a href="/terms/" class="footer-link">
-              <i class="fas fa-chevron-right"></i>利用規約
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <i class="fas fa-copyright"></i> 2025 YOJITU.COM All rights reserved.
-      </div>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer class="l-footer">
+        <p class="l-footer__copy">&copy; 2025 YOJITU.COM. All Rights Reserved.</p>
+    </footer>
 
-  <script>
-    // A/Bテスト管理
-    const catchCopies = {
-      1: {
-        main: 'あなたの商品、ちゃんと伝わっていますか？',
-        sub: '5万円〜、最短3日でLPを。'
-      },
-      2: {
-        main: '伝えたいこと、ちゃんと伝わるページを。',
-        sub: '5万円〜、最短3日でLPを。'
-      },
-      6: {
-        main: 'その想いを、形にします。',
-        sub: '5万円〜、最短3日でLPを。'
-      }
-    };
-
-    // LocalStorageからパターンを取得、なければランダム割り当て
-    let pattern = localStorage.getItem('lp_pattern');
-    if (!pattern) {
-      const catchOptions = [1, 2, 6];
-      const randomCatch = catchOptions[Math.floor(Math.random() * catchOptions.length)];
-      pattern = randomCatch;
-      localStorage.setItem('lp_pattern', pattern);
-    }
-
-
-    // Loading Screen
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loadingScreen').classList.add('loaded');
-      }, 800);
-    });
-
-    // GSAP Animations
-    gsap.registerPlugin(ScrollTrigger, TextPlugin);
-
-    // キャッチコピーを挿入
-    const catchData = catchCopies[pattern];
-    const catchcopyElement = document.getElementById('catchcopy');
-    catchcopyElement.innerHTML = `
-      <span class="catchcopy-main"></span>
-      <span class="catchcopy-sub"></span>
-    `;
-
-    // Hero Animation - タイプライター効果 + イラストフェードイン
-    const heroTimeline = gsap.timeline({ defaults: { ease: 'power4.out' } });
-
-    // SVG背景: フェードイン
-    gsap.set('.hero::before', { opacity: 0 });
-    gsap.to('.hero::before', {
-      opacity: 1,
-      duration: 2,
-      delay: 0.8,
-      ease: 'power2.out'
-    });
-
-    // Set initial state for hero elements
-    gsap.set('.hero-catchcopy', { opacity: 1 });
-    gsap.set('.hero-features', { opacity: 0, y: 40 });
-
-    // タイプライター効果（メインキャッチコピー）
-    setTimeout(() => {
-      gsap.to('.catchcopy-main', {
-        duration: 2,
-        text: catchData.main,
-        ease: 'none',
-        delay: 1.2
-      });
-
-      // サブキャッチコピー（少し遅れて）
-      gsap.to('.catchcopy-sub', {
-        duration: 1.2,
-        text: catchData.sub,
-        ease: 'none',
-        delay: 3.4
-      });
-
-      // 特徴バッジ
-      gsap.to('.hero-features', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        delay: 4.8,
-        stagger: 0.15,
-        ease: 'back.out(1.4)'
-      });
-    }, 800);
-
-    // Scroll Animations - Problem Timeline
-    gsap.utils.toArray('.problem-item').forEach((item, i) => {
-      gsap.from(item, {
-        scrollTrigger: {
-          trigger: item,
-          start: 'top bottom-=100',
-          toggleActions: 'play none none none'
-        },
-        opacity: 0,
-        x: -80,
-        duration: 0.8,
-        delay: i * 0.1,
-        ease: 'power3.out'
-      });
-    });
-
-    // Scroll Animations - Timing Bars
-    gsap.utils.toArray('.timing-bar').forEach((bar, i) => {
-      gsap.from(bar, {
-        scrollTrigger: {
-          trigger: bar,
-          start: 'top bottom-=100',
-          toggleActions: 'play none none none'
-        },
-        opacity: 0,
-        x: -60,
-        duration: 0.6,
-        delay: i * 0.1,
-        ease: 'power2.out'
-      });
-    });
-
-    // Scroll Animations - Pricing Cards
-    gsap.utils.toArray('.pricing-card').forEach((card, i) => {
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: 'top bottom-=100',
-          toggleActions: 'play none none none'
-        },
-        opacity: 0,
-        y: 60,
-        scale: 0.9,
-        duration: 0.8,
-        delay: i * 0.12,
-        ease: 'back.out(1.4)'
-      });
-    });
-
-    // Scroll Animations - Section Titles (文字が現れる演出)
-    gsap.utils.toArray('.section-title').forEach(title => {
-      const chars = title.textContent.split('');
-      title.innerHTML = chars.map(char =>
-        char === ' ' || char === '\n' ? char : `<span style="display: inline-block;">${char}</span>`
-      ).join('');
-
-      gsap.from(title.querySelectorAll('span'), {
-        scrollTrigger: {
-          trigger: title,
-          start: 'top bottom-=80',
-          toggleActions: 'play none none none'
-        },
-        opacity: 0,
-        y: 50,
-        rotationX: -90,
-        stagger: 0.03,
-        duration: 0.6,
-        ease: 'back.out(1.7)'
-      });
-    });
-
-    // Flow Steps Animation
-    gsap.utils.toArray('.flow-step').forEach((step, i) => {
-      gsap.from(step, {
-        scrollTrigger: {
-          trigger: step,
-          start: 'top bottom-=100',
-          toggleActions: 'play none none none'
-        },
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.6,
-        delay: i * 0.15,
-        ease: 'back.out(1.4)'
-      });
-    });
-
-    // Comparison Grid Animation - Disabled to prevent opacity issue
-    // gsap.from('.comparison-column', {
-    //   scrollTrigger: {
-    //     trigger: '.comparison-grid',
-    //     start: 'top bottom-=100',
-    //     toggleActions: 'play none none none'
-    //   },
-    //   opacity: 0,
-    //   x: (i) => i === 0 ? -40 : 40,
-    //   duration: 0.8,
-    //   stagger: 0.2,
-    //   ease: 'power2.out'
-    // });
-
-    // Header Hide on Scroll Down, Show on Scroll Up
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      const header = document.querySelector('.header');
-
-      if (currentScroll > lastScroll && currentScroll > 100) {
-        header.style.transform = 'translateY(-100%)';
-      } else {
-        header.style.transform = 'translateY(0)';
-      }
-      lastScroll = currentScroll;
-    });
-
-
-    // FAQ Toggle
-    function toggleFAQ(button) {
-      const item = button.parentElement;
-      const isActive = item.classList.contains('active');
-
-      // Close all FAQ items
-      document.querySelectorAll('.faq-item').forEach(faq => {
-        faq.classList.remove('active');
-      });
-
-      // Open clicked item if it wasn't active
-      if (!isActive) {
-        item.classList.add('active');
-      }
-    }
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === '#' || href === '#contact') return;
-
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          const headerHeight = document.querySelector('.header').offsetHeight;
-          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Form Validation
-    const form = document.getElementById('contactForm');
-    const inputs = form.querySelectorAll('.form-input, .form-textarea');
-
-    inputs.forEach(input => {
-      input.addEventListener('blur', () => {
-        validateField(input);
-      });
-
-      input.addEventListener('input', () => {
-        if (input.parentElement.classList.contains('error')) {
-          validateField(input);
-        }
-      });
-    });
-
-    function validateField(field) {
-      const parent = field.parentElement;
-      parent.classList.remove('error', 'success');
-
-      if (field.required && !field.value.trim()) {
-        parent.classList.add('error');
-        return false;
-      }
-
-      if (field.type === 'email' && field.value.trim()) {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(field.value)) {
-          parent.classList.add('error');
-          return false;
-        }
-      }
-
-      if (field.value.trim()) {
-        parent.classList.add('success');
-      }
-      return true;
-    }
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let isValid = true;
-
-      inputs.forEach(input => {
-        if (!validateField(input)) {
-          isValid = false;
-        }
-      });
-
-      if (isValid) {
-        // Submit the form
-        form.submit();
-      } else {
-        // Scroll to first error
-        const firstError = form.querySelector('.form-group.error');
-        if (firstError) {
-          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }
-    });
-  </script>
-
+    <script>
+        $(document).ready(function(){
+            // Slickスライダー初期化
+            $('.p-hero__slide').slick({
+                autoplay: true,
+                autoplaySpeed: 4000,
+                speed: 1000,
+                fade: true,
+                cssEase: 'ease-in-out',
+                arrows: false,
+                dots: false,
+                pauseOnHover: false
+            });
+        });
+    </script>
 </body>
 </html>

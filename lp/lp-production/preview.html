@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LP制作サービス - プレビュー版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            color: #1F2937;
+            background: #FFFFFF;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ファーストビュー */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #F8FAFC 0%, #E5E7EB 100%);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: #4B5563;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .hero-feature {
+            background: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 16px;
+            color: #1F2937;
+        }
+
+        /* セクション共通 */
+        section {
+            padding: 80px 20px;
+        }
+
+        section:nth-child(even) {
+            background: #F9FAFB;
+        }
+
+        h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 24px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: #4B5563;
+        }
+
+        /* チェックリスト */
+        .checklist {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .checklist li {
+            padding: 16px 0;
+            border-bottom: 1px solid #E5E7EB;
+            font-size: 18px;
+            color: #1F2937;
+        }
+
+        .checklist li:before {
+            content: "✓ ";
+            color: #10B981;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        /* テーブル */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border: 1px solid #E5E7EB;
+        }
+
+        th {
+            background: #F3F4F6;
+            font-weight: 700;
+            color: #1F2937;
+        }
+
+        /* カード */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1F2937;
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card li {
+            padding: 8px 0;
+            color: #4B5563;
+        }
+
+        .card li:before {
+            content: "・";
+            margin-right: 8px;
+        }
+
+        /* プライスカード */
+        .price-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .price-card .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2563EB;
+            margin: 24px 0;
+        }
+
+        .price-card .price-note {
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        /* ボタン */
+        .btn {
+            display: inline-block;
+            padding: 18px 48px;
+            background: #2563EB;
+            color: white;
+            text-decoration: none;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1D4ED8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-secondary {
+            background: #10B981;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: #059669;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-container {
+            text-align: center;
+            margin: 48px 0;
+        }
+
+        .btn-microcopy-top {
+            text-align: center;
+            margin-bottom: 16px;
+            color: #4B5563;
+            font-size: 14px;
+        }
+
+        .btn-microcopy-bottom {
+            text-align: center;
+            margin-top: 16px;
+            color: #6B7280;
+            font-size: 14px;
+        }
+
+        /* CTA選択肢 */
+        .cta-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin: 48px 0;
+        }
+
+        .cta-option {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .cta-option h4 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1F2937;
+        }
+
+        .cta-option p {
+            margin-bottom: 24px;
+            color: #6B7280;
+        }
+
+        /* モーダル */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            animation: slideDown 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #1F2937;
+        }
+
+        /* フォーム */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #1F2937;
+        }
+
+        .form-group .required {
+            color: #DC2626;
+            margin-left: 4px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563EB;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: white;
+            padding: 24px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .faq-q {
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 12px;
+        }
+
+        .faq-a {
+            color: #4B5563;
+            line-height: 1.8;
+        }
+
+        /* ステップ */
+        .steps {
+            margin: 40px 0;
+        }
+
+        .step {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: #2563EB;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .step-content h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1F2937;
+        }
+
+        .step-content p {
+            color: #4B5563;
+        }
+
+        /* 強調ボックス */
+        .highlight-box {
+            background: #EFF6FF;
+            border-left: 4px solid #2563EB;
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box p {
+            color: #1F2937;
+            font-weight: 500;
+        }
+
+        /* 注記 */
+        .note {
+            font-size: 14px;
+            color: #6B7280;
+            margin-top: 16px;
+        }
+
+        /* フローティングCTA */
+        .floating-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #E5E7EB;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            padding: 16px 20px;
+            z-index: 9998;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .floating-cta-content {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .floating-cta-text {
+            flex: 1;
+            font-size: 14px;
+            color: #1F2937;
+            font-weight: 600;
+        }
+
+        .floating-cta-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .floating-cta .btn {
+            padding: 12px 32px;
+            font-size: 16px;
+            white-space: nowrap;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 20px;
+            }
+
+            .step {
+                flex-direction: column;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                padding: 30px 20px;
+            }
+
+            .cta-options {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-cta {
+                padding: 12px 16px;
+            }
+
+            .floating-cta-content {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .floating-cta-text {
+                text-align: center;
+                font-size: 13px;
+            }
+
+            .floating-cta-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .floating-cta .btn {
+                width: 100%;
+                padding: 14px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ファーストビュー - パターンA -->
+    <section class="hero">
+        <div class="container">
+            <h1 id="catchCopy">
+                あなたの商品、ちゃんと伝わっていますか？<br>
+                <br>
+                「もっと知ってほしい」を形にする、<br>
+                特別な1ページ。5万円〜、最短3日。
+            </h1>
+
+            <div class="hero-features">
+                <div class="hero-feature">✓ 制作費5万円〜10万円</div>
+                <div class="hero-feature">✓ 最短3営業日納品</div>
+                <div class="hero-feature">✓ AI×人の技術で、この価格とスピードを実現</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- セクション1: 問題提起 -->
+    <section>
+        <div class="container">
+            <h2>この商品・サービスのこと、もっと知ってほしい。<br>そう思ったことはありませんか？</h2>
+
+            <ul class="checklist">
+                <li>「新商品の魅力を、もっとわかりやすく伝えたい」</li>
+                <li>「キャンペーンの特設ページが欲しいけど、予算がない」</li>
+                <li>「この商品だけに特化したページで、じっくり説明したい」</li>
+                <li>「ホームページはあるけど、情報が多すぎて埋もれてしまう」</li>
+                <li>「資料請求や問い合わせを、もっと増やしたい」</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>そんな時に必要なのが、「LP（ランディングページ）」です。</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- セクション2: LPとは -->
+    <section>
+        <div class="container">
+            <h2>LPとは、1つの目的に特化した、1枚のページです。</h2>
+
+            <p style="text-align: center; color: #4B5563; margin-bottom: 48px;">
+                ホームページは、会社全体の情報を網羅的に伝えるもの。<br>
+                でも、「この商品だけ」「このキャンペーンだけ」を伝えたい時には、情報が多すぎて、かえって伝わりにくくなります。<br>
+                <br>
+                <strong>だから、LPが必要なんです。</strong>
+            </p>
+
+            <h3 style="text-align: center; margin-top: 60px;">ホームページとLPの違い</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>項目</th>
+                        <th>ホームページ</th>
+                        <th>LP（ランディングページ）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>目的</strong></td>
+                        <td>会社全体の情報提供</td>
+                        <td>特定の商品・サービスの訴求</td>
+                    </tr>
+                    <tr>
+                        <td><strong>情報量</strong></td>
+                        <td>多い（会社概要、事業内容など）</td>
+                        <td>絞られている（1つの目的に特化）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ページ数</strong></td>
+                        <td>複数ページ</td>
+                        <td>1ページで完結</td>
+                    </tr>
+                    <tr>
+                        <td><strong>伝わりやすさ</strong></td>
+                        <td>情報が分散</td>
+                        <td>情報が集約</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <p><strong>つまり、LPは「伝えたいことを、まっすぐ届ける」ためのページです。</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- セクション3: LPが必要なタイミング -->
+    <section>
+        <div class="container">
+            <h2>こんな時に、LPが必要です</h2>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h4>新商品・サービスの紹介</h4>
+                    <ul>
+                        <li>新商品の発売・予約受付</li>
+                        <li>新サービスのローンチ</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>キャンペーン・イベント</h4>
+                    <ul>
+                        <li>期間限定キャンペーン</li>
+                        <li>セミナー・ウェビナーの集客</li>
+                        <li>オープンハウス・見学会の予約受付</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>お問い合わせ・資料請求</h4>
+                    <ul>
+                        <li>資料請求・ホワイトペーパーのダウンロード促進</li>
+                        <li>無料相談・診断の申込獲得</li>
+                        <li>会員登録・メルマガ登録の促進</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>広告を出稿する時</h4>
+                    <ul>
+                        <li>リスティング広告の遷移先</li>
+                        <li>SNS広告の受け皿</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>ブランディング</h4>
+                    <ul>
+                        <li>メディア掲載時の受け皿</li>
+                        <li>特定商品のブランドイメージ統一</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>→ つまり、「この目的に特化して伝えたい」時、LPが必要です。</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- セクション4: なぜ安く・早くできるのか -->
+    <section>
+        <div class="container">
+            <h2>なぜ、5万円〜・最短3日で作れるのか？</h2>
+
+            <h3>一般的な制作会社の場合</h3>
+            <p>制作工程が分かれているため、時間とコストがかかります。</p>
+
+            <div style="background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin: 32px 0;">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>ディレクターがヒアリング</h4>
+                        <p>1〜2日</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>デザイナーがワイヤーフレーム作成</h4>
+                        <p>3〜5日</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>デザイナーがデザイン作成</h4>
+                        <p>4〜7日</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>コーダーがコーディング</h4>
+                        <p>5〜7日</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>何度も確認・修正</h4>
+                        <p>数日〜数週間</p>
+                    </div>
+                </div>
+                <p style="text-align: center; font-size: 20px; font-weight: 700; margin-top: 32px; color: #DC2626;">
+                    合計: 1〜2ヶ月、費用: 30万円〜100万円
+                </p>
+            </div>
+
+            <h3 style="margin-top: 60px;">YOJITU.COMの場合</h3>
+            <div class="highlight-box">
+                <p style="font-size: 18px;"><strong>ワイヤー・デザイン・コーディングを、一人で、同時並行で進めます。</strong></p>
+            </div>
+
+            <div style="background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin: 32px 0;">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>ヒアリング</h4>
+                        <p>1日</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>ワイヤー・デザイン・コーディングを同時進行</h4>
+                        <p>1〜3日<br>
+                        <span style="font-size: 14px; color: #6B7280;">※ワイヤーを作らず、直接コーディングに入る<br>※AIを活用して制作スピードを加速</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>納品</h4>
+                        <p>即日</p>
+                    </div>
+                </div>
+                <p style="text-align: center; font-size: 20px; font-weight: 700; margin-top: 32px; color: #10B981;">
+                    合計: 最短3営業日、費用: 5万円〜10万円
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>この方法だからこそ:</strong></p>
+                <ul style="margin-top: 16px; list-style: none;">
+                    <li>✓ 伝言ゲームが発生しない</li>
+                    <li>✓ 修正がスムーズ</li>
+                    <li>✓ コストを大幅削減</li>
+                    <li>✓ スピード納品を実現</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- セクション5: 品質は大丈夫？ -->
+    <section>
+        <div class="container">
+            <h2>品質は大丈夫？</h2>
+
+            <p style="text-align: center; font-size: 20px; margin-bottom: 32px;">
+                <strong>「AIで作って、品質は大丈夫ですか？」</strong>
+            </p>
+
+            <p style="text-align: center; margin-bottom: 48px;">
+                そんな不安をお持ちの方へ。
+            </p>
+
+            <div class="highlight-box">
+                <p style="text-align: center; font-size: 18px;">
+                    <strong>このサイト（yojitu.com）も、今ご覧いただいているこのページも、AIで制作しています。</strong><br>
+                    <br>
+                    ぜひ、実際の品質をご確認ください。
+                </p>
+            </div>
+
+            <h3 style="margin-top: 60px; text-align: center;">制作実績</h3>
+
+            <div class="card-grid" style="margin-top: 40px;">
+                <div class="card">
+                    <h4>大分IT移住プロジェクト</h4>
+                    <p>「このままでいいのかな」から抜け出した人たちが選んだ、次の一歩。</p>
+                    <p style="margin-top: 16px;">
+                        <a href="https://migration.oita-creative.jp/lp2/" target="_blank" style="color: #2563EB; text-decoration: underline;">実績を見る →</a>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h4>大分IT移住プロジェクト</h4>
+                    <p>同じ働き方で、もっと豊かに</p>
+                    <p style="margin-top: 16px;">
+                        <a href="https://migration.oita-creative.jp/2025/lp/" target="_blank" style="color: #2563EB; text-decoration: underline;">実績を見る →</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- セクション6: 料金プラン -->
+    <section>
+        <div class="container">
+            <h2>料金プラン</h2>
+
+            <p style="text-align: center; margin-bottom: 48px;">
+                シンプルでわかりやすい、2つのプラン。
+            </p>
+
+            <div class="card-grid">
+                <div class="price-card">
+                    <h3 style="margin-bottom: 16px;">プラン1</h3>
+                    <h4 style="font-size: 24px; color: #1F2937;">ページ制作プラン</h4>
+                    <div class="price">¥50,000</div>
+                    <p class="price-note">（税別）</p>
+
+                    <div style="text-align: left; margin-top: 32px;">
+                        <p style="font-weight: 700; margin-bottom: 16px;">含まれる内容:</p>
+                        <ul style="list-style: none;">
+                            <li>・ページのデザイン・コーディング</li>
+                            <li>・スマホ対応（レスポンシブ）</li>
+                            <li>・1回の修正対応</li>
+                            <li>・<strong>納期: 最短3営業日</strong></li>
+                        </ul>
+
+                        <p style="margin-top: 24px; font-weight: 700;">こんな方におすすめ:</p>
+                        <ul style="list-style: none; color: #6B7280;">
+                            <li>・まずはシンプルなページが欲しい方</li>
+                            <li>・お問い合わせフォームは既にある方</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="price-card">
+                    <h3 style="margin-bottom: 16px;">プラン2</h3>
+                    <h4 style="font-size: 24px; color: #1F2937;">ページ + フォーム・サンクスページプラン</h4>
+                    <div class="price">¥100,000</div>
+                    <p class="price-note">（税別）</p>
+
+                    <div style="text-align: left; margin-top: 32px;">
+                        <p style="font-weight: 700; margin-bottom: 16px;">含まれる内容:</p>
+                        <ul style="list-style: none;">
+                            <li>・ページのデザイン・コーディング</li>
+                            <li>・お問い合わせフォーム作成</li>
+                            <li>・サンクスページ（送信完了ページ）作成</li>
+                            <li>・スマホ対応（レスポンシブ）</li>
+                            <li>・2回の修正対応</li>
+                            <li>・<strong>納期: 最短1週間</strong></li>
+                        </ul>
+
+                        <p style="margin-top: 24px; font-weight: 700;">こんな方におすすめ:</p>
+                        <ul style="list-style: none; color: #6B7280;">
+                            <li>・お問い合わせや資料請求を受け付けたい方</li>
+                            <li>・フォームも一緒に作ってほしい方</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 48px;">
+                <p><strong>フォームについて</strong></p>
+                <p style="margin-top: 12px; font-weight: normal;">
+                    LINEでのお問い合わせも可能ですが、機会損失を防ぐためにも、お問い合わせフォームを設置することをおすすめしています。
+                </p>
+            </div>
+
+            <p class="note" style="text-align: center; margin-top: 32px;">
+                ※ 素材（写真・ロゴなど）がない場合、フリー素材のご提案や、簡易的な画像作成も可能です（別途お見積もり）
+            </p>
+        </div>
+    </section>
+
+    <!-- セクション7: 制作の流れ -->
+    <section>
+        <div class="container">
+            <h2>制作の流れ</h2>
+
+            <p style="text-align: center; margin-bottom: 48px;">
+                最短3営業日で完成するまでの流れをご紹介します。
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>ご相談（即日〜1日）</h4>
+                        <p>お問い合わせフォームまたはお電話でご相談ください。<br>
+                        「こんなことできる？」という質問だけでも大歓迎です。</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>ヒアリング（1日）</h4>
+                        <p>どんな商品・サービスを、誰に、どう伝えたいのか。<br>
+                        目的やターゲットをお聞かせください。</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>制作開始（1〜3日）</h4>
+                        <p>ワイヤー・デザイン・コーディングを同時並行で進めます。<br>
+                        途中経過もご確認いただけます。</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>納品（即日）</h4>
+                        <p>修正対応後、納品・公開いたします。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p style="text-align: center; font-size: 18px;"><strong>→ 最短3営業日で完成・公開が可能です</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- セクション8: よくある質問 -->
+    <section>
+        <div class="container">
+            <h2>よくある質問</h2>
+
+            <div class="faq-item">
+                <p class="faq-q">Q1: 本当に3営業日で納品できるんですか？</p>
+                <p class="faq-a">A: はい、可能です。ただし、素材のご提供や修正対応のタイミングによっては若干延びる場合があります。お急ぎの場合は、ご相談時にお知らせください。</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-q">Q2: AIで作って、品質は大丈夫ですか？</p>
+                <p class="faq-a">A: このサイト（yojitu.com）や、今ご覧いただいているこのページもAIで制作しています。ぜひ実際の品質をご確認ください。</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-q">Q3: 広告を出さないのですが、LPは必要ですか？</p>
+                <p class="faq-a">A: はい、必要です。特に地方では、紹介や口コミの際に「このページを見てください」と使えるページが一つ増えるだけで、成約率が大きく変わります。ブランディングや、特定商品の訴求、メディア掲載時の受け皿としても有効です。</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-q">Q4: 修正は何回までできますか？</p>
+                <p class="faq-a">A: 基本プランは1回、フォーム付きプランは2回まで対応いたします。それ以上の修正は別途お見積もりとなります。</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-q">Q5: 公開後のサポートはありますか？</p>
+                <p class="faq-a">A: 公開後の軽微な修正（誤字修正など）は対応可能です。大幅な修正や追加機能については別途お見積もりとなります。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- セクション9: CTA -->
+    <section>
+        <div class="container">
+            <h2>LP制作、5万円〜。最短3日。</h2>
+
+            <p style="text-align: center; font-size: 18px; margin-bottom: 48px;">
+                「新商品のローンチに間に合わせたい」<br>
+                「キャンペーンのLPが急遽必要になった」<br>
+                「まずは話を聞いてみたい」<br>
+                <br>
+                どんなご相談でも、お気軽にどうぞ。
+            </p>
+
+            <div class="cta-options">
+                <div class="cta-option">
+                    <h4>フォームで相談</h4>
+                    <p id="ctaMicroTop">構成案を無料でご提案します</p>
+                    <button class="btn" id="ctaButton" onclick="openModal()">今すぐ無料相談する</button>
+                    <p id="ctaMicroBottom" style="font-size: 14px; margin-top: 16px; color: #6B7280;">
+                        まずはお気軽にご相談ください
+                    </p>
+                </div>
+
+                <div class="cta-option">
+                    <h4>LINEで気軽に相談</h4>
+                    <p>簡単なご質問や、すぐに相談したい方におすすめです。</p>
+                    <a href="https://line.me/R/ti/p/@123abcde" class="btn btn-secondary" target="_blank">LINEで相談する</a>
+                    <p style="font-size: 14px; margin-top: 16px; color: #6B7280;">
+                        ✓ 平日10:00-18:00対応<br>
+                        ✓ 気軽にご質問できます
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フローティングCTA - 一旦非表示 -->
+    <!-- <div class="floating-cta">
+        <div class="floating-cta-content">
+            <div class="floating-cta-text" id="floatingCtaMicro">
+                構成案を無料でご提案します
+            </div>
+            <div class="floating-cta-buttons">
+                <button class="btn" id="floatingCtaButton" onclick="openModal()">今すぐ無料相談する</button>
+                <a href="https://line.me/R/ti/p/@123abcde" class="btn btn-secondary" target="_blank">LINE相談</a>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- フッター -->
+    <footer style="background: #1F2937; color: white; padding: 40px 20px; text-align: center;">
+        <div class="container">
+            <p>運営: YOJITU.COM</p>
+            <p style="margin-top: 16px;">
+                <a href="/about.php" style="color: white; margin: 0 16px;">会社概要</a>
+                <a href="/privacy.php" style="color: white; margin: 0 16px;">プライバシーポリシー</a>
+                <a href="/contact.php" style="color: white; margin: 0 16px;">お問い合わせ</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- モーダル -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="margin-bottom: 32px;">お問い合わせフォーム</h2>
+
+            <form action="/contact/submit.php" method="POST">
+                <div class="form-group">
+                    <label>会社名・屋号</label>
+                    <input type="text" name="company" placeholder="例: 株式会社YOJITU">
+                </div>
+
+                <div class="form-group">
+                    <label>お名前<span class="required">*</span></label>
+                    <input type="text" name="name" required placeholder="例: 山田 太郎">
+                </div>
+
+                <div class="form-group">
+                    <label>メールアドレス<span class="required">*</span></label>
+                    <input type="email" name="email" required placeholder="例: example@yojitu.com">
+                </div>
+
+                <div class="form-group">
+                    <label>電話番号</label>
+                    <input type="tel" name="phone" placeholder="例: 080-1234-5678">
+                </div>
+
+                <div class="form-group">
+                    <label>ご相談内容<span class="required">*</span></label>
+                    <textarea name="message" required placeholder="ご相談内容をご記入ください。&#10;&#10;例：&#10;・新商品のLPを作りたい&#10;・キャンペーン用のページが欲しい&#10;・まずは見積もりが知りたい"></textarea>
+                </div>
+
+                <div style="text-align: center;">
+                    <button type="submit" class="btn" style="width: 100%; max-width: 400px;">送信する</button>
+                </div>
+
+                <p style="text-align: center; font-size: 14px; color: #6B7280; margin-top: 16px;">
+                    ※2営業日以内にご返信いたします
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- パターン表示用の注釈 -->
+    <div id="patternIndicator" style="position: fixed; top: 10px; right: 10px; background: #FEF3C7; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 10000;">
+        表示中: 読み込み中...
+    </div>
+
+    <script>
+        // A/Bテスト用パターン定義
+        const patterns = {
+            // キャッチコピー（ファーストビュー）
+            catchCopy: {
+                1: 'あなたの商品、ちゃんと伝わっていますか？<br><br>「もっと知ってほしい」を形にする、<br>特別な1ページ。5万円〜、最短3日。',
+                2: '伝えたいことがある。<br>でも、どう届けたらいいかわからない。<br><br>この想いを、1枚のページで届けませんか？<br>5万円〜、最短3日。',
+                6: 'もっと多くの人に、この良さを知ってもらいたい。<br><br>そんな想いを、形にします。<br>5万円〜、最短3日。'
+            },
+            // CTA
+            cta: {
+                A: {
+                    text: '今すぐ無料相談する',
+                    microTop: '構成案を無料でご提案します',
+                    microBottom: 'まずはお気軽にご相談ください'
+                },
+                B: {
+                    text: 'LP制作の相談をする',
+                    microTop: '5万円〜、最短3営業日で納品',
+                    microBottom: 'フォーム送信は1分で完了します'
+                },
+                E: {
+                    text: 'お問い合わせはこちら',
+                    microTop: '構成案のご提案は無料です',
+                    microBottom: 'LINEでのご相談も可能です'
+                }
+            }
+        };
+
+        // パターンマッピング（1-9のパターンID → キャッチコピー + CTA）
+        const patternMapping = {
+            1: { catch: 1, cta: 'A', label: 'キャッチ1 × CTA A' },
+            2: { catch: 1, cta: 'B', label: 'キャッチ1 × CTA B' },
+            3: { catch: 1, cta: 'E', label: 'キャッチ1 × CTA E' },
+            4: { catch: 2, cta: 'A', label: 'キャッチ2 × CTA A' },
+            5: { catch: 2, cta: 'B', label: 'キャッチ2 × CTA B' },
+            6: { catch: 2, cta: 'E', label: 'キャッチ2 × CTA E' },
+            7: { catch: 6, cta: 'A', label: 'キャッチ6 × CTA A' },
+            8: { catch: 6, cta: 'B', label: 'キャッチ6 × CTA B' },
+            9: { catch: 6, cta: 'E', label: 'キャッチ6 × CTA E' }
+        };
+
+        // LocalStorageからパターンを取得、なければランダムに割り当て
+        function getPattern() {
+            let patternId = localStorage.getItem('lp_ab_pattern');
+
+            if (!patternId) {
+                // 1-9のランダムなパターンを割り当て
+                patternId = Math.floor(Math.random() * 9) + 1;
+                localStorage.setItem('lp_ab_pattern', patternId);
+
+                // Google Analytics 4にイベント送信（GA4が設定されている場合）
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'ab_test_pattern_assigned', {
+                        'pattern_id': patternId,
+                        'pattern_label': patternMapping[patternId].label
+                    });
+                }
+            }
+
+            return parseInt(patternId);
+        }
+
+        // パターンを適用
+        function applyPattern() {
+            const patternId = getPattern();
+            const pattern = patternMapping[patternId];
+
+            // キャッチコピーを変更（ファーストビュー）
+            const catchCopyElement = document.getElementById('catchCopy');
+            if (catchCopyElement) {
+                catchCopyElement.innerHTML = patterns.catchCopy[pattern.catch];
+            }
+
+            // CTAボタンとマイクロコピーを変更（複数箇所）
+            const ctaConfig = patterns.cta[pattern.cta];
+
+            // セクション9のCTAボタン
+            const ctaButton = document.getElementById('ctaButton');
+            if (ctaButton) {
+                ctaButton.textContent = ctaConfig.text;
+            }
+
+            // マイクロコピー（上）
+            const microTop = document.getElementById('ctaMicroTop');
+            if (microTop) {
+                microTop.textContent = ctaConfig.microTop;
+            }
+
+            // マイクロコピー（下）
+            const microBottom = document.getElementById('ctaMicroBottom');
+            if (microBottom) {
+                microBottom.textContent = ctaConfig.microBottom;
+            }
+
+            // フローティングCTAボタン
+            const floatingCtaButton = document.getElementById('floatingCtaButton');
+            if (floatingCtaButton) {
+                floatingCtaButton.textContent = ctaConfig.text;
+            }
+
+            // フローティングCTAマイクロコピー
+            const floatingCtaMicro = document.getElementById('floatingCtaMicro');
+            if (floatingCtaMicro) {
+                floatingCtaMicro.textContent = ctaConfig.microTop;
+            }
+
+            // パターン表示を更新
+            const indicator = document.getElementById('patternIndicator');
+            if (indicator) {
+                indicator.textContent = '表示中: ' + pattern.label;
+            }
+
+            // Google Analytics 4にページビューイベント送信（GA4が設定されている場合）
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'page_view', {
+                    'pattern_id': patternId,
+                    'pattern_label': pattern.label
+                });
+            }
+        }
+
+        // ページ読み込み時にパターンを適用
+        document.addEventListener('DOMContentLoaded', applyPattern);
+
+        // モーダル操作
+        function openModal() {
+            document.getElementById('contactModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            // モーダルオープンをGA4に送信
+            const patternId = getPattern();
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'modal_open', {
+                    'pattern_id': patternId,
+                    'pattern_label': patternMapping[patternId].label
+                });
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // モーダル外クリックで閉じる
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // ESCキーで閉じる
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
