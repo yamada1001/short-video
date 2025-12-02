@@ -205,54 +205,26 @@
       display: flex;
       align-items: center;
       padding: 120px 24px 80px;
-      background:
-        linear-gradient(135deg, rgba(249, 250, 251, 1) 0%, rgba(255, 255, 255, 1) 100%);
+      background: linear-gradient(to bottom, #FAFBFC 0%, #FFFFFF 100%);
       overflow: hidden;
     }
 
-    /* ドットパターン */
+    /* 大きなイラスト（右側） */
     .hero::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image:
-        radial-gradient(circle, rgba(37, 99, 235, 0.18) 1.5px, transparent 1.5px),
-        radial-gradient(circle, rgba(16, 185, 129, 0.15) 1.5px, transparent 1.5px);
-      background-size: 40px 40px, 60px 60px;
-      background-position: 0 0, 20px 20px;
+      top: 50%;
+      right: 5%;
+      transform: translateY(-50%);
+      width: 500px;
+      height: 500px;
+      background-image: url('https://illustrations.popsy.co/amber/product-launch.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.12;
       pointer-events: none;
       z-index: 1;
-    }
-
-    /* 光の線（3本） */
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -20%;
-      width: 200%;
-      height: 200%;
-      background:
-        linear-gradient(
-          135deg,
-          transparent 0%,
-          transparent 48%,
-          rgba(37, 99, 235, 0.4) 49%,
-          rgba(16, 185, 129, 0.4) 51%,
-          transparent 52%,
-          transparent 100%
-        );
-      pointer-events: none;
-      z-index: 1;
-      animation: lightMove 15s linear infinite;
-    }
-
-    @keyframes lightMove {
-      0% { transform: translate(-30%, 30%) rotate(135deg); }
-      100% { transform: translate(30%, -30%) rotate(135deg); }
     }
 
     .hero-inner {
@@ -2201,26 +2173,17 @@
       <span class="catchcopy-sub"></span>
     `;
 
-    // Hero Animation - タイプライター効果 + 背景アニメーション
+    // Hero Animation - タイプライター効果 + イラストフェードイン
     const heroTimeline = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-    // 背景アニメーション: ドットパターンズームイン
-    gsap.set('.hero::before', { scale: 0.8, opacity: 0 });
+    // 背景イラスト: フェードイン
+    gsap.set('.hero::before', { opacity: 0, scale: 1.1 });
     gsap.to('.hero::before', {
+      opacity: 0.12,
       scale: 1,
-      opacity: 1,
-      duration: 1.5,
+      duration: 2,
       delay: 0.8,
       ease: 'power2.out'
-    });
-
-    // 背景アニメーション: 光の線を複数本流す
-    gsap.set('.hero::after', { opacity: 0 });
-    gsap.to('.hero::after', {
-      opacity: 1,
-      duration: 1,
-      delay: 1.2,
-      ease: 'power2.in'
     });
 
     // Set initial state for hero elements
