@@ -9,7 +9,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Reddit+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -27,18 +27,17 @@
     }
 
     :root {
-      --color-primary: #2D2420;
-      --color-secondary: #6B5D57;
-      --color-accent: #8B4513;
-      --color-accent-hover: #6B3410;
-      --color-bg: #FFF9F0;
-      --color-bg-alt: #FFF5E6;
-      --color-border: #E8DED0;
-      --color-gradient-1: #D2691E;
-      --color-gradient-2: #8B4513;
-      --color-gradient-3: #A0522D;
-      --font-primary: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-accent: 'Inter', sans-serif;
+      --color-primary: #303f5d;
+      --color-secondary: #787e88;
+      --color-accent: #d3594c;
+      --color-accent-hover: #b54539;
+      --color-bg: #fafafa;
+      --color-bg-alt: #f5f3ed;
+      --color-border: #bcc5c2;
+      --color-text-light: #787e88;
+      --color-bg-wave: #f2efd2;
+      --font-primary: 'Zen Kaku Gothic New', "游ゴシック体", YuGothic, sans-serif;
+      --font-accent: 'Reddit Sans', serif;
       --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --gradient-angle: 0deg;
     }
@@ -56,57 +55,12 @@
     body {
       font-family: var(--font-primary);
       color: var(--color-primary);
-      background:
-        radial-gradient(circle at 20% 30%, rgba(210, 105, 30, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(160, 82, 45, 0.06) 0%, transparent 60%),
-        radial-gradient(circle at 10% 80%, rgba(210, 105, 30, 0.05) 0%, transparent 45%),
-        radial-gradient(circle at 90% 20%, rgba(139, 69, 19, 0.07) 0%, transparent 55%),
-        linear-gradient(135deg, #FFF9F0 0%, #FFF5E6 50%, #FFF9F0 100%);
+      background: var(--color-bg);
       line-height: 1.8;
       overflow-x: hidden;
       position: relative;
     }
 
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 2px,
-          rgba(139, 69, 19, 0.04) 2px,
-          rgba(139, 69, 19, 0.04) 4px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 2px,
-          rgba(139, 69, 19, 0.04) 2px,
-          rgba(139, 69, 19, 0.04) 4px
-        );
-      pointer-events: none;
-      z-index: 0;
-      opacity: 1;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.15"/></svg>');
-      pointer-events: none;
-      z-index: 0;
-      opacity: 1;
-    }
 
 
     /* Header */
@@ -115,16 +69,16 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(30px) saturate(180%);
-      border-bottom: 1px solid rgba(45, 36, 32, 0.08);
+      background: rgba(250, 250, 250, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-border);
       z-index: 1000;
       transition: all 0.4s var(--ease);
     }
 
     .header:hover {
-      background: rgba(255, 255, 255, 0.85);
-      box-shadow: 0 2px 20px rgba(45, 36, 32, 0.04);
+      background: var(--color-bg);
+      box-shadow: 0 2px 20px rgba(48, 63, 93, 0.08);
     }
 
     .header-inner {
@@ -229,25 +183,36 @@
       display: flex;
       align-items: center;
       padding: 120px 24px 80px;
-      background: linear-gradient(to bottom, #FAFBFC 0%, #FFFFFF 100%);
+      background: var(--color-bg);
       overflow: hidden;
     }
 
-    /* Slack風イラスト背景 */
+    /* 波装飾（上部） */
     .hero::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none"><g opacity="0.5"><circle cx="150" cy="100" r="8" fill="%2310B981"/><circle cx="1050" cy="150" r="6" fill="%236366F1"/><circle cx="200" cy="600" r="10" fill="%23F59E0B"/><circle cx="1100" cy="700" r="7" fill="%2310B981"/><path d="M100 200 Q150 180 200 200" stroke="%236366F1" stroke-width="3" fill="none" opacity="0.6"/><path d="M1000 250 Q1050 230 1100 250" stroke="%2310B981" stroke-width="3" fill="none" opacity="0.6"/><rect x="80" y="450" width="60" height="40" rx="8" fill="%236366F1" opacity="0.3"/><rect x="1050" y="500" width="70" height="45" rx="8" fill="%2310B981" opacity="0.3"/><ellipse cx="300" cy="150" rx="30" ry="40" fill="%23F59E0B" opacity="0.25"/><ellipse cx="900" cy="650" rx="35" ry="45" fill="%236366F1" opacity="0.25"/><path d="M250 500 L270 480 L290 500 L310 485 L330 500" stroke="%2310B981" stroke-width="2.5" fill="none" opacity="0.5"/><circle cx="500" cy="120" r="12" fill="none" stroke="%236366F1" stroke-width="2.5" opacity="0.4"/><circle cx="700" cy="680" r="15" fill="none" stroke="%2310B981" stroke-width="2.5" opacity="0.4"/><polygon points="950,150 970,180 930,180" fill="%23F59E0B" opacity="0.35"/><polygon points="200,700 220,730 180,730" fill="%236366F1" opacity="0.35"/><path d="M400 300 L420 290 L440 300 L460 290" stroke="%23F59E0B" stroke-width="2" fill="none" opacity="0.4"/><rect x="850" y="350" width="50" height="35" rx="6" fill="%2310B981" opacity="0.25"/></g></svg>');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      height: 200px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" fill="none"><path d="M0,80 Q360,20 720,80 T1440,80 L1440,0 L0,0 Z" fill="%23f5f3ed"/></svg>') no-repeat top center;
+      background-size: 100% 100%;
       pointer-events: none;
       z-index: 1;
-      opacity: 1;
+    }
+
+    /* 波装飾（下部） */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" fill="none"><path d="M0,120 Q360,180 720,120 T1440,120 L1440,200 L0,200 Z" fill="%23f5f3ed"/></svg>') no-repeat bottom center;
+      background-size: 100% 100%;
+      pointer-events: none;
+      z-index: 1;
     }
 
     .hero-inner {
@@ -378,38 +343,8 @@
       overflow: hidden;
     }
 
-    .section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" fill="none"><g opacity="0.4"><circle cx="100" cy="80" r="6" fill="%2310B981"/><circle cx="1100" cy="100" r="5" fill="%236366F1"/><circle cx="150" cy="500" r="7" fill="%23F59E0B"/><rect x="950" y="450" width="50" height="35" rx="6" fill="%236366F1" opacity="0.25"/><ellipse cx="250" cy="100" rx="25" ry="35" fill="%2310B981" opacity="0.2"/><path d="M1000 200 Q1050 180 1100 200" stroke="%2310B981" stroke-width="2.5" fill="none" opacity="0.5"/><polygon points="200,550 220,580 180,580" fill="%236366F1" opacity="0.3"/><circle cx="600" cy="80" r="10" fill="none" stroke="%2310B981" stroke-width="2" opacity="0.35"/></g></svg>');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      pointer-events: none;
-      z-index: 0;
-    }
-
     .section-alt {
       background: var(--color-bg-alt);
-    }
-
-    .section-alt::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" fill="none"><g opacity="0.35"><circle cx="200" cy="100" r="7" fill="%236366F1"/><circle cx="1000" cy="120" r="6" fill="%2310B981"/><circle cx="300" cy="500" r="8" fill="%23F59E0B"/><rect x="100" y="400" width="55" height="38" rx="7" fill="%2310B981" opacity="0.28"/><ellipse cx="1050" cy="450" rx="28" ry="38" fill="%236366F1" opacity="0.22"/><path d="M150 150 L170 140 L190 150 L210 140" stroke="%23F59E0B" stroke-width="2.5" fill="none" opacity="0.45"/><circle cx="800" cy="100" r="11" fill="none" stroke="%236366F1" stroke-width="2.5" opacity="0.38"/><polygon points="1050,500 1070,530 1030,530" fill="%2310B981" opacity="0.32"/><path d="M400 250 Q450 230 500 250" stroke="%236366F1" stroke-width="2" fill="none" opacity="0.5"/></g></svg>');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      pointer-events: none;
-      z-index: 0;
     }
 
 
@@ -420,7 +355,7 @@
       font-size: clamp(120px, 15vw, 240px);
       font-weight: 900;
       font-family: var(--font-accent);
-      color: rgba(139, 69, 19, 0.03);
+      color: rgba(48, 63, 93, 0.05);
       line-height: 1;
       pointer-events: none;
       user-select: none;
