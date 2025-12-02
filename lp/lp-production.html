@@ -145,6 +145,19 @@
       text-decoration: none;
       transition: all 0.3s var(--ease);
       position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      font-size: 24px;
+      color: var(--color-accent);
+      transition: transform 0.3s var(--ease);
+    }
+
+    .logo:hover .logo-icon {
+      transform: translateY(-3px) rotate(-10deg);
     }
 
     .logo::after {
@@ -163,7 +176,9 @@
     }
 
     .header-cta {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       padding: 12px 32px;
       background: transparent;
       color: var(--color-primary);
@@ -176,6 +191,15 @@
       border: 1px solid var(--color-primary);
       position: relative;
       overflow: hidden;
+    }
+
+    .cta-arrow {
+      font-size: 12px;
+      transition: transform 0.3s var(--ease);
+    }
+
+    .header-cta:hover .cta-arrow {
+      transform: translateX(5px);
     }
 
     .header-cta::before {
@@ -1227,11 +1251,70 @@
       margin: 0 auto;
     }
 
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 2fr;
+      gap: 80px;
+      margin-bottom: 64px;
+    }
+
+    .footer-brand {
+      max-width: 400px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-accent);
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--color-primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-logo i {
+      color: var(--color-accent);
+      font-size: 28px;
+    }
+
+    .footer-description {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--color-secondary);
+      margin-bottom: 32px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(45, 36, 32, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary);
+      transition: all 0.3s var(--ease);
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      background: var(--color-accent);
+      color: white;
+      border-color: var(--color-accent);
+      transform: translateY(-3px);
+    }
+
     .footer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 48px;
-      margin-bottom: 48px;
     }
 
     .footer-section-title {
@@ -1244,36 +1327,29 @@
     }
 
     .footer-link {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 8px;
       color: var(--color-primary);
       text-decoration: none;
       margin-bottom: 16px;
       font-size: 14px;
       font-weight: 300;
       transition: all 0.3s var(--ease);
-      position: relative;
-      padding-left: 12px;
     }
 
-    .footer-link::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 1px;
-      background: var(--color-accent);
-      transition: width 0.3s var(--ease);
+    .footer-link i {
+      font-size: 10px;
+      color: var(--color-accent);
+      transition: transform 0.3s var(--ease);
     }
 
     .footer-link:hover {
       color: var(--color-accent);
-      padding-left: 20px;
     }
 
-    .footer-link:hover::before {
-      width: 12px;
+    .footer-link:hover i {
+      transform: translateX(3px);
     }
 
     .footer-bottom {
@@ -1566,25 +1642,33 @@
       }
 
       .hero-catchcopy {
-        font-size: clamp(24px, 6vw, 40px);
-        margin-bottom: 32px;
+        font-size: clamp(20px, 5vw, 36px);
+        margin-bottom: 24px;
       }
 
       .catchcopy-main {
-        font-size: clamp(28px, 7vw, 44px);
+        font-size: clamp(24px, 6vw, 38px);
       }
 
       .catchcopy-sub {
-        font-size: clamp(14px, 3.5vw, 20px);
+        font-size: clamp(12px, 3vw, 18px);
       }
 
       .section {
-        padding: 60px 20px;
+        padding: 48px 20px;
       }
 
       .section-number {
-        font-size: clamp(60px, 15vw, 120px);
-        top: 20px;
+        font-size: clamp(50px, 12vw, 100px);
+        top: 16px;
+      }
+
+      .section-title {
+        font-size: clamp(24px, 5vw, 40px);
+      }
+
+      .section-lead {
+        font-size: 14px;
       }
 
       .comparison-grid {
@@ -1655,6 +1739,21 @@
       .btn-secondary {
         width: 100%;
       }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .social-link {
+        width: 36px;
+        height: 36px;
+      }
     }
   </style>
 </head>
@@ -1669,8 +1768,14 @@
   <!-- Header -->
   <header class="header">
     <div class="header-inner">
-      <a href="/" class="logo">YOJITU.COM</a>
-      <a href="#contact" class="header-cta">お問い合わせ</a>
+      <a href="/" class="logo">
+        <i class="fas fa-rocket logo-icon"></i>
+        <span>YOJITU.COM</span>
+      </a>
+      <a href="#contact" class="header-cta">
+        <span>お問い合わせ</span>
+        <i class="fas fa-arrow-right cta-arrow"></i>
+      </a>
     </div>
   </header>
 
@@ -2109,27 +2214,69 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-grid">
-        <div>
-          <h3 class="footer-section-title">サービス</h3>
-          <a href="/services/web-production/" class="footer-link">Web制作</a>
-          <a href="/services/lp-production/" class="footer-link">LP制作</a>
-          <a href="/services/consulting/" class="footer-link">コンサルティング</a>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3 class="footer-logo">
+            <i class="fas fa-rocket"></i>
+            YOJITU.COM
+          </h3>
+          <p class="footer-description">
+            AI活用でスピーディーかつ高品質なWeb制作を実現。<br>
+            あなたのビジネスを加速させるパートナーです。
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
         </div>
-        <div>
-          <h3 class="footer-section-title">会社情報</h3>
-          <a href="/company/" class="footer-link">会社概要</a>
-          <a href="/blog/" class="footer-link">ブログ</a>
-          <a href="/contact/" class="footer-link">お問い合わせ</a>
-        </div>
-        <div>
-          <h3 class="footer-section-title">その他</h3>
-          <a href="/privacy/" class="footer-link">プライバシーポリシー</a>
-          <a href="/terms/" class="footer-link">利用規約</a>
+        <div class="footer-grid">
+          <div>
+            <h3 class="footer-section-title">サービス</h3>
+            <a href="/services/web-production/" class="footer-link">
+              <i class="fas fa-chevron-right"></i>Web制作
+            </a>
+            <a href="/services/lp-production/" class="footer-link">
+              <i class="fas fa-chevron-right"></i>LP制作
+            </a>
+            <a href="/services/consulting/" class="footer-link">
+              <i class="fas fa-chevron-right"></i>コンサルティング
+            </a>
+          </div>
+          <div>
+            <h3 class="footer-section-title">会社情報</h3>
+            <a href="/company/" class="footer-link">
+              <i class="fas fa-chevron-right"></i>会社概要
+            </a>
+            <a href="/blog/" class="footer-link">
+              <i class="fas fa-chevron-right"></i>ブログ
+            </a>
+            <a href="/contact/" class="footer-link">
+              <i class="fas fa-chevron-right"></i>お問い合わせ
+            </a>
+          </div>
+          <div>
+            <h3 class="footer-section-title">その他</h3>
+            <a href="/privacy/" class="footer-link">
+              <i class="fas fa-chevron-right"></i>プライバシーポリシー
+            </a>
+            <a href="/terms/" class="footer-link">
+              <i class="fas fa-chevron-right"></i>利用規約
+            </a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
-        &copy; 2025 YOJITU.COM All rights reserved.
+        <i class="fas fa-copyright"></i> 2025 YOJITU.COM All rights reserved.
       </div>
     </div>
   </footer>
