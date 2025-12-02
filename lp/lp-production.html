@@ -229,26 +229,35 @@
       display: flex;
       align-items: center;
       padding: 120px 24px 80px;
-      background: linear-gradient(to bottom, #FAFBFC 0%, #FFFFFF 100%);
+      background:
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.06) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
+        linear-gradient(to bottom, #FAFBFC 0%, #FFFFFF 100%);
       overflow: hidden;
     }
 
-    /* 大きなイラスト（右側） */
+    /* SVGグラデーションメッシュ */
     .hero::before {
       content: '';
       position: absolute;
-      top: 50%;
-      right: 5%;
-      transform: translateY(-50%);
-      width: 500px;
-      height: 500px;
-      background-image: url('https://illustrations.popsy.co/amber/product-launch.svg');
-      background-size: contain;
-      background-repeat: no-repeat;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgb(99,102,241);stop-opacity:0.2" /><stop offset="100%" style="stop-color:rgb(16,185,129);stop-opacity:0.1" /></linearGradient><linearGradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:rgb(16,185,129);stop-opacity:0.15" /><stop offset="100%" style="stop-color:rgb(99,102,241);stop-opacity:0.08" /></linearGradient></defs><circle cx="300" cy="300" r="200" fill="url(%23grad1)" opacity="0.6"><animate attributeName="cx" values="300;350;300" dur="20s" repeatCount="indefinite"/><animate attributeName="cy" values="300;250;300" dur="15s" repeatCount="indefinite"/></circle><circle cx="900" cy="400" r="250" fill="url(%23grad2)" opacity="0.5"><animate attributeName="cx" values="900;850;900" dur="25s" repeatCount="indefinite"/><animate attributeName="cy" values="400;450;400" dur="18s" repeatCount="indefinite"/></circle><circle cx="600" cy="800" r="180" fill="url(%23grad1)" opacity="0.4"><animate attributeName="cx" values="600;650;600" dur="22s" repeatCount="indefinite"/><animate attributeName="cy" values="800;750;800" dur="20s" repeatCount="indefinite"/></circle></svg>');
+      background-size: cover;
       background-position: center;
-      opacity: 0.12;
       pointer-events: none;
       z-index: 1;
+      opacity: 0.8;
+      animation: meshFloat 30s ease-in-out infinite;
+    }
+
+    @keyframes meshFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-5%, -5%) scale(1.05); }
     }
 
     .hero-inner {
@@ -2326,15 +2335,14 @@
       <span class="catchcopy-sub"></span>
     `;
 
-    // Hero Animation - タイプライター効果 + イラストフェードイン
+    // Hero Animation - タイプライター効果 + SVGメッシュフェードイン
     const heroTimeline = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-    // 背景イラスト: フェードイン
-    gsap.set('.hero::before', { opacity: 0, scale: 1.1 });
+    // SVGグラデーションメッシュ: フェードイン
+    gsap.set('.hero::before', { opacity: 0 });
     gsap.to('.hero::before', {
-      opacity: 0.12,
-      scale: 1,
-      duration: 2,
+      opacity: 0.8,
+      duration: 2.5,
       delay: 0.8,
       ease: 'power2.out'
     });
