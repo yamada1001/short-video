@@ -276,21 +276,21 @@
     }
 
     .catchcopy-main {
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 1;
       background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      min-height: 1.3em;
     }
 
     .catchcopy-sub {
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 1;
       font-size: clamp(18px, 3vw, 28px);
       font-weight: 500;
       color: var(--color-secondary);
       letter-spacing: 0.02em;
+      min-height: 1.3em;
     }
 
     .hero-subcopy {
@@ -2197,49 +2197,63 @@
     const catchData = catchCopies[pattern];
     const catchcopyElement = document.getElementById('catchcopy');
     catchcopyElement.innerHTML = `
-      <span class="catchcopy-main">${catchData.main}</span>
-      <span class="catchcopy-sub">${catchData.sub}</span>
+      <span class="catchcopy-main"></span>
+      <span class="catchcopy-sub"></span>
     `;
 
-    setTimeout(() => {
-      gsap.to('.catchcopy-main', {
-        duration: 1.5,
-        opacity: 1,
-        y: 0,
-        ease: 'power3.out',
-        delay: 1.2
-      });
-      gsap.to('.catchcopy-sub', {
-        duration: 1.5,
-        opacity: 1,
-        y: 0,
-        ease: 'power3.out',
-        delay: 1.5
-      });
-    }, 800);
-
-    // Hero Animation - より劇的に
+    // Hero Animation - タイプライター効果 + 背景アニメーション
     const heroTimeline = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
+    // 背景アニメーション: ドットパターンズームイン
+    gsap.set('.hero::before', { scale: 0.8, opacity: 0 });
+    gsap.to('.hero::before', {
+      scale: 1,
+      opacity: 1,
+      duration: 1.5,
+      delay: 0.8,
+      ease: 'power2.out'
+    });
+
+    // 背景アニメーション: 光の線を複数本流す
+    gsap.set('.hero::after', { opacity: 0 });
+    gsap.to('.hero::after', {
+      opacity: 1,
+      duration: 1,
+      delay: 1.2,
+      ease: 'power2.in'
+    });
+
     // Set initial state for hero elements
-    gsap.set('.hero-catchcopy', { opacity: 0, y: 60, scale: 0.95 });
+    gsap.set('.hero-catchcopy', { opacity: 1 });
     gsap.set('.hero-features', { opacity: 0, y: 40 });
 
-    heroTimeline
-      .to('.hero-catchcopy', {
-        opacity: 1,
-        y: 0,
-        scale: 1,
+    // タイプライター効果（メインキャッチコピー）
+    setTimeout(() => {
+      gsap.to('.catchcopy-main', {
+        duration: 2,
+        text: catchData.main,
+        ease: 'none',
+        delay: 1.2
+      });
+
+      // サブキャッチコピー（少し遅れて）
+      gsap.to('.catchcopy-sub', {
         duration: 1.2,
-        delay: 1,
-        ease: 'back.out(1.2)'
-      })
-      .to('.hero-features', {
+        text: catchData.sub,
+        ease: 'none',
+        delay: 3.4
+      });
+
+      // 特徴バッジ
+      gsap.to('.hero-features', {
         opacity: 1,
         y: 0,
         duration: 1,
-        stagger: 0.15
-      }, '-=0.6');
+        delay: 4.8,
+        stagger: 0.15,
+        ease: 'back.out(1.4)'
+      });
+    }, 800);
 
     // Scroll Animations - Problem Timeline
     gsap.utils.toArray('.problem-item').forEach((item, i) => {
