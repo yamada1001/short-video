@@ -7,6 +7,12 @@
 
 // 現在のページを取得
 $current_page = basename($_SERVER['PHP_SELF'], '.php');
+
+// 開発中: キャッシュ無効化
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+header("Expires: 0");
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -14,6 +20,11 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
+
+    <!-- 開発中: キャッシュ無効化 -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
     <!-- SEO -->
     <title><?php echo h(get_meta($current_page, 'title')); ?></title>

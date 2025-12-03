@@ -138,11 +138,16 @@ function truncate($str, $length = 100, $suffix = '...') {
 /**
  * アセットパスを取得
  * @param string $path アセットのパス
- * @return string 絶対パス
+ * @return string 絶対パス（開発中はキャッシュバスター付き）
  */
 function asset($path) {
     $base_path = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
-    return $base_path . '/' . ltrim($path, '/');
+    $url = $base_path . '/' . ltrim($path, '/');
+
+    // 開発中: キャッシュバスター（タイムスタンプ）を追加
+    $version = time();
+    $separator = (strpos($url, '?') === false) ? '?' : '&';
+    return $url . $separator . 'v=' . $version;
 }
 
 /**
