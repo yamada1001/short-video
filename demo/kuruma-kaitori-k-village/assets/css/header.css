@@ -40,18 +40,25 @@
 }
 
 .header__logo-svg {
-  height: 60px;
+  height: 55px;
   width: auto;
+  max-width: 100%;
 }
 
 /* ロゴの車アニメーション */
 .logo-car {
-  transform-origin: 35px 45px;
-  transition: transform 0.3s ease;
+  transform-origin: 35px 37px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header__logo:hover .logo-car {
-  transform: translateX(5px);
+  transform: translateX(8px);
+  animation: drive 0.6s ease-in-out;
+}
+
+@keyframes drive {
+  0%, 100% { transform: translateX(8px); }
+  50% { transform: translateX(12px); }
 }
 
 /* ========================================
@@ -204,12 +211,17 @@
 
 @media (max-width: 768px) {
   .header__logo-svg {
-    height: 48px;
+    height: 45px;
   }
 
-  /* SPではサブテキストを非表示 */
-  .header__logo-svg text:nth-of-type(3) {
+  /* SPではサブタイトルを非表示 */
+  .header__logo-svg text:last-child {
     display: none;
+  }
+
+  /* SPではメインタイトルを小さく */
+  .header__logo-svg text:first-of-type {
+    font-size: 15px;
   }
 
   .header__nav {
