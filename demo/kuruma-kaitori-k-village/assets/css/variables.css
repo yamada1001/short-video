@@ -6,31 +6,31 @@
 
 :root {
   /* ========================================
-     カラー（信頼感重視・ブルー系）
+     カラー（信頼感重視・プロフェッショナル）
      ======================================== */
 
-  /* プライマリカラー（メイン） */
-  --primary-color: #2563eb;
-  --primary-dark: #1e40af;
+  /* プライマリカラー（深みのあるブルー） */
+  --primary-color: #1e40af;
+  --primary-dark: #1e3a8a;
   --primary-light: #dbeafe;
-  --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  --primary-gradient: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
 
   /* セカンダリカラー（アクセント） */
   --secondary-color: #f59e0b;
   --secondary-dark: #d97706;
   --secondary-light: #fef3c7;
 
-  /* テキストカラー */
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --text-light: #9ca3af;
+  /* テキストカラー（プロフェッショナル） */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-light: #94a3b8;
   --text-white: #ffffff;
 
-  /* 背景カラー */
+  /* 背景カラー（洗練されたグレー） */
   --bg-white: #ffffff;
-  --bg-gray: #f3f4f6;
-  --bg-gray-dark: #e5e7eb;
-  --bg-dark: #111827;
+  --bg-gray: #f8fafc;
+  --bg-gray-dark: #e2e8f0;
+  --bg-dark: #0f172a;
 
   /* ステータスカラー */
   --success-color: #10b981;
@@ -47,50 +47,61 @@
   --service-lease: #8b5cf6;
 
   /* ========================================
-     フォント
+     フォント（プロフェッショナル階層）
      ======================================== */
 
   /* フォントファミリー */
   --font-base: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', Meiryo, sans-serif;
+  --font-heading: 'M PLUS 1p', 'Noto Sans JP', sans-serif;
+  --font-number: 'Inter', 'M PLUS 1p', sans-serif;
 
-  /* フォントサイズ */
+  /* フォントサイズ（より細かいスケール） */
   --font-size-xs: 12px;
   --font-size-sm: 14px;
   --font-size-base: 16px;
+  --font-size-md: 17px;
   --font-size-lg: 18px;
   --font-size-xl: 20px;
   --font-size-2xl: 24px;
-  --font-size-3xl: 28px;
-  --font-size-4xl: 36px;
-  --font-size-5xl: 48px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 40px;
+  --font-size-5xl: 56px;
+  --font-size-6xl: 72px;
 
-  /* フォントウェイト */
+  /* フォントウェイト（階層的） */
   --font-weight-normal: 400;
   --font-weight-medium: 500;
+  --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
   --font-weight-black: 900;
 
-  /* 行間 */
-  --line-height-tight: 1.3;
+  /* 行間（読みやすさ重視） */
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.4;
   --line-height-base: 1.7;
+  --line-height-relaxed: 1.8;
   --line-height-loose: 2.0;
 
-  /* 文字間 */
+  /* 文字間（プロフェッショナル） */
   --letter-spacing-tight: -0.02em;
   --letter-spacing-base: 0;
+  --letter-spacing-normal: 0.025em;
   --letter-spacing-wide: 0.05em;
+  --letter-spacing-wider: 0.1em;
 
   /* ========================================
-     スペーシング
+     スペーシング（余裕のある設計）
      ======================================== */
 
   --spacing-xs: 8px;
   --spacing-sm: 16px;
   --spacing-md: 24px;
-  --spacing-lg: 32px;
-  --spacing-xl: 48px;
-  --spacing-2xl: 64px;
-  --spacing-3xl: 96px;
+  --spacing-lg: 40px;
+  --spacing-xl: 64px;
+  --spacing-2xl: 80px;
+  --spacing-3xl: 120px;
+  --spacing-4xl: 160px;
 
   /* ========================================
      レイアウト

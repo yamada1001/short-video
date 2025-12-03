@@ -30,11 +30,11 @@ body {
 }
 
 /* ========================================
-   セクション
+   セクション（プロフェッショナル）
    ======================================== */
 
 .section {
-  padding: var(--spacing-3xl) 0;
+  padding: var(--spacing-4xl) 0;
 }
 
 .section--gray {
@@ -42,49 +42,75 @@ body {
 }
 
 .section__title {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-black);
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: var(--font-weight-extrabold);
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-tight);
   text-align: center;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-primary);
+  position: relative;
+  padding-bottom: var(--spacing-md);
+}
+
+.section__title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--primary-gradient);
+  border-radius: 2px;
 }
 
 .section__lead {
-  font-size: var(--font-size-lg);
+  font-size: clamp(16px, 2vw, 20px);
   color: var(--text-secondary);
   text-align: center;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
+  line-height: var(--line-height-relaxed);
+  letter-spacing: var(--letter-spacing-normal);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ========================================
-   見出し
+   見出し（プロフェッショナル階層）
    ======================================== */
 
 h1 {
+  font-family: var(--font-heading);
   font-size: var(--font-size-5xl);
-  font-weight: var(--font-weight-black);
+  font-weight: var(--font-weight-extrabold);
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-tight);
 }
 
 h2 {
+  font-family: var(--font-heading);
   font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-extrabold);
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-tight);
 }
 
 h3 {
+  font-family: var(--font-heading);
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-normal);
 }
 
 h4 {
+  font-family: var(--font-heading);
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
+  line-height: var(--line-height-snug);
 }
 
 /* ========================================
