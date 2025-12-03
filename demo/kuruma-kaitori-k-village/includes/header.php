@@ -73,12 +73,6 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
             <nav class="header__nav">
                 <ul class="header__nav-list">
                     <li class="header__nav-item">
-                        <a href="<?php echo url(); ?>" class="header__nav-link <?php echo is_current_page('index'); ?>">
-                            <i class="fa-solid fa-home"></i>
-                            トップ
-                        </a>
-                    </li>
-                    <li class="header__nav-item">
                         <a href="<?php echo url('about'); ?>" class="header__nav-link <?php echo is_current_page('about'); ?>">
                             <i class="fa-solid fa-building"></i>
                             会社概要
@@ -118,12 +112,6 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
         <!-- モバイルメニュー（SP） -->
         <div class="header__mobile-menu" id="mobile-menu">
             <ul class="header__mobile-nav-list">
-                <li class="header__mobile-nav-item">
-                    <a href="<?php echo url(); ?>" class="header__mobile-nav-link <?php echo is_current_page('index'); ?>">
-                        <span><i class="fa-solid fa-home"></i> トップ</span>
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </a>
-                </li>
                 <li class="header__mobile-nav-item">
                     <a href="<?php echo url('about'); ?>" class="header__mobile-nav-link <?php echo is_current_page('about'); ?>">
                         <span><i class="fa-solid fa-building"></i> 会社概要</span>
