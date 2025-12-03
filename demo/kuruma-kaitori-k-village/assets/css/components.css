@@ -452,6 +452,8 @@
   border-radius: var(--border-radius-md);
   text-decoration: none;
   transition: all var(--transition-base);
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .cta-contact__phone:hover {
