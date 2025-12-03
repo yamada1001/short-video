@@ -39,11 +39,11 @@
   box-shadow: var(--shadow-lg);
 }
 
-/* 画像 */
+/* 画像（大きく） */
 .inventory-card__image {
   position: relative;
   width: 100%;
-  height: 240px;
+  height: 320px;
   overflow: hidden;
   background: var(--bg-gray);
 }
@@ -70,6 +70,19 @@
   font-weight: var(--font-weight-bold);
   border-radius: var(--border-radius-full);
   box-shadow: var(--shadow-md);
+  z-index: 2;
+}
+
+/* 画像上に価格をオーバーレイ */
+.inventory-card__image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+  z-index: 1;
 }
 
 /* コンテンツ */
@@ -84,16 +97,16 @@
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 }
 
-/* 価格 */
+/* 価格（画像上にオーバーレイ） */
 .inventory-card__price {
-  background: linear-gradient(135deg, var(--primary-light), #f0f9ff);
-  border-left: 4px solid var(--primary-color);
-  padding: var(--spacing-sm) var(--spacing-md);
-  margin-bottom: var(--spacing-md);
-  border-radius: var(--border-radius-sm);
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -101,15 +114,17 @@
 
 .inventory-card__price-label {
   font-size: var(--font-size-xs);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: var(--font-weight-medium);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .inventory-card__price-value {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-black);
-  color: var(--primary-color);
+  color: #ffffff;
   line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* スペック（簡略版） */
@@ -210,7 +225,7 @@
   }
 
   .inventory-card__image {
-    height: 180px;
+    height: 200px;
   }
 
   .inventory-card__content {
@@ -219,6 +234,12 @@
 
   .inventory-card__name {
     font-size: var(--font-size-lg);
+  }
+
+  .inventory-card__price {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
   }
 
   .inventory-card__price-value {

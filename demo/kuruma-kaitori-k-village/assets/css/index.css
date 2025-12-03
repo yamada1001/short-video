@@ -146,144 +146,62 @@
 }
 
 /* ========================================
-   Services Section
+   Services Section (Tab Style)
    ======================================== */
 
-.services-grid {
+.service-tabs__nav {
   display: flex;
-  gap: var(--spacing-lg);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  padding: var(--spacing-md) 0;
-  margin: 0 calc(-1 * var(--container-padding));
-  padding-left: var(--container-padding);
-  padding-right: var(--container-padding);
-}
-
-.services-grid::-webkit-scrollbar {
-  height: 8px;
-}
-
-.services-grid::-webkit-scrollbar-track {
-  background: var(--bg-gray);
-  border-radius: var(--border-radius-full);
-}
-
-.services-grid::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: var(--border-radius-full);
-}
-
-.services-grid::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-dark);
-}
-
-.service-card-compact {
-  background: var(--bg-white);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-lg);
-  text-align: center;
-  transition: all var(--transition-base);
-  cursor: pointer;
-  min-width: 280px;
-  flex-shrink: 0;
-  scroll-snap-align: start;
-}
-
-.service-card-compact:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--primary-color);
-}
-
-.service-card-compact__icon {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--border-radius-full);
-  display: flex;
-  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: var(--font-size-3xl);
-  margin: 0 auto var(--spacing-md);
 }
 
-.service-card-compact__title {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--spacing-sm);
-  color: var(--text-primary);
-}
-
-.service-card-compact__summary {
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-md);
-  line-height: var(--line-height-relaxed);
-}
-
-.service-card-compact__btn {
-  background: none;
-  border: none;
-  color: var(--primary-color);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
-  display: inline-flex;
+.service-tabs__tab {
+  display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  padding: var(--spacing-xs) 0;
-  transition: gap var(--transition-fast);
-}
-
-.service-card-compact__btn:hover {
-  gap: var(--spacing-sm);
-}
-
-/* Service Modal */
-.service-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.service-modal.active {
-  display: flex;
-}
-
-.service-modal__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-}
-
-.service-modal__content {
-  position: relative;
+  padding: var(--spacing-sm) var(--spacing-lg);
   background: var(--bg-white);
-  border-radius: var(--border-radius-lg);
-  max-width: 600px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  box-shadow: var(--shadow-xl);
-  animation: modalSlideIn 0.3s ease-out;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-base);
 }
 
-@keyframes modalSlideIn {
+.service-tabs__tab:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.service-tabs__tab.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--text-white);
+  box-shadow: var(--shadow-md);
+}
+
+.service-tabs__tab i {
+  font-size: var(--font-size-xl);
+}
+
+.service-tabs__panel {
+  display: none;
+}
+
+.service-tabs__panel.active {
+  display: block;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -291,76 +209,50 @@
   }
 }
 
-.service-modal__close {
-  position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
-  background: var(--bg-gray);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--border-radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-base);
-  z-index: 1;
-}
-
-.service-modal__close:hover {
-  background: var(--primary-color);
-  color: var(--text-white);
-}
-
-.service-modal__item {
-  display: none;
+.service-detail {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
 }
 
-.service-modal__item.active {
-  display: block;
-}
-
-.service-modal__header {
+.service-detail__header {
   display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
+  align-items: flex-start;
+  gap: var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
 }
 
-.service-modal__icon {
-  width: 64px;
-  height: 64px;
+.service-detail__icon {
+  width: 80px;
+  height: 80px;
   border-radius: var(--border-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-4xl);
   flex-shrink: 0;
 }
 
-.service-modal__title {
+.service-detail__title {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
 }
 
-.service-modal__description {
+.service-detail__description {
   font-size: var(--font-size-base);
   color: var(--text-secondary);
   line-height: var(--line-height-relaxed);
-  margin-bottom: var(--spacing-lg);
 }
 
-.service-modal__features h4 {
+.service-detail__features h4 {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
   margin-bottom: var(--spacing-md);
 }
 
-.service-modal__features ul {
+.service-detail__features ul {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -368,7 +260,7 @@
   margin-bottom: var(--spacing-lg);
 }
 
-.service-modal__features li {
+.service-detail__features li {
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-sm);
@@ -376,48 +268,61 @@
   color: var(--text-secondary);
 }
 
-.service-modal__features li::before {
+.service-detail__features li::before {
   content: "✓";
   color: var(--success-color);
   font-weight: var(--font-weight-bold);
   flex-shrink: 0;
 }
 
-.service-modal__cta {
+.service-detail__cta {
   display: flex;
   justify-content: center;
 }
 
 @media (max-width: 768px) {
-  .services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-    overflow-x: visible;
-    margin: 0;
-    padding: 0;
+  .service-tabs__nav {
+    gap: var(--spacing-xs);
   }
 
-  .service-card-compact {
-    min-width: auto;
+  .service-tabs__tab {
+    flex: 1;
+    min-width: calc(50% - var(--spacing-xs) / 2);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-sm);
   }
 
-  .service-modal__content {
-    width: 95%;
-    max-height: 90vh;
+  .service-tabs__tab span {
+    display: none;
   }
 
-  .service-modal__item {
-    padding: var(--spacing-lg);
+  .service-tabs__tab i {
+    font-size: var(--font-size-lg);
   }
 
-  .service-modal__header {
+  .service-detail {
+    padding: var(--spacing-md);
+  }
+
+  .service-detail__header {
     flex-direction: column;
     text-align: center;
+    gap: var(--spacing-md);
   }
 
-  .service-modal__title {
+  .service-detail__icon {
+    width: 64px;
+    height: 64px;
+    font-size: var(--font-size-3xl);
+    margin: 0 auto;
+  }
+
+  .service-detail__title {
     font-size: var(--font-size-2xl);
+  }
+
+  .service-detail__description {
+    font-size: var(--font-size-sm);
   }
 }
 
@@ -427,6 +332,29 @@
 
 .strengths .card {
   height: 100%;
+}
+
+@media (max-width: 768px) {
+  .strengths .card {
+    padding: var(--spacing-md);
+  }
+
+  .strengths .card__icon {
+    width: 48px;
+    height: 48px;
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .strengths .card__title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .strengths .card__description {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+  }
 }
 
 /* ========================================

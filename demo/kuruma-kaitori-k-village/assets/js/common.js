@@ -293,4 +293,30 @@ document.addEventListener('DOMContentLoaded', function() {
       },
     });
   }
+
+  /* ========================================
+     サービスタブ切り替え
+     ======================================== */
+
+  window.switchServiceTab = function(tabId) {
+    // すべてのタブボタンから active クラスを削除
+    const tabs = document.querySelectorAll('.service-tabs__tab');
+    tabs.forEach(tab => tab.classList.remove('active'));
+
+    // クリックされたタブに active クラスを追加
+    const activeTab = document.querySelector(`.service-tabs__tab[data-tab="${tabId}"]`);
+    if (activeTab) {
+      activeTab.classList.add('active');
+    }
+
+    // すべてのパネルから active クラスを削除
+    const panels = document.querySelectorAll('.service-tabs__panel');
+    panels.forEach(panel => panel.classList.remove('active'));
+
+    // 対応するパネルに active クラスを追加
+    const activePanel = document.getElementById(`tab-${tabId}`);
+    if (activePanel) {
+      activePanel.classList.add('active');
+    }
+  };
 });
