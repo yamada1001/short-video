@@ -39,10 +39,6 @@ body {
   overflow: hidden;
 }
 
-.section--gray {
-  background-color: var(--bg-gray);
-}
-
 /* セクション番号装飾（削除） */
 
 .section > * {
