@@ -79,54 +79,16 @@ header("Expires: 0");
         <div class="header__container">
             <!-- ロゴ -->
             <a href="<?php echo url(); ?>" class="header__logo">
-                <svg class="header__logo-svg" viewBox="0 0 400 70" xmlns="http://www.w3.org/2000/svg">
-                    <!-- 背景の円（装飾） -->
-                    <circle cx="35" cy="35" r="32" fill="#2563eb" opacity="0.08"/>
-
-                    <!-- 車のアイコン（モダン＆シンプル） -->
-                    <g class="logo-car">
-                        <!-- 車体本体 -->
-                        <path d="M15,40 Q18,32 23,29 L28,29 L32,25 L42,25 L46,29 L51,29 Q56,32 59,40 L59,45 Q59,47 57,47 L55,47 Q55,49 53,49 L17,49 Q15,49 15,47 L13,47 Q11,47 11,45 L11,40 Z"
-                              fill="#2563eb" stroke="#1e40af" stroke-width="1.5" stroke-linejoin="round"/>
-
-                        <!-- 窓（フロント＋リア） -->
-                        <path d="M28,30 L32,26 L38,26 L42,30 L40,34 L30,34 Z"
-                              fill="#60a5fa" opacity="0.7" stroke="#2563eb" stroke-width="0.8"/>
-
-                        <!-- ヘッドライト -->
-                        <ellipse cx="54" cy="38" rx="2.5" ry="2" fill="#fbbf24"/>
-
-                        <!-- タイヤ（前） -->
-                        <g transform="translate(19, 45)">
-                            <circle cx="0" cy="0" r="5" fill="#1e293b"/>
-                            <circle cx="0" cy="0" r="3" fill="#334155" opacity="0.6"/>
-                            <circle cx="0" cy="0" r="1.5" fill="#64748b"/>
-                        </g>
-
-                        <!-- タイヤ（後） -->
-                        <g transform="translate(51, 45)">
-                            <circle cx="0" cy="0" r="5" fill="#1e293b"/>
-                            <circle cx="0" cy="0" r="3" fill="#334155" opacity="0.6"/>
-                            <circle cx="0" cy="0" r="1.5" fill="#64748b"/>
-                        </g>
-
-                        <!-- ドアハンドル -->
-                        <rect x="32" y="37" width="6" height="1.5" rx="0.5" fill="#1e40af" opacity="0.5"/>
-                    </g>
-
-                    <!-- ブランド名 -->
-                    <g transform="translate(75, 0)">
-                        <!-- メインタイトル -->
-                        <text x="0" y="28" font-family="'Noto Sans JP', sans-serif" font-size="18" font-weight="900" fill="#1e293b" letter-spacing="0.5">
-                            くるま買取ケイヴィレッジ
-                        </text>
-
-                        <!-- サブタイトル -->
-                        <text x="0" y="45" font-family="'Noto Sans JP', sans-serif" font-size="11" font-weight="500" fill="#64748b">
-                            大分市中判田の車買取・販売・車検
-                        </text>
-                    </g>
+                <!-- Heroicons: truck (solid) -->
+                <svg class="header__logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25zM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 116 0h3a.75.75 0 00.75-.75V15z" />
+                    <path d="M8.25 19.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0zM15.75 6.75a.75.75 0 00-.75.75v11.25c0 .087.015.17.042.248a3 3 0 015.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 00-3.732-10.104 1.837 1.837 0 00-1.47-.725H15.75z" />
+                    <path d="M19.5 19.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z" />
                 </svg>
+                <div class="header__logo-text">
+                    <span class="header__logo-main"><?php echo SITE_NAME; ?></span>
+                    <span class="header__logo-sub">大分市中判田の車買取・販売・車検</span>
+                </div>
             </a>
 
             <!-- ナビゲーション（PC） -->

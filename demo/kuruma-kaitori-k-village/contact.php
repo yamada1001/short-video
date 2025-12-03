@@ -401,8 +401,8 @@ $breadcrumbs = [
                 privacy_agree: false
             };
 
-            // バリデーション関数
-            function validateField(field) {
+            // バリデーション関数（リアルタイム対応）
+            function validateField(field, showError = true) {
                 const name = field.name;
                 const value = field.value.trim();
                 let isValid = false;
@@ -458,9 +458,9 @@ $breadcrumbs = [
                         break;
                 }
 
-                // エラー表示
+                // エラー表示（リアルタイム：入力中も表示）
                 const errorSpan = field.parentElement.querySelector('.form__error');
-                if (errorSpan) {
+                if (errorSpan && showError) {
                     if (!isValid && value.length > 0) {
                         errorSpan.textContent = errorMessage;
                         field.classList.add('is-invalid');
@@ -470,7 +470,7 @@ $breadcrumbs = [
                     }
                 }
 
-                // 必須項目が空でなければtrue
+                // バリデーション状態を更新
                 if (value.length > 0) {
                     validationState[name] = isValid;
                 } else {
@@ -503,19 +503,24 @@ $breadcrumbs = [
                 }
             }
 
-            // 各フィールドにイベントリスナー追加
+            // 各フィールドにイベントリスナー追加（リアルタイム）
             const fields = ['name', 'kana', 'email', 'phone', 'service_type', 'message'];
             fields.forEach(fieldName => {
                 const field = form.querySelector(`[name="${fieldName}"]`);
                 if (field) {
-                    // blur時（フォーカス外れた時）にバリデーション
-                    field.addEventListener('blur', function() {
-                        validateField(this);
+                    // input時（入力中）にリアルタイムバリデーション
+                    field.addEventListener('input', function() {
+                        validateField(this, true);
                     });
 
-                    // input時（入力中）にもバリデーション
-                    field.addEventListener('input', function() {
-                        validateField(this);
+                    // change時（selectやtextarea用）
+                    field.addEventListener('change', function() {
+                        validateField(this, true);
+                    });
+
+                    // keyup時（即座に反応）
+                    field.addEventListener('keyup', function() {
+                        validateField(this, true);
                     });
                 }
             });
