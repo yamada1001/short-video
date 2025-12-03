@@ -44,6 +44,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <link rel="stylesheet" href="<?php echo asset('assets/css/components.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/header.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/footer.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('assets/css/breadcrumb.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/cta-contact.css'); ?>">
 
     <?php if ($current_page === 'index'): ?>

@@ -12,7 +12,15 @@ require_once __DIR__ . '/includes/functions.php';
 // ヘッダー読み込み
 $page = 'privacy';
 require_once __DIR__ . '/includes/header.php';
+
+// パンくずリスト
+$breadcrumbs = [
+    ['name' => 'ホーム', 'url' => url('')],
+    ['name' => 'プライバシーポリシー', 'url' => '']
+];
 ?>
+
+<?php require_once __DIR__ . '/includes/breadcrumb.php'; ?>
 
 <!-- Privacy Hero Section -->
 <section class="page-hero">

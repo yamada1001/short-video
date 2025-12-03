@@ -12,7 +12,15 @@ require_once __DIR__ . '/includes/functions.php';
 // ヘッダー読み込み
 $page = 'about';
 require_once __DIR__ . '/includes/header.php';
+
+// パンくずリスト
+$breadcrumbs = [
+    ['name' => 'ホーム', 'url' => url('')],
+    ['name' => '会社概要', 'url' => '']
+];
 ?>
+
+<?php require_once __DIR__ . '/includes/breadcrumb.php'; ?>
 
 <!-- About Hero Section -->
 <section class="page-hero">

@@ -37,7 +37,19 @@ if ($news_item) {
 // ヘッダー読み込み
 $page = 'news';
 require_once __DIR__ . '/includes/header.php';
+
+// パンくずリスト
+$breadcrumbs = [
+    ['name' => 'ホーム', 'url' => url('')],
+    ['name' => 'お知らせ', 'url' => url('news')],
+];
+
+if ($news_item) {
+    $breadcrumbs[] = ['name' => $news_item['title'], 'url' => ''];
+}
 ?>
+
+<?php require_once __DIR__ . '/includes/breadcrumb.php'; ?>
 
 <?php if (!$news_item): ?>
 <!-- 404 Page -->

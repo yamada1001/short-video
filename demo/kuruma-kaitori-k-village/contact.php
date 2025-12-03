@@ -92,7 +92,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // ヘッダー読み込み
 $page = 'contact';
 require_once __DIR__ . '/includes/header.php';
+
+// パンくずリスト
+$breadcrumbs = [
+    ['name' => 'ホーム', 'url' => url('')],
+    ['name' => 'お問い合わせ', 'url' => '']
+];
 ?>
+
+<?php require_once __DIR__ . '/includes/breadcrumb.php'; ?>
 
 <!-- Contact Hero Section -->
 <section class="page-hero">
