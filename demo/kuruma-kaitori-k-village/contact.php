@@ -206,9 +206,7 @@ $breadcrumbs = [
                     </option>
                     <?php endforeach; ?>
                 </select>
-                <?php if (isset($form_errors['service_type'])): ?>
-                <span class="form__error"><?php echo h($form_errors['service_type']); ?></span>
-                <?php endif; ?>
+                <span class="form__error"><?php if (isset($form_errors['service_type'])) echo h($form_errors['service_type']); ?></span>
             </div>
 
             <!-- お名前 -->
@@ -227,9 +225,7 @@ $breadcrumbs = [
                     placeholder="山田 太郎"
                     required
                 >
-                <?php if (isset($form_errors['name'])): ?>
-                <span class="form__error"><?php echo h($form_errors['name']); ?></span>
-                <?php endif; ?>
+                <span class="form__error"><?php if (isset($form_errors['name'])) echo h($form_errors['name']); ?></span>
             </div>
 
             <!-- フリガナ -->
@@ -248,9 +244,7 @@ $breadcrumbs = [
                     placeholder="ヤマダ タロウ"
                     required
                 >
-                <?php if (isset($form_errors['kana'])): ?>
-                <span class="form__error"><?php echo h($form_errors['kana']); ?></span>
-                <?php endif; ?>
+                <span class="form__error"><?php if (isset($form_errors['kana'])) echo h($form_errors['kana']); ?></span>
             </div>
 
             <!-- 電話番号 -->
@@ -269,9 +263,7 @@ $breadcrumbs = [
                     placeholder="09012345678"
                     required
                 >
-                <?php if (isset($form_errors['phone'])): ?>
-                <span class="form__error"><?php echo h($form_errors['phone']); ?></span>
-                <?php endif; ?>
+                <span class="form__error"><?php if (isset($form_errors['phone'])) echo h($form_errors['phone']); ?></span>
             </div>
 
             <!-- メールアドレス（任意） -->
@@ -289,9 +281,7 @@ $breadcrumbs = [
                     value="<?php echo h($form_data['email'] ?? ''); ?>"
                     placeholder="example@example.com"
                 >
-                <?php if (isset($form_errors['email'])): ?>
-                <span class="form__error"><?php echo h($form_errors['email']); ?></span>
-                <?php endif; ?>
+                <span class="form__error"><?php if (isset($form_errors['email'])) echo h($form_errors['email']); ?></span>
             </div>
 
             <hr class="form__divider">
@@ -367,9 +357,7 @@ $breadcrumbs = [
                     placeholder="お問い合わせ内容をご記入ください"
                     required
                 ><?php echo h($form_data['message'] ?? ''); ?></textarea>
-                <?php if (isset($form_errors['message'])): ?>
-                <span class="form__error"><?php echo h($form_errors['message']); ?></span>
-                <?php endif; ?>
+                <span class="form__error"><?php if (isset($form_errors['message'])) echo h($form_errors['message']); ?></span>
             </div>
 
             <!-- プライバシーポリシー同意 -->
