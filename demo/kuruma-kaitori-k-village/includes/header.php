@@ -34,6 +34,9 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo asset('assets/css/reset.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/variables.css'); ?>">
@@ -45,6 +48,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <?php if ($current_page === 'index'): ?>
     <link rel="stylesheet" href="<?php echo asset('assets/css/index.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/inventory.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('assets/css/cta-contact.css'); ?>">
     <?php elseif ($current_page === 'about'): ?>
     <link rel="stylesheet" href="<?php echo asset('assets/css/about.css'); ?>">
     <?php elseif ($current_page === 'contact'): ?>

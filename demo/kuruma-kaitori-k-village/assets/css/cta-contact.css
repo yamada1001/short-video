@@ -1,0 +1,299 @@
+/*
+ * CTA Contact Styles
+ * くるま買取ケイヴィレッジ
+ * CTAセクション（リッチデザイン）
+ */
+
+/* ========================================
+   CTA Contact Section
+   ======================================== */
+
+.cta-contact {
+  background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 50%, #f0f9ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-contact__inner {
+  background: var(--bg-white);
+  border-radius: var(--border-radius-xl);
+  padding: var(--spacing-3xl);
+  box-shadow: 0 20px 60px rgba(37, 99, 235, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 装飾要素 */
+.cta-contact__decoration {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: var(--border-radius-full);
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.cta-contact__decoration--top-left {
+  top: -150px;
+  left: -150px;
+  background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+}
+
+.cta-contact__decoration--bottom-right {
+  bottom: -150px;
+  right: -150px;
+  background: radial-gradient(circle, var(--secondary-color) 0%, transparent 70%);
+}
+
+.cta-contact__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* アイコン */
+.cta-contact__icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-lg);
+  font-size: var(--font-size-4xl);
+  color: var(--text-white);
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.cta-contact__title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-black);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  line-height: var(--line-height-tight);
+}
+
+.cta-contact__lead {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-2xl);
+  line-height: var(--line-height-relaxed);
+}
+
+/* CTAメソッド */
+.cta-contact__methods {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.cta-method {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--bg-white);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  text-decoration: none;
+  transition: all var(--transition-base);
+  text-align: left;
+}
+
+.cta-method:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+  transform: translateY(-4px);
+}
+
+.cta-method__icon-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cta-method__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-3xl);
+  position: relative;
+  z-index: 1;
+  transition: all var(--transition-base);
+}
+
+.cta-method--phone .cta-method__icon {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: var(--text-white);
+}
+
+.cta-method--email .cta-method__icon {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--text-white);
+}
+
+/* 電話アイコンのパルスアニメーション */
+.cta-method__pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--border-radius-md);
+  background: #10b981;
+  opacity: 0.4;
+  animation: pulseEffect 2s ease-out infinite;
+}
+
+@keyframes pulseEffect {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+.cta-method__content {
+  flex: 1;
+}
+
+.cta-method__label {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cta-method__value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.cta-method--phone .cta-method__value {
+  color: #059669;
+}
+
+.cta-method--email .cta-method__value {
+  color: var(--primary-color);
+}
+
+.cta-method__info {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 特徴バッジ */
+.cta-contact__features {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.cta-feature {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: var(--bg-gray);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.cta-feature i {
+  color: var(--success-color);
+}
+
+/* ========================================
+   レスポンシブ（タブレット）
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .cta-contact__methods {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   レスポンシブ（SP）
+   ======================================== */
+
+@media (max-width: 768px) {
+  .cta-contact__inner {
+    padding: var(--spacing-xl);
+  }
+
+  .cta-contact__icon {
+    width: 64px;
+    height: 64px;
+    font-size: var(--font-size-3xl);
+  }
+
+  .cta-contact__title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .cta-contact__lead {
+    font-size: var(--font-size-base);
+  }
+
+  .cta-contact__methods {
+    gap: var(--spacing-md);
+  }
+
+  .cta-method {
+    padding: var(--spacing-md);
+  }
+
+  .cta-method__icon {
+    width: 48px;
+    height: 48px;
+    font-size: var(--font-size-2xl);
+  }
+
+  .cta-method__pulse {
+    width: 48px;
+    height: 48px;
+  }
+
+  .cta-method__value {
+    font-size: var(--font-size-lg);
+  }
+
+  .cta-contact__features {
+    gap: var(--spacing-sm);
+  }
+
+  .cta-feature {
+    font-size: var(--font-size-xs);
+    padding: 6px var(--spacing-sm);
+  }
+}

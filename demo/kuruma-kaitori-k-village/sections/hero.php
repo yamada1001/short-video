@@ -26,17 +26,6 @@
                     出張査定OK
                 </div>
             </div>
-
-            <div class="hero__cta">
-                <a href="<?php echo url('contact'); ?>" class="btn btn--primary btn--large">
-                    <i class="fa-solid fa-envelope"></i>
-                    無料査定を申し込む
-                </a>
-                <a href="tel:<?php echo format_phone(PHONE, 'tel'); ?>" class="btn btn--secondary btn--large">
-                    <i class="fa-solid fa-phone"></i>
-                    電話で相談する
-                </a>
-            </div>
         </div>
 
         <div class="hero__image">

@@ -19,12 +19,6 @@ require_once __DIR__ . '/includes/header.php';
 <!-- Hero Section -->
 <?php require_once __DIR__ . '/sections/hero.php'; ?>
 
-<!-- Services Overview Section -->
-<?php require_once __DIR__ . '/sections/services-overview.php'; ?>
-
-<!-- Strengths Section -->
-<?php require_once __DIR__ . '/sections/strengths.php'; ?>
-
 <!-- News Section -->
 <section class="section news-section" data-section-number="03">
     <div class="container">
@@ -66,6 +60,12 @@ require_once __DIR__ . '/includes/header.php';
         </div>
     </div>
 </section>
+
+<!-- Services Overview Section -->
+<?php require_once __DIR__ . '/sections/services-overview.php'; ?>
+
+<!-- Strengths Section -->
+<?php require_once __DIR__ . '/sections/strengths.php'; ?>
 
 <!-- Inventory Section -->
 <?php require_once __DIR__ . '/sections/inventory.php'; ?>

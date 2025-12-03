@@ -1,40 +1,46 @@
 /*
  * Inventory Styles
  * くるま買取ケイヴィレッジ
- * 在庫車両表示
+ * 在庫車両表示（Swiper slider）
  */
 
 /* ========================================
-   在庫グリッド
+   在庫スライダー
    ======================================== */
 
-.inventory-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-xl);
+.inventory-swiper {
+  padding: var(--spacing-xl) 0;
+  overflow: hidden;
+}
+
+.inventory-swiper .swiper-slide {
+  height: auto;
+  display: flex;
 }
 
 /* ========================================
-   在庫アイテム
+   在庫カード（コンパクト版）
    ======================================== */
 
-.inventory-item {
+.inventory-card {
   background: var(--bg-white);
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: all var(--transition-base);
   border: 1px solid var(--border-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.inventory-item:hover {
+.inventory-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
 }
 
 /* 画像 */
-.inventory-item__image {
+.inventory-card__image {
   position: relative;
   width: 100%;
   height: 240px;
@@ -42,18 +48,18 @@
   background: var(--bg-gray);
 }
 
-.inventory-item__image img {
+.inventory-card__image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition-base);
 }
 
-.inventory-item:hover .inventory-item__image img {
+.inventory-card:hover .inventory-card__image img {
   transform: scale(1.05);
 }
 
-.inventory-item__status {
+.inventory-card__status {
   position: absolute;
   top: 16px;
   left: 16px;
@@ -67,108 +73,121 @@
 }
 
 /* コンテンツ */
-.inventory-item__content {
+.inventory-card__content {
   padding: var(--spacing-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.inventory-item__name {
-  font-size: var(--font-size-2xl);
+.inventory-card__name {
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: var(--text-primary);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
 }
 
 /* 価格 */
-.inventory-item__price {
+.inventory-card__price {
   background: linear-gradient(135deg, var(--primary-light), #f0f9ff);
   border-left: 4px solid var(--primary-color);
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   margin-bottom: var(--spacing-md);
   border-radius: var(--border-radius-sm);
-}
-
-.inventory-item__price-main {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin-bottom: 8px;
 }
 
-.inventory-item__price-label {
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-  font-weight: var(--font-weight-medium);
-}
-
-.inventory-item__price-value {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-black);
-  color: var(--primary-color);
-  line-height: 1.2;
-}
-
-.inventory-item__price-sub {
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-  margin-bottom: 12px;
-}
-
-.inventory-item__price-vehicle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 12px;
-  border-top: 1px solid rgba(37, 99, 235, 0.2);
-}
-
-.inventory-item__price-vehicle-label {
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-}
-
-.inventory-item__price-vehicle-value {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-}
-
-/* スペック */
-.inventory-item__specs {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-bottom: var(--spacing-md);
-}
-
-.inventory-item__spec {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 12px;
-  background: var(--bg-gray);
-  border-radius: var(--border-radius-sm);
-}
-
-.inventory-item__spec dt {
+.inventory-card__price-label {
   font-size: var(--font-size-xs);
   color: var(--text-secondary);
   font-weight: var(--font-weight-medium);
 }
 
-.inventory-item__spec dd {
-  font-size: var(--font-size-base);
+.inventory-card__price-value {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-black);
+  color: var(--primary-color);
+  line-height: 1.2;
+}
+
+/* スペック（簡略版） */
+.inventory-card__specs {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.inventory-card__spec {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background: var(--bg-gray);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-xs);
+}
+
+.inventory-card__spec .label {
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.inventory-card__spec .value {
   color: var(--text-primary);
   font-weight: var(--font-weight-bold);
 }
 
-/* アクション */
-.inventory-item__actions {
-  display: flex;
-  gap: var(--spacing-sm);
+/* ボタン */
+.inventory-card__content .btn {
+  margin-top: auto;
 }
 
-.inventory-item__actions .btn {
-  flex: 1;
+/* ========================================
+   Swiperナビゲーション
+   ======================================== */
+
+.inventory-swiper .swiper-button-prev,
+.inventory-swiper .swiper-button-next {
+  color: var(--primary-color);
+  background: var(--bg-white);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--border-radius-full);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+}
+
+.inventory-swiper .swiper-button-prev:hover,
+.inventory-swiper .swiper-button-next:hover {
+  background: var(--primary-color);
+  color: var(--text-white);
+  transform: scale(1.1);
+}
+
+.inventory-swiper .swiper-button-prev::after,
+.inventory-swiper .swiper-button-next::after {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.inventory-swiper .swiper-pagination {
+  position: static;
+  margin-top: var(--spacing-lg);
+}
+
+.inventory-swiper .swiper-pagination-bullet {
+  background: var(--border-color);
+  opacity: 1;
+  transition: all var(--transition-base);
+}
+
+.inventory-swiper .swiper-pagination-bullet-active {
+  background: var(--primary-color);
+  width: 24px;
+  border-radius: var(--border-radius-sm);
 }
 
 /* ========================================
@@ -176,8 +195,8 @@
    ======================================== */
 
 @media (max-width: 1024px) {
-  .inventory-grid {
-    grid-template-columns: 1fr;
+  .inventory-card__image {
+    height: 200px;
   }
 }
 
@@ -186,40 +205,34 @@
    ======================================== */
 
 @media (max-width: 768px) {
-  .inventory-grid {
-    gap: var(--spacing-md);
+  .inventory-swiper {
+    padding: var(--spacing-md) 0;
   }
 
-  .inventory-item__image {
-    height: 200px;
+  .inventory-card__image {
+    height: 180px;
   }
 
-  .inventory-item__content {
+  .inventory-card__content {
     padding: var(--spacing-sm);
   }
 
-  .inventory-item__name {
-    font-size: var(--font-size-xl);
+  .inventory-card__name {
+    font-size: var(--font-size-lg);
   }
 
-  .inventory-item__price {
-    padding: var(--spacing-sm);
+  .inventory-card__price-value {
+    font-size: var(--font-size-2xl);
   }
 
-  .inventory-item__price-value {
-    font-size: var(--font-size-3xl);
+  .inventory-swiper .swiper-button-prev,
+  .inventory-swiper .swiper-button-next {
+    width: 36px;
+    height: 36px;
   }
 
-  .inventory-item__specs {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .inventory-item__spec {
-    padding: 10px;
-  }
-
-  .inventory-item__actions {
-    flex-direction: column;
+  .inventory-swiper .swiper-button-prev::after,
+  .inventory-swiper .swiper-button-next::after {
+    font-size: var(--font-size-base);
   }
 }

@@ -223,3 +223,74 @@
   console.log('Website developed by YOJITU.COM');
 
 })();
+
+/* ========================================
+   Service Modal Functions
+   ======================================== */
+
+function openServiceModal(serviceId) {
+  const modal = document.getElementById('service-modal');
+  const modalItems = document.querySelectorAll('.service-modal__item');
+
+  // すべてのモーダルアイテムを非表示
+  modalItems.forEach(item => item.classList.remove('active'));
+
+  // 指定されたサービスのモーダルアイテムを表示
+  const targetItem = document.getElementById('modal-' + serviceId);
+  if (targetItem) {
+    targetItem.classList.add('active');
+  }
+
+  // モーダルを表示
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeServiceModal() {
+  const modal = document.getElementById('service-modal');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ESCキーでモーダルを閉じる
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeServiceModal();
+  }
+});
+
+/* ========================================
+   Inventory Swiper Initialization
+   ======================================== */
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (document.querySelector('.inventory-swiper')) {
+    new Swiper('.inventory-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 24,
+        },
+      },
+    });
+  }
+});
