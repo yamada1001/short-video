@@ -91,14 +91,6 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
                         </a>
                     </li>
                 </ul>
-
-                <!-- CTAボタン -->
-                <div class="header__cta">
-                    <a href="tel:<?php echo format_phone(PHONE, 'tel'); ?>" class="btn btn--secondary">
-                        <i class="fa-solid fa-phone"></i>
-                        電話で問い合わせ
-                    </a>
-                </div>
             </nav>
 
             <!-- ハンバーガーメニュー（SP） -->

@@ -40,7 +40,7 @@
         </div>
 
         <div class="hero__image">
-            <img src="<?php echo asset('assets/images/hero/car-main.jpg'); ?>" alt="車のイメージ" loading="eager">
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwfJZeJbu5T37bt6g5WaOeuar19YAoFXV3SZU_eY9POZ3g4r5WiA4VFoVfdg_4luqLbtd4LAiwPdi2COmKsJeujocyo2-fp6_rglWjZf3j3n9U-fuTt5BiufPBc5t3mm6cupxqMljma65EJ=s680-w680-h510-rw" alt="くるま買取ケイヴィレッジ 店舗外観" loading="eager">
         </div>
     </div>
 </section>
