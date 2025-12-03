@@ -118,9 +118,33 @@
    ======================================== */
 
 .services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
   gap: var(--spacing-lg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: var(--spacing-md) 0;
+  margin: 0 calc(-1 * var(--container-padding));
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+.services-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.services-grid::-webkit-scrollbar-track {
+  background: var(--bg-gray);
+  border-radius: var(--border-radius-full);
+}
+
+.services-grid::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: var(--border-radius-full);
+}
+
+.services-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
 }
 
 .service-card-compact {
@@ -131,6 +155,9 @@
   text-align: center;
   transition: all var(--transition-base);
   cursor: pointer;
+  min-width: 280px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
 }
 
 .service-card-compact:hover {
@@ -330,8 +357,8 @@
 }
 
 @media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: 1fr;
+  .service-card-compact {
+    min-width: 240px;
   }
 
   .service-modal__content {
