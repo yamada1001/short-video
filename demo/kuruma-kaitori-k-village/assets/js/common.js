@@ -1,0 +1,225 @@
+/**
+ * Common JavaScript
+ * くるま買取ケイヴィレッジ
+ * 全ページ共通のJavaScript
+ */
+
+(function() {
+  'use strict';
+
+  /* ========================================
+     ハンバーガーメニュー
+     ======================================== */
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+
+      // body スクロール制御
+      if (mobileMenu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+
+    // モバイルメニュー内のリンクをクリックしたらメニューを閉じる
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* ========================================
+     スムーススクロール
+     ======================================== */
+
+  const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+
+  smoothScrollLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+
+      // # だけの場合はページトップへ
+      if (href === '#') {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+        return;
+      }
+
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  /* ========================================
+     トップへ戻るボタン
+     ======================================== */
+
+  const backToTopBtn = document.getElementById('back-to-top');
+
+  if (backToTopBtn) {
+    // スクロールで表示/非表示切り替え
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.style.opacity = '1';
+        backToTopBtn.style.pointerEvents = 'auto';
+      } else {
+        backToTopBtn.style.opacity = '0';
+        backToTopBtn.style.pointerEvents = 'none';
+      }
+    });
+
+    // 初期状態
+    backToTopBtn.style.opacity = '0';
+    backToTopBtn.style.pointerEvents = 'none';
+    backToTopBtn.style.transition = 'opacity 0.3s';
+  }
+
+  /* ========================================
+     ヘッダー固定時の背景
+     ======================================== */
+
+  const header = document.querySelector('.header');
+
+  if (header) {
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 50) {
+        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+      } else {
+        header.style.boxShadow = '0 1px 2px 0 rgb(0 0 0 / 0.05)';
+      }
+    });
+  }
+
+  /* ========================================
+     電話番号のフォーマット（SP）
+     ======================================== */
+
+  // SPでタップしやすいように電話リンクを調整
+  const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+  phoneLinks.forEach(link => {
+    link.style.textDecoration = 'none';
+  });
+
+  /* ========================================
+     外部リンクに target="_blank" を追加
+     ======================================== */
+
+  const externalLinks = document.querySelectorAll('a[href^="http"]');
+  externalLinks.forEach(link => {
+    const url = new URL(link.href);
+    // 自サイト以外の場合
+    if (url.hostname !== window.location.hostname) {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+
+  /* ========================================
+     画像の遅延読み込み（Lazy Loading）
+     ======================================== */
+
+  if ('loading' in HTMLImageElement.prototype) {
+    // ブラウザがloading属性をサポートしている場合は何もしない
+  } else {
+    // Intersection Observer でフォールバック（古いブラウザ用）
+    const images = document.querySelectorAll('img[loading="lazy"]');
+
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src || img.src;
+            img.classList.add('loaded');
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      images.forEach(img => {
+        imageObserver.observe(img);
+      });
+    } else {
+      // Intersection Observer 非対応の場合は即座に読み込み
+      images.forEach(img => {
+        img.src = img.dataset.src || img.src;
+      });
+    }
+  }
+
+  /* ========================================
+     フォームのEnterキー送信防止（誤送信防止）
+     ======================================== */
+
+  const forms = document.querySelectorAll('form');
+  forms.forEach(form => {
+    form.addEventListener('keypress', function(e) {
+      // textareaは除外
+      if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+      }
+    });
+  });
+
+  /* ========================================
+     現在時刻の表示（営業時間チェック用）
+     ======================================== */
+
+  function updateBusinessStatus() {
+    const now = new Date();
+    const day = now.getDay(); // 0:日曜
+    const hour = now.getHours();
+
+    const statusElements = document.querySelectorAll('.business-status');
+
+    statusElements.forEach(element => {
+      if (day === 0) {
+        // 日曜日
+        element.textContent = '本日は定休日です';
+        element.style.color = '#ef4444';
+      } else if (hour >= 9 && hour < 18) {
+        // 営業時間内
+        element.textContent = '営業中';
+        element.style.color = '#10b981';
+      } else {
+        // 営業時間外
+        element.textContent = '営業時間外';
+        element.style.color = '#f59e0b';
+      }
+    });
+  }
+
+  // ページ読み込み時とリサイズ時に実行
+  updateBusinessStatus();
+  window.addEventListener('resize', updateBusinessStatus);
+
+  /* ========================================
+     コンソールログ（開発用）
+     ======================================== */
+
+  console.log('%cくるま買取ケイヴィレッジ', 'font-size: 20px; font-weight: bold; color: #2563eb;');
+  console.log('Website developed by YOJITU.COM');
+
+})();

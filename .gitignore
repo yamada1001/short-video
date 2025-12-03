@@ -8,3 +8,4 @@ cache/translations/
 blog/credentials.json
 blog/logs/
 .htpasswd
+demo/CREDENTIALS.md
