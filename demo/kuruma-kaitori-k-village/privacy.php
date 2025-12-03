@@ -197,8 +197,8 @@ require_once __DIR__ . '/includes/header.php';
             </section>
 
             <div class="policy-footer">
-                <p>制定日: 2024年1月1日</p>
-                <p>最終更新日: 2024年1月1日</p>
+                <p>制定日: 2025年12月3日</p>
+                <p>最終更新日: 2025年12月3日</p>
             </div>
 
         </div>
