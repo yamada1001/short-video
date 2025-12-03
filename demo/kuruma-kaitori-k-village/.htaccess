@@ -1,0 +1,11 @@
+# くるま買取ケイヴィレッジ - .htaccess
+
+# エラーページ設定（500エラーを防ぐ）
+php_flag display_errors Off
+php_flag log_errors On
+
+# DirectoryIndex
+DirectoryIndex index.php
+
+# UTF-8設定
+AddDefaultCharset UTF-8

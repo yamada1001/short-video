@@ -4,20 +4,43 @@
  * くるま買取ケイヴィレッジ
  */
 
-// エラー表示（開発用）
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+// デバッグ用：エラーログをファイルに出力
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/debug.log');
 error_reporting(E_ALL);
 
-// 設定読み込み
-require_once __DIR__ . '/data/config.php';
-require_once __DIR__ . '/data/meta.php';
-require_once __DIR__ . '/data/services.php';
-require_once __DIR__ . '/data/news.php';
-require_once __DIR__ . '/includes/functions.php';
+// デバッグ情報を記録
+file_put_contents(__DIR__ . '/debug.log', "[" . date('Y-m-d H:i:s') . "] index.php started\n", FILE_APPEND);
+file_put_contents(__DIR__ . '/debug.log', "PHP Version: " . phpversion() . "\n", FILE_APPEND);
+file_put_contents(__DIR__ . '/debug.log', "__DIR__: " . __DIR__ . "\n", FILE_APPEND);
 
-// ヘッダー読み込み
-require_once __DIR__ . '/includes/header.php';
+try {
+    // 設定読み込み
+    file_put_contents(__DIR__ . '/debug.log', "Loading config.php...\n", FILE_APPEND);
+    require_once __DIR__ . '/data/config.php';
+
+    file_put_contents(__DIR__ . '/debug.log', "Loading meta.php...\n", FILE_APPEND);
+    require_once __DIR__ . '/data/meta.php';
+
+    file_put_contents(__DIR__ . '/debug.log', "Loading services.php...\n", FILE_APPEND);
+    require_once __DIR__ . '/data/services.php';
+
+    file_put_contents(__DIR__ . '/debug.log', "Loading news.php...\n", FILE_APPEND);
+    require_once __DIR__ . '/data/news.php';
+
+    file_put_contents(__DIR__ . '/debug.log', "Loading functions.php...\n", FILE_APPEND);
+    require_once __DIR__ . '/includes/functions.php';
+
+    // ヘッダー読み込み
+    file_put_contents(__DIR__ . '/debug.log', "Loading header.php...\n", FILE_APPEND);
+    require_once __DIR__ . '/includes/header.php';
+
+    file_put_contents(__DIR__ . '/debug.log', "All files loaded successfully!\n", FILE_APPEND);
+} catch (Exception $e) {
+    file_put_contents(__DIR__ . '/debug.log', "ERROR: " . $e->getMessage() . "\n", FILE_APPEND);
+    file_put_contents(__DIR__ . '/debug.log', "Stack trace: " . $e->getTraceAsString() . "\n", FILE_APPEND);
+    die("エラーが発生しました。debug.logを確認してください。");
+}
 ?>
 
 <!-- Hero Section -->
