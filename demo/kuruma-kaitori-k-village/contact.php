@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'service_type' => isset($_POST['service_type']) ? trim($_POST['service_type']) : '',
         'name' => isset($_POST['name']) ? trim($_POST['name']) : '',
         'kana' => isset($_POST['kana']) ? trim($_POST['kana']) : '',
-        'tel' => isset($_POST['tel']) ? trim($_POST['tel']) : '',
+        'phone' => isset($_POST['phone']) ? trim($_POST['phone']) : '',
         'email' => isset($_POST['email']) ? trim($_POST['email']) : '',
         'car_maker' => isset($_POST['car_maker']) ? trim($_POST['car_maker']) : '',
         'car_model' => isset($_POST['car_model']) ? trim($_POST['car_model']) : '',
@@ -42,19 +42,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $form_errors['name'] = 'お名前を入力してください';
     }
 
+    // フリガナ: カタカナのみ
     if (empty($form_data['kana'])) {
         $form_errors['kana'] = 'フリガナを入力してください';
+    } elseif (!preg_match('/^[ァ-ヶー\s]+$/u', $form_data['kana'])) {
+        $form_errors['kana'] = 'カタカナで入力してください';
     }
 
-    if (empty($form_data['tel'])) {
-        $form_errors['tel'] = '電話番号を入力してください';
-    } elseif (!validate_phone($form_data['tel'])) {
-        $form_errors['tel'] = '電話番号の形式が正しくありません';
+    // 電話番号: 数字のみ、10-11桁
+    if (empty($form_data['phone'])) {
+        $form_errors['phone'] = '電話番号を入力してください';
+    } else {
+        $phone_digits = preg_replace('/[^0-9]/', '', $form_data['phone']);
+        if (!preg_match('/^[0-9]+$/', $phone_digits)) {
+            $form_errors['phone'] = '数字のみで入力してください';
+        } elseif (strlen($phone_digits) < 10 || strlen($phone_digits) > 11) {
+            $form_errors['phone'] = '電話番号は10-11桁で入力してください';
+        }
     }
 
-    // メールアドレスは任意だが、入力されている場合は形式チェック
-    if (!empty($form_data['email']) && !validate_email($form_data['email'])) {
-        $form_errors['email'] = 'メールアドレスの形式が正しくありません';
+    // メールアドレス: @必須
+    if (!empty($form_data['email'])) {
+        if (!strpos($form_data['email'], '@')) {
+            $form_errors['email'] = '@マークを含めてください';
+        } elseif (!validate_email($form_data['email'])) {
+            $form_errors['email'] = 'メールアドレスの形式が正しくありません';
+        }
     }
 
     if (empty($form_data['message'])) {
@@ -249,15 +262,15 @@ $breadcrumbs = [
                 </label>
                 <input
                     type="tel"
-                    name="tel"
-                    id="tel"
-                    class="form__input <?php echo isset($form_errors['tel']) ? 'is-invalid' : ''; ?>"
-                    value="<?php echo h($form_data['tel'] ?? ''); ?>"
-                    placeholder="090-1234-5678"
+                    name="phone"
+                    id="phone"
+                    class="form__input <?php echo isset($form_errors['phone']) ? 'is-invalid' : ''; ?>"
+                    value="<?php echo h($form_data['phone'] ?? ''); ?>"
+                    placeholder="09012345678"
                     required
                 >
-                <?php if (isset($form_errors['tel'])): ?>
-                <span class="form__error"><?php echo h($form_errors['tel']); ?></span>
+                <?php if (isset($form_errors['phone'])): ?>
+                <span class="form__error"><?php echo h($form_errors['phone']); ?></span>
                 <?php endif; ?>
             </div>
 
@@ -415,35 +428,50 @@ $breadcrumbs = [
                         break;
 
                     case 'kana':
-                        // ひらがなのみチェック
-                        const kanaRegex = /^[ぁ-んー\s]+$/;
+                        // カタカナのみチェック（全角カタカナ + ー + スペース）
+                        const kanaRegex = /^[ァ-ヶー\s]+$/;
                         isValid = value.length > 0 && kanaRegex.test(value);
                         if (value.length === 0) {
                             errorMessage = 'フリガナを入力してください';
                         } else if (!kanaRegex.test(value)) {
-                            errorMessage = 'ひらがなで入力してください';
+                            errorMessage = 'カタカナで入力してください（例: ヤマダ タロウ）';
                         }
                         break;
 
                     case 'email':
-                        // メールアドレス形式チェック
+                        // メールアドレス形式チェック（@必須）
                         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        const hasAt = value.includes('@');
                         isValid = emailRegex.test(value);
                         if (value.length === 0) {
                             errorMessage = 'メールアドレスを入力してください';
-                        } else if (!emailRegex.test(value)) {
-                            errorMessage = '正しいメールアドレスを入力してください（@を含む）';
+                        } else if (!hasAt) {
+                            errorMessage = '@マークを含めてください';
+                        } else if (!isValid) {
+                            errorMessage = '正しいメールアドレスを入力してください（例: example@example.com）';
                         }
                         break;
 
                     case 'phone':
-                        // 電話番号チェック（10-11桁の数字）
+                        // 電話番号チェック（数字のみ、10-11桁）
+                        const onlyNumbers = /^[0-9]+$/;
                         const phoneDigits = value.replace(/[^0-9]/g, '');
-                        isValid = phoneDigits.length >= 10 && phoneDigits.length <= 11;
+                        const hasNonNumber = !onlyNumbers.test(value.replace(/[-\s]/g, ''));
+
                         if (value.length === 0) {
                             errorMessage = '電話番号を入力してください';
-                        } else if (!isValid) {
-                            errorMessage = '正しい電話番号を入力してください（10-11桁）';
+                            isValid = false;
+                        } else if (hasNonNumber) {
+                            errorMessage = '数字のみで入力してください（ハイフンは自動で入ります）';
+                            isValid = false;
+                        } else if (phoneDigits.length < 10) {
+                            errorMessage = '電話番号は10桁以上必要です';
+                            isValid = false;
+                        } else if (phoneDigits.length > 11) {
+                            errorMessage = '電話番号は11桁以内で入力してください';
+                            isValid = false;
+                        } else {
+                            isValid = true;
                         }
                         break;
 

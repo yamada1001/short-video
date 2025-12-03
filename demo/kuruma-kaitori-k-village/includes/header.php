@@ -79,36 +79,11 @@ header("Expires: 0");
         <div class="header__container">
             <!-- ロゴ -->
             <a href="<?php echo url(); ?>" class="header__logo">
-                <svg class="header__logo-svg" viewBox="0 0 320 70" xmlns="http://www.w3.org/2000/svg">
-                    <!-- 車のアイコン (Material Design Icons - car) -->
-                    <g transform="translate(5, 15)">
-                        <path d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z"
-                              fill="#2563eb" transform="scale(2)"/>
-                    </g>
-
-                    <!-- テキスト: くるま買取 -->
-                    <g transform="translate(65, 0)">
-                        <text x="0" y="28" font-family="'Noto Sans JP', sans-serif" font-size="20" font-weight="900" fill="#1e293b" letter-spacing="1">
-                            くるま買取
-                        </text>
-                        <!-- 装飾的なアンダーライン -->
-                        <rect x="0" y="32" width="95" height="3" rx="1.5" fill="#2563eb" opacity="0.3"/>
-                    </g>
-
-                    <!-- テキスト: ケイヴィレッジ -->
-                    <g transform="translate(170, 0)">
-                        <text x="0" y="28" font-family="'Noto Sans JP', sans-serif" font-size="20" font-weight="900" letter-spacing="1">
-                            <tspan fill="#2563eb">ケイ</tspan><tspan fill="#1e40af">ヴィレッジ</tspan>
-                        </text>
-                        <!-- 装飾的なドット -->
-                        <circle cx="0" cy="24" r="2" fill="#f59e0b" opacity="0.8"/>
-                    </g>
-
-                    <!-- サブテキスト -->
-                    <text x="65" y="50" font-family="'Noto Sans JP', sans-serif" font-size="10" font-weight="500" fill="#64748b" letter-spacing="0.5">
-                        大分市中判田の車買取・販売・車検
-                    </text>
-                </svg>
+                <i class="fa-solid fa-car header__logo-icon"></i>
+                <div class="header__logo-text">
+                    <span class="header__logo-main"><?php echo SITE_NAME; ?></span>
+                    <span class="header__logo-sub">大分市中判田の車買取・販売・車検</span>
+                </div>
             </a>
 
             <!-- ナビゲーション（PC） -->
