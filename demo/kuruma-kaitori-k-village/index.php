@@ -25,7 +25,7 @@ require_once __DIR__ . '/includes/header.php';
 <?php require_once __DIR__ . '/sections/strengths.php'; ?>
 
 <!-- News Section -->
-<section class="section news-section">
+<section class="section news-section" data-section-number="03">
     <div class="container">
         <h2 class="section__title">お知らせ</h2>
         <p class="section__lead">

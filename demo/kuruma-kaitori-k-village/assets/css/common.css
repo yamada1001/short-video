@@ -35,10 +35,32 @@ body {
 
 .section {
   padding: var(--spacing-3xl) 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .section--gray {
   background-color: var(--bg-gray);
+}
+
+/* セクション番号装飾 */
+.section[data-section-number]::before {
+  content: attr(data-section-number);
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  font-size: clamp(120px, 15vw, 180px);
+  font-weight: 900;
+  color: rgba(37, 99, 235, 0.03);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.section > * {
+  position: relative;
+  z-index: 1;
 }
 
 .section__title {

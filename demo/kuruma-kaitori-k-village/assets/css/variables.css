@@ -14,11 +14,14 @@
   --primary-dark: #1e40af;
   --primary-light: #dbeafe;
   --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  --primary-gradient-rich: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1e40af 100%);
+  --primary-gradient-shine: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
 
   /* セカンダリカラー（アクセント） */
   --secondary-color: #f59e0b;
   --secondary-dark: #d97706;
   --secondary-light: #fef3c7;
+  --secondary-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
 
   /* テキストカラー */
   --text-primary: #1f2937;
@@ -112,13 +115,22 @@
   --border-color: #e5e7eb;
 
   /* ========================================
-     シャドウ
+     シャドウ（リッチな影）
      ======================================== */
 
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  /* カラーシャドウ（ブルー系） */
+  --shadow-primary: 0 10px 25px -5px rgba(37, 99, 235, 0.2);
+  --shadow-primary-lg: 0 20px 40px -10px rgba(37, 99, 235, 0.3);
+
+  /* 内側の影（立体感） */
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --shadow-inner-lg: inset 0 4px 8px 0 rgb(0 0 0 / 0.1);
 
   /* ========================================
      トランジション

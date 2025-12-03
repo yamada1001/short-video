@@ -1,5 +1,5 @@
 <!-- Services Overview Section -->
-<section class="section services">
+<section class="section services" data-section-number="01">
     <div class="container">
         <h2 class="section__title">サービス紹介</h2>
         <p class="section__lead">

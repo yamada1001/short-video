@@ -1,5 +1,5 @@
 <!-- Company Info Section -->
-<section class="section section--gray company-info">
+<section class="section section--gray company-info" data-section-number="04">
     <div class="container">
         <h2 class="section__title">会社情報・アクセス</h2>
 
