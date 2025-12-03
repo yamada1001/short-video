@@ -50,7 +50,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <link rel="stylesheet" href="<?php echo asset('assets/css/contact.css'); ?>">
     <?php elseif ($current_page === 'news' || $current_page === 'news-detail'): ?>
     <link rel="stylesheet" href="<?php echo asset('assets/css/news.css'); ?>">
-    <?php elseif ($current_page === 'privacy' || $current_page === 'tokushoho'): ?>
+    <?php elseif ($current_page === 'privacy' || $current_page === 'tokushoho' || $current_page === 'sitemap'): ?>
     <link rel="stylesheet" href="<?php echo asset('assets/css/policy.css'); ?>">
     <?php endif; ?>
 

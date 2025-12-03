@@ -279,6 +279,99 @@
 /* ====================================
    Responsive
    ==================================== */
+/* ====================================
+   Sitemap Section
+   ==================================== */
+.sitemap-section {
+    padding: 80px 0;
+    background: var(--bg-gray);
+}
+
+.sitemap-content {
+    background: var(--white);
+    padding: 60px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.sitemap-group {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.sitemap-group:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.sitemap-group__title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: var(--font-weight-black);
+    color: var(--text-dark);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.sitemap-group__title i {
+    color: var(--primary-color);
+    font-size: 22px;
+}
+
+.sitemap-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.sitemap-list__item {
+    margin: 0;
+}
+
+.sitemap-list__item a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--bg-gray);
+    border-radius: var(--border-radius-sm);
+    color: var(--text-body);
+    text-decoration: none;
+    font-size: 15px;
+    transition: all var(--transition-base);
+    border-left: 3px solid transparent;
+}
+
+.sitemap-list__item a:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    border-left-color: var(--primary-color);
+    transform: translateX(4px);
+}
+
+.sitemap-list__item a i {
+    font-size: 12px;
+    color: var(--primary-color);
+    transition: color var(--transition-base);
+}
+
+.sitemap-list__item a:hover i {
+    color: var(--white);
+}
+
+/* ====================================
+   Responsive
+   ==================================== */
 @media (max-width: 768px) {
     .policy-section {
         padding: 60px 0;
@@ -286,6 +379,32 @@
 
     .policy-content {
         padding: 32px 24px;
+    }
+
+    .sitemap-section {
+        padding: 60px 0;
+    }
+
+    .sitemap-content {
+        padding: 32px 24px;
+    }
+
+    .sitemap-group {
+        margin-bottom: 32px;
+        padding-bottom: 32px;
+    }
+
+    .sitemap-group__title {
+        font-size: 20px;
+    }
+
+    .sitemap-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .sitemap-list__item a {
+        font-size: 14px;
     }
 
     .policy-intro {
