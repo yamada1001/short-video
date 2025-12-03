@@ -87,7 +87,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <article class="news-detail">
             <div class="news-detail__content">
-                <?php echo nl2br(h($news_item['content'])); ?>
+                <?php echo $news_item['content']; ?>
             </div>
 
             <!-- 戻るボタン -->
