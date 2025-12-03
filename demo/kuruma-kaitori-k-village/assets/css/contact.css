@@ -1,0 +1,337 @@
+/**
+ * Contact Page Styles
+ * くるま買取ケイヴィレッジ
+ */
+
+/* ====================================
+   Page Hero
+   ==================================== */
+.page-hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+    color: var(--white);
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.page-hero__title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: var(--font-weight-black);
+    margin-bottom: 16px;
+}
+
+.page-hero__title i {
+    margin-right: 12px;
+    opacity: 0.9;
+}
+
+.page-hero__lead {
+    font-size: clamp(16px, 2.5vw, 20px);
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ====================================
+   Contact Section
+   ==================================== */
+.contact-section {
+    padding: 80px 0;
+    background: var(--bg-gray);
+}
+
+.contact-intro {
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.contact-intro p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.contact-phone {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+    color: var(--white);
+    padding: 32px;
+    border-radius: var(--border-radius-md);
+    margin-top: 32px;
+}
+
+.contact-phone__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 12px;
+    transition: opacity 0.3s;
+}
+
+.contact-phone__link:hover {
+    opacity: 0.9;
+}
+
+.contact-phone__link i {
+    font-size: 28px;
+}
+
+.contact-phone__number {
+    font-size: clamp(28px, 5vw, 36px);
+    font-weight: var(--font-weight-black);
+    letter-spacing: 0.05em;
+}
+
+.contact-phone__note {
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* ====================================
+   Alert
+   ==================================== */
+.alert {
+    display: flex;
+    gap: 20px;
+    padding: 24px;
+    border-radius: var(--border-radius-md);
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-sm);
+}
+
+.alert i {
+    font-size: 32px;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.alert--success {
+    background: #f0fdf4;
+    border: 2px solid #22c55e;
+    color: #166534;
+}
+
+.alert--success i {
+    color: #22c55e;
+}
+
+.alert--error {
+    background: #fef2f2;
+    border: 2px solid #ef4444;
+    color: #991b1b;
+}
+
+.alert--error i {
+    color: #ef4444;
+}
+
+.alert__title {
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 8px;
+}
+
+.alert__message {
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* ====================================
+   Contact Form
+   ==================================== */
+.contact-form {
+    background: var(--white);
+    padding: 48px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form__group {
+    margin-bottom: 28px;
+}
+
+.form__label {
+    display: block;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: var(--text-dark);
+}
+
+.form__label i {
+    margin-right: 8px;
+    color: var(--primary-color);
+    width: 18px;
+    text-align: center;
+}
+
+.form__required {
+    display: inline-block;
+    background: var(--accent-color);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: var(--font-weight-bold);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: 8px;
+}
+
+.form__input,
+.form__select,
+.form__textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s;
+    background: var(--white);
+}
+
+.form__input:focus,
+.form__select:focus,
+.form__textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form__input.is-invalid,
+.form__select.is-invalid,
+.form__textarea.is-invalid {
+    border-color: #ef4444;
+}
+
+.form__textarea {
+    resize: vertical;
+    min-height: 150px;
+    line-height: 1.6;
+}
+
+.form__select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+
+.form__error {
+    display: block;
+    color: #ef4444;
+    font-size: 14px;
+    margin-top: 6px;
+    font-weight: var(--font-weight-medium);
+}
+
+.form__divider {
+    border: none;
+    border-top: 2px solid var(--border-color);
+    margin: 40px 0;
+}
+
+.form__section-title {
+    font-size: 18px;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-dark);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.form__section-title i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.form__checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.form__checkbox input[type="checkbox"] {
+    margin-top: 4px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.form__checkbox a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.form__checkbox a:hover {
+    text-decoration: none;
+}
+
+.form__submit {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.btn--large {
+    padding: 18px 48px;
+    font-size: 18px;
+}
+
+/* ====================================
+   Responsive
+   ==================================== */
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 60px 0 40px;
+    }
+
+    .contact-section {
+        padding: 60px 0;
+    }
+
+    .contact-intro {
+        padding: 24px;
+    }
+
+    .contact-phone {
+        padding: 24px;
+    }
+
+    .contact-phone__link {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .contact-form {
+        padding: 32px 20px;
+    }
+
+    .alert {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .alert i {
+        font-size: 28px;
+    }
+
+    .btn--large {
+        width: 100%;
+        padding: 16px 32px;
+    }
+}

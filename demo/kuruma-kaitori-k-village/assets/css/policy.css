@@ -1,0 +1,366 @@
+/**
+ * Policy Pages Styles (Privacy, Tokushoho)
+ * くるま買取ケイヴィレッジ
+ */
+
+/* ====================================
+   Policy Section
+   ==================================== */
+.policy-section {
+    padding: 80px 0;
+    background: var(--bg-gray);
+}
+
+.policy-content {
+    background: var(--white);
+    padding: 60px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.policy-intro {
+    padding: 24px;
+    background: var(--bg-gray);
+    border-left: 4px solid var(--primary-color);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 48px;
+}
+
+.policy-intro p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--text-body);
+    margin: 0;
+}
+
+/* ====================================
+   Policy Section Item
+   ==================================== */
+.policy-section-item {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.policy-section-item:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.policy-section-item__title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 22px;
+    font-weight: var(--font-weight-black);
+    color: var(--text-dark);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.policy-section-item__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    height: 48px;
+    background: var(--primary-color);
+    color: var(--white);
+    font-size: 18px;
+    font-weight: var(--font-weight-black);
+    border-radius: 50%;
+}
+
+.policy-section-item__content {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--text-body);
+}
+
+.policy-section-item__content p {
+    margin-bottom: 20px;
+}
+
+.policy-section-item__content p:last-child {
+    margin-bottom: 0;
+}
+
+.policy-section-item__content ul {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0;
+}
+
+.policy-section-item__content ul li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+}
+
+.policy-section-item__content ul li:last-child {
+    margin-bottom: 0;
+}
+
+.policy-section-item__content ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+/* ====================================
+   Policy Contact
+   ==================================== */
+.policy-contact {
+    background: var(--bg-gray);
+    padding: 32px;
+    border-radius: var(--border-radius-md);
+    margin-top: 24px;
+}
+
+.policy-contact__item {
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-body);
+}
+
+.policy-contact__item:last-child {
+    margin-bottom: 0;
+}
+
+.policy-contact__item i {
+    margin-right: 12px;
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+.policy-contact__item a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+}
+
+.policy-contact__item a:hover {
+    text-decoration: underline;
+}
+
+.policy-contact__item strong {
+    display: block;
+    font-size: 18px;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+/* ====================================
+   Policy Footer
+   ==================================== */
+.policy-footer {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 2px solid var(--border-color);
+    text-align: center;
+}
+
+.policy-footer p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.policy-footer p:last-child {
+    margin-bottom: 0;
+}
+
+.policy-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+}
+
+.policy-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ====================================
+   Tokushoho Table
+   ==================================== */
+.tokushoho-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 48px;
+}
+
+.tokushoho-table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tokushoho-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.tokushoho-table th,
+.tokushoho-table td {
+    padding: 24px 20px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.tokushoho-table th {
+    width: 200px;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-dark);
+    background: var(--bg-gray);
+    font-size: 16px;
+}
+
+.tokushoho-table td {
+    font-size: 15px;
+    color: var(--text-body);
+    line-height: 1.9;
+}
+
+.tokushoho-table td strong {
+    display: block;
+    color: var(--text-dark);
+    font-weight: var(--font-weight-bold);
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.tokushoho-table td strong:first-child {
+    margin-top: 0;
+}
+
+.tokushoho-table td ul {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+}
+
+.tokushoho-table td ul li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+}
+
+.tokushoho-table td ul li:last-child {
+    margin-bottom: 0;
+}
+
+.tokushoho-table td ul li::before {
+    content: "●";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 12px;
+}
+
+.tokushoho-table td a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+}
+
+.tokushoho-table td a:hover {
+    text-decoration: underline;
+}
+
+/* ====================================
+   Responsive
+   ==================================== */
+@media (max-width: 768px) {
+    .policy-section {
+        padding: 60px 0;
+    }
+
+    .policy-content {
+        padding: 32px 24px;
+    }
+
+    .policy-intro {
+        padding: 20px;
+        margin-bottom: 32px;
+    }
+
+    .policy-intro p {
+        font-size: 15px;
+    }
+
+    .policy-section-item {
+        margin-bottom: 32px;
+        padding-bottom: 32px;
+    }
+
+    .policy-section-item__title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 18px;
+    }
+
+    .policy-section-item__number {
+        min-width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .policy-section-item__content {
+        font-size: 14px;
+    }
+
+    .policy-contact {
+        padding: 24px 20px;
+    }
+
+    .policy-contact__item {
+        font-size: 15px;
+    }
+
+    .tokushoho-table {
+        display: block;
+    }
+
+    .tokushoho-table tbody {
+        display: block;
+    }
+
+    .tokushoho-table tbody tr {
+        display: block;
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+    }
+
+    .tokushoho-table tbody tr:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .tokushoho-table th,
+    .tokushoho-table td {
+        display: block;
+        width: 100%;
+        padding: 12px 0;
+    }
+
+    .tokushoho-table th {
+        background: transparent;
+        padding-bottom: 8px;
+        font-size: 15px;
+    }
+
+    .tokushoho-table td {
+        padding-top: 0;
+        font-size: 14px;
+    }
+}

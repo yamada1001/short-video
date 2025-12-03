@@ -1,0 +1,323 @@
+/**
+ * About Page Styles
+ * くるま買取ケイヴィレッジ
+ */
+
+/* ====================================
+   About Section
+   ==================================== */
+.about-section {
+    padding: 80px 0;
+    background: var(--bg-gray);
+}
+
+/* ====================================
+   About Intro
+   ==================================== */
+.about-intro {
+    background: var(--white);
+    padding: 60px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 60px;
+}
+
+.about-intro__content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-intro__content p {
+    font-size: 16px;
+    line-height: 2;
+    margin-bottom: 24px;
+    color: var(--text-body);
+}
+
+.about-intro__content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ====================================
+   Company Table
+   ==================================== */
+.company-table-wrapper {
+    background: var(--white);
+    padding: 60px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 60px;
+}
+
+.company-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 32px;
+}
+
+.company-table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.company-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.company-table th,
+.company-table td {
+    padding: 24px 20px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.company-table th {
+    width: 180px;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-dark);
+    background: var(--bg-gray);
+    font-size: 15px;
+}
+
+.company-table th i {
+    margin-right: 8px;
+    color: var(--primary-color);
+    width: 18px;
+    text-align: center;
+}
+
+.company-table td {
+    font-size: 16px;
+    color: var(--text-body);
+    line-height: 1.8;
+}
+
+.company-table__tel,
+.company-table__email {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: opacity 0.3s;
+}
+
+.company-table__tel:hover,
+.company-table__email:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.company-table__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.company-table__list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+}
+
+.company-table__list li:last-child {
+    margin-bottom: 0;
+}
+
+.company-table__list li::before {
+    content: "●";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 12px;
+}
+
+.text-muted {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* ====================================
+   Access Map
+   ==================================== */
+.access-map {
+    background: var(--white);
+    padding: 60px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.access-map__content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 48px;
+    margin-top: 32px;
+}
+
+.access-map__info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.access-map__title {
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.access-map__title i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.access-map__address {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-body);
+    margin: 0;
+}
+
+.access-map__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.access-map__buttons .btn {
+    width: 100%;
+    justify-content: center;
+}
+
+.access-map__note {
+    background: var(--bg-gray);
+    padding: 24px;
+    border-radius: var(--border-radius-md);
+    border-left: 4px solid var(--primary-color);
+}
+
+.access-map__note h4 {
+    font-size: 16px;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-dark);
+    margin-bottom: 16px;
+}
+
+.access-map__note h4 i {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.access-map__note ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.access-map__note li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: var(--text-body);
+}
+
+.access-map__note li:last-child {
+    margin-bottom: 0;
+}
+
+.access-map__note li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: var(--font-weight-bold);
+}
+
+.access-map__map {
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.access-map__map iframe {
+    display: block;
+}
+
+/* ====================================
+   Responsive
+   ==================================== */
+@media (max-width: 1024px) {
+    .access-map__content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        padding: 60px 0;
+    }
+
+    .about-intro {
+        padding: 32px 24px;
+        margin-bottom: 40px;
+    }
+
+    .about-intro__content p {
+        font-size: 15px;
+        line-height: 1.9;
+    }
+
+    .company-table-wrapper {
+        padding: 32px 24px;
+        margin-bottom: 40px;
+    }
+
+    .company-table {
+        display: block;
+    }
+
+    .company-table tbody {
+        display: block;
+    }
+
+    .company-table tbody tr {
+        display: block;
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+    }
+
+    .company-table tbody tr:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .company-table th,
+    .company-table td {
+        display: block;
+        width: 100%;
+        padding: 12px 0;
+    }
+
+    .company-table th {
+        background: transparent;
+        padding-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .company-table td {
+        padding-top: 0;
+        font-size: 15px;
+    }
+
+    .access-map {
+        padding: 32px 24px;
+    }
+
+    .access-map__buttons {
+        gap: 10px;
+    }
+
+    .access-map__map iframe {
+        height: 350px;
+    }
+}
