@@ -61,10 +61,12 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   transition: all var(--transition-base);
+  filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.3));
 }
 
 .header__logo:hover .header__logo-icon {
-  transform: rotate(10deg) scale(1.1);
+  transform: rotate(15deg) scale(1.2);
+  filter: drop-shadow(0 4px 8px rgba(37, 99, 235, 0.5));
 }
 
 .header__logo-text {
@@ -141,15 +143,16 @@
 
 .header__nav-link:hover {
   color: var(--primary-color);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
 }
 
 .header__nav-link:hover::before {
-  width: 80%;
+  width: 90%;
 }
 
 .header__nav-link:hover::after {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .header__nav-link.active {

@@ -9,39 +9,51 @@
     // ====================================
     // DOM Elements
     // ====================================
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.header__nav');
-    const navLinks = document.querySelectorAll('.header__nav-link');
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileNavLinks = document.querySelectorAll('.header__mobile-nav-link');
+    const header = document.querySelector('.header');
     const body = document.body;
 
     // ====================================
     // Mobile Menu Toggle
     // ====================================
-    if (hamburger && navMenu) {
+    if (hamburger && mobileMenu) {
         hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('is-active');
-            navMenu.classList.toggle('is-active');
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
             body.classList.toggle('menu-open');
         });
 
         // メニューリンククリック時に閉じる
-        navLinks.forEach(function(link) {
+        mobileNavLinks.forEach(function(link) {
             link.addEventListener('click', function() {
-                hamburger.classList.remove('is-active');
-                navMenu.classList.remove('is-active');
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
                 body.classList.remove('menu-open');
             });
         });
 
         // メニュー外クリックで閉じる
         document.addEventListener('click', function(e) {
-            if (!e.target.closest('.header__nav') && !e.target.closest('.hamburger')) {
-                hamburger.classList.remove('is-active');
-                navMenu.classList.remove('is-active');
+            if (!e.target.closest('.header__mobile-menu') && !e.target.closest('.header__hamburger')) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
                 body.classList.remove('menu-open');
             }
         });
     }
+
+    // ====================================
+    // Header Scroll Effect
+    // ====================================
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            header.classList.add('is-scrolled');
+        } else {
+            header.classList.remove('is-scrolled');
+        }
+    });
 
     // ====================================
     // Smooth Scroll
