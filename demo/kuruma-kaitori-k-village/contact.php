@@ -24,10 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'service_type' => isset($_POST['service_type']) ? trim($_POST['service_type']) : '',
         'name' => isset($_POST['name']) ? trim($_POST['name']) : '',
         'kana' => isset($_POST['kana']) ? trim($_POST['kana']) : '',
-        'email' => isset($_POST['email']) ? trim($_POST['email']) : '',
         'tel' => isset($_POST['tel']) ? trim($_POST['tel']) : '',
-        'postal_code' => isset($_POST['postal_code']) ? trim($_POST['postal_code']) : '',
-        'address' => isset($_POST['address']) ? trim($_POST['address']) : '',
+        'email' => isset($_POST['email']) ? trim($_POST['email']) : '',
         'car_maker' => isset($_POST['car_maker']) ? trim($_POST['car_maker']) : '',
         'car_model' => isset($_POST['car_model']) ? trim($_POST['car_model']) : '',
         'car_year' => isset($_POST['car_year']) ? trim($_POST['car_year']) : '',
@@ -43,16 +41,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $form_errors['name'] = 'お名前を入力してください';
     }
 
-    if (empty($form_data['email'])) {
-        $form_errors['email'] = 'メールアドレスを入力してください';
-    } elseif (!validate_email($form_data['email'])) {
-        $form_errors['email'] = 'メールアドレスの形式が正しくありません';
+    if (empty($form_data['kana'])) {
+        $form_errors['kana'] = 'フリガナを入力してください';
     }
 
     if (empty($form_data['tel'])) {
         $form_errors['tel'] = '電話番号を入力してください';
     } elseif (!validate_phone($form_data['tel'])) {
         $form_errors['tel'] = '電話番号の形式が正しくありません';
+    }
+
+    // メールアドレスは任意だが、入力されている場合は形式チェック
+    if (!empty($form_data['email']) && !validate_email($form_data['email'])) {
+        $form_errors['email'] = 'メールアドレスの形式が正しくありません';
     }
 
     if (empty($form_data['message'])) {
@@ -209,35 +210,19 @@ require_once __DIR__ . '/includes/header.php';
                 <label for="kana" class="form__label">
                     <i class="fa-solid fa-user"></i>
                     フリガナ
+                    <span class="form__required">必須</span>
                 </label>
                 <input
                     type="text"
                     name="kana"
                     id="kana"
-                    class="form__input"
+                    class="form__input <?php echo isset($form_errors['kana']) ? 'is-invalid' : ''; ?>"
                     value="<?php echo h($form_data['kana'] ?? ''); ?>"
                     placeholder="ヤマダ タロウ"
-                >
-            </div>
-
-            <!-- メールアドレス -->
-            <div class="form__group">
-                <label for="email" class="form__label">
-                    <i class="fa-solid fa-envelope"></i>
-                    メールアドレス
-                    <span class="form__required">必須</span>
-                </label>
-                <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    class="form__input <?php echo isset($form_errors['email']) ? 'is-invalid' : ''; ?>"
-                    value="<?php echo h($form_data['email'] ?? ''); ?>"
-                    placeholder="example@example.com"
                     required
                 >
-                <?php if (isset($form_errors['email'])): ?>
-                <span class="form__error"><?php echo h($form_errors['email']); ?></span>
+                <?php if (isset($form_errors['kana'])): ?>
+                <span class="form__error"><?php echo h($form_errors['kana']); ?></span>
                 <?php endif; ?>
             </div>
 
@@ -262,47 +247,36 @@ require_once __DIR__ . '/includes/header.php';
                 <?php endif; ?>
             </div>
 
-            <!-- 郵便番号 -->
+            <!-- メールアドレス（任意） -->
             <div class="form__group">
-                <label for="postal_code" class="form__label">
-                    <i class="fa-solid fa-location-dot"></i>
-                    郵便番号
+                <label for="email" class="form__label">
+                    <i class="fa-solid fa-envelope"></i>
+                    メールアドレス
+                    <span class="form__optional">任意</span>
                 </label>
                 <input
-                    type="text"
-                    name="postal_code"
-                    id="postal_code"
-                    class="form__input"
-                    value="<?php echo h($form_data['postal_code'] ?? ''); ?>"
-                    placeholder="870-1113"
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="form__input <?php echo isset($form_errors['email']) ? 'is-invalid' : ''; ?>"
+                    value="<?php echo h($form_data['email'] ?? ''); ?>"
+                    placeholder="example@example.com"
                 >
-            </div>
-
-            <!-- ご住所 -->
-            <div class="form__group">
-                <label for="address" class="form__label">
-                    <i class="fa-solid fa-location-dot"></i>
-                    ご住所
-                </label>
-                <input
-                    type="text"
-                    name="address"
-                    id="address"
-                    class="form__input"
-                    value="<?php echo h($form_data['address'] ?? ''); ?>"
-                    placeholder="大分県大分市中判田"
-                >
+                <?php if (isset($form_errors['email'])): ?>
+                <span class="form__error"><?php echo h($form_errors['email']); ?></span>
+                <?php endif; ?>
             </div>
 
             <hr class="form__divider">
 
-            <h3 class="form__section-title">
+            <h3 class="form__section-title" id="car-info-section">
                 <i class="fa-solid fa-car"></i>
                 お車の情報（買取・車検等の場合）
             </h3>
+            <p class="form__section-note">サービス内容によって、お車の情報が必要な場合があります。</p>
 
             <!-- メーカー -->
-            <div class="form__group">
+            <div class="form__group" id="car-maker-group">
                 <label for="car_maker" class="form__label">
                     <i class="fa-solid fa-industry"></i>
                     メーカー
@@ -318,7 +292,7 @@ require_once __DIR__ . '/includes/header.php';
             </div>
 
             <!-- 車種 -->
-            <div class="form__group">
+            <div class="form__group" id="car-model-group">
                 <label for="car_model" class="form__label">
                     <i class="fa-solid fa-car-side"></i>
                     車種
@@ -334,7 +308,7 @@ require_once __DIR__ . '/includes/header.php';
             </div>
 
             <!-- 年式 -->
-            <div class="form__group">
+            <div class="form__group" id="car-year-group">
                 <label for="car_year" class="form__label">
                     <i class="fa-solid fa-calendar"></i>
                     年式
@@ -399,6 +373,45 @@ require_once __DIR__ . '/includes/header.php';
 <?php if (!$form_submitted): ?>
 <?php require_once __DIR__ . '/includes/cta.php'; ?>
 <?php endif; ?>
+
+<script>
+// サービス種別に応じて車情報の表示/非表示を切り替え
+document.addEventListener('DOMContentLoaded', function() {
+    const serviceTypeSelect = document.getElementById('service_type');
+    const carInfoSection = document.getElementById('car-info-section');
+    const carMakerGroup = document.getElementById('car-maker-group');
+    const carModelGroup = document.getElementById('car-model-group');
+    const carYearGroup = document.getElementById('car-year-group');
+
+    // 車情報が必要なサービス
+    const carInfoServices = ['kaitori', 'shaken', 'bankin'];
+
+    function toggleCarInfo() {
+        const selectedService = serviceTypeSelect.value;
+        const needsCarInfo = carInfoServices.includes(selectedService);
+
+        if (carInfoSection && carMakerGroup && carModelGroup && carYearGroup) {
+            if (needsCarInfo) {
+                carInfoSection.style.display = 'block';
+                carMakerGroup.style.display = 'block';
+                carModelGroup.style.display = 'block';
+                carYearGroup.style.display = 'block';
+            } else {
+                carInfoSection.style.display = 'none';
+                carMakerGroup.style.display = 'none';
+                carModelGroup.style.display = 'none';
+                carYearGroup.style.display = 'none';
+            }
+        }
+    }
+
+    if (serviceTypeSelect) {
+        serviceTypeSelect.addEventListener('change', toggleCarInfo);
+        // 初期表示
+        toggleCarInfo();
+    }
+});
+</script>
 
 <?php
 // フッター読み込み

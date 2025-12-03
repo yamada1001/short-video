@@ -165,6 +165,23 @@
     margin-left: 8px;
 }
 
+.form__optional {
+    display: inline-block;
+    background: var(--text-secondary);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: var(--font-weight-bold);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: 8px;
+}
+
+.form__section-note {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
 .form__input,
 .form__select,
 .form__textarea {
