@@ -28,7 +28,7 @@
 
 .contact-phone {
     background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
-    color: var(--white);
+    color: #ffffff;
     padding: 32px;
     border-radius: var(--border-radius-md);
     margin-top: 32px;
@@ -39,12 +39,16 @@
     align-items: center;
     justify-content: center;
     gap: 16px;
-    color: var(--white);
+    color: #ffffff;
     text-decoration: none;
     font-size: 20px;
     font-weight: var(--font-weight-bold);
     margin-bottom: 12px;
     transition: opacity 0.3s;
+}
+
+.contact-phone__link:visited {
+    color: #ffffff;
 }
 
 .contact-phone__link:hover {
@@ -59,10 +63,12 @@
     font-size: clamp(28px, 5vw, 36px);
     font-weight: var(--font-weight-black);
     letter-spacing: 0.05em;
+    color: #ffffff;
 }
 
 .contact-phone__note {
     font-size: 14px;
+    color: #ffffff;
     opacity: 0.9;
     margin: 0;
 }
