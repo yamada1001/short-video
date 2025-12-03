@@ -13,8 +13,8 @@ body {
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-base);
-  color: var(--text-primary);
-  background-color: var(--bg-white);
+  color: var(--text);
+  background-color: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -40,7 +40,7 @@ body {
 }
 
 .section--gray {
-  background-color: var(--bg-gray);
+  background-color: var(--bg-alt);
 }
 
 /* セクション番号装飾 */
@@ -80,33 +80,35 @@ body {
 }
 
 /* ========================================
-   見出し
+   見出し（Noto Serif JP・余白重視）
    ======================================== */
 
+h1, h2, h3, h4, h5, h6, .section__title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
 h1 {
-  font-size: var(--font-size-5xl);
-  font-weight: var(--font-weight-black);
-  line-height: var(--line-height-tight);
-  letter-spacing: var(--letter-spacing-tight);
+  font-size: var(--font-size-6xl);
+  margin-bottom: var(--spacing-lg);
 }
 
 h2 {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-  letter-spacing: var(--letter-spacing-tight);
+  font-size: var(--font-size-5xl);
+  margin-bottom: var(--spacing-md);
 }
 
 h3 {
   font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
+  margin-bottom: var(--spacing-sm);
 }
 
 h4 {
   font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
+  margin-bottom: var(--spacing-sm);
 }
 
 /* ========================================

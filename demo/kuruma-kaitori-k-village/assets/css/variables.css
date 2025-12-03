@@ -6,34 +6,25 @@
 
 :root {
   /* ========================================
-     カラー（信頼感重視・ブルー系）
+     カラー（作家性・洗練）
      ======================================== */
 
-  /* プライマリカラー（メイン） */
-  --primary-color: #2563eb;
-  --primary-dark: #1e40af;
-  --primary-light: #dbeafe;
-  --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-  --primary-gradient-rich: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1e40af 100%);
-  --primary-gradient-shine: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+  /* 基本カラー */
+  --bg: #FAFAF7;
+  --bg-alt: #F0EDE8;
+  --text: #1A1A1A;
+  --text-light: #6B6B6B;
+  --accent: #2B5F8A;
+  --accent-light: #E8EEF3;
+  --warm: #C4A882;
 
-  /* セカンダリカラー（アクセント） */
-  --secondary-color: #f59e0b;
-  --secondary-dark: #d97706;
-  --secondary-light: #fef3c7;
-  --secondary-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
-
-  /* テキストカラー */
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --text-light: #9ca3af;
-  --text-white: #ffffff;
-
-  /* 背景カラー */
-  --bg-white: #ffffff;
-  --bg-gray: #f3f4f6;
-  --bg-gray-dark: #e5e7eb;
-  --bg-dark: #111827;
+  /* 後方互換性のため既存の変数も残す */
+  --primary-color: #2B5F8A;
+  --primary-light: #E8EEF3;
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --bg-white: #FAFAF7;
+  --bg-gray: #F0EDE8;
 
   /* ステータスカラー */
   --success-color: #10b981;
@@ -54,18 +45,21 @@
      ======================================== */
 
   /* フォントファミリー */
-  --font-base: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', Meiryo, sans-serif;
+  --font-serif: 'Noto Serif JP', serif;
+  --font-sans: 'Noto Sans JP', sans-serif;
+  --font-base: 'Noto Sans JP', sans-serif;
 
-  /* フォントサイズ */
-  --font-size-xs: 12px;
-  --font-size-sm: 14px;
-  --font-size-base: 16px;
-  --font-size-lg: 18px;
+  /* フォントサイズ（余白重視・コントラスト強め） */
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-base: 15px;
+  --font-size-lg: 17px;
   --font-size-xl: 20px;
-  --font-size-2xl: 24px;
-  --font-size-3xl: 28px;
-  --font-size-4xl: 36px;
-  --font-size-5xl: 48px;
+  --font-size-2xl: 26px;
+  --font-size-3xl: 32px;
+  --font-size-4xl: 48px;
+  --font-size-5xl: 64px;
+  --font-size-6xl: 80px;
 
   /* フォントウェイト */
   --font-weight-normal: 400;
@@ -84,16 +78,17 @@
   --letter-spacing-wide: 0.05em;
 
   /* ========================================
-     スペーシング
+     スペーシング（余白大胆に）
      ======================================== */
 
-  --spacing-xs: 8px;
-  --spacing-sm: 16px;
-  --spacing-md: 24px;
-  --spacing-lg: 32px;
-  --spacing-xl: 48px;
-  --spacing-2xl: 64px;
-  --spacing-3xl: 96px;
+  --spacing-xs: 12px;
+  --spacing-sm: 24px;
+  --spacing-md: 40px;
+  --spacing-lg: 64px;
+  --spacing-xl: 96px;
+  --spacing-2xl: 128px;
+  --spacing-3xl: 192px;
+  --spacing-4xl: 256px;
 
   /* ========================================
      レイアウト
@@ -103,34 +98,24 @@
   --container-padding: 20px;
 
   /* ========================================
-     ボーダー・角丸
+     ボーダー・角丸（ミニマルに）
      ======================================== */
 
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 16px;
+  --border-radius-sm: 0;
+  --border-radius-md: 2px;
+  --border-radius-lg: 4px;
   --border-radius-full: 9999px;
 
   --border-width: 1px;
-  --border-color: #e5e7eb;
+  --border-color: var(--accent-light);
 
   /* ========================================
-     シャドウ（リッチな影）
+     シャドウ（控えめに）
      ======================================== */
 
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-
-  /* カラーシャドウ（ブルー系） */
-  --shadow-primary: 0 10px 25px -5px rgba(37, 99, 235, 0.2);
-  --shadow-primary-lg: 0 20px 40px -10px rgba(37, 99, 235, 0.3);
-
-  /* 内側の影（立体感） */
-  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
-  --shadow-inner-lg: inset 0 4px 8px 0 rgb(0 0 0 / 0.1);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+  --shadow-md: 0 2px 8px 0 rgb(0 0 0 / 0.04);
+  --shadow-lg: 0 4px 16px 0 rgb(0 0 0 / 0.06);
 
   /* ========================================
      トランジション
