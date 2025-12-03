@@ -389,8 +389,17 @@
 }
 
 @media (max-width: 768px) {
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    overflow-x: visible;
+    margin: 0;
+    padding: 0;
+  }
+
   .service-card-compact {
-    min-width: 240px;
+    min-width: auto;
   }
 
   .service-modal__content {
