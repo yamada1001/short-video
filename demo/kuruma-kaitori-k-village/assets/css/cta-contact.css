@@ -14,10 +14,8 @@
 }
 
 .cta-contact__inner {
-  background: var(--bg-white);
   border-radius: var(--border-radius-xl);
   padding: var(--spacing-3xl);
-  box-shadow: 0 20px 60px rgba(37, 99, 235, 0.1);
   position: relative;
   overflow: hidden;
 }
@@ -78,6 +76,7 @@
 }
 
 .cta-contact__title {
+  font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-black);
   color: var(--text-primary);
