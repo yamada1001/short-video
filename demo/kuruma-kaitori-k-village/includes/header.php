@@ -79,11 +79,37 @@ header("Expires: 0");
         <div class="header__container">
             <!-- ロゴ -->
             <a href="<?php echo url(); ?>" class="header__logo">
-                <i class="fa-solid fa-car header__logo-icon"></i>
-                <div class="header__logo-text">
-                    <?php echo SITE_NAME; ?>
-                    <span class="header__logo-sub">大分市中判田の車買取・販売・車検</span>
-                </div>
+                <svg class="header__logo-svg" viewBox="0 0 380 80" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 車のシルエット -->
+                    <g class="logo-car">
+                        <!-- 車体 -->
+                        <path d="M10,45 L15,35 L25,30 L50,30 L55,35 L60,45 Z" fill="#2563eb" opacity="0.9"/>
+                        <!-- 窓 -->
+                        <path d="M20,35 L28,32 L40,32 L48,35 L45,40 L25,40 Z" fill="#60a5fa" opacity="0.6"/>
+                        <!-- タイヤ -->
+                        <circle cx="22" cy="48" r="6" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+                        <circle cx="48" cy="48" r="6" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+                        <circle cx="22" cy="48" r="2.5" fill="#64748b"/>
+                        <circle cx="48" cy="48" r="2.5" fill="#64748b"/>
+                        <!-- ヘッドライト -->
+                        <circle cx="57" cy="40" r="2" fill="#fbbf24" opacity="0.8"/>
+                    </g>
+
+                    <!-- テキスト: くるま買取 -->
+                    <text x="75" y="35" font-family="'Noto Sans JP', sans-serif" font-size="20" font-weight="900" fill="#1e293b">
+                        くるま買取
+                    </text>
+
+                    <!-- テキスト: ケイヴィレッジ -->
+                    <text x="75" y="55" font-family="'Noto Sans JP', sans-serif" font-size="18" font-weight="700" fill="#2563eb">
+                        ケイヴィレッジ
+                    </text>
+
+                    <!-- サブテキスト -->
+                    <text x="240" y="45" font-family="'Noto Sans JP', sans-serif" font-size="11" font-weight="500" fill="#64748b">
+                        大分市中判田の車買取・販売・車検
+                    </text>
+                </svg>
             </a>
 
             <!-- ナビゲーション（PC） -->

@@ -384,35 +384,154 @@ $breadcrumbs = [
         </form>
 
         <script>
-        // プライバシーポリシー同意チェックで送信ボタンを制御
+        // リアルタイムバリデーション + 送信ボタン制御
         document.addEventListener('DOMContentLoaded', function() {
-            const privacyCheckbox = document.querySelector('input[name="privacy_agree"]');
+            const form = document.querySelector('.contact-form');
             const submitBtn = document.getElementById('submit-btn');
+            const privacyCheckbox = document.querySelector('input[name="privacy_agree"]');
 
-            if (privacyCheckbox && submitBtn) {
-                // 初期状態: チェックされていなければボタン無効
-                submitBtn.disabled = !privacyCheckbox.checked;
+            // バリデーション状態を管理
+            const validationState = {
+                name: false,
+                kana: false,
+                email: false,
+                phone: false,
+                service_type: false,
+                message: false,
+                privacy_agree: false
+            };
 
-                // チェックボックスの変更を監視
-                privacyCheckbox.addEventListener('change', function() {
-                    submitBtn.disabled = !this.checked;
+            // バリデーション関数
+            function validateField(field) {
+                const name = field.name;
+                const value = field.value.trim();
+                let isValid = false;
+                let errorMessage = '';
 
-                    // ボタンのスタイルも変更
-                    if (this.checked) {
-                        submitBtn.style.opacity = '1';
-                        submitBtn.style.cursor = 'pointer';
+                switch(name) {
+                    case 'name':
+                        isValid = value.length > 0;
+                        errorMessage = 'お名前を入力してください';
+                        break;
+
+                    case 'kana':
+                        // ひらがなのみチェック
+                        const kanaRegex = /^[ぁ-んー\s]+$/;
+                        isValid = value.length > 0 && kanaRegex.test(value);
+                        if (value.length === 0) {
+                            errorMessage = 'フリガナを入力してください';
+                        } else if (!kanaRegex.test(value)) {
+                            errorMessage = 'ひらがなで入力してください';
+                        }
+                        break;
+
+                    case 'email':
+                        // メールアドレス形式チェック
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        isValid = emailRegex.test(value);
+                        if (value.length === 0) {
+                            errorMessage = 'メールアドレスを入力してください';
+                        } else if (!emailRegex.test(value)) {
+                            errorMessage = '正しいメールアドレスを入力してください（@を含む）';
+                        }
+                        break;
+
+                    case 'phone':
+                        // 電話番号チェック（10-11桁の数字）
+                        const phoneDigits = value.replace(/[^0-9]/g, '');
+                        isValid = phoneDigits.length >= 10 && phoneDigits.length <= 11;
+                        if (value.length === 0) {
+                            errorMessage = '電話番号を入力してください';
+                        } else if (!isValid) {
+                            errorMessage = '正しい電話番号を入力してください（10-11桁）';
+                        }
+                        break;
+
+                    case 'service_type':
+                        isValid = value.length > 0;
+                        errorMessage = 'サービス種別を選択してください';
+                        break;
+
+                    case 'message':
+                        isValid = value.length > 0;
+                        errorMessage = 'お問い合わせ内容を入力してください';
+                        break;
+                }
+
+                // エラー表示
+                const errorSpan = field.parentElement.querySelector('.form__error');
+                if (errorSpan) {
+                    if (!isValid && value.length > 0) {
+                        errorSpan.textContent = errorMessage;
+                        field.classList.add('is-invalid');
                     } else {
-                        submitBtn.style.opacity = '0.5';
-                        submitBtn.style.cursor = 'not-allowed';
+                        errorSpan.textContent = '';
+                        field.classList.remove('is-invalid');
                     }
-                });
+                }
 
-                // 初期スタイル設定
-                if (!privacyCheckbox.checked) {
+                // 必須項目が空でなければtrue
+                if (value.length > 0) {
+                    validationState[name] = isValid;
+                } else {
+                    validationState[name] = false;
+                }
+
+                updateSubmitButton();
+                return isValid;
+            }
+
+            // 送信ボタンの状態を更新
+            function updateSubmitButton() {
+                // すべての必須項目がvalidで、プライバシーにチェックがあればアクティブ
+                const allValid = validationState.name &&
+                                validationState.kana &&
+                                validationState.email &&
+                                validationState.phone &&
+                                validationState.service_type &&
+                                validationState.message &&
+                                validationState.privacy_agree;
+
+                submitBtn.disabled = !allValid;
+
+                if (allValid) {
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                } else {
                     submitBtn.style.opacity = '0.5';
                     submitBtn.style.cursor = 'not-allowed';
                 }
             }
+
+            // 各フィールドにイベントリスナー追加
+            const fields = ['name', 'kana', 'email', 'phone', 'service_type', 'message'];
+            fields.forEach(fieldName => {
+                const field = form.querySelector(`[name="${fieldName}"]`);
+                if (field) {
+                    // blur時（フォーカス外れた時）にバリデーション
+                    field.addEventListener('blur', function() {
+                        validateField(this);
+                    });
+
+                    // input時（入力中）にもバリデーション
+                    field.addEventListener('input', function() {
+                        validateField(this);
+                    });
+                }
+            });
+
+            // プライバシーチェックボックス
+            if (privacyCheckbox) {
+                privacyCheckbox.addEventListener('change', function() {
+                    validationState.privacy_agree = this.checked;
+                    updateSubmitButton();
+                });
+            }
+
+            // 初期状態: ボタン無効
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.5';
+            submitBtn.style.cursor = 'not-allowed';
         });
         </script>
         <?php endif; ?>

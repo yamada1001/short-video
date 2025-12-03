@@ -30,29 +30,28 @@
    ======================================== */
 
 .header__logo {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  text-decoration: none;
-}
-
-.header__logo-icon {
-  font-size: 28px;
-  color: var(--primary-color);
-}
-
-.header__logo-text {
-  line-height: 1.2;
-}
-
-.header__logo-sub {
   display: block;
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-normal);
-  color: var(--text-secondary);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.header__logo:hover {
+  opacity: 0.8;
+}
+
+.header__logo-svg {
+  height: 60px;
+  width: auto;
+}
+
+/* ロゴの車アニメーション */
+.logo-car {
+  transform-origin: 35px 45px;
+  transition: transform 0.3s ease;
+}
+
+.header__logo:hover .logo-car {
+  transform: translateX(5px);
 }
 
 /* ========================================
@@ -204,15 +203,12 @@
    ======================================== */
 
 @media (max-width: 768px) {
-  .header__logo {
-    font-size: var(--font-size-base);
+  .header__logo-svg {
+    height: 48px;
   }
 
-  .header__logo-icon {
-    font-size: 24px;
-  }
-
-  .header__logo-sub {
+  /* SPではサブテキストを非表示 */
+  .header__logo-svg text:nth-of-type(3) {
     display: none;
   }
 
