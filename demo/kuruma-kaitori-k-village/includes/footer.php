@@ -95,6 +95,5 @@
 
     <!-- JavaScript -->
     <script src="<?php echo asset('assets/js/common.js'); ?>"></script>
-    <script src="<?php echo asset('assets/js/modern-effects.js'); ?>"></script>
 </body>
 </html>

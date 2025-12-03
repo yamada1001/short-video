@@ -34,11 +34,6 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Modern Animation Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo asset('assets/css/reset.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/variables.css'); ?>">
@@ -46,7 +41,6 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <link rel="stylesheet" href="<?php echo asset('assets/css/components.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/header.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/footer.css'); ?>">
-    <link rel="stylesheet" href="<?php echo asset('assets/css/modern-effects.css'); ?>">
 
     <?php if ($current_page === 'index'): ?>
     <link rel="stylesheet" href="<?php echo asset('assets/css/index.css'); ?>">
