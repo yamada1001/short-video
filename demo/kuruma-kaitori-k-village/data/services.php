@@ -8,6 +8,7 @@ $services = [
     [
         'id' => 'kaitori',
         'name' => '車買取',
+        'short_name' => '買取',
         'name_en' => 'Car Purchase',
         'icon' => 'fa-solid fa-hand-holding-dollar',
         'color' => '#2563eb', // ブルー
@@ -25,6 +26,7 @@ $services = [
     [
         'id' => 'shinsha',
         'name' => '新車販売',
+        'short_name' => '新車',
         'name_en' => 'New Car Sales',
         'icon' => 'fa-solid fa-car',
         'color' => '#10b981', // グリーン
@@ -42,6 +44,7 @@ $services = [
     [
         'id' => 'chuko',
         'name' => '中古車販売',
+        'short_name' => '中古',
         'name_en' => 'Used Car Sales',
         'icon' => 'fa-solid fa-car-side',
         'color' => '#f59e0b', // オレンジ
@@ -59,6 +62,7 @@ $services = [
     [
         'id' => 'shaken',
         'name' => '車検・整備',
+        'short_name' => '車検',
         'name_en' => 'Vehicle Inspection & Maintenance',
         'icon' => 'fa-solid fa-wrench',
         'color' => '#6366f1', // インディゴ
@@ -76,6 +80,7 @@ $services = [
     [
         'id' => 'bankin',
         'name' => '板金・塗装',
+        'short_name' => '板金',
         'name_en' => 'Body Repair & Painting',
         'icon' => 'fa-solid fa-spray-can',
         'color' => '#ef4444', // レッド
@@ -93,6 +98,7 @@ $services = [
     [
         'id' => 'lease',
         'name' => '新車リース',
+        'short_name' => 'リース',
         'name_en' => 'Car Leasing',
         'icon' => 'fa-solid fa-file-contract',
         'color' => '#8b5cf6', // パープル

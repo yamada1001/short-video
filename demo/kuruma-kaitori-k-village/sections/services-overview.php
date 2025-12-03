@@ -20,7 +20,8 @@
                     onclick="switchServiceTab('<?php echo h($service['id']); ?>')"
                 >
                     <i class="<?php echo h($service['icon']); ?>"></i>
-                    <span><?php echo h($service['name']); ?></span>
+                    <span class="service-tabs__tab-name"><?php echo h($service['name']); ?></span>
+                    <span class="service-tabs__tab-short"><?php echo h($service['short_name']); ?></span>
                 </button>
                 <?php
                 $first = false;

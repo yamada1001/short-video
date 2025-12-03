@@ -18,15 +18,14 @@
                         <div class="inventory-card__image">
                             <img src="<?php echo h($item['image']); ?>" alt="<?php echo h($item['name']); ?>">
                             <span class="inventory-card__status"><?php echo h($item['status']); ?></span>
-                        </div>
-
-                        <div class="inventory-card__content">
-                            <h3 class="inventory-card__name"><?php echo h($item['name']); ?></h3>
-
                             <div class="inventory-card__price">
                                 <span class="inventory-card__price-label">支払総額</span>
                                 <span class="inventory-card__price-value"><?php echo format_price($item['price_total']); ?></span>
                             </div>
+                        </div>
+
+                        <div class="inventory-card__content">
+                            <h3 class="inventory-card__name"><?php echo h($item['name']); ?></h3>
 
                             <div class="inventory-card__specs">
                                 <div class="inventory-card__spec">

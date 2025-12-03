@@ -189,6 +189,10 @@
   font-size: var(--font-size-xl);
 }
 
+.service-tabs__tab-short {
+  display: none;
+}
+
 .service-tabs__panel {
   display: none;
 }
@@ -292,8 +296,13 @@
     font-size: var(--font-size-sm);
   }
 
-  .service-tabs__tab span {
+  .service-tabs__tab-name {
     display: none;
+  }
+
+  .service-tabs__tab-short {
+    display: inline;
+    font-size: var(--font-size-xs);
   }
 
   .service-tabs__tab i {
@@ -370,6 +379,9 @@
   flex-direction: column;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-md);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .news-item {
