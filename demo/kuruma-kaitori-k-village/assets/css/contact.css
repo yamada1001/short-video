@@ -256,7 +256,6 @@
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    cursor: pointer;
     font-size: 15px;
 }
 
@@ -268,6 +267,16 @@
     cursor: pointer;
     accent-color: var(--primary-color);
     flex-shrink: 0;
+    /* ブラウザのデフォルトスタイルを維持 */
+    appearance: auto;
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+}
+
+.form__checkbox label {
+    cursor: pointer;
+    flex: 1;
+    line-height: 1.6;
 }
 
 .form__checkbox a {

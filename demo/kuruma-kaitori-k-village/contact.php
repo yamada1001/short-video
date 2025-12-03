@@ -361,13 +361,13 @@ $breadcrumbs = [
 
             <!-- プライバシーポリシー同意 -->
             <div class="form__group">
-                <label class="form__checkbox" for="privacy_agree">
+                <div class="form__checkbox">
                     <input type="checkbox" name="privacy_agree" id="privacy_agree" value="1" required>
-                    <span>
-                        <a href="<?php echo url('privacy'); ?>" target="_blank">プライバシーポリシー</a>に同意する
+                    <label for="privacy_agree">
+                        <a href="<?php echo url('privacy'); ?>" target="_blank" onclick="event.stopPropagation();">プライバシーポリシー</a>に同意する
                         <span class="form__required">必須</span>
-                    </span>
-                </label>
+                    </label>
+                </div>
                 <?php if (isset($form_errors['privacy_agree'])): ?>
                 <span class="form__error"><?php echo h($form_errors['privacy_agree']); ?></span>
                 <?php endif; ?>
