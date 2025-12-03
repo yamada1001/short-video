@@ -264,8 +264,13 @@
     margin-top: 4px;
     width: 20px;
     height: 20px;
+    min-width: 20px;
     cursor: pointer;
     accent-color: var(--primary-color);
+    flex-shrink: 0;
+    background-color: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
 }
 
 .form__checkbox a {
