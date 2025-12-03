@@ -9,7 +9,6 @@
    ======================================== */
 
 .hero {
-  background: linear-gradient(135deg, #dbeafe 0%, #f0f9ff 100%);
   padding: var(--spacing-3xl) 0;
   overflow: hidden;
 }
@@ -118,10 +117,6 @@
    Services Section
    ======================================== */
 
-.services {
-  background: var(--bg-white);
-}
-
 .service-card {
   height: 100%;
 }
@@ -137,10 +132,6 @@
 /* ========================================
    News Section
    ======================================== */
-
-.news-section {
-  background: var(--bg-white);
-}
 
 .news-list {
   display: flex;

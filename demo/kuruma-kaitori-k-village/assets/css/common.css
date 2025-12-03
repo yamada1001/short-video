@@ -43,20 +43,7 @@ body {
   background-color: var(--bg-gray);
 }
 
-/* セクション番号装飾 */
-.section[data-section-number]::before {
-  content: attr(data-section-number);
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  font-size: clamp(120px, 15vw, 180px);
-  font-weight: 900;
-  color: rgba(37, 99, 235, 0.03);
-  line-height: 1;
-  pointer-events: none;
-  z-index: 0;
-  font-family: 'Inter', sans-serif;
-}
+/* セクション番号装飾（削除） */
 
 .section > * {
   position: relative;
