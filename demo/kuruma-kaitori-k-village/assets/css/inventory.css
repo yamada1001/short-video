@@ -1,0 +1,225 @@
+/*
+ * Inventory Styles
+ * くるま買取ケイヴィレッジ
+ * 在庫車両表示
+ */
+
+/* ========================================
+   在庫グリッド
+   ======================================== */
+
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* ========================================
+   在庫アイテム
+   ======================================== */
+
+.inventory-item {
+  background: var(--bg-white);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  border: 1px solid var(--border-color);
+}
+
+.inventory-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 画像 */
+.inventory-item__image {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: var(--bg-gray);
+}
+
+.inventory-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.inventory-item:hover .inventory-item__image img {
+  transform: scale(1.05);
+}
+
+.inventory-item__status {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 8px 16px;
+  background: var(--primary-color);
+  color: var(--text-white);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--border-radius-full);
+  box-shadow: var(--shadow-md);
+}
+
+/* コンテンツ */
+.inventory-item__content {
+  padding: var(--spacing-md);
+}
+
+.inventory-item__name {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* 価格 */
+.inventory-item__price {
+  background: linear-gradient(135deg, var(--primary-light), #f0f9ff);
+  border-left: 4px solid var(--primary-color);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+}
+
+.inventory-item__price-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.inventory-item__price-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.inventory-item__price-value {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-black);
+  color: var(--primary-color);
+  line-height: 1.2;
+}
+
+.inventory-item__price-sub {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.inventory-item__price-vehicle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.inventory-item__price-vehicle-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.inventory-item__price-vehicle-value {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+/* スペック */
+.inventory-item__specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: var(--spacing-md);
+}
+
+.inventory-item__spec {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background: var(--bg-gray);
+  border-radius: var(--border-radius-sm);
+}
+
+.inventory-item__spec dt {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.inventory-item__spec dd {
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* アクション */
+.inventory-item__actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.inventory-item__actions .btn {
+  flex: 1;
+}
+
+/* ========================================
+   レスポンシブ（タブレット）
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .inventory-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   レスポンシブ（SP）
+   ======================================== */
+
+@media (max-width: 768px) {
+  .inventory-grid {
+    gap: var(--spacing-md);
+  }
+
+  .inventory-item__image {
+    height: 200px;
+  }
+
+  .inventory-item__content {
+    padding: var(--spacing-sm);
+  }
+
+  .inventory-item__name {
+    font-size: var(--font-size-xl);
+  }
+
+  .inventory-item__price {
+    padding: var(--spacing-sm);
+  }
+
+  .inventory-item__price-value {
+    font-size: var(--font-size-3xl);
+  }
+
+  .inventory-item__specs {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .inventory-item__spec {
+    padding: 10px;
+  }
+
+  .inventory-item__actions {
+    flex-direction: column;
+  }
+}

@@ -9,6 +9,7 @@ require_once __DIR__ . '/data/config.php';
 require_once __DIR__ . '/data/meta.php';
 require_once __DIR__ . '/data/services.php';
 require_once __DIR__ . '/data/news.php';
+require_once __DIR__ . '/data/inventory.php';
 require_once __DIR__ . '/includes/functions.php';
 
 // ヘッダー読み込み
@@ -65,6 +66,9 @@ require_once __DIR__ . '/includes/header.php';
         </div>
     </div>
 </section>
+
+<!-- Inventory Section -->
+<?php require_once __DIR__ . '/sections/inventory.php'; ?>
 
 <!-- CTA Contact Section -->
 <?php require_once __DIR__ . '/sections/cta-contact.php'; ?>
