@@ -158,11 +158,4 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
         </div>
     </header>
 
-    <!-- 固定電話ボタン（SP） -->
-    <div class="fixed-phone-btn">
-        <a href="tel:<?php echo format_phone(PHONE, 'tel'); ?>">
-            <i class="fa-solid fa-phone"></i>
-        </a>
-    </div>
-
     <main>

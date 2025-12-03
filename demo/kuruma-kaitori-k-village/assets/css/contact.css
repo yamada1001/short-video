@@ -4,34 +4,6 @@
  */
 
 /* ====================================
-   Page Hero
-   ==================================== */
-.page-hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
-    color: var(--white);
-    padding: 80px 0 60px;
-    text-align: center;
-}
-
-.page-hero__title {
-    font-size: clamp(32px, 5vw, 48px);
-    font-weight: var(--font-weight-black);
-    margin-bottom: 16px;
-}
-
-.page-hero__title i {
-    margin-right: 12px;
-    opacity: 0.9;
-}
-
-.page-hero__lead {
-    font-size: clamp(16px, 2.5vw, 20px);
-    opacity: 0.95;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* ====================================
    Contact Section
    ==================================== */
 .contact-section {
@@ -296,10 +268,6 @@
    Responsive
    ==================================== */
 @media (max-width: 768px) {
-    .page-hero {
-        padding: 60px 0 40px;
-    }
-
     .contact-section {
         padding: 60px 0;
     }

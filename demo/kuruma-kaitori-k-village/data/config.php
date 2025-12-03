@@ -24,12 +24,12 @@ define('LATITUDE', '33.2181');  // 緯度（大分市中判田付近）
 define('LONGITUDE', '131.6127'); // 経度（大分市中判田付近）
 define('MAP_ZOOM', '15'); // ズームレベル
 
-// 連絡先情報（※要ヒアリング）
-define('PHONE', '097-XXX-XXXX'); // 電話番号（後で更新）
-define('PHONE_LINK', 'tel:097XXXXXXXX'); // tel:リンク用（ハイフンなし）
-define('TEL', '097XXXXXXXX'); // tel:リンク用（ハイフンなし）
-define('TEL_DISPLAY', '097-XXX-XXXX'); // 表示用電話番号
-define('EMAIL', 'info@k-village.example.com'); // メールアドレス（仮）
+// 連絡先情報
+define('PHONE', '097-597-3033'); // 電話番号
+define('PHONE_LINK', 'tel:0975973033'); // tel:リンク用（ハイフンなし）
+define('TEL', '0975973033'); // tel:リンク用（ハイフンなし）
+define('TEL_DISPLAY', '097-597-3033'); // 表示用電話番号
+define('EMAIL', 'kimshin94236@gmail.com'); // メールアドレス
 define('FAX', ''); // FAXがあれば記載
 
 // 営業情報（※要ヒアリング）
