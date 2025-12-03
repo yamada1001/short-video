@@ -504,8 +504,7 @@
    ======================================== */
 
 .cta-contact {
-  background: var(--primary-gradient);
-  color: var(--text-white);
+  color: var(--text-primary);
 }
 
 .cta-contact__inner {
@@ -515,13 +514,13 @@
 .cta-contact__title {
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-black);
-  color: var(--text-white);
+  color: var(--text-primary);
   margin-bottom: var(--spacing-md);
 }
 
 .cta-contact__lead {
   font-size: var(--font-size-lg);
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
   margin-bottom: var(--spacing-xl);
 }
 

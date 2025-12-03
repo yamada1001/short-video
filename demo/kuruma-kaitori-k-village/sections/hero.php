@@ -4,7 +4,7 @@
         <div class="hero__content">
             <h1 class="hero__title">
                 大分で車のことなら、<br>
-                <span class="hero__title-highlight">ケイヴィレッジへ</span>
+                <span class="hero__title-highlight">ケイヴィレッジ</span>へ
             </h1>
 
             <p class="hero__lead">
