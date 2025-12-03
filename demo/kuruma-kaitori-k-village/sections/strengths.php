@@ -1,5 +1,5 @@
 <!-- Strengths Section -->
-<section class="section section--gray strengths" data-section-number="02">
+<section class="section strengths" data-section-number="02">
     <div class="container">
         <h2 class="section__title">選ばれる理由</h2>
         <p class="section__lead">
