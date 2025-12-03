@@ -2,11 +2,11 @@
 # Demo Site Security Settings
 # ====================================
 
-# Basic認証
-AuthType Basic
-AuthName "YOJITU.COM Demo Site - Access Restricted"
-AuthUserFile /Users/yamadaren/Movies/claude-code-projects/yojitu.com/demo/.htpasswd
-Require valid-user
+# Basic認証（一旦コメントアウト - 動作確認後に有効化）
+# AuthType Basic
+# AuthName "YOJITU.COM Demo Site - Access Restricted"
+# AuthUserFile /path/to/demo/.htpasswd
+# Require valid-user
 
 # ====================================
 # 検索エンジン対策（noindex）
