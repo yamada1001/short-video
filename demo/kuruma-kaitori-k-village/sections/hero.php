@@ -1,5 +1,12 @@
 <!-- Hero Section -->
 <section class="hero">
+    <!-- 背景アニメーション -->
+    <div class="hero__background">
+        <div class="hero__gradient-wave hero__gradient-wave--1"></div>
+        <div class="hero__gradient-wave hero__gradient-wave--2"></div>
+        <div class="hero__gradient-wave hero__gradient-wave--3"></div>
+    </div>
+
     <div class="hero__container container">
         <div class="hero__content">
             <h1 class="hero__title">
