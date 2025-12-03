@@ -397,7 +397,7 @@ require_once __DIR__ . '/includes/header.php';
 
 <!-- CTA Contact Section -->
 <?php if (!$form_submitted): ?>
-<?php require_once __DIR__ . '/sections/cta-contact.php'; ?>
+<?php require_once __DIR__ . '/includes/cta.php'; ?>
 <?php endif; ?>
 
 <?php

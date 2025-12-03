@@ -140,7 +140,7 @@ require_once __DIR__ . '/includes/header.php';
 <?php endif; ?>
 
 <!-- CTA Contact Section -->
-<?php require_once __DIR__ . '/sections/cta-contact.php'; ?>
+<?php require_once __DIR__ . '/includes/cta.php'; ?>
 
 <?php
 // フッター読み込み

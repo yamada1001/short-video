@@ -71,7 +71,7 @@ require_once __DIR__ . '/includes/header.php';
 <?php require_once __DIR__ . '/sections/inventory.php'; ?>
 
 <!-- CTA Contact Section -->
-<?php require_once __DIR__ . '/sections/cta-contact.php'; ?>
+<?php require_once __DIR__ . '/includes/cta.php'; ?>
 
 <!-- Company Info Section -->
 <?php require_once __DIR__ . '/sections/company-info.php'; ?>
