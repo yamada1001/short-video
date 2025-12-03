@@ -776,5 +776,79 @@ php -S localhost:8000
 
 ---
 
+## 11. 開発中の特別仕様
+
+### 11.1 キャッシュ無効化機能（開発中のみ）
+
+#### 目的
+開発中はリロードするたびに最新のファイルを表示するため、ブラウザキャッシュを無効化。
+
+#### 実装箇所と内容
+
+**1. includes/header.php - HTTPヘッダー（行11-15）**
+```php
+// 開発中: キャッシュ無効化
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+header("Expires: 0");
+```
+
+**2. includes/header.php - メタタグ（行24-27）**
+```html
+<!-- 開発中: キャッシュ無効化 -->
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+```
+
+**3. includes/functions.php - asset()関数（行143-151）**
+```php
+function asset($path) {
+    $base_path = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+    $url = $base_path . '/' . ltrim($path, '/');
+
+    // 開発中: キャッシュバスター（タイムスタンプ）を追加
+    $version = time();
+    $separator = (strpos($url, '?') === false) ? '?' : '&';
+    return $url . $separator . 'v=' . $version;
+}
+```
+
+#### 効果
+- HTMLページ: HTTPヘッダーとメタタグでブラウザキャッシュ完全無効化
+- CSS/JSファイル: `?v={timestamp}` パラメータで毎回異なるURLとして読み込み
+- 例: `assets/css/common.css?v=1733123456`
+- リロードするたびに常に最新版が表示される
+
+#### ⚠️ 重要: 本番環境移行時の対応
+**開発終了後、必ず以下の設定を削除してください:**
+
+1. **includes/header.php の修正**:
+   - 行11-15の HTTPヘッダー設定を削除
+   - 行24-27の メタタグを削除
+
+2. **includes/functions.php の修正**:
+   - asset()関数からキャッシュバスター部分を削除
+   - 元の形に戻す:
+   ```php
+   function asset($path) {
+       $base_path = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+       return $base_path . '/' . ltrim($path, '/');
+   }
+   ```
+
+3. **本番環境では逆にキャッシュを有効化**:
+   - .htaccessでブラウザキャッシュ設定を追加
+   - CSS/JSファイルにバージョン番号を付ける（例: `common.css?v=1.0.0`）
+   - Gzip圧縮を有効化
+
+#### 削除を忘れた場合の影響
+- ページ読み込み速度が遅くなる
+- サーバー負荷が増加する
+- ユーザーエクスペリエンスが低下する
+
+---
+
 最終更新: 2025-12-03
 作成者: YOJITU.COM
