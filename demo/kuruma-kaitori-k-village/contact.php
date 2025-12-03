@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'car_model' => isset($_POST['car_model']) ? trim($_POST['car_model']) : '',
         'car_year' => isset($_POST['car_year']) ? trim($_POST['car_year']) : '',
         'message' => isset($_POST['message']) ? trim($_POST['message']) : '',
+        'privacy_agree' => isset($_POST['privacy_agree']) ? true : false,
     ];
 
     // バリデーション
@@ -58,6 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($form_data['message'])) {
         $form_errors['message'] = 'お問い合わせ内容を入力してください';
+    }
+
+    // プライバシーポリシー同意チェック
+    if (!$form_data['privacy_agree']) {
+        $form_errors['privacy_agree'] = 'プライバシーポリシーに同意してください';
     }
 
     // エラーがなければメール送信
@@ -362,17 +368,53 @@ $breadcrumbs = [
                         <span class="form__required">必須</span>
                     </span>
                 </label>
+                <?php if (isset($form_errors['privacy_agree'])): ?>
+                <span class="form__error"><?php echo h($form_errors['privacy_agree']); ?></span>
+                <?php endif; ?>
             </div>
 
             <!-- 送信ボタン -->
             <div class="form__submit">
-                <button type="submit" class="btn btn--primary btn--large">
+                <button type="submit" id="submit-btn" class="btn btn--primary btn--large" disabled>
                     <i class="fa-solid fa-paper-plane"></i>
                     送信する
                 </button>
             </div>
 
         </form>
+
+        <script>
+        // プライバシーポリシー同意チェックで送信ボタンを制御
+        document.addEventListener('DOMContentLoaded', function() {
+            const privacyCheckbox = document.querySelector('input[name="privacy_agree"]');
+            const submitBtn = document.getElementById('submit-btn');
+
+            if (privacyCheckbox && submitBtn) {
+                // 初期状態: チェックされていなければボタン無効
+                submitBtn.disabled = !privacyCheckbox.checked;
+
+                // チェックボックスの変更を監視
+                privacyCheckbox.addEventListener('change', function() {
+                    submitBtn.disabled = !this.checked;
+
+                    // ボタンのスタイルも変更
+                    if (this.checked) {
+                        submitBtn.style.opacity = '1';
+                        submitBtn.style.cursor = 'pointer';
+                    } else {
+                        submitBtn.style.opacity = '0.5';
+                        submitBtn.style.cursor = 'not-allowed';
+                    }
+                });
+
+                // 初期スタイル設定
+                if (!privacyCheckbox.checked) {
+                    submitBtn.style.opacity = '0.5';
+                    submitBtn.style.cursor = 'not-allowed';
+                }
+            }
+        });
+        </script>
         <?php endif; ?>
     </div>
 </section>

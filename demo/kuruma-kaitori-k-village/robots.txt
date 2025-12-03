@@ -1,0 +1,15 @@
+# くるま買取ケイヴィレッジ - robots.txt
+
+User-agent: *
+Disallow: /data/
+Disallow: /includes/
+Disallow: /logs/
+Disallow: /assets/
+
+# 許可するページ
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/images/
+
+# サイトマップ
+Sitemap: https://www.yojitu.com/demo/kuruma-kaitori-k-village/sitemap.xml

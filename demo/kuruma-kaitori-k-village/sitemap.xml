@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- トップページ -->
+    <url>
+        <loc>https://www.yojitu.com/demo/kuruma-kaitori-k-village/</loc>
+        <lastmod>2025-12-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- 会社概要 -->
+    <url>
+        <loc>https://www.yojitu.com/demo/kuruma-kaitori-k-village/about.php</loc>
+        <lastmod>2025-12-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- お問い合わせ -->
+    <url>
+        <loc>https://www.yojitu.com/demo/kuruma-kaitori-k-village/contact.php</loc>
+        <lastmod>2025-12-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- お知らせ一覧 -->
+    <url>
+        <loc>https://www.yojitu.com/demo/kuruma-kaitori-k-village/news.php</loc>
+        <lastmod>2025-12-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- プライバシーポリシー -->
+    <url>
+        <loc>https://www.yojitu.com/demo/kuruma-kaitori-k-village/privacy.php</loc>
+        <lastmod>2025-12-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+</urlset>
