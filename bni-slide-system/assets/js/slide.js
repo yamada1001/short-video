@@ -58,9 +58,9 @@
       const response = await fetch(url);
       const result = await response.json();
 
-    if (!result.success) {
-      throw new Error(result.message || 'データの読み込みに失敗しました');
-    }
+      if (!result.success) {
+        throw new Error(result.message || 'データの読み込みに失敗しました');
+      }
 
       const { data, stats } = result;
 
@@ -71,45 +71,45 @@
       if (!Reveal.isReady()) {
         // Initialize Reveal.js (Google Slides style - no animations)
         Reveal.initialize({
-      hash: true,
-      controls: true,
-      progress: true,
-      center: true,
-      transition: 'none',  // No transition animation
-      transitionSpeed: 'fast',
-      backgroundTransition: 'none',
-      slideNumber: 'c/t',
-      keyboard: true,
-      overview: true,
-      touch: true,
-      loop: false,
-      rtl: false,
-      navigationMode: 'default',
-      shuffle: false,
-      fragments: false,  // Disable fragment animations
-      fragmentInURL: false,
-      embedded: false,
-      help: true,
-      pause: true,
-      showNotes: false,
-      autoPlayMedia: null,
-      preloadIframes: null,
-      autoAnimate: false,  // Disable auto-animate
-      autoSlide: 0,
-      autoSlideStoppable: true,
-      autoSlideMethod: null,
-      defaultTiming: null,
-      mouseWheel: false,
-      previewLinks: false,
-      postMessage: true,
-      postMessageEvents: false,
-      focusBodyOnPageVisibilityChange: true,
-      width: '100%',  // Full width
-      height: '100%',  // Full height
-      margin: 0,  // No margin
-      minScale: 1,  // No scaling
-      maxScale: 1,
-      disableLayout: false
+          hash: true,
+          controls: true,
+          progress: true,
+          center: true,
+          transition: 'none',  // No transition animation
+          transitionSpeed: 'fast',
+          backgroundTransition: 'none',
+          slideNumber: 'c/t',
+          keyboard: true,
+          overview: true,
+          touch: true,
+          loop: false,
+          rtl: false,
+          navigationMode: 'default',
+          shuffle: false,
+          fragments: false,  // Disable fragment animations
+          fragmentInURL: false,
+          embedded: false,
+          help: true,
+          pause: true,
+          showNotes: false,
+          autoPlayMedia: null,
+          preloadIframes: null,
+          autoAnimate: false,  // Disable auto-animate
+          autoSlide: 0,
+          autoSlideStoppable: true,
+          autoSlideMethod: null,
+          defaultTiming: null,
+          mouseWheel: false,
+          previewLinks: false,
+          postMessage: true,
+          postMessageEvents: false,
+          focusBodyOnPageVisibilityChange: true,
+          width: '100%',  // Full width
+          height: '100%',  // Full height
+          margin: 0,  // No margin
+          minScale: 1,  // No scaling
+          maxScale: 1,
+          disableLayout: false
         });
 
         // Add event listeners for slide changes
