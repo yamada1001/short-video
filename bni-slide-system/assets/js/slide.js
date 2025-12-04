@@ -164,12 +164,12 @@ function generateSlides(data, stats) {
 
   let slides = '';
 
-  // Slide 1: Title
+  // Slide 1: Title - BNI Brand
   slides += `
     <section class="title-slide">
       <h1>BNI週次レポート</h1>
       <h3>${today}</h3>
-      <p style="margin-top: 50px; font-size: 0.8em;">BNI Slide System</p>
+      <p style="margin-top: 60px; font-size: 0.7em; opacity: 0.9; font-weight: 500;">Givers Gain® | BNI Slide System</p>
     </section>
   `;
 
