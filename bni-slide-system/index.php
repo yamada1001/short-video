@@ -52,8 +52,6 @@
       <nav class="site-nav">
         <ul>
           <li><a href="index.php" class="active">アンケート</a></li>
-          <li><a href="slide.php">スライド表示</a></li>
-          <li><a href="edit.php">編集</a></li>
         </ul>
       </nav>
     </div>
