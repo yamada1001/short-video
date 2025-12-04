@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/common.css">
+  <link rel="stylesheet" href="../assets/css/common.css">
   <style>
     .edit-container {
       max-width: 1200px;
@@ -194,7 +194,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="assets/js/edit.js"></script>
+  <script src="../assets/js/edit.js"></script>
 
 </body>
 </html>

@@ -5,6 +5,10 @@
 let originalData = [];
 let currentData = [];
 
+// Determine API base path based on current location
+const isInAdminDir = window.location.pathname.includes('/admin/');
+const apiBasePath = isInAdminDir ? '../' : '';
+
 document.addEventListener('DOMContentLoaded', async function() {
   await loadData();
 });
@@ -14,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async function() {
  */
 async function loadData() {
   try {
-    const response = await fetch('api_load.php');
+    const response = await fetch(apiBasePath + 'api_load.php');
     const result = await response.json();
 
     if (!result.success) {
@@ -134,7 +138,7 @@ async function saveChanges() {
   }
 
   try {
-    const response = await fetch('api_update.php', {
+    const response = await fetch(apiBasePath + 'api_update.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

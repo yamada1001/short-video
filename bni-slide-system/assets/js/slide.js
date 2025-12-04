@@ -7,6 +7,10 @@
   const slideContainer = document.getElementById('slideContainer');
   const weekSelector = document.getElementById('weekSelector');
 
+  // Determine API base path based on current location
+  const isInAdminDir = window.location.pathname.includes('/admin/');
+  const apiBasePath = isInAdminDir ? '../' : '';
+
   // Load available weeks
   await loadWeeksList();
 
@@ -24,7 +28,7 @@
    */
   async function loadWeeksList() {
     try {
-      const response = await fetch('api_list_weeks.php');
+      const response = await fetch(apiBasePath + 'api_list_weeks.php');
       const result = await response.json();
 
       if (result.success && result.weeks.length > 0) {
@@ -49,7 +53,7 @@
   async function loadSlideData(week = '') {
     try {
       // Fetch data from API
-      const url = week ? `api_load.php?week=${week}` : 'api_load.php';
+      const url = week ? `${apiBasePath}api_load.php?week=${week}` : `${apiBasePath}api_load.php`;
       const response = await fetch(url);
       const result = await response.json();
 

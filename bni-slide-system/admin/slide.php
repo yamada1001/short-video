@@ -7,11 +7,11 @@
   <title>BNI週次レポート | BNI Slide System</title>
 
   <!-- Reveal.js CSS -->
-  <link rel="stylesheet" href="assets/lib/reveal.js/dist/reveal.css">
-  <link rel="stylesheet" href="assets/lib/reveal.js/dist/theme/white.css">
+  <link rel="stylesheet" href="../assets/lib/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="../assets/lib/reveal.js/dist/theme/white.css">
 
   <!-- Custom Slide CSS -->
-  <link rel="stylesheet" href="assets/css/slide.css">
+  <link rel="stylesheet" href="../assets/css/slide.css">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,10 +45,10 @@
   <a href="edit.php" class="edit-button">編集モード</a>
 
   <!-- Reveal.js Scripts -->
-  <script src="assets/lib/reveal.js/dist/reveal.js"></script>
+  <script src="../assets/lib/reveal.js/dist/reveal.js"></script>
 
   <!-- Custom Slide Script -->
-  <script src="assets/js/slide.js"></script>
+  <script src="../assets/js/slide.js"></script>
 
 </body>
 </html>
