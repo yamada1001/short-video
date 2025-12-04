@@ -6,6 +6,9 @@
   const loadingScreen = document.getElementById('loadingScreen');
   const slideContainer = document.getElementById('slideContainer');
   const weekSelector = document.getElementById('weekSelector');
+  const controlButton = document.getElementById('controlButton');
+  const controlPanel = document.getElementById('controlPanel');
+  const closeControlPanel = document.getElementById('closeControlPanel');
 
   // Determine API base path based on current location
   const isInAdminDir = window.location.pathname.includes('/admin/');
@@ -17,8 +20,32 @@
   // Load initial data
   await loadSlideData();
 
+  // Control panel handlers
+  controlButton.addEventListener('click', function() {
+    controlPanel.classList.remove('hidden');
+  });
+
+  closeControlPanel.addEventListener('click', function() {
+    controlPanel.classList.add('hidden');
+  });
+
+  // Close modal on background click
+  controlPanel.addEventListener('click', function(e) {
+    if (e.target === controlPanel) {
+      controlPanel.classList.add('hidden');
+    }
+  });
+
+  // Close modal on ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !controlPanel.classList.contains('hidden')) {
+      controlPanel.classList.add('hidden');
+    }
+  });
+
   // Week selector change handler
   weekSelector.addEventListener('change', async function() {
+    controlPanel.classList.add('hidden');
     loadingScreen.classList.remove('hidden');
     await loadSlideData(this.value);
   });
@@ -74,7 +101,8 @@
       controls: true,
       progress: true,
       center: true,
-      transition: 'slide',
+      transition: 'fade',
+      transitionSpeed: 'fast',
       slideNumber: 'c/t',
       keyboard: true,
       overview: true,

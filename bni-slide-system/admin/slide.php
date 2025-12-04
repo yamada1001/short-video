@@ -16,7 +16,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -26,12 +26,33 @@
     <div class="loading-text">データを読み込んでいます...</div>
   </div>
 
-  <!-- Week Selector -->
-  <div style="position: fixed; top: 20px; left: 20px; z-index: 1000; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #CF2030;">表示する週:</label>
-    <select id="weekSelector" style="padding: 8px 12px; border: 2px solid #CF2030; border-radius: 4px; font-size: 14px; min-width: 200px;">
-      <option value="">読み込み中...</option>
-    </select>
+  <!-- Control Icon Button -->
+  <button id="controlButton" class="control-icon-button" title="コントロール">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M12 1v6m0 6v6m5.66-13.66l-4.24 4.24m-2.83 2.83l-4.24 4.24m13.66-4.24l-4.24-4.24m-2.83-2.83l-4.24-4.24"></path>
+    </svg>
+  </button>
+
+  <!-- Control Panel Modal -->
+  <div id="controlPanel" class="control-panel hidden">
+    <div class="control-panel-content">
+      <div class="control-panel-header">
+        <h3>コントロールパネル</h3>
+        <button id="closeControlPanel" class="close-button">×</button>
+      </div>
+      <div class="control-panel-body">
+        <div class="control-group">
+          <label>表示する週:</label>
+          <select id="weekSelector">
+            <option value="">読み込み中...</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <a href="edit.php" class="edit-link">📝 編集モード</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Reveal.js Presentation -->
@@ -41,11 +62,11 @@
     </div>
   </div>
 
-  <!-- Edit Button -->
-  <a href="edit.php" class="edit-button">編集モード</a>
-
   <!-- Reveal.js Scripts -->
   <script src="../assets/lib/reveal.js/dist/reveal.js"></script>
+
+  <!-- D3.js Library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
 
   <!-- SVG Slide Generator -->
   <script src="../assets/js/svg-slide-generator.js"></script>
