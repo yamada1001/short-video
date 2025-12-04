@@ -232,7 +232,7 @@ function createReferralBreakdownSlide(presentation, stats) {
   // 総額ボックス
   const totalBox = slide.insertShape(SlidesApp.ShapeType.ROUND_RECTANGLE, 150, 90, 400, 60);
   totalBox.getFill().setSolidFill('#FFF5F5');
-  totalBox.getBorder().setSolidFill('#CF2030');
+  totalBox.getBorder().getLineFill().setSolidFill('#CF2030');
   totalBox.getBorder().setWeight(2);
 
   const totalText = totalBox.getText();
@@ -339,7 +339,7 @@ function createMemberContributionSlides(presentation, stats) {
       // カード背景
       const card = slide.insertShape(SlidesApp.ShapeType.ROUND_RECTANGLE, x, y, cardWidth, cardHeight);
       card.getFill().setSolidFill('#F8F9FA');
-      card.getBorder().setSolidFill('#CF2030');
+      card.getBorder().getLineFill().setSolidFill('#CF2030');
       card.getBorder().setWeight(1);
 
       // メンバー名
