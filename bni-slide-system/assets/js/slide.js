@@ -63,8 +63,8 @@
 
       const { data, stats } = result;
 
-      // Generate slides
-      generateSlides(data, stats);
+      // Generate slides using SVG templates
+      await generateSVGSlides(data, stats);
 
       // Initialize or sync Reveal.js
       if (!Reveal.isReady()) {

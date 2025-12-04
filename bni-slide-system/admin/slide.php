@@ -47,6 +47,9 @@
   <!-- Reveal.js Scripts -->
   <script src="../assets/lib/reveal.js/dist/reveal.js"></script>
 
+  <!-- SVG Slide Generator -->
+  <script src="../assets/js/svg-slide-generator.js"></script>
+
   <!-- Custom Slide Script -->
   <script src="../assets/js/slide.js"></script>
 
