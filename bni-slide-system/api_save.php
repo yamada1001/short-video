@@ -15,35 +15,6 @@ define('MAIL_TO', 'yamada@yojitu.com');
 define('MAIL_FROM', 'noreply@yojitu.com');
 define('MAIL_FROM_NAME', 'BNI Slide System');
 
-/**
- * Get current week label (e.g., "2024年12月1週目")
- */
-function getCurrentWeekLabel() {
-  $now = new DateTime();
-  $year = $now->format('Y');
-  $month = $now->format('n'); // 1-12
-
-  // Get first day of month
-  $firstDay = new DateTime($year . '-' . $month . '-01');
-  $currentDay = $now->format('j');
-
-  // Calculate week number in month
-  $weekInMonth = ceil($currentDay / 7);
-
-  return $year . '年' . $month . '月' . $weekInMonth . '週目';
-}
-
-/**
- * Get CSV file path for current week
- */
-function getCSVFilePath() {
-  $weekLabel = getCurrentWeekLabel();
-  // e.g., "2024年12月1週目" -> "2024-12-1.csv"
-  $filename = preg_replace('/年|月|週目/', '-', $weekLabel);
-  $filename = str_replace('--', '-', $filename) . '.csv';
-  return __DIR__ . '/data/' . $filename;
-}
-
 // Check if POST request
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   echo json_encode([
@@ -54,17 +25,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 try {
-  // Get form data
-  $data = [
+  // Get base form data
+  $baseData = [
     'timestamp' => date('Y-m-d H:i:s'),
+    'input_date' => sanitize($_POST['input_date'] ?? ''),
     'introducer_name' => sanitize($_POST['introducer_name'] ?? ''),
+    'email' => sanitize($_POST['email'] ?? ''),
     'visitor_name' => sanitize($_POST['visitor_name'] ?? ''),
-    'introduction_date' => sanitize($_POST['introduction_date'] ?? ''),
+    'visitor_company' => sanitize($_POST['visitor_company'] ?? ''),
     'visitor_industry' => sanitize($_POST['visitor_industry'] ?? ''),
-    'referral_name' => sanitize($_POST['referral_name'] ?? ''),
-    'referral_amount' => intval($_POST['referral_amount'] ?? 0),
-    'referral_category' => sanitize($_POST['referral_category'] ?? ''),
-    'referral_provider' => sanitize($_POST['referral_provider'] ?? ''),
     'attendance' => sanitize($_POST['attendance'] ?? ''),
     'thanks_slips' => intval($_POST['thanks_slips'] ?? 0),
     'one_to_one_count' => intval($_POST['one_to_one_count'] ?? 0),
@@ -72,26 +41,56 @@ try {
     'comments' => sanitize($_POST['comments'] ?? '')
   ];
 
-  // Validate required fields (visitor info is now optional)
-  if (empty($data['introducer_name']) || empty($data['referral_name']) ||
-      empty($data['referral_category']) || empty($data['attendance'])) {
+  // Validate required fields
+  if (empty($baseData['input_date']) || empty($baseData['introducer_name']) ||
+      empty($baseData['email']) || empty($baseData['attendance'])) {
     throw new Exception('必須項目が入力されていません');
   }
 
-  // Save to CSV
-  $csvSaved = saveToCSV($data);
+  // Get referral data (multiple items)
+  $referrals = [];
+  if (isset($_POST['referral_name']) && is_array($_POST['referral_name'])) {
+    $count = count($_POST['referral_name']);
+    for ($i = 0; $i < $count; $i++) {
+      $referralName = sanitize($_POST['referral_name'][$i] ?? '');
+      $referralAmount = sanitize($_POST['referral_amount'][$i] ?? '0');
+      $referralCategory = sanitize($_POST['referral_category'][$i] ?? '');
+      $referralProvider = sanitize($_POST['referral_provider'][$i] ?? '');
+
+      // Skip empty referrals
+      if (empty($referralName)) {
+        continue;
+      }
+
+      $referrals[] = [
+        'name' => $referralName,
+        'amount' => intval($referralAmount),
+        'category' => $referralCategory,
+        'provider' => $referralProvider
+      ];
+    }
+  }
+
+  // At least one referral is required
+  if (count($referrals) === 0) {
+    throw new Exception('リファーラル情報を少なくとも1件入力してください');
+  }
+
+  // Save to CSV (one row per referral)
+  $csvSaved = saveToCSV($baseData, $referrals);
   if (!$csvSaved) {
     throw new Exception('CSVファイルへの保存に失敗しました');
   }
 
   // Send email notification
-  $emailSent = sendEmailNotification($data);
+  $emailSent = sendEmailNotification($baseData, $referrals);
 
   // Response
   echo json_encode([
     'success' => true,
     'message' => 'アンケートを送信しました！',
-    'data' => $data,
+    'data' => $baseData,
+    'referrals' => $referrals,
     'email_sent' => $emailSent
   ]);
 
@@ -112,8 +111,20 @@ function sanitize($input) {
 /**
  * Save data to CSV
  */
-function saveToCSV($data) {
-  $csvFile = getCSVFilePath();
+function saveToCSV($baseData, $referrals) {
+  // Determine CSV file path from input_date
+  $inputDate = $baseData['input_date'];
+  $date = new DateTime($inputDate);
+  $year = $date->format('Y');
+  $month = $date->format('n');
+  $day = $date->format('j');
+
+  // Calculate week number in month
+  $weekInMonth = ceil($day / 7);
+
+  // CSV filename: YYYY-MM-W.csv
+  $filename = "$year-$month-$weekInMonth.csv";
+  $csvFile = __DIR__ . '/data/' . $filename;
   $isNewFile = !file_exists($csvFile);
 
   // Create data directory if not exists
@@ -135,9 +146,11 @@ function saveToCSV($data) {
     // Write header
     fputcsv($fp, [
       'タイムスタンプ',
+      '入力日',
       '紹介者名',
+      'メールアドレス',
       'ビジター名',
-      '紹介日',
+      'ビジター会社名',
       'ビジター業種',
       '案件名',
       'リファーラル金額',
@@ -151,38 +164,74 @@ function saveToCSV($data) {
     ]);
   }
 
-  // Write data
-  $result = fputcsv($fp, [
-    $data['timestamp'],
-    $data['introducer_name'],
-    $data['visitor_name'],
-    $data['introduction_date'],
-    $data['visitor_industry'],
-    $data['referral_name'],
-    $data['referral_amount'],
-    $data['referral_category'],
-    $data['referral_provider'],
-    $data['attendance'],
-    $data['thanks_slips'],
-    $data['one_to_one_count'],
-    $data['activities'],
-    $data['comments']
-  ]);
+  // Write one row per referral
+  foreach ($referrals as $referral) {
+    $result = fputcsv($fp, [
+      $baseData['timestamp'],
+      $baseData['input_date'],
+      $baseData['introducer_name'],
+      $baseData['email'],
+      $baseData['visitor_name'],
+      $baseData['visitor_company'],
+      $baseData['visitor_industry'],
+      $referral['name'],
+      $referral['amount'],
+      $referral['category'],
+      $referral['provider'],
+      $baseData['attendance'],
+      $baseData['thanks_slips'],
+      $baseData['one_to_one_count'],
+      $baseData['activities'],
+      $baseData['comments']
+    ]);
+
+    if ($result === false) {
+      fclose($fp);
+      return false;
+    }
+  }
 
   fclose($fp);
 
   // Set file permissions
   chmod($csvFile, 0666);
 
-  return $result !== false;
+  return true;
 }
 
 /**
- * Send email notification
+ * Send email notification to admin
  */
-function sendEmailNotification($data) {
+function sendEmailNotification($baseData, $referrals) {
   $to = MAIL_TO;
-  $subject = '[BNI] 新しいアンケート回答がありました - ' . $data['introducer_name'];
+  $subject = '[BNI] 新しいアンケート回答がありました - ' . $baseData['introducer_name'];
+
+  // Build referral list HTML
+  $referralListHTML = '';
+  $totalAmount = 0;
+  foreach ($referrals as $index => $referral) {
+    $totalAmount += $referral['amount'];
+    $referralListHTML .= '
+      <div style="margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border-left: 3px solid #CF2030;">
+        <div class="field">
+          <span class="label">案件' . ($index + 1) . ':</span>
+          <span class="value">' . htmlspecialchars($referral['name']) . '</span>
+        </div>
+        <div class="field">
+          <span class="label">金額:</span>
+          <span class="value">¥' . number_format($referral['amount']) . '</span>
+        </div>
+        <div class="field">
+          <span class="label">カテゴリ:</span>
+          <span class="value">' . htmlspecialchars($referral['category']) . '</span>
+        </div>
+        <div class="field">
+          <span class="label">提供者:</span>
+          <span class="value">' . htmlspecialchars($referral['provider'] ?: '-') . '</span>
+        </div>
+      </div>
+    ';
+  }
 
   // Email body (HTML)
   $message = '<!DOCTYPE html>
@@ -200,6 +249,7 @@ function sendEmailNotification($data) {
     .label { font-weight: bold; color: #666; }
     .value { margin-left: 10px; }
     .footer { text-align: center; color: #999; font-size: 12px; margin-top: 20px; }
+    .total { font-size: 18px; font-weight: bold; color: #CF2030; margin-top: 15px; }
   </style>
 </head>
 <body>
@@ -210,42 +260,42 @@ function sendEmailNotification($data) {
     <div class="content">
 
       <div class="section">
-        <h3>1. ビジター紹介情報</h3>
+        <h3>基本情報</h3>
+        <div class="field">
+          <span class="label">入力日:</span>
+          <span class="value">' . htmlspecialchars($baseData['input_date']) . '</span>
+        </div>
         <div class="field">
           <span class="label">紹介者名:</span>
-          <span class="value">' . htmlspecialchars($data['introducer_name']) . '</span>
+          <span class="value">' . htmlspecialchars($baseData['introducer_name']) . '</span>
         </div>
         <div class="field">
-          <span class="label">ビジター名:</span>
-          <span class="value">' . htmlspecialchars($data['visitor_name']) . '</span>
-        </div>
-        <div class="field">
-          <span class="label">紹介日:</span>
-          <span class="value">' . htmlspecialchars($data['introduction_date']) . '</span>
-        </div>
-        <div class="field">
-          <span class="label">ビジター業種:</span>
-          <span class="value">' . htmlspecialchars($data['visitor_industry']) . '</span>
+          <span class="label">メールアドレス:</span>
+          <span class="value">' . htmlspecialchars($baseData['email']) . '</span>
         </div>
       </div>
 
       <div class="section">
-        <h3>2. リファーラル金額情報</h3>
+        <h3>1. ビジター紹介情報</h3>
         <div class="field">
-          <span class="label">案件名:</span>
-          <span class="value">' . htmlspecialchars($data['referral_name']) . '</span>
+          <span class="label">ビジター名:</span>
+          <span class="value">' . htmlspecialchars($baseData['visitor_name'] ?: '-') . '</span>
         </div>
         <div class="field">
-          <span class="label">金額:</span>
-          <span class="value">¥' . number_format($data['referral_amount']) . '</span>
+          <span class="label">会社名（屋号）:</span>
+          <span class="value">' . htmlspecialchars($baseData['visitor_company'] ?: '-') . '</span>
         </div>
         <div class="field">
-          <span class="label">カテゴリ:</span>
-          <span class="value">' . htmlspecialchars($data['referral_category']) . '</span>
+          <span class="label">ビジター業種:</span>
+          <span class="value">' . htmlspecialchars($baseData['visitor_industry'] ?: '-') . '</span>
         </div>
-        <div class="field">
-          <span class="label">提供者:</span>
-          <span class="value">' . htmlspecialchars($data['referral_provider']) . '</span>
+      </div>
+
+      <div class="section">
+        <h3>2. リファーラル金額情報（' . count($referrals) . '件）</h3>
+        ' . $referralListHTML . '
+        <div class="total">
+          合計: ¥' . number_format($totalAmount) . '
         </div>
       </div>
 
@@ -253,28 +303,28 @@ function sendEmailNotification($data) {
         <h3>3. メンバー情報</h3>
         <div class="field">
           <span class="label">出席状況:</span>
-          <span class="value">' . htmlspecialchars($data['attendance']) . '</span>
+          <span class="value">' . htmlspecialchars($baseData['attendance']) . '</span>
         </div>
         <div class="field">
           <span class="label">サンクスリップ:</span>
-          <span class="value">' . $data['thanks_slips'] . '件</span>
+          <span class="value">' . $baseData['thanks_slips'] . '件</span>
         </div>
         <div class="field">
           <span class="label">ワンツーワン:</span>
-          <span class="value">' . $data['one_to_one_count'] . '回</span>
+          <span class="value">' . $baseData['one_to_one_count'] . '回</span>
         </div>
         <div class="field">
           <span class="label">アクティビティ:</span>
-          <span class="value">' . htmlspecialchars(str_replace('|', ', ', $data['activities'])) . '</span>
+          <span class="value">' . htmlspecialchars(str_replace('|', ', ', $baseData['activities']) ?: '-') . '</span>
         </div>
         <div class="field">
           <span class="label">コメント:</span>
-          <span class="value">' . nl2br(htmlspecialchars($data['comments'])) . '</span>
+          <span class="value">' . nl2br(htmlspecialchars($baseData['comments'] ?: '-')) . '</span>
         </div>
       </div>
 
       <div class="footer">
-        <p>送信日時: ' . $data['timestamp'] . '</p>
+        <p>送信日時: ' . $baseData['timestamp'] . '</p>
         <p>BNI Slide System</p>
       </div>
     </div>
@@ -290,7 +340,71 @@ function sendEmailNotification($data) {
     'X-Mailer: PHP/' . phpversion()
   ];
 
-  // Send email
+  // Send admin notification
+  $adminResult = mail($to, $subject, $message, implode("\r\n", $headers));
+
+  // Send thank you email to user
+  $thanksResult = sendThanksEmail($baseData);
+
+  return $adminResult && $thanksResult;
+}
+
+/**
+ * Send thank you email to user
+ */
+function sendThanksEmail($baseData) {
+  $to = $baseData['email'];
+  $subject = '[BNI] アンケートご回答ありがとうございます';
+
+  // Email body (HTML)
+  $message = '<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: sans-serif; line-height: 1.8; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background-color: #CF2030; color: white; padding: 30px 20px; text-align: center; }
+    .content { background-color: #ffffff; padding: 30px; }
+    .message { font-size: 16px; margin-bottom: 20px; }
+    .footer { text-align: center; color: #999; font-size: 13px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>アンケートご回答ありがとうございます</h2>
+    </div>
+    <div class="content">
+      <p class="message">
+        ' . htmlspecialchars($baseData['introducer_name']) . ' 様
+      </p>
+      <p class="message">
+        BNI週次アンケートにご回答いただき、誠にありがとうございました。
+      </p>
+      <p class="message">
+        ご入力いただいた内容は、週次レポートに反映されます。<br>
+        引き続き、よろしくお願いいたします。
+      </p>
+      <div class="footer">
+        <p>このメールは自動送信されています。</p>
+        <p>BNI Slide System</p>
+        <p>Givers Gain®</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>';
+
+  // Email headers
+  $headers = [
+    'From: ' . MAIL_FROM_NAME . ' <' . MAIL_FROM . '>',
+    'Reply-To: ' . MAIL_TO,
+    'Content-Type: text/html; charset=UTF-8',
+    'X-Mailer: PHP/' . phpversion()
+  ];
+
+  // Send thank you email
   $result = mail($to, $subject, $message, implode("\r\n", $headers));
 
   return $result;

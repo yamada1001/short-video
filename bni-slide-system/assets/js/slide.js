@@ -88,10 +88,10 @@
       throw new Error(result.message || 'データの読み込みに失敗しました');
     }
 
-      const { data, stats } = result;
+      const { data, stats, date } = result;
 
       // Generate slides using SVG templates
-      await generateSVGSlides(data, stats);
+      await generateSVGSlides(data, stats, date);
 
       // Initialize or sync Reveal.js
       if (!Reveal.isReady()) {

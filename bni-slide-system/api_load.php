@@ -67,11 +67,41 @@ try {
   // Calculate statistics
   $stats = calculateStats($data);
 
+  // Extract date from filename for title slide
+  // e.g., "2024-12-1.csv" -> 2024年12月1週目の金曜日
+  $slideDate = '';
+  if ($csvFile) {
+    $filename = basename($csvFile, '.csv');
+    $parts = explode('-', $filename);
+    if (count($parts) === 3) {
+      $year = intval($parts[0]);
+      $month = intval($parts[1]);
+      $weekInMonth = intval($parts[2]);
+
+      // Calculate the Friday of that week
+      $firstDay = new DateTime("$year-$month-01");
+      $firstDayOfWeek = intval($firstDay->format('w')); // 0 (Sunday) to 6 (Saturday)
+
+      // Calculate days to first Friday
+      $daysToFirstFriday = (5 - $firstDayOfWeek + 7) % 7;
+      if ($daysToFirstFriday === 0 && $firstDayOfWeek !== 5) {
+        $daysToFirstFriday = 7;
+      }
+
+      // Add weeks
+      $targetDay = 1 + $daysToFirstFriday + (($weekInMonth - 1) * 7);
+      $targetDate = new DateTime("$year-$month-$targetDay");
+
+      $slideDate = $targetDate->format('Y年n月j日');
+    }
+  }
+
   echo json_encode([
     'success' => true,
     'data' => $data,
     'stats' => $stats,
-    'count' => count($data)
+    'count' => count($data),
+    'date' => $slideDate
   ], JSON_UNESCAPED_UNICODE);
 
 } catch (Exception $e) {

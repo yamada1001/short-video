@@ -6,9 +6,11 @@
 /**
  * Generate all slides from data
  */
-async function generateSVGSlides(data, stats) {
+async function generateSVGSlides(data, stats, slideDate = '') {
   const slideContainer = document.getElementById('slideContainer');
-  const today = new Date().toLocaleDateString('ja-JP', {
+
+  // Use provided date from API, or fall back to today's date
+  const displayDate = slideDate || new Date().toLocaleDateString('ja-JP', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
@@ -20,7 +22,7 @@ async function generateSVGSlides(data, stats) {
   slides += `
     <section class="title-slide">
       <h1>BNI週次レポート</h1>
-      <p class="subtitle">${today}</p>
+      <p class="subtitle">${displayDate}</p>
       <p class="branding">Givers Gain® | BNI Slide System</p>
     </section>
   `;

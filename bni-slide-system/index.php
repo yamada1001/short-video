@@ -151,6 +151,15 @@
                 </select>
                 <span class="form-error">名前を選択してください</span>
               </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  メールアドレス<span class="required">*</span>
+                </label>
+                <input type="email" name="email" class="form-input" required placeholder="例: example@example.com">
+                <span class="form-error">メールアドレスを入力してください</span>
+                <p class="form-hint">サンクスメール送信のために必要です</p>
+              </div>
             </div>
 
             <!-- Section 1: ビジター紹介情報（任意） -->
