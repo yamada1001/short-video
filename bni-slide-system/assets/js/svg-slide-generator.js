@@ -54,39 +54,49 @@ async function generateSVGSlides(data, stats) {
     </section>
   `;
 
-  // Slide 3: Visitor Introductions
+  // Slide 3: Visitor Introductions (split into multiple pages if needed)
   if (data.length > 0) {
-    slides += `
-      <section>
-        <h2>ビジター紹介一覧</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>紹介者</th>
-              <th>ビジター名</th>
-              <th>業種</th>
-              <th>紹介日</th>
-            </tr>
-          </thead>
-          <tbody>
-    `;
+    const visitorsWithData = data.filter(row => row['ビジター名']);
+    const itemsPerPage = 5;
+    const totalPages = Math.ceil(visitorsWithData.length / itemsPerPage);
 
-    data.forEach(row => {
+    for (let page = 0; page < totalPages; page++) {
+      const start = page * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageData = visitorsWithData.slice(start, end);
+
       slides += `
-        <tr>
-          <td>${escapeHtml(row['紹介者名'] || '')}</td>
-          <td><strong>${escapeHtml(row['ビジター名'] || '')}</strong></td>
-          <td>${escapeHtml(row['ビジター業種'] || '-')}</td>
-          <td>${escapeHtml(row['紹介日'] || '')}</td>
-        </tr>
+        <section>
+          <h2>ビジター紹介一覧${totalPages > 1 ? ` (${page + 1}/${totalPages})` : ''}</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>紹介者</th>
+                <th>ビジター名</th>
+                <th>業種</th>
+                <th>紹介日</th>
+              </tr>
+            </thead>
+            <tbody>
       `;
-    });
 
-    slides += `
-          </tbody>
-        </table>
-      </section>
-    `;
+      pageData.forEach(row => {
+        slides += `
+          <tr>
+            <td>${escapeHtml(row['紹介者名'] || '')}</td>
+            <td><strong>${escapeHtml(row['ビジター名'] || '')}</strong></td>
+            <td>${escapeHtml(row['ビジター業種'] || '-')}</td>
+            <td>${escapeHtml(row['紹介日'] || '')}</td>
+          </tr>
+        `;
+      });
+
+      slides += `
+            </tbody>
+          </table>
+        </section>
+      `;
+    }
   }
 
   // Slide 4: Referral Amount Breakdown
@@ -99,15 +109,15 @@ async function generateSVGSlides(data, stats) {
   `;
 
   if (Object.keys(stats.categories).length > 0) {
-    slides += `<div style="margin-top: 40px;">`;
+    slides += `<div style="margin-top: 30px; max-width: 85%; margin-left: auto; margin-right: auto;">`;
     Object.entries(stats.categories).forEach(([category, amount]) => {
       const percentage = stats.total_referral_amount > 0
         ? ((amount / stats.total_referral_amount) * 100).toFixed(1)
         : 0;
 
       slides += `
-        <div style="margin-bottom: 20px;">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.85em;">
             <span style="font-weight: 600;">${escapeHtml(category)}</span>
             <span style="color: #27AE60; font-weight: 700;">¥${formatNumber(amount)}</span>
           </div>
@@ -124,66 +134,85 @@ async function generateSVGSlides(data, stats) {
 
   slides += `</section>`;
 
-  // Slide 5: Member Contributions
+  // Slide 5: Member Contributions (split into multiple pages if needed)
   if (Object.keys(stats.members).length > 0) {
-    slides += `
-      <section>
-        <h2>メンバー別貢献度</h2>
-        <div class="member-list">
-    `;
+    const memberEntries = Object.entries(stats.members);
+    const itemsPerPage = 6;
+    const totalPages = Math.ceil(memberEntries.length / itemsPerPage);
 
-    Object.entries(stats.members).forEach(([member, memberStats]) => {
+    for (let page = 0; page < totalPages; page++) {
+      const start = page * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageMembers = memberEntries.slice(start, end);
+
       slides += `
-        <div class="member-card">
-          <div class="member-name">${escapeHtml(member)}</div>
-          <div class="member-stats">
-            <p>ビジター: <strong>${memberStats.visitors}名</strong></p>
-            <p>リファーラル: <strong>¥${formatNumber(memberStats.referral_amount)}</strong></p>
-          </div>
-        </div>
+        <section>
+          <h2>メンバー別貢献度${totalPages > 1 ? ` (${page + 1}/${totalPages})` : ''}</h2>
+          <div class="member-list">
       `;
-    });
 
-    slides += `
-        </div>
-      </section>
-    `;
+      pageMembers.forEach(([member, memberStats]) => {
+        slides += `
+          <div class="member-card">
+            <div class="member-name">${escapeHtml(member)}</div>
+            <div class="member-stats">
+              <p>ビジター: <strong>${memberStats.visitors}名</strong></p>
+              <p>リファーラル: <strong>¥${formatNumber(memberStats.referral_amount)}</strong></p>
+            </div>
+          </div>
+        `;
+      });
+
+      slides += `
+          </div>
+        </section>
+      `;
+    }
   }
 
-  // Slide 6: Detailed Referral List
+  // Slide 6: Detailed Referral List (split into multiple pages if needed)
   if (data.length > 0) {
-    slides += `
-      <section>
-        <h2>リファーラル詳細</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>案件名</th>
-              <th>金額</th>
-              <th>カテゴリ</th>
-              <th>提供者</th>
-            </tr>
-          </thead>
-          <tbody>
-    `;
+    const itemsPerPage = 5;
+    const totalPages = Math.ceil(data.length / itemsPerPage);
 
-    data.forEach(row => {
-      const amount = parseInt(row['リファーラル金額'] || 0);
+    for (let page = 0; page < totalPages; page++) {
+      const start = page * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageData = data.slice(start, end);
+
       slides += `
-        <tr>
-          <td>${escapeHtml(row['案件名'] || '')}</td>
-          <td style="color: #27AE60; font-weight: 700;">¥${formatNumber(amount)}</td>
-          <td>${escapeHtml(row['カテゴリ'] || '')}</td>
-          <td>${escapeHtml(row['リファーラル提供者'] || '-')}</td>
-        </tr>
+        <section>
+          <h2>リファーラル詳細${totalPages > 1 ? ` (${page + 1}/${totalPages})` : ''}</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>案件名</th>
+                <th>金額</th>
+                <th>カテゴリ</th>
+                <th>提供者</th>
+              </tr>
+            </thead>
+            <tbody>
       `;
-    });
 
-    slides += `
-          </tbody>
-        </table>
-      </section>
-    `;
+      pageData.forEach(row => {
+        const amount = parseInt(row['リファーラル金額'] || 0);
+        slides += `
+          <tr>
+            <td>${escapeHtml(row['案件名'] || '')}</td>
+            <td style="color: #27AE60; font-weight: 700;">¥${formatNumber(amount)}</td>
+            <td>${escapeHtml(row['カテゴリ'] || '')}</td>
+            <td>${escapeHtml(row['リファーラル提供者'] || '-')}</td>
+          </tr>
+        `;
+      });
+
+      slides += `
+            </tbody>
+          </table>
+        </section>
+      `;
+    }
   }
 
   // Slide 7: Activity Summary
