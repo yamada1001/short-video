@@ -70,7 +70,8 @@ async function generateSVGSlides(data, stats) {
             <thead>
               <tr>
                 <th>紹介者</th>
-                <th>ビジター名</th>
+                <th>お名前</th>
+                <th>会社名（屋号）</th>
                 <th>業種</th>
               </tr>
             </thead>
@@ -82,6 +83,7 @@ async function generateSVGSlides(data, stats) {
           <tr>
             <td>${escapeHtml(row['紹介者名'] || '')}</td>
             <td><strong>${escapeHtml(row['ビジター名'] || '')}</strong></td>
+            <td>${escapeHtml(row['ビジター会社名'] || '-')}</td>
             <td>${escapeHtml(row['ビジター業種'] || '-')}</td>
           </tr>
         `;
