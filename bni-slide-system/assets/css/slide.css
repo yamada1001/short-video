@@ -45,7 +45,56 @@
   background-color: #FFFFFF;
 }
 
-/* Title Slide - BNI Brand Colors */
+/* Modern Title Slide - Enterprise Design */
+.reveal .slides section.title-slide-modern {
+  background: #FFFFFF;
+  color: #1a1a1a;
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 80px;
+}
+
+.title-slide-modern .title-content {
+  text-align: center;
+  max-width: 900px;
+  position: relative;
+  z-index: 2;
+}
+
+.title-slide-modern .main-title {
+  font-size: 4.5em !important;
+  font-weight: 800 !important;
+  color: #CF2030 !important;
+  margin-bottom: 0.3em !important;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.title-slide-modern .date-text {
+  font-size: 1.8em;
+  color: #666666;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.title-slide-modern .brand-footer {
+  font-size: 1em;
+  color: #999999;
+  font-weight: 500;
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 2px solid #E0E0E0;
+}
+
+/* Thank You Slide Variant */
+.reveal .slides section.thankyou-slide .main-title {
+  color: #CF2030 !important;
+}
+
+/* Old Title Slide - Keep for backward compatibility */
 .reveal .slides section.title-slide {
   background: linear-gradient(135deg, #CF2030 0%, #A01828 50%, #8B1420 100%);
   color: #FFFFFF;
@@ -484,4 +533,117 @@
   background-color: #A01828;
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(207, 32, 48, 0.3);
+}
+
+/* ======================================
+   Modern Summary Slide Styles
+   ====================================== */
+
+.summary-slide-modern {
+  padding: 60px 80px !important;
+  background: #FAFBFC !important;
+}
+
+.section-title-center {
+  text-align: center;
+  font-size: 3em !important;
+  font-weight: 700 !important;
+  color: #CF2030 !important;
+  margin-bottom: 60px !important;
+  position: relative;
+}
+
+.section-title-center::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #CF2030;
+  margin: 20px auto 0;
+  border-radius: 2px;
+}
+
+.stats-grid-modern {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.stat-card-modern {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #E5E7EB;
+}
+
+.stat-card-modern:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.stat-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #CF2030 0%, #E83A47 100%);
+  color: #FFFFFF;
+  font-size: 2.5em;
+}
+
+.stat-icon-green {
+  background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
+}
+
+.stat-icon-blue {
+  background: linear-gradient(135deg, #3498DB 0%, #5DADE2 100%);
+}
+
+.stat-icon-orange {
+  background: linear-gradient(135deg, #F39C12 0%, #F8B739 100%);
+}
+
+.stat-icon-purple {
+  background: linear-gradient(135deg, #9B59B6 0%, #BB8FCE 100%);
+}
+
+.stat-number {
+  font-family: 'Inter', sans-serif;
+  font-size: 3.5em;
+  font-weight: 800;
+  color: #CF2030;
+  margin: 20px 0 15px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.stat-number-green {
+  color: #27AE60;
+}
+
+.stat-number-blue {
+  color: #3498DB;
+}
+
+.stat-number-orange {
+  color: #F39C12;
+}
+
+.stat-number-purple {
+  color: #9B59B6;
+}
+
+.stat-card-modern .stat-label {
+  font-size: 0.95em;
+  color: #666666;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }

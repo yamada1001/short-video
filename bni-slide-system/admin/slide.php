@@ -17,6 +17,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
@@ -65,10 +68,7 @@
   <!-- Reveal.js Scripts -->
   <script src="../assets/lib/reveal.js/dist/reveal.js"></script>
 
-  <!-- D3.js Library -->
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-
-  <!-- SVG Slide Generator -->
+  <!-- Slide Generator -->
   <script src="../assets/js/svg-slide-generator.js"></script>
 
   <!-- Custom Slide Script -->
