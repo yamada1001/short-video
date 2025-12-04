@@ -30,9 +30,13 @@
   }
   ?></pre>
 
-  <h2>4. JavaScriptでのFetch確認</h2>
-  <button onclick="testFetch()">Fetchテスト</button>
+  <h2>4. JavaScriptでのFetch確認（直接アクセス）</h2>
+  <button onclick="testFetch()">data/members.json</button>
   <pre id="fetchResult"></pre>
+
+  <h2>5. JavaScriptでのFetch確認（API経由）</h2>
+  <button onclick="testFetchAPI()">api_members.php</button>
+  <pre id="fetchResultAPI"></pre>
 
   <script>
   async function testFetch() {
@@ -42,6 +46,16 @@
       document.getElementById('fetchResult').textContent = JSON.stringify(data, null, 2);
     } catch (error) {
       document.getElementById('fetchResult').textContent = 'Error: ' + error.message;
+    }
+  }
+
+  async function testFetchAPI() {
+    try {
+      const response = await fetch('api_members.php');
+      const data = await response.json();
+      document.getElementById('fetchResultAPI').textContent = JSON.stringify(data, null, 2);
+    } catch (error) {
+      document.getElementById('fetchResultAPI').textContent = 'Error: ' + error.message;
     }
   }
   </script>

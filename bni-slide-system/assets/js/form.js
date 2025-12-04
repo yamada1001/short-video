@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
    */
   async function loadMembers() {
     try {
-      const response = await fetch('data/members.json');
+      const response = await fetch('api_members.php');
       const data = await response.json();
       const memberSelect = document.getElementById('memberSelect');
       const referralProviderSelect = document.getElementById('referralProviderSelect');
