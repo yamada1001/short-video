@@ -164,6 +164,9 @@
       // Hide loading screen
       loadingScreen.classList.add('hidden');
 
+      // Setup countdown timers for pitch slides
+      setupCountdownTimers();
+
     } catch (error) {
       console.error('Error loading slide data:', error);
       slideContainer.innerHTML = `
@@ -177,6 +180,63 @@
       `;
       loadingScreen.classList.add('hidden');
     }
+  }
+
+  /**
+   * Setup countdown timers for pitch slides
+   */
+  function setupCountdownTimers() {
+    let countdownInterval = null;
+
+    Reveal.on('slidechanged', event => {
+      // Clear any existing countdown
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+      }
+
+      // Check if current slide is a pitch slide
+      const currentSlide = event.currentSlide;
+      if (currentSlide && currentSlide.classList.contains('pitch-slide')) {
+        const timerElement = currentSlide.querySelector('.countdown-timer');
+        const progressBar = currentSlide.querySelector('.countdown-progress-bar');
+
+        if (timerElement && progressBar) {
+          let seconds = parseInt(timerElement.dataset.seconds) || 30;
+          const totalSeconds = seconds;
+
+          // Reset display
+          timerElement.textContent = seconds;
+          progressBar.style.width = '100%';
+
+          // Start countdown
+          countdownInterval = setInterval(() => {
+            seconds--;
+            timerElement.textContent = seconds;
+
+            // Update progress bar
+            const percentage = (seconds / totalSeconds) * 100;
+            progressBar.style.width = percentage + '%';
+
+            // Change color when time is running out
+            if (seconds <= 10) {
+              timerElement.style.color = '#FFD700';
+            }
+            if (seconds <= 5) {
+              timerElement.style.color = '#FF6B6B';
+            }
+
+            // Stop at 0
+            if (seconds <= 0) {
+              clearInterval(countdownInterval);
+              countdownInterval = null;
+              timerElement.textContent = '0';
+              progressBar.style.width = '0%';
+            }
+          }, 1000);
+        }
+      }
+    });
   }
 })();
 

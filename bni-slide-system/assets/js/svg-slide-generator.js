@@ -165,6 +165,21 @@ async function generateSVGSlides(data, stats) {
         </section>
       `;
     }
+
+    // Slide 5.5: Member Pitch Countdown (30 seconds for each member)
+    const allMembers = Object.keys(stats.members);
+    allMembers.forEach(member => {
+      slides += `
+        <section class="pitch-slide" data-member="${escapeHtml(member)}">
+          <h2 class="pitch-member-name">${escapeHtml(member)}</h2>
+          <p class="pitch-label">30秒ピッチ</p>
+          <div class="countdown-timer" data-seconds="30">30</div>
+          <div class="countdown-progress">
+            <div class="countdown-progress-bar"></div>
+          </div>
+        </section>
+      `;
+    });
   }
 
   // Slide 6: Detailed Referral List (split into multiple pages if needed)

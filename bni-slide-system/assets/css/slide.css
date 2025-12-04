@@ -255,6 +255,52 @@
   line-height: 1.6;
 }
 
+/* Pitch Slide - Countdown Timer */
+.pitch-slide {
+  text-align: center !important;
+}
+
+.pitch-member-name {
+  font-size: 3em !important;
+  margin-bottom: 20px;
+  color: #FFFFFF !important;
+  text-align: center !important;
+}
+
+.pitch-label {
+  font-size: 1.2em;
+  color: #FFE6E8;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.countdown-timer {
+  font-size: 10em;
+  font-weight: 900;
+  color: #FFFFFF;
+  font-family: 'LINE Seed JP', sans-serif;
+  line-height: 1;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.countdown-progress {
+  width: 80%;
+  max-width: 600px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.countdown-progress-bar {
+  height: 100%;
+  background: #FFFFFF;
+  width: 100%;
+  transition: width 1s linear;
+}
+
 /* Highlight Box - Minimal */
 .highlight-box {
   background: rgba(255, 255, 255, 0.1);
