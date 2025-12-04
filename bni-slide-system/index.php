@@ -42,6 +42,61 @@
     .select2-container {
       width: 100% !important;
     }
+
+    /* Referral item styling */
+    .referral-item {
+      background: #F9F9F9;
+      border: 2px solid #E0E0E0;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .referral-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .referral-item-header h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #CF2030;
+    }
+
+    .btn-remove-referral {
+      background: #DC3545;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-remove-referral:hover {
+      background: #C82333;
+    }
+
+    .btn-add-referral {
+      background: #CF2030;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-add-referral:hover {
+      background: #A01828;
+    }
   </style>
 </head>
 <body>
@@ -79,6 +134,15 @@
 
               <div class="form-group">
                 <label class="form-label">
+                  入力日（会議実施日）<span class="required">*</span>
+                </label>
+                <input type="date" name="input_date" class="form-input" required>
+                <span class="form-error">入力日を選択してください</span>
+                <p class="form-hint">この日付でデータが週ごとに管理されます</p>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
                   あなたの名前<span class="required">*</span>
                 </label>
                 <select name="introducer_name" class="form-select" id="memberSelect" required>
@@ -103,9 +167,10 @@
 
               <div class="form-group">
                 <label class="form-label">
-                  紹介日
+                  会社名（屋号）
                 </label>
-                <input type="date" name="introduction_date" class="form-input">
+                <input type="text" name="visitor_company" class="form-input" placeholder="例: 株式会社〇〇">
+                <span class="form-help">ビジターの会社名または屋号を入力してください</span>
               </div>
 
               <div class="form-group">
@@ -118,51 +183,65 @@
 
             <!-- Section 2: リファーラル金額情報 -->
             <div class="form-section">
-              <h2 class="form-section-title">2. リファーラル金額情報</h2>
-
-              <div class="form-group">
-                <label class="form-label">
-                  案件名・内容<span class="required">*</span>
-                </label>
-                <input type="text" name="referral_name" class="form-input" required placeholder="例: ○○社のWebサイト制作案件">
-                <span class="form-error">案件名を入力してください</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 class="form-section-title" style="margin-bottom: 0;">2. リファーラル金額情報</h2>
+                <button type="button" class="btn-add-referral" id="addReferralBtn">
+                  <span>+ リファーラル追加</span>
+                </button>
               </div>
 
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">
-                    リファーラル金額（円）<span class="required">*</span>
-                  </label>
-                  <input type="text" name="referral_amount_display" id="referralAmountDisplay" class="form-input" required placeholder="例: 500,000">
-                  <input type="hidden" name="referral_amount" id="referralAmount">
-                  <span class="form-help">カンマは自動で挿入されます</span>
-                  <span class="form-error">金額を入力してください</span>
-                </div>
+              <div id="referralContainer">
+                <!-- リファーラル項目1 -->
+                <div class="referral-item" data-index="0">
+                  <div class="referral-item-header">
+                    <h3>リファーラル #1</h3>
+                  </div>
 
-                <div class="form-group">
-                  <label class="form-label">
-                    カテゴリ<span class="required">*</span>
-                  </label>
-                  <select name="referral_category" class="form-select" required>
-                    <option value="">選択してください</option>
-                    <option value="成約">成約</option>
-                    <option value="商談中">商談中</option>
-                    <option value="見込み">見込み</option>
-                    <option value="その他">その他</option>
-                  </select>
-                  <span class="form-error">カテゴリを選択してください</span>
-                </div>
-              </div>
+                  <div class="form-group">
+                    <label class="form-label">
+                      案件名・内容<span class="required">*</span>
+                    </label>
+                    <input type="text" name="referral_name[]" class="form-input" required placeholder="例: ○○社のWebサイト制作案件">
+                    <span class="form-error">案件名を入力してください</span>
+                  </div>
 
-              <div class="form-group">
-                <label class="form-label">
-                  リファーラル提供者
-                </label>
-                <select name="referral_provider" class="form-select" id="referralProviderSelect">
-                  <option value="">選択してください（任意）</option>
-                  <!-- メンバーリストは JavaScript で動的に読み込み -->
-                </select>
-                <span class="form-help">あなたにリファーラルを提供してくれたメンバー名</span>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label">
+                        リファーラル金額（円）<span class="required">*</span>
+                      </label>
+                      <input type="text" name="referral_amount_display[]" class="form-input referral-amount-display" required placeholder="例: 500,000">
+                      <input type="hidden" name="referral_amount[]" class="referral-amount-hidden">
+                      <span class="form-help">カンマは自動で挿入されます</span>
+                      <span class="form-error">金額を入力してください</span>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">
+                        カテゴリ<span class="required">*</span>
+                      </label>
+                      <select name="referral_category[]" class="form-select" required>
+                        <option value="">選択してください</option>
+                        <option value="成約">成約</option>
+                        <option value="商談中">商談中</option>
+                        <option value="見込み">見込み</option>
+                        <option value="その他">その他</option>
+                      </select>
+                      <span class="form-error">カテゴリを選択してください</span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">
+                      リファーラル提供者
+                    </label>
+                    <select name="referral_provider[]" class="form-select referral-provider-select">
+                      <option value="">選択してください（任意）</option>
+                      <!-- メンバーリストは JavaScript で動的に読み込み -->
+                    </select>
+                    <span class="form-help">あなたにリファーラルを提供してくれたメンバー名</span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -259,6 +338,94 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Select2 JS -->
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <script>
+    // リファーラル追加機能
+    $(document).ready(function() {
+      let referralIndex = 1;
+
+      // リファーラル追加ボタン
+      $('#addReferralBtn').on('click', function() {
+        referralIndex++;
+
+        const newReferralItem = `
+          <div class="referral-item" data-index="${referralIndex}">
+            <div class="referral-item-header">
+              <h3>リファーラル #${referralIndex}</h3>
+              <button type="button" class="btn-remove-referral" onclick="removeReferral(this)">
+                <span>削除</span>
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                案件名・内容<span class="required">*</span>
+              </label>
+              <input type="text" name="referral_name[]" class="form-input" required placeholder="例: ○○社のWebサイト制作案件">
+              <span class="form-error">案件名を入力してください</span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">
+                  リファーラル金額（円）<span class="required">*</span>
+                </label>
+                <input type="text" name="referral_amount_display[]" class="form-input referral-amount-display" required placeholder="例: 500,000">
+                <input type="hidden" name="referral_amount[]" class="referral-amount-hidden">
+                <span class="form-help">カンマは自動で挿入されます</span>
+                <span class="form-error">金額を入力してください</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  カテゴリ<span class="required">*</span>
+                </label>
+                <select name="referral_category[]" class="form-select" required>
+                  <option value="">選択してください</option>
+                  <option value="成約">成約</option>
+                  <option value="商談中">商談中</option>
+                  <option value="見込み">見込み</option>
+                  <option value="その他">その他</option>
+                </select>
+                <span class="form-error">カテゴリを選択してください</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                リファーラル提供者
+              </label>
+              <select name="referral_provider[]" class="form-select referral-provider-select">
+                <option value="">選択してください（任意）</option>
+              </select>
+              <span class="form-help">あなたにリファーラルを提供してくれたメンバー名</span>
+            </div>
+          </div>
+        `;
+
+        $('#referralContainer').append(newReferralItem);
+
+        // 新しく追加した項目にもメンバーリストを適用
+        const lastSelect = $('.referral-provider-select').last();
+        if (window.membersList) {
+          window.membersList.forEach(function(member) {
+            lastSelect.append(new Option(member, member));
+          });
+        }
+      });
+    });
+
+    // リファーラル削除機能
+    function removeReferral(button) {
+      const referralItem = $(button).closest('.referral-item');
+      referralItem.remove();
+
+      // 番号を振り直し
+      $('.referral-item').each(function(index) {
+        $(this).find('.referral-item-header h3').text('リファーラル #' + (index + 1));
+      });
+    }
+  </script>
 
   <script src="assets/js/form.js"></script>
 </body>
