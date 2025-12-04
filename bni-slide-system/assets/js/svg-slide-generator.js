@@ -126,6 +126,11 @@ async function generateSVGSlides(data, stats) {
         displayName = parts.slice(1).join(' ');
       }
 
+      // Add space before 様 if it exists
+      if (displayName && displayName.includes('様')) {
+        displayName = displayName.replace(/([^\s])様/, '$1 様');
+      }
+
       const visitorIndustry = escapeHtml(row['ビジター業種'] || '');
 
       slides += `
@@ -320,6 +325,11 @@ async function generateSVGSlides(data, stats) {
         const parts = fullVisitorName.split(' ');
         displayCompany = parts[0];
         displayName = parts.slice(1).join(' ');
+      }
+
+      // Add space before 様 if it exists
+      if (displayName && displayName.includes('様')) {
+        displayName = displayName.replace(/([^\s])様/, '$1 様');
       }
 
       const visitorIndustry = escapeHtml(row['ビジター業種'] || '');
