@@ -27,13 +27,46 @@ document.addEventListener('DOMContentLoaded', function() {
       const response = await fetch('data/members.json');
       const data = await response.json();
       const memberSelect = document.getElementById('memberSelect');
+      const referralProviderSelect = document.getElementById('referralProviderSelect');
 
+      // Populate member select (introducer name)
       data.members.forEach(member => {
         const option = document.createElement('option');
         option.value = member;
         option.textContent = member;
         memberSelect.appendChild(option);
       });
+
+      // Populate referral provider select
+      data.members.forEach(member => {
+        const option = document.createElement('option');
+        option.value = member;
+        option.textContent = member;
+        referralProviderSelect.appendChild(option);
+      });
+
+      // Initialize Select2 with search
+      if (typeof jQuery !== 'undefined' && jQuery.fn.select2) {
+        jQuery('#memberSelect').select2({
+          placeholder: '選択してください',
+          allowClear: false,
+          language: {
+            noResults: function() {
+              return 'メンバーが見つかりません';
+            }
+          }
+        });
+
+        jQuery('#referralProviderSelect').select2({
+          placeholder: '選択してください（任意）',
+          allowClear: true,
+          language: {
+            noResults: function() {
+              return 'メンバーが見つかりません';
+            }
+          }
+        });
+      }
     } catch (error) {
       console.error('Failed to load members:', error);
     }

@@ -11,9 +11,38 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- Select2 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
   <!-- Styles -->
   <link rel="stylesheet" href="assets/css/common.css">
   <link rel="stylesheet" href="assets/css/form.css">
+
+  <style>
+    /* Select2 custom styling */
+    .select2-container--default .select2-selection--single {
+      height: 48px;
+      border: 2px solid #DDDDDD;
+      border-radius: 4px;
+      padding: 8px 12px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+      line-height: 30px;
+      font-size: 16px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+      height: 46px;
+    }
+    .select2-container--default.select2-container--focus .select2-selection--single {
+      border-color: #CF2030;
+    }
+    .select2-dropdown {
+      border: 2px solid #CF2030;
+    }
+    .select2-container {
+      width: 100% !important;
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -131,7 +160,10 @@
                 <label class="form-label">
                   リファーラル提供者
                 </label>
-                <input type="text" name="referral_provider" class="form-input" placeholder="例: 山田太郎">
+                <select name="referral_provider" class="form-select" id="referralProviderSelect">
+                  <option value="">選択してください（任意）</option>
+                  <!-- メンバーリストは JavaScript で動的に読み込み -->
+                </select>
                 <span class="form-help">あなたにリファーラルを提供してくれたメンバー名</span>
               </div>
             </div>
@@ -225,6 +257,11 @@
   </footer>
 
   <!-- Scripts -->
+  <!-- jQuery (required for Select2) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Select2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
   <script src="assets/js/form.js"></script>
 </body>
 </html>
