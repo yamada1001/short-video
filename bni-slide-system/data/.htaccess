@@ -1,7 +1,14 @@
-# Deny direct access to CSV and JSON files
+# Deny direct access to CSV files only (allow JSON for reading)
 Order deny,allow
 Deny from all
 
-<FilesMatch "\.(csv|json)$">
+# Allow members.json for JavaScript reading
+<Files "members.json">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Deny CSV files
+<FilesMatch "\.csv$">
     Deny from all
 </FilesMatch>
