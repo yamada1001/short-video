@@ -11,6 +11,7 @@ try {
   $csvFiles = glob($dataDir . '/*.csv');
 
   $weeks = [];
+  $today = new DateTime();
 
   foreach ($csvFiles as $file) {
     $filename = basename($file, '.csv');
@@ -20,22 +21,29 @@ try {
       continue;
     }
 
-    // Convert filename to label
-    // e.g., "2024-12-1.csv" -> "2024年12月1週目"
+    // Parse filename: YYYY-MM-W
     $parts = explode('-', $filename);
     if (count($parts) === 3) {
-      $label = $parts[0] . '年' . $parts[1] . '月' . $parts[2] . '週目';
+      $year = intval($parts[0]);
+      $month = intval($parts[1]);
+      $weekInMonth = intval($parts[2]);
+
+      // Calculate the Friday date for this week
+      $fridayDate = calculateFridayDate($year, $month, $weekInMonth);
+
+      $label = $parts[0] . '年' . $parts[1] . '月' . $parts[2] . '週目 (' . $fridayDate->format('n/j') . ')';
       $weeks[] = [
         'filename' => $filename,
         'label' => $label,
-        'modified' => filemtime($file)
+        'date' => $fridayDate,
+        'timestamp' => $fridayDate->getTimestamp()
       ];
     }
   }
 
-  // Sort by modified time (newest first)
+  // Sort by date (newest first, but only past/today dates)
   usort($weeks, function($a, $b) {
-    return $b['modified'] - $a['modified'];
+    return $b['timestamp'] - $a['timestamp'];
   });
 
   echo json_encode([
@@ -49,4 +57,24 @@ try {
     'success' => false,
     'message' => $e->getMessage()
   ]);
+}
+
+/**
+ * Calculate Friday date for given year, month, and week number
+ */
+function calculateFridayDate($year, $month, $weekInMonth) {
+  $firstDay = new DateTime("$year-$month-01");
+  $firstDayOfWeek = intval($firstDay->format('w')); // 0 (Sunday) to 6 (Saturday)
+
+  // Calculate days to first Friday (5 = Friday)
+  $daysToFirstFriday = (5 - $firstDayOfWeek + 7) % 7;
+  if ($daysToFirstFriday === 0 && $firstDayOfWeek !== 5) {
+    $daysToFirstFriday = 7;
+  }
+
+  // Calculate target day: first Friday + (weekInMonth - 1) * 7 days
+  $targetDay = 1 + $daysToFirstFriday + (($weekInMonth - 1) * 7);
+  $targetDate = new DateTime("$year-$month-$targetDay");
+
+  return $targetDate;
 }

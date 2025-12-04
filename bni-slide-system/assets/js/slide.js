@@ -60,7 +60,21 @@
 
       if (result.success && result.weeks.length > 0) {
         weekSelector.innerHTML = '';
-        result.weeks.forEach((week, index) => {
+
+        // Get today's date at midnight for comparison
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const todayTimestamp = today.getTime() / 1000; // Convert to seconds
+
+        // Filter weeks to only show past or today's meetings
+        const availableWeeks = result.weeks.filter(week => week.timestamp <= todayTimestamp);
+
+        if (availableWeeks.length === 0) {
+          weekSelector.innerHTML = '<option value="">まだ開催されていません</option>';
+          return;
+        }
+
+        availableWeeks.forEach((week, index) => {
           const option = document.createElement('option');
           option.value = week.filename;
           option.textContent = week.label + (index === 0 ? ' (最新)' : '');

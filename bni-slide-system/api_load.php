@@ -68,7 +68,7 @@ try {
   $stats = calculateStats($data);
 
   // Extract date from filename for title slide
-  // e.g., "2024-12-1.csv" -> 2024年12月1週目の金曜日
+  // e.g., "2024-12-1.csv" -> 2024年12月6日（金曜日）
   $slideDate = '';
   if ($csvFile) {
     $filename = basename($csvFile, '.csv');
@@ -79,19 +79,7 @@ try {
       $weekInMonth = intval($parts[2]);
 
       // Calculate the Friday of that week
-      $firstDay = new DateTime("$year-$month-01");
-      $firstDayOfWeek = intval($firstDay->format('w')); // 0 (Sunday) to 6 (Saturday)
-
-      // Calculate days to first Friday
-      $daysToFirstFriday = (5 - $firstDayOfWeek + 7) % 7;
-      if ($daysToFirstFriday === 0 && $firstDayOfWeek !== 5) {
-        $daysToFirstFriday = 7;
-      }
-
-      // Add weeks
-      $targetDay = 1 + $daysToFirstFriday + (($weekInMonth - 1) * 7);
-      $targetDate = new DateTime("$year-$month-$targetDay");
-
+      $targetDate = calculateFridayDate($year, $month, $weekInMonth);
       $slideDate = $targetDate->format('Y年n月j日');
     }
   }
@@ -170,4 +158,25 @@ function calculateStats($data) {
   }
 
   return $stats;
+}
+
+/**
+ * Calculate Friday date for given year, month, and week number
+ * Ensures correct calculation for BNI meetings (always held on Fridays)
+ */
+function calculateFridayDate($year, $month, $weekInMonth) {
+  $firstDay = new DateTime("$year-$month-01");
+  $firstDayOfWeek = intval($firstDay->format('w')); // 0 (Sunday) to 6 (Saturday)
+
+  // Calculate days to first Friday (5 = Friday)
+  $daysToFirstFriday = (5 - $firstDayOfWeek + 7) % 7;
+  if ($daysToFirstFriday === 0 && $firstDayOfWeek !== 5) {
+    $daysToFirstFriday = 7;
+  }
+
+  // Calculate target day: first Friday + (weekInMonth - 1) * 7 days
+  $targetDay = 1 + $daysToFirstFriday + (($weekInMonth - 1) * 7);
+  $targetDate = new DateTime("$year-$month-$targetDay");
+
+  return $targetDate;
 }
