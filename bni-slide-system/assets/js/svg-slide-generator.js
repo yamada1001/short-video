@@ -28,7 +28,7 @@ async function generateSVGSlides(data, stats) {
   // Slide 2: Summary
   slides += `
     <section>
-      <img src="https://news.bni.jp/wp-content/uploads/bni.png" alt="BNI Logo" class="slide-logo">
+
       <h2>今週のサマリー</h2>
       <div class="stats-simple">
         <div class="stat-item">
@@ -64,7 +64,7 @@ async function generateSVGSlides(data, stats) {
 
       slides += `
         <section>
-          <img src="https://news.bni.jp/wp-content/uploads/bni.png" alt="BNI Logo" class="slide-logo">
+    
           <h2>ビジター紹介一覧${totalPages > 1 ? ` (${page + 1}/${totalPages})` : ''}</h2>
           <table>
             <thead>
@@ -100,7 +100,7 @@ async function generateSVGSlides(data, stats) {
   // Slide 4: Referral Amount Breakdown
   slides += `
     <section>
-      <img src="https://news.bni.jp/wp-content/uploads/bni.png" alt="BNI Logo" class="slide-logo">
+
       <h2>リファーラル金額内訳</h2>
       <div class="highlight-box">
         <h3>総額: <span class="currency">¥${formatNumber(stats.total_referral_amount)}</span></h3>
@@ -144,7 +144,7 @@ async function generateSVGSlides(data, stats) {
 
       slides += `
         <section>
-          <img src="https://news.bni.jp/wp-content/uploads/bni.png" alt="BNI Logo" class="slide-logo">
+    
           <h2>メンバー別貢献度${totalPages > 1 ? ` (${page + 1}/${totalPages})` : ''}</h2>
           <div class="member-grid">
       `;
@@ -180,7 +180,7 @@ async function generateSVGSlides(data, stats) {
 
       slides += `
         <section>
-          <img src="https://news.bni.jp/wp-content/uploads/bni.png" alt="BNI Logo" class="slide-logo">
+    
           <h2>リファーラル詳細${totalPages > 1 ? ` (${page + 1}/${totalPages})` : ''}</h2>
           <table>
             <thead>
@@ -217,7 +217,7 @@ async function generateSVGSlides(data, stats) {
   // Slide 7: Activity Summary
   slides += `
     <section>
-      <img src="https://news.bni.jp/wp-content/uploads/bni.png" alt="BNI Logo" class="slide-logo">
+
       <h2>アクティビティサマリー</h2>
       <div class="stats-simple">
         <div class="stat-item">
