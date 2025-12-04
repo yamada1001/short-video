@@ -136,7 +136,7 @@
                 <label class="form-label">
                   入力日（会議実施日）<span class="required">*</span>
                 </label>
-                <input type="date" name="input_date" class="form-input" required>
+                <input type="date" name="input_date" class="form-input" required id="inputDate">
                 <span class="form-error">入力日を選択してください</span>
                 <p class="form-hint">この日付でデータが週ごとに管理されます</p>
               </div>
@@ -367,6 +367,14 @@
     $(document).ready(function() {
       let visitorIndex = 1;
       let referralIndex = 1;
+
+      // 入力日に今日の日付をデフォルト設定
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const day = String(today.getDate()).padStart(2, '0');
+      const todayString = `${year}-${month}-${day}`;
+      document.getElementById('inputDate').value = todayString;
 
       // ビジター追加ボタン
       $('#addVisitorBtn').on('click', function() {
