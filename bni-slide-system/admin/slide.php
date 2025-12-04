@@ -16,7 +16,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -27,9 +27,9 @@
   </div>
 
   <!-- Week Selector -->
-  <div style="position: fixed; top: 10px; left: 10px; z-index: 2000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 12px 16px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.15);">
-    <label style="display: block; margin-bottom: 6px; font-weight: 600; color: #CF2030; font-size: 12px;">表示する週:</label>
-    <select id="weekSelector" style="padding: 6px 10px; border: 2px solid #CF2030; border-radius: 4px; font-size: 13px; min-width: 180px; cursor: pointer;">
+  <div style="position: fixed; top: 20px; left: 20px; z-index: 1000; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #CF2030;">表示する週:</label>
+    <select id="weekSelector" style="padding: 8px 12px; border: 2px solid #CF2030; border-radius: 4px; font-size: 14px; min-width: 200px;">
       <option value="">読み込み中...</option>
     </select>
   </div>
@@ -43,11 +43,6 @@
 
   <!-- Edit Button -->
   <a href="edit.php" class="edit-button">編集モード</a>
-
-  <!-- External Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/countup@1.8.2/dist/countUp.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
   <!-- Reveal.js Scripts -->
   <script src="../assets/lib/reveal.js/dist/reveal.js"></script>

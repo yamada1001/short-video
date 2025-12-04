@@ -1,6 +1,5 @@
 /**
- * BNI Slide System - Enhanced Slide Generation & Display
- * with Chart.js, CountUp.js, Confetti, and unDraw illustrations
+ * BNI Slide System - Slide Generation & Display
  */
 
 (async function() {
@@ -58,62 +57,75 @@
       const response = await fetch(url);
       const result = await response.json();
 
-      if (!result.success) {
-        throw new Error(result.message || 'データの読み込みに失敗しました');
-      }
+    if (!result.success) {
+      throw new Error(result.message || 'データの読み込みに失敗しました');
+    }
 
       const { data, stats } = result;
 
       // Generate slides
-      await generateSlides(data, stats);
+      generateSlides(data, stats);
 
       // Initialize or sync Reveal.js
       if (!Reveal.isReady()) {
-        // Initialize Reveal.js (Google Slides style - no animations)
+        // Initialize Reveal.js
         Reveal.initialize({
-          hash: true,
-          controls: true,
-          progress: true,
-          center: true,
-          transition: 'none',  // No transition animation
-          transitionSpeed: 'fast',
-          backgroundTransition: 'none',
-          slideNumber: 'c/t',
-          keyboard: true,
-          overview: true,
-          touch: true,
-          loop: false,
-          rtl: false,
-          navigationMode: 'default',
-          shuffle: false,
-          fragments: false,  // Disable fragment animations
-          fragmentInURL: false,
-          embedded: false,
-          help: true,
-          pause: true,
-          showNotes: false,
-          autoPlayMedia: null,
-          preloadIframes: null,
-          autoAnimate: false,  // Disable auto-animate
-          autoSlide: 0,
-          autoSlideStoppable: true,
-          autoSlideMethod: null,
-          defaultTiming: null,
-          mouseWheel: false,
-          previewLinks: false,
-          postMessage: true,
-          postMessageEvents: false,
-          focusBodyOnPageVisibilityChange: true,
-          width: '100%',  // Full width
-          height: '100%',  // Full height
-          margin: 0,  // No margin
-          minScale: 1,  // No scaling
-          maxScale: 1,
-          disableLayout: false
+      hash: true,
+      controls: true,
+      progress: true,
+      center: true,
+      transition: 'slide',
+      slideNumber: 'c/t',
+      keyboard: true,
+      overview: true,
+      touch: true,
+      loop: false,
+      rtl: false,
+      navigationMode: 'default',
+      shuffle: false,
+      fragments: true,
+      fragmentInURL: true,
+      embedded: false,
+      help: true,
+      pause: true,
+      showNotes: false,
+      autoPlayMedia: null,
+      preloadIframes: null,
+      autoAnimate: true,
+      autoAnimateMatcher: null,
+      autoAnimateEasing: 'ease',
+      autoAnimateDuration: 1.0,
+      autoAnimateUnmatched: true,
+      autoAnimateStyles: [
+        'opacity',
+        'color',
+        'background-color',
+        'padding',
+        'font-size',
+        'line-height',
+        'letter-spacing',
+        'border-width',
+        'border-color',
+        'border-radius',
+        'outline',
+        'outline-offset'
+      ],
+      autoSlide: 0,
+      autoSlideStoppable: true,
+      autoSlideMethod: null,
+      defaultTiming: null,
+      mouseWheel: false,
+      previewLinks: false,
+      postMessage: true,
+      postMessageEvents: false,
+      focusBodyOnPageVisibilityChange: true,
+      width: 1200,
+      height: 700,
+      margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2.0,
+      disableLayout: false
         });
-
-        // Add event listeners for slide changes
-        Reveal.addEventListener('slidechanged', handleSlideChange);
       } else {
         // Reveal.js already initialized, just sync
         Reveal.sync();
@@ -137,59 +149,12 @@
       loadingScreen.classList.add('hidden');
     }
   }
-
-  /**
-   * Handle slide change events
-   */
-  function handleSlideChange(event) {
-    const slideIndex = event.indexh;
-
-    // Trigger confetti on title slide (first and last)
-    if (slideIndex === 0 || event.currentSlide.classList.contains('title-slide')) {
-      setTimeout(() => {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#CF2030', '#FF4858', '#FFFFFF']
-        });
-      }, 300);
-    }
-
-    // Trigger count-up animations
-    triggerCountUpAnimations(event.currentSlide);
-  }
-
-  /**
-   * Trigger count-up animations for stat cards
-   */
-  function triggerCountUpAnimations(slide) {
-    const statValues = slide.querySelectorAll('.stat-value[data-count]');
-    statValues.forEach(el => {
-      if (el.dataset.counted) return; // Already animated
-
-      const targetValue = parseInt(el.dataset.count);
-      const countUp = new CountUp(el, targetValue, {
-        duration: 2,
-        useEasing: true,
-        useGrouping: true,
-        separator: ',',
-        decimal: '.'
-      });
-
-      if (!countUp.error) {
-        countUp.start();
-        el.dataset.counted = 'true';
-      }
-    });
-  }
-
 })();
 
 /**
- * Generate enhanced slides from data
+ * Generate slides from data
  */
-async function generateSlides(data, stats) {
+function generateSlides(data, stats) {
   const slideContainer = document.getElementById('slideContainer');
   const today = new Date().toLocaleDateString('ja-JP', {
     year: 'numeric',
@@ -199,229 +164,137 @@ async function generateSlides(data, stats) {
 
   let slides = '';
 
-  // ============================================
-  // Slide 1: Title Slide with Confetti
-  // ============================================
+  // Slide 1: Title
   slides += `
     <section class="title-slide">
       <h1>BNI週次レポート</h1>
       <h3>${today}</h3>
-      <p style="margin-top: 60px; font-size: 0.7em; opacity: 0.8;">Powered by BNI Slide System</p>
+      <p style="margin-top: 50px; font-size: 0.8em;">BNI Slide System</p>
     </section>
   `;
 
-  // ============================================
-  // Slide 2: Overview with Count-Up Stats
-  // ============================================
+  // Slide 2: Overview
   slides += `
     <section>
       <h2>今週のサマリー</h2>
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-value" data-count="${stats.total_visitors}">0</div>
+          <div class="stat-value">${stats.total_visitors}</div>
           <div class="stat-label">ビジター紹介数</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value" data-count="${stats.total_referral_amount}">0</div>
+          <div class="stat-value">¥${formatNumber(stats.total_referral_amount)}</div>
           <div class="stat-label">総リファーラル金額</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value" data-count="${stats.total_attendance}">0</div>
+          <div class="stat-value">${stats.total_attendance}</div>
           <div class="stat-label">出席者数</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value" data-count="${stats.total_one_to_one}">0</div>
+          <div class="stat-value">${stats.total_one_to_one}</div>
           <div class="stat-label">ワンツーワン実施数</div>
         </div>
       </div>
-      <img src="https://illustrations.popsy.co/amber/business-deal.svg"
-           class="slide-illustration top-right" alt="">
     </section>
   `;
 
-  // ============================================
-  // Slide 3: Pie Chart - Category Breakdown
-  // ============================================
-  const categoryData = Object.entries(stats.categories);
-  if (categoryData.length > 0) {
-    const categoryLabels = categoryData.map(([cat]) => cat);
-    const categoryValues = categoryData.map(([, val]) => val);
-    const categoryColors = [
-      '#CF2030', '#FF4858', '#3498DB', '#27AE60',
-      '#F39C12', '#9B59B6', '#1ABC9C', '#E74C3C'
-    ];
-
+  // Slide 3: Visitor Introductions
+  if (data.length > 0) {
     slides += `
       <section>
-        <h2>リファーラル内訳（カテゴリ別）</h2>
-        <div class="chart-container">
-          <canvas id="categoryChart"></canvas>
-        </div>
-        <img src="https://illustrations.popsy.co/amber/pie-chart-analysis.svg"
-             class="slide-illustration bottom-left" alt="">
-      </section>
+        <h2>ビジター紹介</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>紹介者</th>
+              <th>ビジター名</th>
+              <th>業種</th>
+              <th>紹介日</th>
+            </tr>
+          </thead>
+          <tbody>
     `;
 
-    // Store chart data for later rendering
-    setTimeout(() => {
-      const ctx = document.getElementById('categoryChart');
-      if (ctx) {
-        new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: categoryLabels,
-            datasets: [{
-              data: categoryValues,
-              backgroundColor: categoryColors.slice(0, categoryLabels.length),
-              borderWidth: 2,
-              borderColor: '#FFFFFF'
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-              legend: {
-                position: 'bottom',
-                labels: {
-                  font: { size: 14, family: 'Noto Sans JP' },
-                  padding: 20
-                }
-              },
-              tooltip: {
-                callbacks: {
-                  label: function(context) {
-                    const label = context.label || '';
-                    const value = formatNumber(context.parsed);
-                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                    const percentage = ((context.parsed / total) * 100).toFixed(1);
-                    return `${label}: ¥${value} (${percentage}%)`;
-                  }
-                }
-              }
-            }
-          }
-        });
-      }
-    }, 500);
+    data.forEach(row => {
+      slides += `
+        <tr>
+          <td>${escapeHtml(row['紹介者名'] || '')}</td>
+          <td><strong>${escapeHtml(row['ビジター名'] || '')}</strong></td>
+          <td>${escapeHtml(row['ビジター業種'] || '-')}</td>
+          <td>${escapeHtml(row['紹介日'] || '')}</td>
+        </tr>
+      `;
+    });
+
+    slides += `
+          </tbody>
+        </table>
+      </section>
+    `;
   }
 
-  // ============================================
-  // Slide 4: Bar Chart - Member Contributions
-  // ============================================
-  const memberData = Object.entries(stats.members);
-  if (memberData.length > 0) {
-    const memberNames = memberData.map(([name]) => name);
-    const memberAmounts = memberData.map(([, data]) => data.referral_amount);
+  // Slide 4: Referral Amount Breakdown
+  slides += `
+    <section>
+      <h2>リファーラル金額内訳</h2>
+      <div class="highlight-box">
+        <h3>総額: <span class="currency">¥${formatNumber(stats.total_referral_amount)}</span></h3>
+      </div>
+  `;
 
+  if (Object.keys(stats.categories).length > 0) {
+    slides += `<div style="margin-top: 40px;">`;
+    Object.entries(stats.categories).forEach(([category, amount]) => {
+      const percentage = stats.total_referral_amount > 0
+        ? ((amount / stats.total_referral_amount) * 100).toFixed(1)
+        : 0;
+
+      slides += `
+        <div style="margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 600;">${escapeHtml(category)}</span>
+            <span style="color: #27AE60; font-weight: 700;">¥${formatNumber(amount)}</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: ${percentage}%;">
+              ${percentage}%
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    slides += `</div>`;
+  }
+
+  slides += `</section>`;
+
+  // Slide 5: Member Contributions
+  if (Object.keys(stats.members).length > 0) {
     slides += `
       <section>
         <h2>メンバー別貢献度</h2>
-        <div class="chart-container">
-          <canvas id="memberChart"></canvas>
-        </div>
-        <img src="https://illustrations.popsy.co/amber/team-work.svg"
-             class="slide-illustration top-right" alt="">
-      </section>
+        <div class="member-list">
     `;
 
-    setTimeout(() => {
-      const ctx = document.getElementById('memberChart');
-      if (ctx) {
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: memberNames,
-            datasets: [{
-              label: 'リファーラル金額',
-              data: memberAmounts,
-              backgroundColor: 'rgba(207, 32, 48, 0.8)',
-              borderColor: '#CF2030',
-              borderWidth: 2,
-              borderRadius: 8
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            scales: {
-              y: {
-                beginAtZero: true,
-                ticks: {
-                  callback: function(value) {
-                    return '¥' + formatNumber(value);
-                  },
-                  font: { size: 12 }
-                },
-                grid: { color: 'rgba(0, 0, 0, 0.05)' }
-              },
-              x: {
-                ticks: { font: { size: 13, weight: 600 } },
-                grid: { display: false }
-              }
-            },
-            plugins: {
-              legend: { display: false },
-              tooltip: {
-                callbacks: {
-                  label: function(context) {
-                    return '¥' + formatNumber(context.parsed.y);
-                  }
-                }
-              }
-            }
-          }
-        });
-      }
-    }, 500);
+    Object.entries(stats.members).forEach(([member, memberStats]) => {
+      slides += `
+        <div class="member-card">
+          <div class="member-name">${escapeHtml(member)}</div>
+          <div class="member-stats">
+            <p>ビジター: <strong>${memberStats.visitors}名</strong></p>
+            <p>リファーラル: <strong>¥${formatNumber(memberStats.referral_amount)}</strong></p>
+          </div>
+        </div>
+      `;
+    });
+
+    slides += `
+        </div>
+      </section>
+    `;
   }
 
-  // ============================================
-  // Slide 5: Visitor Introductions Table
-  // ============================================
-  if (data.length > 0) {
-    const visitorsData = data.filter(row => row['ビジター名'] && row['ビジター名'].trim() !== '');
-
-    if (visitorsData.length > 0) {
-      slides += `
-        <section>
-          <h2>ビジター紹介一覧</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>紹介者</th>
-                <th>ビジター名</th>
-                <th>業種</th>
-                <th>紹介日</th>
-              </tr>
-            </thead>
-            <tbody>
-      `;
-
-      visitorsData.forEach(row => {
-        slides += `
-          <tr>
-            <td>${escapeHtml(row['紹介者名'] || '')}</td>
-            <td><strong>${escapeHtml(row['ビジター名'] || '')}</strong></td>
-            <td>${escapeHtml(row['ビジター業種'] || '-')}</td>
-            <td>${escapeHtml(row['紹介日'] || '')}</td>
-          </tr>
-        `;
-      });
-
-      slides += `
-            </tbody>
-          </table>
-          <img src="https://illustrations.popsy.co/amber/meeting.svg"
-               class="slide-illustration bottom-left" alt="">
-        </section>
-      `;
-    }
-  }
-
-  // ============================================
-  // Slide 6: Referral Details Table
-  // ============================================
+  // Slide 6: Detailed Referral List
   if (data.length > 0) {
     slides += `
       <section>
@@ -443,8 +316,8 @@ async function generateSlides(data, stats) {
       slides += `
         <tr>
           <td>${escapeHtml(row['案件名'] || '')}</td>
-          <td><span class="currency">¥${formatNumber(amount)}</span></td>
-          <td><span class="emphasis">${escapeHtml(row['カテゴリ'] || '')}</span></td>
+          <td style="color: #27AE60; font-weight: 700;">¥${formatNumber(amount)}</td>
+          <td>${escapeHtml(row['カテゴリ'] || '')}</td>
           <td>${escapeHtml(row['リファーラル提供者'] || '-')}</td>
         </tr>
       `;
@@ -453,49 +326,41 @@ async function generateSlides(data, stats) {
     slides += `
           </tbody>
         </table>
-        <img src="https://illustrations.popsy.co/amber/financial-data.svg"
-             class="slide-illustration top-right" alt="">
       </section>
     `;
   }
 
-  // ============================================
-  // Slide 7: Activity Summary with Stats
-  // ============================================
+  // Slide 7: Activity Summary
   slides += `
     <section>
       <h2>アクティビティサマリー</h2>
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-value" data-count="${stats.total_thanks_slips}">0</div>
-          <div class="stat-label">サンクスリップ</div>
+          <div class="stat-value">${stats.total_thanks_slips}</div>
+          <div class="stat-label">サンクスリップ提出数</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value" data-count="${stats.total_one_to_one}">0</div>
-          <div class="stat-label">ワンツーワン</div>
+          <div class="stat-value">${stats.total_one_to_one}</div>
+          <div class="stat-label">ワンツーワン実施数</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value" data-count="${stats.total_attendance}">0</div>
-          <div class="stat-label">出席者数</div>
+          <div class="stat-value">${stats.total_attendance}</div>
+          <div class="stat-label">今週の出席者数</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value" data-count="${data.length}">0</div>
+          <div class="stat-value">${data.length}</div>
           <div class="stat-label">回答者数</div>
         </div>
       </div>
-      <img src="https://illustrations.popsy.co/amber/growth-chart.svg"
-           class="slide-illustration bottom-left" alt="">
     </section>
   `;
 
-  // ============================================
-  // Slide 8: Thank You with Confetti
-  // ============================================
+  // Slide 8: Thank You
   slides += `
     <section class="title-slide">
       <h1>ありがとうございました</h1>
       <h3>来週もよろしくお願いします</h3>
-      <p style="margin-top: 60px; font-size: 0.8em; opacity: 0.9;">Givers Gain®</p>
+      <p style="margin-top: 50px; font-size: 0.8em;">Givers Gain®</p>
     </section>
   `;
 
