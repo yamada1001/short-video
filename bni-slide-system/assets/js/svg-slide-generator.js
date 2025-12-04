@@ -194,7 +194,7 @@ async function generateSVGSlides(data, stats) {
         slides += `
           <tr>
             <td>${escapeHtml(row['案件名'] || '')}</td>
-            <td style="color: #27AE60; font-weight: 700;">¥${formatNumber(amount)}</td>
+            <td style="color: #FFD700; font-weight: 700;">¥${formatNumber(amount)}</td>
             <td>${escapeHtml(row['カテゴリ'] || '')}</td>
             <td>${escapeHtml(row['リファーラル提供者'] || '-')}</td>
           </tr>
