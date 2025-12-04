@@ -5,7 +5,7 @@
 
 /* Global Styles */
 .reveal {
-  font-family: 'LINE Seed JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo', sans-serif;
+  font-family: 'LINE Seed JP', sans-serif;
   font-size: 28px;
   font-weight: 400;
   color: #FFFFFF;
@@ -18,7 +18,7 @@
 .reveal h3,
 .reveal h4 {
   color: #FFFFFF !important;
-  font-family: 'LINE Seed JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo', sans-serif;
+  font-family: 'LINE Seed JP', sans-serif;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 0.5em;
