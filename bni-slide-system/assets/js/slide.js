@@ -98,7 +98,7 @@
         // Initialize Reveal.js
         Reveal.initialize({
       hash: true,
-      controls: true,
+      controls: false,
       progress: true,
       center: false,
       transition: 'fade',
