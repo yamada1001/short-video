@@ -35,8 +35,7 @@
     <rect x="400" y="500" width="800" height="8" fill="url(#cardGradient)" rx="24"/>
 
     <!-- Icon Circle -->
-    <circle cx="800" cy="650" r="80" fill="#FFF5F5"/>
-    <text x="800" y="680" font-family="'Noto Sans JP', sans-serif" font-size="80" fill="#CF2030" text-anchor="middle">👥</text>
+    <circle cx="800" cy="650" r="80" fill="#FFF5F5" stroke="#CF2030" stroke-width="3"/>
 
     <!-- Value -->
     <text id="visitors" x="800" y="830" font-family="'Inter', sans-serif" font-size="110" font-weight="800" fill="#CF2030" text-anchor="middle">
@@ -54,8 +53,7 @@
     <rect x="1320" y="500" width="800" height="450" fill="#FFFFFF" rx="24" stroke="#E5E7EB" stroke-width="2"/>
     <rect x="1320" y="500" width="800" height="8" fill="url(#cardGradient)" rx="24"/>
 
-    <circle cx="1720" cy="650" r="80" fill="#F0FFF4"/>
-    <text x="1720" y="680" font-family="'Noto Sans JP', sans-serif" font-size="80" fill="#27AE60" text-anchor="middle">💰</text>
+    <circle cx="1720" cy="650" r="80" fill="#F0FFF4" stroke="#27AE60" stroke-width="3"/>
 
     <text id="amount" x="1720" y="830" font-family="'Inter', sans-serif" font-size="110" font-weight="800" fill="#27AE60" text-anchor="middle">
       <tspan>¥{{total_referral_amount}}</tspan>
@@ -68,17 +66,16 @@
 
   <!-- Card 3: 出席者数 -->
   <g id="card3">
-    <rect x="2240" y="500" width="800" height="450" fill="#FFFFFF" rx="24" stroke="#E5E7EB" stroke-width="2"/>
-    <rect x="2240" y="500" width="800" height="8" fill="url(#cardGradient)" rx="24"/>
+    <rect x="2140" y="500" width="800" height="450" fill="#FFFFFF" rx="24" stroke="#E5E7EB" stroke-width="2"/>
+    <rect x="2140" y="500" width="800" height="8" fill="url(#cardGradient)" rx="24"/>
 
-    <circle cx="2640" cy="650" r="80" fill="#F0F8FF"/>
-    <text x="2640" y="680" font-family="'Noto Sans JP', sans-serif" font-size="80" fill="#3498DB" text-anchor="middle">✓</text>
+    <circle cx="2540" cy="650" r="80" fill="#F0F8FF" stroke="#3498DB" stroke-width="3"/>
 
-    <text id="attendance" x="2640" y="830" font-family="'Inter', sans-serif" font-size="110" font-weight="800" fill="#3498DB" text-anchor="middle">
+    <text id="attendance" x="2540" y="830" font-family="'Inter', sans-serif" font-size="110" font-weight="800" fill="#3498DB" text-anchor="middle">
       <tspan>{{total_attendance}}</tspan>
     </text>
 
-    <text x="2640" y="900" font-family="'Noto Sans JP', sans-serif" font-size="40" font-weight="600" fill="#4a4a4a" text-anchor="middle">
+    <text x="2540" y="900" font-family="'Noto Sans JP', sans-serif" font-size="40" font-weight="600" fill="#4a4a4a" text-anchor="middle">
       <tspan>出席者数</tspan>
     </text>
   </g>
@@ -88,8 +85,7 @@
     <rect x="860" y="1080" width="800" height="450" fill="#FFFFFF" rx="24" stroke="#E5E7EB" stroke-width="2"/>
     <rect x="860" y="1080" width="800" height="8" fill="url(#cardGradient)" rx="24"/>
 
-    <circle cx="1260" cy="1230" r="80" fill="#FFF5F0"/>
-    <text x="1260" y="1260" font-family="'Noto Sans JP', sans-serif" font-size="80" fill="#F39C12" text-anchor="middle">🤝</text>
+    <circle cx="1260" cy="1230" r="80" fill="#FFF5F0" stroke="#F39C12" stroke-width="3"/>
 
     <text id="onetoone" x="1260" y="1410" font-family="'Inter', sans-serif" font-size="110" font-weight="800" fill="#F39C12" text-anchor="middle">
       <tspan>{{total_one_to_one}}</tspan>
@@ -105,8 +101,7 @@
     <rect x="1780" y="1080" width="800" height="450" fill="#FFFFFF" rx="24" stroke="#E5E7EB" stroke-width="2"/>
     <rect x="1780" y="1080" width="800" height="8" fill="url(#cardGradient)" rx="24"/>
 
-    <circle cx="2180" cy="1230" r="80" fill="#F5F0FF"/>
-    <text x="2180" y="1260" font-family="'Noto Sans JP', sans-serif" font-size="80" fill="#9B59B6" text-anchor="middle">📝</text>
+    <circle cx="2180" cy="1230" r="80" fill="#F5F0FF" stroke="#9B59B6" stroke-width="3"/>
 
     <text id="responses" x="2180" y="1410" font-family="'Inter', sans-serif" font-size="110" font-weight="800" fill="#9B59B6" text-anchor="middle">
       <tspan>{{response_count}}</tspan>
