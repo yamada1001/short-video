@@ -155,7 +155,6 @@ async function generateSVGSlides(data, stats) {
             <div class="member-item-name">${escapeHtml(member)}</div>
             <div class="member-item-stats">
               <div>ビジター: <strong>${memberStats.visitors}名</strong></div>
-              <div>リファーラル: <strong>¥${formatNumber(memberStats.referral_amount)}</strong></div>
             </div>
           </div>
         `;
