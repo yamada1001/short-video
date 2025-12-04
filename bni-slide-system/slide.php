@@ -26,6 +26,14 @@
     <div class="loading-text">データを読み込んでいます...</div>
   </div>
 
+  <!-- Week Selector -->
+  <div style="position: fixed; top: 20px; left: 20px; z-index: 1000; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #CF2030;">表示する週:</label>
+    <select id="weekSelector" style="padding: 8px 12px; border: 2px solid #CF2030; border-radius: 4px; font-size: 14px; min-width: 200px;">
+      <option value="">読み込み中...</option>
+    </select>
+  </div>
+
   <!-- Reveal.js Presentation -->
   <div class="reveal">
     <div class="slides" id="slideContainer">

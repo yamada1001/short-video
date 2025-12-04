@@ -6,11 +6,67 @@ document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('surveyForm');
   const messageDiv = document.getElementById('message');
 
+  // Load members list
+  loadMembers();
+
+  // Setup amount formatting
+  setupAmountFormatting();
+
   // Auto-set today's date
   const dateInput = document.querySelector('input[name="introduction_date"]');
   if (dateInput && !dateInput.value) {
     const today = new Date().toISOString().split('T')[0];
     dateInput.value = today;
+  }
+
+  /**
+   * Load members from JSON file
+   */
+  async function loadMembers() {
+    try {
+      const response = await fetch('data/members.json');
+      const data = await response.json();
+      const memberSelect = document.getElementById('memberSelect');
+
+      data.members.forEach(member => {
+        const option = document.createElement('option');
+        option.value = member;
+        option.textContent = member;
+        memberSelect.appendChild(option);
+      });
+    } catch (error) {
+      console.error('Failed to load members:', error);
+    }
+  }
+
+  /**
+   * Setup amount formatting with comma separator
+   */
+  function setupAmountFormatting() {
+    const displayInput = document.getElementById('referralAmountDisplay');
+    const hiddenInput = document.getElementById('referralAmount');
+
+    if (!displayInput || !hiddenInput) return;
+
+    displayInput.addEventListener('input', function(e) {
+      // Remove non-numeric characters
+      let value = e.target.value.replace(/[^0-9]/g, '');
+
+      // Update hidden field with raw number
+      hiddenInput.value = value;
+
+      // Format with commas for display
+      if (value) {
+        e.target.value = parseInt(value).toLocaleString('ja-JP');
+      } else {
+        e.target.value = '';
+      }
+    });
+
+    // Set initial value if exists
+    if (hiddenInput.value) {
+      displayInput.value = parseInt(hiddenInput.value).toLocaleString('ja-JP');
+    }
   }
 
   // Form submission handler

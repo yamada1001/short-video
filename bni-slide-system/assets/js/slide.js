@@ -5,23 +5,67 @@
 (async function() {
   const loadingScreen = document.getElementById('loadingScreen');
   const slideContainer = document.getElementById('slideContainer');
+  const weekSelector = document.getElementById('weekSelector');
 
-  try {
-    // Fetch data from API
-    const response = await fetch('api_load.php');
-    const result = await response.json();
+  // Load available weeks
+  await loadWeeksList();
+
+  // Load initial data
+  await loadSlideData();
+
+  // Week selector change handler
+  weekSelector.addEventListener('change', async function() {
+    loadingScreen.classList.remove('hidden');
+    await loadSlideData(this.value);
+  });
+
+  /**
+   * Load list of available weeks
+   */
+  async function loadWeeksList() {
+    try {
+      const response = await fetch('api_list_weeks.php');
+      const result = await response.json();
+
+      if (result.success && result.weeks.length > 0) {
+        weekSelector.innerHTML = '';
+        result.weeks.forEach((week, index) => {
+          const option = document.createElement('option');
+          option.value = week.filename;
+          option.textContent = week.label + (index === 0 ? ' (最新)' : '');
+          weekSelector.appendChild(option);
+        });
+      } else {
+        weekSelector.innerHTML = '<option value="">データがありません</option>';
+      }
+    } catch (error) {
+      console.error('Failed to load weeks list:', error);
+    }
+  }
+
+  /**
+   * Load slide data for selected week
+   */
+  async function loadSlideData(week = '') {
+    try {
+      // Fetch data from API
+      const url = week ? `api_load.php?week=${week}` : 'api_load.php';
+      const response = await fetch(url);
+      const result = await response.json();
 
     if (!result.success) {
       throw new Error(result.message || 'データの読み込みに失敗しました');
     }
 
-    const { data, stats } = result;
+      const { data, stats } = result;
 
-    // Generate slides
-    generateSlides(data, stats);
+      // Generate slides
+      generateSlides(data, stats);
 
-    // Initialize Reveal.js
-    Reveal.initialize({
+      // Initialize or sync Reveal.js
+      if (!Reveal.isReady()) {
+        // Initialize Reveal.js
+        Reveal.initialize({
       hash: true,
       controls: true,
       progress: true,
@@ -77,23 +121,29 @@
       minScale: 0.2,
       maxScale: 2.0,
       disableLayout: false
-    });
+        });
+      } else {
+        // Reveal.js already initialized, just sync
+        Reveal.sync();
+        Reveal.slide(0); // Go to first slide
+      }
 
-    // Hide loading screen
-    loadingScreen.classList.add('hidden');
+      // Hide loading screen
+      loadingScreen.classList.add('hidden');
 
-  } catch (error) {
-    console.error('Error loading slide data:', error);
-    slideContainer.innerHTML = `
-      <section>
-        <div class="error-message">
-          <h2>エラー</h2>
-          <p>${error.message}</p>
-          <p><a href="index.php">アンケートフォームに戻る</a></p>
-        </div>
-      </section>
-    `;
-    loadingScreen.classList.add('hidden');
+    } catch (error) {
+      console.error('Error loading slide data:', error);
+      slideContainer.innerHTML = `
+        <section>
+          <div class="error-message">
+            <h2>エラー</h2>
+            <p>${error.message}</p>
+            <p><a href="index.php">アンケートフォームに戻る</a></p>
+          </div>
+        </section>
+      `;
+      loadingScreen.classList.add('hidden');
+    }
   }
 })();
 

@@ -6,12 +6,30 @@
 
 header('Content-Type: application/json; charset=utf-8');
 
-// Config
-define('CSV_FILE', __DIR__ . '/data/responses.csv');
-
 try {
+  // Get week parameter (optional)
+  $week = $_GET['week'] ?? '';
+
+  // Determine CSV file path
+  if ($week) {
+    // Load specific week
+    $csvFile = __DIR__ . '/data/' . $week . '.csv';
+  } else {
+    // Load current week
+    $csvFiles = glob(__DIR__ . '/data/*.csv');
+    // Filter out backup files
+    $csvFiles = array_filter($csvFiles, function($file) {
+      return strpos(basename($file), 'backup') === false;
+    });
+    // Sort by modified time (newest first)
+    usort($csvFiles, function($a, $b) {
+      return filemtime($b) - filemtime($a);
+    });
+    $csvFile = $csvFiles[0] ?? null;
+  }
+
   // Check if CSV file exists
-  if (!file_exists(CSV_FILE)) {
+  if (!$csvFile || !file_exists($csvFile)) {
     echo json_encode([
       'success' => true,
       'data' => [],
@@ -22,7 +40,7 @@ try {
 
   // Read CSV file
   $data = [];
-  $fp = fopen(CSV_FILE, 'r');
+  $fp = fopen($csvFile, 'r');
 
   if (!$fp) {
     throw new Exception('CSVファイルの読み込みに失敗しました');

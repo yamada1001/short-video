@@ -11,10 +11,38 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 
 // Config
-define('CSV_FILE', __DIR__ . '/data/responses.csv');
 define('MAIL_TO', 'yamada@yojitu.com');
 define('MAIL_FROM', 'noreply@yojitu.com');
 define('MAIL_FROM_NAME', 'BNI Slide System');
+
+/**
+ * Get current week label (e.g., "2024年12月1週目")
+ */
+function getCurrentWeekLabel() {
+  $now = new DateTime();
+  $year = $now->format('Y');
+  $month = $now->format('n'); // 1-12
+
+  // Get first day of month
+  $firstDay = new DateTime($year . '-' . $month . '-01');
+  $currentDay = $now->format('j');
+
+  // Calculate week number in month
+  $weekInMonth = ceil($currentDay / 7);
+
+  return $year . '年' . $month . '月' . $weekInMonth . '週目';
+}
+
+/**
+ * Get CSV file path for current week
+ */
+function getCSVFilePath() {
+  $weekLabel = getCurrentWeekLabel();
+  // e.g., "2024年12月1週目" -> "2024-12-1.csv"
+  $filename = preg_replace('/年|月|週目/', '-', $weekLabel);
+  $filename = str_replace('--', '-', $filename) . '.csv';
+  return __DIR__ . '/data/' . $filename;
+}
 
 // Check if POST request
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -44,9 +72,8 @@ try {
     'comments' => sanitize($_POST['comments'] ?? '')
   ];
 
-  // Validate required fields
-  if (empty($data['introducer_name']) || empty($data['visitor_name']) ||
-      empty($data['introduction_date']) || empty($data['referral_name']) ||
+  // Validate required fields (visitor info is now optional)
+  if (empty($data['introducer_name']) || empty($data['referral_name']) ||
       empty($data['referral_category']) || empty($data['attendance'])) {
     throw new Exception('必須項目が入力されていません');
   }
@@ -86,7 +113,7 @@ function sanitize($input) {
  * Save data to CSV
  */
 function saveToCSV($data) {
-  $csvFile = CSV_FILE;
+  $csvFile = getCSVFilePath();
   $isNewFile = !file_exists($csvFile);
 
   // Create data directory if not exists

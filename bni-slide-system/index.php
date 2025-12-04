@@ -46,33 +46,39 @@
           <!-- Survey Form -->
           <form id="surveyForm" method="POST" action="api_save.php">
 
-            <!-- Section 1: ビジター紹介情報 -->
+            <!-- Section 0: 基本情報 -->
             <div class="form-section">
-              <h2 class="form-section-title">1. ビジター紹介情報</h2>
+              <h2 class="form-section-title">基本情報</h2>
 
               <div class="form-group">
                 <label class="form-label">
-                  紹介者名（あなたの名前）<span class="required">*</span>
+                  あなたの名前<span class="required">*</span>
                 </label>
-                <input type="text" name="introducer_name" class="form-input" required>
-                <span class="form-error">紹介者名を入力してください</span>
+                <select name="introducer_name" class="form-select" id="memberSelect" required>
+                  <option value="">選択してください</option>
+                  <!-- メンバーリストは JavaScript で動的に読み込み -->
+                </select>
+                <span class="form-error">名前を選択してください</span>
               </div>
+            </div>
+
+            <!-- Section 1: ビジター紹介情報（任意） -->
+            <div class="form-section">
+              <h2 class="form-section-title">1. ビジター紹介情報（任意）</h2>
 
               <div class="form-group">
                 <label class="form-label">
-                  ビジター名<span class="required">*</span>
+                  ビジター名
                 </label>
-                <input type="text" name="visitor_name" class="form-input" required>
+                <input type="text" name="visitor_name" class="form-input" placeholder="紹介がある場合のみ入力">
                 <span class="form-help">紹介したビジターの氏名を入力してください</span>
-                <span class="form-error">ビジター名を入力してください</span>
               </div>
 
               <div class="form-group">
                 <label class="form-label">
-                  紹介日<span class="required">*</span>
+                  紹介日
                 </label>
-                <input type="date" name="introduction_date" class="form-input" required>
-                <span class="form-error">紹介日を選択してください</span>
+                <input type="date" name="introduction_date" class="form-input">
               </div>
 
               <div class="form-group">
@@ -100,7 +106,9 @@
                   <label class="form-label">
                     リファーラル金額（円）<span class="required">*</span>
                   </label>
-                  <input type="number" name="referral_amount" class="form-input" required min="0" step="1000" placeholder="例: 500000">
+                  <input type="text" name="referral_amount_display" id="referralAmountDisplay" class="form-input" required placeholder="例: 500,000">
+                  <input type="hidden" name="referral_amount" id="referralAmount">
+                  <span class="form-help">カンマは自動で挿入されます</span>
                   <span class="form-error">金額を入力してください</span>
                 </div>
 
