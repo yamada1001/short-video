@@ -170,6 +170,9 @@
       // Setup number animations for referral amounts
       setupNumberAnimations();
 
+      // Setup logo display
+      setupLogoDisplay();
+
     } catch (error) {
       console.error('Error loading slide data:', error);
       slideContainer.innerHTML = `
@@ -288,6 +291,36 @@
         }, index * 100);
       });
     });
+  }
+
+  /**
+   * Setup logo display based on slide type
+   */
+  function setupLogoDisplay() {
+    const logoTopRight = document.getElementById('logoTopRight');
+    const logoBottomRight = document.getElementById('logoBottomRight');
+
+    if (!logoTopRight || !logoBottomRight) return;
+
+    function updateLogoDisplay() {
+      const currentSlide = Reveal.getCurrentSlide();
+
+      if (currentSlide && currentSlide.classList.contains('title-slide')) {
+        // Title slide: show bottom-right logo
+        logoTopRight.classList.add('hidden');
+        logoBottomRight.classList.remove('hidden');
+      } else {
+        // Normal slide: show top-right logo
+        logoTopRight.classList.remove('hidden');
+        logoBottomRight.classList.add('hidden');
+      }
+    }
+
+    // Update on slide change
+    Reveal.on('slidechanged', updateLogoDisplay);
+
+    // Initial display
+    updateLogoDisplay();
   }
 })();
 

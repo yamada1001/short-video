@@ -37,6 +37,12 @@
     </svg>
   </button>
 
+  <!-- BNI Logo - Top Right (for normal slides) -->
+  <img id="logoTopRight" class="bni-logo-top-right hidden" src="../assets/images/bni-logo.svg" alt="BNI Logo">
+
+  <!-- BNI Logo - Bottom Right (for title slides) -->
+  <img id="logoBottomRight" class="bni-logo-bottom-right hidden" src="../assets/images/bni-logo.svg" alt="BNI Logo">
+
   <!-- Control Panel Modal -->
   <div id="controlPanel" class="control-panel hidden">
     <div class="control-panel-content">

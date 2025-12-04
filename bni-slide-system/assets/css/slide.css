@@ -504,6 +504,38 @@
   height: 18px;
 }
 
+/* BNI Logo - Top Right (for normal slides) */
+.bni-logo-top-right {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  width: 120px;
+  height: 120px;
+  opacity: 0.12;
+  z-index: 1000;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* BNI Logo - Bottom Right (for title slides) */
+.bni-logo-bottom-right {
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  width: 200px;
+  height: 200px;
+  opacity: 0.15;
+  z-index: 1000;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.bni-logo-top-right.hidden,
+.bni-logo-bottom-right.hidden {
+  opacity: 0;
+  display: none;
+}
+
 /* Control Panel Modal */
 .control-panel {
   position: fixed;
