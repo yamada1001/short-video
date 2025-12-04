@@ -29,26 +29,22 @@ async function generateSVGSlides(data, stats) {
   slides += `
     <section>
       <h2>今週のサマリー</h2>
-      <div class="stats-badge-container">
-        <div class="stat-badge">
-          <i class="fas fa-users stat-badge-icon"></i>
-          <span class="stat-badge-number">${stats.total_visitors || 0}</span>
-          <span class="stat-badge-label">ビジター紹介</span>
+      <div class="stats-simple">
+        <div class="stat-item">
+          <div class="stat-item-number">${stats.total_visitors || 0}</div>
+          <div class="stat-item-label">ビジター紹介数</div>
         </div>
-        <div class="stat-badge">
-          <i class="fas fa-yen-sign stat-badge-icon"></i>
-          <span class="stat-badge-number">¥${formatNumber(stats.total_referral_amount || 0)}</span>
-          <span class="stat-badge-label">リファーラル金額</span>
+        <div class="stat-item">
+          <div class="stat-item-number">¥${formatNumber(stats.total_referral_amount || 0)}</div>
+          <div class="stat-item-label">総リファーラル金額</div>
         </div>
-        <div class="stat-badge">
-          <i class="fas fa-check-circle stat-badge-icon"></i>
-          <span class="stat-badge-number">${stats.total_attendance || 0}</span>
-          <span class="stat-badge-label">出席者数</span>
+        <div class="stat-item">
+          <div class="stat-item-number">${stats.total_attendance || 0}</div>
+          <div class="stat-item-label">出席者数</div>
         </div>
-        <div class="stat-badge">
-          <i class="fas fa-handshake stat-badge-icon"></i>
-          <span class="stat-badge-number">${stats.total_one_to_one || 0}</span>
-          <span class="stat-badge-label">121実施数</span>
+        <div class="stat-item">
+          <div class="stat-item-number">${stats.total_one_to_one || 0}</div>
+          <div class="stat-item-label">121実施数</div>
         </div>
       </div>
     </section>
@@ -109,22 +105,20 @@ async function generateSVGSlides(data, stats) {
   `;
 
   if (Object.keys(stats.categories).length > 0) {
-    slides += `<div style="margin-top: 30px; max-width: 85%; margin-left: auto; margin-right: auto;">`;
+    slides += `<div class="progress-section">`;
     Object.entries(stats.categories).forEach(([category, amount]) => {
       const percentage = stats.total_referral_amount > 0
         ? ((amount / stats.total_referral_amount) * 100).toFixed(1)
         : 0;
 
       slides += `
-        <div style="margin-bottom: 16px;">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.85em;">
-            <span style="font-weight: 600;">${escapeHtml(category)}</span>
-            <span style="color: #27AE60; font-weight: 700;">¥${formatNumber(amount)}</span>
+        <div class="progress-item">
+          <div class="progress-item-header">
+            <span class="progress-item-label">${escapeHtml(category)}</span>
+            <span class="progress-item-value">¥${formatNumber(amount)}</span>
           </div>
           <div class="progress-bar">
-            <div class="progress-fill" style="width: ${percentage}%;">
-              ${percentage}%
-            </div>
+            <div class="progress-fill" style="width: ${percentage}%;"></div>
           </div>
         </div>
       `;
@@ -148,16 +142,16 @@ async function generateSVGSlides(data, stats) {
       slides += `
         <section>
           <h2>メンバー別貢献度${totalPages > 1 ? ` (${page + 1}/${totalPages})` : ''}</h2>
-          <div class="member-list">
+          <div class="member-grid">
       `;
 
       pageMembers.forEach(([member, memberStats]) => {
         slides += `
-          <div class="member-card">
-            <div class="member-name">${escapeHtml(member)}</div>
-            <div class="member-stats">
-              <p>ビジター: <strong>${memberStats.visitors}名</strong></p>
-              <p>リファーラル: <strong>¥${formatNumber(memberStats.referral_amount)}</strong></p>
+          <div class="member-item">
+            <div class="member-item-name">${escapeHtml(member)}</div>
+            <div class="member-item-stats">
+              <div>ビジター: <strong>${memberStats.visitors}名</strong></div>
+              <div>リファーラル: <strong>¥${formatNumber(memberStats.referral_amount)}</strong></div>
             </div>
           </div>
         `;
@@ -219,26 +213,22 @@ async function generateSVGSlides(data, stats) {
   slides += `
     <section>
       <h2>アクティビティサマリー</h2>
-      <div class="stats-badge-container">
-        <div class="stat-badge">
-          <i class="fas fa-clipboard-check stat-badge-icon"></i>
-          <span class="stat-badge-number">${stats.total_thanks_slips}</span>
-          <span class="stat-badge-label">サンクスリップ</span>
+      <div class="stats-simple">
+        <div class="stat-item">
+          <div class="stat-item-number">${stats.total_thanks_slips}</div>
+          <div class="stat-item-label">サンクスリップ提出数</div>
         </div>
-        <div class="stat-badge">
-          <i class="fas fa-handshake stat-badge-icon"></i>
-          <span class="stat-badge-number">${stats.total_one_to_one}</span>
-          <span class="stat-badge-label">121実施数</span>
+        <div class="stat-item">
+          <div class="stat-item-number">${stats.total_one_to_one}</div>
+          <div class="stat-item-label">121実施数</div>
         </div>
-        <div class="stat-badge">
-          <i class="fas fa-check-circle stat-badge-icon"></i>
-          <span class="stat-badge-number">${stats.total_attendance}</span>
-          <span class="stat-badge-label">出席者数</span>
+        <div class="stat-item">
+          <div class="stat-item-number">${stats.total_attendance}</div>
+          <div class="stat-item-label">出席者数</div>
         </div>
-        <div class="stat-badge">
-          <i class="fas fa-users stat-badge-icon"></i>
-          <span class="stat-badge-number">${data.length}</span>
-          <span class="stat-badge-label">回答者数</span>
+        <div class="stat-item">
+          <div class="stat-item-number">${data.length}</div>
+          <div class="stat-item-label">回答者数</div>
         </div>
       </div>
     </section>
