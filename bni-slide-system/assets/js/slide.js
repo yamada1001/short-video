@@ -69,13 +69,15 @@
 
       // Initialize or sync Reveal.js
       if (!Reveal.isReady()) {
-        // Initialize Reveal.js
+        // Initialize Reveal.js (Google Slides style - no animations)
         Reveal.initialize({
       hash: true,
       controls: true,
       progress: true,
       center: true,
-      transition: 'slide',
+      transition: 'none',  // No transition animation
+      transitionSpeed: 'fast',
+      backgroundTransition: 'none',
       slideNumber: 'c/t',
       keyboard: true,
       overview: true,
@@ -84,33 +86,15 @@
       rtl: false,
       navigationMode: 'default',
       shuffle: false,
-      fragments: true,
-      fragmentInURL: true,
+      fragments: false,  // Disable fragment animations
+      fragmentInURL: false,
       embedded: false,
       help: true,
       pause: true,
       showNotes: false,
       autoPlayMedia: null,
       preloadIframes: null,
-      autoAnimate: true,
-      autoAnimateMatcher: null,
-      autoAnimateEasing: 'ease',
-      autoAnimateDuration: 1.0,
-      autoAnimateUnmatched: true,
-      autoAnimateStyles: [
-        'opacity',
-        'color',
-        'background-color',
-        'padding',
-        'font-size',
-        'line-height',
-        'letter-spacing',
-        'border-width',
-        'border-color',
-        'border-radius',
-        'outline',
-        'outline-offset'
-      ],
+      autoAnimate: false,  // Disable auto-animate
       autoSlide: 0,
       autoSlideStoppable: true,
       autoSlideMethod: null,
@@ -120,11 +104,11 @@
       postMessage: true,
       postMessageEvents: false,
       focusBodyOnPageVisibilityChange: true,
-      width: 1200,
-      height: 700,
-      margin: 0.04,
-      minScale: 0.2,
-      maxScale: 2.0,
+      width: '100%',  // Full width
+      height: '100%',  // Full height
+      margin: 0,  // No margin
+      minScale: 1,  // No scaling
+      maxScale: 1,
       disableLayout: false
         });
 

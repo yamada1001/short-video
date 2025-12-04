@@ -72,18 +72,22 @@
   color: var(--text-medium);
 }
 
-/* Slide Backgrounds with Gradient Mesh */
+/* Slide Backgrounds with Gradient Mesh - Full Screen */
 .reveal .slides {
-  background: var(--bg-light);
+  background: var(--bg-white);
 }
 
 .reveal .slides section {
   background: var(--bg-white);
-  border-radius: 16px;
+  border-radius: 0;  /* No border radius for full screen */
   padding: 60px;
-  box-shadow: var(--shadow-lg);
+  box-shadow: none;  /* No shadow for full screen */
   position: relative;
   overflow: hidden;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
 }
 
 /* Gradient Mesh Background Animation */
@@ -508,26 +512,26 @@
 /* Edit Button - Floating Action Button */
 .edit-button {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 20px;
+  right: 20px;
   background: linear-gradient(135deg, var(--bni-red) 0%, var(--bni-red-light) 100%);
   color: var(--bg-white);
   border: none;
-  padding: 16px 32px;
+  padding: 12px 24px;
   border-radius: 50px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(207, 32, 48, 0.3);
+  box-shadow: 0 4px 12px rgba(207, 32, 48, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1000;
+  z-index: 2000;
   text-decoration: none;
   display: inline-block;
 }
 
 .edit-button:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 12px 28px rgba(207, 32, 48, 0.4);
+  box-shadow: 0 6px 16px rgba(207, 32, 48, 0.4);
 }
 
 /* SVG Illustrations - Decorative */
