@@ -136,9 +136,9 @@
                 <label class="form-label">
                   入力日（会議実施日）<span class="required">*</span>
                 </label>
-                <input type="date" name="input_date" class="form-input" required id="inputDate">
+                <input type="date" name="input_date" class="form-input" required id="inputDate" readonly>
                 <span class="form-error">入力日を選択してください</span>
-                <p class="form-hint">この日付でデータが週ごとに管理されます</p>
+                <p class="form-hint">この日付でデータが週ごとに管理されます（自動設定）</p>
               </div>
 
               <div class="form-group">
@@ -222,35 +222,33 @@
 
                   <div class="form-group">
                     <label class="form-label">
-                      案件名・内容<span class="required">*</span>
+                      案件名・内容
                     </label>
-                    <input type="text" name="referral_name[]" class="form-input" required placeholder="例: ○○社のWebサイト制作案件">
-                    <span class="form-error">案件名を入力してください</span>
+                    <input type="text" name="referral_name[]" class="form-input" placeholder="例: ○○社のWebサイト制作案件">
+                    <span class="form-help">リファーラルがある場合のみ入力してください</span>
                   </div>
 
                   <div class="form-row">
                     <div class="form-group">
                       <label class="form-label">
-                        リファーラル金額（円）<span class="required">*</span>
+                        リファーラル金額（円）
                       </label>
-                      <input type="text" name="referral_amount_display[]" class="form-input referral-amount-display" required placeholder="例: 500,000">
+                      <input type="text" name="referral_amount_display[]" class="form-input referral-amount-display" placeholder="例: 500,000">
                       <input type="hidden" name="referral_amount[]" class="referral-amount-hidden">
                       <span class="form-help">カンマは自動で挿入されます</span>
-                      <span class="form-error">金額を入力してください</span>
                     </div>
 
                     <div class="form-group">
                       <label class="form-label">
-                        カテゴリ<span class="required">*</span>
+                        カテゴリ
                       </label>
-                      <select name="referral_category[]" class="form-select" required>
+                      <select name="referral_category[]" class="form-select">
                         <option value="">選択してください</option>
                         <option value="成約">成約</option>
                         <option value="商談中">商談中</option>
                         <option value="見込み">見込み</option>
                         <option value="その他">その他</option>
                       </select>
-                      <span class="form-error">カテゴリを選択してください</span>
                     </div>
                   </div>
 
@@ -432,35 +430,33 @@
 
             <div class="form-group">
               <label class="form-label">
-                案件名・内容<span class="required">*</span>
+                案件名・内容
               </label>
-              <input type="text" name="referral_name[]" class="form-input" required placeholder="例: ○○社のWebサイト制作案件">
-              <span class="form-error">案件名を入力してください</span>
+              <input type="text" name="referral_name[]" class="form-input" placeholder="例: ○○社のWebサイト制作案件">
+              <span class="form-help">リファーラルがある場合のみ入力してください</span>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">
-                  リファーラル金額（円）<span class="required">*</span>
+                  リファーラル金額（円）
                 </label>
-                <input type="text" name="referral_amount_display[]" class="form-input referral-amount-display" required placeholder="例: 500,000">
+                <input type="text" name="referral_amount_display[]" class="form-input referral-amount-display" placeholder="例: 500,000">
                 <input type="hidden" name="referral_amount[]" class="referral-amount-hidden">
                 <span class="form-help">カンマは自動で挿入されます</span>
-                <span class="form-error">金額を入力してください</span>
               </div>
 
               <div class="form-group">
                 <label class="form-label">
-                  カテゴリ<span class="required">*</span>
+                  カテゴリ
                 </label>
-                <select name="referral_category[]" class="form-select" required>
+                <select name="referral_category[]" class="form-select">
                   <option value="">選択してください</option>
                   <option value="成約">成約</option>
                   <option value="商談中">商談中</option>
                   <option value="見込み">見込み</option>
                   <option value="その他">その他</option>
                 </select>
-                <span class="form-error">カテゴリを選択してください</span>
               </div>
             </div>
 

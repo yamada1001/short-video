@@ -162,8 +162,12 @@
               <thead>
                 <tr>
                   <th style="width: 50px;">No</th>
+                  <th>入力日</th>
                   <th>紹介者名</th>
+                  <th>メールアドレス</th>
                   <th>ビジター名</th>
+                  <th>ビジター会社名</th>
+                  <th>案件名</th>
                   <th>リファーラル金額</th>
                   <th>カテゴリ</th>
                   <th>出席状況</th>
@@ -172,7 +176,7 @@
               </thead>
               <tbody id="tableBody">
                 <tr>
-                  <td colspan="7" class="empty-state">
+                  <td colspan="11" class="empty-state">
                     <div class="spinner"></div>
                     <p>データを読み込んでいます...</p>
                   </td>

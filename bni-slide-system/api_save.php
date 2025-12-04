@@ -90,9 +90,14 @@ try {
     }
   }
 
-  // At least one referral is required
+  // Referrals are now optional - if none provided, create a dummy referral with 0 amount
   if (count($referrals) === 0) {
-    throw new Exception('リファーラル情報を少なくとも1件入力してください');
+    $referrals[] = [
+      'name' => '-',
+      'amount' => 0,
+      'category' => 'その他',
+      'provider' => ''
+    ];
   }
 
   // Save to CSV (one row per combination of visitor and referral)

@@ -36,7 +36,7 @@ async function loadData() {
     showMessage('error', error.message);
     document.getElementById('tableBody').innerHTML = `
       <tr>
-        <td colspan="7" class="empty-state">
+        <td colspan="11" class="empty-state">
           <h3>エラー</h3>
           <p>${error.message}</p>
           <button onclick="location.reload()" class="btn btn-primary">再読み込み</button>
@@ -55,10 +55,9 @@ function renderTable() {
   if (currentData.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="7" class="empty-state">
+        <td colspan="11" class="empty-state">
           <h3>データがありません</h3>
           <p>まずはアンケートフォームから回答を送信してください</p>
-          <a href="index.php" class="btn btn-primary">アンケートフォームへ</a>
         </td>
       </tr>
     `;
@@ -71,12 +70,28 @@ function renderTable() {
       <tr data-index="${index}">
         <td>${index + 1}</td>
         <td>
+          <input type="date" value="${escapeHtml(row['入力日'] || '')}"
+                 onchange="updateRow(${index}, '入力日', this.value)">
+        </td>
+        <td>
           <input type="text" value="${escapeHtml(row['紹介者名'] || '')}"
                  onchange="updateRow(${index}, '紹介者名', this.value)">
         </td>
         <td>
+          <input type="email" value="${escapeHtml(row['メールアドレス'] || '')}"
+                 onchange="updateRow(${index}, 'メールアドレス', this.value)">
+        </td>
+        <td>
           <input type="text" value="${escapeHtml(row['ビジター名'] || '')}"
                  onchange="updateRow(${index}, 'ビジター名', this.value)">
+        </td>
+        <td>
+          <input type="text" value="${escapeHtml(row['ビジター会社名'] || '')}"
+                 onchange="updateRow(${index}, 'ビジター会社名', this.value)">
+        </td>
+        <td>
+          <input type="text" value="${escapeHtml(row['案件名'] || '')}"
+                 onchange="updateRow(${index}, '案件名', this.value)">
         </td>
         <td>
           <input type="number" value="${row['リファーラル金額'] || 0}"
