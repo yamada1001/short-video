@@ -5,6 +5,12 @@
 # -----------------
 # Basic Authentication
 # -----------------
+# Exclude check-path.php from authentication
+<Files "check-path.php">
+  Satisfy Any
+  Allow from all
+</Files>
+
 AuthType Basic
 AuthName "BNI Slide System - Restricted Access"
 # IMPORTANT: Change this path to absolute path on Xserver
