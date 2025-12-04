@@ -520,7 +520,7 @@
 /* BNI Logo - Bottom Right (for title slides) */
 .bni-logo-bottom-right {
   position: fixed;
-  bottom: 20px;
+  bottom: 100px;
   right: 30px;
   width: 450px;
   height: auto;

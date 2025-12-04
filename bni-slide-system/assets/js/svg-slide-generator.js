@@ -94,9 +94,20 @@ async function generateSVGSlides(data, stats) {
           displayName = parts.slice(1).join(' ');
         }
 
+        // Add space before 様 if it exists
+        if (displayName && displayName.includes('様')) {
+          displayName = displayName.replace(/([^\s])様/, '$1 様');
+        }
+
+        // Add space before 様 in 紹介者名 as well
+        let introducerName = row['紹介者名'] || '';
+        if (introducerName && introducerName.includes('様')) {
+          introducerName = introducerName.replace(/([^\s])様/, '$1 様');
+        }
+
         slides += `
           <tr>
-            <td>${escapeHtml(row['紹介者名'] || '')}</td>
+            <td>${escapeHtml(introducerName)}</td>
             <td><strong>${escapeHtml(displayName)}</strong></td>
             <td>${escapeHtml(displayCompany || '-')}</td>
             <td>${escapeHtml(row['ビジター業種'] || '-')}</td>
@@ -205,9 +216,15 @@ async function generateSVGSlides(data, stats) {
       `;
 
       pageMembers.forEach(([member, memberStats]) => {
+        // Add space before 様 if it exists
+        let memberName = member;
+        if (memberName && memberName.includes('様')) {
+          memberName = memberName.replace(/([^\s])様/, '$1 様');
+        }
+
         slides += `
           <div class="member-item">
-            <div class="member-item-name">${escapeHtml(member)}</div>
+            <div class="member-item-name">${escapeHtml(memberName)}</div>
             <div class="member-item-stats">
               <div>ビジター: <strong>${memberStats.visitors}名</strong></div>
             </div>
@@ -224,9 +241,15 @@ async function generateSVGSlides(data, stats) {
     // Slide 5.5: Member Pitch Countdown (30 seconds for each member)
     const allMembers = Object.keys(stats.members);
     allMembers.forEach(member => {
+      // Add space before 様 if it exists
+      let memberName = member;
+      if (memberName && memberName.includes('様')) {
+        memberName = memberName.replace(/([^\s])様/, '$1 様');
+      }
+
       slides += `
         <section class="pitch-slide" data-member="${escapeHtml(member)}">
-          <h2 class="pitch-member-name">${escapeHtml(member)}</h2>
+          <h2 class="pitch-member-name">${escapeHtml(memberName)}</h2>
           <p class="pitch-label">30秒ピッチ</p>
           <div class="countdown-timer" data-seconds="30">30</div>
           <div class="countdown-progress">
