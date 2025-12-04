@@ -65,27 +65,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
   max-width: 100%;
   overflow: hidden;
 }
 
-.reveal .slides section > *:not(.slide-logo) {
+.reveal .slides section > * {
   max-width: 100%;
-  position: relative;
-  z-index: 2;
-}
-
-/* Slide Logo (right top) */
-.slide-logo {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  opacity: 0.3;
-  pointer-events: none;
-  z-index: 1;
 }
 
 /* Title Slide */
