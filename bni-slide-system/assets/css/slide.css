@@ -115,6 +115,8 @@
   justify-content: space-between;
   align-items: center;
   transition: all 0.3s ease;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .stat-item:hover {
@@ -123,18 +125,21 @@
 }
 
 .stat-item-number {
-  font-size: 2.8em;
+  font-size: 2.5em;
   font-weight: 800;
   color: #FFFFFF;
   font-family: 'LINE Seed JP', sans-serif;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 .stat-item-label {
-  font-size: 1em;
+  font-size: 0.95em;
   color: #FFE6E8;
   font-weight: 500;
   text-align: right;
+  word-break: keep-all;
+  white-space: nowrap;
 }
 
 /* Table Styling - Minimal */
