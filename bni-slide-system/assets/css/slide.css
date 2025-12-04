@@ -507,11 +507,11 @@
 /* BNI Logo - Top Right (for normal slides) */
 .bni-logo-top-right {
   position: fixed;
-  top: 30px;
-  right: 40px;
-  width: 120px;
-  height: 120px;
-  opacity: 0.12;
+  top: 20px;
+  right: 30px;
+  width: 180px;
+  height: 180px;
+  opacity: 0.25;
   z-index: 1000;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -520,11 +520,11 @@
 /* BNI Logo - Bottom Right (for title slides) */
 .bni-logo-bottom-right {
   position: fixed;
-  bottom: 30px;
-  right: 40px;
-  width: 200px;
-  height: 200px;
-  opacity: 0.15;
+  bottom: 20px;
+  right: 30px;
+  width: 280px;
+  height: 280px;
+  opacity: 0.3;
   z-index: 1000;
   pointer-events: none;
   transition: opacity 0.3s ease;
