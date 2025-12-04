@@ -111,19 +111,36 @@ async function generateSVGSlides(data, stats) {
       `;
     }
 
-    // Slide 3.5: Visitor Introduction Slides (for self-introduction & feedback)
+    // Slide 3.5: Visitor Self-Introduction Slides
     visitorsWithData.forEach(row => {
-      const visitorName = escapeHtml(row['ビジター名'] || '');
-      const visitorCompany = escapeHtml(row['ビジター会社名'] || '');
+      // Parse visitor name
+      const fullVisitorName = row['ビジター名'] || '';
+      const visitorCompany = row['ビジター会社名'] || '';
+
+      let displayName = fullVisitorName;
+      let displayCompany = visitorCompany;
+
+      if (!visitorCompany && fullVisitorName.includes(' ')) {
+        const parts = fullVisitorName.split(' ');
+        displayCompany = parts[0];
+        displayName = parts.slice(1).join(' ');
+      }
+
       const visitorIndustry = escapeHtml(row['ビジター業種'] || '');
 
       slides += `
         <section class="visitor-slide">
-          <h2 class="visitor-name">${visitorName}</h2>
-          <p class="visitor-company">${visitorCompany}</p>
+          <h2 class="visitor-name">${escapeHtml(displayName)}</h2>
+          <p class="visitor-company">${escapeHtml(displayCompany)}</p>
           <p class="visitor-industry">${visitorIndustry}</p>
           <div class="visitor-prompt">
-            <p>自己紹介・感想をお願いします</p>
+            <p class="prompt-title">自己紹介をお願いします</p>
+            <div class="prompt-themes">
+              <div class="theme-item"><i class="fas fa-building"></i> 会社名（屋号）・事業内容</div>
+              <div class="theme-item"><i class="fas fa-briefcase"></i> ご自身のお仕事について</div>
+              <div class="theme-item"><i class="fas fa-bullseye"></i> 今日の参加目的</div>
+              <div class="theme-item"><i class="fas fa-heart"></i> 趣味・好きなこと</div>
+            </div>
           </div>
         </section>
       `;
@@ -286,6 +303,45 @@ async function generateSVGSlides(data, stats) {
       </div>
     </section>
   `;
+
+  // Slide 7.5: Visitor Feedback Slides (at the end)
+  if (data.length > 0) {
+    const visitorsWithData = data.filter(row => row['ビジター名']);
+
+    visitorsWithData.forEach(row => {
+      // Parse visitor name
+      const fullVisitorName = row['ビジター名'] || '';
+      const visitorCompany = row['ビジター会社名'] || '';
+
+      let displayName = fullVisitorName;
+      let displayCompany = visitorCompany;
+
+      if (!visitorCompany && fullVisitorName.includes(' ')) {
+        const parts = fullVisitorName.split(' ');
+        displayCompany = parts[0];
+        displayName = parts.slice(1).join(' ');
+      }
+
+      const visitorIndustry = escapeHtml(row['ビジター業種'] || '');
+
+      slides += `
+        <section class="visitor-slide feedback-slide">
+          <h2 class="visitor-name">${escapeHtml(displayName)}</h2>
+          <p class="visitor-company">${escapeHtml(displayCompany)}</p>
+          <p class="visitor-industry">${visitorIndustry}</p>
+          <div class="visitor-prompt">
+            <p class="prompt-title">ご感想をお聞かせください</p>
+            <div class="prompt-themes">
+              <div class="theme-item"><i class="fas fa-comment-dots"></i> 本日の会議の印象</div>
+              <div class="theme-item"><i class="fas fa-star"></i> 印象に残ったこと</div>
+              <div class="theme-item"><i class="fas fa-handshake"></i> ビジネスでご協力できそうなこと</div>
+              <div class="theme-item"><i class="fas fa-bullhorn"></i> メンバーへのメッセージ</div>
+            </div>
+          </div>
+        </section>
+      `;
+    });
+  }
 
   // Slide 8: Thank You
   slides += `
