@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>BNI週次アンケート | BNI Slide System</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/common.css">
+  <link rel="stylesheet" href="assets/css/form.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-logo">BNI Slide System</div>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.php" class="active">アンケート</a></li>
+          <li><a href="slide.php">スライド表示</a></li>
+          <li><a href="edit.php">編集</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <div class="form-container">
+        <div class="card">
+          <div class="form-header">
+            <h1>BNI週次アンケート</h1>
+            <p>毎週のビジター紹介・リファーラル情報をご入力ください</p>
+          </div>
+
+          <!-- Success/Error Messages -->
+          <div id="message" class="message"></div>
+
+          <!-- Survey Form -->
+          <form id="surveyForm" method="POST" action="api_save.php">
+
+            <!-- Section 1: ビジター紹介情報 -->
+            <div class="form-section">
+              <h2 class="form-section-title">1. ビジター紹介情報</h2>
+
+              <div class="form-group">
+                <label class="form-label">
+                  紹介者名（あなたの名前）<span class="required">*</span>
+                </label>
+                <input type="text" name="introducer_name" class="form-input" required>
+                <span class="form-error">紹介者名を入力してください</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  ビジター名<span class="required">*</span>
+                </label>
+                <input type="text" name="visitor_name" class="form-input" required>
+                <span class="form-help">紹介したビジターの氏名を入力してください</span>
+                <span class="form-error">ビジター名を入力してください</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  紹介日<span class="required">*</span>
+                </label>
+                <input type="date" name="introduction_date" class="form-input" required>
+                <span class="form-error">紹介日を選択してください</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  ビジターの業種・職種
+                </label>
+                <input type="text" name="visitor_industry" class="form-input" placeholder="例: 不動産仲介業">
+              </div>
+            </div>
+
+            <!-- Section 2: リファーラル金額情報 -->
+            <div class="form-section">
+              <h2 class="form-section-title">2. リファーラル金額情報</h2>
+
+              <div class="form-group">
+                <label class="form-label">
+                  案件名・内容<span class="required">*</span>
+                </label>
+                <input type="text" name="referral_name" class="form-input" required placeholder="例: ○○社のWebサイト制作案件">
+                <span class="form-error">案件名を入力してください</span>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">
+                    リファーラル金額（円）<span class="required">*</span>
+                  </label>
+                  <input type="number" name="referral_amount" class="form-input" required min="0" step="1000" placeholder="例: 500000">
+                  <span class="form-error">金額を入力してください</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">
+                    カテゴリ<span class="required">*</span>
+                  </label>
+                  <select name="referral_category" class="form-select" required>
+                    <option value="">選択してください</option>
+                    <option value="成約">成約</option>
+                    <option value="商談中">商談中</option>
+                    <option value="見込み">見込み</option>
+                    <option value="その他">その他</option>
+                  </select>
+                  <span class="form-error">カテゴリを選択してください</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  リファーラル提供者
+                </label>
+                <input type="text" name="referral_provider" class="form-input" placeholder="例: 山田太郎">
+                <span class="form-help">あなたにリファーラルを提供してくれたメンバー名</span>
+              </div>
+            </div>
+
+            <!-- Section 3: メンバー情報 -->
+            <div class="form-section">
+              <h2 class="form-section-title">3. メンバー情報</h2>
+
+              <div class="form-group">
+                <label class="form-label">
+                  今週の出席状況<span class="required">*</span>
+                </label>
+                <div class="form-radio-group">
+                  <div class="form-radio">
+                    <input type="radio" id="attendance_yes" name="attendance" value="出席" required>
+                    <label for="attendance_yes">出席</label>
+                  </div>
+                  <div class="form-radio">
+                    <input type="radio" id="attendance_substitute" name="attendance" value="代理出席">
+                    <label for="attendance_substitute">代理出席</label>
+                  </div>
+                  <div class="form-radio">
+                    <input type="radio" id="attendance_absent" name="attendance" value="欠席">
+                    <label for="attendance_absent">欠席</label>
+                  </div>
+                </div>
+                <span class="form-error">出席状況を選択してください</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  サンクスリップ提出数
+                </label>
+                <input type="number" name="thanks_slips" class="form-input" min="0" value="0">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  ワンツーワン実施数（今週）
+                </label>
+                <input type="number" name="one_to_one_count" class="form-input" min="0" value="0">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  今週のアクティビティ
+                </label>
+                <div class="form-checkbox-group">
+                  <div class="form-checkbox">
+                    <input type="checkbox" id="activity_networking" name="activities[]" value="ネットワーキング">
+                    <label for="activity_networking">ネットワーキング</label>
+                  </div>
+                  <div class="form-checkbox">
+                    <input type="checkbox" id="activity_education" name="activities[]" value="教育セッション参加">
+                    <label for="activity_education">教育セッション参加</label>
+                  </div>
+                  <div class="form-checkbox">
+                    <input type="checkbox" id="activity_presentation" name="activities[]" value="プレゼンテーション実施">
+                    <label for="activity_presentation">プレゼンテーション実施</label>
+                  </div>
+                  <div class="form-checkbox">
+                    <input type="checkbox" id="activity_event" name="activities[]" value="イベント参加">
+                    <label for="activity_event">イベント参加</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  その他コメント・特記事項
+                </label>
+                <textarea name="comments" class="form-textarea" placeholder="今週の活動や気づきなど、自由にご記入ください"></textarea>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-submit">
+              <button type="submit" class="btn btn-primary">送信する</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2024 BNI Slide System. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/form.js"></script>
+</body>
+</html>

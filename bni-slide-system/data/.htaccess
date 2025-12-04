@@ -1,0 +1,7 @@
+# Deny direct access to CSV and JSON files
+Order deny,allow
+Deny from all
+
+<FilesMatch "\.(csv|json)$">
+    Deny from all
+</FilesMatch>

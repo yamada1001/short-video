@@ -1,0 +1,275 @@
+/* ===================================
+   BNI Slide System - Form Styles
+   =================================== */
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.form-header h1 {
+  margin-bottom: 10px;
+}
+
+.form-header p {
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+
+.form-label .required {
+  color: var(--bni-red);
+  margin-left: 4px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--bni-red);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-help {
+  display: block;
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 6px;
+}
+
+/* Radio & Checkbox */
+.form-radio-group,
+.form-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-radio,
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.form-radio input[type="radio"],
+.form-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  accent-color: var(--bni-red);
+}
+
+.form-radio label,
+.form-checkbox label {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Multi-field Row */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Validation States */
+.form-group.error .form-input,
+.form-group.error .form-select,
+.form-group.error .form-textarea {
+  border-color: #E74C3C;
+}
+
+.form-error {
+  display: none;
+  color: #E74C3C;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.form-group.error .form-error {
+  display: block;
+}
+
+.form-group.success .form-input,
+.form-group.success .form-select,
+.form-group.success .form-textarea {
+  border-color: #27AE60;
+}
+
+/* Submit Section */
+.form-submit {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.form-submit .btn {
+  min-width: 200px;
+  font-size: 18px;
+  padding: 16px 40px;
+}
+
+/* Success/Error Messages */
+.message {
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  display: none;
+}
+
+.message.show {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+.message-success {
+  background-color: #D4EDDA;
+  color: #155724;
+  border: 1px solid #C3E6CB;
+}
+
+.message-error {
+  background-color: #F8D7DA;
+  color: #721C24;
+  border: 1px solid #F5C6CB;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading State */
+.btn.loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.btn.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-submit .btn {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+/* Section Divider */
+.form-section {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 2px solid var(--border-color);
+}
+
+.form-section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--bni-red);
+  margin-bottom: 20px;
+}
+
+/* Repeater Field (for multiple entries) */
+.form-repeater {
+  border: 2px dashed var(--border-color);
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.form-repeater-item {
+  position: relative;
+  padding: 20px;
+  background-color: var(--bg-light);
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.form-repeater-remove {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #E74C3C;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.form-repeater-remove:hover {
+  background-color: #C0392B;
+}
+
+.form-repeater-add {
+  margin-top: 15px;
+}
