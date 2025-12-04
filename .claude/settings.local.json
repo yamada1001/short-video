@@ -202,7 +202,10 @@
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add demo/kuruma-kaitori-k-village/.htaccess demo/kuruma-kaitori-k-village/includes/header.php)",
       "Bash(open:*)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add demo/kuruma-kaitori-k-village/.htaccess)",
-      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add demo/kuruma-kaitori-k-village/.htaccess demo/kuruma-kaitori-k-village/check-path.php)"
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add demo/kuruma-kaitori-k-village/.htaccess demo/kuruma-kaitori-k-village/check-path.php)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add demo/kuruma-kaitori-k-village/WORK_LOG_2024-12-03.md)",
+      "WebFetch(domain:bni.jp)",
+      "Bash(tar:*)"
     ],
     "deny": [],
     "ask": []
