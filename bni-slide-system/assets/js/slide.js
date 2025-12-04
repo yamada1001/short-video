@@ -167,6 +167,9 @@
       // Setup countdown timers for pitch slides
       setupCountdownTimers();
 
+      // Setup number animations for referral amounts
+      setupNumberAnimations();
+
     } catch (error) {
       console.error('Error loading slide data:', error);
       slideContainer.innerHTML = `
@@ -236,6 +239,54 @@
           }, 1000);
         }
       }
+    });
+  }
+
+  /**
+   * Setup number count-up animations for referral amounts
+   */
+  function setupNumberAnimations() {
+    Reveal.on('slidechanged', event => {
+      const currentSlide = event.currentSlide;
+
+      // Animate numbers with .animate-number class
+      const animateNumbers = currentSlide.querySelectorAll('.animate-number');
+      animateNumbers.forEach(element => {
+        const targetValue = parseInt(element.dataset.value) || 0;
+        const duration = 1500; // 1.5 seconds
+        const startTime = performance.now();
+
+        function updateNumber(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Easing function (ease-out-cubic)
+          const easeProgress = 1 - Math.pow(1 - progress, 3);
+
+          const currentValue = Math.floor(targetValue * easeProgress);
+          element.textContent = '¥' + currentValue.toLocaleString('ja-JP');
+
+          if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+          } else {
+            element.textContent = '¥' + targetValue.toLocaleString('ja-JP');
+          }
+        }
+
+        requestAnimationFrame(updateNumber);
+      });
+
+      // Animate progress bars
+      const progressFills = currentSlide.querySelectorAll('.progress-fill[data-width]');
+      progressFills.forEach((element, index) => {
+        const targetWidth = parseFloat(element.dataset.width) || 0;
+
+        // Stagger animation by 100ms per item
+        setTimeout(() => {
+          element.style.transition = 'width 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+          element.style.width = targetWidth + '%';
+        }, index * 100);
+      });
     });
   }
 })();

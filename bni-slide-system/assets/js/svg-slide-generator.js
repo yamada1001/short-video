@@ -79,11 +79,26 @@ async function generateSVGSlides(data, stats) {
       `;
 
       pageData.forEach(row => {
+        // Parse visitor name - format might be "会社名 名前様" or just "名前様"
+        const fullVisitorName = row['ビジター名'] || '';
+        const visitorCompany = row['ビジター会社名'] || '';
+
+        // If company name is not in separate field, try to extract it
+        let displayName = fullVisitorName;
+        let displayCompany = visitorCompany;
+
+        // If no separate company field and name contains space, split it
+        if (!visitorCompany && fullVisitorName.includes(' ')) {
+          const parts = fullVisitorName.split(' ');
+          displayCompany = parts[0];
+          displayName = parts.slice(1).join(' ');
+        }
+
         slides += `
           <tr>
             <td>${escapeHtml(row['紹介者名'] || '')}</td>
-            <td><strong>${escapeHtml(row['ビジター名'] || '')}</strong></td>
-            <td>${escapeHtml(row['ビジター会社名'] || '-')}</td>
+            <td><strong>${escapeHtml(displayName)}</strong></td>
+            <td>${escapeHtml(displayCompany || '-')}</td>
             <td>${escapeHtml(row['ビジター業種'] || '-')}</td>
           </tr>
         `;
@@ -117,11 +132,11 @@ async function generateSVGSlides(data, stats) {
 
   // Slide 4: Referral Amount Breakdown
   slides += `
-    <section>
+    <section data-auto-animate>
 
       <h2>リファーラル金額内訳</h2>
       <div class="highlight-box">
-        <h3>総額: <span class="currency">¥${formatNumber(stats.total_referral_amount)}</span></h3>
+        <h3>総額: <span class="currency animate-number" data-value="${stats.total_referral_amount}">¥0</span></h3>
       </div>
   `;
 
@@ -136,10 +151,10 @@ async function generateSVGSlides(data, stats) {
         <div class="progress-item">
           <div class="progress-item-header">
             <span class="progress-item-label">${escapeHtml(category)}</span>
-            <span class="progress-item-value">¥${formatNumber(amount)}</span>
+            <span class="progress-item-value animate-number" data-value="${amount}">¥0</span>
           </div>
           <div class="progress-bar">
-            <div class="progress-fill" style="width: ${percentage}%;"></div>
+            <div class="progress-fill" data-width="${percentage}" style="width: 0%;"></div>
           </div>
         </div>
       `;
