@@ -5,7 +5,7 @@
 
 /* Global Styles */
 .reveal {
-  font-family: 'Crimson Pro', 'Noto Sans JP', serif;
+  font-family: 'LINE Seed JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo', sans-serif;
   font-size: 32px;
   font-weight: 400;
   color: #333333;
@@ -17,7 +17,7 @@
 .reveal h3,
 .reveal h4 {
   color: #CF2030 !important;
-  font-family: 'Crimson Pro', 'Noto Sans JP', serif;
+  font-family: 'LINE Seed JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo', sans-serif;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 0.5em;
@@ -107,7 +107,7 @@
   font-size: 4em;
   font-weight: 800;
   color: #CF2030;
-  font-family: 'Crimson Pro', serif;
+  font-family: 'LINE Seed JP', sans-serif;
   line-height: 1;
   margin-bottom: 10px;
 }
@@ -177,7 +177,7 @@
 .progress-item-value {
   font-weight: 700;
   color: #CF2030;
-  font-family: 'Crimson Pro', serif;
+  font-family: 'LINE Seed JP', sans-serif;
 }
 
 .progress-bar {
@@ -237,7 +237,7 @@
   font-size: 1.5em;
   color: #CF2030;
   font-weight: 700;
-  font-family: 'Crimson Pro', serif;
+  font-family: 'LINE Seed JP', sans-serif;
 }
 
 /* Loading Screen */
