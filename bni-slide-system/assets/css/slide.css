@@ -70,8 +70,10 @@
   overflow: hidden;
 }
 
-.reveal .slides section > * {
+.reveal .slides section > *:not(.slide-logo) {
   max-width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 /* Slide Logo (right top) */
@@ -82,7 +84,8 @@
   width: 60px;
   height: 60px;
   opacity: 0.3;
-  z-index: 10;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Title Slide */
