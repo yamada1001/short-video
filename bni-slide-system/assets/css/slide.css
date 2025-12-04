@@ -320,30 +320,32 @@
   position: fixed;
   top: 20px;
   left: 20px;
-  width: 56px;
-  height: 56px;
-  background: #FFFFFF;
-  color: #CF2030;
-  border: none;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: none;
   transition: all 0.3s ease;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0.5;
 }
 
 .control-icon-button:hover {
-  background: #F0F0F0;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 1;
+  transform: scale(1.05);
 }
 
 .control-icon-button svg {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
 }
 
 /* Control Panel Modal */
