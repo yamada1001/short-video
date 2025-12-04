@@ -8,7 +8,7 @@
 
   <!-- Reveal.js CSS -->
   <link rel="stylesheet" href="../assets/lib/reveal.js/dist/reveal.css">
-  <link rel="stylesheet" href="../assets/lib/reveal.js/dist/theme/white.css">
+  <link rel="stylesheet" href="../assets/lib/reveal.js/dist/theme/white.css" id="theme">
 
   <!-- Custom Slide CSS -->
   <link rel="stylesheet" href="../assets/css/slide.css">

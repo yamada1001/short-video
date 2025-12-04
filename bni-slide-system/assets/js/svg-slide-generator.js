@@ -1,10 +1,10 @@
 /**
- * BNI Slide System - HTML/CSS Slide Generator
- * Modern Enterprise Presentation Design
+ * BNI Slide System - Simple HTML Slide Generator
+ * Using Reveal.js White Theme + BNI Colors
  */
 
 /**
- * Generate all slides from data using HTML/CSS
+ * Generate all slides from data
  */
 async function generateSVGSlides(data, stats) {
   const slideContainer = document.getElementById('slideContainer');
@@ -16,62 +16,45 @@ async function generateSVGSlides(data, stats) {
 
   let slides = '';
 
-  // ============================================
-  // Slide 1: Title Slide
-  // ============================================
+  // Slide 1: Title
   slides += `
-    <section class="title-slide-modern">
-      <div class="title-content">
-        <h1 class="main-title">BNI週次レポート</h1>
-        <p class="date-text">${today}</p>
-        <div class="brand-footer">
-          <span>Givers Gain® | BNI Slide System</span>
-        </div>
-      </div>
+    <section class="title-slide">
+      <h1>BNI週次レポート</h1>
+      <p class="subtitle">${today}</p>
+      <p class="branding">Givers Gain® | BNI Slide System</p>
     </section>
   `;
 
-  // ============================================
-  // Slide 2: Summary Slide
-  // ============================================
+  // Slide 2: Summary
   slides += `
-    <section class="summary-slide-modern">
-      <h2 class="section-title-center">今週のサマリー</h2>
-      <div class="stats-grid-modern">
-        <div class="stat-card-modern">
+    <section>
+      <h2>今週のサマリー</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
           <div class="stat-icon"><i class="fas fa-users"></i></div>
           <div class="stat-number">${stats.total_visitors || 0}</div>
           <div class="stat-label">ビジター紹介数</div>
         </div>
-        <div class="stat-card-modern">
-          <div class="stat-icon stat-icon-green"><i class="fas fa-yen-sign"></i></div>
-          <div class="stat-number stat-number-green">¥${formatNumber(stats.total_referral_amount || 0)}</div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-yen-sign"></i></div>
+          <div class="stat-number">¥${formatNumber(stats.total_referral_amount || 0)}</div>
           <div class="stat-label">総リファーラル金額</div>
         </div>
-        <div class="stat-card-modern">
-          <div class="stat-icon stat-icon-blue"><i class="fas fa-check-circle"></i></div>
-          <div class="stat-number stat-number-blue">${stats.total_attendance || 0}</div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+          <div class="stat-number">${stats.total_attendance || 0}</div>
           <div class="stat-label">出席者数</div>
         </div>
-        <div class="stat-card-modern">
-          <div class="stat-icon stat-icon-orange"><i class="fas fa-handshake"></i></div>
-          <div class="stat-number stat-number-orange">${stats.total_one_to_one || 0}</div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-handshake"></i></div>
+          <div class="stat-number">${stats.total_one_to_one || 0}</div>
           <div class="stat-label">ワンツーワン実施数</div>
-        </div>
-        <div class="stat-card-modern">
-          <div class="stat-icon stat-icon-purple"><i class="fas fa-clipboard-check"></i></div>
-          <div class="stat-number stat-number-purple">${data.length || 0}</div>
-          <div class="stat-label">回答者数</div>
         </div>
       </div>
     </section>
   `;
 
-  // ============================================
-  // Slide 3-8: Existing HTML/CSS slides
-  // ============================================
-
-  // Visitor Introductions
+  // Slide 3: Visitor Introductions
   if (data.length > 0) {
     slides += `
       <section>
@@ -106,7 +89,7 @@ async function generateSVGSlides(data, stats) {
     `;
   }
 
-  // Referral Amount Breakdown
+  // Slide 4: Referral Amount Breakdown
   slides += `
     <section>
       <h2>リファーラル金額内訳</h2>
@@ -141,7 +124,7 @@ async function generateSVGSlides(data, stats) {
 
   slides += `</section>`;
 
-  // Member Contributions
+  // Slide 5: Member Contributions
   if (Object.keys(stats.members).length > 0) {
     slides += `
       <section>
@@ -167,7 +150,7 @@ async function generateSVGSlides(data, stats) {
     `;
   }
 
-  // Detailed Referral List
+  // Slide 6: Detailed Referral List
   if (data.length > 0) {
     slides += `
       <section>
@@ -203,47 +186,40 @@ async function generateSVGSlides(data, stats) {
     `;
   }
 
-  // Activity Summary
+  // Slide 7: Activity Summary
   slides += `
     <section>
       <h2>アクティビティサマリー</h2>
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-value">${stats.total_thanks_slips}</div>
+          <div class="stat-number">${stats.total_thanks_slips}</div>
           <div class="stat-label">サンクスリップ提出数</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">${stats.total_one_to_one}</div>
+          <div class="stat-number">${stats.total_one_to_one}</div>
           <div class="stat-label">ワンツーワン実施数</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">${stats.total_attendance}</div>
+          <div class="stat-number">${stats.total_attendance}</div>
           <div class="stat-label">今週の出席者数</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">${data.length}</div>
+          <div class="stat-number">${data.length}</div>
           <div class="stat-label">回答者数</div>
         </div>
       </div>
     </section>
   `;
 
-  // ============================================
-  // Slide 9: Thank You Slide
-  // ============================================
+  // Slide 8: Thank You
   slides += `
-    <section class="title-slide-modern thankyou-slide">
-      <div class="title-content">
-        <h1 class="main-title">ありがとうございました</h1>
-        <p class="date-text">来週もよろしくお願いします</p>
-        <div class="brand-footer">
-          <span>Givers Gain®</span>
-        </div>
-      </div>
+    <section class="title-slide">
+      <h1>ありがとうございました</h1>
+      <p class="subtitle">来週もよろしくお願いします</p>
+      <p class="branding">Givers Gain®</p>
     </section>
   `;
 
-  // Insert slides into container
   slideContainer.innerHTML = slides;
 }
 
