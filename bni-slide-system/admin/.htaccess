@@ -1,0 +1,10 @@
+# ====================================
+# BNI Slide System - Admin Authentication
+# ====================================
+
+AuthType Basic
+AuthName "BNI Admin Area - Restricted Access"
+AuthUserFile /home/xs545151/yojitu.com/public_html/bni-slide-system/admin/.htpasswd
+Require valid-user
+
+ErrorDocument 401 "管理者認証が必要です。"
