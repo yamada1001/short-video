@@ -158,11 +158,11 @@ function createSummarySlideSVG(stats, responseCount) {
 
   // Card data
   const cards = [
-    { x: 400, y: 500, icon: '👥', value: stats.total_visitors || 0, label: 'ビジター紹介数', color: '#CF2030', bgColor: '#FFF5F5' },
-    { x: 1320, y: 500, icon: '💰', value: '¥' + formatNumber(stats.total_referral_amount || 0), label: '総リファーラル金額', color: '#27AE60', bgColor: '#F0FFF4' },
-    { x: 2240, y: 500, icon: '✓', value: stats.total_attendance || 0, label: '出席者数', color: '#3498DB', bgColor: '#F0F8FF' },
-    { x: 860, y: 1080, icon: '🤝', value: stats.total_one_to_one || 0, label: 'ワンツーワン実施数', color: '#F39C12', bgColor: '#FFF5F0' },
-    { x: 1780, y: 1080, icon: '📝', value: responseCount || 0, label: '回答者数', color: '#9B59B6', bgColor: '#F5F0FF' }
+    { x: 400, y: 500, value: stats.total_visitors || 0, label: 'ビジター紹介数', color: '#CF2030', bgColor: '#FFF5F5' },
+    { x: 1320, y: 500, value: '¥' + formatNumber(stats.total_referral_amount || 0), label: '総リファーラル金額', color: '#27AE60', bgColor: '#F0FFF4' },
+    { x: 2140, y: 500, value: stats.total_attendance || 0, label: '出席者数', color: '#3498DB', bgColor: '#F0F8FF' },
+    { x: 860, y: 1080, value: stats.total_one_to_one || 0, label: 'ワンツーワン実施数', color: '#F39C12', bgColor: '#FFF5F0' },
+    { x: 1780, y: 1080, value: responseCount || 0, label: '回答者数', color: '#9B59B6', bgColor: '#F5F0FF' }
   ];
 
   // Create cards
@@ -192,15 +192,9 @@ function createSummarySlideSVG(stats, responseCount) {
     cardGroup.append('circle')
       .attr('cx', iconCenterX).attr('cy', iconCenterY)
       .attr('r', 80)
-      .attr('fill', card.bgColor);
-
-    cardGroup.append('text')
-      .attr('x', iconCenterX).attr('y', iconCenterY + 30)
-      .attr('font-family', "'Noto Sans JP', sans-serif")
-      .attr('font-size', 80)
-      .attr('fill', card.color)
-      .attr('text-anchor', 'middle')
-      .text(card.icon);
+      .attr('fill', card.bgColor)
+      .attr('stroke', card.color)
+      .attr('stroke-width', 3);
 
     // Value
     cardGroup.append('text')
