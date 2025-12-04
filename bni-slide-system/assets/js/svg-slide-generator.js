@@ -29,26 +29,26 @@ async function generateSVGSlides(data, stats) {
   slides += `
     <section>
       <h2>今週のサマリー</h2>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-users"></i></div>
-          <div class="stat-number">${stats.total_visitors || 0}</div>
-          <div class="stat-label">ビジター紹介数</div>
+      <div class="stats-badge-container">
+        <div class="stat-badge">
+          <i class="fas fa-users stat-badge-icon"></i>
+          <span class="stat-badge-number">${stats.total_visitors || 0}</span>
+          <span class="stat-badge-label">ビジター紹介</span>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-yen-sign"></i></div>
-          <div class="stat-number">¥${formatNumber(stats.total_referral_amount || 0)}</div>
-          <div class="stat-label">総リファーラル金額</div>
+        <div class="stat-badge">
+          <i class="fas fa-yen-sign stat-badge-icon"></i>
+          <span class="stat-badge-number">¥${formatNumber(stats.total_referral_amount || 0)}</span>
+          <span class="stat-badge-label">リファーラル金額</span>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
-          <div class="stat-number">${stats.total_attendance || 0}</div>
-          <div class="stat-label">出席者数</div>
+        <div class="stat-badge">
+          <i class="fas fa-check-circle stat-badge-icon"></i>
+          <span class="stat-badge-number">${stats.total_attendance || 0}</span>
+          <span class="stat-badge-label">出席者数</span>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-handshake"></i></div>
-          <div class="stat-number">${stats.total_one_to_one || 0}</div>
-          <div class="stat-label">ワンツーワン実施数</div>
+        <div class="stat-badge">
+          <i class="fas fa-handshake stat-badge-icon"></i>
+          <span class="stat-badge-number">${stats.total_one_to_one || 0}</span>
+          <span class="stat-badge-label">121実施数</span>
         </div>
       </div>
     </section>
@@ -219,22 +219,26 @@ async function generateSVGSlides(data, stats) {
   slides += `
     <section>
       <h2>アクティビティサマリー</h2>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number">${stats.total_thanks_slips}</div>
-          <div class="stat-label">サンクスリップ提出数</div>
+      <div class="stats-badge-container">
+        <div class="stat-badge">
+          <i class="fas fa-clipboard-check stat-badge-icon"></i>
+          <span class="stat-badge-number">${stats.total_thanks_slips}</span>
+          <span class="stat-badge-label">サンクスリップ</span>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">${stats.total_one_to_one}</div>
-          <div class="stat-label">ワンツーワン実施数</div>
+        <div class="stat-badge">
+          <i class="fas fa-handshake stat-badge-icon"></i>
+          <span class="stat-badge-number">${stats.total_one_to_one}</span>
+          <span class="stat-badge-label">121実施数</span>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">${stats.total_attendance}</div>
-          <div class="stat-label">今週の出席者数</div>
+        <div class="stat-badge">
+          <i class="fas fa-check-circle stat-badge-icon"></i>
+          <span class="stat-badge-number">${stats.total_attendance}</span>
+          <span class="stat-badge-label">出席者数</span>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">${data.length}</div>
-          <div class="stat-label">回答者数</div>
+        <div class="stat-badge">
+          <i class="fas fa-users stat-badge-icon"></i>
+          <span class="stat-badge-number">${data.length}</span>
+          <span class="stat-badge-label">回答者数</span>
         </div>
       </div>
     </section>

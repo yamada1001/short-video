@@ -54,40 +54,54 @@
   border-top: 2px solid #ddd;
 }
 
-/* Stats Grid Layout */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
-  margin: 40px 0;
+/* Stats Badge Layout (horizontal) */
+.stats-badge-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 50px auto;
+  max-width: 90%;
+  flex-wrap: wrap;
 }
 
-.stat-card {
+.stat-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   background: #f8f9fa;
-  padding: 30px 20px;
-  border-radius: 8px;
+  padding: 16px 24px;
+  border-radius: 50px;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.stat-badge:hover {
+  border-color: #CF2030;
+  box-shadow: 0 4px 12px rgba(207, 32, 48, 0.15);
+  transform: translateY(-2px);
+}
+
+.stat-badge-icon {
+  font-size: 1.8em;
+  color: #CF2030;
+  min-width: 32px;
   text-align: center;
-  border-left: 4px solid #CF2030;
 }
 
-.stat-icon {
-  font-size: 3em;
+.stat-badge-number {
+  font-size: 2em;
+  font-weight: 800;
   color: #CF2030;
-  margin-bottom: 15px;
-}
-
-.stat-number {
-  font-size: 3em;
-  font-weight: 700;
-  color: #CF2030;
-  margin: 10px 0;
   font-family: 'Inter', sans-serif;
+  letter-spacing: -0.02em;
 }
 
-.stat-label {
-  font-size: 0.9em;
+.stat-badge-label {
+  font-size: 0.85em;
   color: #666;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 /* Table Styling */
