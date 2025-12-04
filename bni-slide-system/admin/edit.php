@@ -126,7 +126,6 @@
       <div class="site-logo">BNI Slide System</div>
       <nav class="site-nav">
         <ul>
-          <li><a href="index.php">アンケート</a></li>
           <li><a href="slide.php">スライド表示</a></li>
           <li><a href="edit.php" class="active">編集</a></li>
         </ul>

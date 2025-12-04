@@ -31,9 +31,6 @@ try {
     'input_date' => sanitize($_POST['input_date'] ?? ''),
     'introducer_name' => sanitize($_POST['introducer_name'] ?? ''),
     'email' => sanitize($_POST['email'] ?? ''),
-    'visitor_name' => sanitize($_POST['visitor_name'] ?? ''),
-    'visitor_company' => sanitize($_POST['visitor_company'] ?? ''),
-    'visitor_industry' => sanitize($_POST['visitor_industry'] ?? ''),
     'attendance' => sanitize($_POST['attendance'] ?? ''),
     'thanks_slips' => intval($_POST['thanks_slips'] ?? 0),
     'one_to_one_count' => intval($_POST['one_to_one_count'] ?? 0),
@@ -45,6 +42,28 @@ try {
   if (empty($baseData['input_date']) || empty($baseData['introducer_name']) ||
       empty($baseData['email']) || empty($baseData['attendance'])) {
     throw new Exception('必須項目が入力されていません');
+  }
+
+  // Get visitor data (multiple items, optional)
+  $visitors = [];
+  if (isset($_POST['visitor_name']) && is_array($_POST['visitor_name'])) {
+    $count = count($_POST['visitor_name']);
+    for ($i = 0; $i < $count; $i++) {
+      $visitorName = sanitize($_POST['visitor_name'][$i] ?? '');
+      $visitorCompany = sanitize($_POST['visitor_company'][$i] ?? '');
+      $visitorIndustry = sanitize($_POST['visitor_industry'][$i] ?? '');
+
+      // Skip empty visitors
+      if (empty($visitorName)) {
+        continue;
+      }
+
+      $visitors[] = [
+        'name' => $visitorName,
+        'company' => $visitorCompany,
+        'industry' => $visitorIndustry
+      ];
+    }
   }
 
   // Get referral data (multiple items)
@@ -76,20 +95,21 @@ try {
     throw new Exception('リファーラル情報を少なくとも1件入力してください');
   }
 
-  // Save to CSV (one row per referral)
-  $csvSaved = saveToCSV($baseData, $referrals);
+  // Save to CSV (one row per combination of visitor and referral)
+  $csvSaved = saveToCSV($baseData, $visitors, $referrals);
   if (!$csvSaved) {
     throw new Exception('CSVファイルへの保存に失敗しました');
   }
 
   // Send email notification
-  $emailSent = sendEmailNotification($baseData, $referrals);
+  $emailSent = sendEmailNotification($baseData, $visitors, $referrals);
 
   // Response
   echo json_encode([
     'success' => true,
     'message' => 'アンケートを送信しました！',
     'data' => $baseData,
+    'visitors' => $visitors,
     'referrals' => $referrals,
     'email_sent' => $emailSent
   ]);
@@ -111,7 +131,7 @@ function sanitize($input) {
 /**
  * Save data to CSV
  */
-function saveToCSV($baseData, $referrals) {
+function saveToCSV($baseData, $visitors, $referrals) {
   // Determine CSV file path from input_date
   $inputDate = $baseData['input_date'];
   $date = new DateTime($inputDate);
@@ -164,30 +184,65 @@ function saveToCSV($baseData, $referrals) {
     ]);
   }
 
-  // Write one row per referral
-  foreach ($referrals as $referral) {
-    $result = fputcsv($fp, [
-      $baseData['timestamp'],
-      $baseData['input_date'],
-      $baseData['introducer_name'],
-      $baseData['email'],
-      $baseData['visitor_name'],
-      $baseData['visitor_company'],
-      $baseData['visitor_industry'],
-      $referral['name'],
-      $referral['amount'],
-      $referral['category'],
-      $referral['provider'],
-      $baseData['attendance'],
-      $baseData['thanks_slips'],
-      $baseData['one_to_one_count'],
-      $baseData['activities'],
-      $baseData['comments']
-    ]);
+  // Write rows based on visitors and referrals
+  // If no visitors, write one row per referral
+  // If visitors exist, write one row per referral (visitor info repeated)
 
-    if ($result === false) {
-      fclose($fp);
-      return false;
+  if (count($visitors) === 0) {
+    // No visitors - write referrals only
+    foreach ($referrals as $referral) {
+      $result = fputcsv($fp, [
+        $baseData['timestamp'],
+        $baseData['input_date'],
+        $baseData['introducer_name'],
+        $baseData['email'],
+        '', // visitor_name
+        '', // visitor_company
+        '', // visitor_industry
+        $referral['name'],
+        $referral['amount'],
+        $referral['category'],
+        $referral['provider'],
+        $baseData['attendance'],
+        $baseData['thanks_slips'],
+        $baseData['one_to_one_count'],
+        $baseData['activities'],
+        $baseData['comments']
+      ]);
+
+      if ($result === false) {
+        fclose($fp);
+        return false;
+      }
+    }
+  } else {
+    // With visitors - write one row per referral for each visitor
+    foreach ($visitors as $visitor) {
+      foreach ($referrals as $referral) {
+        $result = fputcsv($fp, [
+          $baseData['timestamp'],
+          $baseData['input_date'],
+          $baseData['introducer_name'],
+          $baseData['email'],
+          $visitor['name'],
+          $visitor['company'],
+          $visitor['industry'],
+          $referral['name'],
+          $referral['amount'],
+          $referral['category'],
+          $referral['provider'],
+          $baseData['attendance'],
+          $baseData['thanks_slips'],
+          $baseData['one_to_one_count'],
+          $baseData['activities'],
+          $baseData['comments']
+        ]);
+
+        if ($result === false) {
+          fclose($fp);
+          return false;
+        }
+      }
     }
   }
 
@@ -202,9 +257,34 @@ function saveToCSV($baseData, $referrals) {
 /**
  * Send email notification to admin
  */
-function sendEmailNotification($baseData, $referrals) {
+function sendEmailNotification($baseData, $visitors, $referrals) {
   $to = MAIL_TO;
   $subject = '[BNI] 新しいアンケート回答がありました - ' . $baseData['introducer_name'];
+
+  // Build visitor list HTML
+  $visitorListHTML = '';
+  if (count($visitors) > 0) {
+    foreach ($visitors as $index => $visitor) {
+      $visitorListHTML .= '
+        <div style="margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border-left: 3px solid #CF2030;">
+          <div class="field">
+            <span class="label">ビジター' . ($index + 1) . ':</span>
+            <span class="value">' . htmlspecialchars($visitor['name']) . '</span>
+          </div>
+          <div class="field">
+            <span class="label">会社名（屋号）:</span>
+            <span class="value">' . htmlspecialchars($visitor['company'] ?: '-') . '</span>
+          </div>
+          <div class="field">
+            <span class="label">業種:</span>
+            <span class="value">' . htmlspecialchars($visitor['industry'] ?: '-') . '</span>
+          </div>
+        </div>
+      ';
+    }
+  } else {
+    $visitorListHTML = '<p style="color: #999;">ビジター紹介なし</p>';
+  }
 
   // Build referral list HTML
   $referralListHTML = '';
@@ -276,19 +356,8 @@ function sendEmailNotification($baseData, $referrals) {
       </div>
 
       <div class="section">
-        <h3>1. ビジター紹介情報</h3>
-        <div class="field">
-          <span class="label">ビジター名:</span>
-          <span class="value">' . htmlspecialchars($baseData['visitor_name'] ?: '-') . '</span>
-        </div>
-        <div class="field">
-          <span class="label">会社名（屋号）:</span>
-          <span class="value">' . htmlspecialchars($baseData['visitor_company'] ?: '-') . '</span>
-        </div>
-        <div class="field">
-          <span class="label">ビジター業種:</span>
-          <span class="value">' . htmlspecialchars($baseData['visitor_industry'] ?: '-') . '</span>
-        </div>
+        <h3>1. ビジター紹介情報（' . count($visitors) . '件）</h3>
+        ' . $visitorListHTML . '
       </div>
 
       <div class="section">

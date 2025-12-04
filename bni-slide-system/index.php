@@ -164,29 +164,43 @@
 
             <!-- Section 1: ビジター紹介情報（任意） -->
             <div class="form-section">
-              <h2 class="form-section-title">1. ビジター紹介情報（任意）</h2>
-
-              <div class="form-group">
-                <label class="form-label">
-                  ビジター名
-                </label>
-                <input type="text" name="visitor_name" class="form-input" placeholder="紹介がある場合のみ入力">
-                <span class="form-help">紹介したビジターの氏名を入力してください</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 class="form-section-title" style="margin-bottom: 0;">1. ビジター紹介情報（任意）</h2>
+                <button type="button" class="btn-add-referral" id="addVisitorBtn">
+                  <span>+ ビジター追加</span>
+                </button>
               </div>
 
-              <div class="form-group">
-                <label class="form-label">
-                  会社名（屋号）
-                </label>
-                <input type="text" name="visitor_company" class="form-input" placeholder="例: 株式会社〇〇">
-                <span class="form-help">ビジターの会社名または屋号を入力してください</span>
-              </div>
+              <div id="visitorContainer">
+                <!-- ビジター項目1 -->
+                <div class="referral-item" data-index="0">
+                  <div class="referral-item-header">
+                    <h3>ビジター #1</h3>
+                  </div>
 
-              <div class="form-group">
-                <label class="form-label">
-                  ビジターの業種・職種
-                </label>
-                <input type="text" name="visitor_industry" class="form-input" placeholder="例: 不動産仲介業">
+                  <div class="form-group">
+                    <label class="form-label">
+                      ビジター名
+                    </label>
+                    <input type="text" name="visitor_name[]" class="form-input" placeholder="紹介がある場合のみ入力">
+                    <span class="form-help">紹介したビジターの氏名を入力してください</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">
+                      会社名（屋号）
+                    </label>
+                    <input type="text" name="visitor_company[]" class="form-input" placeholder="例: 株式会社〇〇">
+                    <span class="form-help">ビジターの会社名または屋号を入力してください</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">
+                      ビジターの業種・職種
+                    </label>
+                    <input type="text" name="visitor_industry[]" class="form-input" placeholder="例: 不動産仲介業">
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -349,9 +363,51 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
   <script>
-    // リファーラル追加機能
+    // ビジター追加機能 & リファーラル追加機能
     $(document).ready(function() {
+      let visitorIndex = 1;
       let referralIndex = 1;
+
+      // ビジター追加ボタン
+      $('#addVisitorBtn').on('click', function() {
+        visitorIndex++;
+
+        const newVisitorItem = `
+          <div class="referral-item" data-index="${visitorIndex}">
+            <div class="referral-item-header">
+              <h3>ビジター #${visitorIndex}</h3>
+              <button type="button" class="btn-remove-referral" onclick="removeVisitor(this)">
+                <span>削除</span>
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                ビジター名
+              </label>
+              <input type="text" name="visitor_name[]" class="form-input" placeholder="紹介がある場合のみ入力">
+              <span class="form-help">紹介したビジターの氏名を入力してください</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                会社名（屋号）
+              </label>
+              <input type="text" name="visitor_company[]" class="form-input" placeholder="例: 株式会社〇〇">
+              <span class="form-help">ビジターの会社名または屋号を入力してください</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                ビジターの業種・職種
+              </label>
+              <input type="text" name="visitor_industry[]" class="form-input" placeholder="例: 不動産仲介業">
+            </div>
+          </div>
+        `;
+
+        $('#visitorContainer').append(newVisitorItem);
+      });
 
       // リファーラル追加ボタン
       $('#addReferralBtn').on('click', function() {
@@ -424,13 +480,24 @@
       });
     });
 
+    // ビジター削除機能
+    function removeVisitor(button) {
+      const visitorItem = $(button).closest('.referral-item');
+      visitorItem.remove();
+
+      // 番号を振り直し
+      $('#visitorContainer .referral-item').each(function(index) {
+        $(this).find('.referral-item-header h3').text('ビジター #' + (index + 1));
+      });
+    }
+
     // リファーラル削除機能
     function removeReferral(button) {
       const referralItem = $(button).closest('.referral-item');
       referralItem.remove();
 
       // 番号を振り直し
-      $('.referral-item').each(function(index) {
+      $('#referralContainer .referral-item').each(function(index) {
         $(this).find('.referral-item-header h3').text('リファーラル #' + (index + 1));
       });
     }
