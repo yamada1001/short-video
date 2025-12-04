@@ -255,6 +255,48 @@
   line-height: 1.6;
 }
 
+/* Visitor Slide - Self Introduction */
+.visitor-slide {
+  text-align: center !important;
+}
+
+.visitor-name {
+  font-size: 3.5em !important;
+  margin-bottom: 30px;
+  color: #FFFFFF !important;
+  text-align: center !important;
+}
+
+.visitor-company {
+  font-size: 1.8em;
+  color: #FFFFFF;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.visitor-industry {
+  font-size: 1.3em;
+  color: #FFE6E8;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.visitor-prompt {
+  margin-top: 80px;
+  padding: 30px 50px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  display: inline-block;
+}
+
+.visitor-prompt p {
+  font-size: 1.5em;
+  color: #FFFFFF;
+  margin: 0;
+  text-align: center;
+}
+
 /* Pitch Slide - Countdown Timer */
 .pitch-slide {
   text-align: center !important;

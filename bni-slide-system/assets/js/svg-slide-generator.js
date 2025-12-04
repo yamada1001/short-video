@@ -95,6 +95,24 @@ async function generateSVGSlides(data, stats) {
         </section>
       `;
     }
+
+    // Slide 3.5: Visitor Introduction Slides (for self-introduction & feedback)
+    visitorsWithData.forEach(row => {
+      const visitorName = escapeHtml(row['ビジター名'] || '');
+      const visitorCompany = escapeHtml(row['ビジター会社名'] || '');
+      const visitorIndustry = escapeHtml(row['ビジター業種'] || '');
+
+      slides += `
+        <section class="visitor-slide">
+          <h2 class="visitor-name">${visitorName}</h2>
+          <p class="visitor-company">${visitorCompany}</p>
+          <p class="visitor-industry">${visitorIndustry}</p>
+          <div class="visitor-prompt">
+            <p>自己紹介・感想をお願いします</p>
+          </div>
+        </section>
+      `;
+    });
   }
 
   // Slide 4: Referral Amount Breakdown
