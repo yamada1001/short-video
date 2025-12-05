@@ -1,0 +1,7 @@
+# ====================================
+# BNI Slide System - Public Area
+# ====================================
+# No authentication required for this directory
+
+Satisfy Any
+Allow from all

@@ -2,6 +2,7 @@
 /**
  * Members API
  * メンバーリストをJSON形式で返す
+ * 新構造に対応（後方互換性あり）
  */
 
 header('Content-Type: application/json; charset=utf-8');
@@ -21,5 +22,5 @@ if ($content === false) {
     exit;
 }
 
-// JSONとして出力
+// JSONとして出力（新しい構造でもmembersフィールドがあるので互換性あり）
 echo $content;

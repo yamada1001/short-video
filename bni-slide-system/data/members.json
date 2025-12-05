@@ -1,4 +1,46 @@
 {
+  "users": {
+    "bni": {
+      "name": "山田太郎",
+      "email": "yamada@example.com",
+      "phone": "",
+      "htpasswd_user": "bni",
+      "created_at": "2024-12-05",
+      "updated_at": "2024-12-05"
+    },
+    "sato": {
+      "name": "佐藤花子",
+      "email": "sato@example.com",
+      "phone": "",
+      "htpasswd_user": "sato",
+      "created_at": "2024-12-05",
+      "updated_at": "2024-12-05"
+    },
+    "suzuki": {
+      "name": "鈴木一郎",
+      "email": "suzuki@example.com",
+      "phone": "",
+      "htpasswd_user": "suzuki",
+      "created_at": "2024-12-05",
+      "updated_at": "2024-12-05"
+    },
+    "tanaka": {
+      "name": "田中美咲",
+      "email": "tanaka@example.com",
+      "phone": "",
+      "htpasswd_user": "tanaka",
+      "created_at": "2024-12-05",
+      "updated_at": "2024-12-05"
+    },
+    "takahashi": {
+      "name": "高橋健太",
+      "email": "takahashi@example.com",
+      "phone": "",
+      "htpasswd_user": "takahashi",
+      "created_at": "2024-12-05",
+      "updated_at": "2024-12-05"
+    }
+  },
   "members": [
     "山田太郎",
     "佐藤花子",
@@ -6,5 +48,5 @@
     "田中美咲",
     "高橋健太"
   ],
-  "updated_at": "2024-12-04"
+  "updated_at": "2024-12-05"
 }

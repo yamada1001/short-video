@@ -26,38 +26,24 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
       const response = await fetch('api_members.php');
       const data = await response.json();
-      const memberSelect = document.getElementById('memberSelect');
-      const referralProviderSelect = document.getElementById('referralProviderSelect');
 
-      // Populate member select (introducer name)
-      data.members.forEach(member => {
-        const option = document.createElement('option');
-        option.value = member;
-        option.textContent = member;
-        memberSelect.appendChild(option);
-      });
+      // Store members list globally for use in dynamic fields
+      window.membersList = data.members;
 
-      // Populate referral provider select
-      data.members.forEach(member => {
-        const option = document.createElement('option');
-        option.value = member;
-        option.textContent = member;
-        referralProviderSelect.appendChild(option);
-      });
-
-      // Initialize Select2 with search
-      if (typeof jQuery !== 'undefined' && jQuery.fn.select2) {
-        jQuery('#memberSelect').select2({
-          placeholder: '選択してください',
-          allowClear: false,
-          language: {
-            noResults: function() {
-              return 'メンバーが見つかりません';
-            }
-          }
+      // Populate referral provider selects (for リファーラル提供者)
+      const referralProviderSelects = document.querySelectorAll('.referral-provider-select');
+      referralProviderSelects.forEach(select => {
+        data.members.forEach(member => {
+          const option = document.createElement('option');
+          option.value = member;
+          option.textContent = member;
+          select.appendChild(option);
         });
+      });
 
-        jQuery('#referralProviderSelect').select2({
+      // Initialize Select2 if available (for referral provider selects)
+      if (typeof jQuery !== 'undefined' && jQuery.fn.select2) {
+        jQuery('.referral-provider-select').select2({
           placeholder: '選択してください（任意）',
           allowClear: true,
           language: {

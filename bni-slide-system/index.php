@@ -1,3 +1,24 @@
+<?php
+/**
+ * BNI Slide System - Weekly Survey Form
+ * ログインユーザー情報を自動入力
+ */
+
+// Load user authentication helper
+require_once __DIR__ . '/includes/user_auth.php';
+
+// Get current user info from Basic Auth
+$currentUser = getCurrentUserInfo();
+
+// If user not found, show error
+if (!$currentUser) {
+    http_response_code(403);
+    die('<h1>アクセスエラー</h1><p>ユーザー情報が見つかりません。管理者にお問い合わせください。</p>');
+}
+
+$userName = htmlspecialchars($currentUser['name'], ENT_QUOTES, 'UTF-8');
+$userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -107,6 +128,7 @@
       <nav class="site-nav">
         <ul>
           <li><a href="index.php" class="active">アンケート</a></li>
+          <li><a href="profile.php">プロフィール</a></li>
         </ul>
       </nav>
     </div>
@@ -145,20 +167,16 @@
                 <label class="form-label">
                   あなたの名前<span class="required">*</span>
                 </label>
-                <select name="introducer_name" class="form-select" id="memberSelect" required>
-                  <option value="">選択してください</option>
-                  <!-- メンバーリストは JavaScript で動的に読み込み -->
-                </select>
-                <span class="form-error">名前を選択してください</span>
+                <input type="text" name="introducer_name" class="form-input" value="<?php echo $userName; ?>" readonly required style="background-color: #F5F5F5; cursor: not-allowed;">
+                <span class="form-help">ログイン情報から自動設定されています</span>
               </div>
 
               <div class="form-group">
                 <label class="form-label">
                   メールアドレス<span class="required">*</span>
                 </label>
-                <input type="email" name="email" class="form-input" required placeholder="例: example@example.com">
-                <span class="form-error">メールアドレスを入力してください</span>
-                <p class="form-hint">サンクスメール送信のために必要です</p>
+                <input type="email" name="email" class="form-input" value="<?php echo $userEmail; ?>" readonly required style="background-color: #F5F5F5; cursor: not-allowed;">
+                <span class="form-help">ログイン情報から自動設定されています（サンクスメール送信先）</span>
               </div>
             </div>
 
