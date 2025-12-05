@@ -2,7 +2,8 @@
 /**
  * BNI Slide System - Excel Export API
  * 指定した週のデータをExcel形式でエクスポート
- * Updated: 2025-12-05
+ * Updated: 2025-12-05 14:30 (Cache Clear)
+ * シンプルなCSV出力（UTF-8 BOM）でExcel互換性を確保
  */
 
 require_once __DIR__ . '/includes/user_auth.php';
