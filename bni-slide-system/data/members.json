@@ -10,6 +10,16 @@
       "created_at": "2025-12-05",
       "updated_at": "2025-12-05"
     },
+    "yamada@yojitu.com": {
+      "name": "山田れん",
+      "email": "yamada@yojitu.com",
+      "phone": "",
+      "company": "株式会社YOJITU",
+      "category": "システム開発",
+      "htpasswd_user": "yamada@yojitu.com",
+      "created_at": "2025-12-05",
+      "updated_at": "2025-12-05"
+    },
     "yamada@example.com": {
       "name": "山田太郎",
       "email": "yamada@example.com",

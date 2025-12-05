@@ -63,8 +63,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, var(--bni-red) 0%, #a01828 100%);
       padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+    }
+
+    .login-container::after {
+      content: '';
+      position: absolute;
+      bottom: -50%;
+      left: -50%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
     }
 
     .login-card {
@@ -74,6 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       max-width: 450px;
       width: 100%;
       padding: 50px 40px;
+      position: relative;
+      z-index: 1;
     }
 
     .login-header {
@@ -82,16 +108,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     .login-logo {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, var(--bni-red), #e01020);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      color: white;
-      font-size: 36px;
+      width: 120px;
+      height: auto;
+      margin: 0 auto 30px;
+      display: block;
     }
 
     .login-header h1 {
@@ -159,9 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="login-container">
     <div class="login-card">
       <div class="login-header">
-        <div class="login-logo">
-          <i class="fas fa-user-circle"></i>
-        </div>
+        <img src="assets/images/bni-logo.svg" alt="BNI Logo" class="login-logo">
         <h1>ログイン</h1>
         <p>BNI Slide System</p>
       </div>
