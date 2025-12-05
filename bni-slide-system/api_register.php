@@ -17,11 +17,18 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 try {
     // Get form data
-    $name = trim($_POST['name'] ?? '');
+    $lastName = trim($_POST['last_name'] ?? '');
+    $firstName = trim($_POST['first_name'] ?? '');
+    $lastNameKana = trim($_POST['last_name_kana'] ?? '');
+    $firstNameKana = trim($_POST['first_name_kana'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
     $company = trim($_POST['company'] ?? '');
     $category = trim($_POST['category'] ?? '');
+
+    // Combine last name and first name
+    $name = $lastName . $firstName;
+    $nameKana = $lastNameKana . $firstNameKana;
 
     // Use email as username for .htpasswd
     $username = $email;
@@ -30,7 +37,8 @@ try {
     $password = generateRandomPassword(10);
 
     // Validate required fields
-    if (empty($name) || empty($email) || empty($company) || empty($category)) {
+    if (empty($lastName) || empty($firstName) || empty($lastNameKana) || empty($firstNameKana) ||
+        empty($email) || empty($company) || empty($category)) {
         throw new Exception('必須項目が入力されていません');
     }
 
@@ -74,6 +82,11 @@ try {
     // Add new user to data (using email as key)
     $data['users'][$email] = [
         'name' => $name,
+        'last_name' => $lastName,
+        'first_name' => $firstName,
+        'last_name_kana' => $lastNameKana,
+        'first_name_kana' => $firstNameKana,
+        'name_kana' => $nameKana,
         'email' => $email,
         'phone' => $phone,
         'company' => $company,

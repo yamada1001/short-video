@@ -54,11 +54,36 @@ header('Content-Type: text/html; charset=UTF-8');
 
               <div class="form-group">
                 <label class="form-label">
-                  お名前（フルネーム）<span class="required">*</span>
+                  お名前<span class="required">*</span>
                 </label>
-                <input type="text" name="name" class="form-input" required placeholder="例: 山田太郎">
-                <span class="form-error">お名前を入力してください</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                  <div>
+                    <input type="text" name="last_name" id="lastName" class="form-input" required placeholder="姓（例: 山田）">
+                    <span class="form-error">姓を入力してください</span>
+                  </div>
+                  <div>
+                    <input type="text" name="first_name" id="firstName" class="form-input" required placeholder="名（例: 太郎）">
+                    <span class="form-error">名を入力してください</span>
+                  </div>
+                </div>
                 <p class="form-hint">スライドやアンケートに表示される名前です</p>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  フリガナ<span class="required">*</span>
+                </label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                  <div>
+                    <input type="text" name="last_name_kana" id="lastNameKana" class="form-input" required placeholder="セイ（例: ヤマダ）">
+                    <span class="form-error">セイを入力してください</span>
+                  </div>
+                  <div>
+                    <input type="text" name="first_name_kana" id="firstNameKana" class="form-input" required placeholder="メイ（例: タロウ）">
+                    <span class="form-error">メイを入力してください</span>
+                  </div>
+                </div>
+                <p class="form-hint">自動入力されますが、修正可能です</p>
               </div>
 
               <div class="form-group">
@@ -134,10 +159,59 @@ header('Content-Type: text/html; charset=UTF-8');
   </footer>
 
   <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/kuroshiro@1.2.0/dist/kuroshiro.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/kuroshiro-analyzer-kuromoji@1.1.0/dist/kuroshiro-analyzer-kuromoji.min.js"></script>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const form = document.getElementById('registerForm');
       const messageDiv = document.getElementById('message');
+      const lastNameInput = document.getElementById('lastName');
+      const firstNameInput = document.getElementById('firstName');
+      const lastNameKanaInput = document.getElementById('lastNameKana');
+      const firstNameKanaInput = document.getElementById('firstNameKana');
+
+      // Initialize Kuroshiro for automatic furigana conversion
+      let kuroshiroInstance = null;
+
+      (async function initKuroshiro() {
+        try {
+          kuroshiroInstance = new Kuroshiro();
+          await kuroshiroInstance.init(new KuromojiAnalyzer());
+        } catch (error) {
+          console.error('Kuroshiro initialization failed:', error);
+        }
+      })();
+
+      // Auto-generate furigana for last name
+      lastNameInput.addEventListener('blur', async function() {
+        if (this.value && kuroshiroInstance && !lastNameKanaInput.value) {
+          try {
+            const kana = await kuroshiroInstance.convert(this.value, {
+              to: 'katakana',
+              mode: 'normal'
+            });
+            lastNameKanaInput.value = kana;
+          } catch (error) {
+            console.error('Furigana conversion failed:', error);
+          }
+        }
+      });
+
+      // Auto-generate furigana for first name
+      firstNameInput.addEventListener('blur', async function() {
+        if (this.value && kuroshiroInstance && !firstNameKanaInput.value) {
+          try {
+            const kana = await kuroshiroInstance.convert(this.value, {
+              to: 'katakana',
+              mode: 'normal'
+            });
+            firstNameKanaInput.value = kana;
+          } catch (error) {
+            console.error('Furigana conversion failed:', error);
+          }
+        }
+      });
 
       // Form submission handler
       form.addEventListener('submit', async function(e) {
