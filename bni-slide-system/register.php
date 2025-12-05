@@ -16,8 +16,8 @@ header('Content-Type: text/html; charset=UTF-8');
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="../assets/css/common.css">
-  <link rel="stylesheet" href="../assets/css/form.css">
+  <link rel="stylesheet" href="assets/css/common.css">
+  <link rel="stylesheet" href="assets/css/form.css">
 </head>
 <body>
   <!-- Header -->
@@ -100,7 +100,7 @@ header('Content-Type: text/html; charset=UTF-8');
             <!-- Submit Button -->
             <div class="form-submit">
               <button type="submit" class="btn btn-primary">登録する</button>
-              <a href="../index.php" class="btn btn-outline" style="margin-left: 10px;">キャンセル</a>
+              <a href="index.php" class="btn btn-outline" style="margin-left: 10px;">キャンセル</a>
             </div>
           </form>
         </div>
@@ -149,7 +149,7 @@ header('Content-Type: text/html; charset=UTF-8');
 
             // Redirect to index after 5 seconds
             setTimeout(() => {
-              window.location.href = '../index.php';
+              window.location.href = 'index.php';
             }, 5000);
           } else {
             showMessage('error', result.message || '登録に失敗しました。もう一度お試しください。');

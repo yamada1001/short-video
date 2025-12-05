@@ -38,7 +38,7 @@ try {
     }
 
     // Load members.json
-    $membersFile = __DIR__ . '/../data/members.json';
+    $membersFile = __DIR__ . '/data/members.json';
     if (!file_exists($membersFile)) {
         throw new Exception('データファイルが見つかりません');
     }
@@ -92,7 +92,7 @@ try {
     }
 
     // Update .htpasswd
-    $htpasswdFile = __DIR__ . '/../.htpasswd';
+    $htpasswdFile = __DIR__ . '/.htpasswd';
     $htpasswdEntry = "$username:$htpasswdHash\n";
 
     if (file_put_contents($htpasswdFile, $htpasswdEntry, FILE_APPEND | LOCK_EX) === false) {

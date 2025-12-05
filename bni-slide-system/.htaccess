@@ -5,13 +5,23 @@
 # -----------------
 # Basic Authentication
 # -----------------
-# Exclude public directory from authentication
-<If "%{REQUEST_URI} !~ m#^/bni-slide-system/public/#">
-  AuthType Basic
-  AuthName "BNI Slide System - Restricted Access"
-  AuthUserFile /home/xs545151/yojitu.com/public_html/bni-slide-system/.htpasswd
-  Require valid-user
-</If>
+AuthType Basic
+AuthName "BNI Slide System - Restricted Access"
+AuthUserFile /home/xs545151/yojitu.com/public_html/bni-slide-system/.htpasswd
+
+# Exclude registration files from authentication
+<Files "register.php">
+  Satisfy Any
+  Require all granted
+</Files>
+
+<Files "api_register.php">
+  Satisfy Any
+  Require all granted
+</Files>
+
+# Require authentication for all other files
+Require valid-user
 
 # -----------------
 # Error Pages
