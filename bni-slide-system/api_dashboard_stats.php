@@ -1,13 +1,13 @@
 <?php
 /**
- * BNI Slide System - Dashboard Statistics API
+ * BNI Slide System - Dashboard Statistics API (SQLite Version)
  * ログインユーザーのダッシュボード統計データを返す
  */
 
 header('Content-Type: application/json; charset=utf-8');
 
 require_once __DIR__ . '/includes/user_auth.php';
-require_once __DIR__ . '/includes/date_helper.php';
+require_once __DIR__ . '/includes/db.php';
 
 // Get current user info
 $currentUser = getCurrentUserInfo();
@@ -20,248 +20,265 @@ if (!$currentUser) {
 $userEmail = $currentUser['email'];
 $userName = $currentUser['name'];
 
-// データディレクトリ
-$dataDir = __DIR__ . '/data';
+try {
+    $db = getDbConnection();
 
-// 今週の金曜日を取得
-$thisFriday = getTargetFriday(time());
-$thisFridayStr = $thisFriday->format('Y-m-d');
+    // 今週の金曜日を取得
+    $thisFriday = getTargetFriday(time());
+    $thisFridayStr = $thisFriday->format('Y-m-d');
 
-// 先週の金曜日を取得
-$lastFriday = clone $thisFriday;
-$lastFriday->modify('-7 days');
-$lastFridayStr = $lastFriday->format('Y-m-d');
+    // 先週の金曜日を取得
+    $lastFriday = clone $thisFriday;
+    $lastFriday->modify('-7 days');
+    $lastFridayStr = $lastFriday->format('Y-m-d');
 
-// 今月の範囲を取得
-$now = new DateTime();
-$firstDayOfMonth = new DateTime($now->format('Y-m-01'));
-$lastDayOfMonth = new DateTime($now->format('Y-m-t'));
+    // 今月の範囲を取得
+    $now = new DateTime();
+    $firstDayOfMonth = $now->format('Y-m-01');
+    $lastDayOfMonth = $now->format('Y-m-t');
 
-/**
- * CSVファイルからユーザーのデータを読み込む
- */
-function loadUserDataFromCSV($csvFile, $userEmail, $userName) {
-    if (!file_exists($csvFile)) {
-        return [];
-    }
+    // 今週のユーザーデータ
+    $userThisWeek = getUserStats($db, $thisFridayStr, $userEmail);
 
-    $records = [];
-    $handle = fopen($csvFile, 'r');
+    // 先週のユーザーデータ
+    $userLastWeek = getUserStats($db, $lastFridayStr, $userEmail);
 
-    if ($handle === false) {
-        return [];
-    }
+    // 今週のチーム全体データ
+    $teamThisWeek = getTeamStats($db, $thisFridayStr);
 
-    // ヘッダー行を読み込み
-    $headers = fgetcsv($handle);
-    if (!$headers || count($headers) < 10) {
-        fclose($handle);
-        return [];
-    }
+    // 今月のユーザーデータ
+    $monthlyUserStats = getMonthlyUserStats($db, $userEmail, $firstDayOfMonth, $lastDayOfMonth);
 
-    // データ行を読み込み
-    while (($row = fgetcsv($handle)) !== false) {
-        if (count($row) !== count($headers)) {
-            continue;
-        }
+    dbClose($db);
 
-        $record = array_combine($headers, $row);
-        if ($record === false) {
-            continue;
-        }
-
-        // ユーザーのデータのみ抽出（メールアドレスまたは名前で照合）
-        if ($record['メールアドレス'] === $userEmail || $record['紹介者名'] === $userName) {
-            $records[] = $record;
-        }
-    }
-
-    fclose($handle);
-    return $records;
-}
-
-/**
- * 全体の統計データを読み込む
- */
-function loadTeamDataFromCSV($csvFile) {
-    if (!file_exists($csvFile)) {
-        return [];
-    }
-
-    $records = [];
-    $handle = fopen($csvFile, 'r');
-
-    if ($handle === false) {
-        return [];
-    }
-
-    // ヘッダー行を読み込み
-    $headers = fgetcsv($handle);
-    if (!$headers || count($headers) < 10) {
-        fclose($handle);
-        return [];
-    }
-
-    // データ行を読み込み
-    while (($row = fgetcsv($handle)) !== false) {
-        if (count($row) !== count($headers)) {
-            continue;
-        }
-
-        $record = array_combine($headers, $row);
-        if ($record === false) {
-            continue;
-        }
-
-        $records[] = $record;
-    }
-
-    fclose($handle);
-    return $records;
-}
-
-/**
- * 統計を計算
- */
-function calculateStats($records) {
-    $stats = [
-        'visitor_count' => 0,
-        'referral_amount' => 0,
-        'referral_count' => 0,
-        'thanks_slips' => 0,
-        'one_to_one' => 0,
-        'submitted' => false,
-        'attendance' => '',
-        'unique_members' => []
+    // レスポンスデータ
+    $response = [
+        'success' => true,
+        'this_week' => [
+            'user' => $userThisWeek,
+            'team' => $teamThisWeek
+        ],
+        'last_week' => [
+            'user' => [
+                'submitted' => $userLastWeek['submitted'],
+                'visitor_count' => $userLastWeek['visitor_count'],
+                'referral_amount' => $userLastWeek['referral_amount'],
+                'referral_count' => $userLastWeek['referral_count']
+            ]
+        ],
+        'this_month' => [
+            'user' => $monthlyUserStats
+        ],
+        'week_dates' => [
+            'this_friday' => $thisFridayStr,
+            'last_friday' => $lastFridayStr,
+            'month' => $now->format('Y年n月')
+        ]
     ];
 
-    foreach ($records as $record) {
-        // ビジターカウント（名前が空でない場合のみ）
-        if (!empty($record['ビジター名']) && trim($record['ビジター名']) !== '-') {
-            $stats['visitor_count']++;
-        }
+    echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
-        // リファーラル金額とカウント
-        if (!empty($record['案件名']) && trim($record['案件名']) !== '-') {
-            $amount = intval($record['リファーラル金額'] ?? 0);
-            if ($amount > 0) {
-                $stats['referral_amount'] += $amount;
-                $stats['referral_count']++;
-            }
-        }
-
-        // サンクスリップとワンツーワン
-        $stats['thanks_slips'] += intval($record['サンクスリップ数'] ?? 0);
-        $stats['one_to_one'] += intval($record['ワンツーワン数'] ?? 0);
-
-        // 出席状況
-        if (!empty($record['出席状況'])) {
-            $stats['attendance'] = $record['出席状況'];
-        }
-
-        // ユニークメンバー数
-        $email = $record['メールアドレス'] ?? '';
-        if ($email && !in_array($email, $stats['unique_members'])) {
-            $stats['unique_members'][] = $email;
-        }
-
-        $stats['submitted'] = true;
+} catch (Exception $e) {
+    if (isset($db)) {
+        dbClose($db);
     }
-
-    return $stats;
+    echo json_encode([
+        'success' => false,
+        'message' => $e->getMessage()
+    ]);
 }
 
-// 今週のユーザーデータ
-$thisWeekCSV = $dataDir . '/' . $thisFridayStr . '.csv';
-$userThisWeek = loadUserDataFromCSV($thisWeekCSV, $userEmail, $userName);
-$userStatsThisWeek = calculateStats($userThisWeek);
+/**
+ * 指定週のユーザー統計を取得
+ */
+function getUserStats($db, $weekDate, $userEmail) {
+    // Check if user submitted
+    $submittedQuery = "SELECT COUNT(*) as count FROM survey_data
+                       WHERE week_date = :week_date AND user_email = :email";
+    $result = dbQueryOne($db, $submittedQuery, [
+        ':week_date' => $weekDate,
+        ':email' => $userEmail
+    ]);
+    $submitted = $result && intval($result['count']) > 0;
 
-// 先週のユーザーデータ
-$lastWeekCSV = $dataDir . '/' . $lastFridayStr . '.csv';
-$userLastWeek = loadUserDataFromCSV($lastWeekCSV, $userEmail, $userName);
-$userStatsLastWeek = calculateStats($userLastWeek);
-
-// 今週のチーム全体データ
-$teamThisWeek = loadTeamDataFromCSV($thisWeekCSV);
-$teamStatsThisWeek = calculateStats($teamThisWeek);
-
-// 今月のユーザーデータ（全CSVファイルから読み込み）
-$monthlyUserStats = [
-    'visitor_count' => 0,
-    'referral_amount' => 0,
-    'referral_count' => 0,
-    'thanks_slips' => 0,
-    'one_to_one' => 0,
-    'attendance_count' => 0
-];
-
-$csvFiles = glob($dataDir . '/*.csv');
-foreach ($csvFiles as $csvFile) {
-    $basename = basename($csvFile, '.csv');
-
-    // 日付形式のCSVファイルのみ処理
-    if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $basename)) {
-        try {
-            $fileDate = new DateTime($basename);
-
-            // 今月の範囲内かチェック
-            if ($fileDate >= $firstDayOfMonth && $fileDate <= $lastDayOfMonth) {
-                $userData = loadUserDataFromCSV($csvFile, $userEmail, $userName);
-                $stats = calculateStats($userData);
-
-                $monthlyUserStats['visitor_count'] += $stats['visitor_count'];
-                $monthlyUserStats['referral_amount'] += $stats['referral_amount'];
-                $monthlyUserStats['referral_count'] += $stats['referral_count'];
-                $monthlyUserStats['thanks_slips'] += $stats['thanks_slips'];
-                $monthlyUserStats['one_to_one'] += $stats['one_to_one'];
-
-                if ($stats['submitted']) {
-                    $monthlyUserStats['attendance_count']++;
-                }
-            }
-        } catch (Exception $e) {
-            // 日付パースエラーはスキップ
-            continue;
-        }
+    if (!$submitted) {
+        return [
+            'submitted' => false,
+            'attendance' => '',
+            'visitor_count' => 0,
+            'referral_amount' => 0,
+            'referral_count' => 0,
+            'thanks_slips' => 0,
+            'one_to_one' => 0
+        ];
     }
+
+    // Get attendance and counts
+    $query = "SELECT attendance, thanks_slips, one_to_one
+              FROM survey_data
+              WHERE week_date = :week_date AND user_email = :email
+              LIMIT 1";
+    $data = dbQueryOne($db, $query, [
+        ':week_date' => $weekDate,
+        ':email' => $userEmail
+    ]);
+
+    // Get visitor count
+    $visitorQuery = "SELECT COUNT(*) as count
+                     FROM visitors v
+                     JOIN survey_data s ON v.survey_data_id = s.id
+                     WHERE s.week_date = :week_date
+                     AND s.user_email = :email
+                     AND v.visitor_name IS NOT NULL
+                     AND v.visitor_name != ''";
+    $visitorResult = dbQueryOne($db, $visitorQuery, [
+        ':week_date' => $weekDate,
+        ':email' => $userEmail
+    ]);
+    $visitorCount = $visitorResult ? intval($visitorResult['count']) : 0;
+
+    // Get referral stats
+    $referralQuery = "SELECT
+                        COUNT(CASE WHEN referral_name IS NOT NULL AND referral_name != '-' AND referral_amount > 0 THEN 1 END) as count,
+                        COALESCE(SUM(referral_amount), 0) as amount
+                      FROM referrals r
+                      JOIN survey_data s ON r.survey_data_id = s.id
+                      WHERE s.week_date = :week_date AND s.user_email = :email";
+    $referralResult = dbQueryOne($db, $referralQuery, [
+        ':week_date' => $weekDate,
+        ':email' => $userEmail
+    ]);
+
+    return [
+        'submitted' => true,
+        'attendance' => $data['attendance'] ?? '',
+        'visitor_count' => $visitorCount,
+        'referral_amount' => $referralResult ? intval($referralResult['amount']) : 0,
+        'referral_count' => $referralResult ? intval($referralResult['count']) : 0,
+        'thanks_slips' => $data['thanks_slips'] ?? 0,
+        'one_to_one' => $data['one_to_one'] ?? 0
+    ];
 }
 
-// レスポンスデータ
-$response = [
-    'success' => true,
-    'this_week' => [
-        'user' => [
-            'submitted' => $userStatsThisWeek['submitted'],
-            'attendance' => $userStatsThisWeek['attendance'],
-            'visitor_count' => $userStatsThisWeek['visitor_count'],
-            'referral_amount' => $userStatsThisWeek['referral_amount'],
-            'referral_count' => $userStatsThisWeek['referral_count'],
-            'thanks_slips' => $userStatsThisWeek['thanks_slips'],
-            'one_to_one' => $userStatsThisWeek['one_to_one']
-        ],
-        'team' => [
-            'total_members' => count($teamStatsThisWeek['unique_members']),
-            'visitor_count' => $teamStatsThisWeek['visitor_count'],
-            'referral_amount' => $teamStatsThisWeek['referral_amount'],
-            'referral_count' => $teamStatsThisWeek['referral_count']
-        ]
-    ],
-    'last_week' => [
-        'user' => [
-            'submitted' => $userStatsLastWeek['submitted'],
-            'visitor_count' => $userStatsLastWeek['visitor_count'],
-            'referral_amount' => $userStatsLastWeek['referral_amount'],
-            'referral_count' => $userStatsLastWeek['referral_count']
-        ]
-    ],
-    'this_month' => [
-        'user' => $monthlyUserStats
-    ],
-    'week_dates' => [
-        'this_friday' => $thisFridayStr,
-        'last_friday' => $lastFridayStr,
-        'month' => $now->format('Y年m月')
-    ]
-];
+/**
+ * 指定週のチーム統計を取得
+ */
+function getTeamStats($db, $weekDate) {
+    // Total unique members
+    $membersQuery = "SELECT COUNT(DISTINCT user_email) as count
+                     FROM survey_data
+                     WHERE week_date = :week_date";
+    $membersResult = dbQueryOne($db, $membersQuery, [':week_date' => $weekDate]);
+    $totalMembers = $membersResult ? intval($membersResult['count']) : 0;
 
-echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    // Total visitors
+    $visitorsQuery = "SELECT COUNT(*) as count
+                      FROM visitors v
+                      JOIN survey_data s ON v.survey_data_id = s.id
+                      WHERE s.week_date = :week_date
+                      AND v.visitor_name IS NOT NULL
+                      AND v.visitor_name != ''";
+    $visitorsResult = dbQueryOne($db, $visitorsQuery, [':week_date' => $weekDate]);
+    $visitorCount = $visitorsResult ? intval($visitorsResult['count']) : 0;
+
+    // Total referral stats
+    $referralQuery = "SELECT
+                        COUNT(CASE WHEN referral_name IS NOT NULL AND referral_name != '-' AND referral_amount > 0 THEN 1 END) as count,
+                        COALESCE(SUM(referral_amount), 0) as amount
+                      FROM referrals r
+                      JOIN survey_data s ON r.survey_data_id = s.id
+                      WHERE s.week_date = :week_date";
+    $referralResult = dbQueryOne($db, $referralQuery, [':week_date' => $weekDate]);
+
+    return [
+        'total_members' => $totalMembers,
+        'visitor_count' => $visitorCount,
+        'referral_amount' => $referralResult ? intval($referralResult['amount']) : 0,
+        'referral_count' => $referralResult ? intval($referralResult['count']) : 0
+    ];
+}
+
+/**
+ * 今月のユーザー統計を取得
+ */
+function getMonthlyUserStats($db, $userEmail, $firstDay, $lastDay) {
+    // Visitor count
+    $visitorQuery = "SELECT COUNT(*) as count
+                     FROM visitors v
+                     JOIN survey_data s ON v.survey_data_id = s.id
+                     WHERE s.user_email = :email
+                     AND s.week_date BETWEEN :first_day AND :last_day
+                     AND v.visitor_name IS NOT NULL
+                     AND v.visitor_name != ''";
+    $visitorResult = dbQueryOne($db, $visitorQuery, [
+        ':email' => $userEmail,
+        ':first_day' => $firstDay,
+        ':last_day' => $lastDay
+    ]);
+    $visitorCount = $visitorResult ? intval($visitorResult['count']) : 0;
+
+    // Referral stats
+    $referralQuery = "SELECT
+                        COUNT(CASE WHEN referral_name IS NOT NULL AND referral_name != '-' AND referral_amount > 0 THEN 1 END) as count,
+                        COALESCE(SUM(referral_amount), 0) as amount
+                      FROM referrals r
+                      JOIN survey_data s ON r.survey_data_id = s.id
+                      WHERE s.user_email = :email
+                      AND s.week_date BETWEEN :first_day AND :last_day";
+    $referralResult = dbQueryOne($db, $referralQuery, [
+        ':email' => $userEmail,
+        ':first_day' => $firstDay,
+        ':last_day' => $lastDay
+    ]);
+
+    // Thanks slips and one-to-one (sum of distinct records)
+    $countsQuery = "SELECT
+                      COALESCE(SUM(thanks_slips), 0) as thanks_slips,
+                      COALESCE(SUM(one_to_one), 0) as one_to_one,
+                      COUNT(DISTINCT week_date) as attendance_count
+                    FROM (
+                      SELECT DISTINCT week_date, thanks_slips, one_to_one
+                      FROM survey_data
+                      WHERE user_email = :email
+                      AND week_date BETWEEN :first_day AND :last_day
+                    )";
+    $countsResult = dbQueryOne($db, $countsQuery, [
+        ':email' => $userEmail,
+        ':first_day' => $firstDay,
+        ':last_day' => $lastDay
+    ]);
+
+    return [
+        'visitor_count' => $visitorCount,
+        'referral_amount' => $referralResult ? intval($referralResult['amount']) : 0,
+        'referral_count' => $referralResult ? intval($referralResult['count']) : 0,
+        'thanks_slips' => $countsResult ? intval($countsResult['thanks_slips']) : 0,
+        'one_to_one' => $countsResult ? intval($countsResult['one_to_one']) : 0,
+        'attendance_count' => $countsResult ? intval($countsResult['attendance_count']) : 0
+    ];
+}
+
+/**
+ * Get target Friday date from timestamp
+ */
+function getTargetFriday($timestamp) {
+    $dt = is_int($timestamp) ? (new DateTime())->setTimestamp($timestamp) : new DateTime($timestamp);
+    $dayOfWeek = intval($dt->format('w'));
+    $hour = intval($dt->format('H'));
+
+    if ($dayOfWeek === 5 && $hour < 5) {
+        return $dt;
+    }
+
+    if ($dayOfWeek === 5) {
+        $dt->modify('+7 days');
+    } else {
+        $daysToAdd = (5 - $dayOfWeek + 7) % 7;
+        if ($daysToAdd === 0) {
+            $daysToAdd = 7;
+        }
+        $dt->modify("+$daysToAdd days");
+    }
+
+    return $dt;
+}
