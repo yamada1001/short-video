@@ -1,7 +1,7 @@
 <?php
 /**
- * BNI Slide System - Form Data Save API (SQLite Version)
- * Save form data to SQLite database and send email notification
+ * BNI Slide System - Form Data Save API
+ * Save form data to CSV and send email notification
  */
 
 header('Content-Type: application/json; charset=utf-8');
@@ -10,8 +10,8 @@ header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 
-// Load dependencies
-require_once __DIR__ . '/includes/db.php';
+// Load audit logger
+require_once __DIR__ . '/includes/audit_logger.php';
 
 // Config
 define('MAIL_TO', 'yamada@yojitu.com');
@@ -109,17 +109,14 @@ try {
     throw new Exception('今週は既に回答済みです。1週間に1回のみ回答できます。');
   }
 
-  // Save to database
-  $db = getDbConnection();
-  $surveyId = saveToDatabase($db, $baseData, $visitors, $referrals);
-  dbClose($db);
-
-  if (!$surveyId) {
-    throw new Exception('データベースへの保存に失敗しました');
+  // Save to CSV (one row per combination of visitor and referral)
+  $csvSaved = saveToCSV($baseData, $visitors, $referrals);
+  if (!$csvSaved) {
+    throw new Exception('CSVファイルへの保存に失敗しました');
   }
 
-  // Write audit log to database
-  writeAuditLogToDb(
+  // Write audit log
+  writeAuditLog(
     'create',
     'survey_data',
     [
@@ -161,187 +158,124 @@ function sanitize($input) {
 }
 
 /**
- * Save data to SQLite database
+ * Save data to CSV
  */
-function saveToDatabase($db, $baseData, $visitors, $referrals) {
-  try {
-    // Start transaction
-    dbBeginTransaction($db);
+function saveToCSV($baseData, $visitors, $referrals) {
+  // Determine CSV file path from timestamp (not input_date)
+  // Week boundary: Thursday 9:00 AM ~ Friday 5:00 AM
+  $timestamp = $baseData['timestamp'];
+  $targetFriday = getTargetFriday($timestamp);
 
-    // Determine week_date from timestamp
-    $weekDate = getTargetFriday($baseData['timestamp']);
+  // CSV filename: YYYY-MM-DD.csv (Friday date)
+  $filename = "$targetFriday.csv";
+  $csvFile = __DIR__ . '/data/' . $filename;
+  $isNewFile = !file_exists($csvFile);
 
-    // Get user ID from email
-    $user = dbQueryOne($db,
-      "SELECT id, name FROM users WHERE email = :email",
-      [':email' => $baseData['email']]
-    );
+  // Create data directory if not exists
+  $dataDir = dirname($csvFile);
+  if (!is_dir($dataDir)) {
+    mkdir($dataDir, 0707, true);
+  }
 
-    $userId = $user ? $user['id'] : null;
-    $userName = $user ? $user['name'] : $baseData['introducer_name'];
-
-    // Insert survey_data
-    $surveyQuery = "INSERT INTO survey_data (
-      week_date,
-      timestamp,
-      input_date,
-      user_id,
-      user_name,
-      user_email,
-      attendance,
-      thanks_slips,
-      one_to_one,
-      activities,
-      comments,
-      created_at
-    ) VALUES (
-      :week_date,
-      :timestamp,
-      :input_date,
-      :user_id,
-      :user_name,
-      :user_email,
-      :attendance,
-      :thanks_slips,
-      :one_to_one,
-      :activities,
-      :comments,
-      :created_at
-    )";
-
-    $surveyParams = [
-      ':week_date' => $weekDate,
-      ':timestamp' => $baseData['timestamp'],
-      ':input_date' => $baseData['input_date'],
-      ':user_id' => $userId,
-      ':user_name' => $userName,
-      ':user_email' => $baseData['email'],
-      ':attendance' => $baseData['attendance'],
-      ':thanks_slips' => $baseData['thanks_slips'],
-      ':one_to_one' => $baseData['one_to_one_count'],
-      ':activities' => $baseData['activities'] ?: null,
-      ':comments' => $baseData['comments'] ?: null,
-      ':created_at' => $baseData['timestamp']
-    ];
-
-    $surveyId = dbExecute($db, $surveyQuery, $surveyParams);
-
-    // Insert visitors
-    if (count($visitors) > 0) {
-      foreach ($visitors as $visitor) {
-        $visitorQuery = "INSERT INTO visitors (
-          survey_data_id,
-          visitor_name,
-          visitor_company,
-          visitor_industry,
-          created_at
-        ) VALUES (
-          :survey_data_id,
-          :visitor_name,
-          :visitor_company,
-          :visitor_industry,
-          :created_at
-        )";
-
-        $visitorParams = [
-          ':survey_data_id' => $surveyId,
-          ':visitor_name' => $visitor['name'],
-          ':visitor_company' => $visitor['company'] ?: null,
-          ':visitor_industry' => $visitor['industry'] ?: null,
-          ':created_at' => $baseData['timestamp']
-        ];
-
-        dbExecute($db, $visitorQuery, $visitorParams);
-      }
-    }
-
-    // Insert referrals
-    foreach ($referrals as $referral) {
-      $referralQuery = "INSERT INTO referrals (
-        survey_data_id,
-        referral_name,
-        referral_amount,
-        referral_category,
-        referral_provider,
-        created_at
-      ) VALUES (
-        :survey_data_id,
-        :referral_name,
-        :referral_amount,
-        :referral_category,
-        :referral_provider,
-        :created_at
-      )";
-
-      $referralParams = [
-        ':survey_data_id' => $surveyId,
-        ':referral_name' => $referral['name'],
-        ':referral_amount' => $referral['amount'],
-        ':referral_category' => $referral['category'] ?: null,
-        ':referral_provider' => $referral['provider'] ?: null,
-        ':created_at' => $baseData['timestamp']
-      ];
-
-      dbExecute($db, $referralQuery, $referralParams);
-    }
-
-    // Commit transaction
-    dbCommit($db);
-
-    return $surveyId;
-
-  } catch (Exception $e) {
-    // Rollback on error
-    dbRollback($db);
-    error_log("Database save failed: " . $e->getMessage());
+  // Open CSV file
+  $fp = fopen($csvFile, 'a');
+  if (!$fp) {
     return false;
   }
-}
 
-/**
- * Write audit log to database
- */
-function writeAuditLogToDb($action, $target, $data, $userEmail, $userName) {
-  try {
-    $db = getDbConnection();
+  // Set CSV encoding to UTF-8 with BOM (for Excel compatibility)
+  if ($isNewFile) {
+    fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF)); // UTF-8 BOM
 
-    $query = "INSERT INTO audit_logs (
-      action,
-      target,
-      user_email,
-      user_name,
-      data,
-      ip_address,
-      user_agent,
-      created_at
-    ) VALUES (
-      :action,
-      :target,
-      :user_email,
-      :user_name,
-      :data,
-      :ip_address,
-      :user_agent,
-      :created_at
-    )";
-
-    $params = [
-      ':action' => $action,
-      ':target' => $target,
-      ':user_email' => $userEmail,
-      ':user_name' => $userName,
-      ':data' => json_encode($data, JSON_UNESCAPED_UNICODE),
-      ':ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
-      ':user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown',
-      ':created_at' => date('Y-m-d H:i:s')
-    ];
-
-    dbExecute($db, $query, $params);
-    dbClose($db);
-
-  } catch (Exception $e) {
-    error_log("Audit log write failed: " . $e->getMessage());
+    // Write header
+    fputcsv($fp, [
+      'タイムスタンプ',
+      '入力日',
+      '紹介者名',
+      'メールアドレス',
+      'ビジター名',
+      'ビジター会社名',
+      'ビジター業種',
+      '案件名',
+      'リファーラル金額',
+      'カテゴリ',
+      'リファーラル提供者',
+      '出席状況',
+      'サンクスリップ数',
+      'ワンツーワン数',
+      'アクティビティ',
+      'コメント'
+    ]);
   }
+
+  // Write rows based on visitors and referrals
+  // If no visitors, write one row per referral
+  // If visitors exist, write one row per referral (visitor info repeated)
+
+  if (count($visitors) === 0) {
+    // No visitors - write referrals only
+    foreach ($referrals as $referral) {
+      $result = fputcsv($fp, [
+        $baseData['timestamp'],
+        $baseData['input_date'],
+        $baseData['introducer_name'],
+        $baseData['email'],
+        '', // visitor_name
+        '', // visitor_company
+        '', // visitor_industry
+        $referral['name'],
+        $referral['amount'],
+        $referral['category'],
+        $referral['provider'],
+        $baseData['attendance'],
+        $baseData['thanks_slips'],
+        $baseData['one_to_one_count'],
+        $baseData['activities'],
+        $baseData['comments']
+      ]);
+
+      if ($result === false) {
+        fclose($fp);
+        return false;
+      }
+    }
+  } else {
+    // With visitors - write one row per referral for each visitor
+    foreach ($visitors as $visitor) {
+      foreach ($referrals as $referral) {
+        $result = fputcsv($fp, [
+          $baseData['timestamp'],
+          $baseData['input_date'],
+          $baseData['introducer_name'],
+          $baseData['email'],
+          $visitor['name'],
+          $visitor['company'],
+          $visitor['industry'],
+          $referral['name'],
+          $referral['amount'],
+          $referral['category'],
+          $referral['provider'],
+          $baseData['attendance'],
+          $baseData['thanks_slips'],
+          $baseData['one_to_one_count'],
+          $baseData['activities'],
+          $baseData['comments']
+        ]);
+
+        if ($result === false) {
+          fclose($fp);
+          return false;
+        }
+      }
+    }
+  }
+
+  fclose($fp);
+
+  // Set file permissions
+  chmod($csvFile, 0666);
+
+  return true;
 }
 
 /**
@@ -628,36 +562,45 @@ function getTargetFriday($timestamp) {
  * @return array ['isDuplicate' => bool, 'existingDate' => string|null]
  */
 function checkDuplicateSubmission($timestamp, $introducerName, $email) {
-  try {
-    // Calculate week_date using Friday boundary logic
-    $weekDate = getTargetFriday($timestamp);
+  // Calculate week file path using Friday boundary logic
+  $targetFriday = getTargetFriday($timestamp);
+  $filename = "$targetFriday.csv";
+  $csvFile = __DIR__ . '/data/' . $filename;
 
-    // Query database for existing submission
-    $db = getDbConnection();
-
-    $query = "SELECT input_date FROM survey_data
-              WHERE week_date = :week_date
-              AND user_email = :email
-              LIMIT 1";
-
-    $result = dbQueryOne($db, $query, [
-      ':week_date' => $weekDate,
-      ':email' => $email
-    ]);
-
-    dbClose($db);
-
-    if ($result) {
-      return [
-        'isDuplicate' => true,
-        'existingDate' => $result['input_date']
-      ];
-    }
-
+  // If file doesn't exist, no duplicates
+  if (!file_exists($csvFile)) {
     return ['isDuplicate' => false];
-
-  } catch (Exception $e) {
-    error_log("Duplicate check failed: " . $e->getMessage());
-    return ['isDuplicate' => false]; // Allow submission on error
   }
+
+  // Read CSV and check for existing entry
+  if (($handle = fopen($csvFile, 'r')) !== false) {
+    // Skip header row
+    $header = fgetcsv($handle);
+
+    while (($row = fgetcsv($handle)) !== false) {
+      // CSV format based on saveToCSV():
+      // 0: timestamp
+      // 1: input_date
+      // 2: introducer_name
+      // 3: email
+      // 4-15: other fields
+
+      if (count($row) >= 4) {
+        $csvEmail = $row[3];
+        $csvName = $row[2];
+
+        // Check if email or name matches (primary check is email)
+        if ($csvEmail === $email) {
+          fclose($handle);
+          return [
+            'isDuplicate' => true,
+            'existingDate' => $row[1]
+          ];
+        }
+      }
+    }
+    fclose($handle);
+  }
+
+  return ['isDuplicate' => false];
 }
