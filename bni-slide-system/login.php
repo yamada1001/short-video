@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       text-decoration: underline;
     }
 
-    .form-input {
+    .login-form .form-input {
       padding-left: 45px;
     }
 
@@ -167,10 +167,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       transform: translateY(-50%);
       color: #999;
       font-size: 18px;
+      pointer-events: none;
     }
 
-    .form-group {
+    .login-form .form-group {
       position: relative;
+    }
+
+    .login-form .form-label {
+      display: block;
+      margin-bottom: 8px;
     }
   </style>
 </head>
@@ -191,35 +197,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
       <?php endif; ?>
 
-      <form method="POST">
+      <form method="POST" class="login-form">
         <div class="form-group">
           <label class="form-label">
             メールアドレス<span class="required">*</span>
           </label>
-          <i class="fas fa-envelope input-icon"></i>
-          <input
-            type="email"
-            name="email"
-            class="form-input"
-            required
-            autofocus
-            placeholder="example@example.com"
-            value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
-          >
+          <div style="position: relative;">
+            <i class="fas fa-envelope input-icon"></i>
+            <input
+              type="email"
+              name="email"
+              class="form-input"
+              required
+              autofocus
+              placeholder="example@example.com"
+              value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+            >
+          </div>
         </div>
 
         <div class="form-group">
           <label class="form-label">
             パスワード<span class="required">*</span>
           </label>
-          <i class="fas fa-lock input-icon"></i>
-          <input
-            type="password"
-            name="password"
-            class="form-input"
-            required
-            placeholder="パスワードを入力"
-          >
+          <div style="position: relative;">
+            <i class="fas fa-lock input-icon"></i>
+            <input
+              type="password"
+              name="password"
+              class="form-input"
+              required
+              placeholder="パスワードを入力"
+            >
+          </div>
         </div>
 
         <div class="form-submit">
