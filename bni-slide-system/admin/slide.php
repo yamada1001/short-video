@@ -21,10 +21,10 @@
   <!-- Custom Slide CSS -->
   <link rel="stylesheet" href="../assets/css/slide.css">
 
-  <!-- LINE Seed JP Font -->
-  <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedJP_OTF_Rg.woff2" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedJP_OTF_Bd.woff2" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/line-seed-jp@1.0.0/dist/line-seed-jp.css" rel="stylesheet">
+  <!-- Google Fonts - Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
