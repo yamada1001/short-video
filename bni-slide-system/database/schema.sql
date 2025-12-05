@@ -10,7 +10,12 @@ CREATE TABLE IF NOT EXISTS users (
     phone TEXT,
     company TEXT,
     category TEXT,
+    industry TEXT,
     role TEXT DEFAULT 'member',
+    is_active INTEGER DEFAULT 1,
+    require_2fa INTEGER DEFAULT 0,
+    totp_secret TEXT,
+    last_login DATETIME,
     htpasswd_user TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
