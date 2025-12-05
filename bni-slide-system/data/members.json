@@ -1,5 +1,15 @@
 {
   "users": {
+    "admin@yojitu.com": {
+      "name": "山田れん",
+      "email": "admin@yojitu.com",
+      "phone": "",
+      "company": "株式会社YOJITU",
+      "category": "システム開発",
+      "htpasswd_user": "admin@yojitu.com",
+      "created_at": "2025-12-05",
+      "updated_at": "2025-12-05"
+    },
     "yamada@example.com": {
       "name": "山田太郎",
       "email": "yamada@example.com",
@@ -52,6 +62,7 @@
     }
   },
   "members": [
+    "山田れん",
     "山田太郎",
     "佐藤花子",
     "鈴木一郎",

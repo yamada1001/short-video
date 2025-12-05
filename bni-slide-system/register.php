@@ -162,13 +162,8 @@ header('Content-Type: text/html; charset=UTF-8');
           const result = await response.json();
 
           if (result.success) {
-            showMessage('success', result.message || '登録が完了しました！5秒後にログイン画面に移動します...');
-            form.reset();
-
-            // Redirect to index after 5 seconds
-            setTimeout(() => {
-              window.location.href = 'index.php';
-            }, 5000);
+            // Redirect to thanks page immediately
+            window.location.href = 'register-thanks.php';
           } else {
             showMessage('error', result.message || '登録に失敗しました。もう一度お試しください。');
             submitBtn.disabled = false;
