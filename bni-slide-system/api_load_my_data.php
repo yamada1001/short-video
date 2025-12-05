@@ -49,6 +49,12 @@ try {
             continue;
         }
 
+        // Only include Friday data (金曜日のみ)
+        $result = parseFilenameToDate($filename);
+        if (!$result['success'] || !strpos($result['label'], '（金）')) {
+            continue;
+        }
+
         // Read CSV file
         if (($handle = fopen($csvFile, 'r')) !== false) {
             // Read header
