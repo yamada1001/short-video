@@ -1,14 +1,16 @@
 <?php
 /**
  * Delete specific user from members.json
+ * Auto-execute on access
  */
 
 header('Content-Type: text/plain; charset=utf-8');
 
 $emailToDelete = 'yamada@yojitu.com';
 
-echo "=== ユーザー削除スクリプト ===\n\n";
-echo "削除対象: {$emailToDelete}\n\n";
+echo "=== ユーザー削除スクリプト（自動実行） ===\n\n";
+echo "削除対象: {$emailToDelete}\n";
+echo "実行時刻: " . date('Y-m-d H:i:s') . "\n\n";
 
 // Load members.json
 $membersFile = __DIR__ . '/data/members.json';
