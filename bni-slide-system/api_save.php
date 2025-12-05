@@ -101,7 +101,7 @@ try {
   }
 
   // Check for duplicate submission in the same week
-  $duplicateCheck = checkDuplicateSubmission($baseData['input_date'], $baseData['introducer_name'], $baseData['email']);
+  $duplicateCheck = checkDuplicateSubmission($baseData['timestamp'], $baseData['introducer_name'], $baseData['email']);
   if ($duplicateCheck['isDuplicate']) {
     throw new Exception('今週は既に回答済みです。1週間に1回のみ回答できます。');
   }
@@ -143,18 +143,13 @@ function sanitize($input) {
  * Save data to CSV
  */
 function saveToCSV($baseData, $visitors, $referrals) {
-  // Determine CSV file path from input_date
-  $inputDate = $baseData['input_date'];
-  $date = new DateTime($inputDate);
-  $year = $date->format('Y');
-  $month = $date->format('n');
-  $day = $date->format('j');
+  // Determine CSV file path from timestamp (not input_date)
+  // Week boundary: Thursday 5:00 AM
+  $timestamp = $baseData['timestamp'];
+  $targetThursday = getTargetThursday($timestamp);
 
-  // Calculate week number in month
-  $weekInMonth = ceil($day / 7);
-
-  // CSV filename: YYYY-MM-W.csv
-  $filename = "$year-$month-$weekInMonth.csv";
+  // CSV filename: YYYY-MM-DD.csv (Thursday date)
+  $filename = "$targetThursday.csv";
   $csvFile = __DIR__ . '/data/' . $filename;
   $isNewFile = !file_exists($csvFile);
 
@@ -505,22 +500,57 @@ function sendThanksEmail($baseData) {
 }
 
 /**
+ * Get target Thursday date (5:00 AM boundary) from timestamp
+ *
+ * Week boundary: Thursday 5:00 AM
+ * - Data submitted before Thursday 5:00 AM belongs to that Thursday's slide
+ * - Data submitted on/after Thursday 5:00 AM belongs to next Thursday's slide
+ *
+ * @param string $timestamp Timestamp in 'Y-m-d H:i:s' format
+ * @return string Thursday date in 'Y-m-d' format
+ */
+function getTargetThursday($timestamp) {
+  $dt = new DateTime($timestamp);
+  $dayOfWeek = intval($dt->format('w')); // 0=Sunday, 4=Thursday
+  $hour = intval($dt->format('H'));
+
+  // Calculate days until next Thursday (0-6)
+  if ($dayOfWeek === 4) {
+    // Today is Thursday
+    if ($hour >= 5) {
+      // On/after 5:00 AM on Thursday - belongs to next week
+      $daysToAdd = 7;
+    } else {
+      // Before 5:00 AM on Thursday - belongs to this week
+      $daysToAdd = 0;
+    }
+  } else {
+    // Not Thursday - find next Thursday
+    $daysToAdd = (4 - $dayOfWeek + 7) % 7;
+    if ($daysToAdd === 0) {
+      $daysToAdd = 7;
+    }
+  }
+
+  if ($daysToAdd > 0) {
+    $dt->modify("+$daysToAdd days");
+  }
+
+  return $dt->format('Y-m-d');
+}
+
+/**
  * Check if user has already submitted for the same week
  *
- * @param string $inputDate The date in YYYY-MM-DD format
+ * @param string $timestamp The submission timestamp in 'Y-m-d H:i:s' format
  * @param string $introducerName The user's name
  * @param string $email The user's email
  * @return array ['isDuplicate' => bool, 'existingDate' => string|null]
  */
-function checkDuplicateSubmission($inputDate, $introducerName, $email) {
-  // Calculate week file path (same logic as saveToCSV)
-  $date = new DateTime($inputDate);
-  $year = $date->format('Y');
-  $month = $date->format('n');
-  $day = $date->format('j');
-  $weekInMonth = ceil($day / 7);
-
-  $filename = "$year-$month-$weekInMonth.csv";
+function checkDuplicateSubmission($timestamp, $introducerName, $email) {
+  // Calculate week file path using Thursday boundary logic
+  $targetThursday = getTargetThursday($timestamp);
+  $filename = "$targetThursday.csv";
   $csvFile = __DIR__ . '/data/' . $filename;
 
   // If file doesn't exist, no duplicates

@@ -21,23 +21,37 @@ try {
       continue;
     }
 
-    // Parse filename: YYYY-MM-W
+    // Parse filename: YYYY-MM-DD (Thursday date) or legacy YYYY-MM-W
     $parts = explode('-', $filename);
     if (count($parts) === 3) {
-      $year = intval($parts[0]);
-      $month = intval($parts[1]);
-      $weekInMonth = intval($parts[2]);
+      // Check if it's new format (YYYY-MM-DD) or old format (YYYY-MM-W)
+      if (strlen($parts[2]) === 2 && intval($parts[2]) <= 12) {
+        // Old format: YYYY-MM-W (week number in month)
+        $year = intval($parts[0]);
+        $month = intval($parts[1]);
+        $weekInMonth = intval($parts[2]);
 
-      // Calculate the Friday date for this week
-      $fridayDate = calculateFridayDate($year, $month, $weekInMonth);
+        // Calculate the Friday date for this week
+        $fridayDate = calculateFridayDate($year, $month, $weekInMonth);
 
-      $label = $parts[0] . '年' . $parts[1] . '月' . $parts[2] . '週目 (' . $fridayDate->format('n/j') . ')';
-      $weeks[] = [
-        'filename' => $filename,
-        'label' => $label,
-        'date' => $fridayDate,
-        'timestamp' => $fridayDate->getTimestamp()
-      ];
+        $label = $parts[0] . '年' . $parts[1] . '月' . $parts[2] . '週目 (' . $fridayDate->format('n/j') . ')';
+        $weeks[] = [
+          'filename' => $filename,
+          'label' => $label,
+          'date' => $fridayDate,
+          'timestamp' => $fridayDate->getTimestamp()
+        ];
+      } else {
+        // New format: YYYY-MM-DD (Thursday date)
+        $thursdayDate = new DateTime($filename);
+        $label = $thursdayDate->format('Y年n月j日') . '（木）';
+        $weeks[] = [
+          'filename' => $filename,
+          'label' => $label,
+          'date' => $thursdayDate,
+          'timestamp' => $thursdayDate->getTimestamp()
+        ];
+      }
     }
   }
 
