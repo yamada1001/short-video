@@ -253,6 +253,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </form>
 
       <div class="login-links">
+        <p style="margin-bottom: 10px; color: #666;">パスワードを忘れた方</p>
+        <a href="forgot-password.php" style="display: block; margin-bottom: 20px;">
+          <i class="fas fa-key"></i>
+          パスワードをリセット
+        </a>
+
         <p style="margin-bottom: 10px; color: #666;">アカウントをお持ちでない方</p>
         <a href="register.php">
           <i class="fas fa-user-plus"></i>
