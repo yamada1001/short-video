@@ -225,13 +225,12 @@ if (file_exists($membersFile)) {
                 <th>電話番号</th>
                 <th>登録日</th>
                 <th>最終更新</th>
-                <th style="width: 100px;">操作</th>
               </tr>
             </thead>
             <tbody>
               <?php if (empty($membersData)): ?>
                 <tr>
-                  <td colspan="9" style="text-align: center; padding: 40px; color: #999;">
+                  <td colspan="8" style="text-align: center; padding: 40px; color: #999;">
                     登録されているユーザーはいません
                   </td>
                 </tr>
@@ -249,9 +248,6 @@ if (file_exists($membersFile)) {
                     <td><?php echo htmlspecialchars($user['phone'] ?? '-'); ?></td>
                     <td><?php echo htmlspecialchars($user['created_at'] ?? '-'); ?></td>
                     <td><?php echo htmlspecialchars($user['updated_at'] ?? '-'); ?></td>
-                    <td>
-                      <button class="btn-small btn-delete" onclick="deleteUser('<?php echo htmlspecialchars($username); ?>')">削除</button>
-                    </td>
                   </tr>
                 <?php endforeach; ?>
               <?php endif; ?>
@@ -269,65 +265,5 @@ if (file_exists($membersFile)) {
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script>
-    async function deleteUser(username) {
-      // Prevent deleting admin user
-      if (username === 'admin') {
-        alert('adminユーザーは削除できません。');
-        return;
-      }
-
-      // Confirmation dialog
-      if (!confirm(`ユーザー「${username}」を削除してもよろしいですか？\n\nこの操作は取り消せません。\n\n削除されるユーザーのデータ：\n- ユーザー名: ${username}\n- アカウント情報が完全に削除されます`)) {
-        return;
-      }
-
-      // Double confirmation for safety
-      if (!confirm('本当に削除しますか？\nこの操作は元に戻せません。')) {
-        return;
-      }
-
-      try {
-        const formData = new FormData();
-        formData.append('username', username);
-
-        console.log('Deleting user:', username);
-
-        const response = await fetch('../api_delete_user.php', {
-          method: 'POST',
-          body: formData
-        });
-
-        console.log('Response status:', response.status);
-
-        const responseText = await response.text();
-        console.log('Response text:', responseText);
-
-        let result;
-        try {
-          result = JSON.parse(responseText);
-        } catch (parseError) {
-          console.error('JSON parse error:', parseError);
-          console.error('Response was:', responseText);
-          alert('サーバーエラー: JSONのパースに失敗しました。\n\n' + responseText.substring(0, 200));
-          return;
-        }
-
-        console.log('Parsed result:', result);
-
-        if (result.success) {
-          alert(result.message || 'ユーザーを削除しました。');
-          // Reload page to reflect changes
-          location.reload();
-        } else {
-          alert('エラー: ' + (result.message || 'ユーザーの削除に失敗しました。'));
-        }
-      } catch (error) {
-        console.error('Delete error:', error);
-        alert('エラーが発生しました。もう一度お試しください。\n\nエラー詳細: ' + error.message);
-      }
-    }
-  </script>
 </body>
 </html>
