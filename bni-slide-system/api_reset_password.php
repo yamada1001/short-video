@@ -86,8 +86,8 @@ if (!$userFound) {
 // パスワードをハッシュ化
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-// パスワードを更新し、トークンを削除
-$data['users'][$username]['password'] = $hashedPassword;
+// パスワードを更新し、トークンを削除（password_hashキーに保存）
+$data['users'][$username]['password_hash'] = $hashedPassword;
 unset($data['users'][$username]['reset_token']);
 unset($data['users'][$username]['reset_token_expires']);
 $data['users'][$username]['updated_at'] = date('Y-m-d H:i:s');

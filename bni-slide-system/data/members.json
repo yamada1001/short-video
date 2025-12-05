@@ -13,7 +13,7 @@
     "yamada@yojitu.com": {
       "name": "山田",
       "email": "yamada@yojitu.com",
-      "password": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+      "password_hash": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
       "phone": "",
       "company": "株式会社YOJITU",
       "category": "その他",
