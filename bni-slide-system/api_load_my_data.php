@@ -116,14 +116,17 @@ function getWeekLabel($filename) {
     $parts = explode('-', $filename);
 
     if (count($parts) === 3) {
-        // Check if it's new format (YYYY-MM-DD) or old format (YYYY-MM-W)
-        if (strlen($parts[2]) === 2 && intval($parts[2]) <= 12) {
-            // Old format: YYYY-MM-W
-            return $parts[0] . '年' . $parts[1] . '月第' . $parts[2] . '週';
-        } else {
-            // New format: YYYY-MM-DD
+        // Try to parse as date (YYYY-MM-DD format)
+        try {
             $date = new DateTime($filename);
-            return $date->format('Y年n月j日') . '週';
+            // If successful, it's new format
+            $dayOfWeek = $date->format('w');
+            $dayNames = ['日', '月', '火', '水', '木', '金', '土'];
+            $dayName = $dayNames[$dayOfWeek];
+            return $date->format('Y年n月j日') . '（' . $dayName . '）';
+        } catch (Exception $e) {
+            // If parsing fails, it's old format: YYYY-MM-W
+            return $parts[0] . '年' . $parts[1] . '月第' . $parts[2] . '週';
         }
     }
 
