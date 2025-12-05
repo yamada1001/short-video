@@ -83,20 +83,16 @@ header('Content-Type: text/html; charset=UTF-8');
             <div class="form-section">
               <h2 class="form-section-title">ログイン情報</h2>
 
-              <div class="form-group">
-                <label class="form-label">
-                  ユーザー名（ログインID）<span class="required">*</span>
-                </label>
-                <input type="text" name="username" class="form-input" required placeholder="例: yamada" pattern="[a-zA-Z0-9_-]+" minlength="3">
-                <span class="form-error">ユーザー名を入力してください（半角英数字、3文字以上）</span>
-                <p class="form-hint">半角英数字、ハイフン、アンダースコアのみ使用可能</p>
-              </div>
-
               <div style="background-color: #F0F8FF; padding: 20px; border-radius: 8px; border-left: 4px solid #CF2030;">
-                <h3 style="margin-top: 0; color: #CF2030; font-size: 16px;">📧 パスワードについて</h3>
+                <h3 style="margin-top: 0; color: #CF2030; font-size: 16px;">📧 ログイン方法</h3>
+                <p style="margin: 0 0 10px 0; color: #666; font-size: 14px;">
+                  <strong>ログインID:</strong> ご登録のメールアドレスをそのまま使用します
+                </p>
                 <p style="margin: 0; color: #666; font-size: 14px;">
-                  パスワードは自動生成され、登録後にご登録のメールアドレスに送信されます。<br>
-                  ログイン後、プロフィール画面からいつでも変更できます。
+                  <strong>パスワード:</strong> 自動生成され、登録後にメールで送信されます
+                </p>
+                <p style="margin: 10px 0 0 0; color: #999; font-size: 13px;">
+                  ※ ログイン後、プロフィール画面からパスワードを変更できます
                 </p>
               </div>
             </div>

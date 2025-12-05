@@ -1,42 +1,42 @@
 {
   "users": {
-    "bni": {
+    "yamada@example.com": {
       "name": "山田太郎",
       "email": "yamada@example.com",
       "phone": "",
-      "htpasswd_user": "bni",
+      "htpasswd_user": "yamada@example.com",
       "created_at": "2024-12-05",
       "updated_at": "2024-12-05"
     },
-    "sato": {
+    "sato@example.com": {
       "name": "佐藤花子",
       "email": "sato@example.com",
       "phone": "",
-      "htpasswd_user": "sato",
+      "htpasswd_user": "sato@example.com",
       "created_at": "2024-12-05",
       "updated_at": "2024-12-05"
     },
-    "suzuki": {
+    "suzuki@example.com": {
       "name": "鈴木一郎",
       "email": "suzuki@example.com",
       "phone": "",
-      "htpasswd_user": "suzuki",
+      "htpasswd_user": "suzuki@example.com",
       "created_at": "2024-12-05",
       "updated_at": "2024-12-05"
     },
-    "tanaka": {
+    "tanaka@example.com": {
       "name": "田中美咲",
       "email": "tanaka@example.com",
       "phone": "",
-      "htpasswd_user": "tanaka",
+      "htpasswd_user": "tanaka@example.com",
       "created_at": "2024-12-05",
       "updated_at": "2024-12-05"
     },
-    "takahashi": {
+    "takahashi@example.com": {
       "name": "高橋健太",
       "email": "takahashi@example.com",
       "phone": "",
-      "htpasswd_user": "takahashi",
+      "htpasswd_user": "takahashi@example.com",
       "created_at": "2024-12-05",
       "updated_at": "2024-12-05"
     }

@@ -20,19 +20,16 @@ try {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
-    $username = trim($_POST['username'] ?? '');
+
+    // Use email as username for .htpasswd
+    $username = $email;
 
     // Auto-generate password (10 characters: alphanumeric)
     $password = generateRandomPassword(10);
 
     // Validate required fields
-    if (empty($name) || empty($email) || empty($username)) {
+    if (empty($name) || empty($email)) {
         throw new Exception('必須項目が入力されていません');
-    }
-
-    // Validate username format (alphanumeric, hyphen, underscore only)
-    if (!preg_match('/^[a-zA-Z0-9_-]{3,}$/', $username)) {
-        throw new Exception('ユーザー名は半角英数字、ハイフン、アンダースコアのみ使用可能です（3文字以上）');
     }
 
     // Validate email format
@@ -56,16 +53,9 @@ try {
         throw new Exception('データファイルの形式が不正です');
     }
 
-    // Check if username already exists
-    if (isset($data['users'][$username])) {
-        throw new Exception('このユーザー名は既に使用されています');
-    }
-
-    // Check if email already exists
-    foreach ($data['users'] as $user) {
-        if ($user['email'] === $email) {
-            throw new Exception('このメールアドレスは既に登録されています');
-        }
+    // Check if email already exists (email is now the username)
+    if (isset($data['users'][$email])) {
+        throw new Exception('このメールアドレスは既に登録されています');
     }
 
     // Check if name already exists
@@ -79,12 +69,12 @@ try {
         throw new Exception('パスワードのハッシュ化に失敗しました');
     }
 
-    // Add new user to data
-    $data['users'][$username] = [
+    // Add new user to data (using email as key)
+    $data['users'][$email] = [
         'name' => $name,
         'email' => $email,
         'phone' => $phone,
-        'htpasswd_user' => $username,
+        'htpasswd_user' => $email,
         'created_at' => date('Y-m-d H:i:s'),
         'updated_at' => date('Y-m-d H:i:s')
     ];
@@ -107,7 +97,7 @@ try {
 
     if (file_put_contents($htpasswdFile, $htpasswdEntry, FILE_APPEND | LOCK_EX) === false) {
         // Rollback: remove user from members.json
-        unset($data['users'][$username]);
+        unset($data['users'][$email]);
         $data['members'] = array_values(array_diff($data['members'], [$name]));
         file_put_contents($membersFile, json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
@@ -204,13 +194,13 @@ function sendWelcomeEmail($name, $email, $username, $password) {
       <div class="info-box">
         <h3>ログイン情報</h3>
         <p><strong>URL:</strong> <a href="https://yojitu.com/bni-slide-system/">https://yojitu.com/bni-slide-system/</a></p>
-        <p><strong>ユーザー名:</strong> ' . htmlspecialchars($username) . '</p>
+        <p><strong>ログインID（メールアドレス）:</strong> ' . htmlspecialchars($email) . '</p>
         <p><strong>パスワード:</strong> <span style="font-family: monospace; background-color: #FFF3CD; padding: 4px 8px; border-radius: 4px; font-size: 16px; font-weight: bold;">' . htmlspecialchars($password) . '</span></p>
       </div>
 
       <p style="color: #D9534F; font-weight: bold;">⚠️ このパスワードは初回ログイン用です。セキュリティのため、ログイン後すぐに変更することをお勧めします。</p>
 
-      <p>上記のユーザー名とパスワードでログインし、週次アンケートにご回答ください。</p>
+      <p>上記のログインID（メールアドレス）とパスワードでログインし、週次アンケートにご回答ください。</p>
       <p>プロフィール情報（メールアドレス・電話番号・パスワード）はログイン後に変更できます。</p>
 
       <div class="footer">
