@@ -21,7 +21,7 @@ try {
       continue;
     }
 
-    // Parse filename: YYYY-MM-DD (Thursday date) or legacy YYYY-MM-W
+    // Parse filename: YYYY-MM-DD (Friday date) or legacy YYYY-MM-W
     $parts = explode('-', $filename);
     if (count($parts) === 3) {
       // Check if it's new format (YYYY-MM-DD) or old format (YYYY-MM-W)
@@ -42,14 +42,14 @@ try {
           'timestamp' => $fridayDate->getTimestamp()
         ];
       } else {
-        // New format: YYYY-MM-DD (Thursday date)
-        $thursdayDate = new DateTime($filename);
-        $label = $thursdayDate->format('Y年n月j日') . '（木）';
+        // New format: YYYY-MM-DD (Friday date)
+        $fridayDate = new DateTime($filename);
+        $label = $fridayDate->format('Y年n月j日') . '（金）';
         $weeks[] = [
           'filename' => $filename,
           'label' => $label,
-          'date' => $thursdayDate,
-          'timestamp' => $thursdayDate->getTimestamp()
+          'date' => $fridayDate,
+          'timestamp' => $fridayDate->getTimestamp()
         ];
       }
     }

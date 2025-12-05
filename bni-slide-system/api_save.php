@@ -144,12 +144,12 @@ function sanitize($input) {
  */
 function saveToCSV($baseData, $visitors, $referrals) {
   // Determine CSV file path from timestamp (not input_date)
-  // Week boundary: Thursday 5:00 AM
+  // Week boundary: Thursday 9:00 AM ~ Friday 5:00 AM
   $timestamp = $baseData['timestamp'];
-  $targetThursday = getTargetThursday($timestamp);
+  $targetFriday = getTargetFriday($timestamp);
 
-  // CSV filename: YYYY-MM-DD.csv (Thursday date)
-  $filename = "$targetThursday.csv";
+  // CSV filename: YYYY-MM-DD.csv (Friday date)
+  $filename = "$targetFriday.csv";
   $csvFile = __DIR__ . '/data/' . $filename;
   $isNewFile = !file_exists($csvFile);
 
@@ -500,39 +500,37 @@ function sendThanksEmail($baseData) {
 }
 
 /**
- * Get target Thursday date (5:00 AM boundary) from timestamp
+ * Get target Friday date from timestamp
  *
- * Week boundary: Thursday 5:00 AM
- * - Data submitted before Thursday 5:00 AM belongs to that Thursday's slide
- * - Data submitted on/after Thursday 5:00 AM belongs to next Thursday's slide
+ * Week boundary: Previous Thursday 9:00 AM ~ Friday 5:00 AM
+ * - Data from Thursday 9:00 AM ~ Friday 4:59 AM belongs to that Friday's slide
+ * - Example: Nov 28 (Thu) 9:00 ~ Dec 5 (Fri) 4:59 → Dec 5 (Fri) slide
  *
  * @param string $timestamp Timestamp in 'Y-m-d H:i:s' format
- * @return string Thursday date in 'Y-m-d' format
+ * @return string Friday date in 'Y-m-d' format
  */
-function getTargetThursday($timestamp) {
+function getTargetFriday($timestamp) {
   $dt = new DateTime($timestamp);
-  $dayOfWeek = intval($dt->format('w')); // 0=Sunday, 4=Thursday
+  $dayOfWeek = intval($dt->format('w')); // 0=Sunday, 4=Thursday, 5=Friday
   $hour = intval($dt->format('H'));
 
-  // Calculate days until next Thursday (0-6)
-  if ($dayOfWeek === 4) {
-    // Today is Thursday
-    if ($hour >= 5) {
-      // On/after 5:00 AM on Thursday - belongs to next week
-      $daysToAdd = 7;
+  if ($dayOfWeek === 5) {
+    // Friday
+    if ($hour < 5) {
+      // 0:00-4:59 → This Friday (keep as is)
     } else {
-      // Before 5:00 AM on Thursday - belongs to this week
-      $daysToAdd = 0;
+      // 5:00-23:59 → Next Friday
+      $dt->modify('+7 days');
     }
+  } else if ($dayOfWeek === 4 && $hour >= 9) {
+    // Thursday 9:00 or later → Next day (Friday)
+    $dt->modify('+1 day');
   } else {
-    // Not Thursday - find next Thursday
-    $daysToAdd = (4 - $dayOfWeek + 7) % 7;
+    // Other days or Thursday before 9:00 → Find next Friday
+    $daysToAdd = (5 - $dayOfWeek + 7) % 7;
     if ($daysToAdd === 0) {
       $daysToAdd = 7;
     }
-  }
-
-  if ($daysToAdd > 0) {
     $dt->modify("+$daysToAdd days");
   }
 
@@ -548,9 +546,9 @@ function getTargetThursday($timestamp) {
  * @return array ['isDuplicate' => bool, 'existingDate' => string|null]
  */
 function checkDuplicateSubmission($timestamp, $introducerName, $email) {
-  // Calculate week file path using Thursday boundary logic
-  $targetThursday = getTargetThursday($timestamp);
-  $filename = "$targetThursday.csv";
+  // Calculate week file path using Friday boundary logic
+  $targetFriday = getTargetFriday($timestamp);
+  $filename = "$targetFriday.csv";
   $csvFile = __DIR__ . '/data/' . $filename;
 
   // If file doesn't exist, no duplicates
