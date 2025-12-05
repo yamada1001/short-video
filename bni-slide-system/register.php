@@ -169,62 +169,8 @@ header('Content-Type: text/html; charset=UTF-8');
       const firstNameKanaInput = document.getElementById('firstNameKana');
 
       // Auto-generate furigana using IME input
-      let lastNameKana = '';
-      let firstNameKana = '';
-
-      // Capture last name furigana from IME
-      lastNameInput.addEventListener('compositionupdate', function(e) {
-        if (e.data) {
-          // Convert hiragana to katakana
-          lastNameKana = hiraganaToKatakana(e.data);
-        }
-      });
-
-      lastNameInput.addEventListener('compositionend', function(e) {
-        if (lastNameKana && !lastNameKanaInput.value) {
-          lastNameKanaInput.value = lastNameKana;
-        }
-      });
-
-      lastNameInput.addEventListener('input', function(e) {
-        // For direct input (copy-paste, etc.)
-        if (e.inputType === 'insertText' || e.inputType === 'insertFromPaste') {
-          if (!lastNameKanaInput.value) {
-            // Try to convert if it's hiragana
-            const kana = hiraganaToKatakana(this.value);
-            if (kana !== this.value) {
-              lastNameKanaInput.value = kana;
-            }
-          }
-        }
-      });
-
-      // Capture first name furigana from IME
-      firstNameInput.addEventListener('compositionupdate', function(e) {
-        if (e.data) {
-          // Convert hiragana to katakana
-          firstNameKana = hiraganaToKatakana(e.data);
-        }
-      });
-
-      firstNameInput.addEventListener('compositionend', function(e) {
-        if (firstNameKana && !firstNameKanaInput.value) {
-          firstNameKanaInput.value = firstNameKana;
-        }
-      });
-
-      firstNameInput.addEventListener('input', function(e) {
-        // For direct input (copy-paste, etc.)
-        if (e.inputType === 'insertText' || e.inputType === 'insertFromPaste') {
-          if (!firstNameKanaInput.value) {
-            // Try to convert if it's hiragana
-            const kana = hiraganaToKatakana(this.value);
-            if (kana !== this.value) {
-              firstNameKanaInput.value = kana;
-            }
-          }
-        }
-      });
+      let lastNameReading = '';
+      let firstNameReading = '';
 
       // Convert hiragana to katakana
       function hiraganaToKatakana(str) {
@@ -233,6 +179,66 @@ header('Content-Type: text/html; charset=UTF-8');
           return String.fromCharCode(chr);
         });
       }
+
+      // Last name: Capture reading before kanji conversion
+      lastNameInput.addEventListener('compositionstart', function(e) {
+        lastNameReading = '';
+      });
+
+      lastNameInput.addEventListener('compositionupdate', function(e) {
+        // compositionupdate fires for each character change during composition
+        // We want to capture the hiragana before it converts to kanji
+        if (e.data) {
+          // Check if the data is hiragana (U+3041 to U+3096)
+          const isHiragana = /^[\u3041-\u3096]+$/.test(e.data);
+          if (isHiragana) {
+            lastNameReading = e.data;
+            console.log('姓 hiragana captured:', e.data);
+          }
+        }
+      });
+
+      lastNameInput.addEventListener('compositionend', function(e) {
+        console.log('姓 compositionend. Reading:', lastNameReading);
+        console.log('姓 Final input value:', lastNameInput.value);
+        console.log('姓 Current furigana:', lastNameKanaInput.value);
+
+        // Only auto-fill if furigana field is empty and we captured hiragana
+        if (lastNameReading && !lastNameKanaInput.value) {
+          const kana = hiraganaToKatakana(lastNameReading);
+          console.log('姓 Converting to katakana:', kana);
+          lastNameKanaInput.value = kana;
+        }
+        lastNameReading = '';
+      });
+
+      // First name: Capture reading before kanji conversion
+      firstNameInput.addEventListener('compositionstart', function(e) {
+        firstNameReading = '';
+      });
+
+      firstNameInput.addEventListener('compositionupdate', function(e) {
+        if (e.data) {
+          const isHiragana = /^[\u3041-\u3096]+$/.test(e.data);
+          if (isHiragana) {
+            firstNameReading = e.data;
+            console.log('名 hiragana captured:', e.data);
+          }
+        }
+      });
+
+      firstNameInput.addEventListener('compositionend', function(e) {
+        console.log('名 compositionend. Reading:', firstNameReading);
+        console.log('名 Final input value:', firstNameInput.value);
+        console.log('名 Current furigana:', firstNameKanaInput.value);
+
+        if (firstNameReading && !firstNameKanaInput.value) {
+          const kana = hiraganaToKatakana(firstNameReading);
+          console.log('名 Converting to katakana:', kana);
+          firstNameKanaInput.value = kana;
+        }
+        firstNameReading = '';
+      });
 
       // Form submission handler
       form.addEventListener('submit', async function(e) {
