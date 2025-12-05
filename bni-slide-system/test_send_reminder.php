@@ -4,8 +4,6 @@
  * リマインダーメールのテスト送信スクリプト
  */
 
-require_once __DIR__ . '/includes/date_helper.php';
-
 // 設定
 define('MAIL_FROM', 'yamada@yojitu.com');
 define('MAIL_FROM_NAME', 'BNI Slide System');
@@ -15,15 +13,14 @@ define('SURVEY_URL', 'https://yojitu.com/bni-slide-system/');
 $testEmail = 'yamada1881r@gmail.com';
 $testName = 'テストユーザー';
 
-// 今週の金曜日を取得
-$thisFridayStr = getTargetFriday(date('Y-m-d H:i:s'));
-$thisFriday = new DateTime($thisFridayStr);
+// 今週の金曜日（仮）
+$fridayDate = '2025年12月5日';
 
 echo "==============================================\n";
 echo "リマインダーメール テスト送信\n";
 echo "==============================================\n";
 echo "送信先: {$testEmail}\n";
-echo "対象週: " . $thisFriday->format('Y-m-d') . "\n";
+echo "対象週: {$fridayDate}\n";
 echo "\n";
 
 // 3種類のリマインダーを送信
@@ -35,7 +32,7 @@ foreach ($reminderTypes as $type) {
     echo "送信中: {$type}\n";
 
     // メール内容を取得
-    $mailData = getReminderMailContent($type, $thisFriday);
+    $mailData = getReminderMailContent($type, $fridayDate);
     $message = str_replace('[NAME]', $testName, $mailData['message']);
 
     echo "件名: " . $mailData['subject'] . "\n";
@@ -68,8 +65,7 @@ echo "==============================================\n";
 /**
  * リマインダーメールの内容を取得
  */
-function getReminderMailContent($type, $targetFriday) {
-    $fridayDate = $targetFriday->format('Y年n月j日');
+function getReminderMailContent($type, $fridayDate) {
 
     switch ($type) {
         case 'friday':
