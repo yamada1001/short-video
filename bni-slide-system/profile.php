@@ -69,7 +69,7 @@ $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF
         <div class="card">
           <div class="form-header">
             <h1>プロフィール編集</h1>
-            <p>ログイン中: <strong><?php echo $userName; ?></strong> (<?php echo $username; ?>)</p>
+            <p>ログイン中: <strong><?php echo $userName; ?></strong></p>
           </div>
 
           <!-- Success/Error Messages -->
