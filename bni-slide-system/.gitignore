@@ -10,3 +10,6 @@ data/*_backup_*.csv
 # IDE
 .vscode/
 .idea/
+
+# Database backups
+backups/*.db
