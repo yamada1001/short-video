@@ -271,13 +271,45 @@ if (file_exists($membersFile)) {
 
   <!-- Scripts -->
   <script>
-    function deleteUser(username) {
-      if (!confirm(`ユーザー「${username}」を削除してもよろしいですか？\nこの操作は取り消せません。`)) {
+    async function deleteUser(username) {
+      // Prevent deleting admin user
+      if (username === 'admin') {
+        alert('adminユーザーは削除できません。');
         return;
       }
 
-      // TODO: Implement delete API
-      alert('削除機能は現在開発中です。');
+      // Confirmation dialog
+      if (!confirm(`ユーザー「${username}」を削除してもよろしいですか？\n\nこの操作は取り消せません。\n\n削除されるユーザーのデータ：\n- ユーザー名: ${username}\n- アカウント情報が完全に削除されます`)) {
+        return;
+      }
+
+      // Double confirmation for safety
+      if (!confirm('本当に削除しますか？\nこの操作は元に戻せません。')) {
+        return;
+      }
+
+      try {
+        const formData = new FormData();
+        formData.append('username', username);
+
+        const response = await fetch('../api_delete_user.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          alert(result.message || 'ユーザーを削除しました。');
+          // Reload page to reflect changes
+          location.reload();
+        } else {
+          alert('エラー: ' + (result.message || 'ユーザーの削除に失敗しました。'));
+        }
+      } catch (error) {
+        console.error('Delete error:', error);
+        alert('エラーが発生しました。もう一度お試しください。');
+      }
     }
   </script>
 </body>
