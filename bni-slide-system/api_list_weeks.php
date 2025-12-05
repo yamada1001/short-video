@@ -24,43 +24,40 @@ try {
     // Parse filename: YYYY-MM-DD (Friday date) or legacy YYYY-MM-W
     $parts = explode('-', $filename);
     if (count($parts) === 3) {
-      // Check if it's new format (YYYY-MM-DD) or old format (YYYY-MM-W)
-      if (strlen($parts[2]) === 2 && intval($parts[2]) <= 12) {
-        // Old format: YYYY-MM-W (week number in month)
-        $year = intval($parts[0]);
-        $month = intval($parts[1]);
-        $weekInMonth = intval($parts[2]);
+      // Try to parse as date first (YYYY-MM-DD format)
+      try {
+        $targetDate = new DateTime($filename);
 
-        // Calculate the Friday date for this week
-        $fridayDate = calculateFridayDate($year, $month, $weekInMonth);
+        // If successful, it's new format (YYYY-MM-DD)
+        $dayOfWeek = $targetDate->format('w'); // 0=Sun, 5=Fri
+        $dayNames = ['日', '月', '火', '水', '木', '金', '土'];
+        $dayName = $dayNames[$dayOfWeek];
 
-        $label = $parts[0] . '年' . $parts[1] . '月' . $parts[2] . '週目 (' . $fridayDate->format('n/j') . ')';
+        $label = $targetDate->format('Y年n月j日') . '（' . $dayName . '）';
         $weeks[] = [
           'filename' => $filename,
           'label' => $label,
-          'date' => $fridayDate,
-          'timestamp' => $fridayDate->getTimestamp()
+          'date' => $targetDate,
+          'timestamp' => $targetDate->getTimestamp()
         ];
-      } else {
-        // New format: YYYY-MM-DD
-        try {
-          $targetDate = new DateTime($filename);
+      } catch (Exception $dateEx) {
+        // If parsing fails, try old format: YYYY-MM-W
+        if (strlen($parts[2]) === 1 || (strlen($parts[2]) === 2 && intval($parts[2]) <= 5)) {
+          // Old format: YYYY-MM-W (week number in month, usually 1-5)
+          $year = intval($parts[0]);
+          $month = intval($parts[1]);
+          $weekInMonth = intval($parts[2]);
 
-          // Get actual day of week (金=Friday)
-          $dayOfWeek = $targetDate->format('w'); // 0=Sun, 5=Fri
-          $dayNames = ['日', '月', '火', '水', '木', '金', '土'];
-          $dayName = $dayNames[$dayOfWeek];
+          // Calculate the Friday date for this week
+          $fridayDate = calculateFridayDate($year, $month, $weekInMonth);
 
-          $label = $targetDate->format('Y年n月j日') . '（' . $dayName . '）';
+          $label = $parts[0] . '年' . $parts[1] . '月第' . $parts[2] . '週';
           $weeks[] = [
             'filename' => $filename,
             'label' => $label,
-            'date' => $targetDate,
-            'timestamp' => $targetDate->getTimestamp()
+            'date' => $fridayDate,
+            'timestamp' => $fridayDate->getTimestamp()
           ];
-        } catch (Exception $dateEx) {
-          // Skip invalid date format
-          continue;
         }
       }
     }
