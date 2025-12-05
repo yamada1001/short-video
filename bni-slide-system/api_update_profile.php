@@ -26,10 +26,12 @@ try {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
+    $company = trim($_POST['company'] ?? '');
+    $category = trim($_POST['category'] ?? '');
     $newPassword = $_POST['new_password'] ?? '';
 
     // Validate required fields
-    if (empty($name) || empty($email)) {
+    if (empty($name) || empty($email) || empty($company) || empty($category)) {
         throw new Exception('必須項目が入力されていません');
     }
 
@@ -89,6 +91,8 @@ try {
     $data['users'][$currentUsername]['name'] = $name;
     $data['users'][$currentUsername]['email'] = $email;
     $data['users'][$currentUsername]['phone'] = $phone;
+    $data['users'][$currentUsername]['company'] = $company;
+    $data['users'][$currentUsername]['category'] = $category;
     $data['users'][$currentUsername]['updated_at'] = date('Y-m-d H:i:s');
 
     // Update members list if name changed

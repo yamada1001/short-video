@@ -20,6 +20,8 @@ try {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
+    $company = trim($_POST['company'] ?? '');
+    $category = trim($_POST['category'] ?? '');
 
     // Use email as username for .htpasswd
     $username = $email;
@@ -28,7 +30,7 @@ try {
     $password = generateRandomPassword(10);
 
     // Validate required fields
-    if (empty($name) || empty($email)) {
+    if (empty($name) || empty($email) || empty($company) || empty($category)) {
         throw new Exception('必須項目が入力されていません');
     }
 
@@ -74,6 +76,8 @@ try {
         'name' => $name,
         'email' => $email,
         'phone' => $phone,
+        'company' => $company,
+        'category' => $category,
         'htpasswd_user' => $email,
         'created_at' => date('Y-m-d H:i:s'),
         'updated_at' => date('Y-m-d H:i:s')

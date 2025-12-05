@@ -205,7 +205,11 @@
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add demo/kuruma-kaitori-k-village/.htaccess demo/kuruma-kaitori-k-village/check-path.php)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add demo/kuruma-kaitori-k-village/WORK_LOG_2024-12-03.md)",
       "WebFetch(domain:bni.jp)",
-      "Bash(tar:*)"
+      "Bash(tar:*)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add bni-slide-system/api_load.php bni-slide-system/api_save.php bni-slide-system/assets/js/slide.js bni-slide-system/assets/js/svg-slide-generator.js bni-slide-system/index.php)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add bni-slide-system/admin/edit.php bni-slide-system/api_save.php bni-slide-system/index.php)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add bni-slide-system/index.php)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add bni-slide-system/admin/edit.php bni-slide-system/assets/js/edit.js bni-slide-system/api_update.php bni-slide-system/api_save.php bni-slide-system/index.php)"
     ],
     "deny": [],
     "ask": []

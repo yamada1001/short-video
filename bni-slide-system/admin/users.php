@@ -207,6 +207,8 @@ if (file_exists($membersFile)) {
                 <th>ユーザー名</th>
                 <th>名前</th>
                 <th>メールアドレス</th>
+                <th>会社名</th>
+                <th>カテゴリ</th>
                 <th>電話番号</th>
                 <th>登録日</th>
                 <th>最終更新</th>
@@ -216,7 +218,7 @@ if (file_exists($membersFile)) {
             <tbody>
               <?php if (empty($membersData)): ?>
                 <tr>
-                  <td colspan="7" style="text-align: center; padding: 40px; color: #999;">
+                  <td colspan="9" style="text-align: center; padding: 40px; color: #999;">
                     登録されているユーザーはいません
                   </td>
                 </tr>
@@ -229,6 +231,8 @@ if (file_exists($membersFile)) {
                     </td>
                     <td><?php echo htmlspecialchars($user['name']); ?></td>
                     <td><?php echo htmlspecialchars($user['email']); ?></td>
+                    <td><?php echo htmlspecialchars($user['company'] ?? '-'); ?></td>
+                    <td><?php echo htmlspecialchars($user['category'] ?? '-'); ?></td>
                     <td><?php echo htmlspecialchars($user['phone'] ?? '-'); ?></td>
                     <td><?php echo htmlspecialchars($user['created_at'] ?? '-'); ?></td>
                     <td><?php echo htmlspecialchars($user['updated_at'] ?? '-'); ?></td>

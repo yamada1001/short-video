@@ -22,6 +22,8 @@ if (!$currentUser) {
 $userName = htmlspecialchars($currentUser['name'], ENT_QUOTES, 'UTF-8');
 $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
 $userPhone = htmlspecialchars($currentUser['phone'] ?? '', ENT_QUOTES, 'UTF-8');
+$userCompany = htmlspecialchars($currentUser['company'] ?? '', ENT_QUOTES, 'UTF-8');
+$userCategory = htmlspecialchars($currentUser['category'] ?? '', ENT_QUOTES, 'UTF-8');
 $username = htmlspecialchars($currentUser['htpasswd_user'], ENT_QUOTES, 'UTF-8');
 $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF-8');
 ?>
@@ -100,6 +102,24 @@ $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF
                 </label>
                 <input type="tel" name="phone" class="form-input" value="<?php echo $userPhone; ?>" placeholder="例: 090-1234-5678">
                 <p class="form-hint">ハイフンありでもなしでも入力可能です（任意）</p>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  会社名（屋号）<span class="required">*</span>
+                </label>
+                <input type="text" name="company" class="form-input" required value="<?php echo $userCompany; ?>" placeholder="例: 株式会社〇〇">
+                <span class="form-error">会社名を入力してください</span>
+                <p class="form-hint">所属されている会社名または屋号を入力してください</p>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  カテゴリ名（業種・職種）<span class="required">*</span>
+                </label>
+                <input type="text" name="category" class="form-input" required value="<?php echo $userCategory; ?>" placeholder="例: 不動産仲介業">
+                <span class="form-error">カテゴリ名を入力してください</span>
+                <p class="form-hint">あなたの業種または職種を入力してください</p>
               </div>
             </div>
 

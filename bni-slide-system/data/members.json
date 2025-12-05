@@ -4,6 +4,8 @@
       "name": "山田太郎",
       "email": "yamada@example.com",
       "phone": "",
+      "company": "株式会社サンプル",
+      "category": "Webデザイン",
       "htpasswd_user": "yamada@example.com",
       "created_at": "2024-12-05",
       "updated_at": "2024-12-05"
@@ -12,6 +14,8 @@
       "name": "佐藤花子",
       "email": "sato@example.com",
       "phone": "",
+      "company": "佐藤税理士事務所",
+      "category": "税理士",
       "htpasswd_user": "sato@example.com",
       "created_at": "2024-12-05",
       "updated_at": "2024-12-05"
@@ -20,6 +24,8 @@
       "name": "鈴木一郎",
       "email": "suzuki@example.com",
       "phone": "",
+      "company": "鈴木不動産",
+      "category": "不動産仲介業",
       "htpasswd_user": "suzuki@example.com",
       "created_at": "2024-12-05",
       "updated_at": "2024-12-05"
@@ -28,6 +34,8 @@
       "name": "田中美咲",
       "email": "tanaka@example.com",
       "phone": "",
+      "company": "株式会社田中商事",
+      "category": "コンサルティング",
       "htpasswd_user": "tanaka@example.com",
       "created_at": "2024-12-05",
       "updated_at": "2024-12-05"
@@ -36,6 +44,8 @@
       "name": "高橋健太",
       "email": "takahashi@example.com",
       "phone": "",
+      "company": "高橋保険事務所",
+      "category": "保険代理店",
       "htpasswd_user": "takahashi@example.com",
       "created_at": "2024-12-05",
       "updated_at": "2024-12-05"
