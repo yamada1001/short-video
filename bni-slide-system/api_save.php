@@ -502,40 +502,34 @@ function sendThanksEmail($baseData) {
 /**
  * Get target Friday date from timestamp
  *
- * Week boundary: Previous Thursday 9:00 AM ~ Friday 5:00 AM
- * - Data from Thursday 9:00 AM ~ Friday 4:59 AM belongs to that Friday's slide
- * - Example: Nov 28 (Thu) 9:00 ~ Dec 5 (Fri) 4:59 → Dec 5 (Fri) slide
+ * Week boundary: Friday 5:00 AM ~ Next Friday 5:00 AM
+ * - Data from Friday 5:00 AM ~ Next Friday 4:59 AM belongs to next Friday's slide
+ * - Example: Nov 28 (Fri) 5:00 ~ Dec 5 (Fri) 4:59 → Dec 5 (Fri) slide
  *
  * @param string $timestamp Timestamp in 'Y-m-d H:i:s' format
  * @return string Friday date in 'Y-m-d' format
  */
 function getTargetFriday($timestamp) {
   $dt = new DateTime($timestamp);
-  $dayOfWeek = intval($dt->format('w')); // 0=Sunday, 4=Thursday, 5=Friday
+  $dayOfWeek = intval($dt->format('w')); // 0=Sunday, 5=Friday
   $hour = intval($dt->format('H'));
 
-  // Find next Friday from current date/time
-  $daysToFriday = (5 - $dayOfWeek + 7) % 7;
-
-  if ($dayOfWeek === 5) {
-    // Friday
-    if ($hour < 5) {
-      // Friday 0:00-4:59 → This Friday (today)
-      $daysToFriday = 0;
-    } else {
-      // Friday 5:00-23:59 → Next Friday
-      $daysToFriday = 7;
-    }
-  } else if ($dayOfWeek === 4 && $hour >= 9) {
-    // Thursday 9:00 or later → Tomorrow (Friday)
-    $daysToFriday = 1;
-  } else if ($daysToFriday === 0) {
-    // Any other day where calculation returns 0 → Next week's Friday
-    $daysToFriday = 7;
+  if ($dayOfWeek === 5 && $hour < 5) {
+    // Friday 0:00-4:59 → This Friday (today)
+    return $dt->format('Y-m-d');
   }
 
-  if ($daysToFriday > 0) {
-    $dt->modify("+$daysToFriday days");
+  // For all other cases, find the next Friday
+  if ($dayOfWeek === 5) {
+    // Friday 5:00 onwards → Next Friday (7 days later)
+    $dt->modify('+7 days');
+  } else {
+    // Any other day → Next Friday
+    $daysToAdd = (5 - $dayOfWeek + 7) % 7;
+    if ($daysToAdd === 0) {
+      $daysToAdd = 7;
+    }
+    $dt->modify("+$daysToAdd days");
   }
 
   return $dt->format('Y-m-d');
