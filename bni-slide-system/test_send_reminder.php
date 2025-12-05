@@ -16,7 +16,8 @@ $testEmail = 'yamada1881r@gmail.com';
 $testName = 'テストユーザー';
 
 // 今週の金曜日を取得
-$thisFriday = getTargetFriday(time());
+$thisFridayStr = getTargetFriday(date('Y-m-d H:i:s'));
+$thisFriday = new DateTime($thisFridayStr);
 
 echo "==============================================\n";
 echo "リマインダーメール テスト送信\n";

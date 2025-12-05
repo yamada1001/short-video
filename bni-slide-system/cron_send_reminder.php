@@ -30,7 +30,8 @@ define('SURVEY_URL', 'https://yojitu.com/bni-slide-system/');
 $reminderType = $argv[1] ?? 'friday';
 
 // 今週の金曜日を取得
-$thisFriday = getTargetFriday(time());
+$thisFridayStr = getTargetFriday(date('Y-m-d H:i:s'));
+$thisFriday = new DateTime($thisFridayStr);
 $csvFile = __DIR__ . '/data/' . $thisFriday->format('Y-m-d') . '.csv';
 
 echo "[" . date('Y-m-d H:i:s') . "] リマインダー送信開始: {$reminderType}\n";
