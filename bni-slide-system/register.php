@@ -18,6 +18,46 @@ header('Content-Type: text/html; charset=UTF-8');
   <!-- Styles -->
   <link rel="stylesheet" href="assets/css/common.css">
   <link rel="stylesheet" href="assets/css/form.css">
+
+  <style>
+    .confirm-row {
+      display: flex;
+      padding: 12px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .confirm-row:last-child {
+      border-bottom: none;
+    }
+
+    .confirm-label {
+      width: 180px;
+      font-weight: 600;
+      color: #333;
+      flex-shrink: 0;
+    }
+
+    .confirm-value {
+      flex: 1;
+      color: #666;
+      word-break: break-all;
+    }
+
+    .form-step {
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -45,8 +85,8 @@ header('Content-Type: text/html; charset=UTF-8');
           <!-- Success/Error Messages -->
           <div id="message" class="message"></div>
 
-          <!-- Registration Form -->
-          <form id="registerForm" method="POST">
+          <!-- Registration Form (Input Step) -->
+          <form id="registerForm" method="POST" class="form-step" data-step="input">
 
             <!-- Section: 基本情報 -->
             <div class="form-section">
@@ -142,10 +182,67 @@ header('Content-Type: text/html; charset=UTF-8');
 
             <!-- Submit Button -->
             <div class="form-submit">
-              <button type="submit" class="btn btn-primary">登録する</button>
+              <button type="button" id="confirmBtn" class="btn btn-primary">確認画面へ</button>
               <a href="index.php" class="btn btn-outline" style="margin-left: 10px;">キャンセル</a>
             </div>
           </form>
+
+          <!-- Confirmation Screen -->
+          <div id="confirmationScreen" class="form-step" data-step="confirm" style="display: none;">
+            <div class="form-section">
+              <h2 class="form-section-title">入力内容の確認</h2>
+              <p style="color: #666; margin-bottom: 20px;">以下の内容で登録します。よろしければ「登録する」ボタンを押してください。</p>
+            </div>
+
+            <div class="form-section" style="background-color: #f9f9f9; padding: 25px; border-radius: 8px;">
+              <h3 style="color: var(--bni-red); margin-top: 0; margin-bottom: 20px; font-size: 18px;">基本情報</h3>
+
+              <div class="confirm-row">
+                <div class="confirm-label">お名前</div>
+                <div class="confirm-value" id="confirmName"></div>
+              </div>
+
+              <div class="confirm-row">
+                <div class="confirm-label">フリガナ</div>
+                <div class="confirm-value" id="confirmNameKana"></div>
+              </div>
+
+              <div class="confirm-row">
+                <div class="confirm-label">メールアドレス</div>
+                <div class="confirm-value" id="confirmEmail"></div>
+              </div>
+
+              <div class="confirm-row">
+                <div class="confirm-label">電話番号</div>
+                <div class="confirm-value" id="confirmPhone"></div>
+              </div>
+
+              <div class="confirm-row">
+                <div class="confirm-label">会社名（屋号）</div>
+                <div class="confirm-value" id="confirmCompany"></div>
+              </div>
+
+              <div class="confirm-row">
+                <div class="confirm-label">カテゴリ名</div>
+                <div class="confirm-value" id="confirmCategory"></div>
+              </div>
+            </div>
+
+            <div class="form-section" style="background-color: #F0F8FF; padding: 20px; border-radius: 8px; border-left: 4px solid #CF2030;">
+              <h3 style="margin-top: 0; color: #CF2030; font-size: 16px;">📧 ログイン方法</h3>
+              <p style="margin: 0 0 10px 0; color: #666; font-size: 14px;">
+                <strong>ログインID:</strong> ご登録のメールアドレスをそのまま使用します
+              </p>
+              <p style="margin: 0; color: #666; font-size: 14px;">
+                <strong>パスワード:</strong> 自動生成され、登録後にメールで送信されます
+              </p>
+            </div>
+
+            <div class="form-submit">
+              <button type="button" id="submitBtn" class="btn btn-primary">登録する</button>
+              <button type="button" id="backBtn" class="btn btn-outline" style="margin-left: 10px;">戻る</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -167,6 +264,10 @@ header('Content-Type: text/html; charset=UTF-8');
       const firstNameInput = document.getElementById('firstName');
       const lastNameKanaInput = document.getElementById('lastNameKana');
       const firstNameKanaInput = document.getElementById('firstNameKana');
+      const confirmBtn = document.getElementById('confirmBtn');
+      const submitBtn = document.getElementById('submitBtn');
+      const backBtn = document.getElementById('backBtn');
+      const confirmationScreen = document.getElementById('confirmationScreen');
 
       // Auto-generate furigana using IME input
       let lastNameReading = '';
@@ -257,18 +358,57 @@ header('Content-Type: text/html; charset=UTF-8');
         }
       });
 
-      // Form submission handler
-      form.addEventListener('submit', async function(e) {
-        e.preventDefault();
+      // Confirm button handler - show confirmation screen
+      confirmBtn.addEventListener('click', function() {
+        // Validate form
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
 
+        // Get form values
+        const lastName = lastNameInput.value;
+        const firstName = firstNameInput.value;
+        const lastNameKana = lastNameKanaInput.value;
+        const firstNameKana = firstNameKanaInput.value;
+        const email = form.querySelector('[name="email"]').value;
+        const phone = form.querySelector('[name="phone"]').value || '（未入力）';
+        const company = form.querySelector('[name="company"]').value;
+        const category = form.querySelector('[name="category"]').value;
+
+        // Populate confirmation screen
+        document.getElementById('confirmName').textContent = lastName + ' ' + firstName;
+        document.getElementById('confirmNameKana').textContent = lastNameKana + ' ' + firstNameKana;
+        document.getElementById('confirmEmail').textContent = email;
+        document.getElementById('confirmPhone').textContent = phone;
+        document.getElementById('confirmCompany').textContent = company;
+        document.getElementById('confirmCategory').textContent = category;
+
+        // Hide form, show confirmation
+        form.style.display = 'none';
+        confirmationScreen.style.display = 'block';
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Back button handler - return to form
+      backBtn.addEventListener('click', function() {
+        confirmationScreen.style.display = 'none';
+        form.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Submit button handler - actually submit the form
+      submitBtn.addEventListener('click', async function() {
         // Get form data
         const formData = new FormData(form);
 
         // Show loading state
-        const submitBtn = form.querySelector('button[type="submit"]');
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
         submitBtn.textContent = '登録中...';
+        backBtn.disabled = true;
 
         try {
           // Submit form
@@ -286,12 +426,14 @@ header('Content-Type: text/html; charset=UTF-8');
             showMessage('error', result.message || '登録に失敗しました。もう一度お試しください。');
             submitBtn.disabled = false;
             submitBtn.textContent = '登録する';
+            backBtn.disabled = false;
           }
         } catch (error) {
           console.error('Registration error:', error);
           showMessage('error', 'エラーが発生しました。もう一度お試しください。');
           submitBtn.disabled = false;
           submitBtn.textContent = '登録する';
+          backBtn.disabled = false;
         } finally {
           submitBtn.classList.remove('loading');
         }
