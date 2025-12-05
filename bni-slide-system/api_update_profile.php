@@ -6,6 +6,9 @@
 
 header('Content-Type: application/json; charset=utf-8');
 
+// Load session auth
+require_once __DIR__ . '/includes/session_auth.php';
+
 // Check if POST request
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode([
@@ -16,11 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 try {
-    // Get current logged-in user
-    $currentUsername = $_SERVER['PHP_AUTH_USER'] ?? null;
-    if (!$currentUsername) {
+    // Get current logged-in user from session
+    if (!isLoggedIn()) {
         throw new Exception('ログインしていません');
     }
+
+    $currentUsername = $_SESSION['user_email'];
 
     // Get form data
     $name = trim($_POST['name'] ?? '');
