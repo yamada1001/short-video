@@ -69,6 +69,7 @@ $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF
         <ul>
           <li><a href="index.php">アンケート</a></li>
           <li><a href="my-data.php">マイデータ</a></li>
+          <li><a href="manual.php">マニュアル</a></li>
           <li><a href="profile.php" class="active">プロフィール</a></li>
           <li><a href="logout.php" style="color: #999;">ログアウト</a></li>
         </ul>

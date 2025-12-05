@@ -142,6 +142,7 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
         <ul>
           <li><a href="index.php" class="active">アンケート</a></li>
           <li><a href="my-data.php">マイデータ</a></li>
+          <li><a href="manual.php">マニュアル</a></li>
           <li><a href="profile.php">プロフィール</a></li>
           <li><a href="logout.php" style="color: #999;">ログアウト</a></li>
         </ul>
