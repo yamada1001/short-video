@@ -6,6 +6,9 @@
 
 header('Content-Type: application/json; charset=utf-8');
 
+// Load date helper functions
+require_once __DIR__ . '/includes/date_helper.php';
+
 try {
   // Get week parameter (optional)
   $week = $_GET['week'] ?? '';
@@ -74,23 +77,10 @@ try {
   $slideDate = '';
   if ($csvFile) {
     $filename = basename($csvFile, '.csv');
+    $result = parseFilenameToDate($filename);
 
-    // Try to parse as date (YYYY-MM-DD format)
-    try {
-      $targetDate = new DateTime($filename);
-      $slideDate = $targetDate->format('Y年n月j日');
-    } catch (Exception $e) {
-      // If parsing fails, try old format: YYYY-MM-W
-      $parts = explode('-', $filename);
-      if (count($parts) === 3 && intval($parts[2]) <= 5) {
-        $year = intval($parts[0]);
-        $month = intval($parts[1]);
-        $weekInMonth = intval($parts[2]);
-
-        // Calculate the Friday of that week
-        $targetDate = calculateFridayDate($year, $month, $weekInMonth);
-        $slideDate = $targetDate->format('Y年n月j日');
-      }
+    if ($result['success']) {
+      $slideDate = $result['date']->format('Y年n月j日');
     }
   }
 
@@ -171,25 +161,4 @@ function calculateStats($data) {
   }
 
   return $stats;
-}
-
-/**
- * Calculate Friday date for given year, month, and week number
- * Ensures correct calculation for BNI meetings (always held on Fridays)
- */
-function calculateFridayDate($year, $month, $weekInMonth) {
-  $firstDay = new DateTime("$year-$month-01");
-  $firstDayOfWeek = intval($firstDay->format('w')); // 0 (Sunday) to 6 (Saturday)
-
-  // Calculate days to first Friday (5 = Friday)
-  $daysToFirstFriday = (5 - $firstDayOfWeek + 7) % 7;
-  if ($daysToFirstFriday === 0 && $firstDayOfWeek !== 5) {
-    $daysToFirstFriday = 7;
-  }
-
-  // Calculate target day: first Friday + (weekInMonth - 1) * 7 days
-  $targetDay = 1 + $daysToFirstFriday + (($weekInMonth - 1) * 7);
-  $targetDate = new DateTime("$year-$month-$targetDay");
-
-  return $targetDate;
 }

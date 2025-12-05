@@ -66,8 +66,14 @@
         today.setHours(0, 0, 0, 0);
         const todayTimestamp = today.getTime() / 1000; // Convert to seconds
 
-        // Filter weeks to only show past or today's meetings
-        const availableWeeks = result.weeks.filter(week => week.timestamp <= todayTimestamp);
+        // Filter weeks to only show past or today's meetings, and only Fridays
+        const availableWeeks = result.weeks.filter(week => {
+          // Check if date is past or today
+          if (week.timestamp > todayTimestamp) return false;
+
+          // Check if it's Friday (金曜日)
+          return week.label.includes('（金）');
+        });
 
         if (availableWeeks.length === 0) {
           weekSelector.innerHTML = '<option value="">まだ開催されていません</option>';

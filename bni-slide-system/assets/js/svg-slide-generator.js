@@ -201,9 +201,9 @@ async function generateSVGSlides(data, stats, slideDate = '') {
 
   // Slide 5: Member Contributions (split into multiple pages if needed)
   if (Object.keys(stats.members).length > 0) {
-    // Filter out members with 0 referral amount
+    // Filter out members with 0 referral amount AND 0 visitors
     const memberEntries = Object.entries(stats.members).filter(([member, memberStats]) => {
-      return memberStats.referral_amount > 0;
+      return memberStats.referral_amount > 0 || memberStats.visitors > 0;
     });
 
     const itemsPerPage = 6;

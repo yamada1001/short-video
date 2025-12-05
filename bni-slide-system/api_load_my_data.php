@@ -9,6 +9,9 @@ header('Content-Type: application/json; charset=utf-8');
 // Load user authentication helper
 require_once __DIR__ . '/includes/user_auth.php';
 
+// Load date helper functions
+require_once __DIR__ . '/includes/date_helper.php';
+
 // Get current user info
 $currentUser = getCurrentUserInfo();
 
@@ -107,28 +110,4 @@ try {
         'success' => false,
         'message' => $e->getMessage()
     ]);
-}
-
-/**
- * Get week label from filename
- */
-function getWeekLabel($filename) {
-    $parts = explode('-', $filename);
-
-    if (count($parts) === 3) {
-        // Try to parse as date (YYYY-MM-DD format)
-        try {
-            $date = new DateTime($filename);
-            // If successful, it's new format
-            $dayOfWeek = $date->format('w');
-            $dayNames = ['日', '月', '火', '水', '木', '金', '土'];
-            $dayName = $dayNames[$dayOfWeek];
-            return $date->format('Y年n月j日') . '（' . $dayName . '）';
-        } catch (Exception $e) {
-            // If parsing fails, it's old format: YYYY-MM-W
-            return $parts[0] . '年' . $parts[1] . '月第' . $parts[2] . '週';
-        }
-    }
-
-    return $filename;
 }
