@@ -388,7 +388,7 @@ $currentUser = getCurrentUserInfo();
     <a href="index.php"><i class="fas fa-home"></i> ホーム</a>
     <a href="my-data.php"><i class="fas fa-database"></i> マイデータ</a>
     <a href="profile.php"><i class="fas fa-user"></i> プロフィール</a>
-    <?php if ($currentUser['role'] === 'admin'): ?>
+    <?php if (isset($currentUser['role']) && $currentUser['role'] === 'admin'): ?>
     <a href="admin/slide.php"><i class="fas fa-presentation"></i> スライド</a>
     <a href="admin/users.php"><i class="fas fa-users"></i> ユーザー管理</a>
     <?php endif; ?>
@@ -600,15 +600,9 @@ $currentUser = getCurrentUserInfo();
     <div id="admin" class="manual-section">
       <h2>4. 管理者の使い方</h2>
 
-      <div class="code-box">
-        <strong>管理者ログイン情報</strong><br>
-        ユーザー名: admin<br>
-        パスワード: admin2024
-      </div>
-
-      <div class="warning-box">
-        <h4><i class="fas fa-shield-alt"></i> セキュリティ注意</h4>
-        <p>初回ログイン後、必ずパスワードを変更してください。</p>
+      <div class="info-box">
+        <h4><i class="fas fa-info-circle"></i> 管理者権限について</h4>
+        <p>管理者ログイン情報は、チャプター管理者の方から別途ご案内いたします。</p>
       </div>
 
       <h3>スライド表示</h3>
