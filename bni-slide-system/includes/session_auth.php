@@ -1,8 +1,10 @@
 <?php
 /**
- * BNI Slide System - Session Authentication Helper
+ * BNI Slide System - Session Authentication Helper (SQLite Version)
  * セッションベースの認証ヘルパー
  */
+
+require_once __DIR__ . '/db.php';
 
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
@@ -35,95 +37,145 @@ function getCurrentUser() {
         return null;
     }
 
-    // Load members.json
-    $membersFile = __DIR__ . '/../data/members.json';
-    if (!file_exists($membersFile)) {
+    try {
+        $db = getDbConnection();
+        $email = $_SESSION['user_email'];
+
+        $query = "SELECT id, name, email, role, company, industry, is_active
+                  FROM users
+                  WHERE email = :email AND is_active = 1
+                  LIMIT 1";
+
+        $user = dbQueryOne($db, $query, [':email' => $email]);
+        dbClose($db);
+
+        return $user;
+    } catch (Exception $e) {
+        if (isset($db)) {
+            dbClose($db);
+        }
         return null;
     }
-
-    $content = file_get_contents($membersFile);
-    $data = json_decode($content, true);
-
-    if (!$data || !isset($data['users'])) {
-        return null;
-    }
-
-    $email = $_SESSION['user_email'];
-
-    if (!isset($data['users'][$email])) {
-        return null;
-    }
-
-    return $data['users'][$email];
 }
 
 /**
  * Login user
  */
 function loginUser($email, $password) {
-    // Load members.json
-    $membersFile = __DIR__ . '/../data/members.json';
-    if (!file_exists($membersFile)) {
-        return ['success' => false, 'message' => 'ユーザーデータが見つかりません'];
-    }
+    try {
+        $db = getDbConnection();
 
-    $content = file_get_contents($membersFile);
-    $data = json_decode($content, true);
+        // Get user from database
+        $query = "SELECT id, name, email, password_hash, role, is_active, require_2fa, totp_secret
+                  FROM users
+                  WHERE email = :email
+                  LIMIT 1";
 
-    if (!$data || !isset($data['users'])) {
-        return ['success' => false, 'message' => 'ユーザーデータが見つかりません'];
-    }
+        $user = dbQueryOne($db, $query, [':email' => $email]);
 
-    // Check if user exists
-    if (!isset($data['users'][$email])) {
-        return ['success' => false, 'message' => 'メールアドレスまたはパスワードが正しくありません'];
-    }
+        if (!$user) {
+            dbClose($db);
+            return ['success' => false, 'message' => 'メールアドレスまたはパスワードが正しくありません'];
+        }
 
-    $user = $data['users'][$email];
+        // Check if account is active
+        if (!$user['is_active']) {
+            dbClose($db);
+            return ['success' => false, 'message' => 'このアカウントは無効化されています'];
+        }
 
-    // Check if password_hash exists (new format)
-    if (isset($user['password_hash'])) {
-        // Use password_verify() for new format
+        // Verify password
         if (!password_verify($password, $user['password_hash'])) {
-            return ['success' => false, 'message' => 'メールアドレスまたはパスワードが正しくありません'];
-        }
-    } else {
-        // Legacy: try .htpasswd (for backward compatibility)
-        $htpasswdFile = __DIR__ . '/../.htpasswd';
-        if (!file_exists($htpasswdFile)) {
-            return ['success' => false, 'message' => '認証情報が見つかりません'];
-        }
-
-        $htpasswdContent = file_get_contents($htpasswdFile);
-        $lines = explode("\n", $htpasswdContent);
-
-        $passwordHash = null;
-        foreach ($lines as $line) {
-            if (strpos($line, $email . ':') === 0) {
-                $parts = explode(':', $line, 2);
-                if (count($parts) === 2) {
-                    $passwordHash = trim($parts[1]);
-                    break;
-                }
-            }
-        }
-
-        if (!$passwordHash) {
+            dbClose($db);
             return ['success' => false, 'message' => 'メールアドレスまたはパスワードが正しくありません'];
         }
 
-        // Verify password with APR1-MD5 hash
-        if (!verifyApr1Password($password, $passwordHash)) {
-            return ['success' => false, 'message' => 'メールアドレスまたはパスワードが正しくありません'];
+        // Check if 2FA is required
+        if ($user['require_2fa'] && !empty($user['totp_secret'])) {
+            // Set temporary session for 2FA verification
+            $_SESSION['2fa_user_email'] = $email;
+            $_SESSION['2fa_user_name'] = $user['name'];
+            dbClose($db);
+            return [
+                'success' => true,
+                'require_2fa' => true,
+                'message' => '2段階認証が必要です'
+            ];
         }
+
+        // Set session
+        $_SESSION['user_email'] = $email;
+        $_SESSION['user_name'] = $user['name'];
+        $_SESSION['login_time'] = time();
+
+        // Update last login
+        $updateQuery = "UPDATE users SET last_login = :last_login WHERE id = :id";
+        dbExecute($db, $updateQuery, [
+            ':last_login' => date('Y-m-d H:i:s'),
+            ':id' => $user['id']
+        ]);
+
+        dbClose($db);
+
+        return ['success' => true, 'message' => 'ログインしました'];
+
+    } catch (Exception $e) {
+        if (isset($db)) {
+            dbClose($db);
+        }
+        return ['success' => false, 'message' => 'システムエラーが発生しました'];
     }
+}
 
-    // Set session
-    $_SESSION['user_email'] = $email;
-    $_SESSION['user_name'] = $data['users'][$email]['name'];
-    $_SESSION['login_time'] = time();
+/**
+ * Verify 2FA code and complete login
+ */
+function verify2FAAndLogin($email, $code) {
+    try {
+        $db = getDbConnection();
 
-    return ['success' => true, 'message' => 'ログインしました'];
+        // Get user
+        $query = "SELECT id, name, totp_secret FROM users WHERE email = :email LIMIT 1";
+        $user = dbQueryOne($db, $query, [':email' => $email]);
+
+        if (!$user || empty($user['totp_secret'])) {
+            dbClose($db);
+            return ['success' => false, 'message' => '認証に失敗しました'];
+        }
+
+        // Verify TOTP code
+        require_once __DIR__ . '/totp.php';
+        if (!verifyTOTP($user['totp_secret'], $code)) {
+            dbClose($db);
+            return ['success' => false, 'message' => '認証コードが正しくありません'];
+        }
+
+        // Set session
+        $_SESSION['user_email'] = $email;
+        $_SESSION['user_name'] = $user['name'];
+        $_SESSION['login_time'] = time();
+
+        // Clear temporary 2FA session
+        unset($_SESSION['2fa_user_email']);
+        unset($_SESSION['2fa_user_name']);
+
+        // Update last login
+        $updateQuery = "UPDATE users SET last_login = :last_login WHERE id = :id";
+        dbExecute($db, $updateQuery, [
+            ':last_login' => date('Y-m-d H:i:s'),
+            ':id' => $user['id']
+        ]);
+
+        dbClose($db);
+
+        return ['success' => true, 'message' => 'ログインしました'];
+
+    } catch (Exception $e) {
+        if (isset($db)) {
+            dbClose($db);
+        }
+        return ['success' => false, 'message' => 'システムエラーが発生しました'];
+    }
 }
 
 /**
@@ -132,33 +184,4 @@ function loginUser($email, $password) {
 function logoutUser() {
     session_unset();
     session_destroy();
-}
-
-/**
- * Verify APR1-MD5 password (used by htpasswd)
- */
-function verifyApr1Password($password, $hash) {
-    // Use PHP's crypt() to verify APR1-MD5 hash
-    if (substr($hash, 0, 6) === '$apr1$') {
-        $result = crypt($password, $hash);
-        return $result === $hash;
-    }
-
-    // Fallback: use htpasswd command
-    $testHash = shell_exec(sprintf(
-        'echo %s | htpasswd -nbm dummy %s 2>&1',
-        escapeshellarg($password),
-        escapeshellarg($password)
-    ));
-
-    if ($testHash) {
-        $parts = explode(':', trim($testHash), 2);
-        if (count($parts) === 2) {
-            $generatedHash = trim($parts[1]);
-            // Compare hash patterns (APR1-MD5 has same salt)
-            return substr($generatedHash, 0, 6) === '$apr1$';
-        }
-    }
-
-    return false;
 }
