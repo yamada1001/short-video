@@ -27,15 +27,23 @@ try {
     $currentUsername = $_SESSION['user_email'];
 
     // Get form data
-    $name = trim($_POST['name'] ?? '');
+    $lastName = trim($_POST['last_name'] ?? '');
+    $firstName = trim($_POST['first_name'] ?? '');
+    $lastNameKana = trim($_POST['last_name_kana'] ?? '');
+    $firstNameKana = trim($_POST['first_name_kana'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
     $company = trim($_POST['company'] ?? '');
     $category = trim($_POST['category'] ?? '');
     $newPassword = $_POST['new_password'] ?? '';
 
+    // Combine last name and first name
+    $name = $lastName . $firstName;
+    $nameKana = $lastNameKana . $firstNameKana;
+
     // Validate required fields
-    if (empty($name) || empty($email) || empty($company) || empty($category)) {
+    if (empty($lastName) || empty($firstName) || empty($lastNameKana) || empty($firstNameKana) ||
+        empty($email) || empty($company) || empty($category)) {
         throw new Exception('必須項目が入力されていません');
     }
 
@@ -93,6 +101,11 @@ try {
 
     // Update user data
     $data['users'][$currentUsername]['name'] = $name;
+    $data['users'][$currentUsername]['last_name'] = $lastName;
+    $data['users'][$currentUsername]['first_name'] = $firstName;
+    $data['users'][$currentUsername]['last_name_kana'] = $lastNameKana;
+    $data['users'][$currentUsername]['first_name_kana'] = $firstNameKana;
+    $data['users'][$currentUsername]['name_kana'] = $nameKana;
     $data['users'][$currentUsername]['email'] = $email;
     $data['users'][$currentUsername]['phone'] = $phone;
     $data['users'][$currentUsername]['company'] = $company;

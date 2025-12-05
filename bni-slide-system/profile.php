@@ -20,6 +20,10 @@ if (!$currentUser) {
 }
 
 $userName = htmlspecialchars($currentUser['name'], ENT_QUOTES, 'UTF-8');
+$userLastName = htmlspecialchars($currentUser['last_name'] ?? '', ENT_QUOTES, 'UTF-8');
+$userFirstName = htmlspecialchars($currentUser['first_name'] ?? '', ENT_QUOTES, 'UTF-8');
+$userLastNameKana = htmlspecialchars($currentUser['last_name_kana'] ?? '', ENT_QUOTES, 'UTF-8');
+$userFirstNameKana = htmlspecialchars($currentUser['first_name_kana'] ?? '', ENT_QUOTES, 'UTF-8');
 $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
 $userPhone = htmlspecialchars($currentUser['phone'] ?? '', ENT_QUOTES, 'UTF-8');
 $userCompany = htmlspecialchars($currentUser['company'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -81,11 +85,36 @@ $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF
 
               <div class="form-group">
                 <label class="form-label">
-                  お名前（フルネーム）<span class="required">*</span>
+                  お名前<span class="required">*</span>
                 </label>
-                <input type="text" name="name" class="form-input" required value="<?php echo $userName; ?>">
-                <span class="form-error">お名前を入力してください</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                  <div>
+                    <input type="text" name="last_name" id="lastName" class="form-input" required placeholder="姓（例: 山田）" value="<?php echo $userLastName; ?>">
+                    <span class="form-error">姓を入力してください</span>
+                  </div>
+                  <div>
+                    <input type="text" name="first_name" id="firstName" class="form-input" required placeholder="名（例: 太郎）" value="<?php echo $userFirstName; ?>">
+                    <span class="form-error">名を入力してください</span>
+                  </div>
+                </div>
                 <p class="form-hint">スライドやアンケートに表示される名前です</p>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  フリガナ<span class="required">*</span>
+                </label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                  <div>
+                    <input type="text" name="last_name_kana" id="lastNameKana" class="form-input" required placeholder="セイ（例: ヤマダ）" value="<?php echo $userLastNameKana; ?>">
+                    <span class="form-error">セイを入力してください</span>
+                  </div>
+                  <div>
+                    <input type="text" name="first_name_kana" id="firstNameKana" class="form-input" required placeholder="メイ（例: タロウ）" value="<?php echo $userFirstNameKana; ?>">
+                    <span class="form-error">メイを入力してください</span>
+                  </div>
+                </div>
+                <p class="form-hint">自動入力されますが、修正可能です</p>
               </div>
 
               <div class="form-group">
@@ -185,6 +214,84 @@ $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF
       const newPasswordInput = document.getElementById('newPassword');
       const newPasswordConfirmInput = document.getElementById('newPasswordConfirm');
       const confirmPasswordGroup = document.getElementById('confirmPasswordGroup');
+      const lastNameInput = document.getElementById('lastName');
+      const firstNameInput = document.getElementById('firstName');
+      const lastNameKanaInput = document.getElementById('lastNameKana');
+      const firstNameKanaInput = document.getElementById('firstNameKana');
+
+      // Auto-generate furigana using IME input
+      let lastNameReading = '';
+      let firstNameReading = '';
+
+      // Convert hiragana to katakana
+      function hiraganaToKatakana(str) {
+        return str.replace(/[\u3041-\u3096]/g, function(match) {
+          const chr = match.charCodeAt(0) + 0x60;
+          return String.fromCharCode(chr);
+        });
+      }
+
+      // Last name: Capture reading before kanji conversion
+      lastNameInput.addEventListener('compositionstart', function(e) {
+        lastNameReading = '';
+      });
+
+      lastNameInput.addEventListener('compositionupdate', function(e) {
+        if (e.data) {
+          const isHiragana = /^[\u3041-\u3096]+$/.test(e.data);
+          if (isHiragana) {
+            lastNameReading = e.data;
+          }
+        }
+      });
+
+      lastNameInput.addEventListener('compositionend', function(e) {
+        // Only auto-fill if furigana field is empty and we captured hiragana
+        if (lastNameReading && !lastNameKanaInput.value) {
+          const kana = hiraganaToKatakana(lastNameReading);
+          lastNameKanaInput.value = kana;
+        }
+        lastNameReading = '';
+      });
+
+      // First name: Capture reading before kanji conversion
+      firstNameInput.addEventListener('compositionstart', function(e) {
+        firstNameReading = '';
+      });
+
+      firstNameInput.addEventListener('compositionupdate', function(e) {
+        if (e.data) {
+          const isHiragana = /^[\u3041-\u3096]+$/.test(e.data);
+          if (isHiragana) {
+            firstNameReading = e.data;
+          }
+        }
+      });
+
+      firstNameInput.addEventListener('compositionend', function(e) {
+        if (firstNameReading && !firstNameKanaInput.value) {
+          const kana = hiraganaToKatakana(firstNameReading);
+          firstNameKanaInput.value = kana;
+        }
+        firstNameReading = '';
+      });
+
+      // Auto-convert hiragana to katakana in furigana fields
+      lastNameKanaInput.addEventListener('input', function(e) {
+        const value = this.value;
+        const converted = hiraganaToKatakana(value);
+        if (value !== converted) {
+          this.value = converted;
+        }
+      });
+
+      firstNameKanaInput.addEventListener('input', function(e) {
+        const value = this.value;
+        const converted = hiraganaToKatakana(value);
+        if (value !== converted) {
+          this.value = converted;
+        }
+      });
 
       // Show/hide password confirmation field
       newPasswordInput.addEventListener('input', function() {
