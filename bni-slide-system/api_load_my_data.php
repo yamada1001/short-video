@@ -1,16 +1,14 @@
 <?php
 /**
- * BNI Slide System - Load My Data API
+ * BNI Slide System - Load My Data API (SQLite Version)
  * ログインユーザー自身のアンケートデータを読み込む
  */
 
 header('Content-Type: application/json; charset=utf-8');
 
-// Load user authentication helper
+// Load dependencies
 require_once __DIR__ . '/includes/user_auth.php';
-
-// Load date helper functions
-require_once __DIR__ . '/includes/date_helper.php';
+require_once __DIR__ . '/includes/db.php';
 
 // Get current user info
 $currentUser = getCurrentUserInfo();
@@ -27,80 +25,67 @@ $userName = $currentUser['name'];
 $userEmail = $currentUser['email'];
 
 try {
-    $dataDir = __DIR__ . '/data';
-    $csvFiles = glob($dataDir . '/*.csv');
+    $db = getDbConnection();
 
-    if (!$csvFiles) {
-        echo json_encode([
-            'success' => true,
-            'data' => [],
-            'message' => 'データがありません'
-        ]);
-        exit;
-    }
+    // Load user's data from all weeks
+    $query = "
+        SELECT
+            s.week_date,
+            s.timestamp,
+            s.input_date,
+            s.user_name,
+            s.user_email,
+            s.attendance,
+            s.thanks_slips,
+            s.one_to_one,
+            s.activities,
+            s.comments,
+            v.visitor_name,
+            v.visitor_company,
+            v.visitor_industry,
+            r.referral_name,
+            r.referral_amount,
+            r.referral_category,
+            r.referral_provider
+        FROM survey_data s
+        LEFT JOIN visitors v ON s.id = v.survey_data_id
+        LEFT JOIN referrals r ON s.id = r.survey_data_id
+        WHERE s.user_email = :email
+        ORDER BY s.week_date DESC, s.timestamp DESC
+    ";
+
+    $rows = dbQuery($db, $query, [':email' => $userEmail]);
 
     $myData = [];
 
-    foreach ($csvFiles as $csvFile) {
-        $filename = basename($csvFile, '.csv');
+    // Convert to CSV-like format
+    foreach ($rows as $row) {
+        $weekDate = $row['week_date'];
+        $weekLabel = getWeekLabel($weekDate);
 
-        // Skip backup files
-        if (strpos($filename, 'backup') !== false) {
-            continue;
-        }
-
-        // Only include Friday data (金曜日のみ)
-        $result = parseFilenameToDate($filename);
-        if (!$result['success'] || !strpos($result['label'], '（金）')) {
-            continue;
-        }
-
-        // Read CSV file
-        if (($handle = fopen($csvFile, 'r')) !== false) {
-            // Read header
-            $header = fgetcsv($handle);
-
-            if (!$header) {
-                fclose($handle);
-                continue;
-            }
-
-            // Read all rows
-            while (($row = fgetcsv($handle)) !== false) {
-                if (count($row) < count($header)) {
-                    continue;
-                }
-
-                // Create associative array
-                $rowData = array_combine($header, $row);
-
-                // Skip if array_combine failed
-                if ($rowData === false) {
-                    continue;
-                }
-
-                // Check if required fields exist
-                if (!isset($rowData['メールアドレス']) || !isset($rowData['紹介者名'])) {
-                    continue;
-                }
-
-                // Check if this row belongs to current user
-                if ($rowData['メールアドレス'] === $userEmail || $rowData['紹介者名'] === $userName) {
-                    // Add week information
-                    $rowData['週'] = getWeekLabel($filename);
-                    $rowData['CSVファイル'] = $filename;
-                    $myData[] = $rowData;
-                }
-            }
-
-            fclose($handle);
-        }
+        $myData[] = [
+            'タイムスタンプ' => $row['timestamp'],
+            '入力日' => $row['input_date'],
+            '紹介者名' => $row['user_name'],
+            'メールアドレス' => $row['user_email'],
+            'ビジター名' => $row['visitor_name'] ?: '',
+            'ビジター会社名' => $row['visitor_company'] ?: '',
+            'ビジター業種' => $row['visitor_industry'] ?: '',
+            '案件名' => $row['referral_name'] ?: '',
+            'リファーラル金額' => $row['referral_amount'] ?: 0,
+            'カテゴリ' => $row['referral_category'] ?: '',
+            'リファーラル提供者' => $row['referral_provider'] ?: '',
+            '出席状況' => $row['attendance'],
+            'サンクスリップ数' => $row['thanks_slips'],
+            'ワンツーワン数' => $row['one_to_one'],
+            'アクティビティ' => $row['activities'] ?: '',
+            'コメント' => $row['comments'] ?: '',
+            '週' => $weekLabel,
+            'CSVファイル' => $weekDate
+        ];
     }
 
-    // Sort by date (newest first)
-    usort($myData, function($a, $b) {
-        return strcmp($b['入力日'], $a['入力日']);
-    });
+    dbClose($db);
 
     echo json_encode([
         'success' => true,
@@ -112,8 +97,26 @@ try {
     ], JSON_UNESCAPED_UNICODE);
 
 } catch (Exception $e) {
+    if (isset($db)) {
+        dbClose($db);
+    }
     echo json_encode([
         'success' => false,
         'message' => $e->getMessage()
     ]);
+}
+
+/**
+ * Format week_date to Japanese label
+ */
+function getWeekLabel($weekDate) {
+    try {
+        $dt = new DateTime($weekDate);
+        $dayOfWeek = $dt->format('w');
+        $dayLabels = ['日', '月', '火', '水', '木', '金', '土'];
+        $dayLabel = $dayLabels[$dayOfWeek];
+        return $dt->format('Y年n月j日') . '（' . $dayLabel . '）';
+    } catch (Exception $e) {
+        return $weekDate;
+    }
 }
