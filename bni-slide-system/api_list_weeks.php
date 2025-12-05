@@ -43,20 +43,25 @@ try {
         ];
       } else {
         // New format: YYYY-MM-DD
-        $targetDate = new DateTime($filename);
+        try {
+          $targetDate = new DateTime($filename);
 
-        // Get actual day of week (金=Friday)
-        $dayOfWeek = $targetDate->format('w'); // 0=Sun, 5=Fri
-        $dayNames = ['日', '月', '火', '水', '木', '金', '土'];
-        $dayName = $dayNames[$dayOfWeek];
+          // Get actual day of week (金=Friday)
+          $dayOfWeek = $targetDate->format('w'); // 0=Sun, 5=Fri
+          $dayNames = ['日', '月', '火', '水', '木', '金', '土'];
+          $dayName = $dayNames[$dayOfWeek];
 
-        $label = $targetDate->format('Y年n月j日') . '（' . $dayName . '）';
-        $weeks[] = [
-          'filename' => $filename,
-          'label' => $label,
-          'date' => $targetDate,
-          'timestamp' => $targetDate->getTimestamp()
-        ];
+          $label = $targetDate->format('Y年n月j日') . '（' . $dayName . '）';
+          $weeks[] = [
+            'filename' => $filename,
+            'label' => $label,
+            'date' => $targetDate,
+            'timestamp' => $targetDate->getTimestamp()
+          ];
+        } catch (Exception $dateEx) {
+          // Skip invalid date format
+          continue;
+        }
       }
     }
   }

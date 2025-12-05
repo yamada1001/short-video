@@ -58,7 +58,10 @@ try {
   // Read data rows
   while (($row = fgetcsv($fp)) !== false) {
     if (count($row) === count($header)) {
-      $data[] = array_combine($header, $row);
+      $rowData = array_combine($header, $row);
+      if ($rowData !== false) {
+        $data[] = $rowData;
+      }
     }
   }
 
