@@ -4,6 +4,7 @@
 
 let originalData = [];
 let currentData = [];
+let currentWeek = ''; // Store current week filename
 
 // Determine API base path based on current location
 const isInAdminDir = window.location.pathname.includes('/admin/');
@@ -27,6 +28,7 @@ async function loadData() {
 
     originalData = result.data || [];
     currentData = JSON.parse(JSON.stringify(originalData)); // Deep copy
+    currentWeek = result.week || ''; // Store week filename
 
     renderTable();
     updateDataCount();
@@ -217,11 +219,16 @@ function escapeHtml(text) {
  */
 async function exportToExcel() {
   try {
-    // Get the current week parameter from URL or use latest week
-    const urlParams = new URLSearchParams(window.location.search);
-    let week = urlParams.get('week');
+    // Use the currently loaded week
+    let week = currentWeek;
 
-    // If no week specified, get the latest week from API
+    // If no week loaded, try to get from URL parameter
+    if (!week) {
+      const urlParams = new URLSearchParams(window.location.search);
+      week = urlParams.get('week');
+    }
+
+    // If still no week, get the latest week from API
     if (!week) {
       const weeksResponse = await fetch(apiBasePath + 'api_list_weeks.php');
       const weeksData = await weeksResponse.json();
@@ -237,10 +244,10 @@ async function exportToExcel() {
     const downloadUrl = apiBasePath + 'api_export_csv.php?week=' + encodeURIComponent(week);
     window.open(downloadUrl, '_blank');
 
-    showMessage('success', 'Excelファイルをダウンロードしています...');
+    showMessage('success', 'CSVファイルをダウンロードしています...');
 
   } catch (error) {
-    console.error('Excel export error:', error);
+    console.error('CSV export error:', error);
     showMessage('error', 'エクスポートに失敗しました: ' + error.message);
   }
 }

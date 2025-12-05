@@ -6,11 +6,21 @@
  * シンプルなCSV出力（UTF-8 BOM）でExcel互換性を確保
  */
 
-require_once __DIR__ . '/includes/user_auth.php';
+require_once __DIR__ . '/includes/session_auth.php';
 require_once __DIR__ . '/includes/date_helper.php';
 
+// セッション開始（まだ開始されていない場合）
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // 管理者チェック
-$currentUser = getCurrentUserInfo();
+$currentUser = getCurrentUser();
+if (!$currentUser) {
+    http_response_code(403);
+    die('ログインが必要です');
+}
+
 $isAdmin = isset($currentUser['role']) && $currentUser['role'] === 'admin';
 
 if (!$isAdmin) {

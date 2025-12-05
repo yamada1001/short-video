@@ -75,9 +75,10 @@ try {
 
   // Extract date from filename for title slide
   $slideDate = '';
+  $weekFilename = '';
   if ($csvFile) {
-    $filename = basename($csvFile, '.csv');
-    $result = parseFilenameToDate($filename);
+    $weekFilename = basename($csvFile, '.csv');
+    $result = parseFilenameToDate($weekFilename);
 
     if ($result['success']) {
       $slideDate = $result['date']->format('Y年n月j日');
@@ -89,7 +90,8 @@ try {
     'data' => $data,
     'stats' => $stats,
     'count' => count($data),
-    'date' => $slideDate
+    'date' => $slideDate,
+    'week' => $weekFilename
   ], JSON_UNESCAPED_UNICODE);
 
 } catch (Exception $e) {
