@@ -5,7 +5,7 @@
 
 /* Global Styles */
 .reveal {
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'LINE Seed JP';
   font-size: 28px;
   font-weight: 400;
   color: #FFFFFF;
@@ -18,7 +18,7 @@
 .reveal h3,
 .reveal h4 {
   color: #FFFFFF !important;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'LINE Seed JP';
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 0.5em;
@@ -130,7 +130,7 @@
   font-size: 2.5em;
   font-weight: 800;
   color: #FFFFFF;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'LINE Seed JP';
   line-height: 1;
   flex-shrink: 0;
 }
@@ -211,7 +211,7 @@
 .progress-item-value {
   font-weight: 700;
   color: #FFFFFF;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'LINE Seed JP';
 }
 
 .progress-bar {
@@ -358,7 +358,7 @@
   font-size: 10em;
   font-weight: 900;
   color: #FFFFFF;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'LINE Seed JP';
   line-height: 1;
   margin: 40px 0;
   text-align: center;
@@ -400,7 +400,7 @@
   font-size: 1.5em;
   color: #FFFFFF;
   font-weight: 700;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'LINE Seed JP';
 }
 
 /* Number Animation Effects */
