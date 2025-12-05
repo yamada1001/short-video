@@ -1,6 +1,6 @@
 <?php
 /**
- * BNI Slide System - Weekly Reminder Email Sender
+ * BNI Slide System - Weekly Reminder Email Sender (SQLite Version)
  * 週次リマインダーメール送信スクリプト（cron実行用）
  *
  * 実行タイミング:
@@ -19,7 +19,7 @@ if (php_sapi_name() !== 'cli') {
     die('このスクリプトはコマンドラインからのみ実行できます');
 }
 
-require_once __DIR__ . '/includes/date_helper.php';
+require_once __DIR__ . '/includes/db.php';
 
 // 設定
 define('MAIL_FROM', 'yamada@yojitu.com');
@@ -30,146 +30,136 @@ define('SURVEY_URL', 'https://yojitu.com/bni-slide-system/');
 $reminderType = $argv[1] ?? 'friday';
 
 // 今週の金曜日を取得
-$thisFridayStr = getTargetFriday(date('Y-m-d H:i:s'));
-$thisFriday = new DateTime($thisFridayStr);
-$csvFile = __DIR__ . '/data/' . $thisFriday->format('Y-m-d') . '.csv';
+$thisFriday = getTargetFriday(time());
+$thisFridayStr = $thisFriday->format('Y-m-d');
 
 echo "[" . date('Y-m-d H:i:s') . "] リマインダー送信開始: {$reminderType}\n";
-echo "対象週: " . $thisFriday->format('Y-m-d') . "\n";
+echo "対象週: " . $thisFridayStr . "\n";
 
-// メンバーリストを読み込み
-$membersFile = __DIR__ . '/data/members.json';
-if (!file_exists($membersFile)) {
-    echo "エラー: メンバーファイルが見つかりません\n";
-    exit(1);
-}
+try {
+    $db = getDbConnection();
 
-$content = file_get_contents($membersFile);
-$data = json_decode($content, true);
+    // メンバーリストを取得
+    $membersQuery = "SELECT id, name, email FROM users WHERE is_active = 1 ORDER BY name";
+    $allMembers = dbQuery($db, $membersQuery);
 
-if (!$data || !isset($data['users'])) {
-    echo "エラー: メンバーデータの読み込みに失敗しました\n";
-    exit(1);
-}
-
-// 既に回答済みのメンバーを取得
-$submittedMembers = [];
-if (file_exists($csvFile)) {
-    $fp = fopen($csvFile, 'r');
-
-    // BOMスキップ
-    $bom = fread($fp, 3);
-    if ($bom !== chr(0xEF).chr(0xBB).chr(0xBF)) {
-        rewind($fp);
+    if (empty($allMembers)) {
+        echo "エラー: メンバーが登録されていません\n";
+        dbClose($db);
+        exit(1);
     }
 
-    // ヘッダーをスキップ
-    fgetcsv($fp);
+    echo "登録メンバー数: " . count($allMembers) . "\n";
 
-    // データを読み込み
-    while (($row = fgetcsv($fp)) !== false) {
-        if (count($row) >= 3) {
-            $email = $row[2]; // メールアドレス列
-            if (!empty($email)) {
-                $submittedMembers[] = strtolower(trim($email));
+    // 既に回答済みのメンバーを取得
+    $submittedQuery = "SELECT DISTINCT user_email FROM survey_data WHERE week_date = :week_date";
+    $submittedResults = dbQuery($db, $submittedQuery, [':week_date' => $thisFridayStr]);
+
+    $submittedEmails = [];
+    foreach ($submittedResults as $row) {
+        $submittedEmails[] = strtolower(trim($row['user_email']));
+    }
+
+    echo "提出済みメンバー数: " . count($submittedEmails) . "\n";
+
+    // リマインド対象のメンバーを抽出
+    $targetMembers = [];
+
+    if ($reminderType === 'thursday') {
+        // 木曜日: 回答済みの方に更新情報確認
+        foreach ($allMembers as $member) {
+            $emailLower = strtolower(trim($member['email']));
+
+            // 提出済みの場合のみリマインド対象
+            if (in_array($emailLower, $submittedEmails)) {
+                $targetMembers[] = [
+                    'email' => $member['email'],
+                    'name' => $member['name'] ?? 'メンバー'
+                ];
             }
         }
-    }
 
-    fclose($fp);
+        echo "回答済みメンバー数: " . count($targetMembers) . "\n";
 
-    // 重複削除
-    $submittedMembers = array_unique($submittedMembers);
-}
-
-echo "提出済みメンバー数: " . count($submittedMembers) . "\n";
-
-// リマインド対象のメンバーを抽出
-$targetMembers = [];
-
-if ($reminderType === 'thursday') {
-    // 木曜日: 回答済みの方に更新情報確認
-    foreach ($data['users'] as $email => $user) {
-        $emailLower = strtolower(trim($email));
-
-        // 提出済みの場合のみリマインド対象
-        if (in_array($emailLower, $submittedMembers)) {
-            $targetMembers[] = [
-                'email' => $email,
-                'name' => $user['name'] ?? 'メンバー'
-            ];
+        if (count($targetMembers) === 0) {
+            echo "回答済みのメンバーがいません。リマインダーの送信は不要です。\n";
+            dbClose($db);
+            exit(0);
         }
-    }
-
-    echo "回答済みメンバー数: " . count($targetMembers) . "\n";
-
-    if (count($targetMembers) === 0) {
-        echo "回答済みのメンバーがいません。リマインダーの送信は不要です。\n";
-        exit(0);
-    }
-} else {
-    // 金曜日・水曜日: 未回答の方にリマインド
-    foreach ($data['users'] as $email => $user) {
-        $emailLower = strtolower(trim($email));
-
-        // 提出済みでない場合のみリマインド対象
-        if (!in_array($emailLower, $submittedMembers)) {
-            $targetMembers[] = [
-                'email' => $email,
-                'name' => $user['name'] ?? 'メンバー'
-            ];
-        }
-    }
-
-    echo "未提出メンバー数: " . count($targetMembers) . "\n";
-
-    if (count($targetMembers) === 0) {
-        echo "全員提出済みです。リマインダーの送信は不要です。\n";
-        exit(0);
-    }
-}
-
-// メール内容を生成
-$mailData = getReminderMailContent($reminderType, $thisFriday);
-
-echo "件名: " . $mailData['subject'] . "\n";
-echo "送信開始...\n";
-
-// リマインダーメールを送信
-$sentCount = 0;
-$failedCount = 0;
-
-foreach ($targetMembers as $member) {
-    $email = $member['email'];
-    $name = $member['name'];
-
-    // メール本文を個別化
-    $message = str_replace('[NAME]', $name, $mailData['message']);
-
-    // メールヘッダー
-    $headers = "From: " . MAIL_FROM_NAME . " <" . MAIL_FROM . ">\r\n";
-    $headers .= "Reply-To: " . MAIL_FROM . "\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-
-    // メール送信
-    $result = mail($email, $mailData['subject'], $message, $headers);
-
-    if ($result) {
-        echo "  ✓ 送信成功: {$name} ({$email})\n";
-        $sentCount++;
     } else {
-        echo "  ✗ 送信失敗: {$name} ({$email})\n";
-        $failedCount++;
+        // 金曜日・水曜日: 未回答の方にリマインド
+        foreach ($allMembers as $member) {
+            $emailLower = strtolower(trim($member['email']));
+
+            // 提出済みでない場合のみリマインド対象
+            if (!in_array($emailLower, $submittedEmails)) {
+                $targetMembers[] = [
+                    'email' => $member['email'],
+                    'name' => $member['name'] ?? 'メンバー'
+                ];
+            }
+        }
+
+        echo "未提出メンバー数: " . count($targetMembers) . "\n";
+
+        if (count($targetMembers) === 0) {
+            echo "全員提出済みです。リマインダーの送信は不要です。\n";
+            dbClose($db);
+            exit(0);
+        }
     }
 
-    // 送信間隔を空ける（サーバー負荷軽減）
-    usleep(500000); // 0.5秒
-}
+    dbClose($db);
 
-echo "\n送信完了\n";
-echo "成功: {$sentCount}件\n";
-echo "失敗: {$failedCount}件\n";
-echo "[" . date('Y-m-d H:i:s') . "] リマインダー送信終了\n";
+    // メール内容を生成
+    $mailData = getReminderMailContent($reminderType, $thisFriday);
+
+    echo "件名: " . $mailData['subject'] . "\n";
+    echo "送信開始...\n";
+
+    // リマインダーメールを送信
+    $sentCount = 0;
+    $failedCount = 0;
+
+    foreach ($targetMembers as $member) {
+        $email = $member['email'];
+        $name = $member['name'];
+
+        // メール本文を個別化
+        $message = str_replace('[NAME]', $name, $mailData['message']);
+
+        // メールヘッダー
+        $headers = "From: " . MAIL_FROM_NAME . " <" . MAIL_FROM . ">\r\n";
+        $headers .= "Reply-To: " . MAIL_FROM . "\r\n";
+        $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+        // メール送信
+        $result = mail($email, $mailData['subject'], $message, $headers);
+
+        if ($result) {
+            echo "  ✓ 送信成功: {$name} ({$email})\n";
+            $sentCount++;
+        } else {
+            echo "  ✗ 送信失敗: {$name} ({$email})\n";
+            $failedCount++;
+        }
+
+        // 送信間隔を空ける（サーバー負荷軽減）
+        usleep(500000); // 0.5秒
+    }
+
+    echo "\n送信完了\n";
+    echo "成功: {$sentCount}件\n";
+    echo "失敗: {$failedCount}件\n";
+    echo "[" . date('Y-m-d H:i:s') . "] リマインダー送信終了\n";
+
+} catch (Exception $e) {
+    if (isset($db)) {
+        dbClose($db);
+    }
+    echo "エラー: " . $e->getMessage() . "\n";
+    exit(1);
+}
 
 /**
  * リマインダーメールの内容を取得
@@ -269,4 +259,29 @@ BNI Slide System
 "
             ];
     }
+}
+
+/**
+ * Get target Friday date from timestamp
+ */
+function getTargetFriday($timestamp) {
+    $dt = is_int($timestamp) ? (new DateTime())->setTimestamp($timestamp) : new DateTime($timestamp);
+    $dayOfWeek = intval($dt->format('w'));
+    $hour = intval($dt->format('H'));
+
+    if ($dayOfWeek === 5 && $hour < 5) {
+        return $dt;
+    }
+
+    if ($dayOfWeek === 5) {
+        $dt->modify('+7 days');
+    } else {
+        $daysToAdd = (5 - $dayOfWeek + 7) % 7;
+        if ($daysToAdd === 0) {
+            $daysToAdd = 7;
+        }
+        $dt->modify("+$daysToAdd days");
+    }
+
+    return $dt;
 }
