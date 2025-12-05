@@ -8,6 +8,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 // Load user authentication helper
 require_once __DIR__ . '/includes/user_auth.php';
+require_once __DIR__ . '/includes/audit_logger.php';
 
 // Get current user info
 $currentUser = getCurrentUserInfo();
@@ -182,6 +183,21 @@ try {
     } else {
         throw new Exception('CSVファイルの書き込みに失敗しました');
     }
+
+    // Write audit log
+    writeAuditLog(
+        'update',
+        'survey_data',
+        [
+            'csv_file' => basename($csvFile),
+            'input_date' => $inputDate,
+            'attendance' => $attendance,
+            'visitor_count' => count($visitors),
+            'referral_count' => count($referrals)
+        ],
+        $currentUser['email'],
+        $currentUser['name']
+    );
 
     echo json_encode([
         'success' => true,

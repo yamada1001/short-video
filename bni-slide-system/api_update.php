@@ -6,6 +6,16 @@
 
 header('Content-Type: application/json; charset=utf-8');
 
+// Load helpers
+require_once __DIR__ . '/includes/session_auth.php';
+require_once __DIR__ . '/includes/audit_logger.php';
+
+// Get current user
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$currentUser = getCurrentUser();
+
 // Config
 define('CSV_FILE', __DIR__ . '/data/responses.csv');
 define('CSV_BACKUP', __DIR__ . '/data/responses_backup_' . date('YmdHis') . '.csv');
@@ -79,6 +89,21 @@ try {
 
   // Set file permissions
   chmod(CSV_FILE, 0666);
+
+  // Write audit log
+  if ($currentUser) {
+    writeAuditLog(
+      'update',
+      'survey_data',
+      [
+        'action' => 'bulk_edit',
+        'record_count' => count($newData),
+        'csv_file' => basename(CSV_FILE)
+      ],
+      $currentUser['email'] ?? 'unknown',
+      $currentUser['name'] ?? 'Admin'
+    );
+  }
 
   echo json_encode([
     'success' => true,
