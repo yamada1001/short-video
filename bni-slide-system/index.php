@@ -542,5 +542,266 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
   </script>
 
   <script src="assets/js/form.js"></script>
+
+  <!-- Auto-Save Feature -->
+  <script>
+    (function() {
+      'use strict';
+
+      const AUTOSAVE_KEY = 'bni_survey_autosave_' + '<?php echo $userEmail; ?>';
+      const AUTOSAVE_INTERVAL = 3000; // 3秒ごとに保存
+      let autosaveTimeout = null;
+      let isSubmitting = false;
+
+      // 下書きバナー要素を作成
+      function createDraftBanner() {
+        const banner = document.createElement('div');
+        banner.id = 'draftBanner';
+        banner.style.cssText = `
+          position: fixed;
+          top: 60px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #FFF3CD;
+          color: #856404;
+          padding: 12px 24px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          z-index: 1000;
+          display: none;
+          font-size: 14px;
+          font-weight: 600;
+        `;
+        banner.innerHTML = `
+          <span style="margin-right: 15px;">📝 下書きが保存されています</span>
+          <button id="restoreDraftBtn" style="
+            background: #856404;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 8px;
+            font-size: 13px;
+          ">復元する</button>
+          <button id="discardDraftBtn" style="
+            background: #DC3545;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+          ">削除する</button>
+        `;
+        document.body.appendChild(banner);
+        return banner;
+      }
+
+      // フォームデータを収集
+      function collectFormData() {
+        const form = document.getElementById('surveyForm');
+        const formData = {};
+
+        // テキスト入力
+        form.querySelectorAll('input[type="text"], input[type="number"], textarea, input[type="date"]').forEach(input => {
+          if (!input.readOnly && input.name) {
+            if (input.name.includes('[]')) {
+              if (!formData[input.name]) formData[input.name] = [];
+              formData[input.name].push(input.value);
+            } else {
+              formData[input.name] = input.value;
+            }
+          }
+        });
+
+        // セレクトボックス
+        form.querySelectorAll('select').forEach(select => {
+          if (select.name) {
+            if (select.name.includes('[]')) {
+              if (!formData[select.name]) formData[select.name] = [];
+              formData[select.name].push(select.value);
+            } else {
+              formData[select.name] = select.value;
+            }
+          }
+        });
+
+        // ラジオボタン
+        form.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+          formData[radio.name] = radio.value;
+        });
+
+        // チェックボックス
+        const activities = [];
+        form.querySelectorAll('input[name="activities[]"]:checked').forEach(checkbox => {
+          activities.push(checkbox.value);
+        });
+        if (activities.length > 0) {
+          formData['activities[]'] = activities;
+        }
+
+        // ビジターとリファーラルの数を保存
+        formData._visitorCount = document.querySelectorAll('#visitorContainer .referral-item').length;
+        formData._referralCount = document.querySelectorAll('#referralContainer .referral-item').length;
+
+        return formData;
+      }
+
+      // フォームデータを復元
+      function restoreFormData(data) {
+        const form = document.getElementById('surveyForm');
+
+        // ビジターとリファーラルの項目を追加
+        if (data._visitorCount > 1) {
+          for (let i = 1; i < data._visitorCount; i++) {
+            $('#addVisitorBtn').click();
+          }
+        }
+        if (data._referralCount > 1) {
+          for (let i = 1; i < data._referralCount; i++) {
+            $('#addReferralBtn').click();
+          }
+        }
+
+        // 少し待ってから値を復元（動的要素の生成を待つ）
+        setTimeout(function() {
+          // テキスト入力とテキストエリア
+          Object.keys(data).forEach(key => {
+            if (key.startsWith('_')) return; // メタデータはスキップ
+
+            if (Array.isArray(data[key])) {
+              const inputs = form.querySelectorAll(`[name="${key}"]`);
+              data[key].forEach((value, index) => {
+                if (inputs[index]) inputs[index].value = value;
+              });
+            } else if (key === 'activities[]') {
+              // チェックボックス
+              data[key].forEach(value => {
+                const checkbox = form.querySelector(`input[name="activities[]"][value="${value}"]`);
+                if (checkbox) checkbox.checked = true;
+              });
+            } else {
+              // ラジオボタン
+              const radio = form.querySelector(`input[name="${key}"][value="${data[key]}"]`);
+              if (radio) {
+                radio.checked = true;
+              } else {
+                // 通常の入力
+                const input = form.querySelector(`[name="${key}"]`);
+                if (input && !input.readOnly) input.value = data[key];
+              }
+            }
+          });
+
+          console.log('✅ 下書きデータを復元しました');
+        }, 300);
+      }
+
+      // LocalStorageに保存
+      function saveToLocalStorage() {
+        if (isSubmitting) return;
+
+        const formData = collectFormData();
+        const saveData = {
+          data: formData,
+          timestamp: new Date().toISOString()
+        };
+
+        try {
+          localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(saveData));
+          console.log('💾 自動保存完了:', new Date().toLocaleTimeString());
+        } catch (e) {
+          console.warn('自動保存に失敗しました:', e);
+        }
+      }
+
+      // 自動保存をトリガー（debounce処理）
+      function triggerAutosave() {
+        if (autosaveTimeout) {
+          clearTimeout(autosaveTimeout);
+        }
+        autosaveTimeout = setTimeout(saveToLocalStorage, AUTOSAVE_INTERVAL);
+      }
+
+      // 下書きデータの確認と復元
+      function checkAndRestoreDraft() {
+        const savedData = localStorage.getItem(AUTOSAVE_KEY);
+        if (!savedData) return;
+
+        try {
+          const { data, timestamp } = JSON.parse(savedData);
+          const savedDate = new Date(timestamp);
+          const now = new Date();
+          const hoursDiff = (now - savedDate) / (1000 * 60 * 60);
+
+          // 24時間以上古い下書きは削除
+          if (hoursDiff > 24) {
+            localStorage.removeItem(AUTOSAVE_KEY);
+            return;
+          }
+
+          // 下書きバナーを表示
+          const banner = createDraftBanner();
+          banner.style.display = 'block';
+
+          const savedTime = savedDate.toLocaleString('ja-JP');
+          banner.querySelector('span').textContent = `📝 下書きが保存されています（${savedTime}）`;
+
+          // 復元ボタン
+          document.getElementById('restoreDraftBtn').addEventListener('click', function() {
+            restoreFormData(data);
+            banner.style.display = 'none';
+          });
+
+          // 削除ボタン
+          document.getElementById('discardDraftBtn').addEventListener('click', function() {
+            localStorage.removeItem(AUTOSAVE_KEY);
+            banner.style.display = 'none';
+            console.log('🗑️ 下書きを削除しました');
+          });
+
+        } catch (e) {
+          console.warn('下書きデータの読み込みに失敗しました:', e);
+          localStorage.removeItem(AUTOSAVE_KEY);
+        }
+      }
+
+      // フォーム送信時の処理
+      const form = document.getElementById('surveyForm');
+      const originalSubmitHandler = form.onsubmit;
+
+      form.addEventListener('submit', function(e) {
+        isSubmitting = true;
+
+        // フォーム送信が成功したら下書きを削除
+        setTimeout(function() {
+          const messageDiv = document.getElementById('message');
+          if (messageDiv && messageDiv.classList.contains('success')) {
+            localStorage.removeItem(AUTOSAVE_KEY);
+            console.log('✅ 送信完了 - 下書きを削除しました');
+          }
+        }, 1000);
+      });
+
+      // フォーム要素の変更を監視
+      function attachAutosaveListeners() {
+        const form = document.getElementById('surveyForm');
+
+        // 入力フィールドの変更を監視
+        form.addEventListener('input', triggerAutosave);
+        form.addEventListener('change', triggerAutosave);
+
+        console.log('🔄 自動保存機能が有効になりました');
+      }
+
+      // ページ読み込み時に実行
+      document.addEventListener('DOMContentLoaded', function() {
+        checkAndRestoreDraft();
+        attachAutosaveListeners();
+      });
+
+    })();
+  </script>
 </body>
 </html>
