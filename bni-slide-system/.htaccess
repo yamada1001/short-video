@@ -113,3 +113,19 @@ RewriteRule ^(.+)\.html$ /$1.php [R=301,L]
 
 # DirectoryIndex
 DirectoryIndex index.php
+
+# ====================================
+# Basic Authentication
+# ====================================
+# register.php以外のすべてのページに認証をかける
+
+AuthType Basic
+AuthName "BNI Slide System"
+AuthUserFile /home/xs021434/yojitu.com/public_html/bni-slide-system/.htpasswd
+Require valid-user
+
+# register.phpだけは認証不要（新規ユーザー登録用）
+<Files "register.php">
+    Satisfy Any
+    Allow from all
+</Files>
