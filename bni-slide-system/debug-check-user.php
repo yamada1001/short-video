@@ -66,6 +66,43 @@ echo "\n--- ログイン認証テスト ---\n";
 require_once __DIR__ . '/includes/session_auth.php';
 
 $password = 'WSiMlJcIqw';
+
+// Get password hash from .htpasswd
+$htpasswdContent = file_get_contents($htpasswdFile);
+$lines = explode("\n", $htpasswdContent);
+$passwordHash = null;
+foreach ($lines as $line) {
+    if (strpos($line, $email . ':') === 0) {
+        $parts = explode(':', $line, 2);
+        $passwordHash = $parts[1];
+        break;
+    }
+}
+
+echo "入力パスワード: {$password}\n";
+echo "保存されたハッシュ: {$passwordHash}\n\n";
+
+// Test password verification
+echo "パスワード検証テスト:\n";
+$verified = verifyApr1Password($password, $passwordHash);
+echo "verifyApr1Password結果: " . ($verified ? "✓ 一致" : "✗ 不一致") . "\n\n";
+
+// Test with crypt function directly
+$cryptTest = crypt($password, $passwordHash);
+echo "crypt()による検証:\n";
+echo "crypt結果: {$cryptTest}\n";
+echo "一致判定: " . ($cryptTest === $passwordHash ? "✓ 一致" : "✗ 不一致") . "\n\n";
+
+// Try generating a new hash and compare
+echo "--- 新しいハッシュ生成テスト ---\n";
+$command = sprintf(
+    'htpasswd -nbm %s %s 2>&1',
+    escapeshellarg($email),
+    escapeshellarg($password)
+);
+$output = shell_exec($command);
+echo "htpasswd コマンド出力:\n{$output}\n";
+
 $result = loginUser($email, $password);
 
 if ($result['success']) {
