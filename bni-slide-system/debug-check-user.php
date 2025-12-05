@@ -9,6 +9,7 @@ $email = 'yamada@yojitu.com';
 
 echo "=== ユーザー登録確認デバッグ ===\n\n";
 echo "確認対象: {$email}\n\n";
+echo "現在時刻: " . date('Y-m-d H:i:s') . "\n\n";
 
 // Check members.json
 echo "--- data/members.json の確認 ---\n";
