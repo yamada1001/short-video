@@ -73,6 +73,13 @@ header('Content-Type: text/html; charset=UTF-8');
       z-index: 1;
     }
 
+    .thanks-logo {
+      width: 120px;
+      height: auto;
+      margin: 0 auto 30px;
+      display: block;
+    }
+
     .success-icon {
       width: 100px;
       height: 100px;
@@ -166,6 +173,8 @@ header('Content-Type: text/html; charset=UTF-8');
 
   <div class="thanks-container">
     <div class="thanks-card">
+      <img src="assets/images/bni-logo.svg" alt="BNI Logo" class="thanks-logo">
+
       <div class="success-icon">
         <i class="fas fa-check"></i>
       </div>
