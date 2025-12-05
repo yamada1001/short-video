@@ -1,13 +1,14 @@
 <?php
 /**
- * BNI Slide System - Excel Export API
+ * BNI Slide System - Excel Export API (SQLite Version)
  * 指定した週のデータをExcel形式でエクスポート
- * Updated: 2025-12-05 14:30 (Cache Clear)
- * シンプルなCSV出力（UTF-8 BOM）でExcel互換性を確保
+ * Updated: 2025-12-06 - SQLite対応版
+ * シンプルなCSV出力(UTF-8 BOM)でExcel互換性を確保
  */
 
 require_once __DIR__ . '/includes/session_auth.php';
 require_once __DIR__ . '/includes/date_helper.php';
+require_once __DIR__ . '/includes/db.php';
 
 // セッション開始（まだ開始されていない場合）
 if (session_status() === PHP_SESSION_NONE) {
@@ -36,28 +37,58 @@ if (empty($week)) {
     die('週の指定が必要です');
 }
 
-// CSVファイルパス
-$csvFile = __DIR__ . '/data/' . $week . '.csv';
-
-if (!file_exists($csvFile)) {
-    http_response_code(404);
-    die('指定された週のデータが見つかりません');
-}
-
-// シンプルなCSV出力を使用（Excelで開ける形式）
-exportAsEnhancedCSV($csvFile, $week);
+// SQLiteからデータを取得してCSVエクスポート
+exportFromSQLite($week);
 
 /**
- * フォールバック: 拡張CSV（Excel互換）としてエクスポート
+ * SQLiteデータベースからデータを取得してCSVエクスポート
  */
-function exportAsEnhancedCSV($csvFile, $week) {
-    // CSVファイルを読み込み
-    $csvData = [];
-    $handle = fopen($csvFile, 'r');
-    while (($row = fgetcsv($handle)) !== false) {
-        $csvData[] = $row;
+function exportFromSQLite($week) {
+    $db = getDbConnection();
+
+    // 指定週のデータを取得（JOINでビジター・リファーラルも取得）
+    // CSVフォーマットに合わせて、1行 = 1リファーラル（またはビジター）
+    $query = "
+        SELECT
+            sd.timestamp,
+            sd.input_date,
+            sd.user_name AS introducer_name,
+            sd.user_email AS email,
+            sd.attendance,
+            v.visitor_name,
+            v.visitor_company,
+            v.visitor_industry,
+            r.referral_name,
+            r.referral_amount,
+            r.referral_category,
+            r.referral_provider,
+            sd.thanks_slips,
+            sd.one_to_one AS one_to_one_count,
+            sd.activities,
+            sd.comments
+        FROM survey_data sd
+        LEFT JOIN visitors v ON v.survey_data_id = sd.id
+        LEFT JOIN referrals r ON r.survey_data_id = sd.id
+        WHERE sd.week_date = ?
+        ORDER BY sd.timestamp DESC, sd.id, v.id, r.id
+    ";
+
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(1, $week, SQLITE3_TEXT);
+    $result = $stmt->execute();
+
+    $rows = [];
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $rows[] = $row;
     }
-    fclose($handle);
+
+    dbClose($db);
+
+    // データが見つからない場合
+    if (count($rows) === 0) {
+        http_response_code(404);
+        die('指定された週のデータが見つかりません');
+    }
 
     // ファイル名を設定
     $filename = 'BNI_Weekly_Data_' . $week . '.csv';
@@ -73,8 +104,46 @@ function exportAsEnhancedCSV($csvFile, $week) {
     // CSV出力
     $output = fopen('php://output', 'w');
 
-    foreach ($csvData as $row) {
-        fputcsv($output, $row);
+    // ヘッダー行
+    fputcsv($output, [
+        'timestamp',
+        '入力日',
+        '紹介者名',
+        'メールアドレス',
+        '出席状況',
+        'ビジター名',
+        'ビジター会社名',
+        'ビジター業種',
+        '案件名',
+        'リファーラル金額',
+        'カテゴリ',
+        'リファーラル提供者',
+        'サンクスリップ数',
+        'ワンツーワン数',
+        'アクティビティ',
+        'コメント'
+    ]);
+
+    // データ行
+    foreach ($rows as $row) {
+        fputcsv($output, [
+            $row['timestamp'],
+            $row['input_date'],
+            $row['introducer_name'],
+            $row['email'],
+            $row['attendance'],
+            $row['visitor_name'] ?? '',
+            $row['visitor_company'] ?? '',
+            $row['visitor_industry'] ?? '',
+            $row['referral_name'] ?? '-',
+            $row['referral_amount'] ?? 0,
+            $row['referral_category'] ?? '',
+            $row['referral_provider'] ?? '',
+            $row['thanks_slips'],
+            $row['one_to_one_count'],
+            $row['activities'],
+            $row['comments']
+        ]);
     }
 
     fclose($output);
