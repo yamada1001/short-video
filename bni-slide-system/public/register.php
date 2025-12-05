@@ -92,22 +92,12 @@ header('Content-Type: text/html; charset=UTF-8');
                 <p class="form-hint">半角英数字、ハイフン、アンダースコアのみ使用可能</p>
               </div>
 
-              <div class="form-group">
-                <label class="form-label">
-                  パスワード<span class="required">*</span>
-                </label>
-                <input type="password" name="password" class="form-input" required minlength="6" id="password">
-                <span class="form-error">パスワードを入力してください（6文字以上）</span>
-                <p class="form-hint">6文字以上で設定してください</p>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">
-                  パスワード（確認）<span class="required">*</span>
-                </label>
-                <input type="password" name="password_confirm" class="form-input" required minlength="6" id="passwordConfirm">
-                <span class="form-error">パスワードが一致しません</span>
-                <p class="form-hint">確認のため、もう一度同じパスワードを入力してください</p>
+              <div style="background-color: #F0F8FF; padding: 20px; border-radius: 8px; border-left: 4px solid #CF2030;">
+                <h3 style="margin-top: 0; color: #CF2030; font-size: 16px;">📧 パスワードについて</h3>
+                <p style="margin: 0; color: #666; font-size: 14px;">
+                  パスワードは自動生成され、登録後にご登録のメールアドレスに送信されます。<br>
+                  ログイン後、プロフィール画面からいつでも変更できます。
+                </p>
               </div>
             </div>
 
@@ -134,19 +124,10 @@ header('Content-Type: text/html; charset=UTF-8');
     document.addEventListener('DOMContentLoaded', function() {
       const form = document.getElementById('registerForm');
       const messageDiv = document.getElementById('message');
-      const passwordInput = document.getElementById('password');
-      const passwordConfirmInput = document.getElementById('passwordConfirm');
 
       // Form submission handler
       form.addEventListener('submit', async function(e) {
         e.preventDefault();
-
-        // Password confirmation check
-        if (passwordInput.value !== passwordConfirmInput.value) {
-          showMessage('error', 'パスワードが一致しません');
-          passwordConfirmInput.closest('.form-group').classList.add('error');
-          return;
-        }
 
         // Get form data
         const formData = new FormData(form);
@@ -186,16 +167,6 @@ header('Content-Type: text/html; charset=UTF-8');
           submitBtn.textContent = '登録する';
         } finally {
           submitBtn.classList.remove('loading');
-        }
-      });
-
-      // Real-time password confirmation
-      passwordConfirmInput.addEventListener('input', function() {
-        const formGroup = this.closest('.form-group');
-        if (this.value && this.value !== passwordInput.value) {
-          formGroup.classList.add('error');
-        } else {
-          formGroup.classList.remove('error');
         }
       });
 

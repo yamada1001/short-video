@@ -21,10 +21,12 @@ try {
     $email = trim($_POST['email'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
     $username = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
+
+    // Auto-generate password (10 characters: alphanumeric)
+    $password = generateRandomPassword(10);
 
     // Validate required fields
-    if (empty($name) || empty($email) || empty($username) || empty($password)) {
+    if (empty($name) || empty($email) || empty($username)) {
         throw new Exception('必須項目が入力されていません');
     }
 
@@ -36,11 +38,6 @@ try {
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         throw new Exception('メールアドレスの形式が正しくありません');
-    }
-
-    // Validate password length
-    if (strlen($password) < 6) {
-        throw new Exception('パスワードは6文字以上で設定してください');
     }
 
     // Load members.json
@@ -117,13 +114,13 @@ try {
         throw new Exception('認証情報の保存に失敗しました');
     }
 
-    // Send welcome email (optional)
-    sendWelcomeEmail($name, $email, $username);
+    // Send welcome email with password
+    sendWelcomeEmail($name, $email, $username, $password);
 
     // Response
     echo json_encode([
         'success' => true,
-        'message' => "登録が完了しました！ユーザー名「{$username}」でログインできます。",
+        'message' => "登録が完了しました！ログイン情報をメールで送信しました。",
         'username' => $username
     ]);
 
@@ -161,9 +158,24 @@ function generateHtpasswdHash($username, $password) {
 }
 
 /**
+ * Generate random password
+ */
+function generateRandomPassword($length = 10) {
+    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $password = '';
+    $charactersLength = strlen($characters);
+
+    for ($i = 0; $i < $length; $i++) {
+        $password .= $characters[random_int(0, $charactersLength - 1)];
+    }
+
+    return $password;
+}
+
+/**
  * Send welcome email to new user
  */
-function sendWelcomeEmail($name, $email, $username) {
+function sendWelcomeEmail($name, $email, $username, $password) {
     $to = $email;
     $subject = '[BNI] アカウント登録完了のお知らせ';
 
@@ -191,12 +203,15 @@ function sendWelcomeEmail($name, $email, $username) {
 
       <div class="info-box">
         <h3>ログイン情報</h3>
-        <p><strong>ユーザー名:</strong> ' . htmlspecialchars($username) . '</p>
         <p><strong>URL:</strong> <a href="https://yojitu.com/bni-slide-system/">https://yojitu.com/bni-slide-system/</a></p>
+        <p><strong>ユーザー名:</strong> ' . htmlspecialchars($username) . '</p>
+        <p><strong>パスワード:</strong> <span style="font-family: monospace; background-color: #FFF3CD; padding: 4px 8px; border-radius: 4px; font-size: 16px; font-weight: bold;">' . htmlspecialchars($password) . '</span></p>
       </div>
 
-      <p>設定したパスワードでログインし、週次アンケートにご回答ください。</p>
-      <p>プロフィール情報（メールアドレス・電話番号）はログイン後に変更できます。</p>
+      <p style="color: #D9534F; font-weight: bold;">⚠️ このパスワードは初回ログイン用です。セキュリティのため、ログイン後すぐに変更することをお勧めします。</p>
+
+      <p>上記のユーザー名とパスワードでログインし、週次アンケートにご回答ください。</p>
+      <p>プロフィール情報（メールアドレス・電話番号・パスワード）はログイン後に変更できます。</p>
 
       <div class="footer">
         <p>このメールは自動送信されています。</p>
