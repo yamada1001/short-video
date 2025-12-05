@@ -48,6 +48,108 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
   <link rel="stylesheet" href="assets/css/form.css">
 
   <style>
+    /* Dashboard Styling */
+    .dashboard-section {
+      margin-top: 30px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .dashboard-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .dashboard-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+
+    .dashboard-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #F0F0F0;
+    }
+
+    .dashboard-card-header h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin: 0;
+    }
+
+    .dashboard-badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+
+    .dashboard-badge.submitted {
+      background: #D4EDDA;
+      color: #155724;
+    }
+
+    .dashboard-badge.not-submitted {
+      background: #F8D7DA;
+      color: #721C24;
+    }
+
+    .dashboard-month-label {
+      font-size: 13px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .dashboard-card-body {
+      padding: 10px 0;
+    }
+
+    .dashboard-status {
+      font-size: 15px;
+      color: #555;
+      margin: 10px 0;
+    }
+
+    .dashboard-stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #F5F5F5;
+    }
+
+    .dashboard-stat-row:last-child {
+      border-bottom: none;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .stat-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: #CF2030;
+    }
+
+    .stat-value.amount {
+      font-size: 18px;
+    }
+
     /* Select2 custom styling */
     .select2-container--default .select2-selection--single {
       height: 48px;
@@ -153,6 +255,91 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
   <!-- Main Content -->
   <main class="main-content">
     <div class="container">
+
+      <!-- Dashboard Section -->
+      <div id="dashboardSection" class="dashboard-section" style="margin-bottom: 30px;">
+        <div class="dashboard-grid">
+          <!-- 今週の提出状況 -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <h3>今週の提出状況</h3>
+              <span id="dashboardThisWeekBadge" class="dashboard-badge"></span>
+            </div>
+            <div class="dashboard-card-body">
+              <p id="dashboardThisWeekStatus" class="dashboard-status">読み込み中...</p>
+            </div>
+          </div>
+
+          <!-- 今週のチーム統計 -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <h3>今週のチーム統計</h3>
+            </div>
+            <div class="dashboard-card-body">
+              <div class="dashboard-stat-row">
+                <span class="stat-label">提出メンバー:</span>
+                <span id="teamMembersCount" class="stat-value">-</span>
+              </div>
+              <div class="dashboard-stat-row">
+                <span class="stat-label">総ビジター数:</span>
+                <span id="teamVisitorCount" class="stat-value">-</span>
+              </div>
+              <div class="dashboard-stat-row">
+                <span class="stat-label">総リファーラル金額:</span>
+                <span id="teamReferralAmount" class="stat-value">-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- あなたの今週の統計 -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <h3>あなたの今週の統計</h3>
+            </div>
+            <div class="dashboard-card-body">
+              <div class="dashboard-stat-row">
+                <span class="stat-label">ビジター数:</span>
+                <span id="userVisitorCount" class="stat-value">-</span>
+              </div>
+              <div class="dashboard-stat-row">
+                <span class="stat-label">リファーラル金額:</span>
+                <span id="userReferralAmount" class="stat-value">-</span>
+              </div>
+              <div class="dashboard-stat-row">
+                <span class="stat-label">サンクスリップ:</span>
+                <span id="userThanksSlips" class="stat-value">-</span>
+              </div>
+              <div class="dashboard-stat-row">
+                <span class="stat-label">ワンツーワン:</span>
+                <span id="userOneToOne" class="stat-value">-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- あなたの今月の統計 -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <h3>あなたの今月の統計</h3>
+              <span id="dashboardMonthLabel" class="dashboard-month-label"></span>
+            </div>
+            <div class="dashboard-card-body">
+              <div class="dashboard-stat-row">
+                <span class="stat-label">月間ビジター数:</span>
+                <span id="monthlyVisitorCount" class="stat-value">-</span>
+              </div>
+              <div class="dashboard-stat-row">
+                <span class="stat-label">月間リファーラル金額:</span>
+                <span id="monthlyReferralAmount" class="stat-value">-</span>
+              </div>
+              <div class="dashboard-stat-row">
+                <span class="stat-label">提出回数:</span>
+                <span id="monthlyAttendanceCount" class="stat-value">-</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="form-container">
         <div class="card">
           <div class="form-header">
@@ -542,6 +729,74 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
   </script>
 
   <script src="assets/js/form.js"></script>
+
+  <!-- Dashboard Feature -->
+  <script>
+    (function() {
+      'use strict';
+
+      // ダッシュボードデータを読み込む
+      async function loadDashboardStats() {
+        try {
+          const response = await fetch('api_dashboard_stats.php');
+          const data = await response.json();
+
+          if (!data.success) {
+            console.warn('ダッシュボードデータの取得に失敗:', data.message);
+            return;
+          }
+
+          // 今週の提出状況
+          const thisWeekUser = data.this_week.user;
+          const badge = document.getElementById('dashboardThisWeekBadge');
+          const status = document.getElementById('dashboardThisWeekStatus');
+
+          if (thisWeekUser.submitted) {
+            badge.textContent = '提出済み';
+            badge.className = 'dashboard-badge submitted';
+            status.innerHTML = `
+              <strong>今週のアンケートは提出済みです</strong><br>
+              出席状況: ${thisWeekUser.attendance || '-'}
+            `;
+          } else {
+            badge.textContent = '未提出';
+            badge.className = 'dashboard-badge not-submitted';
+            status.innerHTML = '<strong>今週のアンケートをまだ提出していません</strong><br>下記のフォームから提出してください';
+          }
+
+          // 今週のチーム統計
+          const teamStats = data.this_week.team;
+          document.getElementById('teamMembersCount').textContent = teamStats.total_members + '人';
+          document.getElementById('teamVisitorCount').textContent = teamStats.visitor_count + '人';
+          document.getElementById('teamReferralAmount').textContent = '¥' + teamStats.referral_amount.toLocaleString('ja-JP');
+
+          // あなたの今週の統計
+          document.getElementById('userVisitorCount').textContent = thisWeekUser.visitor_count + '人';
+          document.getElementById('userReferralAmount').textContent = '¥' + thisWeekUser.referral_amount.toLocaleString('ja-JP');
+          document.getElementById('userThanksSlips').textContent = thisWeekUser.thanks_slips + '枚';
+          document.getElementById('userOneToOne').textContent = thisWeekUser.one_to_one + '回';
+
+          // あなたの今月の統計
+          const monthlyStats = data.this_month.user;
+          document.getElementById('dashboardMonthLabel').textContent = data.week_dates.month;
+          document.getElementById('monthlyVisitorCount').textContent = monthlyStats.visitor_count + '人';
+          document.getElementById('monthlyReferralAmount').textContent = '¥' + monthlyStats.referral_amount.toLocaleString('ja-JP');
+          document.getElementById('monthlyAttendanceCount').textContent = monthlyStats.attendance_count + '回';
+
+          console.log('✅ ダッシュボードデータを読み込みました');
+
+        } catch (error) {
+          console.error('ダッシュボードデータの取得エラー:', error);
+        }
+      }
+
+      // ページ読み込み時に実行
+      document.addEventListener('DOMContentLoaded', function() {
+        loadDashboardStats();
+      });
+
+    })();
+  </script>
 
   <!-- Auto-Save Feature -->
   <script>
