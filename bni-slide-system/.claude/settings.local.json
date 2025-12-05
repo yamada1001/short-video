@@ -1,14 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(htpasswd:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(git mv:*)",
-      "Bash(git restore:*)",
-      "Bash(.htaccess)",
-      "Bash(php:*)"
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []
