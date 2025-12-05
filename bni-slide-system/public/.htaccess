@@ -3,5 +3,9 @@
 # ====================================
 # No authentication required for this directory
 
+# Disable authentication for this directory
+AuthType None
+Require all granted
+
+# Override parent authentication
 Satisfy Any
-Allow from all
