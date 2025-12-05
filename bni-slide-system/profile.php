@@ -67,6 +67,7 @@ $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF
       <div class="site-logo">BNI Slide System</div>
       <nav class="site-nav">
         <ul>
+          <li><a href="dashboard.php">ダッシュボード</a></li>
           <li><a href="index.php">アンケート</a></li>
           <li><a href="my-data.php">マイデータ</a></li>
           <li><a href="manual.php">マニュアル</a></li>

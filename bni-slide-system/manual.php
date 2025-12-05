@@ -385,6 +385,7 @@ $currentUser = getCurrentUserInfo();
 
   <?php if ($currentUser): ?>
   <div class="nav-menu">
+    <a href="dashboard.php"><i class="fas fa-chart-line"></i> ダッシュボード</a>
     <a href="index.php"><i class="fas fa-home"></i> ホーム</a>
     <a href="my-data.php"><i class="fas fa-database"></i> マイデータ</a>
     <a href="profile.php"><i class="fas fa-user"></i> プロフィール</a>

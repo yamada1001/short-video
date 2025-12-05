@@ -172,6 +172,7 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
       <div class="site-logo">BNI Slide System</div>
       <nav class="site-nav">
         <ul>
+          <li><a href="dashboard.php">ダッシュボード</a></li>
           <li><a href="index.php">アンケート</a></li>
           <li><a href="my-data.php" class="active">マイデータ</a></li>
           <li><a href="manual.php">マニュアル</a></li>
