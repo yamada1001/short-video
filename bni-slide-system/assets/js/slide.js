@@ -56,15 +56,7 @@
   async function loadWeeksList() {
     try {
       const response = await fetch(apiBasePath + 'api_list_weeks.php');
-
-      if (!response.ok) {
-        throw new Error(`HTTP Error: ${response.status}`);
-      }
-
-      const text = await response.text();
-      console.log('Weeks API Response:', text);
-
-      const result = JSON.parse(text);
+      const result = await response.json();
 
       if (result.success && result.weeks.length > 0) {
         weekSelector.innerHTML = '';
@@ -93,7 +85,6 @@
       }
     } catch (error) {
       console.error('Failed to load weeks list:', error);
-      weekSelector.innerHTML = '<option value="">エラーが発生しました</option>';
     }
   }
 
@@ -105,19 +96,11 @@
       // Fetch data from API
       const url = week ? `${apiBasePath}api_load.php?week=${week}` : `${apiBasePath}api_load.php`;
       const response = await fetch(url);
+      const result = await response.json();
 
-      if (!response.ok) {
-        throw new Error(`HTTP Error: ${response.status}`);
-      }
-
-      const text = await response.text();
-      console.log('Slide Data API Response:', text.substring(0, 500));
-
-      const result = JSON.parse(text);
-
-      if (!result.success) {
-        throw new Error(result.message || 'データの読み込みに失敗しました');
-      }
+    if (!result.success) {
+      throw new Error(result.message || 'データの読み込みに失敗しました');
+    }
 
       const { data, stats, date } = result;
 
