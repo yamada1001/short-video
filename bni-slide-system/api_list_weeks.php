@@ -42,14 +42,20 @@ try {
           'timestamp' => $fridayDate->getTimestamp()
         ];
       } else {
-        // New format: YYYY-MM-DD (Friday date)
-        $fridayDate = new DateTime($filename);
-        $label = $fridayDate->format('Y年n月j日') . '（金）';
+        // New format: YYYY-MM-DD
+        $targetDate = new DateTime($filename);
+
+        // Get actual day of week (金=Friday)
+        $dayOfWeek = $targetDate->format('w'); // 0=Sun, 5=Fri
+        $dayNames = ['日', '月', '火', '水', '木', '金', '土'];
+        $dayName = $dayNames[$dayOfWeek];
+
+        $label = $targetDate->format('Y年n月j日') . '（' . $dayName . '）';
         $weeks[] = [
           'filename' => $filename,
           'label' => $label,
-          'date' => $fridayDate,
-          'timestamp' => $fridayDate->getTimestamp()
+          'date' => $targetDate,
+          'timestamp' => $targetDate->getTimestamp()
         ];
       }
     }
@@ -77,18 +83,28 @@ try {
  * Calculate Friday date for given year, month, and week number
  */
 function calculateFridayDate($year, $month, $weekInMonth) {
-  $firstDay = new DateTime("$year-$month-01");
-  $firstDayOfWeek = intval($firstDay->format('w')); // 0 (Sunday) to 6 (Saturday)
+  // Find the Nth Friday of the month
+  $date = new DateTime("$year-$month-01");
 
-  // Calculate days to first Friday (5 = Friday)
-  $daysToFirstFriday = (5 - $firstDayOfWeek + 7) % 7;
-  if ($daysToFirstFriday === 0 && $firstDayOfWeek !== 5) {
-    $daysToFirstFriday = 7;
+  // Find first Friday of the month
+  $dayOfWeek = intval($date->format('w')); // 0=Sunday, 5=Friday
+
+  if ($dayOfWeek <= 5) {
+    // If month starts on or before Friday, go to first Friday
+    $daysToFriday = 5 - $dayOfWeek;
+  } else {
+    // If month starts on Saturday/Sunday, go to next Friday
+    $daysToFriday = (5 - $dayOfWeek + 7) % 7;
   }
 
-  // Calculate target day: first Friday + (weekInMonth - 1) * 7 days
-  $targetDay = 1 + $daysToFirstFriday + (($weekInMonth - 1) * 7);
-  $targetDate = new DateTime("$year-$month-$targetDay");
+  if ($daysToFriday > 0) {
+    $date->modify("+$daysToFriday days");
+  }
 
-  return $targetDate;
+  // Now add (weekInMonth - 1) weeks
+  if ($weekInMonth > 1) {
+    $date->modify("+" . ($weekInMonth - 1) . " weeks");
+  }
+
+  return $date;
 }
