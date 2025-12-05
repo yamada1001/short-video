@@ -31,7 +31,9 @@ header('Content-Type: text/html; charset=UTF-8');
 
 // Load users from SQLite
 try {
-    $membersData = dbQuery("SELECT * FROM users ORDER BY created_at DESC");
+    $db = getDbConnection();
+    $membersData = dbQuery($db, "SELECT * FROM users ORDER BY created_at DESC");
+    dbClose($db);
 } catch (Exception $e) {
     error_log("Failed to load users: " . $e->getMessage());
     $membersData = [];
