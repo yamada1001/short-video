@@ -108,22 +108,48 @@ BNI Slide System
 BNI Slide System
 ";
 
-// メールヘッダー
-$headers = "From: noreply@yojitu.com\r\n";
-$headers .= "Reply-To: noreply@yojitu.com\r\n";
+// メールヘッダー（Xserver対応：実在するメールアドレスを使用）
+$fromEmail = 'info@yojitu.com'; // 実在するメールアドレスに変更
+$headers = "From: BNI Slide System <{$fromEmail}>\r\n";
+$headers .= "Reply-To: {$fromEmail}\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+
+// デバッグログ
+error_log('[PASSWORD RESET] Sending email to: ' . $email);
+error_log('[PASSWORD RESET] Token: ' . $token);
+error_log('[PASSWORD RESET] Reset URL: ' . $resetUrl);
 
 // メールを送信
-$mailSent = mail($email, $subject, $message, $headers);
+$mailSent = @mail($email, $subject, $message, $headers);
+
+// エラーログに結果を記録
+if ($mailSent) {
+    error_log('[PASSWORD RESET] Mail sent successfully to: ' . $email);
+} else {
+    $lastError = error_get_last();
+    error_log('[PASSWORD RESET] Mail failed to: ' . $email);
+    error_log('[PASSWORD RESET] Last error: ' . print_r($lastError, true));
+}
 
 if ($mailSent) {
     echo json_encode([
         'success' => true,
-        'message' => 'リセットメールを送信しました。メールをご確認ください。'
+        'message' => 'リセットメールを送信しました。メールをご確認ください。',
+        'debug' => [
+            'email' => $email,
+            'token' => $token,
+            'reset_url' => $resetUrl
+        ]
     ]);
 } else {
     echo json_encode([
         'success' => false,
-        'message' => 'メールの送信に失敗しました。しばらくしてから再度お試しください。'
+        'message' => 'メールの送信に失敗しました。管理者にお問い合わせください。',
+        'debug' => [
+            'mail_function_result' => $mailSent,
+            'from_email' => $fromEmail,
+            'to_email' => $email
+        ]
     ]);
 }
