@@ -237,10 +237,12 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
 
         // Group data by week
         const weeklyData = {};
+        weeklyDataMap = {}; // Reset mapping
         result.data.forEach(row => {
           const week = row['週'];
           if (!weeklyData[week]) {
             weeklyData[week] = [];
+            weeklyDataMap[week] = row['CSVファイル'];
           }
           weeklyData[week].push(row);
         });
@@ -311,9 +313,13 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
     }
 
     function editData(week) {
-      // TODO: Implement edit functionality
-      alert('編集機能は準備中です。\n週: ' + week);
+      // Redirect to edit page with week parameter
+      const csvFile = weeklyDataMap[week];
+      window.location.href = `edit-my-data.php?week=${encodeURIComponent(csvFile)}`;
     }
+
+    // Store week to CSV file mapping
+    let weeklyDataMap = {};
   </script>
 </body>
 </html>
