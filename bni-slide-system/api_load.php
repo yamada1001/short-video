@@ -1,89 +1,58 @@
 <?php
 /**
- * BNI Slide System - Load CSV Data API
- * Read CSV data and return as JSON
+ * BNI Slide System - Load Survey Data API (SQLite Version)
+ * Read survey data from SQLite and return as JSON
  */
 
 header('Content-Type: application/json; charset=utf-8');
 
-// Load date helper functions
-require_once __DIR__ . '/includes/date_helper.php';
+// Load dependencies
+require_once __DIR__ . '/includes/db.php';
 
 try {
   // Get week parameter (optional)
   $week = $_GET['week'] ?? '';
 
-  // Determine CSV file path
+  // Get database connection
+  $db = getDbConnection();
+
+  // Determine week_date
   if ($week) {
     // Load specific week
-    $csvFile = __DIR__ . '/data/' . $week . '.csv';
+    $weekDate = $week;
   } else {
-    // Load current week
-    $csvFiles = glob(__DIR__ . '/data/*.csv');
-    // Filter out backup files
-    $csvFiles = array_filter($csvFiles, function($file) {
-      return strpos(basename($file), 'backup') === false;
-    });
-    // Sort by modified time (newest first)
-    usort($csvFiles, function($a, $b) {
-      return filemtime($b) - filemtime($a);
-    });
-    $csvFile = $csvFiles[0] ?? null;
+    // Load latest week
+    $result = dbQueryOne($db, "SELECT week_date FROM survey_data ORDER BY week_date DESC LIMIT 1");
+    $weekDate = $result ? $result['week_date'] : null;
   }
 
-  // Check if CSV file exists
-  if (!$csvFile || !file_exists($csvFile)) {
+  // Check if data exists
+  if (!$weekDate) {
     echo json_encode([
       'success' => true,
       'data' => [],
       'message' => 'データがまだありません'
     ]);
+    dbClose($db);
     exit;
   }
 
-  // Read CSV file
-  $data = [];
-  $fp = fopen($csvFile, 'r');
-
-  if (!$fp) {
-    throw new Exception('CSVファイルの読み込みに失敗しました');
-  }
-
-  // Skip BOM if exists
-  $bom = fread($fp, 3);
-  if ($bom !== chr(0xEF).chr(0xBB).chr(0xBF)) {
-    rewind($fp);
-  }
-
-  // Read header
-  $header = fgetcsv($fp);
-
-  // Read data rows
-  while (($row = fgetcsv($fp)) !== false) {
-    if (count($row) === count($header)) {
-      $rowData = array_combine($header, $row);
-      if ($rowData !== false) {
-        $data[] = $rowData;
-      }
-    }
-  }
-
-  fclose($fp);
+  // Load survey data for the week
+  $data = loadSurveyData($db, $weekDate);
 
   // Calculate statistics
-  $stats = calculateStats($data);
+  $stats = calculateStats($db, $weekDate);
 
-  // Extract date from filename for title slide
+  // Format date for title slide
   $slideDate = '';
-  $weekFilename = '';
-  if ($csvFile) {
-    $weekFilename = basename($csvFile, '.csv');
-    $result = parseFilenameToDate($weekFilename);
-
-    if ($result['success']) {
-      $slideDate = $result['date']->format('Y年n月j日');
-    }
+  try {
+    $dt = new DateTime($weekDate);
+    $slideDate = $dt->format('Y年n月j日');
+  } catch (Exception $e) {
+    $slideDate = $weekDate;
   }
+
+  dbClose($db);
 
   echo json_encode([
     'success' => true,
@@ -91,10 +60,13 @@ try {
     'stats' => $stats,
     'count' => count($data),
     'date' => $slideDate,
-    'week' => $weekFilename
+    'week' => $weekDate
   ], JSON_UNESCAPED_UNICODE);
 
 } catch (Exception $e) {
+  if (isset($db)) {
+    dbClose($db);
+  }
   echo json_encode([
     'success' => false,
     'message' => $e->getMessage()
@@ -102,9 +74,70 @@ try {
 }
 
 /**
- * Calculate statistics from data
+ * Load survey data from database
+ * Format: CSV-like structure for compatibility with existing frontend
  */
-function calculateStats($data) {
+function loadSurveyData($db, $weekDate) {
+  $data = [];
+
+  // Query survey data with related visitors and referrals
+  $query = "
+    SELECT
+      s.id,
+      s.timestamp,
+      s.input_date,
+      s.user_name,
+      s.user_email,
+      s.attendance,
+      s.thanks_slips,
+      s.one_to_one,
+      s.activities,
+      s.comments,
+      v.visitor_name,
+      v.visitor_company,
+      v.visitor_industry,
+      r.referral_name,
+      r.referral_amount,
+      r.referral_category,
+      r.referral_provider
+    FROM survey_data s
+    LEFT JOIN visitors v ON s.id = v.survey_data_id
+    LEFT JOIN referrals r ON s.id = r.survey_data_id
+    WHERE s.week_date = :week_date
+    ORDER BY s.timestamp, s.id
+  ";
+
+  $rows = dbQuery($db, $query, [':week_date' => $weekDate]);
+
+  // Convert to CSV-like format (for frontend compatibility)
+  foreach ($rows as $row) {
+    $data[] = [
+      'タイムスタンプ' => $row['timestamp'],
+      '入力日' => $row['input_date'],
+      '紹介者名' => $row['user_name'],
+      'メールアドレス' => $row['user_email'],
+      'ビジター名' => $row['visitor_name'] ?: '',
+      'ビジター会社名' => $row['visitor_company'] ?: '',
+      'ビジター業種' => $row['visitor_industry'] ?: '',
+      '案件名' => $row['referral_name'] ?: '',
+      'リファーラル金額' => $row['referral_amount'] ?: 0,
+      'カテゴリ' => $row['referral_category'] ?: '',
+      'リファーラル提供者' => $row['referral_provider'] ?: '',
+      '出席状況' => $row['attendance'],
+      'サンクスリップ数' => $row['thanks_slips'],
+      'ワンツーワン数' => $row['one_to_one'],
+      'アクティビティ' => $row['activities'] ?: '',
+      'コメント' => $row['comments'] ?: ''
+    ];
+  }
+
+  return $data;
+}
+
+/**
+ * Calculate statistics from database
+ */
+function calculateStats($db, $weekDate) {
   $stats = [
     'total_referral_amount' => 0,
     'total_visitors' => 0,
@@ -115,51 +148,97 @@ function calculateStats($data) {
     'members' => []
   ];
 
-  foreach ($data as $row) {
-    // Total referral amount
-    $amount = intval($row['リファーラル金額'] ?? 0);
-    $stats['total_referral_amount'] += $amount;
+  // Total referral amount
+  $result = dbQueryOne($db,
+    "SELECT COALESCE(SUM(referral_amount), 0) as total
+     FROM referrals r
+     JOIN survey_data s ON r.survey_data_id = s.id
+     WHERE s.week_date = :week_date",
+    [':week_date' => $weekDate]
+  );
+  $stats['total_referral_amount'] = intval($result['total']);
 
-    // Total visitors
-    if (!empty($row['ビジター名'])) {
-      $stats['total_visitors']++;
-    }
+  // Total visitors (excluding empty names)
+  $result = dbQueryOne($db,
+    "SELECT COUNT(*) as total
+     FROM visitors v
+     JOIN survey_data s ON v.survey_data_id = s.id
+     WHERE s.week_date = :week_date
+     AND v.visitor_name IS NOT NULL
+     AND v.visitor_name != ''",
+    [':week_date' => $weekDate]
+  );
+  $stats['total_visitors'] = intval($result['total']);
 
-    // Attendance
-    if (($row['出席状況'] ?? '') === '出席') {
-      $stats['total_attendance']++;
-    }
+  // Total attendance (count distinct users with attendance = '出席')
+  $result = dbQueryOne($db,
+    "SELECT COUNT(DISTINCT user_email) as total
+     FROM survey_data
+     WHERE week_date = :week_date
+     AND attendance = '出席'",
+    [':week_date' => $weekDate]
+  );
+  $stats['total_attendance'] = intval($result['total']);
 
-    // Thanks slips
-    $stats['total_thanks_slips'] += intval($row['サンクスリップ数'] ?? 0);
+  // Total thanks slips (sum per user, avoiding duplicates)
+  $result = dbQueryOne($db,
+    "SELECT COALESCE(SUM(thanks_slips), 0) as total
+     FROM (
+       SELECT DISTINCT user_email, thanks_slips
+       FROM survey_data
+       WHERE week_date = :week_date
+     )",
+    [':week_date' => $weekDate]
+  );
+  $stats['total_thanks_slips'] = intval($result['total']);
 
-    // One-to-one
-    $stats['total_one_to_one'] += intval($row['ワンツーワン数'] ?? 0);
+  // Total one-to-one (sum per user, avoiding duplicates)
+  $result = dbQueryOne($db,
+    "SELECT COALESCE(SUM(one_to_one), 0) as total
+     FROM (
+       SELECT DISTINCT user_email, one_to_one
+       FROM survey_data
+       WHERE week_date = :week_date
+     )",
+    [':week_date' => $weekDate]
+  );
+  $stats['total_one_to_one'] = intval($result['total']);
 
-    // Categories
-    $category = $row['カテゴリ'] ?? '';
-    if ($category) {
-      if (!isset($stats['categories'][$category])) {
-        $stats['categories'][$category] = 0;
-      }
-      $stats['categories'][$category] += $amount;
-    }
+  // Categories (referral amount by category)
+  $categories = dbQuery($db,
+    "SELECT r.referral_category as category, SUM(r.referral_amount) as amount
+     FROM referrals r
+     JOIN survey_data s ON r.survey_data_id = s.id
+     WHERE s.week_date = :week_date
+     AND r.referral_category IS NOT NULL
+     AND r.referral_category != ''
+     GROUP BY r.referral_category",
+    [':week_date' => $weekDate]
+  );
 
-    // Members
-    $member = $row['紹介者名'] ?? '';
-    if ($member) {
-      if (!isset($stats['members'][$member])) {
-        $stats['members'][$member] = [
-          'visitors' => 0,
-          'referral_amount' => 0
-        ];
-      }
-      // Only count visitor if visitor name is not empty
-      if (!empty($row['ビジター名'])) {
-        $stats['members'][$member]['visitors']++;
-      }
-      $stats['members'][$member]['referral_amount'] += $amount;
-    }
+  foreach ($categories as $cat) {
+    $stats['categories'][$cat['category']] = intval($cat['amount']);
+  }
+
+  // Members (visitors and referral amount by member)
+  $members = dbQuery($db,
+    "SELECT
+       s.user_name,
+       COUNT(DISTINCT CASE WHEN v.visitor_name IS NOT NULL AND v.visitor_name != '' THEN v.id END) as visitors,
+       COALESCE(SUM(r.referral_amount), 0) as referral_amount
+     FROM survey_data s
+     LEFT JOIN visitors v ON s.id = v.survey_data_id
+     LEFT JOIN referrals r ON s.id = r.survey_data_id
+     WHERE s.week_date = :week_date
+     GROUP BY s.user_name",
+    [':week_date' => $weekDate]
+  );
+
+  foreach ($members as $member) {
+    $stats['members'][$member['user_name']] = [
+      'visitors' => intval($member['visitors']),
+      'referral_amount' => intval($member['referral_amount'])
+    ];
   }
 
   return $stats;
