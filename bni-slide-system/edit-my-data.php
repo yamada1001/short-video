@@ -83,7 +83,6 @@ foreach ($userData as $row) {
             $referrals[$referralKey] = [
                 'name' => $row['案件名'],
                 'amount' => $row['リファーラル金額'],
-                'category' => $row['カテゴリ'],
                 'provider' => $row['リファーラル提供者']
             ];
         }
@@ -195,11 +194,7 @@ $referrals = array_values($referrals);
                   </div>
                   <div class="form-group">
                     <label class="form-label">金額（円）</label>
-                    <input type="number" name="referral_amount[]" class="form-input" value="<?php echo htmlspecialchars($referral['amount'], ENT_QUOTES, 'UTF-8'); ?>" min="0">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">カテゴリ</label>
-                    <input type="text" name="referral_category[]" class="form-input" value="<?php echo htmlspecialchars($referral['category'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <input type="text" name="referral_amount[]" class="form-input amount-input" value="<?php echo number_format($referral['amount']); ?>">
                   </div>
                   <div class="form-group">
                     <label class="form-label">提供者</label>
@@ -311,11 +306,7 @@ $referrals = array_values($referrals);
           </div>
           <div class="form-group">
             <label class="form-label">金額（円）</label>
-            <input type="number" name="referral_amount[]" class="form-input" min="0">
-          </div>
-          <div class="form-group">
-            <label class="form-label">カテゴリ</label>
-            <input type="text" name="referral_category[]" class="form-input">
+            <input type="text" name="referral_amount[]" class="form-input amount-input">
           </div>
           <div class="form-group">
             <label class="form-label">提供者</label>
@@ -325,6 +316,12 @@ $referrals = array_values($referrals);
         </div>
       `;
       container.insertAdjacentHTML('beforeend', html);
+
+      // Add comma formatting to new amount input
+      const newInputs = container.querySelectorAll('.amount-input');
+      const newInput = newInputs[newInputs.length - 1];
+      addCommaFormatting(newInput);
+
       referralIndex++;
     }
 
@@ -332,13 +329,45 @@ $referrals = array_values($referrals);
       btn.closest('.referral-item').remove();
     }
 
+    // Add comma formatting to amount inputs
+    function addCommaFormatting(input) {
+      input.addEventListener('input', function(e) {
+        // Remove non-digit characters except for existing value
+        let value = e.target.value.replace(/,/g, '');
+
+        // Only allow digits
+        value = value.replace(/\D/g, '');
+
+        // Add comma formatting
+        if (value) {
+          e.target.value = parseInt(value).toLocaleString('ja-JP');
+        } else {
+          e.target.value = '';
+        }
+      });
+    }
+
+    // Initialize comma formatting for existing amount inputs
+    document.addEventListener('DOMContentLoaded', function() {
+      const amountInputs = document.querySelectorAll('.amount-input');
+      amountInputs.forEach(input => {
+        addCommaFormatting(input);
+      });
+    });
+
     // Form submission
     document.getElementById('editForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
+      // Remove commas from amount inputs before submission
+      const amountInputs = this.querySelectorAll('.amount-input');
+      amountInputs.forEach(input => {
+        input.value = input.value.replace(/,/g, '');
+      });
+
       const formData = new FormData(this);
       const submitBtn = this.querySelector('button[type="submit"]');
-      
+
       submitBtn.disabled = true;
       submitBtn.textContent = '更新中...';
 
@@ -357,12 +386,24 @@ $referrals = array_values($referrals);
           }, 2000);
         } else {
           showMessage('error', result.message || '更新に失敗しました。');
+          // Re-add commas to amount inputs
+          amountInputs.forEach(input => {
+            if (input.value) {
+              input.value = parseInt(input.value).toLocaleString('ja-JP');
+            }
+          });
           submitBtn.disabled = false;
           submitBtn.textContent = '更新する';
         }
       } catch (error) {
         console.error('Update error:', error);
         showMessage('error', 'エラーが発生しました。');
+        // Re-add commas to amount inputs
+        amountInputs.forEach(input => {
+          if (input.value) {
+            input.value = parseInt(input.value).toLocaleString('ja-JP');
+          }
+        });
         submitBtn.disabled = false;
         submitBtn.textContent = '更新する';
       }

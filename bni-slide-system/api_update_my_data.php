@@ -59,7 +59,6 @@ try {
         foreach ($_POST['referral_name'] as $index => $name) {
             $name = trim($name);
             $amount = intval($_POST['referral_amount'][$index] ?? 0);
-            $category = trim($_POST['referral_category'][$index] ?? '');
             $provider = trim($_POST['referral_provider'][$index] ?? '');
 
             // Only add referral if name is provided
@@ -67,7 +66,6 @@ try {
                 $referrals[] = [
                     'name' => $name,
                     'amount' => $amount,
-                    'category' => $category,
                     'provider' => $provider
                 ];
             }
@@ -133,7 +131,7 @@ try {
 
         for ($i = 0; $i < $maxRows; $i++) {
             $visitor = $visitors[$i] ?? ['name' => '', 'company' => '', 'industry' => ''];
-            $referral = $referrals[$i] ?? ['name' => '-', 'amount' => 0, 'category' => '', 'provider' => ''];
+            $referral = $referrals[$i] ?? ['name' => '-', 'amount' => 0, 'provider' => ''];
 
             // Ensure referral has default values if not set
             if (empty($referral['name'])) {
@@ -151,7 +149,7 @@ try {
                 'ビジター業種' => $visitor['industry'],
                 '案件名' => $referral['name'],
                 'リファーラル金額' => $referral['amount'],
-                'カテゴリ' => $referral['category'],
+                'カテゴリ' => '',
                 'リファーラル提供者' => $referral['provider'],
                 'サンクスリップ数' => $thanksSlips,
                 'ワンツーワン数' => $oneToOneCount,
