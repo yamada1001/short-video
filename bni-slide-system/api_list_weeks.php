@@ -1,46 +1,50 @@
 <?php
 /**
- * BNI Slide System - List Available Weeks API
- * Return list of available CSV files (weeks)
+ * BNI Slide System - List Available Weeks API (SQLite Version)
+ * Return list of available weeks from database
  */
 
 header('Content-Type: application/json; charset=utf-8');
 
-// Load date helper functions
-require_once __DIR__ . '/includes/date_helper.php';
+// Load dependencies
+require_once __DIR__ . '/includes/db.php';
 
 try {
-  $dataDir = __DIR__ . '/data';
-  $csvFiles = glob($dataDir . '/*.csv');
+  $db = getDbConnection();
+
+  // Get distinct week_dates from survey_data
+  $query = "SELECT DISTINCT week_date FROM survey_data ORDER BY week_date DESC";
+  $results = dbQuery($db, $query);
 
   $weeks = [];
-  $today = new DateTime();
 
-  foreach ($csvFiles as $file) {
-    $filename = basename($file, '.csv');
+  foreach ($results as $row) {
+    $weekDate = $row['week_date'];
 
-    // Skip backup files
-    if (strpos($filename, 'backup') !== false) {
-      continue;
-    }
+    // Parse date
+    try {
+      $date = new DateTime($weekDate);
+      $dayOfWeek = $date->format('w'); // 0=Sun, 5=Fri
 
-    // Parse filename using common helper function
-    $result = parseFilenameToDate($filename);
+      // Determine day label
+      $dayLabels = ['日', '月', '火', '水', '木', '金', '土'];
+      $dayLabel = $dayLabels[$dayOfWeek];
 
-    if ($result['success']) {
+      $label = $date->format('Y年n月j日') . '（' . $dayLabel . '）';
+
       $weeks[] = [
-        'filename' => $filename,
-        'label' => $result['label'],
-        'date' => $result['date'],
-        'timestamp' => $result['date']->getTimestamp()
+        'filename' => $weekDate,
+        'label' => $label,
+        'date' => $date->format('Y-m-d'),
+        'timestamp' => $date->getTimestamp()
       ];
+    } catch (Exception $e) {
+      // Skip invalid dates
+      continue;
     }
   }
 
-  // Sort by date (newest first, but only past/today dates)
-  usort($weeks, function($a, $b) {
-    return $b['timestamp'] - $a['timestamp'];
-  });
+  dbClose($db);
 
   echo json_encode([
     'success' => true,
@@ -49,6 +53,9 @@ try {
   ], JSON_UNESCAPED_UNICODE);
 
 } catch (Exception $e) {
+  if (isset($db)) {
+    dbClose($db);
+  }
   echo json_encode([
     'success' => false,
     'message' => $e->getMessage()
