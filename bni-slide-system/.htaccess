@@ -1,124 +1,115 @@
 # ====================================
-# BNI Slide System - Security Settings
+# ブラウザキャッシュ（強化版）
 # ====================================
+<IfModule mod_expires.c>
+    ExpiresActive On
 
-# -----------------
-# Basic Authentication
-# -----------------
-AuthType Basic
-AuthName "BNI Slide System - Restricted Access"
-AuthUserFile /home/xs545151/yojitu.com/public_html/bni-slide-system/.htpasswd
+    # HTML（短め - 1日）
+    ExpiresByType text/html "access plus 1 day"
 
-# Exclude registration files from authentication
-<Files "register.php">
-  Satisfy Any
-  Require all granted
-</Files>
+    # 画像（1年）
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
 
-<Files "api_register.php">
-  Satisfy Any
-  Require all granted
-</Files>
+    # CSS/JS（1年）
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
 
-# Require authentication for all other files
-Require valid-user
-
-# -----------------
-# Error Pages
-# -----------------
-ErrorDocument 401 "認証が必要です。ユーザー名とパスワードを入力してください。"
-ErrorDocument 403 "アクセスが拒否されました。"
-ErrorDocument 404 "ページが見つかりません。"
-
-# -----------------
-# PHP Settings
-# -----------------
-<IfModule mod_php.c>
-  # Error handling
-  php_flag display_errors Off
-  php_flag log_errors On
-  php_value error_log error.log
-
-  # Upload limits
-  php_value upload_max_filesize 10M
-  php_value post_max_size 10M
-  php_value max_execution_time 300
-  php_value memory_limit 256M
-
-  # Character encoding
-  php_value default_charset UTF-8
-  php_value mbstring.language Japanese
-  php_value mbstring.internal_encoding UTF-8
+    # フォント（1年）
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
 </IfModule>
 
-# -----------------
-# Security Headers
-# -----------------
+# ====================================
+# Gzip圧縮（強化版）
+# ====================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/ld+json
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/woff
+    AddOutputFilterByType DEFLATE font/woff2
+
+    # Varyヘッダーを追加してキャッシュを最適化
+    <IfModule mod_headers.c>
+        Header append Vary Accept-Encoding
+    </IfModule>
+</IfModule>
+
+# ====================================
+# Cache-Controlヘッダー
+# ====================================
 <IfModule mod_headers.c>
-  # Prevent clickjacking
-  Header set X-Frame-Options "SAMEORIGIN"
+    # CSS/JS（immutableで最適化）
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
 
-  # Prevent MIME sniffing
-  Header set X-Content-Type-Options "nosniff"
+    # 画像
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
 
-  # XSS Protection
-  Header set X-XSS-Protection "1; mode=block"
-
-  # Referrer Policy
-  Header set Referrer-Policy "strict-origin-when-cross-origin"
+    # フォント
+    <FilesMatch "\.(woff|woff2|ttf|otf|eot)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
 </IfModule>
 
-# -----------------
-# File Protection
-# -----------------
-# Prevent access to sensitive files
-<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|md)$">
-  Order allow,deny
-  Deny from all
-</FilesMatch>
+# ETagを無効化（効率化）
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+FileETag None
 
-# Protect data directory (additional layer)
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteRule ^data/ - [F,L]
+# セキュリティヘッダー
+<IfModule mod_headers.c>
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
 </IfModule>
 
-# -----------------
-# Directory Listing
-# -----------------
 Options -Indexes
-
-# -----------------
-# Charset
-# -----------------
 AddDefaultCharset UTF-8
 
-# -----------------
-# MIME Types
-# -----------------
-AddType text/html .html .htm
-AddType text/css .css
-AddType text/javascript .js
-AddType application/json .json
-AddType text/csv .csv
+# ====================================
+# カスタムエラーページ
+# ====================================
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php
+ErrorDocument 503 /503.php
 
-# -----------------
-# Compression (optional)
-# -----------------
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
-</IfModule>
+# ====================================
+# Force HTTPS Redirect
+# ====================================
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
-# -----------------
-# Browser Caching (optional)
-# -----------------
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType text/javascript "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 month"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/gif "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-</IfModule>
+# ====================================
+# Redirect .html to .php (301 Permanent)
+# ====================================
+
+# .html へのアクセスを .php へ301リダイレクト
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)\.html$ /$1.php [R=301,L]
+
+# DirectoryIndex
+DirectoryIndex index.php
