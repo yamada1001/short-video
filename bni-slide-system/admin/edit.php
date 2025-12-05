@@ -165,6 +165,7 @@
             <div class="btn-group">
               <button onclick="saveChanges()" class="btn btn-primary btn-small">保存</button>
               <button onclick="location.reload()" class="btn btn-secondary btn-small">リロード</button>
+              <button onclick="exportToExcel()" class="btn btn-success btn-small" style="background-color: #28A745;">Excelダウンロード</button>
               <a href="slide.php" class="btn btn-outline btn-small">スライド表示</a>
             </div>
           </div>

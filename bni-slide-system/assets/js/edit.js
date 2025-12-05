@@ -211,3 +211,36 @@ function escapeHtml(text) {
   };
   return String(text).replace(/[&<>"']/g, m => map[m]);
 }
+
+/**
+ * Export to Excel
+ */
+async function exportToExcel() {
+  try {
+    // Get the current week parameter from URL or use latest week
+    const urlParams = new URLSearchParams(window.location.search);
+    let week = urlParams.get('week');
+
+    // If no week specified, get the latest week from API
+    if (!week) {
+      const weeksResponse = await fetch(apiBasePath + 'api_list_weeks.php');
+      const weeksData = await weeksResponse.json();
+
+      if (weeksData.success && weeksData.weeks.length > 0) {
+        week = weeksData.weeks[0].value; // Get the latest week
+      } else {
+        throw new Error('週データが見つかりません');
+      }
+    }
+
+    // Open download URL in new window
+    const downloadUrl = apiBasePath + 'api_export_excel.php?week=' + encodeURIComponent(week);
+    window.open(downloadUrl, '_blank');
+
+    showMessage('success', 'Excelファイルをダウンロードしています...');
+
+  } catch (error) {
+    console.error('Excel export error:', error);
+    showMessage('error', 'エクスポートに失敗しました: ' + error.message);
+  }
+}
