@@ -161,9 +161,6 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
             <p>毎週のビジター紹介・リファーラル情報をご入力ください</p>
           </div>
 
-          <!-- Success/Error Messages -->
-          <div id="message" class="message"></div>
-
           <!-- Survey Form -->
           <form id="surveyForm" method="POST" action="api_save.php">
 
@@ -371,6 +368,9 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
                 <textarea name="comments" class="form-textarea" placeholder="今週の活動や気づきなど、自由にご記入ください"></textarea>
               </div>
             </div>
+
+            <!-- Success/Error Messages -->
+            <div id="message" class="message"></div>
 
             <!-- Submit Button -->
             <div class="form-submit">
