@@ -1,8 +1,29 @@
 <?php
 /**
- * BNI Slide System - User Management (Admin)
- * 管理者用ユーザー管理画面
+ * BNI Slide System - User Management (Admin Only)
+ * 管理者専用 - ユーザー管理画面
  */
+
+require_once __DIR__ . '/../includes/session_auth.php';
+
+// セッション開始
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// ログイン確認
+$currentUser = getCurrentUser();
+if (!$currentUser) {
+    header('Location: ../login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
+    exit;
+}
+
+// 管理者権限チェック
+$isAdmin = isset($currentUser['role']) && $currentUser['role'] === 'admin';
+if (!$isAdmin) {
+    http_response_code(403);
+    die('<h1>アクセス拒否</h1><p>このページは管理者のみアクセス可能です。</p><a href="../index.php">ホームに戻る</a>');
+}
 
 // Set UTF-8 encoding
 header('Content-Type: text/html; charset=UTF-8');
