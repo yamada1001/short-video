@@ -423,10 +423,18 @@ header('Content-Type: text/html; charset=UTF-8');
             // Redirect to thanks page immediately
             window.location.href = 'register-thanks.php';
           } else {
+            // Show error message and scroll to top
             showMessage('error', result.message || '登録に失敗しました。もう一度お試しください。');
             submitBtn.disabled = false;
             submitBtn.textContent = '登録する';
             backBtn.disabled = false;
+
+            // Return to input form if on confirmation screen
+            confirmationScreen.style.display = 'none';
+            form.style.display = 'block';
+
+            // Scroll to top to show error
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }
         } catch (error) {
           console.error('Registration error:', error);
@@ -434,17 +442,37 @@ header('Content-Type: text/html; charset=UTF-8');
           submitBtn.disabled = false;
           submitBtn.textContent = '登録する';
           backBtn.disabled = false;
+
+          // Return to input form if on confirmation screen
+          confirmationScreen.style.display = 'none';
+          form.style.display = 'block';
+
+          // Scroll to top to show error
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         } finally {
           submitBtn.classList.remove('loading');
         }
       });
 
       /**
-       * Show message
+       * Show message with emphasis
        */
       function showMessage(type, text) {
         messageDiv.className = `message message-${type} show`;
         messageDiv.textContent = text;
+
+        // Ensure message div is visible at the top
+        messageDiv.style.display = 'block';
+
+        // Scroll to message (with offset for header)
+        setTimeout(() => {
+          const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
+          const messageDivTop = messageDiv.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: messageDivTop - headerHeight - 20,
+            behavior: 'smooth'
+          });
+        }, 100);
 
         // Auto-hide after 10 seconds (except for success message)
         if (type !== 'success') {
