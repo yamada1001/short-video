@@ -292,12 +292,29 @@ if (file_exists($membersFile)) {
         const formData = new FormData();
         formData.append('username', username);
 
+        console.log('Deleting user:', username);
+
         const response = await fetch('../api_delete_user.php', {
           method: 'POST',
           body: formData
         });
 
-        const result = await response.json();
+        console.log('Response status:', response.status);
+
+        const responseText = await response.text();
+        console.log('Response text:', responseText);
+
+        let result;
+        try {
+          result = JSON.parse(responseText);
+        } catch (parseError) {
+          console.error('JSON parse error:', parseError);
+          console.error('Response was:', responseText);
+          alert('サーバーエラー: JSONのパースに失敗しました。\n\n' + responseText.substring(0, 200));
+          return;
+        }
+
+        console.log('Parsed result:', result);
 
         if (result.success) {
           alert(result.message || 'ユーザーを削除しました。');
@@ -308,7 +325,7 @@ if (file_exists($membersFile)) {
         }
       } catch (error) {
         console.error('Delete error:', error);
-        alert('エラーが発生しました。もう一度お試しください。');
+        alert('エラーが発生しました。もう一度お試しください。\n\nエラー詳細: ' + error.message);
       }
     }
   </script>
