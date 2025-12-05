@@ -65,6 +65,16 @@ try {
                 // Create associative array
                 $rowData = array_combine($header, $row);
 
+                // Skip if array_combine failed
+                if ($rowData === false) {
+                    continue;
+                }
+
+                // Check if required fields exist
+                if (!isset($rowData['メールアドレス']) || !isset($rowData['紹介者名'])) {
+                    continue;
+                }
+
                 // Check if this row belongs to current user
                 if ($rowData['メールアドレス'] === $userEmail || $rowData['紹介者名'] === $userName) {
                     // Add week information
