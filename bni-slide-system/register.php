@@ -159,9 +159,6 @@ header('Content-Type: text/html; charset=UTF-8');
   </footer>
 
   <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/kuroshiro@1.2.0/dist/kuroshiro.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/kuroshiro-analyzer-kuromoji@1.1.0/dist/kuroshiro-analyzer-kuromoji.min.js"></script>
-
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const form = document.getElementById('registerForm');
@@ -171,47 +168,71 @@ header('Content-Type: text/html; charset=UTF-8');
       const lastNameKanaInput = document.getElementById('lastNameKana');
       const firstNameKanaInput = document.getElementById('firstNameKana');
 
-      // Initialize Kuroshiro for automatic furigana conversion
-      let kuroshiroInstance = null;
+      // Auto-generate furigana using IME input
+      let lastNameKana = '';
+      let firstNameKana = '';
 
-      (async function initKuroshiro() {
-        try {
-          kuroshiroInstance = new Kuroshiro();
-          await kuroshiroInstance.init(new KuromojiAnalyzer());
-        } catch (error) {
-          console.error('Kuroshiro initialization failed:', error);
+      // Capture last name furigana from IME
+      lastNameInput.addEventListener('compositionupdate', function(e) {
+        if (e.data) {
+          // Convert hiragana to katakana
+          lastNameKana = hiraganaToKatakana(e.data);
         }
-      })();
+      });
 
-      // Auto-generate furigana for last name
-      lastNameInput.addEventListener('blur', async function() {
-        if (this.value && kuroshiroInstance && !lastNameKanaInput.value) {
-          try {
-            const kana = await kuroshiroInstance.convert(this.value, {
-              to: 'katakana',
-              mode: 'normal'
-            });
-            lastNameKanaInput.value = kana;
-          } catch (error) {
-            console.error('Furigana conversion failed:', error);
+      lastNameInput.addEventListener('compositionend', function(e) {
+        if (lastNameKana && !lastNameKanaInput.value) {
+          lastNameKanaInput.value = lastNameKana;
+        }
+      });
+
+      lastNameInput.addEventListener('input', function(e) {
+        // For direct input (copy-paste, etc.)
+        if (e.inputType === 'insertText' || e.inputType === 'insertFromPaste') {
+          if (!lastNameKanaInput.value) {
+            // Try to convert if it's hiragana
+            const kana = hiraganaToKatakana(this.value);
+            if (kana !== this.value) {
+              lastNameKanaInput.value = kana;
+            }
           }
         }
       });
 
-      // Auto-generate furigana for first name
-      firstNameInput.addEventListener('blur', async function() {
-        if (this.value && kuroshiroInstance && !firstNameKanaInput.value) {
-          try {
-            const kana = await kuroshiroInstance.convert(this.value, {
-              to: 'katakana',
-              mode: 'normal'
-            });
-            firstNameKanaInput.value = kana;
-          } catch (error) {
-            console.error('Furigana conversion failed:', error);
+      // Capture first name furigana from IME
+      firstNameInput.addEventListener('compositionupdate', function(e) {
+        if (e.data) {
+          // Convert hiragana to katakana
+          firstNameKana = hiraganaToKatakana(e.data);
+        }
+      });
+
+      firstNameInput.addEventListener('compositionend', function(e) {
+        if (firstNameKana && !firstNameKanaInput.value) {
+          firstNameKanaInput.value = firstNameKana;
+        }
+      });
+
+      firstNameInput.addEventListener('input', function(e) {
+        // For direct input (copy-paste, etc.)
+        if (e.inputType === 'insertText' || e.inputType === 'insertFromPaste') {
+          if (!firstNameKanaInput.value) {
+            // Try to convert if it's hiragana
+            const kana = hiraganaToKatakana(this.value);
+            if (kana !== this.value) {
+              firstNameKanaInput.value = kana;
+            }
           }
         }
       });
+
+      // Convert hiragana to katakana
+      function hiraganaToKatakana(str) {
+        return str.replace(/[\u3041-\u3096]/g, function(match) {
+          const chr = match.charCodeAt(0) + 0x60;
+          return String.fromCharCode(chr);
+        });
+      }
 
       // Form submission handler
       form.addEventListener('submit', async function(e) {
