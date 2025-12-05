@@ -1,14 +1,14 @@
 <?php
 /**
- * BNI Slide System - Update My Data API
+ * BNI Slide System - Update My Data API (SQLite Version)
  * ユーザー自身のデータ更新API
  */
 
 header('Content-Type: application/json; charset=utf-8');
 
-// Load user authentication helper
+// Load dependencies
 require_once __DIR__ . '/includes/user_auth.php';
-require_once __DIR__ . '/includes/audit_logger.php';
+require_once __DIR__ . '/includes/db.php';
 
 // Get current user info
 $currentUser = getCurrentUserInfo();
@@ -23,7 +23,7 @@ if (!$currentUser) {
 
 try {
     // Get POST data
-    $csvFile = $_POST['csv_file'] ?? '';
+    $weekDate = $_POST['csv_file'] ?? ''; // week_date
     $inputDate = $_POST['input_date'] ?? '';
     $attendance = $_POST['attendance'] ?? '';
     $thanksSlips = intval($_POST['thanks_slips'] ?? 0);
@@ -31,8 +31,8 @@ try {
     $comments = $_POST['comments'] ?? '';
 
     // Validate required fields
-    if (empty($csvFile)) {
-        throw new Exception('CSVファイルが指定されていません');
+    if (empty($weekDate)) {
+        throw new Exception('週が指定されていません');
     }
 
     // Get visitors data
@@ -73,131 +73,185 @@ try {
         }
     }
 
-    // CSV file path
-    $csvPath = __DIR__ . '/data/' . basename($csvFile) . '.csv';
-
-    if (!file_exists($csvPath)) {
-        throw new Exception('データファイルが見つかりません');
+    // If no referrals, create a dummy one
+    if (empty($referrals)) {
+        $referrals[] = [
+            'name' => '-',
+            'amount' => 0,
+            'provider' => ''
+        ];
     }
 
-    // Read existing CSV data
-    $allRows = [];
-    $header = [];
+    $db = getDbConnection();
 
-    if (($handle = fopen($csvPath, 'r')) !== false) {
-        $header = fgetcsv($handle);
+    // Start transaction
+    dbBeginTransaction($db);
 
-        // Read all rows except user's rows
-        while (($row = fgetcsv($handle)) !== false) {
-            if (count($row) >= count($header)) {
-                $rowData = array_combine($header, $row);
+    // Delete existing data for this user and week
+    $deleteQuery = "DELETE FROM survey_data
+                    WHERE week_date = :week_date
+                    AND user_email = :email";
+    dbExecute($db, $deleteQuery, [
+        ':week_date' => $weekDate,
+        ':email' => $currentUser['email']
+    ]);
 
-                // Skip rows belonging to current user
-                if ($rowData['メールアドレス'] !== $currentUser['email'] ||
-                    $rowData['入力日'] !== $inputDate) {
-                    $allRows[] = $row;
-                }
-            }
-        }
-        fclose($handle);
-    }
-
-    // Prepare new rows for current user
-    $newRows = [];
+    // Insert new survey_data
     $timestamp = date('Y-m-d H:i:s');
 
-    // If no visitors and no referrals, create one row with base data
-    if (empty($visitors) && empty($referrals)) {
-        $newRows[] = [
-            'timestamp' => $timestamp,
-            '入力日' => $inputDate,
-            '紹介者名' => $currentUser['name'],
-            'メールアドレス' => $currentUser['email'],
-            '出席状況' => $attendance,
-            'ビジター名' => '',
-            'ビジター会社名' => '',
-            'ビジター業種' => '',
-            '案件名' => '-',
-            'リファーラル金額' => 0,
-            'カテゴリ' => '',
-            'リファーラル提供者' => '',
-            'サンクスリップ数' => $thanksSlips,
-            'ワンツーワン数' => $oneToOneCount,
-            'アクティビティ' => '',
-            'コメント' => $comments
+    $surveyQuery = "INSERT INTO survey_data (
+        week_date,
+        timestamp,
+        input_date,
+        user_id,
+        user_name,
+        user_email,
+        attendance,
+        thanks_slips,
+        one_to_one,
+        activities,
+        comments,
+        created_at
+    ) VALUES (
+        :week_date,
+        :timestamp,
+        :input_date,
+        :user_id,
+        :user_name,
+        :user_email,
+        :attendance,
+        :thanks_slips,
+        :one_to_one,
+        :activities,
+        :comments,
+        :created_at
+    )";
+
+    // Get user ID
+    $user = dbQueryOne($db,
+        "SELECT id FROM users WHERE email = :email",
+        [':email' => $currentUser['email']]
+    );
+    $userId = $user ? $user['id'] : null;
+
+    $surveyParams = [
+        ':week_date' => $weekDate,
+        ':timestamp' => $timestamp,
+        ':input_date' => $inputDate,
+        ':user_id' => $userId,
+        ':user_name' => $currentUser['name'],
+        ':user_email' => $currentUser['email'],
+        ':attendance' => $attendance,
+        ':thanks_slips' => $thanksSlips,
+        ':one_to_one' => $oneToOneCount,
+        ':activities' => null,
+        ':comments' => $comments ?: null,
+        ':created_at' => $timestamp
+    ];
+
+    $surveyId = dbExecute($db, $surveyQuery, $surveyParams);
+
+    // Insert visitors
+    foreach ($visitors as $visitor) {
+        $visitorQuery = "INSERT INTO visitors (
+            survey_data_id,
+            visitor_name,
+            visitor_company,
+            visitor_industry,
+            created_at
+        ) VALUES (
+            :survey_data_id,
+            :visitor_name,
+            :visitor_company,
+            :visitor_industry,
+            :created_at
+        )";
+
+        $visitorParams = [
+            ':survey_data_id' => $surveyId,
+            ':visitor_name' => $visitor['name'],
+            ':visitor_company' => $visitor['company'] ?: null,
+            ':visitor_industry' => $visitor['industry'] ?: null,
+            ':created_at' => $timestamp
         ];
-    } else {
-        // Calculate total rows needed
-        $maxRows = max(count($visitors), count($referrals));
 
-        for ($i = 0; $i < $maxRows; $i++) {
-            $visitor = $visitors[$i] ?? ['name' => '', 'company' => '', 'industry' => ''];
-            $referral = $referrals[$i] ?? ['name' => '-', 'amount' => 0, 'provider' => ''];
-
-            // Ensure referral has default values if not set
-            if (empty($referral['name'])) {
-                $referral['name'] = '-';
-            }
-
-            $newRows[] = [
-                'timestamp' => $timestamp,
-                '入力日' => $inputDate,
-                '紹介者名' => $currentUser['name'],
-                'メールアドレス' => $currentUser['email'],
-                '出席状況' => $attendance,
-                'ビジター名' => $visitor['name'],
-                'ビジター会社名' => $visitor['company'],
-                'ビジター業種' => $visitor['industry'],
-                '案件名' => $referral['name'],
-                'リファーラル金額' => $referral['amount'],
-                'カテゴリ' => '',
-                'リファーラル提供者' => $referral['provider'],
-                'サンクスリップ数' => $thanksSlips,
-                'ワンツーワン数' => $oneToOneCount,
-                'アクティビティ' => '',
-                'コメント' => $comments
-            ];
-        }
+        dbExecute($db, $visitorQuery, $visitorParams);
     }
 
-    // Write updated CSV
-    if (($handle = fopen($csvPath, 'w')) !== false) {
-        // Write header
-        fputcsv($handle, $header);
+    // Insert referrals
+    foreach ($referrals as $referral) {
+        $referralQuery = "INSERT INTO referrals (
+            survey_data_id,
+            referral_name,
+            referral_amount,
+            referral_category,
+            referral_provider,
+            created_at
+        ) VALUES (
+            :survey_data_id,
+            :referral_name,
+            :referral_amount,
+            :referral_category,
+            :referral_provider,
+            :created_at
+        )";
 
-        // Write all other rows
-        foreach ($allRows as $row) {
-            fputcsv($handle, $row);
-        }
+        $referralParams = [
+            ':survey_data_id' => $surveyId,
+            ':referral_name' => $referral['name'],
+            ':referral_amount' => $referral['amount'],
+            ':referral_category' => null,
+            ':referral_provider' => $referral['provider'] ?: null,
+            ':created_at' => $timestamp
+        ];
 
-        // Write user's new rows
-        foreach ($newRows as $rowData) {
-            $row = [];
-            foreach ($header as $col) {
-                $row[] = $rowData[$col] ?? '';
-            }
-            fputcsv($handle, $row);
-        }
-
-        fclose($handle);
-    } else {
-        throw new Exception('CSVファイルの書き込みに失敗しました');
+        dbExecute($db, $referralQuery, $referralParams);
     }
+
+    // Commit transaction
+    dbCommit($db);
 
     // Write audit log
-    writeAuditLog(
-        'update',
-        'survey_data',
-        [
-            'csv_file' => basename($csvFile),
+    $auditQuery = "INSERT INTO audit_logs (
+        action,
+        target,
+        user_email,
+        user_name,
+        data,
+        ip_address,
+        user_agent,
+        created_at
+    ) VALUES (
+        :action,
+        :target,
+        :user_email,
+        :user_name,
+        :data,
+        :ip_address,
+        :user_agent,
+        :created_at
+    )";
+
+    $auditParams = [
+        ':action' => 'update',
+        ':target' => 'survey_data',
+        ':user_email' => $currentUser['email'],
+        ':user_name' => $currentUser['name'],
+        ':data' => json_encode([
+            'csv_file' => $weekDate,
             'input_date' => $inputDate,
             'attendance' => $attendance,
             'visitor_count' => count($visitors),
             'referral_count' => count($referrals)
-        ],
-        $currentUser['email'],
-        $currentUser['name']
-    );
+        ], JSON_UNESCAPED_UNICODE),
+        ':ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
+        ':user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown',
+        ':created_at' => date('Y-m-d H:i:s')
+    ];
+
+    dbExecute($db, $auditQuery, $auditParams);
+
+    dbClose($db);
 
     echo json_encode([
         'success' => true,
@@ -205,6 +259,10 @@ try {
     ], JSON_UNESCAPED_UNICODE);
 
 } catch (Exception $e) {
+    if (isset($db)) {
+        dbRollback($db);
+        dbClose($db);
+    }
     echo json_encode([
         'success' => false,
         'message' => $e->getMessage()
