@@ -28,7 +28,6 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
 $userPhone = htmlspecialchars($currentUser['phone'] ?? '', ENT_QUOTES, 'UTF-8');
 $userCompany = htmlspecialchars($currentUser['company'] ?? '', ENT_QUOTES, 'UTF-8');
 $userCategory = htmlspecialchars($currentUser['category'] ?? '', ENT_QUOTES, 'UTF-8');
-$username = htmlspecialchars($currentUser['htpasswd_user'], ENT_QUOTES, 'UTF-8');
 $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF-8');
 ?>
 <!DOCTYPE html>
@@ -153,35 +152,6 @@ $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF
               </div>
             </div>
 
-            <!-- Section: ログイン情報 -->
-            <div class="form-section">
-              <h2 class="form-section-title">ログイン情報</h2>
-
-              <div class="form-group">
-                <label class="form-label">
-                  ユーザー名（ログインID）
-                </label>
-                <input type="text" class="form-input" value="<?php echo $username; ?>" readonly style="background-color: #F5F5F5; cursor: not-allowed;">
-                <p class="form-hint">ユーザー名は変更できません</p>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">
-                  新しいパスワード
-                </label>
-                <input type="password" name="new_password" class="form-input" minlength="6" id="newPassword" placeholder="変更する場合のみ入力">
-                <p class="form-hint">6文字以上で設定してください（変更しない場合は空欄のまま）</p>
-              </div>
-
-              <div class="form-group" id="confirmPasswordGroup" style="display: none;">
-                <label class="form-label">
-                  新しいパスワード（確認）
-                </label>
-                <input type="password" name="new_password_confirm" class="form-input" minlength="6" id="newPasswordConfirm" placeholder="確認のため再入力">
-                <span class="form-error">パスワードが一致しません</span>
-              </div>
-            </div>
-
             <!-- Account Info -->
             <div class="form-section" style="background-color: #F9F9F9; padding: 20px; border-radius: 8px;">
               <h3 style="margin-top: 0; color: #666;">アカウント情報</h3>
@@ -211,9 +181,6 @@ $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF
     document.addEventListener('DOMContentLoaded', function() {
       const form = document.getElementById('profileForm');
       const messageDiv = document.getElementById('message');
-      const newPasswordInput = document.getElementById('newPassword');
-      const newPasswordConfirmInput = document.getElementById('newPasswordConfirm');
-      const confirmPasswordGroup = document.getElementById('confirmPasswordGroup');
       const lastNameInput = document.getElementById('lastName');
       const firstNameInput = document.getElementById('firstName');
       const lastNameKanaInput = document.getElementById('lastNameKana');
@@ -293,28 +260,9 @@ $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF
         }
       });
 
-      // Show/hide password confirmation field
-      newPasswordInput.addEventListener('input', function() {
-        if (this.value) {
-          confirmPasswordGroup.style.display = 'block';
-          newPasswordConfirmInput.required = true;
-        } else {
-          confirmPasswordGroup.style.display = 'none';
-          newPasswordConfirmInput.required = false;
-          newPasswordConfirmInput.value = '';
-        }
-      });
-
       // Form submission handler
       form.addEventListener('submit', async function(e) {
         e.preventDefault();
-
-        // Password confirmation check (if changing password)
-        if (newPasswordInput.value && newPasswordInput.value !== newPasswordConfirmInput.value) {
-          showMessage('error', 'パスワードが一致しません');
-          newPasswordConfirmInput.closest('.form-group').classList.add('error');
-          return;
-        }
 
         // Get form data
         const formData = new FormData(form);
@@ -337,11 +285,6 @@ $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF
           if (result.success) {
             showMessage('success', result.message || 'プロフィールを更新しました！');
 
-            // Clear password fields
-            newPasswordInput.value = '';
-            newPasswordConfirmInput.value = '';
-            confirmPasswordGroup.style.display = 'none';
-
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
           } else {
@@ -354,16 +297,6 @@ $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF
           submitBtn.classList.remove('loading');
           submitBtn.disabled = false;
           submitBtn.textContent = '変更を保存';
-        }
-      });
-
-      // Real-time password confirmation
-      newPasswordConfirmInput.addEventListener('input', function() {
-        const formGroup = this.closest('.form-group');
-        if (this.value && this.value !== newPasswordInput.value) {
-          formGroup.classList.add('error');
-        } else {
-          formGroup.classList.remove('error');
         }
       });
 

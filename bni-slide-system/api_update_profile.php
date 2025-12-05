@@ -35,7 +35,6 @@ try {
     $phone = trim($_POST['phone'] ?? '');
     $company = trim($_POST['company'] ?? '');
     $category = trim($_POST['category'] ?? '');
-    $newPassword = $_POST['new_password'] ?? '';
 
     // Combine last name and first name
     $name = $lastName . $firstName;
@@ -50,11 +49,6 @@ try {
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         throw new Exception('メールアドレスの形式が正しくありません');
-    }
-
-    // Validate password length (if changing)
-    if (!empty($newPassword) && strlen($newPassword) < 6) {
-        throw new Exception('パスワードは6文字以上で設定してください');
     }
 
     // Load members.json
@@ -123,15 +117,6 @@ try {
     // Update timestamp
     $data['updated_at'] = date('Y-m-d');
 
-    // Update password if provided
-    if (!empty($newPassword)) {
-        $passwordHash = password_hash($newPassword, PASSWORD_DEFAULT);
-        if (!$passwordHash) {
-            throw new Exception('パスワードのハッシュ化に失敗しました');
-        }
-        $data['users'][$currentUsername]['password_hash'] = $passwordHash;
-    }
-
     // Save updated members.json
     $jsonContent = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     if (file_put_contents($membersFile, $jsonContent) === false) {
@@ -140,9 +125,6 @@ try {
 
     // Response
     $message = 'プロフィールを更新しました！';
-    if (!empty($newPassword)) {
-        $message .= '次回ログイン時から新しいパスワードが有効になります。';
-    }
 
     echo json_encode([
         'success' => true,
