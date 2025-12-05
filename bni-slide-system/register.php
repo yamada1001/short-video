@@ -240,6 +240,23 @@ header('Content-Type: text/html; charset=UTF-8');
         firstNameReading = '';
       });
 
+      // Auto-convert hiragana to katakana in furigana fields
+      lastNameKanaInput.addEventListener('input', function(e) {
+        const value = this.value;
+        const converted = hiraganaToKatakana(value);
+        if (value !== converted) {
+          this.value = converted;
+        }
+      });
+
+      firstNameKanaInput.addEventListener('input', function(e) {
+        const value = this.value;
+        const converted = hiraganaToKatakana(value);
+        if (value !== converted) {
+          this.value = converted;
+        }
+      });
+
       // Form submission handler
       form.addEventListener('submit', async function(e) {
         e.preventDefault();
