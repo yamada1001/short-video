@@ -123,46 +123,19 @@ try {
     // Update timestamp
     $data['updated_at'] = date('Y-m-d');
 
+    // Update password if provided
+    if (!empty($newPassword)) {
+        $passwordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+        if (!$passwordHash) {
+            throw new Exception('パスワードのハッシュ化に失敗しました');
+        }
+        $data['users'][$currentUsername]['password_hash'] = $passwordHash;
+    }
+
     // Save updated members.json
     $jsonContent = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     if (file_put_contents($membersFile, $jsonContent) === false) {
         throw new Exception('プロフィール情報の保存に失敗しました');
-    }
-
-    // Update password in .htpasswd if provided
-    if (!empty($newPassword)) {
-        $htpasswdHash = generateHtpasswdHash($currentUsername, $newPassword);
-        if (!$htpasswdHash) {
-            throw new Exception('パスワードのハッシュ化に失敗しました');
-        }
-
-        // Read .htpasswd
-        $htpasswdFile = __DIR__ . '/.htpasswd';
-        $htpasswdContent = file_get_contents($htpasswdFile);
-        if ($htpasswdContent === false) {
-            throw new Exception('認証ファイルの読み込みに失敗しました');
-        }
-
-        // Update password hash
-        $lines = explode("\n", $htpasswdContent);
-        $updated = false;
-        foreach ($lines as &$line) {
-            if (strpos($line, $currentUsername . ':') === 0) {
-                $line = "$currentUsername:$htpasswdHash";
-                $updated = true;
-                break;
-            }
-        }
-
-        if (!$updated) {
-            throw new Exception('認証情報の更新に失敗しました');
-        }
-
-        // Save updated .htpasswd
-        $newHtpasswdContent = implode("\n", $lines);
-        if (file_put_contents($htpasswdFile, $newHtpasswdContent, LOCK_EX) === false) {
-            throw new Exception('認証情報の保存に失敗しました');
-        }
     }
 
     // Response
@@ -181,30 +154,4 @@ try {
         'success' => false,
         'message' => $e->getMessage()
     ]);
-}
-
-/**
- * Generate htpasswd hash (APR1-MD5)
- */
-function generateHtpasswdHash($username, $password) {
-    // Use exec to call htpasswd command
-    $command = sprintf(
-        'htpasswd -nbm %s %s 2>&1',
-        escapeshellarg($username),
-        escapeshellarg($password)
-    );
-
-    $output = shell_exec($command);
-
-    if ($output === null) {
-        return false;
-    }
-
-    // Extract hash from output (format: username:hash)
-    $parts = explode(':', trim($output), 2);
-    if (count($parts) !== 2) {
-        return false;
-    }
-
-    return $parts[1];
 }

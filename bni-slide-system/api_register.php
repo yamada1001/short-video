@@ -73,9 +73,9 @@ try {
         throw new Exception('この名前は既に登録されています');
     }
 
-    // Generate password hash for .htpasswd
-    $htpasswdHash = generateHtpasswdHash($username, $password);
-    if (!$htpasswdHash) {
+    // Generate password hash using PHP's password_hash()
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    if (!$passwordHash) {
         throw new Exception('パスワードのハッシュ化に失敗しました');
     }
 
@@ -91,7 +91,7 @@ try {
         'phone' => $phone,
         'company' => $company,
         'category' => $category,
-        'htpasswd_user' => $email,
+        'password_hash' => $passwordHash,
         'created_at' => date('Y-m-d H:i:s'),
         'updated_at' => date('Y-m-d H:i:s')
     ];
@@ -108,21 +108,8 @@ try {
         throw new Exception('ユーザー情報の保存に失敗しました');
     }
 
-    // Update .htpasswd
-    $htpasswdFile = __DIR__ . '/.htpasswd';
-    $htpasswdEntry = "$username:$htpasswdHash\n";
-
-    if (file_put_contents($htpasswdFile, $htpasswdEntry, FILE_APPEND | LOCK_EX) === false) {
-        // Rollback: remove user from members.json
-        unset($data['users'][$email]);
-        $data['members'] = array_values(array_diff($data['members'], [$name]));
-        file_put_contents($membersFile, json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
-
-        throw new Exception('認証情報の保存に失敗しました');
-    }
-
     // Send welcome email with password
-    sendWelcomeEmail($name, $email, $username, $password);
+    sendWelcomeEmail($name, $email, $email, $password);
 
     // Response
     echo json_encode([
@@ -136,32 +123,6 @@ try {
         'success' => false,
         'message' => $e->getMessage()
     ]);
-}
-
-/**
- * Generate htpasswd hash (APR1-MD5)
- */
-function generateHtpasswdHash($username, $password) {
-    // Use exec to call htpasswd command
-    $command = sprintf(
-        'htpasswd -nbm %s %s 2>&1',
-        escapeshellarg($username),
-        escapeshellarg($password)
-    );
-
-    $output = shell_exec($command);
-
-    if ($output === null) {
-        return false;
-    }
-
-    // Extract hash from output (format: username:hash)
-    $parts = explode(':', trim($output), 2);
-    if (count($parts) !== 2) {
-        return false;
-    }
-
-    return $parts[1];
 }
 
 /**

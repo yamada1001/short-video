@@ -79,33 +79,43 @@ function loginUser($email, $password) {
         return ['success' => false, 'message' => 'メールアドレスまたはパスワードが正しくありません'];
     }
 
-    // Verify password using .htpasswd
-    $htpasswdFile = __DIR__ . '/../.htpasswd';
-    if (!file_exists($htpasswdFile)) {
-        return ['success' => false, 'message' => '認証ファイルが見つかりません'];
-    }
+    $user = $data['users'][$email];
 
-    $htpasswdContent = file_get_contents($htpasswdFile);
-    $lines = explode("\n", $htpasswdContent);
+    // Check if password_hash exists (new format)
+    if (isset($user['password_hash'])) {
+        // Use password_verify() for new format
+        if (!password_verify($password, $user['password_hash'])) {
+            return ['success' => false, 'message' => 'メールアドレスまたはパスワードが正しくありません'];
+        }
+    } else {
+        // Legacy: try .htpasswd (for backward compatibility)
+        $htpasswdFile = __DIR__ . '/../.htpasswd';
+        if (!file_exists($htpasswdFile)) {
+            return ['success' => false, 'message' => '認証情報が見つかりません'];
+        }
 
-    $passwordHash = null;
-    foreach ($lines as $line) {
-        if (strpos($line, $email . ':') === 0) {
-            $parts = explode(':', $line, 2);
-            if (count($parts) === 2) {
-                $passwordHash = trim($parts[1]);
-                break;
+        $htpasswdContent = file_get_contents($htpasswdFile);
+        $lines = explode("\n", $htpasswdContent);
+
+        $passwordHash = null;
+        foreach ($lines as $line) {
+            if (strpos($line, $email . ':') === 0) {
+                $parts = explode(':', $line, 2);
+                if (count($parts) === 2) {
+                    $passwordHash = trim($parts[1]);
+                    break;
+                }
             }
         }
-    }
 
-    if (!$passwordHash) {
-        return ['success' => false, 'message' => 'メールアドレスまたはパスワードが正しくありません'];
-    }
+        if (!$passwordHash) {
+            return ['success' => false, 'message' => 'メールアドレスまたはパスワードが正しくありません'];
+        }
 
-    // Verify password with APR1-MD5 hash
-    if (!verifyApr1Password($password, $passwordHash)) {
-        return ['success' => false, 'message' => 'メールアドレスまたはパスワードが正しくありません'];
+        // Verify password with APR1-MD5 hash
+        if (!verifyApr1Password($password, $passwordHash)) {
+            return ['success' => false, 'message' => 'メールアドレスまたはパスワードが正しくありません'];
+        }
     }
 
     // Set session
