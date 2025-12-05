@@ -109,7 +109,7 @@ BNI Slide System
 ";
 
 // メールヘッダー（Xserver対応：実在するメールアドレスを使用）
-$fromEmail = 'info@yojitu.com'; // 実在するメールアドレスに変更
+$fromEmail = 'yamada@yojitu.com'; // 実在するメールアドレス
 $headers = "From: BNI Slide System <{$fromEmail}>\r\n";
 $headers .= "Reply-To: {$fromEmail}\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
