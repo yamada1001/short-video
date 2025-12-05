@@ -100,6 +100,12 @@ try {
     ];
   }
 
+  // Check for duplicate submission in the same week
+  $duplicateCheck = checkDuplicateSubmission($baseData['input_date'], $baseData['introducer_name'], $baseData['email']);
+  if ($duplicateCheck['isDuplicate']) {
+    throw new Exception('今週は既に回答済みです。1週間に1回のみ回答できます。');
+  }
+
   // Save to CSV (one row per combination of visitor and referral)
   $csvSaved = saveToCSV($baseData, $visitors, $referrals);
   if (!$csvSaved) {
@@ -294,28 +300,42 @@ function sendEmailNotification($baseData, $visitors, $referrals) {
   // Build referral list HTML
   $referralListHTML = '';
   $totalAmount = 0;
+  $realReferralsCount = 0;
+
   foreach ($referrals as $index => $referral) {
     $totalAmount += $referral['amount'];
-    $referralListHTML .= '
-      <div style="margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border-left: 3px solid #CF2030;">
-        <div class="field">
-          <span class="label">案件' . ($index + 1) . ':</span>
-          <span class="value">' . htmlspecialchars($referral['name']) . '</span>
+
+    // Check if this is a real referral (not dummy)
+    $isRealReferral = ($referral['name'] !== '-' || $referral['amount'] > 0);
+
+    if ($isRealReferral) {
+      $realReferralsCount++;
+      $referralListHTML .= '
+        <div style="margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border-left: 3px solid #CF2030;">
+          <div class="field">
+            <span class="label">案件' . $realReferralsCount . ':</span>
+            <span class="value">' . htmlspecialchars($referral['name']) . '</span>
+          </div>
+          <div class="field">
+            <span class="label">金額:</span>
+            <span class="value">¥' . number_format($referral['amount']) . '</span>
+          </div>
+          <div class="field">
+            <span class="label">カテゴリ:</span>
+            <span class="value">' . htmlspecialchars($referral['category']) . '</span>
+          </div>
+          <div class="field">
+            <span class="label">提供者:</span>
+            <span class="value">' . htmlspecialchars($referral['provider'] ?: '-') . '</span>
+          </div>
         </div>
-        <div class="field">
-          <span class="label">金額:</span>
-          <span class="value">¥' . number_format($referral['amount']) . '</span>
-        </div>
-        <div class="field">
-          <span class="label">カテゴリ:</span>
-          <span class="value">' . htmlspecialchars($referral['category']) . '</span>
-        </div>
-        <div class="field">
-          <span class="label">提供者:</span>
-          <span class="value">' . htmlspecialchars($referral['provider'] ?: '-') . '</span>
-        </div>
-      </div>
-    ';
+      ';
+    }
+  }
+
+  // If no real referrals, show message
+  if ($realReferralsCount === 0) {
+    $referralListHTML = '<p style="color: #999;">リファーラルなし</p>';
   }
 
   // Email body (HTML)
@@ -366,7 +386,7 @@ function sendEmailNotification($baseData, $visitors, $referrals) {
       </div>
 
       <div class="section">
-        <h3>2. リファーラル金額情報（' . count($referrals) . '件）</h3>
+        <h3>2. リファーラル金額情報（' . $realReferralsCount . '件）</h3>
         ' . $referralListHTML . '
         <div class="total">
           合計: ¥' . number_format($totalAmount) . '
@@ -482,4 +502,61 @@ function sendThanksEmail($baseData) {
   $result = mail($to, $subject, $message, implode("\r\n", $headers));
 
   return $result;
+}
+
+/**
+ * Check if user has already submitted for the same week
+ *
+ * @param string $inputDate The date in YYYY-MM-DD format
+ * @param string $introducerName The user's name
+ * @param string $email The user's email
+ * @return array ['isDuplicate' => bool, 'existingDate' => string|null]
+ */
+function checkDuplicateSubmission($inputDate, $introducerName, $email) {
+  // Calculate week file path (same logic as saveToCSV)
+  $date = new DateTime($inputDate);
+  $year = $date->format('Y');
+  $month = $date->format('n');
+  $day = $date->format('j');
+  $weekInMonth = ceil($day / 7);
+
+  $filename = "$year-$month-$weekInMonth.csv";
+  $csvFile = __DIR__ . '/data/' . $filename;
+
+  // If file doesn't exist, no duplicates
+  if (!file_exists($csvFile)) {
+    return ['isDuplicate' => false];
+  }
+
+  // Read CSV and check for existing entry
+  if (($handle = fopen($csvFile, 'r')) !== false) {
+    // Skip header row
+    $header = fgetcsv($handle);
+
+    while (($row = fgetcsv($handle)) !== false) {
+      // CSV format based on saveToCSV():
+      // 0: timestamp
+      // 1: input_date
+      // 2: introducer_name
+      // 3: email
+      // 4-15: other fields
+
+      if (count($row) >= 4) {
+        $csvEmail = $row[3];
+        $csvName = $row[2];
+
+        // Check if email or name matches (primary check is email)
+        if ($csvEmail === $email) {
+          fclose($handle);
+          return [
+            'isDuplicate' => true,
+            'existingDate' => $row[1]
+          ];
+        }
+      }
+    }
+    fclose($handle);
+  }
+
+  return ['isDuplicate' => false];
 }

@@ -152,7 +152,10 @@ function calculateStats($data) {
           'referral_amount' => 0
         ];
       }
-      $stats['members'][$member]['visitors']++;
+      // Only count visitor if visitor name is not empty
+      if (!empty($row['ビジター名'])) {
+        $stats['members'][$member]['visitors']++;
+      }
       $stats['members'][$member]['referral_amount'] += $amount;
     }
   }
