@@ -2,6 +2,7 @@
 /**
  * BNI Slide System - Excel Export API
  * 指定した週のデータをExcel形式でエクスポート
+ * Updated: 2025-12-05
  */
 
 require_once __DIR__ . '/includes/user_auth.php';
