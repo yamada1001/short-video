@@ -312,11 +312,11 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
                     <label for="attendance_yes">出席</label>
                   </div>
                   <div class="form-radio">
-                    <input type="radio" id="attendance_substitute" name="attendance" value="代理出席">
+                    <input type="radio" id="attendance_substitute" name="attendance" value="代理出席" required>
                     <label for="attendance_substitute">代理出席</label>
                   </div>
                   <div class="form-radio">
-                    <input type="radio" id="attendance_absent" name="attendance" value="欠席">
+                    <input type="radio" id="attendance_absent" name="attendance" value="欠席" required>
                     <label for="attendance_absent">欠席</label>
                   </div>
                 </div>
