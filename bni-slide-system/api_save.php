@@ -10,6 +10,9 @@ header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 
+// Load audit logger
+require_once __DIR__ . '/includes/audit_logger.php';
+
 // Config
 define('MAIL_TO', 'yamada@yojitu.com');
 define('MAIL_FROM', 'noreply@yojitu.com');
@@ -111,6 +114,21 @@ try {
   if (!$csvSaved) {
     throw new Exception('CSVファイルへの保存に失敗しました');
   }
+
+  // Write audit log
+  writeAuditLog(
+    'create',
+    'survey_data',
+    [
+      'input_date' => $baseData['input_date'],
+      'introducer_name' => $baseData['introducer_name'],
+      'attendance' => $baseData['attendance'],
+      'visitor_count' => count($visitors),
+      'referral_count' => count($referrals)
+    ],
+    $baseData['email'],
+    $baseData['introducer_name']
+  );
 
   // Send email notification
   $emailSent = sendEmailNotification($baseData, $visitors, $referrals);

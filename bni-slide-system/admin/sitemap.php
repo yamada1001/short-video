@@ -282,7 +282,9 @@ header('Content-Type: text/html; charset=UTF-8');
           <li><a href="slide.php">スライド表示</a></li>
           <li><a href="edit.php">編集</a></li>
           <li><a href="users.php">ユーザー管理</a></li>
+          <li><a href="audit_log.php">監査ログ</a></li>
           <li><a href="sitemap.php" class="active">サイトマップ</a></li>
+          <li><a href="../logout.php" style="color: #999;">ログアウト</a></li>
         </ul>
       </nav>
     </div>
