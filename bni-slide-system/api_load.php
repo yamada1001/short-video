@@ -71,19 +71,26 @@ try {
   $stats = calculateStats($data);
 
   // Extract date from filename for title slide
-  // e.g., "2024-12-1.csv" -> 2024年12月6日（金曜日）
   $slideDate = '';
   if ($csvFile) {
     $filename = basename($csvFile, '.csv');
-    $parts = explode('-', $filename);
-    if (count($parts) === 3) {
-      $year = intval($parts[0]);
-      $month = intval($parts[1]);
-      $weekInMonth = intval($parts[2]);
 
-      // Calculate the Friday of that week
-      $targetDate = calculateFridayDate($year, $month, $weekInMonth);
+    // Try to parse as date (YYYY-MM-DD format)
+    try {
+      $targetDate = new DateTime($filename);
       $slideDate = $targetDate->format('Y年n月j日');
+    } catch (Exception $e) {
+      // If parsing fails, try old format: YYYY-MM-W
+      $parts = explode('-', $filename);
+      if (count($parts) === 3 && intval($parts[2]) <= 5) {
+        $year = intval($parts[0]);
+        $month = intval($parts[1]);
+        $weekInMonth = intval($parts[2]);
+
+        // Calculate the Friday of that week
+        $targetDate = calculateFridayDate($year, $month, $weekInMonth);
+        $slideDate = $targetDate->format('Y年n月j日');
+      }
     }
   }
 
