@@ -234,7 +234,7 @@ async function exportToExcel() {
     }
 
     // Open download URL in new window
-    const downloadUrl = apiBasePath + 'api_export_excel.php?week=' + encodeURIComponent(week);
+    const downloadUrl = apiBasePath + 'api_export_csv.php?week=' + encodeURIComponent(week);
     window.open(downloadUrl, '_blank');
 
     showMessage('success', 'Excelファイルをダウンロードしています...');
