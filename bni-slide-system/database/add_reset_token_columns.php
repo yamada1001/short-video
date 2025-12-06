@@ -7,9 +7,17 @@
  * php database/add_reset_token_columns.php
  */
 
-// CLI実行のみ許可
-if (php_sapi_name() !== 'cli') {
-    die('このスクリプトはコマンドラインからのみ実行できます');
+// CLI実行のみ許可（ブラウザからも実行可能に一時的に変更）
+// if (php_sapi_name() !== 'cli') {
+//     die('このスクリプトはコマンドラインからのみ実行できます');
+// }
+
+// ブラウザから実行の場合、HTML形式で出力
+$isCli = php_sapi_name() === 'cli';
+if (!$isCli) {
+    echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Migration</title>";
+    echo "<style>body{font-family:monospace;padding:20px;background:#f5f5f5;}pre{background:#fff;padding:15px;border:1px solid #ddd;}</style>";
+    echo "</head><body><pre>";
 }
 
 echo "==============================================\n";
@@ -72,6 +80,10 @@ try {
     echo "✅ マイグレーション完了\n";
     echo "==============================================\n";
 
+    if (!$isCli) {
+        echo "</pre></body></html>";
+    }
+
     exit(0);
 
 } catch (Exception $e) {
@@ -79,6 +91,11 @@ try {
         $db->close();
     }
     echo "\n❌ エラー: " . $e->getMessage() . "\n";
+
+    if (!$isCli) {
+        echo "</pre></body></html>";
+    }
+
     exit(1);
 }
 ?>
