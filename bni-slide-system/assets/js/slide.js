@@ -61,18 +61,19 @@
       if (result.success && result.weeks.length > 0) {
         weekSelector.innerHTML = '';
 
-        // Get today's date at midnight for comparison
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const todayTimestamp = today.getTime() / 1000; // Convert to seconds
+        // Get current week's Friday from API response (BNI週の定義に基づく)
+        const currentWeekFriday = result.current_week_friday || '';
+        const currentWeekTimestamp = currentWeekFriday
+          ? new Date(currentWeekFriday + 'T00:00:00').getTime() / 1000
+          : 0;
 
-        // Filter weeks to only show past or today's meetings, and only Fridays
+        // Filter weeks to show up to current week's Friday (今週の金曜日まで表示)
         const availableWeeks = result.weeks.filter(week => {
-          // Check if date is past or today
-          if (week.timestamp > todayTimestamp) return false;
-
           // Check if it's Friday (金曜日)
-          return week.label.includes('（金）');
+          if (!week.label.includes('（金）')) return false;
+
+          // Show weeks up to and including current week's Friday
+          return week.timestamp <= currentWeekTimestamp;
         });
 
         if (availableWeeks.length === 0) {
