@@ -171,6 +171,7 @@ require_once '../includes/header.php';
 
 <!-- 京都トップページ専用スクリプト（全日程の達成率を合算） -->
 <script>
+alert('スクリプトが実行されました！');
 console.log('Inline script executed!');
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOMContentLoaded in inline script!');
