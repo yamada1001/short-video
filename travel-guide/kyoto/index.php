@@ -179,38 +179,44 @@ require_once '../includes/header.php';
 
 <!-- 京都トップページ専用スクリプト（全日程の達成率を合算） -->
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // 全日程のlocalStorageキーを定義
-    const dayKeys = [
-        'checked_spots_/travel-guide/kyoto/days/day1.php',
-        'checked_spots_/travel-guide/kyoto/days/day2.php',
-        'checked_spots_/travel-guide/kyoto/days/day3.php'
-    ];
+// 全日程のlocalStorageキーを定義
+const dayKeys = [
+    'checked_spots_/travel-guide/kyoto/days/day1.php',
+    'checked_spots_/travel-guide/kyoto/days/day2.php',
+    'checked_spots_/travel-guide/kyoto/days/day3.php'
+];
 
-    // 達成率を更新する関数
-    const updateStats = () => {
-        let totalChecked = 0;
-        dayKeys.forEach(key => {
-            const savedData = localStorage.getItem(key);
-            if (savedData) {
-                try {
-                    const checkedIds = JSON.parse(savedData);
-                    totalChecked += checkedIds.length;
-                } catch (e) {
-                    console.error('localStorage parse error:', e);
-                }
+// 京都トップページ専用のupdateStats関数（guide.jsをオーバーライド）
+window.updateKyotoStats = () => {
+    let totalChecked = 0;
+    dayKeys.forEach(key => {
+        const savedData = localStorage.getItem(key);
+        if (savedData) {
+            try {
+                const checkedIds = JSON.parse(savedData);
+                totalChecked += checkedIds.length;
+            } catch (e) {
+                console.error('localStorage parse error:', e);
             }
-        });
-
-        // 統計情報を更新
-        const checkedElement = document.querySelector('.checked-count');
-        if (checkedElement) {
-            checkedElement.textContent = totalChecked;
         }
-    };
+    });
 
+    // 統計情報を更新
+    const checkedElement = document.querySelector('.checked-count');
+    if (checkedElement) {
+        checkedElement.textContent = totalChecked;
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
     // 初期表示時に達成率を更新
-    updateStats();
+    updateKyotoStats();
+
+    // guide.jsのupdateStatsを無効化して、updateKyotoStatsに置き換え
+    // これでguide.jsが0で上書きするのを防ぐ
+    setTimeout(() => {
+        updateKyotoStats();
+    }, 100);
 
     // 全日程リセットボタンのイベント
     const resetAllButton = document.getElementById('reset-all-button');
