@@ -81,7 +81,14 @@ try {
 
     // リセットURLを生成
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-    $host = $_SERVER['HTTP_HOST'];
+
+    // HTTPヘッダーインジェクション対策: HTTP_HOSTを検証
+    $allowedHosts = ['yojitu.com', 'www.yojitu.com', 'localhost'];
+    $host = $_SERVER['HTTP_HOST'] ?? '';
+    if (!in_array($host, $allowedHosts, true)) {
+        $host = 'yojitu.com'; // デフォルトホスト
+    }
+
     $resetUrl = $protocol . '://' . $host . '/bni-slide-system/reset-password.php?token=' . $token;
 
     // メール本文を作成
@@ -133,22 +140,12 @@ BNI Slide System
     if ($mailSent) {
         echo json_encode([
             'success' => true,
-            'message' => 'リセットメールを送信しました。メールをご確認ください。',
-            'debug' => [
-                'email' => $email,
-                'token' => $token,
-                'reset_url' => $resetUrl
-            ]
+            'message' => 'リセットメールを送信しました。メールをご確認ください。'
         ]);
     } else {
         echo json_encode([
             'success' => false,
-            'message' => 'メールの送信に失敗しました。管理者にお問い合わせください。',
-            'debug' => [
-                'mail_function_result' => $mailSent,
-                'from_email' => $fromEmail,
-                'to_email' => $email
-            ]
+            'message' => 'メールの送信に失敗しました。管理者にお問い合わせください。'
         ]);
     }
 
