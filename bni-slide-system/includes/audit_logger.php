@@ -124,3 +124,60 @@ function getAuditLogCount() {
 
     return count($logData['logs']);
 }
+
+/**
+ * Write audit log to SQLite database
+ *
+ * @param string $action アクション（'create', 'update', 'delete'）
+ * @param string $target 対象（'survey_data', 'user', etc.）
+ * @param array $data 変更内容
+ * @param string $userEmail ユーザーメールアドレス
+ * @param string $userName ユーザー名
+ * @return bool 成功/失敗
+ */
+function writeAuditLogToDb($action, $target, $data, $userEmail, $userName) {
+    require_once __DIR__ . '/db.php';
+
+    try {
+        $db = getDbConnection();
+
+        $query = "INSERT INTO audit_logs (
+            action,
+            target,
+            user_email,
+            user_name,
+            data,
+            ip_address,
+            user_agent,
+            created_at
+        ) VALUES (
+            :action,
+            :target,
+            :user_email,
+            :user_name,
+            :data,
+            :ip_address,
+            :user_agent,
+            :created_at
+        )";
+
+        $params = [
+            ':action' => $action,
+            ':target' => $target,
+            ':user_email' => $userEmail,
+            ':user_name' => $userName,
+            ':data' => json_encode($data, JSON_UNESCAPED_UNICODE),
+            ':ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
+            ':user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown',
+            ':created_at' => date('Y-m-d H:i:s')
+        ];
+
+        dbExecute($db, $query, $params);
+        dbClose($db);
+
+        return true;
+    } catch (Exception $e) {
+        error_log("Audit log write failed: " . $e->getMessage());
+        return false;
+    }
+}

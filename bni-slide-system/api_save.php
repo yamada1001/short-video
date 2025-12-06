@@ -14,6 +14,7 @@ header('Access-Control-Allow-Methods: POST');
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/csrf.php';
 require_once __DIR__ . '/includes/date_helper.php';
+require_once __DIR__ . '/includes/audit_logger.php';
 
 // Config
 define('MAIL_TO', 'yamada@yojitu.com');
@@ -303,51 +304,7 @@ function saveToDatabase($db, $baseData, $visitors, $referrals) {
   }
 }
 
-/**
- * Write audit log to database
- */
-function writeAuditLogToDb($action, $target, $data, $userEmail, $userName) {
-  try {
-    $db = getDbConnection();
-
-    $query = "INSERT INTO audit_logs (
-      action,
-      target,
-      user_email,
-      user_name,
-      data,
-      ip_address,
-      user_agent,
-      created_at
-    ) VALUES (
-      :action,
-      :target,
-      :user_email,
-      :user_name,
-      :data,
-      :ip_address,
-      :user_agent,
-      :created_at
-    )";
-
-    $params = [
-      ':action' => $action,
-      ':target' => $target,
-      ':user_email' => $userEmail,
-      ':user_name' => $userName,
-      ':data' => json_encode($data, JSON_UNESCAPED_UNICODE),
-      ':ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
-      ':user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown',
-      ':created_at' => date('Y-m-d H:i:s')
-    ];
-
-    dbExecute($db, $query, $params);
-    dbClose($db);
-
-  } catch (Exception $e) {
-    error_log("Audit log write failed: " . $e->getMessage());
-  }
-}
+// writeAuditLogToDb() はincludes/audit_logger.phpで定義されています
 
 /**
  * Send email notification to admin
