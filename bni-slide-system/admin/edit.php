@@ -5,11 +5,15 @@
  */
 
 require_once __DIR__ . '/../includes/session_auth.php';
+require_once __DIR__ . '/../includes/csrf.php';
 
 // セッション開始
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// CSRFトークン生成
+$csrfToken = generateCSRFToken();
 
 // ログイン確認
 $currentUser = getCurrentUser();
@@ -241,6 +245,10 @@ if (!$isAdmin) {
   </footer>
 
   <!-- Scripts -->
+  <script>
+    // CSRF Token for API requests
+    const CSRF_TOKEN = '<?php echo htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>';
+  </script>
   <script src="../assets/js/edit.js"></script>
 
 </body>

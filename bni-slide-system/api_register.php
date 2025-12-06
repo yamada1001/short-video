@@ -8,6 +8,7 @@
 header('Content-Type: application/json; charset=utf-8');
 
 require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/csrf.php';
 
 // Check if POST request
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -17,6 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     ]);
     exit;
 }
+
+// CSRF protection
+requireCSRFToken();
 
 try {
     // Get form data

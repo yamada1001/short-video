@@ -8,6 +8,7 @@
 header('Content-Type: application/json; charset=utf-8');
 
 require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/csrf.php';
 
 // POSTメソッドのみ許可
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -15,6 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'POSTメソッドのみ許可されています']);
     exit;
 }
+
+// CSRF protection
+requireCSRFToken();
 
 // メールアドレスを取得
 $email = trim($_POST['email'] ?? '');

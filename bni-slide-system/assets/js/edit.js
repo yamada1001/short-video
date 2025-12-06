@@ -158,7 +158,8 @@ async function saveChanges() {
     const response = await fetch(apiBasePath + 'api_update.php', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': CSRF_TOKEN
       },
       body: JSON.stringify({
         data: currentData

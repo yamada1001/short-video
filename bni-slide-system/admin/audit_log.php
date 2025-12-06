@@ -42,47 +42,57 @@ dbClose($db);
  * Get audit logs from database
  */
 function getAuditLogs($db, $limit, $offset) {
-    $query = "SELECT
-                id,
-                action,
-                target,
-                user_email,
-                user_name,
-                data,
-                ip_address,
-                user_agent,
-                created_at as timestamp
-              FROM audit_logs
-              ORDER BY created_at DESC
-              LIMIT :limit OFFSET :offset";
+    try {
+        $query = "SELECT
+                    id,
+                    action,
+                    target,
+                    user_email,
+                    user_name,
+                    data,
+                    ip_address,
+                    user_agent,
+                    created_at as timestamp
+                  FROM audit_logs
+                  ORDER BY created_at DESC
+                  LIMIT :limit OFFSET :offset";
 
-    $results = dbQuery($db, $query, [
-        ':limit' => $limit,
-        ':offset' => $offset
-    ]);
+        $results = dbQuery($db, $query, [
+            ':limit' => $limit,
+            ':offset' => $offset
+        ]);
 
-    // Parse JSON data field
-    foreach ($results as &$log) {
-        if (isset($log['data']) && !empty($log['data'])) {
-            $decoded = json_decode($log['data'], true);
-            if ($decoded !== null) {
-                $log['data'] = $decoded;
+        // Parse JSON data field
+        foreach ($results as &$log) {
+            if (isset($log['data']) && !empty($log['data'])) {
+                $decoded = json_decode($log['data'], true);
+                if ($decoded !== null) {
+                    $log['data'] = $decoded;
+                }
+            } else {
+                $log['data'] = [];
             }
-        } else {
-            $log['data'] = [];
         }
-    }
 
-    return $results;
+        return $results;
+    } catch (Exception $e) {
+        error_log("Failed to fetch audit logs: " . $e->getMessage());
+        return [];
+    }
 }
 
 /**
  * Get total audit log count
  */
 function getAuditLogCount($db) {
-    $query = "SELECT COUNT(*) as count FROM audit_logs";
-    $result = dbQueryOne($db, $query);
-    return $result ? intval($result['count']) : 0;
+    try {
+        $query = "SELECT COUNT(*) as count FROM audit_logs";
+        $result = dbQueryOne($db, $query);
+        return $result ? intval($result['count']) : 0;
+    } catch (Exception $e) {
+        error_log("Failed to fetch audit log count: " . $e->getMessage());
+        return 0;
+    }
 }
 
 // アクションラベル

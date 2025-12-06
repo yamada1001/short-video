@@ -9,6 +9,7 @@ header('Content-Type: application/json; charset=utf-8');
 // Load dependencies
 require_once __DIR__ . '/includes/session_auth.php';
 require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/csrf.php';
 
 // Get current user
 if (session_status() === PHP_SESSION_NONE) {
@@ -24,6 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     ]);
     exit;
 }
+
+// CSRF protection
+requireCSRFToken();
 
 try {
     // Get JSON data

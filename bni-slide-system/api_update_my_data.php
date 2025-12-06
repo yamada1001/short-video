@@ -9,6 +9,10 @@ header('Content-Type: application/json; charset=utf-8');
 // Load dependencies
 require_once __DIR__ . '/includes/user_auth.php';
 require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/csrf.php';
+
+// CSRF protection
+requireCSRFToken();
 
 // Get current user info
 $currentUser = getCurrentUserInfo();

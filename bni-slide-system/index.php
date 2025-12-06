@@ -6,6 +6,10 @@
 
 // Load user authentication helper
 require_once __DIR__ . '/includes/user_auth.php';
+require_once __DIR__ . '/includes/csrf.php';
+
+// Generate CSRF token
+$csrfToken = generateCSRFToken();
 
 // Get current user info from Basic Auth
 $currentUser = getCurrentUserInfo();
@@ -163,6 +167,8 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
 
           <!-- Survey Form -->
           <form id="surveyForm" method="POST" action="api_save.php">
+            <!-- CSRF Token -->
+            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
 
             <!-- Section 0: 基本情報 -->
             <div class="form-section">
