@@ -7,6 +7,14 @@ require_once '../../includes/header.php';
 <div class="container">
     <div class="guide-container">
         <main class="guide-main">
+            <!-- 戻るリンク -->
+            <div style="margin-bottom: 20px;">
+                <a href="../index.php" style="display: inline-flex; align-items: center; gap: 6px; color: #4A90E2; text-decoration: none; font-size: 14px;">
+                    <i class="fas fa-arrow-left"></i>
+                    京都旅行トップに戻る
+                </a>
+            </div>
+
             <div class="page-header">
                 <h1 class="page-title">12/9（月）明後日 🏯</h1>
                 <p class="page-subtitle">8:30〜10:15 | 午前のみ | 3スポット消化</p>

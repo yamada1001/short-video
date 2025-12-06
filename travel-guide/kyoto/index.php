@@ -169,4 +169,7 @@ require_once '../includes/header.php';
     </div>
 </div>
 
+<!-- 京都トップページ専用スクリプト（全日程の達成率を合算） -->
+<script src="<?php echo BASE_URL; ?>/assets/js/kyoto-index.js"></script>
+
 <?php require_once '../includes/footer.php'; ?>
