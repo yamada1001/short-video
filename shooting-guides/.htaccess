@@ -1,0 +1,15 @@
+# Basic Authentication
+AuthType Basic
+AuthName "Restricted Area - Shooting Guides"
+AuthUserFile /Users/yamadaren/Movies/claude-code-projects/yojitu.com/shooting-guides/.htpasswd
+Require valid-user
+
+# noindex header
+Header set X-Robots-Tag "noindex, nofollow"
+
+# Disable directory listing
+Options -Indexes
+
+# Error Documents
+ErrorDocument 401 "Authentication Required"
+ErrorDocument 403 "Access Forbidden"
