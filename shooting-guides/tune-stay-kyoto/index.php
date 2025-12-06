@@ -158,50 +158,209 @@
                 padding: 10px;
             }
 
+            body {
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
             header {
-                padding: 40px 20px;
+                padding: 30px 15px;
                 border-radius: 10px;
             }
 
             h1 {
-                font-size: 2em;
+                font-size: 1.6em;
                 letter-spacing: 1px;
             }
 
             .subtitle {
-                font-size: 1.1em;
-            }
-
-            .section {
-                padding: 25px 15px;
-                margin-bottom: 20px;
-                border-radius: 15px;
-            }
-
-            h2 {
-                font-size: 1.5em;
-            }
-
-            h3 {
-                font-size: 1.3em;
-            }
-
-            h4 {
-                font-size: 1.1em;
-            }
-
-            table {
                 font-size: 0.9em;
             }
 
+            .section {
+                padding: 20px 12px;
+                margin-bottom: 15px;
+                border-radius: 10px;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+
+            h3 {
+                font-size: 1.1em;
+            }
+
+            h4 {
+                font-size: 1em;
+            }
+
+            p {
+                font-size: 0.95em;
+                line-height: 1.8;
+                margin-bottom: 15px;
+            }
+
+            li {
+                font-size: 0.95em;
+                line-height: 1.7;
+                margin-bottom: 10px;
+            }
+
+            table {
+                font-size: 0.85em;
+            }
+
             th, td {
-                padding: 10px;
+                padding: 8px;
             }
 
             .tag {
-                padding: 6px 14px;
-                font-size: 0.85em;
+                padding: 4px 10px;
+                font-size: 0.75em;
             }
+        }
+
+        /* モバイル用フローティング目次ボタン */
+        .mobile-toc-button {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-toc-button:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 1023px) {
+            .mobile-toc-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        /* モバイル目次オーバーレイ */
+        .mobile-toc-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1100;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-toc-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* モバイル目次パネル */
+        .mobile-toc-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100%;
+            background: #ffffff;
+            z-index: 1200;
+            overflow-y: auto;
+            transition: right 0.3s ease;
+            box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+        }
+
+        .mobile-toc-panel.active {
+            right: 0;
+        }
+
+        .mobile-toc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fafafa;
+        }
+
+        .mobile-toc-header h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #2c3e50;
+            border: none;
+            padding: 0;
+        }
+
+        .mobile-toc-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #666;
+            cursor: pointer;
+            padding: 5px;
+            line-height: 1;
+        }
+
+        .mobile-toc-content {
+            padding: 20px;
+        }
+
+        .mobile-toc-content ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mobile-toc-content li {
+            margin-bottom: 8px;
+        }
+
+        .mobile-toc-content a {
+            color: #666;
+            text-decoration: none;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .mobile-toc-content a i {
+            width: 18px;
+            text-align: center;
+            margin-right: 10px;
+            color: #999;
+        }
+
+        .mobile-toc-content a:active {
+            background: #f5f5f5;
+            color: #2c3e50;
+        }
+
+        .mobile-toc-content a.active {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .mobile-toc-content a.active i {
+            color: white;
         }
 
         .sidebar-toc h3 {
@@ -1613,6 +1772,43 @@
         </aside>
     </div><!-- /container -->
 
+    <!-- モバイル目次ボタン -->
+    <button class="mobile-toc-button" id="mobileTocButton" aria-label="目次を開く">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- モバイル目次オーバーレイ -->
+    <div class="mobile-toc-overlay" id="mobileTocOverlay"></div>
+
+    <!-- モバイル目次パネル -->
+    <div class="mobile-toc-panel" id="mobileTocPanel">
+        <div class="mobile-toc-header">
+            <h3><i class="fas fa-list"></i> 目次</h3>
+            <button class="mobile-toc-close" id="mobileTocClose" aria-label="閉じる">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-toc-content">
+            <ul>
+                <li><a href="#basic-info" class="mobile-toc-link"><i class="fas fa-map-marker-alt"></i> 基本情報</a></li>
+                <li><a href="#sns-info" class="mobile-toc-link"><i class="fas fa-hashtag"></i> SNS情報</a></li>
+                <li><a href="#facility" class="mobile-toc-link"><i class="fas fa-building"></i> 施設構成</a></li>
+                <li><a href="#rooms" class="mobile-toc-link"><i class="fas fa-bed"></i> 客室タイプ</a></li>
+                <li><a href="#photo-spots" class="mobile-toc-link"><i class="fas fa-camera"></i> 撮影スポット</a></li>
+                <li><a href="#shot-list" class="mobile-toc-link"><i class="fas fa-video"></i> 撮影カットリスト</a></li>
+                <li><a href="#amenities" class="mobile-toc-link"><i class="fas fa-spray-can"></i> アメニティ</a></li>
+                <li><a href="#food" class="mobile-toc-link"><i class="fas fa-utensils"></i> 食事・ドリンク</a></li>
+                <li><a href="#contents" class="mobile-toc-link"><i class="fas fa-film"></i> 3つのコンテンツ</a></li>
+                <li><a href="#nearby" class="mobile-toc-link"><i class="fas fa-map-marked-alt"></i> 周辺スポット</a></li>
+                <li><a href="#pricing" class="mobile-toc-link"><i class="fas fa-yen-sign"></i> 料金目安</a></li>
+                <li><a href="#reviews" class="mobile-toc-link"><i class="fas fa-star"></i> レビュー</a></li>
+                <li><a href="#shooting-tips" class="mobile-toc-link"><i class="fas fa-exclamation-triangle"></i> 撮影の注意</a></li>
+                <li><a href="#references" class="mobile-toc-link"><i class="fas fa-newspaper"></i> 参考記事</a></li>
+                <li><a href="#summary" class="mobile-toc-link"><i class="fas fa-clipboard-check"></i> まとめ</a></li>
+            </ul>
+        </div>
+    </div>
+
     <script>
         // スクロールに連動した目次のハイライト
         document.addEventListener('DOMContentLoaded', function() {
@@ -1721,6 +1917,85 @@
                 });
                 console.log('チェックリストをリセットしました');
             };
+
+            // モバイル目次の開閉機能
+            const mobileTocButton = document.getElementById('mobileTocButton');
+            const mobileTocOverlay = document.getElementById('mobileTocOverlay');
+            const mobileTocPanel = document.getElementById('mobileTocPanel');
+            const mobileTocClose = document.getElementById('mobileTocClose');
+            const mobileTocLinks = document.querySelectorAll('.mobile-toc-link');
+
+            // 目次を開く
+            function openMobileToc() {
+                mobileTocOverlay.classList.add('active');
+                mobileTocPanel.classList.add('active');
+                document.body.style.overflow = 'hidden'; // スクロール防止
+            }
+
+            // 目次を閉じる
+            function closeMobileToc() {
+                mobileTocOverlay.classList.remove('active');
+                mobileTocPanel.classList.remove('active');
+                document.body.style.overflow = ''; // スクロール復元
+            }
+
+            // ボタンクリックで開く
+            mobileTocButton.addEventListener('click', openMobileToc);
+
+            // オーバーレイクリックで閉じる
+            mobileTocOverlay.addEventListener('click', closeMobileToc);
+
+            // 閉じるボタンで閉じる
+            mobileTocClose.addEventListener('click', closeMobileToc);
+
+            // モバイル目次リンククリックで閉じる＆スクロール
+            mobileTocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+
+                    // 目次を閉じる
+                    closeMobileToc();
+
+                    // スクロール
+                    if (targetSection) {
+                        setTimeout(() => {
+                            const offsetTop = targetSection.offsetTop - 20;
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }, 300); // アニメーション後にスクロール
+                    }
+                });
+            });
+
+            // モバイル目次のアクティブハイライト（PC版と共通のロジック）
+            function updateMobileTocHighlight() {
+                let current = '';
+                const scrollPosition = window.pageYOffset + 100;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                mobileTocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // スクロール時にモバイル目次もハイライト更新
+            window.addEventListener('scroll', updateMobileTocHighlight);
+            updateMobileTocHighlight(); // 初期実行
         });
     </script>
 </body>
