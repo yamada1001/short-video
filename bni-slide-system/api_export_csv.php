@@ -38,13 +38,21 @@ if (empty($week)) {
 }
 
 // SQLiteからデータを取得してCSVエクスポート
-exportFromSQLite($week);
+try {
+    exportFromSQLite($week);
+} catch (Exception $e) {
+    error_log('[EXPORT CSV] Error: ' . $e->getMessage());
+    http_response_code(500);
+    die('データのエクスポート中にエラーが発生しました');
+}
 
 /**
  * SQLiteデータベースからデータを取得してCSVエクスポート
  */
 function exportFromSQLite($week) {
-    $db = getDbConnection();
+    $db = null;
+    try {
+        $db = getDbConnection();
 
     // 指定週のデータを取得（JOINでビジター・リファーラルも取得）
     // CSVフォーマットに合わせて、1行 = 1リファーラル（またはビジター）
@@ -146,6 +154,12 @@ function exportFromSQLite($week) {
         ]);
     }
 
-    fclose($output);
-    exit;
+        fclose($output);
+        exit;
+    } catch (Exception $e) {
+        if ($db) {
+            dbClose($db);
+        }
+        throw $e; // 上位のcatchブロックで処理
+    }
 }
