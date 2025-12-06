@@ -159,7 +159,7 @@
             }
 
             body {
-                font-size: 14px;
+                font-size: 16px;
                 line-height: 1.8;
             }
 
@@ -169,55 +169,64 @@
             }
 
             h1 {
-                font-size: 1.6em;
+                font-size: 1.8em;
                 letter-spacing: 1px;
             }
 
             .subtitle {
-                font-size: 0.9em;
+                font-size: 1em;
             }
 
             .section {
-                padding: 20px 12px;
+                padding: 20px 15px;
                 margin-bottom: 15px;
                 border-radius: 10px;
             }
 
             h2 {
-                font-size: 1.3em;
+                font-size: 1.5em;
             }
 
             h3 {
-                font-size: 1.1em;
+                font-size: 1.25em;
             }
 
             h4 {
-                font-size: 1em;
+                font-size: 1.1em;
             }
 
             p {
-                font-size: 0.95em;
+                font-size: 1em;
                 line-height: 1.8;
                 margin-bottom: 15px;
             }
 
             li {
-                font-size: 0.95em;
+                font-size: 1em;
                 line-height: 1.7;
                 margin-bottom: 10px;
             }
 
             table {
-                font-size: 0.85em;
+                font-size: 0.9em;
             }
 
             th, td {
-                padding: 8px;
+                padding: 10px;
             }
 
             .tag {
-                padding: 4px 10px;
-                font-size: 0.75em;
+                padding: 5px 12px;
+                font-size: 0.85em;
+            }
+
+            .checklist li {
+                font-size: 1em;
+                padding: 14px 0 14px 40px;
+            }
+
+            .checklist li:before {
+                font-size: 1.5em;
             }
         }
 
