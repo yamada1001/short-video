@@ -5,6 +5,11 @@
  */
 header('Content-Type: text/html; charset=UTF-8');
 
+require_once __DIR__ . '/includes/csrf.php';
+
+// Generate CSRF token
+$csrfToken = generateCSRFToken();
+
 // トークンを取得
 $token = $_GET['token'] ?? '';
 
@@ -130,6 +135,7 @@ if (empty($token)) {
       <!-- Reset Password Form -->
       <form id="resetPasswordForm" method="POST" action="api_reset_password.php">
         <input type="hidden" name="token" value="<?php echo htmlspecialchars($token, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
 
         <div class="form-group">
           <label class="form-label">
