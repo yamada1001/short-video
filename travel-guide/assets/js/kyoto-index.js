@@ -3,7 +3,10 @@
  * 全日程の達成率を合算して表示
  */
 
+console.log('kyoto-index.js loaded!');
+
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded fired!');
     // デバッグ: 全てのlocalStorageキーを表示
     console.log('=== localStorage Debug ===');
     for (let i = 0; i < localStorage.length; i++) {
