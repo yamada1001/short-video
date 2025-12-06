@@ -1,11 +1,13 @@
 # Basic Authentication
 AuthType Basic
 AuthName "Restricted Area - Shooting Guides"
-AuthUserFile /Users/yamadaren/Movies/claude-code-projects/yojitu.com/shooting-guides/.htpasswd
+AuthUserFile /home/yojitu/yojitu.com/shooting-guides/.htpasswd
 Require valid-user
 
-# noindex header
-Header set X-Robots-Tag "noindex, nofollow"
+# noindex header (conditional - only if mod_headers is available)
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
 
 # Disable directory listing
 Options -Indexes
