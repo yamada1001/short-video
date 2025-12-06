@@ -31,6 +31,14 @@ require_once '../includes/header.php';
                 </div>
             </div>
 
+            <!-- 全日程リセットボタン -->
+            <div style="margin-bottom: 30px; text-align: center;">
+                <button id="reset-all-button" class="btn" style="background: #dc3545; gap: 8px;">
+                    <i class="fas fa-redo"></i>
+                    全日程のチェックをリセット
+                </button>
+            </div>
+
             <!-- 日程リンク -->
             <section class="section" id="schedule">
                 <h2 class="section-title">日程</h2>
@@ -179,24 +187,45 @@ document.addEventListener('DOMContentLoaded', () => {
         'checked_spots_/travel-guide/kyoto/days/day3.php'
     ];
 
-    // 各日程のチェック数を取得
-    let totalChecked = 0;
-    dayKeys.forEach(key => {
-        const savedData = localStorage.getItem(key);
-        if (savedData) {
-            try {
-                const checkedIds = JSON.parse(savedData);
-                totalChecked += checkedIds.length;
-            } catch (e) {
-                console.error('localStorage parse error:', e);
+    // 達成率を更新する関数
+    const updateStats = () => {
+        let totalChecked = 0;
+        dayKeys.forEach(key => {
+            const savedData = localStorage.getItem(key);
+            if (savedData) {
+                try {
+                    const checkedIds = JSON.parse(savedData);
+                    totalChecked += checkedIds.length;
+                } catch (e) {
+                    console.error('localStorage parse error:', e);
+                }
             }
-        }
-    });
+        });
 
-    // 統計情報を更新
-    const checkedElement = document.querySelector('.checked-count');
-    if (checkedElement) {
-        checkedElement.textContent = totalChecked;
+        // 統計情報を更新
+        const checkedElement = document.querySelector('.checked-count');
+        if (checkedElement) {
+            checkedElement.textContent = totalChecked;
+        }
+    };
+
+    // 初期表示時に達成率を更新
+    updateStats();
+
+    // 全日程リセットボタンのイベント
+    const resetAllButton = document.getElementById('reset-all-button');
+    if (resetAllButton) {
+        resetAllButton.addEventListener('click', () => {
+            if (confirm('全日程（day1〜day3）のチェックをすべてリセットしますか？')) {
+                // 全日程のlocalStorageキーを削除
+                dayKeys.forEach(key => {
+                    localStorage.removeItem(key);
+                });
+
+                // ページをリロードして表示を更新
+                location.reload();
+            }
+        });
     }
 });
 </script>

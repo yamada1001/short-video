@@ -39,6 +39,14 @@ require_once '../../includes/header.php';
                 </div>
             </div>
 
+            <!-- リセットボタン -->
+            <div style="margin-bottom: 30px; text-align: center;">
+                <button id="reset-button" class="btn" style="background: #dc3545; gap: 8px;">
+                    <i class="fas fa-redo"></i>
+                    このページのチェックをリセット
+                </button>
+            </div>
+
             <!-- 午前：嵐山 -->
             <section class="section" id="arashiyama">
                 <h2 class="section-title">午前：嵐山エリア（8:30出発）</h2>
@@ -372,5 +380,25 @@ require_once '../../includes/header.php';
         </ul>
     </div>
 </div>
+
+<!-- リセットボタン用スクリプト -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const resetButton = document.getElementById('reset-button');
+
+    if (resetButton) {
+        resetButton.addEventListener('click', () => {
+            if (confirm('このページのチェックをすべてリセットしますか？')) {
+                // このページのlocalStorageキーを削除
+                const storageKey = 'checked_spots_' + window.location.pathname;
+                localStorage.removeItem(storageKey);
+
+                // ページをリロードして表示を更新
+                location.reload();
+            }
+        });
+    }
+});
+</script>
 
 <?php require_once '../../includes/footer.php'; ?>
