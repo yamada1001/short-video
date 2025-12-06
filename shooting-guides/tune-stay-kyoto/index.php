@@ -790,6 +790,9 @@
             <h3>運営会社</h3>
             <div class="info-box">
                 <p><strong>運営:</strong> <a href="https://www.tat-group.co.jp/" target="_blank" style="color: #2c3e50; text-decoration: underline;">株式会社ティーエーティー(TAT Co., Ltd.)</a></p>
+                <p><strong>代表取締役:</strong> 田畑 伸幸（たばた のぶゆき）</p>
+                <p><strong>設立:</strong> 2006年1月27日</p>
+                <p><strong>資本金:</strong> 1,000万円</p>
                 <p><strong>土地・建物所有:</strong> <a href="https://www.n-up.co.jp/" target="_blank" style="color: #2c3e50; text-decoration: underline;">新都市企画株式会社</a></p>
                 <p><strong>グループ:</strong> <a href="https://piecehotel.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">PIECE GROUP</a>（4号店）</p>
                 <p style="margin-top: 10px; font-size: 0.95em;">株式会社ティーエーティーは京都でPIECEブランドのホステル・ホテルを運営しており、TUNE STAY KYOTOはそのフラッグシップホテルとして位置づけられています。</p>
