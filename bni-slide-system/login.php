@@ -9,10 +9,11 @@ header('Content-Type: text/html; charset=UTF-8');
 
 // Load session auth helper
 require_once __DIR__ . '/includes/session_auth.php';
+require_once __DIR__ . '/includes/redirect_helper.php';
 
 // Redirect if already logged in
 if (isLoggedIn()) {
-    $redirect = $_GET['redirect'] ?? '/bni-slide-system/index.php';
+    $redirect = validateRedirectUrl($_GET['redirect'] ?? '');
     header('Location: ' . $redirect);
     exit;
 }
@@ -28,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $result = loginUser($email, $password);
         if ($result['success']) {
-            $redirect = $_GET['redirect'] ?? '/bni-slide-system/index.php';
+            $redirect = validateRedirectUrl($_GET['redirect'] ?? '');
             header('Location: ' . $redirect);
             exit;
         } else {
