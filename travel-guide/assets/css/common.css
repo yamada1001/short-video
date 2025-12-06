@@ -1,0 +1,124 @@
+/* ========================================
+   共通スタイル - LINE Seed JP / 白ベース
+   ======================================== */
+
+/* リセット & ベース */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'LINE Seed JP', sans-serif;
+    font-weight: 100;
+    line-height: 1.8;
+    color: #333;
+    background: #ffffff;
+}
+
+a {
+    color: #4A90E2;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+/* コンテナ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ヘッダー */
+.site-header {
+    background: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.site-logo a {
+    font-size: 24px;
+    font-weight: 400;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.site-logo i {
+    color: #4A90E2;
+}
+
+/* フッター */
+.site-footer {
+    background: #fafafa;
+    border-top: 1px solid #f0f0f0;
+    padding: 40px 0;
+    margin-top: 80px;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+}
+
+/* ボタン */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #4A90E2;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-family: 'LINE Seed JP', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    opacity: 1;
+    background: #357ABD;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+/* カード */
+.card {
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .site-logo a {
+        font-size: 20px;
+    }
+}
