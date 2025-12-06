@@ -87,31 +87,43 @@ https://yojitu.com/travel-guide/test.php
 https://yojitu.com/travel-guide/kyoto/index.php
 ```
 
-### 3. Basic認証の設定（後から）
+### 3. Basic認証の設定
 
-#### .htpasswd の生成
+#### ステップ1: .htpasswd を生成
+
+以下のURLにアクセスして、.htpasswdファイルを生成してください：
+
+```
+https://yojitu.com/travel-guide/generate-htpasswd.php
+```
+
+このスクリプトは以下を実行します：
+- `.htpasswd` ファイルを自動生成
+- ユーザー名とパスワードを表示
+
+**ログイン情報（生成後に表示されます）:**
+- ユーザー名: `travel`
+- パスワード: `kyoto2025!`
+
+#### ステップ2: スクリプトを削除
+
+セキュリティのため、生成後は必ず `generate-htpasswd.php` を削除してください。
+
+サーバーのファイルマネージャーで削除するか、以下のコマンドで削除：
 
 ```bash
-cd /path/to/travel-guide
-htpasswd -c .htpasswd ユーザー名
+rm /home/xs545151/yojitu.com/public_html/travel-guide/generate-htpasswd.php
 ```
 
-パスワードを入力してください。
+#### ステップ3: 動作確認
 
-#### .htaccess の作成
+次回アクセス時にログイン画面が表示されます：
 
-`travel-guide/.htaccess` を作成:
-
-```apache
-AuthType Basic
-AuthName "Private Travel Guide"
-AuthUserFile /absolute/path/to/.htpasswd
-Require valid-user
-
-# noindexはPHPで設定済み（header.phpに記載）
+```
+https://yojitu.com/travel-guide/kyoto/index.php
 ```
 
-**注意**: `AuthUserFile` は絶対パスで指定してください。
+ユーザー名とパスワードを入力してアクセスしてください。
 
 ## 📊 京都旅行の内容
 

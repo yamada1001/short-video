@@ -55,12 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const total = checkboxes.length;
         const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
 
-        const checkedElement = document.querySelector('.stat-value.checked-count');
+        const checkedElement = document.querySelector('.checked-count');
         if (checkedElement) {
             checkedElement.textContent = checked;
         }
 
-        const totalElement = document.querySelector('.stat-value.total-count');
+        const totalElement = document.querySelector('.total-count');
         if (totalElement) {
             totalElement.textContent = total;
         }

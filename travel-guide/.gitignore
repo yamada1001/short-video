@@ -1,0 +1,5 @@
+# Basic認証パスワードファイル（機密情報）
+.htpasswd
+
+# macOS
+.DS_Store

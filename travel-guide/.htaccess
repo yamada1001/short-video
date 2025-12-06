@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "Private Travel Guide - Login Required"
+AuthUserFile /home/xs545151/yojitu.com/public_html/travel-guide/.htpasswd
+Require valid-user
+
+# エラードキュメント（オプション）
+ErrorDocument 401 "Authentication Required"
