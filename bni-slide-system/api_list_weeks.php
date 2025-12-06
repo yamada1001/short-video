@@ -53,11 +53,12 @@ try {
   ], JSON_UNESCAPED_UNICODE);
 
 } catch (Exception $e) {
+  error_log('[API LIST WEEKS] Error: ' . $e->getMessage());
   if (isset($db)) {
     dbClose($db);
   }
   echo json_encode([
     'success' => false,
-    'message' => $e->getMessage()
+    'message' => '週一覧の取得中にエラーが発生しました'
   ]);
 }

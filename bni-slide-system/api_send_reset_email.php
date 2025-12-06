@@ -150,13 +150,14 @@ BNI Slide System
     }
 
 } catch (Exception $e) {
+    error_log('[API SEND RESET EMAIL] Error: ' . $e->getMessage());
     if (isset($db)) {
         dbClose($db);
     }
 
     echo json_encode([
         'success' => false,
-        'message' => $e->getMessage()
+        'message' => 'パスワードリセットメールの送信中にエラーが発生しました'
     ]);
 }
 ?>

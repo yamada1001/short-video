@@ -79,12 +79,13 @@ try {
     echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
 } catch (Exception $e) {
+    error_log('[API DASHBOARD STATS] Error: ' . $e->getMessage());
     if (isset($db)) {
         dbClose($db);
     }
     echo json_encode([
         'success' => false,
-        'message' => $e->getMessage()
+        'message' => 'ダッシュボード統計の取得中にエラーが発生しました'
     ]);
 }
 

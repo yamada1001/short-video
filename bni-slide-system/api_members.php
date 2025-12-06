@@ -44,6 +44,7 @@ try {
     echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
 } catch (Exception $e) {
+    error_log('[API MEMBERS] Error: ' . $e->getMessage());
     if (isset($db)) {
         dbClose($db);
     }
@@ -52,7 +53,7 @@ try {
     echo json_encode([
         'success' => false,
         'error' => 'Failed to fetch members',
-        'message' => $e->getMessage()
+        'message' => 'メンバー情報の取得中にエラーが発生しました'
     ], JSON_UNESCAPED_UNICODE);
 }
 ?>

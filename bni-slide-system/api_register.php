@@ -116,13 +116,14 @@ try {
     ]);
 
 } catch (Exception $e) {
+    error_log('[API REGISTER] Error: ' . $e->getMessage());
     if (isset($db)) {
         dbClose($db);
     }
 
     echo json_encode([
         'success' => false,
-        'message' => $e->getMessage()
+        'message' => 'ユーザー登録中にエラーが発生しました'
     ]);
 }
 

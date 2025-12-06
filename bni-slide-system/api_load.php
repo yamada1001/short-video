@@ -64,12 +64,13 @@ try {
   ], JSON_UNESCAPED_UNICODE);
 
 } catch (Exception $e) {
+  error_log('[API LOAD] Error: ' . $e->getMessage());
   if (isset($db)) {
     dbClose($db);
   }
   echo json_encode([
     'success' => false,
-    'message' => $e->getMessage()
+    'message' => 'データの読み込み中にエラーが発生しました'
   ]);
 }
 

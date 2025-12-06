@@ -107,13 +107,14 @@ try {
     ]);
 
 } catch (Exception $e) {
+    error_log('[API RESET PASSWORD] Error: ' . $e->getMessage());
     if (isset($db)) {
         dbClose($db);
     }
 
     echo json_encode([
         'success' => false,
-        'message' => $e->getMessage()
+        'message' => 'パスワードのリセット中にエラーが発生しました'
     ]);
 }
 ?>

@@ -267,8 +267,9 @@ try {
         dbRollback($db);
         dbClose($db);
     }
+    error_log('[API UPDATE MY DATA] Error: ' . $e->getMessage());
     echo json_encode([
         'success' => false,
-        'message' => $e->getMessage()
+        'message' => 'データの更新中にエラーが発生しました'
     ], JSON_UNESCAPED_UNICODE);
 }
