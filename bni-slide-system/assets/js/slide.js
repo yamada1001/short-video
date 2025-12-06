@@ -470,6 +470,11 @@ function generateSlides(data, stats) {
     `;
 
     Object.entries(stats.members).forEach(([member, memberStats]) => {
+      // ビジター0名の場合は表示しない
+      if (memberStats.visitors === 0) {
+        return;
+      }
+
       slides += `
         <div class="member-card">
           <div class="member-name">${escapeHtml(member)}</div>
