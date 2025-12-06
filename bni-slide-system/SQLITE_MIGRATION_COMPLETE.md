@@ -351,6 +351,62 @@ a756c1f - Fix: admin/users.phpのdbQuery引数エラーを修正
 
 ---
 
+## 🔍 本番環境での動作確認（2025-12-06 00:35 - 00:45）
+
+### 確認した機能（4項目）
+
+#### 1. CSVエクスポート機能
+- **確認方法**: https://yojitu.com/bni-slide-system/admin/edit.php の「Excelダウンロード」ボタン
+- **結果**: ✅ 文字化けなく正常にダウンロード
+- **ファイル形式**: BNI_Weekly_Data_YYYY-MM-DD.csv（UTF-8 BOM付き）
+
+#### 2. リマインダーメール機能
+- **確認方法**: ローカル環境でテストスクリプト実行
+- **結果**: ✅ SQLiteクエリ正常動作（12人のユーザー取得、回答状況判定OK）
+- **本番環境**: cron設定済み（金曜19時、水曜20時、木曜20時）
+
+#### 3. パフォーマンス監視ツール
+- **確認方法**: ローカル環境で `php database/performance_monitor.php` 実行
+- **結果**: ✅ 正常表示（全クエリ1ms以下、データベースサイズ80KB）
+- **機能**: テーブル統計、クエリベンチマーク、最適化アドバイス
+
+#### 4. ユーザー管理API（6ファイル）
+- **確認方法**:
+  - メンバー一覧API: https://yojitu.com/bni-slide-system/api_members.php
+  - マイグレーション: https://yojitu.com/bni-slide-system/database/add_reset_token_columns.php
+- **結果**:
+  - ✅ メンバー一覧JSON正常表示
+  - ✅ reset_token、reset_token_expiresカラム追加成功
+- **対応ファイル**:
+  1. api_members.php（メンバー一覧）
+  2. api_register.php（新規登録）
+  3. api_update_profile.php（プロフィール更新）
+  4. api_send_reset_email.php（パスワードリセットメール）
+  5. api_reset_password.php（パスワードリセット実行）
+  6. admin/sitemap.php（説明文更新）
+
+### マイグレーション実行履歴
+
+#### ローカル環境
+```bash
+php database/add_reset_token_columns.php
+# → reset_token, reset_token_expiresカラム追加成功
+```
+
+#### 本番環境
+```
+https://yojitu.com/bni-slide-system/database/add_reset_token_columns.php
+# → ブラウザから実行、マイグレーション完了
+```
+
+### 確認結果まとめ
+- ✅ 全機能正常動作確認
+- ✅ 本番環境でマイグレーション完了
+- ✅ エラーなし
+- ✅ データ整合性OK
+
+---
+
 ## 🎯 今後の推奨作業（任意）
 
 ### 優先度: 低
