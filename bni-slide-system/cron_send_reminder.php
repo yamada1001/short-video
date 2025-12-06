@@ -20,6 +20,7 @@ if (php_sapi_name() !== 'cli') {
 }
 
 require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/date_helper.php';
 
 // 設定
 define('MAIL_FROM', 'yamada@yojitu.com');
@@ -261,27 +262,4 @@ BNI Slide System
     }
 }
 
-/**
- * Get target Friday date from timestamp
- */
-function getTargetFriday($timestamp) {
-    $dt = is_int($timestamp) ? (new DateTime())->setTimestamp($timestamp) : new DateTime($timestamp);
-    $dayOfWeek = intval($dt->format('w'));
-    $hour = intval($dt->format('H'));
-
-    if ($dayOfWeek === 5 && $hour < 5) {
-        return $dt;
-    }
-
-    if ($dayOfWeek === 5) {
-        $dt->modify('+7 days');
-    } else {
-        $daysToAdd = (5 - $dayOfWeek + 7) % 7;
-        if ($daysToAdd === 0) {
-            $daysToAdd = 7;
-        }
-        $dt->modify("+$daysToAdd days");
-    }
-
-    return $dt;
-}
+// getTargetFriday() はincludes/date_helper.phpで定義されています

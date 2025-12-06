@@ -13,6 +13,7 @@ header('Access-Control-Allow-Methods: POST');
 // Load dependencies
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/csrf.php';
+require_once __DIR__ . '/includes/date_helper.php';
 
 // Config
 define('MAIL_TO', 'yamada@yojitu.com');
@@ -587,41 +588,7 @@ function sendThanksEmail($baseData) {
   return $result;
 }
 
-/**
- * Get target Friday date from timestamp
- *
- * Week boundary: Friday 5:00 AM ~ Next Friday 5:00 AM
- * - Data from Friday 5:00 AM ~ Next Friday 4:59 AM belongs to next Friday's slide
- * - Example: Nov 28 (Fri) 5:00 ~ Dec 5 (Fri) 4:59 → Dec 5 (Fri) slide
- *
- * @param string $timestamp Timestamp in 'Y-m-d H:i:s' format
- * @return string Friday date in 'Y-m-d' format
- */
-function getTargetFriday($timestamp) {
-  $dt = new DateTime($timestamp);
-  $dayOfWeek = intval($dt->format('w')); // 0=Sunday, 5=Friday
-  $hour = intval($dt->format('H'));
-
-  if ($dayOfWeek === 5 && $hour < 5) {
-    // Friday 0:00-4:59 → This Friday (today)
-    return $dt->format('Y-m-d');
-  }
-
-  // For all other cases, find the next Friday
-  if ($dayOfWeek === 5) {
-    // Friday 5:00 onwards → Next Friday (7 days later)
-    $dt->modify('+7 days');
-  } else {
-    // Any other day → Next Friday
-    $daysToAdd = (5 - $dayOfWeek + 7) % 7;
-    if ($daysToAdd === 0) {
-      $daysToAdd = 7;
-    }
-    $dt->modify("+$daysToAdd days");
-  }
-
-  return $dt->format('Y-m-d');
-}
+// getTargetFriday() はincludes/date_helper.phpで定義されています
 
 /**
  * Check if user has already submitted for the same week
