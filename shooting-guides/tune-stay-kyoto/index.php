@@ -159,8 +159,24 @@
             }
 
             body {
-                font-size: 18px;
+                font-size: 16px;
                 line-height: 1.75;
+            }
+
+            /* 高解像度ディスプレイ（Pixel等）向け */
+            @media (-webkit-min-device-pixel-ratio: 2.5) and (min-width: 360px),
+                   (min-resolution: 2.5dppx) and (min-width: 360px) {
+                body {
+                    font-size: 17px;
+                }
+            }
+
+            /* 超高解像度ディスプレイ（Pixel 8等）向け */
+            @media (-webkit-min-device-pixel-ratio: 3) and (min-width: 400px),
+                   (min-resolution: 3dppx) and (min-width: 400px) {
+                body {
+                    font-size: 18px;
+                }
             }
 
             header {
@@ -169,12 +185,12 @@
             }
 
             h1 {
-                font-size: 2em;
+                font-size: 1.75em;
                 letter-spacing: 0.5px;
             }
 
             .subtitle {
-                font-size: 1em;
+                font-size: 0.95em;
                 margin-top: 12px;
             }
 
@@ -185,19 +201,19 @@
             }
 
             h2 {
-                font-size: 1.65em;
+                font-size: 1.5em;
                 margin-bottom: 20px;
                 padding-bottom: 12px;
             }
 
             h3 {
-                font-size: 1.35em;
+                font-size: 1.25em;
                 margin-top: 30px;
                 margin-bottom: 15px;
             }
 
             h4 {
-                font-size: 1.15em;
+                font-size: 1.1em;
                 margin-top: 20px;
                 margin-bottom: 12px;
             }
