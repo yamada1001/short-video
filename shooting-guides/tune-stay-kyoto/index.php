@@ -158,7 +158,7 @@
 
         @media (max-width: 640px) {
             .container {
-                padding: 10px;
+                padding: 15px;
             }
 
             body {
@@ -167,7 +167,7 @@
             }
 
             header {
-                padding: 30px 15px;
+                padding: 30px 20px;
                 border-radius: 10px;
             }
 
@@ -181,7 +181,7 @@
             }
 
             .section {
-                padding: 20px 12px;
+                padding: 20px 18px;
                 margin-bottom: 15px;
                 border-radius: 10px;
             }
