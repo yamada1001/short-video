@@ -787,6 +787,14 @@
                 メール: kyoto@tune-stay.com</p>
             </div>
 
+            <h3>運営会社</h3>
+            <div class="info-box">
+                <p><strong>運営:</strong> 株式会社ティーエーティー(TAT Co., Ltd.)</p>
+                <p><strong>土地・建物所有:</strong> 新都市企画株式会社</p>
+                <p><strong>グループ:</strong> PIECE GROUP（4号店）</p>
+                <p style="margin-top: 10px; font-size: 0.95em;">株式会社ティーエーティーは京都でPIECEブランドのホステル・ホテルを運営しており、TUNE STAY KYOTOはそのフラッグシップホテルとして位置づけられています。</p>
+            </div>
+
             <h3>コンセプト</h3>
             <div class="highlight">
                 <p><strong>「人生に心躍る寄り道を」</strong>をコンセプトに、3つのコンテンツ体験を提供する体験型ホテル</p>
@@ -797,12 +805,26 @@
                 </div>
             </div>
 
+            <h4 style="margin-top: 25px;"><i class="fas fa-cocktail"></i> GIN（ジン）の意味</h4>
+            <div class="photo-tip">
+                <p>「GIN」は単なるお酒の提供ではなく、<strong>宿泊者が自分で組み合わせを考え、創造する体験</strong>を通じて、新しい発見や出会いを楽しむというコンセプトです。</p>
+                <ul style="margin-top: 15px;">
+                    <li><strong>カスタマイズ体験:</strong> 24種類のクラフトジン × 6種類のトニックウォーターから自分だけのオリジナルジントニックを創造</li>
+                    <li><strong>探求心:</strong> 味わいを想像しながら組み合わせを考えることで、新しい発見を楽しむ</li>
+                    <li><strong>調和(TUNE):</strong> 作り手の波長と使い手の波長が調和された時に生まれる「共鳴のハーモニー」</li>
+                    <li><strong>寄り道:</strong> 旅の途中での予期せぬ出会いや発見を象徴</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>料金:</strong> 宿泊者限定 ¥1,000で3杯分のテイスティング体験</p>
+            </div>
+
             <h3>開業情報</h3>
             <p>2019年11月開業。PIECEグループの第4号ホテルで、「Harmonic Hotel(調和するホテル)」というコンセプトで設計されました。</p>
 
             <div class="reference">
                 参照元: <a href="https://www.tune-stay.com/" target="_blank">https://www.tune-stay.com/</a><br>
-                参照元: <a href="https://www.booking.com/hotel/jp/piece-nanajo.html" target="_blank">https://www.booking.com/hotel/jp/piece-nanajo.html</a>
+                参照元: <a href="https://www.tune-stay.com/gin" target="_blank">https://www.tune-stay.com/gin</a><br>
+                参照元: <a href="https://www.booking.com/hotel/jp/piece-nanajo.html" target="_blank">https://www.booking.com/hotel/jp/piece-nanajo.html</a><br>
+                参照元: <a href="https://www.n-up.co.jp/projects/535/" target="_blank">https://www.n-up.co.jp/projects/535/</a>
             </div>
         </div>
 
