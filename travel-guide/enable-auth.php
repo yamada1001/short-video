@@ -7,6 +7,7 @@
  */
 
 $htaccess_path = __DIR__ . '/.htaccess';
+$htaccess_template_path = __DIR__ . '/.htaccess.template';
 $htpasswd_path = __DIR__ . '/.htpasswd';
 
 echo "<h1>🔒 Basic認証有効化スクリプト</h1>";
@@ -24,18 +25,19 @@ echo "<div style='background: #d4edda; border: 1px solid #28a745; padding: 20px;
 echo "<p style='color: #155724;'>✅ .htpasswd ファイルが見つかりました</p>";
 echo "</div>";
 
-// .htaccess の内容を読み込む
-$content = file_get_contents($htaccess_path);
+// .htaccess.template から .htaccess を作成
+if (!file_exists($htaccess_template_path)) {
+    echo "<div style='background: #f8d7da; border: 1px solid #dc3545; padding: 20px; margin: 20px 0; border-radius: 8px;'>";
+    echo "<h2 style='color: #721c24; margin-top: 0;'>❌ エラー</h2>";
+    echo "<p>.htaccess.template ファイルが見つかりません。</p>";
+    echo "</div>";
+    exit;
+}
 
-// コメントを外す
-$new_content = str_replace('# AuthType Basic', 'AuthType Basic', $content);
-$new_content = str_replace('# AuthName', 'AuthName', $new_content);
-$new_content = str_replace('# AuthUserFile', 'AuthUserFile', $new_content);
-$new_content = str_replace('# Require valid-user', 'Require valid-user', $new_content);
-$new_content = str_replace('# ErrorDocument 401', 'ErrorDocument 401', $new_content);
+$template_content = file_get_contents($htaccess_template_path);
 
 // 書き込み
-if (file_put_contents($htaccess_path, $new_content)) {
+if (copy($htaccess_template_path, $htaccess_path)) {
     echo "<div style='background: #d4edda; border: 1px solid #28a745; padding: 20px; margin: 20px 0; border-radius: 8px;'>";
     echo "<h2 style='color: #155724; margin-top: 0;'>✅ Basic認証が有効になりました！</h2>";
     echo "<p><strong>次回アクセス時からログイン画面が表示されます。</strong></p>";
