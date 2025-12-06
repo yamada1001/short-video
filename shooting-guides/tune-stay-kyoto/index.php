@@ -158,133 +158,69 @@
 
         @media (max-width: 640px) {
             .container {
-                padding: 12px;
+                padding: 10px;
             }
 
             body {
                 font-size: 16px;
-                line-height: 1.75;
+                line-height: 1.8;
             }
 
             header {
-                padding: 35px 20px;
+                padding: 30px 15px;
                 border-radius: 10px;
             }
 
             h1 {
-                font-size: 1.75em;
-                letter-spacing: 0.5px;
+                font-size: 1.6em;
+                letter-spacing: 1px;
             }
 
             .subtitle {
-                font-size: 0.95em;
-                margin-top: 12px;
+                font-size: 0.9em;
             }
 
             .section {
-                padding: 25px 18px;
-                margin-bottom: 20px;
+                padding: 20px 12px;
+                margin-bottom: 15px;
                 border-radius: 10px;
             }
 
             h2 {
-                font-size: 1.5em;
-                margin-bottom: 20px;
-                padding-bottom: 12px;
+                font-size: 1.3em;
             }
 
             h3 {
-                font-size: 1.25em;
-                margin-top: 30px;
-                margin-bottom: 15px;
+                font-size: 1.1em;
             }
 
             h4 {
-                font-size: 1.1em;
-                margin-top: 20px;
-                margin-bottom: 12px;
+                font-size: 1em;
             }
 
             p {
-                font-size: 1em;
-                line-height: 1.75;
-                margin-bottom: 16px;
+                font-size: 0.95em;
+                line-height: 1.8;
+                margin-bottom: 15px;
             }
 
             li {
-                font-size: 1em;
+                font-size: 0.95em;
                 line-height: 1.7;
-                margin-bottom: 12px;
-            }
-
-            ul {
-                margin-bottom: 20px;
+                margin-bottom: 10px;
             }
 
             table {
-                font-size: 0.95em;
+                font-size: 0.85em;
             }
 
             th, td {
-                padding: 12px 10px;
-                font-size: 1em;
+                padding: 8px;
             }
 
             .tag {
-                padding: 6px 14px;
-                font-size: 0.9em;
-            }
-
-            .checklist li {
-                font-size: 1em;
-                padding: 16px 0 16px 45px;
-            }
-
-            .checklist li:before {
-                font-size: 1.6em;
-                left: 5px;
-            }
-
-            .info-box, .highlight, .photo-tip, .warning-box {
-                padding: 20px;
-                margin: 20px 0;
-            }
-
-            .reference {
-                font-size: 0.95em;
-                margin-top: 15px;
-            }
-        }
-
-        /* 高解像度ディスプレイ（Pixel等）向け - 2.5dppx以上 */
-        @media (max-width: 640px) and (-webkit-min-device-pixel-ratio: 2.5),
-               (max-width: 640px) and (min-resolution: 2.5dppx) {
-            body {
-                font-size: 18px !important;
-            }
-        }
-
-        /* 超高解像度ディスプレイ（Pixel 8等）向け - 3.0dppx以上 */
-        @media (max-width: 640px) and (-webkit-min-device-pixel-ratio: 3),
-               (max-width: 640px) and (min-resolution: 3dppx) {
-            body {
-                font-size: 20px !important;
-            }
-
-            h1 {
-                font-size: 1.6em !important;
-            }
-
-            h2 {
-                font-size: 1.4em !important;
-            }
-
-            h3 {
-                font-size: 1.2em !important;
-            }
-
-            h4 {
-                font-size: 1.05em !important;
+                padding: 4px 10px;
+                font-size: 0.75em;
             }
         }
 
