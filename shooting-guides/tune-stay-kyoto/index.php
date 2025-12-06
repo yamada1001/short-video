@@ -166,34 +166,6 @@
                 line-height: 1.75;
             }
 
-            /* 高解像度ディスプレイ（Pixel等）向け */
-            @media (-webkit-min-device-pixel-ratio: 2.5),
-                   (min-resolution: 2.5dppx) {
-                body {
-                    font-size: 18px;
-                }
-            }
-
-            /* 超高解像度ディスプレイ（Pixel 8等）向け */
-            @media (-webkit-min-device-pixel-ratio: 3),
-                   (min-resolution: 3dppx) {
-                body {
-                    font-size: 20px;
-                }
-
-                h1 {
-                    font-size: 1.6em;
-                }
-
-                h2 {
-                    font-size: 1.4em;
-                }
-
-                h3 {
-                    font-size: 1.2em;
-                }
-            }
-
             header {
                 padding: 35px 20px;
                 border-radius: 10px;
@@ -281,6 +253,38 @@
             .reference {
                 font-size: 0.95em;
                 margin-top: 15px;
+            }
+        }
+
+        /* 高解像度ディスプレイ（Pixel等）向け - 2.5dppx以上 */
+        @media (max-width: 640px) and (-webkit-min-device-pixel-ratio: 2.5),
+               (max-width: 640px) and (min-resolution: 2.5dppx) {
+            body {
+                font-size: 18px !important;
+            }
+        }
+
+        /* 超高解像度ディスプレイ（Pixel 8等）向け - 3.0dppx以上 */
+        @media (max-width: 640px) and (-webkit-min-device-pixel-ratio: 3),
+               (max-width: 640px) and (min-resolution: 3dppx) {
+            body {
+                font-size: 20px !important;
+            }
+
+            h1 {
+                font-size: 1.6em !important;
+            }
+
+            h2 {
+                font-size: 1.4em !important;
+            }
+
+            h3 {
+                font-size: 1.2em !important;
+            }
+
+            h4 {
+                font-size: 1.05em !important;
             }
         }
 
