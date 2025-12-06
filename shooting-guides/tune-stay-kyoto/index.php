@@ -12,6 +12,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>TUNE STAY KYOTO - Instagram撮影ガイド</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -164,18 +167,30 @@
             }
 
             /* 高解像度ディスプレイ（Pixel等）向け */
-            @media (-webkit-min-device-pixel-ratio: 2.5) and (min-width: 360px),
-                   (min-resolution: 2.5dppx) and (min-width: 360px) {
+            @media (-webkit-min-device-pixel-ratio: 2.5),
+                   (min-resolution: 2.5dppx) {
                 body {
-                    font-size: 17px;
+                    font-size: 18px;
                 }
             }
 
             /* 超高解像度ディスプレイ（Pixel 8等）向け */
-            @media (-webkit-min-device-pixel-ratio: 3) and (min-width: 400px),
-                   (min-resolution: 3dppx) and (min-width: 400px) {
+            @media (-webkit-min-device-pixel-ratio: 3),
+                   (min-resolution: 3dppx) {
                 body {
-                    font-size: 18px;
+                    font-size: 20px;
+                }
+
+                h1 {
+                    font-size: 1.6em;
+                }
+
+                h2 {
+                    font-size: 1.4em;
+                }
+
+                h3 {
+                    font-size: 1.2em;
                 }
             }
 
