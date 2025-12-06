@@ -550,7 +550,7 @@ header('Content-Type: text/html; charset=UTF-8');
                   api_register.php <span class="badge badge-api">POST API</span>
                 </div>
                 <div class="page-description">
-                  新規ユーザー登録API。ユーザー情報をmembers.jsonと.htpasswdに保存。パスワードを自動生成し、ウェルカムメール送信。
+                  新規ユーザー登録API（SQLite版）。ユーザー情報をSQLiteデータベースに保存。パスワードを自動生成し、ウェルカムメール送信。
                 </div>
                 <div class="page-path">api_register.php</div>
               </div>
@@ -566,7 +566,7 @@ header('Content-Type: text/html; charset=UTF-8');
                   api_update_profile.php <span class="badge badge-api">POST API</span>
                 </div>
                 <div class="page-description">
-                  プロフィール更新API。ユーザー情報（名前、メールアドレス、電話番号、会社名、カテゴリ、パスワード）をmembers.jsonと.htpasswdに保存。
+                  プロフィール更新API（SQLite版）。ユーザー情報（名前、メールアドレス、電話番号、会社名、カテゴリ）をSQLiteデータベースに保存。
                 </div>
                 <div class="page-path">api_update_profile.php</div>
               </div>
@@ -595,7 +595,7 @@ header('Content-Type: text/html; charset=UTF-8');
                   members.json
                 </div>
                 <div class="page-description">
-                  ユーザー情報を保存するJSONファイル。名前、メールアドレス、電話番号、会社名、カテゴリ、認証情報、作成日時、更新日時を保存。
+                  ユーザー情報のバックアップJSONファイル。SQLite移行後は参照用。データ移行時のソースとして使用。
                 </div>
                 <div class="page-path">data/members.json</div>
               </div>

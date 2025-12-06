@@ -1,10 +1,13 @@
 <?php
 /**
- * BNI Slide System - Send Password Reset Email API
+ * BNI Slide System - Send Password Reset Email API (SQLite Version)
  * パスワードリセットメールを送信
+ * Updated: 2025-12-06 - SQLite対応版
  */
 
 header('Content-Type: application/json; charset=utf-8');
+
+require_once __DIR__ . '/includes/db.php';
 
 // POSTメソッドのみ許可
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -26,72 +29,63 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// メンバーデータを読み込み
-$membersFile = __DIR__ . '/data/members.json';
+try {
+    $db = getDbConnection();
 
-if (!file_exists($membersFile)) {
-    echo json_encode(['success' => false, 'message' => 'ユーザーデータが見つかりません']);
-    exit;
-}
+    // メールアドレスが登録されているか確認
+    $user = dbQuery($db, "SELECT id, name, email FROM users WHERE email = :email", [':email' => $email]);
 
-$content = file_get_contents($membersFile);
-$data = json_decode($content, true);
-
-if (!$data || !isset($data['users'])) {
-    echo json_encode(['success' => false, 'message' => 'ユーザーデータの読み込みに失敗しました']);
-    exit;
-}
-
-// メールアドレスが登録されているか確認
-$userFound = false;
-$username = '';
-
-foreach ($data['users'] as $uname => $user) {
-    if ($user['email'] === $email) {
-        $userFound = true;
-        $username = $uname;
-        break;
+    if (empty($user)) {
+        dbClose($db);
+        // セキュリティ上、メールアドレスが登録されていない場合でも同じメッセージを返す
+        echo json_encode([
+            'success' => true,
+            'message' => 'リセットメールを送信しました。メールをご確認ください。'
+        ]);
+        exit;
     }
-}
 
-if (!$userFound) {
-    // セキュリティ上、メールアドレスが登録されていない場合でも同じメッセージを返す
-    echo json_encode([
-        'success' => true,
-        'message' => 'リセットメールを送信しました。メールをご確認ください。'
+    $user = $user[0];
+
+    // リセットトークンを生成（32文字のランダム文字列）
+    $token = bin2hex(random_bytes(16));
+
+    // トークンの有効期限を設定（24時間後）
+    $expiresAt = date('Y-m-d H:i:s', strtotime('+24 hours'));
+
+    // トークンをデータベースに保存（reset_tokenとreset_token_expiresカラムが必要）
+    $updateQuery = "
+        UPDATE users SET
+            reset_token = :token,
+            reset_token_expires = :expires,
+            updated_at = datetime('now')
+        WHERE email = :email
+    ";
+
+    $result = dbExecute($db, $updateQuery, [
+        ':token' => $token,
+        ':expires' => $expiresAt,
+        ':email' => $email
     ]);
-    exit;
-}
 
-// リセットトークンを生成（32文字のランダム文字列）
-$token = bin2hex(random_bytes(16));
+    dbClose($db);
 
-// トークンの有効期限を設定（24時間後）
-$expiresAt = date('Y-m-d H:i:s', strtotime('+24 hours'));
+    if (!$result) {
+        echo json_encode(['success' => false, 'message' => 'トークンの保存に失敗しました']);
+        exit;
+    }
 
-// トークンをユーザーデータに保存
-$data['users'][$username]['reset_token'] = $token;
-$data['users'][$username]['reset_token_expires'] = $expiresAt;
-$data['users'][$username]['updated_at'] = date('Y-m-d H:i:s');
+    // リセットURLを生成
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+    $resetUrl = $protocol . '://' . $host . '/bni-slide-system/reset-password.php?token=' . $token;
 
-// データを保存
-$jsonContent = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-if (file_put_contents($membersFile, $jsonContent) === false) {
-    echo json_encode(['success' => false, 'message' => 'トークンの保存に失敗しました']);
-    exit;
-}
-
-// リセットURLを生成
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-$host = $_SERVER['HTTP_HOST'];
-$resetUrl = $protocol . '://' . $host . '/bni-slide-system/reset-password.php?token=' . $token;
-
-// メール本文を作成
-$subject = 'BNI Slide System - パスワードリセットのご案内';
-$message = "
+    // メール本文を作成
+    $subject = 'BNI Slide System - パスワードリセットのご案内';
+    $message = "
 BNI Slide System
 
-{$data['users'][$username]['name']} 様
+{$user['name']} 様
 
 パスワードリセットのリクエストを受け付けました。
 
@@ -108,48 +102,60 @@ BNI Slide System
 BNI Slide System
 ";
 
-// メールヘッダー（Xserver対応：実在するメールアドレスを使用）
-$fromEmail = 'yamada@yojitu.com'; // 実在するメールアドレス
-$headers = "From: BNI Slide System <{$fromEmail}>\r\n";
-$headers .= "Reply-To: {$fromEmail}\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-$headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+    // メールヘッダー（Xserver対応：実在するメールアドレスを使用）
+    $fromEmail = 'yamada@yojitu.com'; // 実在するメールアドレス
+    $headers = "From: BNI Slide System <{$fromEmail}>\r\n";
+    $headers .= "Reply-To: {$fromEmail}\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 
-// デバッグログ
-error_log('[PASSWORD RESET] Sending email to: ' . $email);
-error_log('[PASSWORD RESET] Token: ' . $token);
-error_log('[PASSWORD RESET] Reset URL: ' . $resetUrl);
+    // デバッグログ
+    error_log('[PASSWORD RESET] Sending email to: ' . $email);
+    error_log('[PASSWORD RESET] Token: ' . $token);
+    error_log('[PASSWORD RESET] Reset URL: ' . $resetUrl);
 
-// メールを送信
-$mailSent = @mail($email, $subject, $message, $headers);
+    // メールを送信
+    $mailSent = @mail($email, $subject, $message, $headers);
 
-// エラーログに結果を記録
-if ($mailSent) {
-    error_log('[PASSWORD RESET] Mail sent successfully to: ' . $email);
-} else {
-    $lastError = error_get_last();
-    error_log('[PASSWORD RESET] Mail failed to: ' . $email);
-    error_log('[PASSWORD RESET] Last error: ' . print_r($lastError, true));
-}
+    // エラーログに結果を記録
+    if ($mailSent) {
+        error_log('[PASSWORD RESET] Mail sent successfully to: ' . $email);
+    } else {
+        $lastError = error_get_last();
+        error_log('[PASSWORD RESET] Mail failed to: ' . $email);
+        error_log('[PASSWORD RESET] Last error: ' . print_r($lastError, true));
+    }
 
-if ($mailSent) {
-    echo json_encode([
-        'success' => true,
-        'message' => 'リセットメールを送信しました。メールをご確認ください。',
-        'debug' => [
-            'email' => $email,
-            'token' => $token,
-            'reset_url' => $resetUrl
-        ]
-    ]);
-} else {
+    if ($mailSent) {
+        echo json_encode([
+            'success' => true,
+            'message' => 'リセットメールを送信しました。メールをご確認ください。',
+            'debug' => [
+                'email' => $email,
+                'token' => $token,
+                'reset_url' => $resetUrl
+            ]
+        ]);
+    } else {
+        echo json_encode([
+            'success' => false,
+            'message' => 'メールの送信に失敗しました。管理者にお問い合わせください。',
+            'debug' => [
+                'mail_function_result' => $mailSent,
+                'from_email' => $fromEmail,
+                'to_email' => $email
+            ]
+        ]);
+    }
+
+} catch (Exception $e) {
+    if (isset($db)) {
+        dbClose($db);
+    }
+
     echo json_encode([
         'success' => false,
-        'message' => 'メールの送信に失敗しました。管理者にお問い合わせください。',
-        'debug' => [
-            'mail_function_result' => $mailSent,
-            'from_email' => $fromEmail,
-            'to_email' => $email
-        ]
+        'message' => $e->getMessage()
     ]);
 }
+?>

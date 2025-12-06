@@ -1,10 +1,13 @@
 <?php
 /**
- * BNI Slide System - User Registration API
+ * BNI Slide System - User Registration API (SQLite Version)
  * 新規ユーザー登録処理
+ * Updated: 2025-12-06 - SQLite対応版
  */
 
 header('Content-Type: application/json; charset=utf-8');
+
+require_once __DIR__ . '/includes/db.php';
 
 // Check if POST request
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -30,9 +33,6 @@ try {
     $name = $lastName . $firstName;
     $nameKana = $lastNameKana . $firstNameKana;
 
-    // Use email as username for .htpasswd
-    $username = $email;
-
     // Auto-generate password (10 characters: alphanumeric)
     $password = generateRandomPassword(10);
 
@@ -47,66 +47,59 @@ try {
         throw new Exception('メールアドレスの形式が正しくありません');
     }
 
-    // Load members.json
-    $membersFile = __DIR__ . '/data/members.json';
-    if (!file_exists($membersFile)) {
-        throw new Exception('データファイルが見つかりません');
-    }
+    $db = getDbConnection();
 
-    $content = file_get_contents($membersFile);
-    if ($content === false) {
-        throw new Exception('データファイルの読み込みに失敗しました');
-    }
-
-    $data = json_decode($content, true);
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        throw new Exception('データファイルの形式が不正です');
-    }
-
-    // Check if email already exists (email is now the username)
-    if (isset($data['users'][$email])) {
+    // Check if email already exists
+    $existingUser = dbQuery($db, "SELECT id FROM users WHERE email = :email", [':email' => $email]);
+    if (!empty($existingUser)) {
+        dbClose($db);
         throw new Exception('このメールアドレスは既に登録されています');
     }
 
     // Check if name already exists
-    if (in_array($name, $data['members'])) {
+    $existingName = dbQuery($db, "SELECT id FROM users WHERE name = :name", [':name' => $name]);
+    if (!empty($existingName)) {
+        dbClose($db);
         throw new Exception('この名前は既に登録されています');
     }
 
     // Generate password hash using PHP's password_hash()
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     if (!$passwordHash) {
+        dbClose($db);
         throw new Exception('パスワードのハッシュ化に失敗しました');
     }
 
-    // Add new user to data (using email as key)
-    $data['users'][$email] = [
-        'name' => $name,
-        'last_name' => $lastName,
-        'first_name' => $firstName,
-        'last_name_kana' => $lastNameKana,
-        'first_name_kana' => $firstNameKana,
-        'name_kana' => $nameKana,
-        'email' => $email,
-        'phone' => $phone,
-        'company' => $company,
-        'category' => $category,
-        'password_hash' => $passwordHash,
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+    // Insert new user into database
+    $insertQuery = "
+        INSERT INTO users (
+            email, name, phone, company, category,
+            password_hash, is_active, role,
+            created_at, updated_at
+        ) VALUES (
+            :email, :name, :phone, :company, :category,
+            :password_hash, 1, 'member',
+            datetime('now'), datetime('now')
+        )
+    ";
+
+    $params = [
+        ':email' => $email,
+        ':name' => $name,
+        ':phone' => $phone,
+        ':company' => $company,
+        ':category' => $category,
+        ':password_hash' => $passwordHash
     ];
 
-    // Add name to members list
-    $data['members'][] = $name;
+    $result = dbExecute($db, $insertQuery, $params);
 
-    // Update timestamp
-    $data['updated_at'] = date('Y-m-d');
-
-    // Save updated members.json
-    $jsonContent = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-    if (file_put_contents($membersFile, $jsonContent) === false) {
+    if (!$result) {
+        dbClose($db);
         throw new Exception('ユーザー情報の保存に失敗しました');
     }
+
+    dbClose($db);
 
     // Send welcome email with password
     sendWelcomeEmail($name, $email, $email, $password);
@@ -115,10 +108,14 @@ try {
     echo json_encode([
         'success' => true,
         'message' => "登録が完了しました！ログイン情報をメールで送信しました。",
-        'username' => $username
+        'username' => $email
     ]);
 
 } catch (Exception $e) {
+    if (isset($db)) {
+        dbClose($db);
+    }
+
     echo json_encode([
         'success' => false,
         'message' => $e->getMessage()
@@ -200,3 +197,4 @@ function sendWelcomeEmail($name, $email, $username, $password) {
     // Send email
     @mail($to, $subject, $message, implode("\r\n", $headers));
 }
+?>

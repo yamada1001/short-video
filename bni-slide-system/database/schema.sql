@@ -17,6 +17,8 @@ CREATE TABLE IF NOT EXISTS users (
     totp_secret TEXT,
     last_login DATETIME,
     htpasswd_user TEXT,
+    reset_token TEXT,
+    reset_token_expires DATETIME,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );

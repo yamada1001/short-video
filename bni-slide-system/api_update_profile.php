@@ -1,13 +1,15 @@
 <?php
 /**
- * BNI Slide System - Profile Update API
+ * BNI Slide System - Profile Update API (SQLite Version)
  * ユーザープロフィール更新処理
+ * Updated: 2025-12-06 - SQLite対応版
  */
 
 header('Content-Type: application/json; charset=utf-8');
 
-// Load session auth
+// Load session auth and DB
 require_once __DIR__ . '/includes/session_auth.php';
+require_once __DIR__ . '/includes/db.php';
 
 // Check if POST request
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -24,25 +26,17 @@ try {
         throw new Exception('ログインしていません');
     }
 
-    $currentUsername = $_SESSION['user_email'];
+    $currentUserEmail = $_SESSION['user_email'];
 
     // Get form data
-    $lastName = trim($_POST['last_name'] ?? '');
-    $firstName = trim($_POST['first_name'] ?? '');
-    $lastNameKana = trim($_POST['last_name_kana'] ?? '');
-    $firstNameKana = trim($_POST['first_name_kana'] ?? '');
     $email = trim($_POST['email'] ?? '');
+    $name = trim($_POST['name'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
     $company = trim($_POST['company'] ?? '');
     $category = trim($_POST['category'] ?? '');
 
-    // Combine last name and first name
-    $name = $lastName . $firstName;
-    $nameKana = $lastNameKana . $firstNameKana;
-
     // Validate required fields
-    if (empty($lastName) || empty($firstName) || empty($lastNameKana) || empty($firstNameKana) ||
-        empty($email) || empty($company) || empty($category)) {
+    if (empty($email) || empty($name) || empty($company) || empty($category)) {
         throw new Exception('必須項目が入力されていません');
     }
 
@@ -51,89 +45,93 @@ try {
         throw new Exception('メールアドレスの形式が正しくありません');
     }
 
-    // Load members.json
-    $membersFile = __DIR__ . '/data/members.json';
-    if (!file_exists($membersFile)) {
-        throw new Exception('データファイルが見つかりません');
-    }
+    $db = getDbConnection();
 
-    $content = file_get_contents($membersFile);
-    if ($content === false) {
-        throw new Exception('データファイルの読み込みに失敗しました');
-    }
-
-    $data = json_decode($content, true);
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        throw new Exception('データファイルの形式が不正です');
-    }
-
-    // Check if user exists
-    if (!isset($data['users'][$currentUsername])) {
+    // Get current user info
+    $currentUser = dbQuery($db, "SELECT * FROM users WHERE email = :email", [':email' => $currentUserEmail]);
+    if (empty($currentUser)) {
+        dbClose($db);
         throw new Exception('ユーザー情報が見つかりません');
     }
 
-    $oldName = $data['users'][$currentUsername]['name'];
-    $oldEmail = $data['users'][$currentUsername]['email'];
+    $oldName = $currentUser[0]['name'];
+    $oldEmail = $currentUser[0]['email'];
 
     // Check if email is already used by another user
     if ($email !== $oldEmail) {
-        foreach ($data['users'] as $username => $user) {
-            if ($username !== $currentUsername && $user['email'] === $email) {
-                throw new Exception('このメールアドレスは既に使用されています');
-            }
+        $existingEmail = dbQuery($db, "SELECT id FROM users WHERE email = :email AND email != :old_email", [
+            ':email' => $email,
+            ':old_email' => $oldEmail
+        ]);
+
+        if (!empty($existingEmail)) {
+            dbClose($db);
+            throw new Exception('このメールアドレスは既に使用されています');
         }
     }
 
     // Check if name is already used by another user
     if ($name !== $oldName) {
-        foreach ($data['users'] as $username => $user) {
-            if ($username !== $currentUsername && $user['name'] === $name) {
-                throw new Exception('この名前は既に使用されています');
-            }
+        $existingName = dbQuery($db, "SELECT id FROM users WHERE name = :name AND email != :old_email", [
+            ':name' => $name,
+            ':old_email' => $oldEmail
+        ]);
+
+        if (!empty($existingName)) {
+            dbClose($db);
+            throw new Exception('この名前は既に使用されています');
         }
     }
 
     // Update user data
-    $data['users'][$currentUsername]['name'] = $name;
-    $data['users'][$currentUsername]['last_name'] = $lastName;
-    $data['users'][$currentUsername]['first_name'] = $firstName;
-    $data['users'][$currentUsername]['last_name_kana'] = $lastNameKana;
-    $data['users'][$currentUsername]['first_name_kana'] = $firstNameKana;
-    $data['users'][$currentUsername]['name_kana'] = $nameKana;
-    $data['users'][$currentUsername]['email'] = $email;
-    $data['users'][$currentUsername]['phone'] = $phone;
-    $data['users'][$currentUsername]['company'] = $company;
-    $data['users'][$currentUsername]['category'] = $category;
-    $data['users'][$currentUsername]['updated_at'] = date('Y-m-d H:i:s');
+    $updateQuery = "
+        UPDATE users SET
+            email = :email,
+            name = :name,
+            phone = :phone,
+            company = :company,
+            category = :category,
+            updated_at = datetime('now')
+        WHERE email = :old_email
+    ";
 
-    // Update members list if name changed
-    if ($name !== $oldName) {
-        $memberIndex = array_search($oldName, $data['members']);
-        if ($memberIndex !== false) {
-            $data['members'][$memberIndex] = $name;
-        }
-    }
+    $params = [
+        ':email' => $email,
+        ':name' => $name,
+        ':phone' => $phone,
+        ':company' => $company,
+        ':category' => $category,
+        ':old_email' => $oldEmail
+    ];
 
-    // Update timestamp
-    $data['updated_at'] = date('Y-m-d');
+    $result = dbExecute($db, $updateQuery, $params);
 
-    // Save updated members.json
-    $jsonContent = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-    if (file_put_contents($membersFile, $jsonContent) === false) {
+    if (!$result) {
+        dbClose($db);
         throw new Exception('プロフィール情報の保存に失敗しました');
     }
 
-    // Response
-    $message = 'プロフィールを更新しました！';
+    // Update session email if changed
+    if ($email !== $oldEmail) {
+        $_SESSION['user_email'] = $email;
+    }
 
+    dbClose($db);
+
+    // Response
     echo json_encode([
         'success' => true,
-        'message' => $message
+        'message' => 'プロフィールを更新しました！'
     ]);
 
 } catch (Exception $e) {
+    if (isset($db)) {
+        dbClose($db);
+    }
+
     echo json_encode([
         'success' => false,
         'message' => $e->getMessage()
     ]);
 }
+?>

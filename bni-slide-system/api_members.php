@@ -1,26 +1,58 @@
 <?php
 /**
- * Members API
+ * Members API (SQLite Version)
  * メンバーリストをJSON形式で返す
- * 新構造に対応（後方互換性あり）
+ * Updated: 2025-12-06 - SQLite対応版
  */
 
 header('Content-Type: application/json; charset=utf-8');
 
-$membersFile = __DIR__ . '/data/members.json';
+require_once __DIR__ . '/includes/db.php';
 
-if (!file_exists($membersFile)) {
-    http_response_code(404);
-    echo json_encode(['error' => 'Members file not found']);
-    exit;
-}
+try {
+    $db = getDbConnection();
 
-$content = file_get_contents($membersFile);
-if ($content === false) {
+    // アクティブなメンバーを取得
+    $query = "
+        SELECT
+            id,
+            email,
+            name,
+            phone,
+            company,
+            category,
+            industry,
+            role,
+            is_active,
+            created_at
+        FROM users
+        WHERE is_active = 1
+        ORDER BY name
+    ";
+
+    $members = dbQuery($db, $query);
+
+    dbClose($db);
+
+    // JSON形式で出力（後方互換性のため配列形式）
+    $response = [
+        'success' => true,
+        'members' => $members,
+        'count' => count($members)
+    ];
+
+    echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+
+} catch (Exception $e) {
+    if (isset($db)) {
+        dbClose($db);
+    }
+
     http_response_code(500);
-    echo json_encode(['error' => 'Failed to read members file']);
-    exit;
+    echo json_encode([
+        'success' => false,
+        'error' => 'Failed to fetch members',
+        'message' => $e->getMessage()
+    ], JSON_UNESCAPED_UNICODE);
 }
-
-// JSONとして出力（新しい構造でもmembersフィールドがあるので互換性あり）
-echo $content;
+?>

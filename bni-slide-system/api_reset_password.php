@@ -1,10 +1,13 @@
 <?php
 /**
- * BNI Slide System - Reset Password API
+ * BNI Slide System - Reset Password API (SQLite Version)
  * パスワードをリセット
+ * Updated: 2025-12-06 - SQLite対応版
  */
 
 header('Content-Type: application/json; charset=utf-8');
+
+require_once __DIR__ . '/includes/db.php';
 
 // POSTメソッドのみ許可
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -39,67 +42,74 @@ if ($password !== $passwordConfirm) {
     exit;
 }
 
-// メンバーデータを読み込み
-$membersFile = __DIR__ . '/data/members.json';
+try {
+    $db = getDbConnection();
 
-if (!file_exists($membersFile)) {
-    echo json_encode(['success' => false, 'message' => 'ユーザーデータが見つかりません']);
-    exit;
-}
+    // トークンが有効なユーザーを検索
+    $user = dbQuery($db, "
+        SELECT id, email, reset_token, reset_token_expires
+        FROM users
+        WHERE reset_token = :token
+    ", [':token' => $token]);
 
-$content = file_get_contents($membersFile);
-$data = json_decode($content, true);
-
-if (!$data || !isset($data['users'])) {
-    echo json_encode(['success' => false, 'message' => 'ユーザーデータの読み込みに失敗しました']);
-    exit;
-}
-
-// トークンが有効なユーザーを検索
-$userFound = false;
-$username = '';
-
-foreach ($data['users'] as $uname => $user) {
-    if (isset($user['reset_token']) && $user['reset_token'] === $token) {
-        // トークンの有効期限をチェック
-        if (isset($user['reset_token_expires'])) {
-            $expiresAt = strtotime($user['reset_token_expires']);
-            $now = time();
-
-            if ($now > $expiresAt) {
-                echo json_encode(['success' => false, 'message' => 'リセットリンクの有効期限が切れています。もう一度パスワードリセットをリクエストしてください。']);
-                exit;
-            }
-        }
-
-        $userFound = true;
-        $username = $uname;
-        break;
+    if (empty($user)) {
+        dbClose($db);
+        echo json_encode(['success' => false, 'message' => '無効なリセットリンクです。トークンが見つかりません。']);
+        exit;
     }
+
+    $user = $user[0];
+
+    // トークンの有効期限をチェック
+    if (!empty($user['reset_token_expires'])) {
+        $expiresAt = strtotime($user['reset_token_expires']);
+        $now = time();
+
+        if ($now > $expiresAt) {
+            dbClose($db);
+            echo json_encode(['success' => false, 'message' => 'リセットリンクの有効期限が切れています。もう一度パスワードリセットをリクエストしてください。']);
+            exit;
+        }
+    }
+
+    // パスワードをハッシュ化
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // パスワードを更新し、トークンを削除
+    $updateQuery = "
+        UPDATE users SET
+            password_hash = :password_hash,
+            reset_token = NULL,
+            reset_token_expires = NULL,
+            updated_at = datetime('now')
+        WHERE id = :id
+    ";
+
+    $result = dbExecute($db, $updateQuery, [
+        ':password_hash' => $hashedPassword,
+        ':id' => $user['id']
+    ]);
+
+    dbClose($db);
+
+    if (!$result) {
+        echo json_encode(['success' => false, 'message' => 'パスワードの保存に失敗しました']);
+        exit;
+    }
+
+    echo json_encode([
+        'success' => true,
+        'message' => 'パスワードが更新されました。新しいパスワードでログインできます。'
+    ]);
+
+} catch (Exception $e) {
+    if (isset($db)) {
+        dbClose($db);
+    }
+
+    echo json_encode([
+        'success' => false,
+        'message' => $e->getMessage()
+    ]);
 }
-
-if (!$userFound) {
-    echo json_encode(['success' => false, 'message' => '無効なリセットリンクです。トークンが見つかりません。']);
-    exit;
-}
-
-// パスワードをハッシュ化
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-// パスワードを更新し、トークンを削除（password_hashキーに保存）
-$data['users'][$username]['password_hash'] = $hashedPassword;
-unset($data['users'][$username]['reset_token']);
-unset($data['users'][$username]['reset_token_expires']);
-$data['users'][$username]['updated_at'] = date('Y-m-d H:i:s');
-
-// データを保存
-$jsonContent = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-if (file_put_contents($membersFile, $jsonContent) === false) {
-    echo json_encode(['success' => false, 'message' => 'パスワードの保存に失敗しました']);
-    exit;
-}
-
-echo json_encode([
-    'success' => true,
-    'message' => '新しいパスワードでログインできます'
-]);
+?>
