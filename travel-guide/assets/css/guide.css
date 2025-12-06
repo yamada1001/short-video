@@ -151,8 +151,8 @@
 /* 目次（PCフローティング） */
 .toc-sidebar {
     position: sticky;
-    top: 100px;
-    max-height: calc(100vh - 120px);
+    top: 20px;
+    max-height: calc(100vh - 40px);
     overflow-y: auto;
     background: #fafafa;
     border: 1px solid #f0f0f0;

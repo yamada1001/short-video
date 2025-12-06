@@ -38,14 +38,3 @@ if (!defined('PAGE_TITLE')) {
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-
-    <header class="site-header">
-        <div class="container">
-            <h1 class="site-logo">
-                <a href="<?php echo BASE_URL; ?>/">
-                    <i class="fas fa-book-open"></i>
-                    <?php echo SITE_TITLE; ?>
-                </a>
-            </h1>
-        </div>
-    </header>

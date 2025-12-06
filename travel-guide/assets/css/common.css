@@ -35,42 +35,7 @@ a:hover {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* ヘッダー */
-.site-header {
-    background: #ffffff;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.site-logo a {
-    font-size: 24px;
-    font-weight: 400;
-    color: #333;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.site-logo i {
-    color: #4A90E2;
-}
-
-/* フッター */
-.site-footer {
-    background: #fafafa;
-    border-top: 1px solid #f0f0f0;
-    padding: 40px 0;
-    margin-top: 80px;
-    text-align: center;
-    color: #999;
-    font-size: 14px;
+    padding: 20px;
 }
 
 /* ボタン */
