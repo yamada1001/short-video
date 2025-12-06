@@ -10,6 +10,8 @@
 https://yojitu.com/travel-guide/generate-htpasswd.php
 ```
 
+**注意**: 現在は .htaccess がコメントアウトされているため、認証なしでアクセスできます。
+
 実行すると、以下のような画面が表示されます：
 
 ```
@@ -42,25 +44,42 @@ https://yojitu.com/travel-guide/generate-htpasswd.php
 
 スマホのメモアプリや、パスワードマネージャーに保存することをおすすめします。
 
-### ステップ3: 生成スクリプトを削除する
+### ステップ3: Basic認証を有効化する
 
-セキュリティのため、**必ず削除してください**。
-
-#### 方法1: サーバーのファイルマネージャーで削除
-
-Xserverのファイルマネージャーにログインして、以下のファイルを削除：
+以下のURLにアクセスして、Basic認証を有効化してください：
 
 ```
-/home/xs545151/yojitu.com/public_html/travel-guide/generate-htpasswd.php
+https://yojitu.com/travel-guide/enable-auth.php
 ```
 
-#### 方法2: SSHで削除（SSH接続可能な場合）
+このスクリプトは：
+- .htpasswd の存在を確認
+- .htaccess のコメントを外して認証を有効化
+- ログイン情報を再表示
+
+### ステップ4: スクリプトを削除する
+
+セキュリティのため、以下のファイルを**必ず削除してください**：
+
+#### 削除すべきファイル:
+1. `generate-htpasswd.php`
+2. `enable-auth.php`
+3. `debug.php`
+
+#### 削除方法:
+
+**方法1: サーバーのファイルマネージャーで削除**
+
+Xserverのファイルマネージャーから削除
+
+**方法2: SSHで削除（SSH接続可能な場合）**
 
 ```bash
-rm /home/xs545151/yojitu.com/public_html/travel-guide/generate-htpasswd.php
+cd /home/xs545151/yojitu.com/public_html/travel-guide
+rm generate-htpasswd.php enable-auth.php debug.php
 ```
 
-### ステップ4: 動作確認
+### ステップ5: 動作確認
 
 以下のURLにアクセスしてください：
 
