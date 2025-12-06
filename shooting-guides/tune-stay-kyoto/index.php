@@ -155,78 +155,101 @@
 
         @media (max-width: 640px) {
             .container {
-                padding: 10px;
+                padding: 12px;
             }
 
             body {
-                font-size: 16px;
-                line-height: 1.8;
+                font-size: 18px;
+                line-height: 1.75;
             }
 
             header {
-                padding: 30px 15px;
+                padding: 35px 20px;
                 border-radius: 10px;
             }
 
             h1 {
-                font-size: 1.8em;
-                letter-spacing: 1px;
+                font-size: 2em;
+                letter-spacing: 0.5px;
             }
 
             .subtitle {
                 font-size: 1em;
+                margin-top: 12px;
             }
 
             .section {
-                padding: 20px 15px;
-                margin-bottom: 15px;
+                padding: 25px 18px;
+                margin-bottom: 20px;
                 border-radius: 10px;
             }
 
             h2 {
-                font-size: 1.5em;
+                font-size: 1.65em;
+                margin-bottom: 20px;
+                padding-bottom: 12px;
             }
 
             h3 {
-                font-size: 1.25em;
+                font-size: 1.35em;
+                margin-top: 30px;
+                margin-bottom: 15px;
             }
 
             h4 {
-                font-size: 1.1em;
+                font-size: 1.15em;
+                margin-top: 20px;
+                margin-bottom: 12px;
             }
 
             p {
                 font-size: 1em;
-                line-height: 1.8;
-                margin-bottom: 15px;
+                line-height: 1.75;
+                margin-bottom: 16px;
             }
 
             li {
                 font-size: 1em;
                 line-height: 1.7;
-                margin-bottom: 10px;
+                margin-bottom: 12px;
+            }
+
+            ul {
+                margin-bottom: 20px;
             }
 
             table {
-                font-size: 0.9em;
+                font-size: 0.95em;
             }
 
             th, td {
-                padding: 10px;
+                padding: 12px 10px;
+                font-size: 1em;
             }
 
             .tag {
-                padding: 5px 12px;
-                font-size: 0.85em;
+                padding: 6px 14px;
+                font-size: 0.9em;
             }
 
             .checklist li {
                 font-size: 1em;
-                padding: 14px 0 14px 40px;
+                padding: 16px 0 16px 45px;
             }
 
             .checklist li:before {
-                font-size: 1.5em;
+                font-size: 1.6em;
+                left: 5px;
+            }
+
+            .info-box, .highlight, .photo-tip, .warning-box {
+                padding: 20px;
+                margin: 20px 0;
+            }
+
+            .reference {
+                font-size: 0.95em;
+                margin-top: 15px;
             }
         }
 
