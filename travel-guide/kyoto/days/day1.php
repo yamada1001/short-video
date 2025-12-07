@@ -1,6 +1,6 @@
 <?php
 require_once '../../includes/config.php';
-define('PAGE_TITLE', '12/7（土）今日 - 東山エリア先行消化');
+define('PAGE_TITLE', '12/7（土）昨日 - 東寺エリア');
 require_once '../../includes/header.php';
 ?>
 
@@ -16,37 +16,57 @@ require_once '../../includes/header.php';
             </div>
 
             <div class="page-header">
-                <h1 class="page-title">12/7（土）今日 🌆</h1>
-                <p class="page-subtitle">16:00〜 | 東山エリア | 6スポット消化</p>
+                <h1 class="page-title">12/7（土）昨日 🏯</h1>
+                <p class="page-subtitle"><ruby>東寺<rt>とうじ</rt></ruby>エリア | 2スポット消化</p>
             </div>
 
             <!-- 統計情報 -->
             <div class="stats">
                 <div class="stat-item">
-                    <div class="stat-label">今日の予定</div>
-                    <div class="stat-value total-count">6</div>
+                    <div class="stat-label">昨日の予定</div>
+                    <div class="stat-value total-count">2</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">達成率</div>
                     <div class="stat-value">
                         <span class="checked-count">0</span>
-                        <span class="total"> / 6</span>
+                        <span class="total"> / 2</span>
                     </div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-label">開始時刻</div>
-                    <div class="stat-value" style="font-size: 20px;">16:00</div>
+                    <div class="stat-label">ステータス</div>
+                    <div class="stat-value" style="font-size: 18px; color: #28a745;">✅ 完了</div>
                 </div>
+            </div>
+
+            <!-- エリアマップ -->
+            <div class="card" style="margin-bottom: 30px;">
+                <h3 style="margin: 0 0 12px 0; font-size: 18px; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-map-marked-alt"></i>
+                    昨日回ったエリア
+                </h3>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3268.2986870819386!2d135.74751937649917!3d34.98037207282794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600108ae918b02ef%3A0xb61a446a7bf4a4ec!2z5p2x5a-655uu5Lit!5e0!3m2!1sja!2sjp!4v1701234567890!5m2!1sja!2sjp"
+                    width="100%"
+                    height="350"
+                    style="border:0; border-radius: 8px;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <p style="margin: 12px 0 0 0; font-size: 14px; color: #666;">
+                    <i class="fas fa-info-circle"></i> 京都駅から徒歩15分の<ruby>東寺<rt>とうじ</rt></ruby>エリア
+                </p>
             </div>
 
             <!-- お得な移動情報 -->
             <div class="card" style="margin-bottom: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
                 <h3 style="margin: 0 0 12px 0; font-size: 18px; display: flex; align-items: center; gap: 8px;">
-                    <i class="fas fa-ticket-alt"></i>
-                    今日のおすすめ切符
+                    <i class="fas fa-walking"></i>
+                    移動方法
                 </h3>
-                <p style="margin: 0 0 8px 0; font-size: 16px; font-weight: bold;">地下鉄・バス1日券：1,100円</p>
-                <p style="margin: 0; font-size: 14px; opacity: 0.9;">地下鉄+市バス乗り放題。地下鉄で<ruby>蹴上<rt>けあげ</rt></ruby>へ、帰りはバスで自由に移動できます。</p>
+                <p style="margin: 0 0 8px 0; font-size: 16px; font-weight: bold;">徒歩：0円</p>
+                <p style="margin: 0; font-size: 14px; opacity: 0.9;">京都駅から<ruby>東寺<rt>とうじ</rt></ruby>まで徒歩約15分。切符不要で経済的！</p>
             </div>
 
             <!-- リセットボタン -->
@@ -59,31 +79,28 @@ require_once '../../includes/header.php';
 
             <!-- スケジュール -->
             <section class="section" id="spot-1">
-                <h2 class="section-title">16:00 ホテル出発</h2>
-                <div class="card">
-                    <p style="color: #666; margin-bottom: 12px;">京都駅周辺のホテルから出発を想定</p>
-                    <div class="transit-info">
-                        <strong><i class="fas fa-subway"></i> 移動：</strong>地下鉄<ruby>烏丸<rt>からすま</rt></ruby>線「京都駅」→「<ruby>烏丸御池<rt>からすまおいけ</rt></ruby>」（乗換）→ 東西線「<ruby>蹴上<rt>けあげ</rt></ruby>駅」<br>
-                        <span style="color: #666; font-size: 14px;">💰 260円 | ⏱️ 約15分 | 🎫 1日券利用可</span>
-                    </div>
-                </div>
-            </section>
+                <h2 class="section-title"><ruby>東寺<rt>とうじ</rt></ruby>（<ruby>五重塔<rt>ごじゅうのとう</rt></ruby>）</h2>
 
-            <section class="section" id="spot-2">
-                <h2 class="section-title">16:30 <ruby>蹴上<rt>けあげ</rt></ruby>インクライン</h2>
+                <div class="transit-info">
+                    <strong><i class="fas fa-walking"></i> 移動：</strong>京都駅 → <ruby>東寺<rt>とうじ</rt></ruby>（徒歩15分）
+                </div>
+
                 <ul class="spot-list">
                     <li class="spot-item">
                         <div class="spot-header">
                             <input type="checkbox" id="spot-day1-1" class="spot-checkbox">
                             <div class="spot-info">
-                                <div class="spot-time">16:30 - 17:00</div>
-                                <h3 class="spot-name"><ruby>蹴上<rt>けあげ</rt></ruby>インクライン</h3>
-                                <p class="spot-note">廃線跡のフォトスポット。線路の上を歩けるインスタ映えスポット</p>
+                                <div class="spot-time">1スポット目</div>
+                                <h3 class="spot-name"><ruby>東寺<rt>とうじ</rt></ruby>（<ruby>五重塔<rt>ごじゅうのとう</rt></ruby>）</h3>
+                                <p class="spot-note">日本一高い木造塔（55m）。世界遺産の古刹</p>
                                 <div class="spot-links">
-                                    <a href="https://www.google.com/maps/search/?api=1&query=蹴上インクライン" target="_blank" class="spot-link">
+                                    <a href="https://www.google.com/maps/search/?api=1&query=東寺+京都" target="_blank" class="spot-link">
                                         <i class="fas fa-map-marker-alt"></i> Google Maps
                                     </a>
-                                    <a href="https://www.google.com/search?q=蹴上インクライン" target="_blank" class="spot-link">
+                                    <a href="https://toji.or.jp/" target="_blank" class="spot-link">
+                                        <i class="fas fa-link"></i> 公式サイト
+                                    </a>
+                                    <a href="https://www.google.com/search?q=東寺+五重塔" target="_blank" class="spot-link">
                                         <i class="fas fa-search"></i> 画像検索
                                     </a>
                                 </div>
@@ -91,30 +108,28 @@ require_once '../../includes/header.php';
                         </div>
                     </li>
                 </ul>
-
-                <div class="transit-info">
-                    <strong><i class="fas fa-walking"></i> 移動：</strong><ruby>蹴上<rt>けあげ</rt></ruby>インクライン → <ruby>南禅寺<rt>なんぜんじ</rt></ruby>（徒歩5分）
-                </div>
             </section>
 
-            <section class="section" id="spot-3">
-                <h2 class="section-title">17:00 <ruby>南禅寺<rt>なんぜんじ</rt></ruby></h2>
+            <section class="section" id="spot-2">
+                <h2 class="section-title"><ruby>御菓子司<rt>おかしつかさ</rt></ruby> <ruby>東寺餅<rt>とうじもち</rt></ruby></h2>
+
+                <div class="transit-info">
+                    <strong><i class="fas fa-walking"></i> 移動：</strong><ruby>東寺<rt>とうじ</rt></ruby>のすぐ近く（徒歩2分）
+                </div>
+
                 <ul class="spot-list">
                     <li class="spot-item">
                         <div class="spot-header">
                             <input type="checkbox" id="spot-day1-2" class="spot-checkbox">
                             <div class="spot-info">
-                                <div class="spot-time">17:00 - 18:00</div>
-                                <h3 class="spot-name"><ruby>南禅寺<rt>なんぜんじ</rt></ruby></h3>
-                                <p class="spot-note">水路閣が有名。石川五右衛門の「絶景かな」の舞台。夕暮れ時の雰囲気が最高</p>
+                                <div class="spot-time">2スポット目</div>
+                                <h3 class="spot-name"><ruby>御菓子司<rt>おかしつかさ</rt></ruby> <ruby>東寺餅<rt>とうじもち</rt></ruby></h3>
+                                <p class="spot-note"><ruby>東寺<rt>とうじ</rt></ruby>のすぐ近く。名物の<ruby>東寺餅<rt>とうじもち</rt></ruby>をお土産に</p>
                                 <div class="spot-links">
-                                    <a href="https://www.google.com/maps/search/?api=1&query=南禅寺+京都" target="_blank" class="spot-link">
+                                    <a href="https://www.google.com/maps/search/?api=1&query=御菓子司+東寺餅" target="_blank" class="spot-link">
                                         <i class="fas fa-map-marker-alt"></i> Google Maps
                                     </a>
-                                    <a href="https://nanzenji.or.jp/" target="_blank" class="spot-link">
-                                        <i class="fas fa-link"></i> 公式サイト
-                                    </a>
-                                    <a href="https://www.google.com/search?q=南禅寺+水路閣" target="_blank" class="spot-link">
+                                    <a href="https://www.google.com/search?q=東寺餅" target="_blank" class="spot-link">
                                         <i class="fas fa-search"></i> 画像検索
                                     </a>
                                 </div>
@@ -122,113 +137,6 @@ require_once '../../includes/header.php';
                         </div>
                     </li>
                 </ul>
-
-                <div class="transit-info">
-                    <strong><i class="fas fa-walking"></i> 移動：</strong><ruby>南禅寺<rt>なんぜんじ</rt></ruby> → <ruby>永観堂<rt>えいかんどう</rt></ruby>（徒歩10分）
-                </div>
-            </section>
-
-            <section class="section" id="spot-4">
-                <h2 class="section-title">18:00 <ruby>永観堂<rt>えいかんどう</rt></ruby></h2>
-                <ul class="spot-list">
-                    <li class="spot-item">
-                        <div class="spot-header">
-                            <input type="checkbox" id="spot-day1-3" class="spot-checkbox">
-                            <div class="spot-info">
-                                <div class="spot-time">18:00 - 18:45</div>
-                                <h3 class="spot-name"><ruby>永観堂<rt>えいかんどう</rt></ruby></h3>
-                                <p class="spot-note">紅葉の名所。みかえり阿弥陀が有名。ライトアップがあれば最高</p>
-                                <div class="spot-links">
-                                    <a href="https://www.google.com/maps/search/?api=1&query=永観堂+京都" target="_blank" class="spot-link">
-                                        <i class="fas fa-map-marker-alt"></i> Google Maps
-                                    </a>
-                                    <a href="http://www.eikando.or.jp/" target="_blank" class="spot-link">
-                                        <i class="fas fa-link"></i> 公式サイト
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-
-                <div class="transit-info">
-                    <strong><i class="fas fa-walking"></i> 移動：</strong><ruby>永観堂<rt>えいかんどう</rt></ruby> → <ruby>円山公園<rt>まるやまこうえん</rt></ruby>（徒歩15分）
-                </div>
-            </section>
-
-            <section class="section" id="spot-5">
-                <h2 class="section-title">18:45 <ruby>円山公園<rt>まるやまこうえん</rt></ruby></h2>
-                <ul class="spot-list">
-                    <li class="spot-item">
-                        <div class="spot-header">
-                            <input type="checkbox" id="spot-day1-4" class="spot-checkbox">
-                            <div class="spot-info">
-                                <div class="spot-time">18:45 - 19:15</div>
-                                <h3 class="spot-name"><ruby>円山公園<rt>まるやまこうえん</rt></ruby></h3>
-                                <p class="spot-note"><ruby>祇園<rt>ぎおん</rt></ruby>のそば。しだれ桜が有名な公園。夜のライトアップも美しい</p>
-                                <div class="spot-links">
-                                    <a href="https://www.google.com/maps/search/?api=1&query=円山公園+京都" target="_blank" class="spot-link">
-                                        <i class="fas fa-map-marker-alt"></i> Google Maps
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-
-                <div class="transit-info">
-                    <strong><i class="fas fa-walking"></i> 移動：</strong><ruby>円山公園<rt>まるやまこうえん</rt></ruby> → <ruby>鴨川<rt>かもがわ</rt></ruby>・<ruby>四条<rt>しじょう</rt></ruby>（徒歩10分）
-                </div>
-            </section>
-
-            <section class="section" id="spot-6">
-                <h2 class="section-title">19:15 <ruby>鴨川<rt>かもがわ</rt></ruby>沿い散歩</h2>
-                <ul class="spot-list">
-                    <li class="spot-item">
-                        <div class="spot-header">
-                            <input type="checkbox" id="spot-day1-5" class="spot-checkbox">
-                            <div class="spot-info">
-                                <div class="spot-time">19:15 - 19:45</div>
-                                <h3 class="spot-name"><ruby>鴨川<rt>かもがわ</rt></ruby>沿い散歩</h3>
-                                <p class="spot-note"><ruby>四条大橋<rt>しじょうおおはし</rt></ruby>周辺。夜の<ruby>鴨川<rt>かもがわ</rt></ruby>は雰囲気抜群。カップルの聖地</p>
-                                <div class="spot-links">
-                                    <a href="https://www.google.com/maps/search/?api=1&query=鴨川+四条大橋" target="_blank" class="spot-link">
-                                        <i class="fas fa-map-marker-alt"></i> Google Maps
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="section" id="spot-7">
-                <h2 class="section-title">19:45 夕食</h2>
-                <ul class="spot-list">
-                    <li class="spot-item">
-                        <div class="spot-header">
-                            <input type="checkbox" id="spot-day1-6" class="spot-checkbox">
-                            <div class="spot-info">
-                                <div class="spot-time">19:45 -</div>
-                                <h3 class="spot-name"><ruby>四条<rt>しじょう</rt></ruby>エリアで夕食</h3>
-                                <p class="spot-note"><ruby>四条<rt>しじょう</rt></ruby>・<ruby>河原町<rt>かわらまち</rt></ruby>エリアで気になるお店を選択。京料理や居酒屋など選択肢豊富</p>
-                                <div class="spot-links">
-                                    <a href="https://www.google.com/maps/search/?api=1&query=四条+レストラン+京都" target="_blank" class="spot-link">
-                                        <i class="fas fa-search"></i> 四条レストラン検索
-                                    </a>
-                                    <a href="https://www.google.com/maps/search/?api=1&query=河原町+居酒屋+京都" target="_blank" class="spot-link">
-                                        <i class="fas fa-search"></i> 河原町居酒屋検索
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-
-                <div class="transit-info">
-                    <strong><i class="fas fa-bus"></i> 帰路：</strong><ruby>四条<rt>しじょう</rt></ruby> → 京都駅（市バス 約15分）<br>
-                    <span style="color: #666; font-size: 14px;">🎫 1日券利用可</span>
-                </div>
             </section>
 
             <!-- まとめ -->
@@ -236,16 +144,15 @@ require_once '../../includes/header.php';
                 <h2 class="section-title">まとめ</h2>
                 <div class="card">
                     <p style="margin-bottom: 16px; color: #666;">
-                        <strong style="font-weight: 400; color: #333;">今日の消化スポット：</strong>6スポット
+                        <strong style="font-weight: 400; color: #333;">昨日の消化スポット：</strong>2スポット
                     </p>
                     <ul style="line-height: 2; color: #666;">
-                        <li>東山エリア（<ruby>蹴上<rt>けあげ</rt></ruby>・<ruby>南禅寺<rt>なんぜんじ</rt></ruby>・<ruby>永観堂<rt>えいかんどう</rt></ruby>・<ruby>円山公園<rt>まるやまこうえん</rt></ruby>）</li>
-                        <li><ruby>鴨川<rt>かもがわ</rt></ruby>・<ruby>四条<rt>しじょう</rt></ruby>エリア</li>
+                        <li><ruby>東寺<rt>とうじ</rt></ruby>エリア（<ruby>五重塔<rt>ごじゅうのとう</rt></ruby>、<ruby>東寺餅<rt>とうじもち</rt></ruby>）</li>
                     </ul>
                     <p style="color: #999; font-size: 14px; margin-top: 16px; line-height: 1.8;">
-                        ✅ 地下鉄・バス1日券（1,100円）がおすすめ<br>
-                        ✅ 明日のMTG後に備えて東山エリアを先行消化<br>
-                        ✅ 夕暮れ〜夜の雰囲気が楽しめる時間帯
+                        ✅ 徒歩のみで0円、とても経済的<br>
+                        ✅ 世界遺産の<ruby>東寺<rt>とうじ</rt></ruby>を堪能<br>
+                        ✅ お疲れ様でした！
                     </p>
                 </div>
             </section>
@@ -255,13 +162,8 @@ require_once '../../includes/header.php';
         <aside class="toc-sidebar">
             <h3 class="toc-title">目次</h3>
             <ul class="toc-list">
-                <li class="toc-item"><a href="#spot-1" class="toc-link">16:00 ホテル出発</a></li>
-                <li class="toc-item"><a href="#spot-2" class="toc-link">16:30 <ruby>蹴上<rt>けあげ</rt></ruby>インクライン</a></li>
-                <li class="toc-item"><a href="#spot-3" class="toc-link">17:00 <ruby>南禅寺<rt>なんぜんじ</rt></ruby></a></li>
-                <li class="toc-item"><a href="#spot-4" class="toc-link">18:00 <ruby>永観堂<rt>えいかんどう</rt></ruby></a></li>
-                <li class="toc-item"><a href="#spot-5" class="toc-link">18:45 <ruby>円山公園<rt>まるやまこうえん</rt></ruby></a></li>
-                <li class="toc-item"><a href="#spot-6" class="toc-link">19:15 <ruby>鴨川<rt>かもがわ</rt></ruby>沿い散歩</a></li>
-                <li class="toc-item"><a href="#spot-7" class="toc-link">19:45 夕食</a></li>
+                <li class="toc-item"><a href="#spot-1" class="toc-link"><ruby>東寺<rt>とうじ</rt></ruby></a></li>
+                <li class="toc-item"><a href="#spot-2" class="toc-link"><ruby>東寺餅<rt>とうじもち</rt></ruby></a></li>
                 <li class="toc-item"><a href="#summary" class="toc-link">まとめ</a></li>
             </ul>
         </aside>
@@ -283,13 +185,8 @@ require_once '../../includes/header.php';
             </button>
         </div>
         <ul class="toc-list">
-            <li class="toc-item"><a href="#spot-1" class="toc-link">16:00 ホテル出発</a></li>
-            <li class="toc-item"><a href="#spot-2" class="toc-link">16:30 <ruby>蹴上<rt>けあげ</rt></ruby>インクライン</a></li>
-            <li class="toc-item"><a href="#spot-3" class="toc-link">17:00 <ruby>南禅寺<rt>なんぜんじ</rt></ruby></a></li>
-            <li class="toc-item"><a href="#spot-4" class="toc-link">18:00 <ruby>永観堂<rt>えいかんどう</rt></ruby></a></li>
-            <li class="toc-item"><a href="#spot-5" class="toc-link">18:45 <ruby>円山公園<rt>まるやまこうえん</rt></ruby></a></li>
-            <li class="toc-item"><a href="#spot-6" class="toc-link">19:15 <ruby>鴨川<rt>かもがわ</rt></ruby>沿い散歩</a></li>
-            <li class="toc-item"><a href="#spot-7" class="toc-link">19:45 夕食</a></li>
+            <li class="toc-item"><a href="#spot-1" class="toc-link"><ruby>東寺<rt>とうじ</rt></ruby></a></li>
+            <li class="toc-item"><a href="#spot-2" class="toc-link"><ruby>東寺餅<rt>とうじもち</rt></ruby></a></li>
             <li class="toc-item"><a href="#summary" class="toc-link">まとめ</a></li>
         </ul>
     </div>

@@ -39,6 +39,26 @@ require_once '../../includes/header.php';
                 </div>
             </div>
 
+            <!-- エリアマップ -->
+            <div class="card" style="margin-bottom: 30px;">
+                <h3 style="margin: 0 0 12px 0; font-size: 18px; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-map-marked-alt"></i>
+                    今日回るエリア
+                </h3>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6537.373785545632!2d135.66547807649917!3d35.00941007282794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6001075f3e3d7d0d%3A0x8e1f1e88b4f4e4e4!2z5auQ5bGx!5e0!3m2!1sja!2sjp!4v1701234567890!5m2!1sja!2sjp"
+                    width="100%"
+                    height="350"
+                    style="border:0; border-radius: 8px;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <p style="margin: 12px 0 0 0; font-size: 14px; color: #666;">
+                    <i class="fas fa-info-circle"></i> <ruby>嵐山<rt>あらしやま</rt></ruby>エリアをメインに、朝イチで<ruby>竹林<rt>ちくりん</rt></ruby>・<ruby>天龍寺<rt>てんりゅうじ</rt></ruby>・<ruby>渡月橋<rt>とげつきょう</rt></ruby>を巡る
+                </p>
+            </div>
+
             <!-- お得な移動情報 -->
             <div class="card" style="margin-bottom: 30px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
                 <h3 style="margin: 0 0 12px 0; font-size: 18px; display: flex; align-items: center; gap: 8px;">
