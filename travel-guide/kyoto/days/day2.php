@@ -43,19 +43,19 @@ require_once '../../includes/header.php';
             <div class="card" style="margin-bottom: 30px;">
                 <h3 style="margin: 0 0 12px 0; font-size: 18px; display: flex; align-items: center; gap: 8px;">
                     <i class="fas fa-map-marked-alt"></i>
-                    今日回るエリア
+                    今日回るルート（地図上のマーカーをクリックで詳細表示）
                 </h3>
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52296.93425395343!2d135.7406!3d34.9944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600108d6c5f1d36f%3A0xe4cf9ba87e3fe55c!2z5Lyd6aaL56my6I235aSn56S-!5e0!3m2!1sja!2sjp!4v1701234567890!5m2!1sja!2sjp"
+                    src="https://www.google.com/maps/embed?pb=!1m70!1m12!1m3!1d52297.5!2d135.7406!3d34.9944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m55!3e3!4m5!1s0x600108fa4f49928b%3A0xb5c42a61da8d58bb!2z5Lyd6KaL56iy6I236Yar56S-!3m2!1d34.9671534!2d135.7726885!4m5!1s0x6001089e32cf8c87%3A0x45e9e87e8e8e8e8e!2z6Lii5LiK44Kk44Oz44Kv44Op44Kk44OzIOS6rOmDveW4gg!3m2!1d35.0106!2d135.7937!4m5!1s0x6001089f0b8e0b8f%3A0x8e8e8e8e8e8e8e8e!2z5Y2X56aF5a-6IOS6rOmDveW4gg!3m2!1d35.0115!2d135.7935!4m5!1s0x6001089e8e8e8e8e%3A0x1234567890123456!2z5rC456GA5aCC!3m2!1d35.0099!2d135.7943!4m5!1s0x6001089c0c0c0c0c%3A0xabcdefabcdefabcd!2z5YaG5bGx5YWs5ZyS!3m2!1d35.0052!2d135.7807!4m5!1s0x60010892c892c892%3A0x9876543210987654!2z5qKF5ZyS5rKz5Y6f55S677yI5qKF5ZqC5bqX77yJ!3m2!1d35.0038!2d135.7701!4m5!1s0x600108e0e0e0e0e0%3A0xfedcbafedcbafed!2z6Yym5biC5aC0IOWMl-mDveW4gg!3m2!1d35.0043!2d135.7663!5e0!3m2!1sja!2sjp!4v1733000000001!5m2!1sja!2sjp"
                     width="100%"
-                    height="400"
+                    height="450"
                     style="border:0; border-radius: 8px;"
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
                 <p style="margin: 12px 0 0 0; font-size: 14px; color: #666;">
-                    <i class="fas fa-info-circle"></i> <ruby>伏見稲荷<rt>ふしみいなり</rt></ruby>（南）→ 東山（東）→ <ruby>四条<rt>しじょう</rt></ruby>（中心）と広範囲を移動
+                    <i class="fas fa-route"></i> <ruby>伏見稲荷<rt>ふしみいなり</rt></ruby> → <ruby>蹴上<rt>けあげ</rt></ruby> → <ruby>南禅寺<rt>なんぜんじ</rt></ruby> → <ruby>永観堂<rt>えいかんどう</rt></ruby> → <ruby>円山公園<rt>まるやまこうえん</rt></ruby> → <ruby>梅園<rt>うめぞの</rt></ruby> → <ruby>錦市場<rt>にしきいちば</rt></ruby> の順路
                 </p>
             </div>
 

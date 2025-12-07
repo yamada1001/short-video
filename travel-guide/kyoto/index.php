@@ -1,6 +1,6 @@
 <?php
 require_once '../includes/config.php';
-define('PAGE_TITLE', '京都旅行 | 全15スポット制覇プラン');
+define('PAGE_TITLE', '京都旅行 | 全16スポット制覇プラン');
 require_once '../includes/header.php';
 ?>
 
@@ -9,20 +9,20 @@ require_once '../includes/header.php';
         <main class="guide-main">
             <div class="page-header">
                 <h1 class="page-title">京都旅行 🏯</h1>
-                <p class="page-subtitle">2025年12月7日〜9日 | 2泊3日 | 全15スポット制覇プラン</p>
+                <p class="page-subtitle">2025年12月7日〜9日 | 2泊3日 | 全16スポット制覇プラン</p>
             </div>
 
             <!-- 統計情報 -->
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-label">訪問予定</div>
-                    <div class="stat-value total-count">15</div>
+                    <div class="stat-value total-count">16</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">達成率</div>
                     <div class="stat-value">
                         <span class="checked-count">0</span>
-                        <span class="total"> / 15</span>
+                        <span class="total"> / 16</span>
                     </div>
                 </div>
                 <div class="stat-item">
@@ -66,8 +66,8 @@ require_once '../includes/header.php';
                             <i class="fas fa-calendar-day" style="color: #4A90E2;"></i>
                             12/9（月）明後日 - <ruby>嵐山<rt>あらしやま</rt></ruby>フル稼働
                         </h3>
-                        <p style="color: #666; margin-bottom: 8px;">7:00〜 | 6スポット</p>
-                        <p style="color: #999; font-size: 14px;"><ruby>嵐山<rt>あらしやま</rt></ruby>エリア（早朝）→ <ruby>東寺<rt>とうじ</rt></ruby> → おみやげ小路</p>
+                        <p style="color: #666; margin-bottom: 8px;">7:00〜 | 7スポット</p>
+                        <p style="color: #999; font-size: 14px;"><ruby>嵐山<rt>あらしやま</rt></ruby>エリア（早朝）→ <ruby>東寺<rt>とうじ</rt></ruby> → レバノン料理 → おみやげ小路</p>
                     </a>
                 </div>
             </section>
@@ -114,9 +114,10 @@ require_once '../includes/header.php';
 
                 <div class="card">
                     <h3 style="font-size: 18px; font-weight: 400; margin-bottom: 12px; color: #4A90E2;">
-                        <i class="fas fa-shopping-bag"></i> <ruby>四条<rt>しじょう</rt></ruby>・<ruby>河原町<rt>かわらまち</rt></ruby>エリア（3スポット）
+                        <i class="fas fa-shopping-bag"></i> <ruby>四条<rt>しじょう</rt></ruby>・<ruby>河原町<rt>かわらまち</rt></ruby>エリア（4スポット）
                     </h3>
                     <ul style="list-style: none; color: #666;">
+                        <li>✓ レバノン料理 <ruby>汽<rt>き</rt></ruby></li>
                         <li>✓ <ruby>梅園<rt>うめぞの</rt></ruby> <ruby>河原町店<rt>かわらまちてん</rt></ruby></li>
                         <li>✓ <ruby>錦市場<rt>にしきいちば</rt></ruby>（こんなもんじゃ）</li>
                         <li>✓ 今西軒</li>

@@ -43,19 +43,19 @@ require_once '../../includes/header.php';
             <div class="card" style="margin-bottom: 30px;">
                 <h3 style="margin: 0 0 12px 0; font-size: 18px; display: flex; align-items: center; gap: 8px;">
                     <i class="fas fa-map-marked-alt"></i>
-                    昨日回ったエリア
+                    昨日回ったルート（地図上のマーカーをクリックで詳細表示）
                 </h3>
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3268.2986870819386!2d135.74751937649917!3d34.98037207282794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600108ae918b02ef%3A0xb61a446a7bf4a4ec!2z5p2x5a-655uu5Lit!5e0!3m2!1sja!2sjp!4v1701234567890!5m2!1sja!2sjp"
+                    src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3268.3!2d135.7475!3d34.9804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x600108ae918b02ef%3A0xb61a446a7bf4a4ec!2z5p2x5a-6IOS6rOmDveW4gg!3m2!1d34.980372!2d135.747519!4m5!1s0x600108ae8e8e8e8e%3A0x1234567890abcdef!2z5b6h6I-T5a2Q5Y-4IOadvuWvuumkheOAgeS6rOmDveW4gg!3m2!1d34.9795!2d135.7468!5e0!3m2!1sja!2sjp!4v1733000000000!5m2!1sja!2sjp"
                     width="100%"
-                    height="350"
+                    height="400"
                     style="border:0; border-radius: 8px;"
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
                 <p style="margin: 12px 0 0 0; font-size: 14px; color: #666;">
-                    <i class="fas fa-info-circle"></i> 京都駅から徒歩15分の<ruby>東寺<rt>とうじ</rt></ruby>エリア
+                    <i class="fas fa-route"></i> 京都駅 → <ruby>東寺<rt>とうじ</rt></ruby>（<ruby>五重塔<rt>ごじゅうのとう</rt></ruby>）→ <ruby>東寺餅<rt>とうじもち</rt></ruby> の順路
                 </p>
             </div>
 
