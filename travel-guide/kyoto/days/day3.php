@@ -43,20 +43,24 @@ require_once '../../includes/header.php';
             <div class="card" style="margin-bottom: 30px;">
                 <h3 style="margin: 0 0 12px 0; font-size: 18px; display: flex; align-items: center; gap: 8px;">
                     <i class="fas fa-map-marked-alt"></i>
-                    今日回るルート（地図上のマーカーをクリックで詳細表示）
+                    今日回るエリア
                 </h3>
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m76!1m12!1m3!1d52298.5!2d135.7!3d35.01!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m61!3e3!4m5!1s0x6001075e8e8e8e8e%3A0x1234abcd1234abcd!2z56u555Sf44Gu5bCP5b6E!3m2!1d35.0173!2d135.6730!4m5!1s0x6001075f7f7f7f7f%3A0xabcdabcdabcdabcd!2z5aSp6b6N5a-6!3m2!1d35.0156!2d135.6730!4m5!1s0x600107600000000%3A0x9999999999999999!2z5rih5pyI5qmL!3m2!1d35.0138!2d135.6770!4m5!1s0x6001076161616161%3A0x7777777777777777!2z44Kt44Oi44OO44OV44Kp44Os44K544OI!3m2!1d35.0093!2d135.6823!4m5!1s0x600108ae918b02ef%3A0xb61a446a7bf4a4ec!2z5p2x5a-6!3m2!1d34.9804!2d135.7475!4m5!1s0x600108b0b0b0b0b0%3A0x5555555555555555!2z44Os44OQ44OO44Oz5paZ55CG5rG96rC0!3m2!1d35.0045!2d135.7680!4m5!1s0x600108b1b1b1b1b1%3A0x3333333333333333!2z44GK44G/44KE44GS5bCP6Lev5Lqs5bCP55S6!3m2!1d34.9872!2d135.7582!5e0!3m2!1sja!2sjp!4v1733000000002!5m2!1sja!2sjp"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6537.373785545632!2d135.66547807649917!3d35.00941007282794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6001075f3e3d7d0d%3A0x8e1f1e88b4f4e4e4!2z5auQ5bGx!5e0!3m2!1sja!2sjp!4v1701234567890!5m2!1sja!2sjp"
                     width="100%"
-                    height="450"
+                    height="400"
                     style="border:0; border-radius: 8px;"
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
-                <p style="margin: 12px 0 0 0; font-size: 14px; color: #666;">
+                <p style="margin: 12px 0 16px 0; font-size: 14px; color: #666;">
                     <i class="fas fa-route"></i> <ruby>竹林<rt>ちくりん</rt></ruby>の<ruby>小径<rt>こみち</rt></ruby> → <ruby>天龍寺<rt>てんりゅうじ</rt></ruby> → <ruby>渡月橋<rt>とげつきょう</rt></ruby> → キモノフォレスト → <ruby>東寺<rt>とうじ</rt></ruby> → レバノン料理 <ruby>汽<rt>き</rt></ruby> → おみやげ小路 の順路
                 </p>
+                <a href="https://www.google.com/maps/dir/竹林の小径+嵐山/天龍寺+嵐山/渡月橋+嵐山/キモノフォレスト+嵐電嵐山駅/東寺+京都/レバノン料理+汽+京都/おみやげ小路+京小町+京都駅/" target="_blank" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #4285F4; text-decoration: none;">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Google Mapsでルート全体を見る（7スポット）
+                </a>
             </div>
 
             <!-- お得な移動情報 -->
