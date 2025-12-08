@@ -63,6 +63,34 @@
             font-weight: 300;
         }
 
+        /* フローティング目次ボタン（右下固定・モバイル専用） */
+        .floating-menu-btn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 150;
+            transition: all 0.3s;
+        }
+
+        .floating-menu-btn:hover {
+            background: #555;
+            transform: scale(1.1);
+        }
+
+        .floating-menu-btn:active {
+            transform: scale(0.95);
+        }
+
         /* レイアウト */
         .main-layout {
             max-width: 1400px;
@@ -463,6 +491,11 @@
                 display: block;
             }
 
+            /* モバイル時にフローティングボタン表示 */
+            .floating-menu-btn {
+                display: block;
+            }
+
             .main-layout {
                 padding: 30px 20px;
             }
@@ -540,6 +573,11 @@
             </button>
         </div>
     </header>
+
+    <!-- モバイル用目次ボタン（右下固定） -->
+    <button class="floating-menu-btn" onclick="toggleToc()">
+        <i class="fas fa-bars"></i>
+    </button>
 
     <!-- フローティング目次（モバイル用） -->
     <div class="floating-toc" id="floatingToc" onclick="closeTocIfBackdrop(event)">
