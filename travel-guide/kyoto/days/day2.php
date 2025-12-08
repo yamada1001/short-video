@@ -1,6 +1,6 @@
 <?php
 require_once '../../includes/config.php';
-define('PAGE_TITLE', '12/8（日）今日 - 伏見稲荷＋東山＋四条');
+define('PAGE_TITLE', '12/8（月）今日 - 伏見稲荷＋東山＋四条');
 require_once '../../includes/header.php';
 ?>
 
@@ -16,21 +16,21 @@ require_once '../../includes/header.php';
             </div>
 
             <div class="page-header">
-                <h1 class="page-title">12/8（日）今日 ⛩️</h1>
-                <p class="page-subtitle">午前：<ruby>伏見稲荷<rt>ふしみいなり</rt></ruby> | 午後：東山・<ruby>四条<rt>しじょう</rt></ruby> | 7スポット消化</p>
+                <h1 class="page-title">12/8（月）今日 ⛩️</h1>
+                <p class="page-subtitle">午前：<ruby>伏見稲荷<rt>ふしみいなり</rt></ruby> | 昼：ランチ | 午後：東山・<ruby>四条<rt>しじょう</rt></ruby> | 8スポット消化</p>
             </div>
 
             <!-- 統計情報 -->
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-label">今日の予定</div>
-                    <div class="stat-value total-count">7</div>
+                    <div class="stat-value total-count">8</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">達成率</div>
                     <div class="stat-value">
                         <span class="checked-count">0</span>
-                        <span class="total"> / 7</span>
+                        <span class="total"> / 8</span>
                     </div>
                 </div>
                 <div class="stat-item">
@@ -55,11 +55,11 @@ require_once '../../includes/header.php';
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
                 <p style="margin: 12px 0 16px 0; font-size: 14px; color: #666;">
-                    <i class="fas fa-route"></i> TUNE STAY KYOTO → <ruby>伏見稲荷<rt>ふしみいなり</rt></ruby> → <ruby>蹴上<rt>けあげ</rt></ruby> → <ruby>南禅寺<rt>なんぜんじ</rt></ruby> → <ruby>永観堂<rt>えいかんどう</rt></ruby> → <ruby>円山公園<rt>まるやまこうえん</rt></ruby> → <ruby>梅園<rt>うめぞの</rt></ruby> → <ruby>錦市場<rt>にしきいちば</rt></ruby> の順路
+                    <i class="fas fa-route"></i> TUNE STAY KYOTO → <ruby>伏見稲荷<rt>ふしみいなり</rt></ruby> → レバノン料理 <ruby>汽<rt>き</rt></ruby> → <ruby>蹴上<rt>けあげ</rt></ruby> → <ruby>南禅寺<rt>なんぜんじ</rt></ruby> → <ruby>永観堂<rt>えいかんどう</rt></ruby> → <ruby>円山公園<rt>まるやまこうえん</rt></ruby> → <ruby>梅園<rt>うめぞの</rt></ruby> → <ruby>錦市場<rt>にしきいちば</rt></ruby> の順路
                 </p>
-                <a href="https://www.google.com/maps/dir/TUNE+STAY+KYOTO+京都/伏見稲荷大社/蹴上インクライン+京都/南禅寺+京都/永観堂+京都/円山公園+京都/梅園+河原町店+京都/錦市場+京都/" target="_blank" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #4285F4; text-decoration: none;">
+                <a href="https://www.google.com/maps/dir/TUNE+STAY+KYOTO+京都/伏見稲荷大社/レバノン料理+汽+京都/蹴上インクライン+京都/南禅寺+京都/永観堂+京都/円山公園+京都/梅園+河原町店+京都/錦市場+京都/" target="_blank" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #4285F4; text-decoration: none;">
                     <i class="fas fa-map-marked-alt"></i>
-                    Google Mapsでルート全体を見る（ホテル→7スポット）
+                    Google Mapsでルート全体を見る（ホテル→8スポット）
                 </a>
             </div>
 
@@ -115,8 +115,40 @@ require_once '../../includes/header.php';
                 </ul>
 
                 <div class="transit-info">
-                    <strong><i class="fas fa-train"></i> 移動：</strong>JR<ruby>稲荷駅<rt>いなりえき</rt></ruby> → 京都駅 → 地下鉄<ruby>烏丸線<rt>からすません</rt></ruby>「<ruby>烏丸御池<rt>からすまおいけ</rt></ruby>」→ 東西線「<ruby>蹴上駅<rt>けあげえき</rt></ruby>」<br>
-                    <span style="color: #666; font-size: 14px;">💰 JR 150円 + 地下鉄 260円 | ⏱️ 約25分 | 🎫 1日券利用可（地下鉄のみ）</span>
+                    <strong><i class="fas fa-train"></i> 移動：</strong>JR<ruby>稲荷駅<rt>いなりえき</rt></ruby> → 京都駅 → 地下鉄<ruby>烏丸線<rt>からすません</rt></ruby>「<ruby>四条<rt>しじょう</rt></ruby>」<br>
+                    <span style="color: #666; font-size: 14px;">💰 JR 150円 + 地下鉄 220円 | ⏱️ 約20分</span>
+                </div>
+            </section>
+
+            <!-- 昼：ランチ -->
+            <section class="section" id="lunch">
+                <h2 class="section-title">昼：ランチ</h2>
+
+                <ul class="spot-list">
+                    <!-- レバノン料理 汽 -->
+                    <li class="spot-item">
+                        <div class="spot-header">
+                            <input type="checkbox" id="spot-day2-2" class="spot-checkbox">
+                            <div class="spot-info">
+                                <div class="spot-time">12:00 - 13:00</div>
+                                <h3 class="spot-name">レバノン料理 <ruby>汽<rt>き</rt></ruby></h3>
+                                <p class="spot-note">本格レバノン料理のランチ。ヴィーガン・ベジタリアン対応も充実</p>
+                                <div class="spot-links">
+                                    <a href="https://www.google.com/maps/search/?api=1&query=レバノン料理+汽+京都" target="_blank" class="spot-link">
+                                        <i class="fas fa-map-marker-alt"></i> Google Maps
+                                    </a>
+                                    <a href="https://www.google.com/search?q=レバノン料理+汽+京都" target="_blank" class="spot-link">
+                                        <i class="fas fa-search"></i> 画像検索
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="transit-info">
+                    <strong><i class="fas fa-walking"></i> 移動：</strong><ruby>四条<rt>しじょう</rt></ruby> → 地下鉄<ruby>烏丸線<rt>からすません</rt></ruby>「<ruby>烏丸御池<rt>からすまおいけ</rt></ruby>」→ 東西線「<ruby>蹴上駅<rt>けあげえき</rt></ruby>」<br>
+                    <span style="color: #666; font-size: 14px;">💰 260円 | ⏱️ 約15分 | 🎫 1日券利用可</span>
                 </div>
             </section>
 
@@ -128,7 +160,7 @@ require_once '../../includes/header.php';
                     <!-- 蹴上インクライン -->
                     <li class="spot-item">
                         <div class="spot-header">
-                            <input type="checkbox" id="spot-day2-2" class="spot-checkbox">
+                            <input type="checkbox" id="spot-day2-3" class="spot-checkbox">
                             <div class="spot-info">
                                 <div class="spot-time">13:30 - 14:00</div>
                                 <h3 class="spot-name"><ruby>蹴上<rt>けあげ</rt></ruby>インクライン</h3>
@@ -154,7 +186,7 @@ require_once '../../includes/header.php';
                     <!-- 南禅寺 -->
                     <li class="spot-item">
                         <div class="spot-header">
-                            <input type="checkbox" id="spot-day2-3" class="spot-checkbox">
+                            <input type="checkbox" id="spot-day2-4" class="spot-checkbox">
                             <div class="spot-info">
                                 <div class="spot-time">14:00 - 15:00</div>
                                 <h3 class="spot-name"><ruby>南禅寺<rt>なんぜんじ</rt></ruby></h3>
@@ -183,7 +215,7 @@ require_once '../../includes/header.php';
                     <!-- 永観堂 -->
                     <li class="spot-item">
                         <div class="spot-header">
-                            <input type="checkbox" id="spot-day2-4" class="spot-checkbox">
+                            <input type="checkbox" id="spot-day2-5" class="spot-checkbox">
                             <div class="spot-info">
                                 <div class="spot-time">15:00 - 15:45</div>
                                 <h3 class="spot-name"><ruby>永観堂<rt>えいかんどう</rt></ruby></h3>
@@ -209,7 +241,7 @@ require_once '../../includes/header.php';
                     <!-- 円山公園 -->
                     <li class="spot-item">
                         <div class="spot-header">
-                            <input type="checkbox" id="spot-day2-5" class="spot-checkbox">
+                            <input type="checkbox" id="spot-day2-6" class="spot-checkbox">
                             <div class="spot-info">
                                 <div class="spot-time">16:00 - 16:30</div>
                                 <h3 class="spot-name"><ruby>円山公園<rt>まるやまこうえん</rt></ruby></h3>
@@ -238,7 +270,7 @@ require_once '../../includes/header.php';
                     <!-- 梅園 河原町店 -->
                     <li class="spot-item">
                         <div class="spot-header">
-                            <input type="checkbox" id="spot-day2-6" class="spot-checkbox">
+                            <input type="checkbox" id="spot-day2-7" class="spot-checkbox">
                             <div class="spot-info">
                                 <div class="spot-time">16:45 - 17:30</div>
                                 <h3 class="spot-name"><ruby>梅園<rt>うめぞの</rt></ruby> <ruby>河原町店<rt>かわらまちてん</rt></ruby></h3>
@@ -264,7 +296,7 @@ require_once '../../includes/header.php';
                     <!-- 錦市場・今西軒 -->
                     <li class="spot-item">
                         <div class="spot-header">
-                            <input type="checkbox" id="spot-day2-7" class="spot-checkbox">
+                            <input type="checkbox" id="spot-day2-8" class="spot-checkbox">
                             <div class="spot-info">
                                 <div class="spot-time">17:30 - 18:15</div>
                                 <h3 class="spot-name"><ruby>錦市場<rt>にしきいちば</rt></ruby>・今西軒</h3>

@@ -46,7 +46,7 @@ require_once '../includes/header.php';
                     <a href="days/day1.php" class="card" style="text-decoration: none;">
                         <h3 style="font-size: 20px; font-weight: 400; color: #333; margin-bottom: 8px;">
                             <i class="fas fa-calendar-day" style="color: #28a745;"></i>
-                            12/7（土）昨日 - <ruby>東寺<rt>とうじ</rt></ruby>エリア
+                            12/7（日）昨日 - <ruby>東寺<rt>とうじ</rt></ruby>エリア
                         </h3>
                         <p style="color: #666; margin-bottom: 8px;">2スポット | ✅ 完了</p>
                         <p style="color: #999; font-size: 14px;"><ruby>東寺<rt>とうじ</rt></ruby>（<ruby>五重塔<rt>ごじゅうのとう</rt></ruby>） → <ruby>御菓子司<rt>おかしつかさ</rt></ruby> <ruby>東寺餅<rt>とうじもち</rt></ruby></p>
@@ -55,19 +55,19 @@ require_once '../includes/header.php';
                     <a href="days/day2.php" class="card" style="text-decoration: none;">
                         <h3 style="font-size: 20px; font-weight: 400; color: #333; margin-bottom: 8px;">
                             <i class="fas fa-calendar-day" style="color: #4A90E2;"></i>
-                            12/8（日）今日 - <ruby>伏見稲荷<rt>ふしみいなり</rt></ruby>＋東山＋<ruby>四条<rt>しじょう</rt></ruby>
+                            12/8（月）今日 - <ruby>伏見稲荷<rt>ふしみいなり</rt></ruby>＋東山＋<ruby>四条<rt>しじょう</rt></ruby>
                         </h3>
-                        <p style="color: #666; margin-bottom: 8px;">8:00〜 | 7スポット</p>
-                        <p style="color: #999; font-size: 14px;"><ruby>伏見稲荷<rt>ふしみいなり</rt></ruby>（朝1人）→ 東山エリア（13:00〜中山さんと合流）→ <ruby>四条<rt>しじょう</rt></ruby>・<ruby>河原町<rt>かわらまち</rt></ruby></p>
+                        <p style="color: #666; margin-bottom: 8px;">8:00〜 | 8スポット</p>
+                        <p style="color: #999; font-size: 14px;"><ruby>伏見稲荷<rt>ふしみいなり</rt></ruby>（朝1人）→ レバノン料理 → 東山エリア（13:00〜中山さんと合流）→ <ruby>四条<rt>しじょう</rt></ruby></p>
                     </a>
 
                     <a href="days/day3.php" class="card" style="text-decoration: none;">
                         <h3 style="font-size: 20px; font-weight: 400; color: #333; margin-bottom: 8px;">
                             <i class="fas fa-calendar-day" style="color: #4A90E2;"></i>
-                            12/9（月）明後日 - <ruby>嵐山<rt>あらしやま</rt></ruby>フル稼働
+                            12/9（火）明日 - <ruby>嵐山<rt>あらしやま</rt></ruby>フル稼働
                         </h3>
-                        <p style="color: #666; margin-bottom: 8px;">7:00〜 | 7スポット</p>
-                        <p style="color: #999; font-size: 14px;"><ruby>嵐山<rt>あらしやま</rt></ruby>エリア（早朝）→ <ruby>東寺<rt>とうじ</rt></ruby> → レバノン料理 → おみやげ小路</p>
+                        <p style="color: #666; margin-bottom: 8px;">7:00〜 | 6スポット</p>
+                        <p style="color: #999; font-size: 14px;"><ruby>嵐山<rt>あらしやま</rt></ruby>エリア（早朝）→ <ruby>東寺<rt>とうじ</rt></ruby> → おみやげ小路</p>
                     </a>
                 </div>
             </section>

@@ -1,6 +1,6 @@
 <?php
 require_once '../../includes/config.php';
-define('PAGE_TITLE', '12/9（月）明後日 - 嵐山フル稼働');
+define('PAGE_TITLE', '12/9（火）明日 - 嵐山フル稼働');
 require_once '../../includes/header.php';
 ?>
 
@@ -16,21 +16,21 @@ require_once '../../includes/header.php';
             </div>
 
             <div class="page-header">
-                <h1 class="page-title">12/9（月）明後日 🏯</h1>
-                <p class="page-subtitle">7:00〜 | <ruby>嵐山<rt>あらしやま</rt></ruby>＋<ruby>四条<rt>しじょう</rt></ruby> | 7スポット消化</p>
+                <h1 class="page-title">12/9（火）明日 🏯</h1>
+                <p class="page-subtitle">7:00〜 | <ruby>嵐山<rt>あらしやま</rt></ruby>＋<ruby>東寺<rt>とうじ</rt></ruby> | 6スポット消化</p>
             </div>
 
             <!-- 統計情報 -->
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-label">今日の予定</div>
-                    <div class="stat-value total-count">7</div>
+                    <div class="stat-value total-count">6</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">達成率</div>
                     <div class="stat-value">
                         <span class="checked-count">0</span>
-                        <span class="total"> / 7</span>
+                        <span class="total"> / 6</span>
                     </div>
                 </div>
                 <div class="stat-item">
@@ -55,11 +55,11 @@ require_once '../../includes/header.php';
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
                 <p style="margin: 12px 0 16px 0; font-size: 14px; color: #666;">
-                    <i class="fas fa-route"></i> TUNE STAY KYOTO → <ruby>竹林<rt>ちくりん</rt></ruby>の<ruby>小径<rt>こみち</rt></ruby> → <ruby>天龍寺<rt>てんりゅうじ</rt></ruby> → <ruby>渡月橋<rt>とげつきょう</rt></ruby> → キモノフォレスト → <ruby>東寺<rt>とうじ</rt></ruby> → レバノン料理 <ruby>汽<rt>き</rt></ruby> → おみやげ小路 の順路
+                    <i class="fas fa-route"></i> TUNE STAY KYOTO → <ruby>竹林<rt>ちくりん</rt></ruby>の<ruby>小径<rt>こみち</rt></ruby> → <ruby>天龍寺<rt>てんりゅうじ</rt></ruby> → <ruby>渡月橋<rt>とげつきょう</rt></ruby> → キモノフォレスト → <ruby>東寺<rt>とうじ</rt></ruby> → おみやげ小路 の順路
                 </p>
-                <a href="https://www.google.com/maps/dir/TUNE+STAY+KYOTO+京都/竹林の小径+嵐山/天龍寺+嵐山/渡月橋+嵐山/キモノフォレスト+嵐電嵐山駅/東寺+京都/レバノン料理+汽+京都/おみやげ小路+京小町+京都駅/" target="_blank" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #4285F4; text-decoration: none;">
+                <a href="https://www.google.com/maps/dir/TUNE+STAY+KYOTO+京都/竹林の小径+嵐山/天龍寺+嵐山/渡月橋+嵐山/キモノフォレスト+嵐電嵐山駅/東寺+京都/おみやげ小路+京小町+京都駅/" target="_blank" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #4285F4; text-decoration: none;">
                     <i class="fas fa-map-marked-alt"></i>
-                    Google Mapsでルート全体を見る（ホテル→7スポット）
+                    Google Mapsでルート全体を見る（ホテル→6スポット）
                 </a>
             </div>
 
@@ -69,8 +69,8 @@ require_once '../../includes/header.php';
                     <i class="fas fa-ticket-alt"></i>
                     今日のおすすめ切符
                 </h3>
-                <p style="margin: 0 0 8px 0; font-size: 16px; font-weight: bold;">JR＋地下鉄個別払い：計920円</p>
-                <p style="margin: 0; font-size: 14px; opacity: 0.9;">JR<ruby>嵯峨野線<rt>さがのせん</rt></ruby>往復480円 + 地下鉄往復440円。<ruby>嵐山<rt>あらしやま</rt></ruby>と<ruby>東寺<rt>とうじ</rt></ruby>は徒歩で回れます。</p>
+                <p style="margin: 0 0 8px 0; font-size: 16px; font-weight: bold;">JR個別払い：計480円</p>
+                <p style="margin: 0; font-size: 14px; opacity: 0.9;">JR<ruby>嵯峨野線<rt>さがのせん</rt></ruby>往復（240円×2）のみ。<ruby>嵐山<rt>あらしやま</rt></ruby>エリアと<ruby>東寺<rt>とうじ</rt></ruby>は徒歩で回れます。</p>
             </div>
 
             <!-- リセットボタン -->
@@ -229,42 +229,15 @@ require_once '../../includes/header.php';
                 </ul>
 
                 <div class="transit-info">
-                    <strong><i class="fas fa-walking"></i> 移動：</strong><ruby>東寺<rt>とうじ</rt></ruby> → 京都駅（徒歩15分）→ 地下鉄<ruby>烏丸線<rt>からすません</rt></ruby>「<ruby>四条<rt>しじょう</rt></ruby>」（3分）<br>
-                    <span style="color: #666; font-size: 14px;">💰 220円 | ⏱️ 約20分</span>
-                </div>
-
-                <ul class="spot-list">
-                    <!-- レバノン料理 汽 -->
-                    <li class="spot-item">
-                        <div class="spot-header">
-                            <input type="checkbox" id="spot-day3-6" class="spot-checkbox">
-                            <div class="spot-info">
-                                <div class="spot-time">12:00 - 13:00</div>
-                                <h3 class="spot-name">レバノン料理 <ruby>汽<rt>き</rt></ruby></h3>
-                                <p class="spot-note">本格レバノン料理のランチ。ヴィーガン・ベジタリアン対応も充実</p>
-                                <div class="spot-links">
-                                    <a href="https://www.google.com/maps/search/?api=1&query=レバノン料理+汽+京都" target="_blank" class="spot-link">
-                                        <i class="fas fa-map-marker-alt"></i> Google Maps
-                                    </a>
-                                    <a href="https://www.google.com/search?q=レバノン料理+汽+京都" target="_blank" class="spot-link">
-                                        <i class="fas fa-search"></i> 画像検索
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-
-                <div class="transit-info">
-                    <strong><i class="fas fa-walking"></i> 移動：</strong><ruby>四条<rt>しじょう</rt></ruby> → 京都駅（地下鉄<ruby>烏丸線<rt>からすません</rt></ruby> 3分）<br>
-                    <span style="color: #666; font-size: 14px;">💰 220円 | ⏱️ 約10分</span>
+                    <strong><i class="fas fa-walking"></i> 移動：</strong><ruby>東寺<rt>とうじ</rt></ruby> → 京都駅（徒歩15分）<br>
+                    <span style="color: #666; font-size: 14px;">⏱️ 約15分</span>
                 </div>
 
                 <ul class="spot-list">
                     <!-- おみやげ小路 -->
                     <li class="spot-item">
                         <div class="spot-header">
-                            <input type="checkbox" id="spot-day3-7" class="spot-checkbox">
+                            <input type="checkbox" id="spot-day3-6" class="spot-checkbox">
                             <div class="spot-info">
                                 <div class="spot-time">13:15 -</div>
                                 <h3 class="spot-name">おみやげ小路 京小町</h3>
@@ -288,18 +261,16 @@ require_once '../../includes/header.php';
                 <h2 class="section-title">まとめ</h2>
                 <div class="card">
                     <p style="margin-bottom: 16px; color: #666;">
-                        <strong style="font-weight: 400; color: #333;">最終日の消化スポット：</strong>7スポット
+                        <strong style="font-weight: 400; color: #333;">最終日の消化スポット：</strong>6スポット
                     </p>
                     <ul style="line-height: 2; color: #666;">
                         <li>早朝：<ruby>嵐山<rt>あらしやま</rt></ruby>エリア（4スポット）</li>
                         <li>午前：<ruby>東寺<rt>とうじ</rt></ruby>（1スポット）</li>
-                        <li>昼：レバノン料理 <ruby>汽<rt>き</rt></ruby>（1スポット）</li>
                         <li>午後：お土産（1スポット）</li>
                     </ul>
                     <p style="color: #999; font-size: 14px; margin-top: 16px; line-height: 1.8;">
-                        ✅ JR＋地下鉄で920円、コスパ良好<br>
+                        ✅ JR往復480円のみ、とてもリーズナブル<br>
                         ✅ 早朝7:00出発で<ruby>嵐山<rt>あらしやま</rt></ruby>の朝イチを満喫<br>
-                        ✅ レバノン料理でエキゾチックなランチ<br>
                         ✅ 全16スポット制覇お疲れ様でした！
                     </p>
                 </div>

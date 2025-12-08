@@ -1,6 +1,6 @@
 <?php
 require_once '../../includes/config.php';
-define('PAGE_TITLE', '12/7（土）昨日 - 東寺エリア');
+define('PAGE_TITLE', '12/7（日）昨日 - 東寺エリア');
 require_once '../../includes/header.php';
 ?>
 
@@ -16,7 +16,7 @@ require_once '../../includes/header.php';
             </div>
 
             <div class="page-header">
-                <h1 class="page-title">12/7（土）昨日 🏯</h1>
+                <h1 class="page-title">12/7（日）昨日 🏯</h1>
                 <p class="page-subtitle"><ruby>東寺<rt>とうじ</rt></ruby>エリア | 2スポット消化</p>
             </div>
 
