@@ -55,11 +55,11 @@ require_once '../../includes/header.php';
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
                 <p style="margin: 12px 0 16px 0; font-size: 14px; color: #666;">
-                    <i class="fas fa-route"></i> <ruby>伏見稲荷<rt>ふしみいなり</rt></ruby> → <ruby>蹴上<rt>けあげ</rt></ruby> → <ruby>南禅寺<rt>なんぜんじ</rt></ruby> → <ruby>永観堂<rt>えいかんどう</rt></ruby> → <ruby>円山公園<rt>まるやまこうえん</rt></ruby> → <ruby>梅園<rt>うめぞの</rt></ruby> → <ruby>錦市場<rt>にしきいちば</rt></ruby> の順路
+                    <i class="fas fa-route"></i> TUNE STAY KYOTO → <ruby>伏見稲荷<rt>ふしみいなり</rt></ruby> → <ruby>蹴上<rt>けあげ</rt></ruby> → <ruby>南禅寺<rt>なんぜんじ</rt></ruby> → <ruby>永観堂<rt>えいかんどう</rt></ruby> → <ruby>円山公園<rt>まるやまこうえん</rt></ruby> → <ruby>梅園<rt>うめぞの</rt></ruby> → <ruby>錦市場<rt>にしきいちば</rt></ruby> の順路
                 </p>
-                <a href="https://www.google.com/maps/dir/伏見稲荷大社/蹴上インクライン+京都/南禅寺+京都/永観堂+京都/円山公園+京都/梅園+河原町店+京都/錦市場+京都/" target="_blank" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #4285F4; text-decoration: none;">
+                <a href="https://www.google.com/maps/dir/TUNE+STAY+KYOTO+京都/伏見稲荷大社/蹴上インクライン+京都/南禅寺+京都/永観堂+京都/円山公園+京都/梅園+河原町店+京都/錦市場+京都/" target="_blank" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #4285F4; text-decoration: none;">
                     <i class="fas fa-map-marked-alt"></i>
-                    Google Mapsでルート全体を見る（7スポット）
+                    Google Mapsでルート全体を見る（ホテル→7スポット）
                 </a>
             </div>
 

@@ -55,11 +55,11 @@ require_once '../../includes/header.php';
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
                 <p style="margin: 12px 0 16px 0; font-size: 14px; color: #666;">
-                    <i class="fas fa-route"></i> <ruby>東寺<rt>とうじ</rt></ruby>（<ruby>五重塔<rt>ごじゅうのとう</rt></ruby>）→ <ruby>東寺餅<rt>とうじもち</rt></ruby> の順路
+                    <i class="fas fa-route"></i> 京都駅 → <ruby>東寺<rt>とうじ</rt></ruby>（<ruby>五重塔<rt>ごじゅうのとう</rt></ruby>）→ <ruby>東寺餅<rt>とうじもち</rt></ruby> の順路
                 </p>
-                <a href="https://www.google.com/maps/dir/東寺+京都/御菓子司+東寺餅+京都/" target="_blank" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #4285F4; text-decoration: none;">
+                <a href="https://www.google.com/maps/dir/京都駅/東寺+京都/御菓子司+東寺餅+京都/" target="_blank" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #4285F4; text-decoration: none;">
                     <i class="fas fa-map-marked-alt"></i>
-                    Google Mapsでルート全体を見る（2スポット）
+                    Google Mapsでルート全体を見る（京都駅→2スポット）
                 </a>
             </div>
 

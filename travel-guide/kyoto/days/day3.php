@@ -55,11 +55,11 @@ require_once '../../includes/header.php';
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
                 <p style="margin: 12px 0 16px 0; font-size: 14px; color: #666;">
-                    <i class="fas fa-route"></i> <ruby>竹林<rt>ちくりん</rt></ruby>の<ruby>小径<rt>こみち</rt></ruby> → <ruby>天龍寺<rt>てんりゅうじ</rt></ruby> → <ruby>渡月橋<rt>とげつきょう</rt></ruby> → キモノフォレスト → <ruby>東寺<rt>とうじ</rt></ruby> → レバノン料理 <ruby>汽<rt>き</rt></ruby> → おみやげ小路 の順路
+                    <i class="fas fa-route"></i> TUNE STAY KYOTO → <ruby>竹林<rt>ちくりん</rt></ruby>の<ruby>小径<rt>こみち</rt></ruby> → <ruby>天龍寺<rt>てんりゅうじ</rt></ruby> → <ruby>渡月橋<rt>とげつきょう</rt></ruby> → キモノフォレスト → <ruby>東寺<rt>とうじ</rt></ruby> → レバノン料理 <ruby>汽<rt>き</rt></ruby> → おみやげ小路 の順路
                 </p>
-                <a href="https://www.google.com/maps/dir/竹林の小径+嵐山/天龍寺+嵐山/渡月橋+嵐山/キモノフォレスト+嵐電嵐山駅/東寺+京都/レバノン料理+汽+京都/おみやげ小路+京小町+京都駅/" target="_blank" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #4285F4; text-decoration: none;">
+                <a href="https://www.google.com/maps/dir/TUNE+STAY+KYOTO+京都/竹林の小径+嵐山/天龍寺+嵐山/渡月橋+嵐山/キモノフォレスト+嵐電嵐山駅/東寺+京都/レバノン料理+汽+京都/おみやげ小路+京小町+京都駅/" target="_blank" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #4285F4; text-decoration: none;">
                     <i class="fas fa-map-marked-alt"></i>
-                    Google Mapsでルート全体を見る（7スポット）
+                    Google Mapsでルート全体を見る（ホテル→7スポット）
                 </a>
             </div>
 
