@@ -1,0 +1,22 @@
+# ベーシック認証設定
+AuthType Basic
+AuthName "Restricted Area - Please Enter Your Password"
+AuthUserFile /home/xs545151/yojitu.com/public_html/proposal/nre/.htpasswd
+Require valid-user
+
+# セキュリティ設定
+<Files ".htpasswd">
+    Require all denied
+</Files>
+
+# PHPファイルの実行を許可
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+# インデックスファイルの設定
+DirectoryIndex index.php index.html
+
+# エラーページの無効化（オプション）
+# ErrorDocument 401 "認証が必要です"
+# ErrorDocument 403 "アクセスが拒否されました"
