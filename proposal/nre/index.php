@@ -17,8 +17,7 @@
     <!-- LINE Seed Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500&display=swap" rel="stylesheet">
 
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -39,58 +38,29 @@
 
         body {
             font-family: 'M PLUS 1p', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+            font-weight: 100;
             line-height: 1.8;
             color: #333;
             background: #ffffff;
             min-height: 100vh;
         }
 
-        /* ヘッダー */
+        /* ヘッダーは非表示 */
         .header {
-            background: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 30px 40px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header h1 {
-            font-size: 1.8em;
-            font-weight: 700;
-            color: #333;
-        }
-
-        .header h1 i {
-            color: #0066cc;
-            margin-right: 12px;
-        }
-
-        .header p {
-            font-size: 0.95em;
-            color: #666;
-            margin-top: 5px;
+            display: none;
         }
 
         /* モバイルメニューボタン */
         .mobile-menu-btn {
             display: none;
-            background: #0066cc;
+            background: #333;
             color: white;
             border: none;
             padding: 12px 20px;
-            border-radius: 8px;
+            border-radius: 4px;
             cursor: pointer;
             font-size: 1.1em;
+            font-weight: 100;
         }
 
         /* レイアウト */
@@ -102,29 +72,40 @@
             padding: 40px 20px;
         }
 
-        /* サイドバー目次 */
+        /* サイドバー目次（右側に配置） */
         .sidebar {
             width: 280px;
             flex-shrink: 0;
             position: sticky;
-            top: 120px;
+            top: 20px;
             height: fit-content;
-            background: #f8f9fa;
-            border-radius: 12px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
             padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            order: 2;
+        }
+
+        /* メインコンテンツ（左側に配置） */
+        .content {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 50px;
+            order: 1;
         }
 
         .sidebar h2 {
             font-size: 1.2em;
+            font-weight: 100;
             color: #333;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #0066cc;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .sidebar h2 i {
-            color: #0066cc;
+            color: #666;
             margin-right: 8px;
         }
 
@@ -138,18 +119,18 @@
 
         .toc a {
             display: block;
-            color: #555;
+            color: #666;
             text-decoration: none;
             padding: 10px 15px;
-            border-radius: 8px;
+            border-radius: 4px;
             transition: all 0.3s;
             font-size: 0.95em;
+            font-weight: 100;
         }
 
         .toc a:hover, .toc a.active {
-            background: #0066cc;
-            color: white;
-            transform: translateX(5px);
+            background: #f5f5f5;
+            color: #333;
         }
 
         .toc a i {
@@ -157,18 +138,9 @@
             width: 20px;
         }
 
-        /* メインコンテンツ */
-        .content {
-            flex: 1;
-            background: white;
-            border-radius: 12px;
-            padding: 50px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
         .section {
             margin-bottom: 80px;
-            scroll-margin-top: 120px;
+            scroll-margin-top: 20px;
         }
 
         .section:last-child {
@@ -180,12 +152,12 @@
             color: #333;
             margin-bottom: 30px;
             padding-bottom: 15px;
-            border-bottom: 3px solid #0066cc;
-            font-weight: 700;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: 100;
         }
 
         .section-title i {
-            color: #0066cc;
+            color: #666;
             margin-right: 12px;
         }
 
@@ -193,20 +165,23 @@
             font-size: 1.05em;
             line-height: 2;
             color: #555;
+            font-weight: 100;
         }
 
         /* ハイライトボックス */
         .highlight-box {
-            background: #f0f7ff;
-            border-left: 5px solid #0066cc;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-left: 3px solid #333;
             padding: 30px;
             margin: 30px 0;
-            border-radius: 8px;
+            border-radius: 4px;
         }
 
         .highlight-box h3 {
-            color: #0066cc;
+            color: #333;
             font-size: 1.4em;
+            font-weight: 100;
             margin-bottom: 15px;
         }
 
@@ -218,13 +193,14 @@
             font-size: 1.05em;
             line-height: 1.9;
             color: #555;
+            font-weight: 100;
         }
 
         /* 料金例 */
         .price-example {
             background: #ffffff;
-            border: 3px solid #0066cc;
-            border-radius: 12px;
+            border: 2px solid #333;
+            border-radius: 8px;
             padding: 40px;
             margin: 30px 0;
             text-align: center;
@@ -232,8 +208,8 @@
 
         .price-example .budget {
             font-size: 2.5em;
-            color: #0066cc;
-            font-weight: 700;
+            color: #333;
+            font-weight: 100;
             margin-bottom: 20px;
         }
 
@@ -245,6 +221,7 @@
             font-size: 1.2em;
             color: #666;
             line-height: 1.8;
+            font-weight: 100;
         }
 
         /* メリットリスト */
@@ -256,36 +233,38 @@
         .benefits-list li {
             padding: 18px 25px;
             margin: 15px 0;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #0066cc;
+            background: #fafafa;
+            border-radius: 4px;
+            border-left: 2px solid #333;
             font-size: 1.05em;
+            font-weight: 100;
             transition: all 0.3s;
         }
 
         .benefits-list li:hover {
-            background: #f0f7ff;
-            transform: translateX(5px);
+            background: #f5f5f5;
         }
 
         .benefits-list li i {
-            color: #0066cc;
+            color: #666;
             margin-right: 12px;
             width: 20px;
         }
 
         /* 警告ボックス */
         .warning-box {
-            background: #fff9e6;
-            border-left: 5px solid #ffb700;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-left: 3px solid #999;
             padding: 30px;
             margin: 30px 0;
-            border-radius: 8px;
+            border-radius: 4px;
         }
 
         .warning-box h3 {
-            color: #cc8800;
+            color: #333;
             font-size: 1.3em;
+            font-weight: 100;
             margin-bottom: 15px;
         }
 
@@ -296,20 +275,23 @@
         .warning-box p {
             color: #666;
             line-height: 1.9;
+            font-weight: 100;
         }
 
         /* 情報ボックス */
         .info-box {
-            background: #e6f9f9;
-            border-left: 5px solid #00acc1;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-left: 3px solid #666;
             padding: 30px;
             margin: 30px 0;
-            border-radius: 8px;
+            border-radius: 4px;
         }
 
         .info-box h3 {
-            color: #00838f;
+            color: #333;
             font-size: 1.3em;
+            font-weight: 100;
             margin-bottom: 15px;
         }
 
@@ -320,6 +302,7 @@
         .info-box p {
             color: #555;
             line-height: 1.9;
+            font-weight: 100;
         }
 
         /* サービスグリッド */
@@ -331,52 +314,53 @@
         }
 
         .service-card {
-            background: #f8f9fa;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
             padding: 35px 25px;
             text-align: center;
             transition: all 0.3s ease;
         }
 
         .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,102,204,0.15);
-            border-color: #0066cc;
-            background: #f0f7ff;
+            background: #fafafa;
+            border-color: #333;
         }
 
         .service-card i {
             font-size: 3em;
-            color: #0066cc;
+            color: #666;
             margin-bottom: 20px;
         }
 
         .service-card h3 {
             color: #333;
             font-size: 1.3em;
+            font-weight: 100;
             margin-bottom: 15px;
         }
 
         .service-card p {
             color: #666;
             font-size: 1em;
+            font-weight: 100;
             line-height: 1.7;
         }
 
         /* CTAセクション */
         .cta-section {
-            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
-            color: white;
+            background: #fafafa;
+            border: 2px solid #333;
+            color: #333;
             padding: 50px;
-            border-radius: 12px;
+            border-radius: 8px;
             text-align: center;
             margin: 50px 0;
-            box-shadow: 0 10px 30px rgba(0,102,204,0.3);
         }
 
         .cta-section h3 {
             font-size: 2em;
+            font-weight: 100;
             margin-bottom: 20px;
         }
 
@@ -386,13 +370,14 @@
 
         .cta-section p {
             font-size: 1.2em;
+            font-weight: 100;
             line-height: 2;
-            opacity: 0.95;
+            color: #555;
         }
 
         /* フッター */
         .footer {
-            background: #f8f9fa;
+            background: #ffffff;
             padding: 40px;
             text-align: center;
             color: #666;
@@ -402,10 +387,11 @@
 
         .footer p {
             margin: 10px 0;
+            font-weight: 100;
         }
 
         .footer i {
-            color: #0066cc;
+            color: #666;
             margin: 0 5px;
         }
 
@@ -443,7 +429,7 @@
 
         .floating-toc-header {
             padding: 25px;
-            background: #0066cc;
+            background: #333;
             color: white;
             display: flex;
             justify-content: space-between;
@@ -452,6 +438,7 @@
 
         .floating-toc-header h2 {
             font-size: 1.2em;
+            font-weight: 100;
         }
 
         .close-toc {
@@ -623,7 +610,10 @@
                         <p>
                             社内での運用体制では、人員の急な不在により<strong>更新が止まってしまうリスク</strong>があります。<br>
                             Instagramのアルゴリズムでは、投稿の継続性が非常に重要な要素となっており、
-                            更新が止まることでこれまで積み上げてきたエンゲージメントが大きく低下してしまいます。
+                            更新が止まることでこれまで積み上げてきたエンゲージメントが大きく低下してしまいます。<br><br>
+
+                            <strong>弊社のような業務委託の組織は、「やめない社員」として捉えていただけるとわかりやすいかと思います。</strong><br>
+                            安定した運用体制と継続性が、弊社の大きな強みです。
                         </p>
                     </div>
 
