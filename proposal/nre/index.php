@@ -39,6 +39,7 @@
         body {
             font-family: 'M PLUS 1p', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
             font-weight: 300;
+            font-size: 15px;
             line-height: 1.8;
             color: #333;
             background: #ffffff;
@@ -124,7 +125,7 @@
         }
 
         .sidebar h2 {
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: 300;
             color: #333;
             margin-bottom: 20px;
@@ -152,7 +153,7 @@
             padding: 10px 15px;
             border-radius: 4px;
             transition: all 0.3s;
-            font-size: 0.95em;
+            font-size: 0.9em;
             font-weight: 300;
         }
 
@@ -176,7 +177,7 @@
         }
 
         .section-title {
-            font-size: 2em;
+            font-size: 1.75em;
             color: #333;
             margin-bottom: 30px;
             padding-bottom: 15px;
@@ -190,7 +191,7 @@
         }
 
         .section-content {
-            font-size: 1.05em;
+            font-size: 0.95em;
             line-height: 2;
             color: #555;
             font-weight: 300;
@@ -208,7 +209,7 @@
 
         .highlight-box h3 {
             color: #333;
-            font-size: 1.4em;
+            font-size: 1.25em;
             font-weight: 300;
             margin-bottom: 15px;
         }
@@ -218,7 +219,7 @@
         }
 
         .highlight-box p {
-            font-size: 1.05em;
+            font-size: 0.95em;
             line-height: 1.9;
             color: #555;
             font-weight: 300;
@@ -235,7 +236,7 @@
         }
 
         .price-example .budget {
-            font-size: 2.5em;
+            font-size: 2em;
             color: #333;
             font-weight: 300;
             margin-bottom: 20px;
@@ -246,7 +247,7 @@
         }
 
         .price-example .details {
-            font-size: 1.2em;
+            font-size: 1.05em;
             color: #666;
             line-height: 1.8;
             font-weight: 300;
@@ -264,7 +265,7 @@
             background: #fafafa;
             border-radius: 4px;
             border-left: 2px solid #333;
-            font-size: 1.05em;
+            font-size: 0.95em;
             font-weight: 300;
             transition: all 0.3s;
         }
@@ -291,7 +292,7 @@
 
         .warning-box h3 {
             color: #333;
-            font-size: 1.3em;
+            font-size: 1.15em;
             font-weight: 300;
             margin-bottom: 15px;
         }
@@ -318,7 +319,7 @@
 
         .info-box h3 {
             color: #333;
-            font-size: 1.3em;
+            font-size: 1.15em;
             font-weight: 300;
             margin-bottom: 15px;
         }
@@ -363,14 +364,14 @@
 
         .service-card h3 {
             color: #333;
-            font-size: 1.3em;
+            font-size: 1.15em;
             font-weight: 300;
             margin-bottom: 15px;
         }
 
         .service-card p {
             color: #666;
-            font-size: 1em;
+            font-size: 0.9em;
             font-weight: 300;
             line-height: 1.7;
         }
@@ -387,7 +388,7 @@
         }
 
         .cta-section h3 {
-            font-size: 2em;
+            font-size: 1.75em;
             font-weight: 300;
             margin-bottom: 20px;
         }
@@ -397,7 +398,7 @@
         }
 
         .cta-section p {
-            font-size: 1.2em;
+            font-size: 1.05em;
             font-weight: 300;
             line-height: 2;
             color: #555;
@@ -506,12 +507,16 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
             .header {
                 padding: 20px;
             }
 
             .header h1 {
-                font-size: 1.3em;
+                font-size: 1.2em;
             }
 
             .header p {
@@ -531,7 +536,7 @@
             }
 
             .price-example .budget {
-                font-size: 2em;
+                font-size: 1.75em;
             }
 
             .cta-section {
@@ -539,7 +544,7 @@
             }
 
             .cta-section h3 {
-                font-size: 1.5em;
+                font-size: 1.4em;
             }
         }
 
@@ -739,7 +744,7 @@
                 </div>
 
                 <div class="section-content" style="margin-top: 35px;">
-                    <h3 style="color: #333; font-size: 1.4em; margin-bottom: 20px; font-weight: 300;">
+                    <h3 style="color: #333; font-size: 1.25em; margin-bottom: 20px; font-weight: 300;">
                         <i class="fas fa-bullseye"></i>弊社が目指すゴール
                     </h3>
 
@@ -891,7 +896,7 @@
                 <h2 class="section-title"><i class="fas fa-check-circle"></i>ご提案のまとめ</h2>
                 <div class="section-content">
                     <div style="background: #fafafa; padding: 40px; border-radius: 8px; border: 2px solid #333;">
-                        <ol style="font-size: 1.1em; line-height: 2.5; padding-left: 25px; color: #333;">
+                        <ol style="font-size: 1em; line-height: 2.5; padding-left: 25px; color: #333;">
                             <li><strong>Instagram運用を弊社で代行</strong>（撮影・編集・投稿）</li>
                             <li><strong>ご予算に応じた柔軟なプラン設定</strong></li>
                             <li><strong>コンサルティング業務もインクルード</strong></li>
@@ -901,7 +906,7 @@
                         </ol>
                     </div>
 
-                    <p style="margin-top: 40px; font-size: 1.3em; text-align: center; color: #0066cc; font-weight: 600; line-height: 2;">
+                    <p style="margin-top: 40px; font-size: 1.15em; text-align: center; color: #333; font-weight: 300; line-height: 2;">
                         <i class="fas fa-star"></i><br>
                         継続的で質の高いコンテンツ発信により、<br>
                         貴社のInstagramアカウントを成長させます。
