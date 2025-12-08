@@ -17,7 +17,7 @@
     <!-- LINE Seed Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300;400;500&display=swap" rel="stylesheet">
 
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -38,7 +38,7 @@
 
         body {
             font-family: 'M PLUS 1p', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
-            font-weight: 100;
+            font-weight: 300;
             line-height: 1.8;
             color: #333;
             background: #ffffff;
@@ -60,7 +60,7 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 1.1em;
-            font-weight: 100;
+            font-weight: 300;
         }
 
         /* レイアウト */
@@ -97,7 +97,7 @@
 
         .sidebar h2 {
             font-size: 1.2em;
-            font-weight: 100;
+            font-weight: 300;
             color: #333;
             margin-bottom: 20px;
             padding-bottom: 15px;
@@ -125,7 +125,7 @@
             border-radius: 4px;
             transition: all 0.3s;
             font-size: 0.95em;
-            font-weight: 100;
+            font-weight: 300;
         }
 
         .toc a:hover, .toc a.active {
@@ -153,7 +153,7 @@
             margin-bottom: 30px;
             padding-bottom: 15px;
             border-bottom: 1px solid #e0e0e0;
-            font-weight: 100;
+            font-weight: 300;
         }
 
         .section-title i {
@@ -165,7 +165,7 @@
             font-size: 1.05em;
             line-height: 2;
             color: #555;
-            font-weight: 100;
+            font-weight: 300;
         }
 
         /* ハイライトボックス */
@@ -181,7 +181,7 @@
         .highlight-box h3 {
             color: #333;
             font-size: 1.4em;
-            font-weight: 100;
+            font-weight: 300;
             margin-bottom: 15px;
         }
 
@@ -193,7 +193,7 @@
             font-size: 1.05em;
             line-height: 1.9;
             color: #555;
-            font-weight: 100;
+            font-weight: 300;
         }
 
         /* 料金例 */
@@ -209,7 +209,7 @@
         .price-example .budget {
             font-size: 2.5em;
             color: #333;
-            font-weight: 100;
+            font-weight: 300;
             margin-bottom: 20px;
         }
 
@@ -221,7 +221,7 @@
             font-size: 1.2em;
             color: #666;
             line-height: 1.8;
-            font-weight: 100;
+            font-weight: 300;
         }
 
         /* メリットリスト */
@@ -237,7 +237,7 @@
             border-radius: 4px;
             border-left: 2px solid #333;
             font-size: 1.05em;
-            font-weight: 100;
+            font-weight: 300;
             transition: all 0.3s;
         }
 
@@ -264,7 +264,7 @@
         .warning-box h3 {
             color: #333;
             font-size: 1.3em;
-            font-weight: 100;
+            font-weight: 300;
             margin-bottom: 15px;
         }
 
@@ -275,7 +275,7 @@
         .warning-box p {
             color: #666;
             line-height: 1.9;
-            font-weight: 100;
+            font-weight: 300;
         }
 
         /* 情報ボックス */
@@ -291,7 +291,7 @@
         .info-box h3 {
             color: #333;
             font-size: 1.3em;
-            font-weight: 100;
+            font-weight: 300;
             margin-bottom: 15px;
         }
 
@@ -302,7 +302,7 @@
         .info-box p {
             color: #555;
             line-height: 1.9;
-            font-weight: 100;
+            font-weight: 300;
         }
 
         /* サービスグリッド */
@@ -336,14 +336,14 @@
         .service-card h3 {
             color: #333;
             font-size: 1.3em;
-            font-weight: 100;
+            font-weight: 300;
             margin-bottom: 15px;
         }
 
         .service-card p {
             color: #666;
             font-size: 1em;
-            font-weight: 100;
+            font-weight: 300;
             line-height: 1.7;
         }
 
@@ -360,7 +360,7 @@
 
         .cta-section h3 {
             font-size: 2em;
-            font-weight: 100;
+            font-weight: 300;
             margin-bottom: 20px;
         }
 
@@ -370,7 +370,7 @@
 
         .cta-section p {
             font-size: 1.2em;
-            font-weight: 100;
+            font-weight: 300;
             line-height: 2;
             color: #555;
         }
@@ -387,7 +387,7 @@
 
         .footer p {
             margin: 10px 0;
-            font-weight: 100;
+            font-weight: 300;
         }
 
         .footer i {
@@ -438,7 +438,7 @@
 
         .floating-toc-header h2 {
             font-size: 1.2em;
-            font-weight: 100;
+            font-weight: 300;
         }
 
         .close-toc {
@@ -688,23 +688,25 @@
                 <h2 class="section-title"><i class="fas fa-chart-line"></i>マーケティング戦略</h2>
 
                 <div class="info-box">
-                    <h3><i class="fas fa-users"></i>貴社の強み：リファラルマーケティング</h3>
+                    <h3><i class="fas fa-users"></i>貴社の強み：人脈構築活動</h3>
                     <p>
-                        代表の仲道様が築いてこられた<strong>リファラル（紹介）マーケティング</strong>が、
+                        代表の仲道様が<strong>倫理法人会などを通じて築いてこられた人脈</strong>が、
                         貴社の大きな強みであると認識しております。<br><br>
 
-                        不動産という商材の特性上、<strong>信頼関係に基づく紹介</strong>は
-                        最も効果的な集客手法であり、これまでの実績がそれを証明しています。
+                        不動産という商材の特性上、<strong>信頼関係に基づくご紹介</strong>は
+                        最も効果的な集客手法であり、これまでの実績がそれを証明しています。<br><br>
+
+                        <strong>ぜひこの人脈構築活動を止めることなく、継続していただきたい</strong>と考えております。
                     </p>
                 </div>
 
                 <div class="section-content" style="margin-top: 35px;">
-                    <h3 style="color: #0066cc; font-size: 1.4em; margin-bottom: 20px;">
+                    <h3 style="color: #333; font-size: 1.4em; margin-bottom: 20px; font-weight: 300;">
                         <i class="fas fa-bullseye"></i>弊社が目指すゴール
                     </h3>
 
                     <p style="margin-bottom: 30px;">
-                        貴社の優れたリファラルマーケティングによって<strong>集客した見込み顧客</strong>に対して、
+                        仲道様の<strong>人脈から集客した見込み顧客</strong>に対して、
                         <strong>コンバージョン率（成約率）を改善すること</strong>が、弊社の主な役割となります。
                     </p>
 
@@ -712,10 +714,10 @@
                         <div class="service-card">
                             <i class="fas fa-handshake"></i>
                             <h3>集客</h3>
-                            <p>リファラルマーケティング<br>（仲道様の強み）</p>
+                            <p>人脈構築活動<br>（仲道様の強み）</p>
                         </div>
-                        <div class="service-card" style="background: #f0f7ff; border-color: #0066cc;">
-                            <i class="fas fa-arrow-right" style="color: #0066cc;"></i>
+                        <div class="service-card" style="background: #fafafa; border-color: #333;">
+                            <i class="fas fa-arrow-right" style="color: #666;"></i>
                             <h3>↓</h3>
                             <p>見込み顧客</p>
                         </div>
@@ -724,8 +726,8 @@
                             <h3>コンバージョン改善</h3>
                             <p>Instagramコンテンツ<br>（弊社の役割）</p>
                         </div>
-                        <div class="service-card" style="background: #f0f7ff; border-color: #0066cc;">
-                            <i class="fas fa-check-circle" style="color: #0066cc;"></i>
+                        <div class="service-card" style="background: #fafafa; border-color: #333;">
+                            <i class="fas fa-check-circle" style="color: #666;"></i>
                             <h3>↓</h3>
                             <p>成約</p>
                         </div>
@@ -751,7 +753,7 @@
                             <li><i class="fas fa-building"></i>物件の魅力を視覚的に訴求</li>
                             <li><i class="fas fa-heart"></i>ブランドへの信頼感・親近感を醸成</li>
                             <li><i class="fas fa-comments"></i>顧客との継続的なコミュニケーション</li>
-                            <li><i class="fas fa-star"></i>リファラルで来た見込み顧客の背中を押す</li>
+                            <li><i class="fas fa-star"></i>ご紹介で来た見込み顧客の背中を押す</li>
                             <li><i class="fas fa-chart-line"></i>検討期間中のエンゲージメント維持</li>
                         </ul>
                     </div>
@@ -789,24 +791,27 @@
                 <h2 class="section-title"><i class="fas fa-graduation-cap"></i>社員育成サポート</h2>
                 <div class="section-content">
                     <p>
-                        運用代行がメインとなりますが、<strong>社員の方への育成サポート</strong>についても、
-                        ある程度<strong>インクルード（追加費用なし）</strong>で対応させていただくことが可能です。
+                        運用代行がメインとなりますが、<strong>社員の方からご質問いただいた際には、できる範囲でアドバイスやサポート</strong>をさせていただきます。<br><br>
+
+                        講習会や定期的な1on1といった形式的な育成プログラムではなく、
+                        <strong>日々の業務の中で気になることがあれば、いつでもご質問いただける関係性</strong>を大切にしたいと考えております。
                     </p>
 
-                    <div style="background: #f8f9fa; padding: 30px; border-radius: 12px; margin: 30px 0;">
-                        <h3 style="color: #0066cc; margin-bottom: 20px;">
-                            <i class="fas fa-clipboard-list"></i> 育成サポート内容例
+                    <div style="background: #fafafa; border: 1px solid #e0e0e0; padding: 25px; border-radius: 8px; margin: 30px 0;">
+                        <h3 style="color: #333; margin-bottom: 15px; font-weight: 300;">
+                            <i class="fas fa-comment-dots"></i> ご質問例
                         </h3>
-                        <ul class="benefits-list">
-                            <li><i class="fas fa-camera"></i>撮影・編集のノウハウ共有</li>
-                            <li><i class="fab fa-instagram"></i>Instagram運用の基本レクチャー</li>
-                            <li><i class="fas fa-bullhorn"></i>効果的な投稿方法のアドバイス</li>
-                            <li><i class="fas fa-hands-helping"></i>社員の方も制作に参加できる体制づくり</li>
-                        </ul>
+                        <p style="font-weight: 300; color: #666; line-height: 1.9;">
+                            • 撮影時のポイントについて<br>
+                            • 編集ツールの使い方<br>
+                            • Instagram運用の基本的な考え方<br>
+                            • 投稿のタイミングや頻度について
+                        </p>
                     </div>
 
                     <p style="margin-top: 25px;">
-                        将来的に社内での運用体制が整った際には、スムーズに移行できるようサポートいたします。
+                        あくまで運用は弊社が責任を持って行いますが、
+                        <strong>ノウハウの共有を通じて、貴社内でもInstagram運用の理解を深めていただけます。</strong>
                     </p>
                 </div>
             </section>
@@ -843,27 +848,17 @@
                 </div>
             </section>
 
-            <!-- CTA -->
-            <div class="cta-section">
-                <h3><i class="fas fa-handshake"></i>Instagram運用、お任せください</h3>
-                <p>
-                    撮影・編集・投稿まで、プロフェッショナルチームが全て代行いたします。<br>
-                    安定した情報発信で、貴社のブランド価値を最大化いたします。<br><br>
-                    <strong><i class="fas fa-envelope"></i> まずはお気軽にご相談ください。</strong>
-                </p>
-            </div>
-
             <!-- まとめ -->
             <section class="section" id="summary">
                 <h2 class="section-title"><i class="fas fa-check-circle"></i>ご提案のまとめ</h2>
                 <div class="section-content">
-                    <div style="background: #f0f7ff; padding: 40px; border-radius: 12px; border: 2px solid #0066cc;">
+                    <div style="background: #fafafa; padding: 40px; border-radius: 8px; border: 2px solid #333;">
                         <ol style="font-size: 1.1em; line-height: 2.5; padding-left: 25px; color: #333;">
                             <li><strong>Instagram運用を弊社で代行</strong>（撮影・編集・投稿）</li>
                             <li><strong>ご予算に応じた柔軟なプラン設定</strong></li>
                             <li><strong>コンサルティング業務もインクルード</strong></li>
                             <li><strong>社員育成サポートも可能</strong></li>
-                            <li><strong>リファラル集客後のコンバージョン率改善</strong>が主な役割</li>
+                            <li><strong>人脈からの集客後のコンバージョン率改善</strong>が主な役割</li>
                             <li><strong>マーケター視点での制作</strong>で最大限のリーチを実現</li>
                         </ol>
                     </div>
