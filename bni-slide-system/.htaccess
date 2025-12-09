@@ -118,10 +118,10 @@ DirectoryIndex index.php
 # Maintenance Mode (Auto Prepend)
 # ====================================
 # 全PHPファイルで自動的にメンテナンスチェックを実行
-# ただし、maintenance.php と admin/maintenance_toggle.php は除外
+# 注意: 相対パスではエラーが発生するため、絶対パスを使用
 <FilesMatch "\.php$">
-    # メンテナンスチェックを自動実行（相対パス）
-    php_value auto_prepend_file "includes/maintenance_check.php"
+    # メンテナンスチェックを自動実行（絶対パス）
+    php_value auto_prepend_file "/home/xs545151/yojitu.com/public_html/bni-slide-system/includes/maintenance_check.php"
 </FilesMatch>
 
 # 除外: maintenance.php と admin/maintenance_toggle.php
