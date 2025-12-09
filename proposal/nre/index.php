@@ -1724,34 +1724,34 @@
                             </div>
                         </a>
 
-                        <a href="https://www.tiktok.com/@lakia.umeda" target="_blank" class="account-card-link">
+                        <a href="https://www.tiktok.com/@lakia.company" target="_blank" class="account-card-link">
                             <div class="account-card">
                                 <div class="account-header">
-                                    <h4>LAKIA不動産 大阪梅田店</h4>
+                                    <h4>LAKIA不動産</h4>
                                     <span class="account-handle">
-                                        <i class="fab fa-tiktok"></i> @lakia_umeda
+                                        <i class="fab fa-tiktok"></i> @lakia.company
                                     </span>
                                 </div>
                                 <div class="account-stats">
-                                    <span class="stat"><i class="fas fa-users"></i> 106,000人</span>
+                                    <span class="stat"><i class="fas fa-users"></i> 10万人+</span>
                                 </div>
-                                <p class="account-desc">ルームツアー動画、多数の動画が10万いいね超え</p>
+                                <p class="account-desc">ルームツアー動画、月間100件以上の問い合わせ</p>
                             </div>
                         </a>
 
-                        <a href="https://www.tiktok.com/@kenchobi_house" target="_blank" class="account-card-link">
+                        <a href="https://www.tiktok.com/@stylee.estate" target="_blank" class="account-card-link">
                             <div class="account-card highlight">
                                 <div class="badge success">成約実績</div>
                                 <div class="account-header">
-                                    <h4>Kenchobi</h4>
+                                    <h4>スタイリー不動産（Stylee）</h4>
                                     <span class="account-handle">
-                                        <i class="fab fa-tiktok"></i> @kenchobi
+                                        <i class="fab fa-tiktok"></i> @stylee.estate
                                     </span>
                                 </div>
                                 <div class="account-stats">
-                                    <span class="stat"><i class="fas fa-users"></i> 7,000人+</span>
+                                    <span class="stat"><i class="fas fa-users"></i> 6,000人+</span>
                                 </div>
-                                <p class="account-desc"><strong>TikTok経由で20件以上の契約・100件以上の問い合わせ獲得</strong></p>
+                                <p class="account-desc"><strong>5ヶ月で23件の成約</strong>、オシャレな物件紹介</p>
                             </div>
                         </a>
                     </div>
