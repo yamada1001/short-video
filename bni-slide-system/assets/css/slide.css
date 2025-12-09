@@ -670,7 +670,10 @@
    =================================== */
 
 .pitch-presenter-info {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
   margin-bottom: 30px;
 }
 
@@ -678,7 +681,6 @@
   font-size: 1.8em;
   color: #FFD700 !important;
   margin: 0;
-  text-align: center;
 }
 
 .pitch-file-container {

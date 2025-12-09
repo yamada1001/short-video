@@ -172,26 +172,14 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     const fileName = escapeHtml(pitchPresenter.file_original_name || 'ピッチ資料');
     const filePath = pitchPresenter.file_path;
 
-    slides += `
+    if (fileType === 'pdf') {
+      // PDFの場合：iframe で埋め込み表示 + フルスクリーンボタン（名前の隣）
+      const pdfUrl = `../api_get_pitch_file.php?file=${encodeURIComponent(filePath.split('/').pop())}`;
+      slides += `
       <section>
         <h2>メンバーのピッチ</h2>
         <div class="pitch-presenter-info">
           <h3>${presenterName}さん</h3>
-        </div>
-    `;
-
-    if (fileType === 'pdf') {
-      // PDFの場合：iframe で埋め込み表示 + フルスクリーンボタン
-      const pdfUrl = `../api_get_pitch_file.php?file=${encodeURIComponent(filePath.split('/').pop())}`;
-      slides += `
-        <div class="pitch-file-container">
-          <iframe
-            src="${pdfUrl}"
-            width="100%"
-            height="600"
-            style="border: 1px solid #ddd; border-radius: 8px;"
-            title="ピッチ資料 - ${fileName}"
-          ></iframe>
           <a
             href="${pdfUrl}"
             target="_blank"
@@ -201,10 +189,24 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
             <i class="fas fa-expand"></i> フルスクリーンで開く
           </a>
         </div>
+        <div class="pitch-file-container">
+          <iframe
+            src="${pdfUrl}"
+            width="100%"
+            height="600"
+            style="border: 1px solid #ddd; border-radius: 8px;"
+            title="ピッチ資料 - ${fileName}"
+          ></iframe>
+        </div>
       `;
     } else {
       // PowerPointの場合：ダウンロードリンクのみ
       slides += `
+      <section>
+        <h2>メンバーのピッチ</h2>
+        <div class="pitch-presenter-info">
+          <h3>${presenterName}さん</h3>
+        </div>
         <div class="pitch-download-container">
           <div class="download-box">
             <i class="fas fa-file-powerpoint" style="font-size: 64px; color: #CF2030; margin-bottom: 20px;"></i>
