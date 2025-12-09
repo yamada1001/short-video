@@ -109,10 +109,10 @@
       throw new Error(result.message || 'データの読み込みに失敗しました');
     }
 
-      const { data, stats, date } = result;
+      const { data, stats, date, pitch_presenter } = result;
 
       // Generate slides using SVG templates
-      await generateSVGSlides(data, stats, date);
+      await generateSVGSlides(data, stats, date, pitch_presenter);
 
       // Initialize or sync Reveal.js
       if (!Reveal.isReady()) {

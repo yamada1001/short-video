@@ -43,6 +43,9 @@ try {
   // Calculate statistics
   $stats = calculateStats($db, $weekDate);
 
+  // Get pitch presenter info
+  $pitchPresenter = getPitchPresenter($db, $weekDate);
+
   // Format date for title slide
   $slideDate = '';
   try {
@@ -58,6 +61,7 @@ try {
     'success' => true,
     'data' => $data,
     'stats' => $stats,
+    'pitch_presenter' => $pitchPresenter,
     'count' => count($data),
     'date' => $slideDate,
     'week' => $weekDate
@@ -94,6 +98,10 @@ function loadSurveyData($db, $weekDate) {
       s.one_to_one,
       s.activities,
       s.comments,
+      s.is_pitch_presenter,
+      s.pitch_file_path,
+      s.pitch_file_original_name,
+      s.pitch_file_type,
       v.visitor_name,
       v.visitor_company,
       v.visitor_industry,
@@ -243,4 +251,36 @@ function calculateStats($db, $weekDate) {
   }
 
   return $stats;
+}
+
+/**
+ * Get pitch presenter info for the week
+ */
+function getPitchPresenter($db, $weekDate) {
+  $query = "
+    SELECT
+      user_name,
+      user_email,
+      pitch_file_path,
+      pitch_file_original_name,
+      pitch_file_type
+    FROM survey_data
+    WHERE week_date = :week_date
+      AND is_pitch_presenter = 1
+    LIMIT 1
+  ";
+
+  $result = dbQueryOne($db, $query, [':week_date' => $weekDate]);
+
+  if (!$result) {
+    return null;
+  }
+
+  return [
+    'name' => $result['user_name'],
+    'email' => $result['user_email'],
+    'file_path' => $result['pitch_file_path'],
+    'file_original_name' => $result['pitch_file_original_name'],
+    'file_type' => $result['pitch_file_type']
+  ];
 }

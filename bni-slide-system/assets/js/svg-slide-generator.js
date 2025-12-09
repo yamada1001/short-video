@@ -6,7 +6,7 @@
 /**
  * Generate all slides from data
  */
-async function generateSVGSlides(data, stats, slideDate = '') {
+async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null) {
   const slideContainer = document.getElementById('slideContainer');
 
   // Use provided date from API, or fall back to today's date
@@ -163,6 +163,62 @@ async function generateSVGSlides(data, stats, slideDate = '') {
         </section>
       `;
     });
+  }
+
+  // Pitch Section: Insert between Visitors and Referrals
+  if (pitchPresenter && pitchPresenter.file_path) {
+    const presenterName = escapeHtml(pitchPresenter.name || 'メンバー');
+    const fileType = pitchPresenter.file_type || 'unknown';
+    const fileName = escapeHtml(pitchPresenter.file_original_name || 'ピッチ資料');
+    const filePath = pitchPresenter.file_path;
+
+    slides += `
+      <section>
+        <h2>メンバーのピッチ</h2>
+        <div class="pitch-presenter-info">
+          <h3>${presenterName}さん</h3>
+        </div>
+    `;
+
+    if (fileType === 'pdf') {
+      // PDFの場合：iframe で埋め込み表示
+      slides += `
+        <div class="pitch-file-container">
+          <iframe
+            src="api_get_pitch_file.php?file=${encodeURIComponent(filePath.split('/').pop())}"
+            width="100%"
+            height="600"
+            style="border: 1px solid #ddd; border-radius: 8px;"
+            title="ピッチ資料 - ${fileName}"
+          ></iframe>
+        </div>
+      `;
+    } else {
+      // PowerPointの場合：ダウンロードリンクのみ
+      slides += `
+        <div class="pitch-download-container">
+          <div class="download-box">
+            <i class="fas fa-file-powerpoint" style="font-size: 64px; color: #CF2030; margin-bottom: 20px;"></i>
+            <p style="font-size: 18px; margin-bottom: 20px;">${fileName}</p>
+            <a
+              href="api_get_pitch_file.php?file=${encodeURIComponent(filePath.split('/').pop())}"
+              class="btn-download"
+              download
+              target="_blank"
+            >
+              <i class="fas fa-download"></i> ダウンロード
+            </a>
+            <p style="font-size: 14px; color: #666; margin-top: 15px;">
+              PowerPoint形式のファイルです。ダウンロードしてご覧ください。
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
+    slides += `
+      </section>
+    `;
   }
 
   // Slide 4: Referral Amount Breakdown

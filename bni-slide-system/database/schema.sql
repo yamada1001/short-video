@@ -40,6 +40,10 @@ CREATE TABLE IF NOT EXISTS survey_data (
     one_to_one INTEGER DEFAULT 0,
     activities TEXT,
     comments TEXT,
+    is_pitch_presenter INTEGER DEFAULT 0,  -- ピッチ担当者フラグ (0: いいえ, 1: はい)
+    pitch_file_path TEXT,  -- ピッチファイルのパス
+    pitch_file_original_name TEXT,  -- 元のファイル名
+    pitch_file_type TEXT,  -- ファイルタイプ (pdf, pptx)
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );

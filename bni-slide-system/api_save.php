@@ -15,6 +15,7 @@ require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/csrf.php';
 require_once __DIR__ . '/includes/date_helper.php';
 require_once __DIR__ . '/includes/audit_logger.php';
+require_once __DIR__ . '/includes/file_upload_helper.php';
 
 // Config
 define('MAIL_TO', 'yamada@yojitu.com');
@@ -46,6 +47,24 @@ try {
     'activities' => isset($_POST['activities']) ? implode('|', array_map('sanitize', $_POST['activities'])) : '',
     'comments' => sanitize($_POST['comments'] ?? '')
   ];
+
+  // Get pitch presenter data (validate but don't upload yet)
+  $isPitchPresenter = intval($_POST['is_pitch_presenter'] ?? 0);
+  $pitchFileToUpload = null;
+
+  // Validate pitch file if user is pitch presenter
+  if ($isPitchPresenter === 1) {
+    if (isset($_FILES['pitch_file']) && $_FILES['pitch_file']['error'] !== UPLOAD_ERR_NO_FILE) {
+      // Validate pitch file (but don't save yet - we need user ID first)
+      $validation = validatePitchFile($_FILES['pitch_file']);
+      if (!$validation['success']) {
+        throw new Exception($validation['message']);
+      }
+      $pitchFileToUpload = $_FILES['pitch_file'];
+    } else {
+      throw new Exception('ピッチ資料をアップロードしてください');
+    }
+  }
 
   // Validate required fields
   if (empty($baseData['input_date']) || empty($baseData['introducer_name']) ||
@@ -117,7 +136,7 @@ try {
 
   // Save to database
   $db = getDbConnection();
-  $surveyId = saveToDatabase($db, $baseData, $visitors, $referrals);
+  $surveyId = saveToDatabase($db, $baseData, $visitors, $referrals, $isPitchPresenter, $pitchFileToUpload);
   dbClose($db);
 
   if (!$surveyId) {
@@ -169,7 +188,7 @@ function sanitize($input) {
 /**
  * Save data to SQLite database
  */
-function saveToDatabase($db, $baseData, $visitors, $referrals) {
+function saveToDatabase($db, $baseData, $visitors, $referrals, $isPitchPresenter = 0, $pitchFileData = null) {
   try {
     // Start transaction
     dbBeginTransaction($db);
@@ -186,6 +205,26 @@ function saveToDatabase($db, $baseData, $visitors, $referrals) {
     $userId = $user ? $user['id'] : null;
     $userName = $user ? $user['name'] : $baseData['introducer_name'];
 
+    // Handle pitch file upload if pitchFileData is actually the uploaded file
+    $actualPitchFileData = null;
+    if ($isPitchPresenter === 1 && $pitchFileData !== null) {
+      // If $pitchFileData is the uploaded file array (not processed data), process it now
+      if (isset($pitchFileData['tmp_name'])) {
+        $fileResult = savePitchFile($pitchFileData, $weekDate, $userId ?? 0);
+        if (!$fileResult['success']) {
+          throw new Exception($fileResult['message']);
+        }
+        $actualPitchFileData = [
+          'path' => $fileResult['file_path'],
+          'type' => $fileResult['file_type'],
+          'original_name' => $fileResult['original_name']
+        ];
+      } else {
+        // Already processed pitch file data
+        $actualPitchFileData = $pitchFileData;
+      }
+    }
+
     // Insert survey_data
     $surveyQuery = "INSERT INTO survey_data (
       week_date,
@@ -199,6 +238,10 @@ function saveToDatabase($db, $baseData, $visitors, $referrals) {
       one_to_one,
       activities,
       comments,
+      is_pitch_presenter,
+      pitch_file_path,
+      pitch_file_original_name,
+      pitch_file_type,
       created_at
     ) VALUES (
       :week_date,
@@ -212,6 +255,10 @@ function saveToDatabase($db, $baseData, $visitors, $referrals) {
       :one_to_one,
       :activities,
       :comments,
+      :is_pitch_presenter,
+      :pitch_file_path,
+      :pitch_file_original_name,
+      :pitch_file_type,
       :created_at
     )";
 
@@ -227,6 +274,10 @@ function saveToDatabase($db, $baseData, $visitors, $referrals) {
       ':one_to_one' => $baseData['one_to_one_count'],
       ':activities' => $baseData['activities'] ?: null,
       ':comments' => $baseData['comments'] ?: null,
+      ':is_pitch_presenter' => $isPitchPresenter,
+      ':pitch_file_path' => $actualPitchFileData ? $actualPitchFileData['path'] : null,
+      ':pitch_file_original_name' => $actualPitchFileData ? $actualPitchFileData['original_name'] : null,
+      ':pitch_file_type' => $actualPitchFileData ? $actualPitchFileData['type'] : null,
       ':created_at' => $baseData['timestamp']
     ];
 

@@ -18,3 +18,14 @@ backups/*.db
 data/bni_system.db
 data/bni_system.db-shm
 data/bni_system.db-wal
+
+# User configuration files (contains production passwords)
+data/members.json
+
+# CSV data files (production survey data)
+data/*.csv
+
+# Pitch files (uploaded presentations)
+data/pitch/*.pdf
+data/pitch/*.ppt
+data/pitch/*.pptx

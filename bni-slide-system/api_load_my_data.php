@@ -40,6 +40,10 @@ try {
             s.one_to_one,
             s.activities,
             s.comments,
+            s.is_pitch_presenter,
+            s.pitch_file_path,
+            s.pitch_file_original_name,
+            s.pitch_file_type,
             v.visitor_name,
             v.visitor_company,
             v.visitor_industry,
@@ -80,6 +84,10 @@ try {
             'ワンツーワン数' => $row['one_to_one'],
             'アクティビティ' => $row['activities'] ?: '',
             'コメント' => $row['comments'] ?: '',
+            'ピッチ担当' => $row['is_pitch_presenter'] ? 'はい' : 'いいえ',
+            'ピッチファイル' => $row['pitch_file_original_name'] ?: '',
+            'ピッチファイルパス' => $row['pitch_file_path'] ?: '',
+            'ピッチファイル種類' => $row['pitch_file_type'] ?: '',
             '週' => $weekLabel,
             'CSVファイル' => $weekDate
         ];

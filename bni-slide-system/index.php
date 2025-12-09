@@ -166,7 +166,7 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
           </div>
 
           <!-- Survey Form -->
-          <form id="surveyForm" method="POST" action="api_save.php">
+          <form id="surveyForm" method="POST" action="api_save.php" enctype="multipart/form-data">
             <!-- CSRF Token -->
             <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
 
@@ -372,6 +372,49 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
                   その他コメント・特記事項
                 </label>
                 <textarea name="comments" class="form-textarea" placeholder="今週の活動や気づきなど、自由にご記入ください"></textarea>
+              </div>
+            </div>
+
+            <!-- Section 4: ピッチ担当者情報 -->
+            <div class="form-section">
+              <h2 class="form-section-title">4. ピッチ担当者情報</h2>
+
+              <div class="form-group">
+                <label class="form-label">
+                  次の会でピッチを担当する方ですか？<span class="required">*</span>
+                </label>
+                <div class="form-radio-group">
+                  <div class="form-radio">
+                    <input type="radio" id="pitch_yes" name="is_pitch_presenter" value="1" required>
+                    <label for="pitch_yes">はい（ピッチ資料をアップロードします）</label>
+                  </div>
+                  <div class="form-radio">
+                    <input type="radio" id="pitch_no" name="is_pitch_presenter" value="0" required checked>
+                    <label for="pitch_no">いいえ</label>
+                  </div>
+                </div>
+                <span class="form-error">ピッチ担当の可否を選択してください</span>
+              </div>
+
+              <!-- ファイルアップロード欄（ピッチ担当者の場合のみ表示） -->
+              <div id="pitchFileUploadSection" style="display: none;">
+                <div class="form-group">
+                  <label class="form-label">
+                    ピッチ資料をアップロード<span class="required">*</span>
+                  </label>
+                  <input type="file" name="pitch_file" id="pitch_file" class="form-input" accept=".pdf,.pptx,.ppt">
+                  <span class="form-help">
+                    対応形式: PDF (.pdf) または PowerPoint (.pptx, .ppt)<br>
+                    最大ファイルサイズ: 10MB<br>
+                    <strong>推奨:</strong> PDF形式でアップロードすると、スライドに直接埋め込み表示されます。<br>
+                    PowerPoint形式の場合は、ダウンロードリンクのみ表示されます。
+                  </span>
+                  <div id="filePreview" style="margin-top: 10px; padding: 10px; background: #F0F8FF; border: 1px solid #B0D4FF; border-radius: 4px; display: none;">
+                    <p style="margin: 0; font-size: 14px; color: #333;">
+                      <strong>選択されたファイル:</strong> <span id="fileName"></span> (<span id="fileSize"></span>)
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -802,10 +845,73 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
         console.log('🔄 自動保存機能が有効になりました');
       }
 
+      // ピッチファイルアップロードセクションの動的制御
+      function setupPitchFileUpload() {
+        const pitchYes = document.getElementById('pitch_yes');
+        const pitchNo = document.getElementById('pitch_no');
+        const pitchFileUploadSection = document.getElementById('pitchFileUploadSection');
+        const pitchFileInput = document.getElementById('pitch_file');
+        const filePreview = document.getElementById('filePreview');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+
+        // ラジオボタンの変更イベント
+        function togglePitchFileUpload() {
+          if (pitchYes.checked) {
+            pitchFileUploadSection.style.display = 'block';
+            pitchFileInput.setAttribute('required', 'required');
+          } else {
+            pitchFileUploadSection.style.display = 'none';
+            pitchFileInput.removeAttribute('required');
+            pitchFileInput.value = ''; // ファイル選択をクリア
+            filePreview.style.display = 'none';
+          }
+        }
+
+        pitchYes.addEventListener('change', togglePitchFileUpload);
+        pitchNo.addEventListener('change', togglePitchFileUpload);
+
+        // ファイル選択時のプレビュー表示
+        pitchFileInput.addEventListener('change', function() {
+          const file = this.files[0];
+          if (file) {
+            // ファイルサイズチェック (10MB)
+            const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+            if (file.size > maxSize) {
+              alert('ファイルサイズが大きすぎます。10MB以下のファイルを選択してください。\n現在のファイルサイズ: ' + (file.size / 1024 / 1024).toFixed(2) + 'MB');
+              this.value = '';
+              filePreview.style.display = 'none';
+              return;
+            }
+
+            // ファイル形式チェック
+            const allowedExts = ['pdf', 'pptx', 'ppt'];
+            const ext = file.name.split('.').pop().toLowerCase();
+            if (!allowedExts.includes(ext)) {
+              alert('対応していないファイル形式です。PDF (.pdf) または PowerPoint (.pptx, .ppt) をアップロードしてください。');
+              this.value = '';
+              filePreview.style.display = 'none';
+              return;
+            }
+
+            // プレビュー表示
+            fileName.textContent = file.name;
+            fileSize.textContent = (file.size / 1024 / 1024).toFixed(2) + ' MB';
+            filePreview.style.display = 'block';
+          } else {
+            filePreview.style.display = 'none';
+          }
+        });
+
+        // 初期状態設定
+        togglePitchFileUpload();
+      }
+
       // ページ読み込み時に実行
       document.addEventListener('DOMContentLoaded', function() {
         checkAndRestoreDraft();
         attachAutosaveListeners();
+        setupPitchFileUpload(); // ピッチファイルアップロードの設定
       });
 
     })();

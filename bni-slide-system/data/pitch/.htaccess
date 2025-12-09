@@ -1,0 +1,20 @@
+# Deny direct access to pitch files
+# ピッチファイルへの直接アクセスを禁止
+
+# Disable directory listing
+Options -Indexes
+
+# Deny all direct access
+<FilesMatch ".*">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Disable PHP execution
+php_flag engine off
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "DENY"
+</IfModule>
