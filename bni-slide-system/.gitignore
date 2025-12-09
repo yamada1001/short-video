@@ -13,3 +13,8 @@ data/*_backup_*.csv
 
 # Database backups
 backups/*.db
+
+# SQLite database files (production data should not be in Git)
+data/bni_system.db
+data/bni_system.db-shm
+data/bni_system.db-wal
