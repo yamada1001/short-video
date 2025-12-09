@@ -381,28 +381,24 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     }
   }
 
-  // Slide 6.5: Member Pitch Presentations
-  if (pitchPresenter && Array.isArray(pitchPresenter) && pitchPresenter.length > 0) {
-    pitchPresenter.forEach(presenter => {
-      const presenterName = escapeHtml(presenter.name || 'メンバー');
-      const fileType = presenter.file_type || 'unknown';
-      const fileName = escapeHtml(presenter.file_original_name || 'ピッチ資料');
-      const filePath = presenter.file_path;
+  // Slide 6.5: Member Pitch Presentation (PDF only, one per week)
+  if (pitchPresenter && pitchPresenter.file_path) {
+    const presenterName = escapeHtml(pitchPresenter.name || 'メンバー');
+    const fileType = pitchPresenter.file_type || 'unknown';
+    const fileName = escapeHtml(pitchPresenter.file_original_name || 'ピッチ資料');
+    const filePath = pitchPresenter.file_path;
+
+    if (fileType === 'pdf') {
+      // PDFの場合のみ表示
+      const pdfFile = encodeURIComponent(filePath.split('/').pop());
+      const pdfUrl = `../api_get_pitch_file.php?file=${pdfFile}`;
+      const viewerUrl = `../pitch_viewer.php?file=${pdfFile}`;
 
       slides += `
         <section>
           <h2>メンバーのピッチ</h2>
           <div class="pitch-presenter-info">
             <h3>${presenterName}さん</h3>
-      `;
-
-      if (fileType === 'pdf') {
-        // PDFの場合：フルスクリーンボタン
-        const pdfFile = encodeURIComponent(filePath.split('/').pop());
-        const pdfUrl = `../api_get_pitch_file.php?file=${pdfFile}`;
-        const viewerUrl = `../pitch_viewer.php?file=${pdfFile}`;
-
-        slides += `
             <a
               href="${viewerUrl}"
               target="_blank"
@@ -421,37 +417,9 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
               title="ピッチ資料 - ${fileName}"
             ></iframe>
           </div>
-        `;
-      } else {
-        // PowerPointの場合：ダウンロードリンク
-        const pptxFile = encodeURIComponent(filePath.split('/').pop());
-
-        slides += `
-          </div>
-          <div class="pitch-download-container">
-            <div class="download-box">
-              <i class="fas fa-file-powerpoint" style="font-size: 64px; color: #CF2030; margin-bottom: 20px;"></i>
-              <p style="font-size: 18px; margin-bottom: 20px;">${fileName}</p>
-              <a
-                href="../api_get_pitch_file.php?file=${pptxFile}"
-                class="btn-download"
-                download
-                target="_blank"
-              >
-                <i class="fas fa-download"></i> ダウンロード
-              </a>
-              <p style="font-size: 14px; color: #666; margin-top: 15px;">
-                PowerPoint形式のファイルです。ダウンロードしてご覧ください。
-              </p>
-            </div>
-          </div>
-        `;
-      }
-
-      slides += `
         </section>
       `;
-    });
+    }
   }
 
   // Slide 7: Activity Summary

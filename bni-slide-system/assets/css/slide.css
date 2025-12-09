@@ -706,8 +706,8 @@
   align-items: center;
   gap: 10px;
   padding: 15px 30px;
-  background: #FFD700;
-  color: #CF2030 !important;
+  background: #CF2030;
+  color: #FFFFFF !important;
   font-size: 18px;
   font-weight: 600;
   border: none;
@@ -715,13 +715,13 @@
   text-decoration: none !important;
   transition: all 0.3s;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .btn-fullscreen:hover {
-  background: #FFC700;
+  background: #a01828;
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .btn-fullscreen i {

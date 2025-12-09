@@ -255,7 +255,7 @@ function calculateStats($db, $weekDate) {
 
 /**
  * Get pitch presenter info for the week
- * Returns array of pitch presenters (supports multiple presenters per week)
+ * Returns single pitch presenter (one per week)
  */
 function getPitchPresenter($db, $weekDate) {
   $query = "
@@ -269,24 +269,20 @@ function getPitchPresenter($db, $weekDate) {
     WHERE week_date = :week_date
       AND is_pitch_presenter = 1
     ORDER BY id ASC
+    LIMIT 1
   ";
 
-  $results = dbQuery($db, $query, [':week_date' => $weekDate]);
+  $result = dbQueryOne($db, $query, [':week_date' => $weekDate]);
 
-  if (!$results || count($results) === 0) {
-    return [];
+  if (!$result) {
+    return null;
   }
 
-  $presenters = [];
-  foreach ($results as $result) {
-    $presenters[] = [
-      'name' => $result['user_name'],
-      'email' => $result['user_email'],
-      'file_path' => $result['pitch_file_path'],
-      'file_original_name' => $result['pitch_file_original_name'],
-      'file_type' => $result['pitch_file_type']
-    ];
-  }
-
-  return $presenters;
+  return [
+    'name' => $result['user_name'],
+    'email' => $result['user_email'],
+    'file_path' => $result['pitch_file_path'],
+    'file_original_name' => $result['pitch_file_original_name'],
+    'file_type' => $result['pitch_file_type']
+  ];
 }
