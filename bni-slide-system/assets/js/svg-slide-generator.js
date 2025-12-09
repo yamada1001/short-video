@@ -185,7 +185,7 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
       slides += `
         <div class="pitch-file-container">
           <iframe
-            src="api_get_pitch_file.php?file=${encodeURIComponent(filePath.split('/').pop())}"
+            src="../api_get_pitch_file.php?file=${encodeURIComponent(filePath.split('/').pop())}"
             width="100%"
             height="600"
             style="border: 1px solid #ddd; border-radius: 8px;"
@@ -201,7 +201,7 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
             <i class="fas fa-file-powerpoint" style="font-size: 64px; color: #CF2030; margin-bottom: 20px;"></i>
             <p style="font-size: 18px; margin-bottom: 20px;">${fileName}</p>
             <a
-              href="api_get_pitch_file.php?file=${encodeURIComponent(filePath.split('/').pop())}"
+              href="../api_get_pitch_file.php?file=${encodeURIComponent(filePath.split('/').pop())}"
               class="btn-download"
               download
               target="_blank"
