@@ -8,6 +8,9 @@
 require_once __DIR__ . '/includes/user_auth.php';
 require_once __DIR__ . '/includes/csrf.php';
 
+// Maintenance mode check
+require_once __DIR__ . '/includes/maintenance_check.php';
+
 // Generate CSRF token
 $csrfToken = generateCSRFToken();
 

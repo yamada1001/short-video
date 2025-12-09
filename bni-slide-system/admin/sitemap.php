@@ -283,6 +283,7 @@ header('Content-Type: text/html; charset=UTF-8');
           <li><a href="edit.php">編集</a></li>
           <li><a href="users.php">ユーザー管理</a></li>
           <li><a href="audit_log.php">監査ログ</a></li>
+          <li><a href="maintenance_toggle.php">メンテナンス設定</a></li>
           <li><a href="sitemap.php" class="active">サイトマップ</a></li>
           <li><a href="../logout.php" style="color: #999;">ログアウト</a></li>
         </ul>
@@ -579,6 +580,23 @@ header('Content-Type: text/html; charset=UTF-8');
                   システムの操作履歴を表示。データの作成・更新・削除などの操作ログを記録。フィルタ機能（アクション・ユーザー）搭載。
                 </div>
                 <div class="page-path">admin/audit_log.php</div>
+              </div>
+            </div>
+
+            <!-- admin/maintenance_toggle.php -->
+            <div class="page-item">
+              <div class="page-icon">
+                <i class="fas fa-wrench"></i>
+              </div>
+              <div class="page-content">
+                <div class="page-name">
+                  <a href="maintenance_toggle.php" target="_blank">メンテナンスモード設定</a>
+                  <span class="badge badge-admin">管理者</span>
+                </div>
+                <div class="page-description">
+                  システムのメンテナンスモードをON/OFFできます。テスト中は有効にすることで、指定したメールアドレス以外のアクセスをブロックします。
+                </div>
+                <div class="page-path">admin/maintenance_toggle.php</div>
               </div>
             </div>
 
