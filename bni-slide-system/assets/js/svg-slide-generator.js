@@ -173,15 +173,17 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     const filePath = pitchPresenter.file_path;
 
     if (fileType === 'pdf') {
-      // PDFの場合：iframe で埋め込み表示 + フルスクリーンボタン（名前の隣）
-      const pdfUrl = `../api_get_pitch_file.php?file=${encodeURIComponent(filePath.split('/').pop())}`;
+      // PDFの場合：iframe で埋め込み表示 + フルスクリーンボタン（PDF.jsビューアー）
+      const pdfFile = encodeURIComponent(filePath.split('/').pop());
+      const pdfUrl = `../api_get_pitch_file.php?file=${pdfFile}`;
+      const viewerUrl = `../pitch_viewer.php?file=${pdfFile}`;
       slides += `
       <section>
         <h2>メンバーのピッチ</h2>
         <div class="pitch-presenter-info">
           <h3>${presenterName}さん</h3>
           <a
-            href="${pdfUrl}"
+            href="${viewerUrl}"
             target="_blank"
             class="btn-fullscreen"
             title="フルスクリーンで開く"
