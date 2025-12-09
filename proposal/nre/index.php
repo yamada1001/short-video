@@ -1709,7 +1709,7 @@
                             </div>
                         </a>
 
-                        <a href="https://www.tiktok.com/@onlyyouhome" target="_blank" class="account-card-link">
+                        <a href="https://www.tiktok.com/@only_you_home" target="_blank" class="account-card-link">
                             <div class="account-card">
                                 <div class="account-header">
                                     <h4>ONLY YOU HOME</h4>
@@ -1724,7 +1724,7 @@
                             </div>
                         </a>
 
-                        <a href="https://www.tiktok.com/@lakia_umeda" target="_blank" class="account-card-link">
+                        <a href="https://www.tiktok.com/@lakia.umeda" target="_blank" class="account-card-link">
                             <div class="account-card">
                                 <div class="account-header">
                                     <h4>LAKIA不動産 大阪梅田店</h4>
@@ -1739,7 +1739,7 @@
                             </div>
                         </a>
 
-                        <a href="https://www.tiktok.com/@kenchobi" target="_blank" class="account-card-link">
+                        <a href="https://www.tiktok.com/@kenchobi_house" target="_blank" class="account-card-link">
                             <div class="account-card highlight">
                                 <div class="badge success">成約実績</div>
                                 <div class="account-header">
@@ -1761,7 +1761,7 @@
                 <section class="research-section">
                     <h2 class="research-section-title"><i class="fab fa-youtube"></i> YouTube 主要チャンネル</h2>
                     <div class="account-grid">
-                        <a href="https://www.youtube.com/@yukkurifudosan" target="_blank" class="account-card-link">
+                        <a href="https://www.youtube.com/@YukkuriFudosan" target="_blank" class="account-card-link">
                             <div class="account-card highlight">
                                 <div class="badge featured">最大規模</div>
                                 <div class="account-header">
@@ -1778,7 +1778,7 @@
                             </div>
                         </a>
 
-                        <a href="https://www.youtube.com/@fudosan-gmen" target="_blank" class="account-card-link">
+                        <a href="https://www.youtube.com/@gmentakishima" target="_blank" class="account-card-link">
                             <div class="account-card">
                                 <div class="account-header">
                                     <h4>不動産Gメン滝島</h4>
@@ -1809,7 +1809,7 @@
                             </div>
                         </a>
 
-                        <a href="https://www.youtube.com/@mofmof-investor" target="_blank" class="account-card-link">
+                        <a href="https://www.youtube.com/channel/UCsWTZ4nYODCwlE8rdv7DZzA" target="_blank" class="account-card-link">
                             <div class="account-card">
                                 <div class="account-header">
                                     <h4>もふもふ不動産</h4>
@@ -1824,7 +1824,7 @@
                             </div>
                         </a>
 
-                        <a href="https://www.youtube.com/@uraken-fudosan" target="_blank" class="account-card-link">
+                        <a href="https://www.youtube.com/@urakenfudosan" target="_blank" class="account-card-link">
                             <div class="account-card">
                                 <div class="account-header">
                                     <h4>ウラケン不動産</h4>
