@@ -129,17 +129,27 @@ $pdfUrl = 'api_get_pitch_file.php?file=' . urlencode($file);
             box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
 
+        .fullscreen-mode {
+            cursor: none;
+        }
+
+        .fullscreen-mode.show-controls {
+            cursor: default;
+        }
+
         .fullscreen-mode #controls {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.5s;
+            pointer-events: none;
         }
 
-        .fullscreen-mode:hover #controls {
+        .fullscreen-mode.show-controls #controls {
             opacity: 1;
+            pointer-events: auto;
         }
 
         #close-btn {
@@ -186,12 +196,6 @@ $pdfUrl = 'api_get_pitch_file.php?file=' . urlencode($file);
             </div>
 
             <div class="controls-right">
-                <button id="zoom-out-btn" onclick="zoomOut()">
-                    <span class="icon">-</span>縮小
-                </button>
-                <button id="zoom-in-btn" onclick="zoomIn()">
-                    <span class="icon">+</span>拡大
-                </button>
                 <button id="fullscreen-btn" onclick="toggleFullscreen()">
                     <span class="icon">⛶</span>フルスクリーン
                 </button>
@@ -315,18 +319,6 @@ $pdfUrl = 'api_get_pitch_file.php?file=' . urlencode($file);
             queueRenderPage(pageNum);
         }
 
-        // ズームイン
-        function zoomIn() {
-            scale *= 1.25;
-            queueRenderPage(pageNum);
-        }
-
-        // ズームアウト
-        function zoomOut() {
-            scale *= 0.8;
-            queueRenderPage(pageNum);
-        }
-
         // フルスクリーン切り替え
         function toggleFullscreen() {
             const container = document.getElementById('viewer-container');
@@ -334,6 +326,7 @@ $pdfUrl = 'api_get_pitch_file.php?file=' . urlencode($file);
             if (!document.fullscreenElement) {
                 container.requestFullscreen().then(() => {
                     document.body.classList.add('fullscreen-mode');
+                    initControlsAutoHide();
                 }).catch(err => {
                     alert(`フルスクリーンの有効化に失敗しました: ${err.message}`);
                 });
@@ -341,6 +334,29 @@ $pdfUrl = 'api_get_pitch_file.php?file=' . urlencode($file);
                 document.exitFullscreen();
                 document.body.classList.remove('fullscreen-mode');
             }
+        }
+
+        // フルスクリーン時のコントロール自動非表示
+        let controlsTimer = null;
+        function initControlsAutoHide() {
+            const body = document.body;
+
+            // マウス移動時にコントロールを表示
+            document.addEventListener('mousemove', function showControls() {
+                if (!document.fullscreenElement) return;
+
+                body.classList.add('show-controls');
+
+                // タイマーをクリア
+                if (controlsTimer) {
+                    clearTimeout(controlsTimer);
+                }
+
+                // 3秒後に非表示
+                controlsTimer = setTimeout(() => {
+                    body.classList.remove('show-controls');
+                }, 3000);
+            });
         }
 
         // キーボードショートカット
@@ -366,14 +382,6 @@ $pdfUrl = 'api_get_pitch_file.php?file=' . urlencode($file);
                 case 'f':
                 case 'F':
                     toggleFullscreen();
-                    break;
-                case '+':
-                case '=':
-                    zoomIn();
-                    break;
-                case '-':
-                case '_':
-                    zoomOut();
                     break;
             }
         });
