@@ -1608,13 +1608,13 @@
 
                     <h3 class="research-subsection-title">売買・物件紹介特化アカウント</h3>
                     <div class="account-grid">
-                        <a href="https://www.instagram.com/aisroom_chintai/" target="_blank" class="account-card-link">
+                        <a href="https://www.instagram.com/is_room_/" target="_blank" class="account-card-link">
                             <div class="account-card highlight">
                                 <div class="badge success">最優秀事例</div>
                                 <div class="account-header">
-                                    <h4>アイズルーム (Ai's Room)</h4>
+                                    <h4>アイズルーム (I's Room)</h4>
                                     <span class="account-handle">
-                                        <i class="fab fa-instagram"></i> @aisroom_chintai
+                                        <i class="fab fa-instagram"></i> @is_room_
                                     </span>
                                 </div>
                                 <div class="account-stats">
@@ -1624,12 +1624,12 @@
                             </div>
                         </a>
 
-                        <a href="https://www.instagram.com/goodrooms/" target="_blank" class="account-card-link">
+                        <a href="https://www.instagram.com/goodroom_jp/" target="_blank" class="account-card-link">
                             <div class="account-card">
                                 <div class="account-header">
-                                    <h4>グッドルーム (Goodroom)</h4>
+                                    <h4>グッドルーム (goodroom)</h4>
                                     <span class="account-handle">
-                                        <i class="fab fa-instagram"></i> @goodrooms
+                                        <i class="fab fa-instagram"></i> @goodroom_jp
                                     </span>
                                 </div>
                                 <div class="account-stats">
@@ -1639,12 +1639,12 @@
                             </div>
                         </a>
 
-                        <a href="https://www.instagram.com/realtokyoestate/" target="_blank" class="account-card-link">
+                        <a href="https://www.instagram.com/tokyo__r/" target="_blank" class="account-card-link">
                             <div class="account-card">
                                 <div class="account-header">
                                     <h4>東京R不動産</h4>
                                     <span class="account-handle">
-                                        <i class="fab fa-instagram"></i> @realtokyoestate
+                                        <i class="fab fa-instagram"></i> @tokyo__r
                                     </span>
                                 </div>
                                 <div class="account-stats">
@@ -1655,12 +1655,12 @@
                             </div>
                         </a>
 
-                        <a href="https://www.instagram.com/simple.naiken/" target="_blank" class="account-card-link">
+                        <a href="https://www.instagram.com/simplenaiken/" target="_blank" class="account-card-link">
                             <div class="account-card">
                                 <div class="account-header">
                                     <h4>Simple NAIKEN</h4>
                                     <span class="account-handle">
-                                        <i class="fab fa-instagram"></i> @simple.naiken
+                                        <i class="fab fa-instagram"></i> @simplenaiken
                                     </span>
                                 </div>
                                 <div class="account-stats">
@@ -1671,12 +1671,12 @@
                             </div>
                         </a>
 
-                        <a href="https://www.instagram.com/ashitanofudosan/" target="_blank" class="account-card-link">
+                        <a href="https://www.instagram.com/asunofudosan/" target="_blank" class="account-card-link">
                             <div class="account-card">
                                 <div class="account-header">
                                     <h4>明日の不動産</h4>
                                     <span class="account-handle">
-                                        <i class="fab fa-instagram"></i> @ashitanofudosan
+                                        <i class="fab fa-instagram"></i> @asunofudosan
                                     </span>
                                 </div>
                                 <div class="account-stats">
