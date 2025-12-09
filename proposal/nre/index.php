@@ -744,8 +744,25 @@
 
         .account-handle {
             font-size: 0.85em;
-            color: #999;
+            color: #666;
             font-family: monospace;
+            text-decoration: none;
+            display: inline-block;
+            padding: 5px 10px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            transition: all 0.3s;
+            margin-top: 8px;
+        }
+
+        .account-handle:hover {
+            background: #333;
+            color: #fff;
+            transform: translateX(3px);
+        }
+
+        .account-handle i {
+            margin-right: 5px;
         }
 
         .account-stats {
@@ -1526,7 +1543,9 @@
                         <div class="account-card">
                             <div class="account-header">
                                 <h4>三井不動産リアルティグループ</h4>
-                                <span class="account-handle">@mfrealty.recruit</span>
+                                <a href="https://www.instagram.com/mfrealty.recruit/" target="_blank" class="account-handle">
+                                    <i class="fab fa-instagram"></i> @mfrealty.recruit
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 5,654人</span>
@@ -1537,7 +1556,9 @@
                         <div class="account-card">
                             <div class="account-header">
                                 <h4>野村不動産ソリューションズ</h4>
-                                <span class="account-handle">@nomura_solutions.recruit</span>
+                                <a href="https://www.instagram.com/nomura_solutions.recruit/" target="_blank" class="account-handle">
+                                    <i class="fab fa-instagram"></i> @nomura_solutions.recruit
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 1,049人</span>
@@ -1548,7 +1569,9 @@
                         <div class="account-card">
                             <div class="account-header">
                                 <h4>近鉄不動産</h4>
-                                <span class="account-handle">@kintechu_recruit</span>
+                                <a href="https://www.instagram.com/kintechu_recruit/" target="_blank" class="account-handle">
+                                    <i class="fab fa-instagram"></i> @kintechu_recruit
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 826人</span>
@@ -1559,7 +1582,9 @@
                         <div class="account-card">
                             <div class="account-header">
                                 <h4>コスギ不動産HD</h4>
-                                <span class="account-handle">@kosugi_recruit</span>
+                                <a href="https://www.instagram.com/kosugi_recruit/" target="_blank" class="account-handle">
+                                    <i class="fab fa-instagram"></i> @kosugi_recruit
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 751人</span>
@@ -1634,6 +1659,9 @@
                             <div class="badge featured">注目事例</div>
                             <div class="account-header">
                                 <h4>ないけんぼーいず (Naiken Boys)</h4>
+                                <a href="https://www.tiktok.com/@naikenboys" target="_blank" class="account-handle">
+                                    <i class="fab fa-tiktok"></i> @naikenboys
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 170,000人（全SNS36万人）</span>
@@ -1644,6 +1672,9 @@
                         <div class="account-card">
                             <div class="account-header">
                                 <h4>ONLY YOU HOME</h4>
+                                <a href="https://www.tiktok.com/@onlyyouhome" target="_blank" class="account-handle">
+                                    <i class="fab fa-tiktok"></i> @onlyyouhome
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 287,000人</span>
@@ -1654,6 +1685,9 @@
                         <div class="account-card">
                             <div class="account-header">
                                 <h4>LAKIA不動産 大阪梅田店</h4>
+                                <a href="https://www.tiktok.com/@lakia_umeda" target="_blank" class="account-handle">
+                                    <i class="fab fa-tiktok"></i> @lakia_umeda
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 106,000人</span>
@@ -1665,6 +1699,9 @@
                             <div class="badge success">成約実績</div>
                             <div class="account-header">
                                 <h4>Kenchobi</h4>
+                                <a href="https://www.tiktok.com/@kenchobi" target="_blank" class="account-handle">
+                                    <i class="fab fa-tiktok"></i> @kenchobi
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 7,000人+</span>
@@ -1682,6 +1719,9 @@
                             <div class="badge featured">最大規模</div>
                             <div class="account-header">
                                 <h4>ゆっくり不動産</h4>
+                                <a href="https://www.youtube.com/@yukkurifudosan" target="_blank" class="account-handle">
+                                    <i class="fab fa-youtube"></i> ゆっくり不動産
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 75万人</span>
@@ -1693,6 +1733,9 @@
                         <div class="account-card">
                             <div class="account-header">
                                 <h4>不動産Gメン滝島</h4>
+                                <a href="https://www.youtube.com/@fudosan-gmen" target="_blank" class="account-handle">
+                                    <i class="fab fa-youtube"></i> 不動産Gメン滝島
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 45万人</span>
@@ -1703,6 +1746,9 @@
                         <div class="account-card">
                             <div class="account-header">
                                 <h4>不動産投資の楽待</h4>
+                                <a href="https://www.youtube.com/@rakumachi" target="_blank" class="account-handle">
+                                    <i class="fab fa-youtube"></i> 不動産投資の楽待
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 42.7万人</span>
@@ -1714,6 +1760,9 @@
                         <div class="account-card">
                             <div class="account-header">
                                 <h4>もふもふ不動産</h4>
+                                <a href="https://www.youtube.com/@mofmof-investor" target="_blank" class="account-handle">
+                                    <i class="fab fa-youtube"></i> もふもふ不動産
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 26.4万人</span>
@@ -1724,6 +1773,9 @@
                         <div class="account-card">
                             <div class="account-header">
                                 <h4>ウラケン不動産</h4>
+                                <a href="https://www.youtube.com/@uraken-fudosan" target="_blank" class="account-handle">
+                                    <i class="fab fa-youtube"></i> ウラケン不動産
+                                </a>
                             </div>
                             <div class="account-stats">
                                 <span class="stat"><i class="fas fa-users"></i> 17万人以上</span>
