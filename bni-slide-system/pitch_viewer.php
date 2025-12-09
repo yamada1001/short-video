@@ -272,7 +272,7 @@ $pdfUrl = 'api_get_pitch_file.php?file=' . urlencode($file);
         let pageNum = 1;
         let pageRendering = false;
         let pageNumPending = null;
-        let scale = 1.5;
+        let scale = null; // 初回に自動計算
         const canvas = document.getElementById('pdf-canvas');
         const ctx = canvas.getContext('2d');
         const loadingEl = document.getElementById('loading');
@@ -302,15 +302,17 @@ $pdfUrl = 'api_get_pitch_file.php?file=' . urlencode($file);
             loadingEl.style.display = 'block';
 
             pdfDoc.getPage(num).then(function(page) {
-                // スケールを計算（画面に合わせる）
-                const viewport = page.getViewport({scale: 1});
-                const containerWidth = document.getElementById('pdf-canvas-container').clientWidth;
-                const containerHeight = document.getElementById('pdf-canvas-container').clientHeight;
+                // 初回のみスケールを計算
+                if (scale === null) {
+                    const viewport = page.getViewport({scale: 1});
+                    const containerWidth = document.getElementById('pdf-canvas-container').clientWidth;
+                    const containerHeight = document.getElementById('pdf-canvas-container').clientHeight;
 
-                // 画面に収まる最大スケールを計算
-                const scaleX = (containerWidth * 0.9) / viewport.width;
-                const scaleY = (containerHeight * 0.9) / viewport.height;
-                scale = Math.min(scaleX, scaleY) * scale;
+                    // 画面に収まる最大スケールを計算
+                    const scaleX = (containerWidth * 0.9) / viewport.width;
+                    const scaleY = (containerHeight * 0.9) / viewport.height;
+                    scale = Math.min(scaleX, scaleY);
+                }
 
                 const scaledViewport = page.getViewport({scale: scale});
 
