@@ -691,11 +691,15 @@
 }
 
 .pitch-file-container iframe {
-  width: 100%;
-  height: 80vh;
+  width: 100vw;
+  height: 100vh;
   border: none;
   border-radius: 0;
   background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .pitch-download-container {
