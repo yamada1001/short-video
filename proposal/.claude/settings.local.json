@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd: Instagram運用代行サービスの提案資料（nre）を追加\n\n- LINEseed風フォント＋白基調のデザイン\n- PC用サイドバー目次とSP用フローティング目次\n- Font Awesome 6アイコン採用\n- マーケティング戦略セクション（リファラル＋CV改善）\n- ベーシック認証設定（.htaccess）\n- サーバー情報確認ツール（test.php）\n- パスワード生成ツール（generate_password.php）\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push)",
+      "Bash(git remote:*)",
+      "Bash(git rm:*)",
+      "Bash(git commit:*)",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

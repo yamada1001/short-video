@@ -113,3 +113,18 @@ RewriteRule ^(.+)\.html$ /$1.php [R=301,L]
 
 # DirectoryIndex
 DirectoryIndex index.php
+
+# ====================================
+# Maintenance Mode (Auto Prepend)
+# ====================================
+# 全PHPファイルで自動的にメンテナンスチェックを実行
+# ただし、maintenance.php と admin/maintenance_toggle.php は除外
+<FilesMatch "\.php$">
+    # メンテナンスチェックを自動実行（相対パス）
+    php_value auto_prepend_file "includes/maintenance_check.php"
+</FilesMatch>
+
+# 除外: maintenance.php と admin/maintenance_toggle.php
+<FilesMatch "(maintenance\.php|maintenance_toggle\.php)$">
+    php_value auto_prepend_file "none"
+</FilesMatch>
