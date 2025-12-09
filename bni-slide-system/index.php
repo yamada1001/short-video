@@ -405,7 +405,7 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
                   <input type="file" name="pitch_file" id="pitch_file" class="form-input" accept=".pdf,.pptx,.ppt">
                   <span class="form-help">
                     対応形式: PDF (.pdf) または PowerPoint (.pptx, .ppt)<br>
-                    最大ファイルサイズ: 10MB<br>
+                    最大ファイルサイズ: 30MB<br>
                     <strong>推奨:</strong> PDF形式でアップロードすると、スライドに直接埋め込み表示されます。<br>
                     PowerPoint形式の場合は、ダウンロードリンクのみ表示されます。
                   </span>
@@ -875,10 +875,10 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
         pitchFileInput.addEventListener('change', function() {
           const file = this.files[0];
           if (file) {
-            // ファイルサイズチェック (10MB)
-            const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+            // ファイルサイズチェック (30MB)
+            const maxSize = 30 * 1024 * 1024; // 30MB in bytes
             if (file.size > maxSize) {
-              alert('ファイルサイズが大きすぎます。10MB以下のファイルを選択してください。\n現在のファイルサイズ: ' + (file.size / 1024 / 1024).toFixed(2) + 'MB');
+              alert('ファイルサイズが大きすぎます。30MB以下のファイルを選択してください。\n現在のファイルサイズ: ' + (file.size / 1024 / 1024).toFixed(2) + 'MB');
               this.value = '';
               filePreview.style.display = 'none';
               return;

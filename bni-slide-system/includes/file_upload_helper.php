@@ -6,7 +6,7 @@
 
 // ファイルアップロード設定
 define('PITCH_UPLOAD_DIR', __DIR__ . '/../data/pitch/');
-define('PITCH_MAX_FILE_SIZE', 10 * 1024 * 1024); // 10MB
+define('PITCH_MAX_FILE_SIZE', 30 * 1024 * 1024); // 30MB
 define('PITCH_ALLOWED_TYPES', ['pdf', 'pptx', 'ppt']);
 define('PITCH_ALLOWED_MIMES', [
     'application/pdf',
