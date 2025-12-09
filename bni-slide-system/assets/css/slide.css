@@ -683,23 +683,47 @@
 
 .pitch-file-container {
   width: 100%;
-  height: 100%;
-  margin: 0;
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 20px;
 }
 
 .pitch-file-container iframe {
-  width: 100vw;
-  height: 100vh;
-  border: none;
-  border-radius: 0;
+  width: 100%;
+  height: 600px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
   background: #fff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
+}
+
+.btn-fullscreen {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: #FFD700;
+  color: #CF2030 !important;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none !important;
+  transition: all 0.3s;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn-fullscreen:hover {
+  background: #FFC700;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-fullscreen i {
+  font-size: 20px;
 }
 
 .pitch-download-container {

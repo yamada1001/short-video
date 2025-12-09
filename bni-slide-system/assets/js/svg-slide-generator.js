@@ -181,16 +181,25 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     `;
 
     if (fileType === 'pdf') {
-      // PDFの場合：iframe で埋め込み表示
+      // PDFの場合：iframe で埋め込み表示 + フルスクリーンボタン
+      const pdfUrl = `../api_get_pitch_file.php?file=${encodeURIComponent(filePath.split('/').pop())}`;
       slides += `
         <div class="pitch-file-container">
           <iframe
-            src="../api_get_pitch_file.php?file=${encodeURIComponent(filePath.split('/').pop())}"
+            src="${pdfUrl}"
             width="100%"
             height="600"
             style="border: 1px solid #ddd; border-radius: 8px;"
             title="ピッチ資料 - ${fileName}"
           ></iframe>
+          <a
+            href="${pdfUrl}"
+            target="_blank"
+            class="btn-fullscreen"
+            title="フルスクリーンで開く"
+          >
+            <i class="fas fa-expand"></i> フルスクリーンで開く
+          </a>
         </div>
       `;
     } else {
