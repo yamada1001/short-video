@@ -558,6 +558,580 @@
             background: #0066cc;
             color: white;
         }
+
+        /* タブナビゲーション */
+        .tab-navigation {
+            background: #ffffff;
+            border-bottom: 2px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+            padding: 0 20px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            max-width: 300px;
+            background: transparent;
+            border: none;
+            padding: 20px 30px;
+            font-size: 1em;
+            font-weight: 300;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            font-family: 'M PLUS 1p', sans-serif;
+        }
+
+        .tab-btn:hover {
+            background: #fafafa;
+            color: #333;
+        }
+
+        .tab-btn.active {
+            color: #333;
+            border-bottom-color: #333;
+            font-weight: 400;
+        }
+
+        .tab-btn i {
+            margin-right: 8px;
+        }
+
+        /* タブコンテンツ */
+        .tab-content-wrapper {
+            min-height: calc(100vh - 200px);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 競合調査レポート用スタイル */
+        .research-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 30px;
+        }
+
+        .research-title {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        .research-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .research-meta span {
+            padding: 10px 20px;
+            background: #fafafa;
+            border-radius: 20px;
+        }
+
+        .research-meta i {
+            margin-right: 8px;
+            color: #999;
+        }
+
+        .research-section {
+            margin-bottom: 80px;
+        }
+
+        .research-section-title {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            font-weight: 300;
+        }
+
+        .research-section-title i {
+            margin-right: 15px;
+            color: #666;
+        }
+
+        .research-subsection-title {
+            font-size: 1.5em;
+            color: #333;
+            margin: 40px 0 25px;
+            font-weight: 300;
+        }
+
+        /* アカウントカード */
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .account-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .account-card:hover {
+            border-color: #333;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+
+        .account-card.highlight {
+            border: 2px solid #333;
+            background: #fafafa;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 400;
+        }
+
+        .badge.success {
+            background: #28a745;
+            color: white;
+        }
+
+        .badge.featured {
+            background: #6f42c1;
+            color: white;
+        }
+
+        .account-header h4 {
+            font-size: 1.15em;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        .account-handle {
+            font-size: 0.85em;
+            color: #999;
+            font-family: monospace;
+        }
+
+        .account-stats {
+            margin: 15px 0;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .account-stats .stat {
+            font-size: 0.9em;
+            color: #666;
+            padding: 5px 10px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        .account-stats .stat i {
+            margin-right: 5px;
+            color: #999;
+        }
+
+        .account-desc {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.7;
+            margin-top: 12px;
+        }
+
+        /* 戦略ボックス */
+        .strategy-box {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-left: 4px solid #333;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+
+        .strategy-box h3 {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .strategy-list {
+            list-style: none;
+        }
+
+        .strategy-list li {
+            padding: 10px 0;
+            font-size: 1em;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .strategy-list li i {
+            color: #28a745;
+            margin-right: 10px;
+        }
+
+        /* プラットフォームグリッド */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .platform-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .platform-card h4 {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .platform-card ul {
+            list-style: none;
+        }
+
+        .platform-card ul li {
+            padding: 8px 0;
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.8;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .platform-card ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #333;
+        }
+
+        /* エンゲージメントボックス */
+        .engagement-box {
+            background: #e3f2fd;
+            border: 2px solid #2196F3;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .engagement-box h3 {
+            font-size: 1.3em;
+            color: #1976D2;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .formula {
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            color: #333;
+            font-weight: 300;
+            font-family: monospace;
+        }
+
+        /* エンゲージメントグリッド */
+        .engagement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .engagement-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .engagement-card:hover {
+            border-color: #333;
+            transform: translateY(-3px);
+        }
+
+        .engagement-card i {
+            font-size: 2.5em;
+            color: #666;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .engagement-card h4 {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 12px;
+            font-weight: 300;
+        }
+
+        .engagement-card p {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ケーススタディ */
+        .case-study {
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .case-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 400;
+        }
+
+        .case-badge.gold {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #333;
+        }
+
+        .case-badge.silver {
+            background: linear-gradient(135deg, #C0C0C0 0%, #808080 100%);
+            color: #fff;
+        }
+
+        .case-badge.bronze {
+            background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
+            color: #fff;
+        }
+
+        .case-study h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .case-result {
+            background: #fafafa;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 1.05em;
+            color: #333;
+        }
+
+        .case-study h4 {
+            font-size: 1.1em;
+            color: #666;
+            margin: 20px 0 12px;
+            font-weight: 300;
+        }
+
+        .case-list {
+            list-style: none;
+        }
+
+        .case-list li {
+            padding: 8px 0 8px 25px;
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .case-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        /* ベストプラクティスグリッド */
+        .best-practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .best-practice-card {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 35px;
+        }
+
+        .best-practice-card h3 {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .best-practice-card ul {
+            list-style: none;
+        }
+
+        .best-practice-card ul li {
+            padding: 15px 0;
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.8;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .best-practice-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* 結論セクション */
+        .research-section.conclusion {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 50px;
+            border-radius: 20px;
+        }
+
+        .conclusion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .conclusion-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .conclusion-card h4 {
+            font-size: 1.15em;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .conclusion-card p {
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .final-message {
+            background: #ffffff;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .final-message i {
+            font-size: 2.5em;
+            color: #FFD700;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .final-message p {
+            font-size: 1.15em;
+            color: #333;
+            line-height: 2;
+            font-weight: 300;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .tab-btn {
+                padding: 15px 20px;
+                font-size: 0.9em;
+            }
+
+            .research-title {
+                font-size: 1.8em;
+            }
+
+            .research-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .account-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .best-practice-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .conclusion-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-section.conclusion {
+                padding: 30px 20px;
+            }
+
+            .research-container {
+                padding: 30px 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -584,6 +1158,18 @@
         <i class="fas fa-bars"></i>
     </button>
 
+    <!-- タブナビゲーション -->
+    <div class="tab-navigation">
+        <div class="tab-nav-container">
+            <button class="tab-btn active" onclick="switchTab('proposal')">
+                <i class="fas fa-file-alt"></i> 提案資料
+            </button>
+            <button class="tab-btn" onclick="switchTab('research')">
+                <i class="fas fa-chart-bar"></i> 競合調査レポート
+            </button>
+        </div>
+    </div>
+
     <!-- フローティング目次（モバイル用） -->
     <div class="floating-toc" id="floatingToc" onclick="closeTocIfBackdrop(event)">
         <div class="floating-toc-content">
@@ -607,8 +1193,12 @@
         </div>
     </div>
 
-    <!-- メインレイアウト -->
-    <div class="main-layout">
+    <!-- タブコンテンツエリア -->
+    <div class="tab-content-wrapper">
+        <!-- 提案資料タブ -->
+        <div id="proposal-tab" class="tab-content active">
+            <!-- メインレイアウト -->
+            <div class="main-layout">
         <!-- サイドバー目次（PC用） -->
         <aside class="sidebar">
             <h2><i class="fas fa-list"></i> 目次</h2>
@@ -914,7 +1504,428 @@
                 </div>
             </section>
         </main>
-    </div>
+            </div><!-- /main-layout -->
+        </div><!-- /proposal-tab -->
+
+        <!-- 競合調査レポートタブ -->
+        <div id="research-tab" class="tab-content">
+            <div class="research-container">
+                <h1 class="research-title"><i class="fas fa-chart-bar"></i> 不動産業界 SNS競合調査レポート</h1>
+                <div class="research-meta">
+                    <span><i class="fas fa-calendar"></i> 調査日: 2025年12月8日</span>
+                    <span><i class="fas fa-bullseye"></i> 目的: 採用・売買に強いアカウントの分析</span>
+                    <span><i class="fas fa-hashtag"></i> 対象SNS: Instagram / TikTok / YouTube</span>
+                </div>
+
+                <!-- プラットフォーム別主要アカウント -->
+                <section class="research-section">
+                    <h2 class="research-section-title"><i class="fab fa-instagram"></i> Instagram 主要アカウント</h2>
+
+                    <h3 class="research-subsection-title">採用特化アカウント</h3>
+                    <div class="account-grid">
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>三井不動産リアルティグループ</h4>
+                                <span class="account-handle">@mfrealty.recruit</span>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 5,654人</span>
+                            </div>
+                            <p class="account-desc">採用情報、日常業務風景、会社の雰囲気、インターン情報、社員の本音インタビュー</p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>野村不動産ソリューションズ</h4>
+                                <span class="account-handle">@nomura_solutions.recruit</span>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 1,049人</span>
+                            </div>
+                            <p class="account-desc">就職活動に役立つ情報、先輩社員の日常、会社のリアルな雰囲気</p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>近鉄不動産</h4>
+                                <span class="account-handle">@kintechu_recruit</span>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 826人</span>
+                            </div>
+                            <p class="account-desc">リアルな雰囲気、業務内容、社内イベント</p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>コスギ不動産HD</h4>
+                                <span class="account-handle">@kosugi_recruit</span>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 751人</span>
+                            </div>
+                            <p class="account-desc">採用・不動産に関する有益情報</p>
+                        </div>
+                    </div>
+
+                    <h3 class="research-subsection-title">売買・物件紹介特化アカウント</h3>
+                    <div class="account-grid">
+                        <div class="account-card highlight">
+                            <div class="badge success">最優秀事例</div>
+                            <div class="account-header">
+                                <h4>アイズルーム (Ai's Room)</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 10,000人+</span>
+                            </div>
+                            <p class="account-desc"><strong>3ヶ月で1万フォロワー達成</strong>、女性向け賃貸物件、リール活用</p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>グッドルーム (Goodroom)</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 156,000人</span>
+                            </div>
+                            <p class="account-desc">リノベ・デザイナーズ物件、ルームツアーリール活用</p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>東京R不動産</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 65,000人</span>
+                                <span class="stat"><i class="fas fa-image"></i> 1,193投稿</span>
+                            </div>
+                            <p class="account-desc">「グッとくる」物件を独自の視点でセレクト</p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>Simple NAIKEN</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 57,000人</span>
+                                <span class="stat"><i class="fas fa-image"></i> 1,260投稿</span>
+                            </div>
+                            <p class="account-desc">一人暮らし・カップル向け、トレンドキーワード活用、高品質動画</p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>明日の不動産</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 14,000人</span>
+                                <span class="stat"><i class="fas fa-image"></i> 2,544投稿</span>
+                            </div>
+                            <p class="account-desc">大阪エリア、一人暮らし・同棲検討者向け</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TikTok -->
+                <section class="research-section">
+                    <h2 class="research-section-title"><i class="fab fa-tiktok"></i> TikTok 主要アカウント</h2>
+                    <div class="account-grid">
+                        <div class="account-card highlight">
+                            <div class="badge featured">注目事例</div>
+                            <div class="account-header">
+                                <h4>ないけんぼーいず (Naiken Boys)</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 170,000人（全SNS36万人）</span>
+                            </div>
+                            <p class="account-desc"><strong>複数の100万再生動画、SNS経由の問い合わせが80%以上</strong></p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>ONLY YOU HOME</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 287,000人</span>
+                            </div>
+                            <p class="account-desc">注文住宅ビルダー</p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>LAKIA不動産 大阪梅田店</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 106,000人</span>
+                            </div>
+                            <p class="account-desc">ルームツアー動画、多数の動画が10万いいね超え</p>
+                        </div>
+
+                        <div class="account-card highlight">
+                            <div class="badge success">成約実績</div>
+                            <div class="account-header">
+                                <h4>Kenchobi</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 7,000人+</span>
+                            </div>
+                            <p class="account-desc"><strong>TikTok経由で20件以上の契約・100件以上の問い合わせ獲得</strong></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- YouTube -->
+                <section class="research-section">
+                    <h2 class="research-section-title"><i class="fab fa-youtube"></i> YouTube 主要チャンネル</h2>
+                    <div class="account-grid">
+                        <div class="account-card highlight">
+                            <div class="badge featured">最大規模</div>
+                            <div class="account-header">
+                                <h4>ゆっくり不動産</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 75万人</span>
+                                <span class="stat"><i class="fas fa-play"></i> 1.8億回以上</span>
+                            </div>
+                            <p class="account-desc">ユニークな物件紹介、音声合成ソフト活用</p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>不動産Gメン滝島</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 45万人</span>
+                            </div>
+                            <p class="account-desc">業界問題の告発、投資失敗回避ノウハウ</p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>不動産投資の楽待</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 42.7万人</span>
+                                <span class="stat"><i class="fas fa-play"></i> 2億回以上</span>
+                            </div>
+                            <p class="account-desc">投資情報、投資家インタビュー</p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>もふもふ不動産</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 26.4万人</span>
+                            </div>
+                            <p class="account-desc">不動産投資・税金・株式投資</p>
+                        </div>
+
+                        <div class="account-card">
+                            <div class="account-header">
+                                <h4>ウラケン不動産</h4>
+                            </div>
+                            <div class="account-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 17万人以上</span>
+                            </div>
+                            <p class="account-desc">投資戦略の専門知識</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- コンテンツ戦略分析 -->
+                <section class="research-section">
+                    <h2 class="research-section-title"><i class="fas fa-lightbulb"></i> コンテンツ戦略分析</h2>
+
+                    <div class="strategy-box">
+                        <h3><i class="fas fa-calendar-check"></i> 投稿頻度のベストプラクティス</h3>
+                        <ul class="strategy-list">
+                            <li><i class="fas fa-check"></i> <strong>推奨頻度: 1日1回以上の投稿</strong></li>
+                            <li><i class="fas fa-check"></i> Instagram: 毎日ストーリー投稿が目安</li>
+                            <li><i class="fas fa-check"></i> TikTok: 高頻度投稿でアルゴリズムに乗りやすくなる</li>
+                            <li><i class="fas fa-check"></i> YouTube: 週1〜2回の定期投稿が基本</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="research-subsection-title">プラットフォーム別コンテンツ特徴</h3>
+                    <div class="platform-grid">
+                        <div class="platform-card">
+                            <h4><i class="fab fa-instagram"></i> Instagram（リール活用）</h4>
+                            <ul>
+                                <li>ルームツアー動画: ナレーション・効果音付き、テンポの良い編集</li>
+                                <li>物件情報の隠し方: 最後まで詳細を見せず、リピート視聴を促進</li>
+                                <li>ビジュアル重視: 高品質な写真・動画で物件の魅力を視覚的に訴求</li>
+                                <li>ハッシュタグ戦略: トレンドキーワードを活用して検索性向上</li>
+                            </ul>
+                        </div>
+
+                        <div class="platform-card">
+                            <h4><i class="fab fa-tiktok"></i> TikTok（バズ狙い）</h4>
+                            <ul>
+                                <li>短尺動画: 15〜60秒で物件の魅力を凝縮</li>
+                                <li>トレンド音源活用: TikTokのトレンド音楽を使った編集</li>
+                                <li>キャッチーな導入: 最初の3秒で視聴者を惹きつける</li>
+                                <li>エンタメ性: 営業マンのキャラクター性を前面に出す</li>
+                            </ul>
+                        </div>
+
+                        <div class="platform-card">
+                            <h4><i class="fab fa-youtube"></i> YouTube（詳細解説）</h4>
+                            <ul>
+                                <li>長尺コンテンツ: 10〜20分で物件を詳しく紹介</li>
+                                <li>SEO対策: タイトル・説明文・タグの最適化</li>
+                                <li>シリーズ化: 定期的なコンテンツで視聴者を定着化</li>
+                                <li>専門性の訴求: 業界知識・投資ノウハウの提供</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- エンゲージメント分析 -->
+                <section class="research-section">
+                    <h2 class="research-section-title"><i class="fas fa-chart-line"></i> エンゲージメント分析</h2>
+
+                    <div class="engagement-box">
+                        <h3><i class="fas fa-calculator"></i> エンゲージメント率の計算方法</h3>
+                        <div class="formula">
+                            エンゲージメント率 = エンゲージメント数 ÷ リーチ数 × 100
+                        </div>
+                    </div>
+
+                    <h3 class="research-subsection-title">高エンゲージメントを実現するポイント</h3>
+                    <div class="engagement-grid">
+                        <div class="engagement-card">
+                            <i class="fas fa-crosshairs"></i>
+                            <h4>ターゲット明確化</h4>
+                            <p>年齢層・興味関心・地域を分析してコンテンツを作成</p>
+                        </div>
+                        <div class="engagement-card">
+                            <i class="fas fa-star"></i>
+                            <h4>コンテンツの質</h4>
+                            <p>物件の魅力を強調した高品質な画像・動画、有益情報の発信</p>
+                        </div>
+                        <div class="engagement-card">
+                            <i class="fas fa-sync-alt"></i>
+                            <h4>分析と改善</h4>
+                            <p>エンゲージメント率を定期的にチェック、反応が良い投稿を継続・改善</p>
+                        </div>
+                        <div class="engagement-card">
+                            <i class="fas fa-hashtag"></i>
+                            <h4>ハッシュタグ活用</h4>
+                            <p>SNS内での検索性を高め、発見されやすくする</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 成功事例 -->
+                <section class="research-section">
+                    <h2 class="research-section-title"><i class="fas fa-trophy"></i> 成功事例の詳細分析</h2>
+
+                    <div class="case-study">
+                        <div class="case-badge gold">最優秀事例</div>
+                        <h3><i class="fab fa-instagram"></i> アイズルーム（Instagram）</h3>
+                        <div class="case-result">
+                            <strong>成果: 3ヶ月で1万フォロワー達成</strong>
+                        </div>
+                        <h4>成功要因:</h4>
+                        <ul class="case-list">
+                            <li>リール動画を積極活用（フォロワー外へのリーチ拡大）</li>
+                            <li>物件詳細情報を最後まで隠し、リピート視聴を促進</li>
+                            <li>女性向け賃貸物件に特化したターゲティング</li>
+                            <li>毎日投稿による継続性</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-study">
+                        <div class="case-badge silver">注目事例</div>
+                        <h3><i class="fab fa-tiktok"></i> ないけんぼーいず（TikTok）</h3>
+                        <div class="case-result">
+                            <strong>成果: フォロワー17万人（全SNS合計36万人）、複数の100万再生動画、SNS経由の問い合わせが80%以上</strong>
+                        </div>
+                        <h4>成功要因:</h4>
+                        <ul class="case-list">
+                            <li>TikTokのエンタメ性を活かした動画制作</li>
+                            <li>営業マンのキャラクター性を前面に出す</li>
+                            <li>短尺でインパクトのあるルームツアー</li>
+                            <li>トレンド音源の積極活用</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-study">
+                        <div class="case-badge bronze">長期成功事例</div>
+                        <h3><i class="fab fa-youtube"></i> ゆっくり不動産（YouTube）</h3>
+                        <div class="case-result">
+                            <strong>成果: 登録者75万人、総再生回数1.8億回以上</strong>
+                        </div>
+                        <h4>成功要因:</h4>
+                        <ul class="case-list">
+                            <li>ユニークな物件に特化（競合との差別化）</li>
+                            <li>音声合成ソフトで親しみやすさを演出</li>
+                            <li>継続的な投稿で信頼性を構築</li>
+                            <li>エンタメ性と情報性のバランス</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- ベストプラクティス -->
+                <section class="research-section">
+                    <h2 class="research-section-title"><i class="fas fa-check-circle"></i> ベストプラクティスまとめ</h2>
+
+                    <div class="best-practice-grid">
+                        <div class="best-practice-card">
+                            <h3><i class="fas fa-user-tie"></i> 採用目的</h3>
+                            <ul>
+                                <li><strong>リアルな社員の声を発信</strong><br>先輩社員インタビュー、日常業務風景、社内イベント</li>
+                                <li><strong>就活生に役立つ情報提供</strong><br>業界研究、インターン情報、選考ポイント</li>
+                                <li><strong>企業ブランディング</strong><br>働きやすさ、社員の成長ストーリー、企業理念</li>
+                            </ul>
+                        </div>
+
+                        <div class="best-practice-card">
+                            <h3><i class="fas fa-home"></i> 売買・物件紹介目的</h3>
+                            <ul>
+                                <li><strong>視覚的魅力の最大化</strong><br>高品質撮影、ルームツアー、ストーリーテリング</li>
+                                <li><strong>ターゲット特化型コンテンツ</strong><br>セグメント化、地域特化、ライフスタイル提案</li>
+                                <li><strong>継続的な運用体制</strong><br>毎日投稿、ストーリーズ活用、トレンド意識</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 提案への活用ポイント -->
+                <section class="research-section conclusion">
+                    <h2 class="research-section-title"><i class="fas fa-lightbulb"></i> 提案への活用ポイント</h2>
+
+                    <div class="conclusion-grid">
+                        <div class="conclusion-card">
+                            <h4><i class="fas fa-rocket"></i> Instagram運用代行の価値</h4>
+                            <p>成功事例「アイズルーム」のような<strong>3ヶ月で1万フォロワー</strong>の実績を目指せる。競合他社もInstagramに注力している現状があり、リール動画の重要性が明確。</p>
+                        </div>
+
+                        <div class="conclusion-card">
+                            <h4><i class="fas fa-sync"></i> 継続的運用の重要性</h4>
+                            <p>毎日投稿が基本（人員不足では困難）。業務委託なら「やめない社員」として安定運用可能。</p>
+                        </div>
+
+                        <div class="conclusion-card">
+                            <h4><i class="fas fa-chart-line"></i> コンバージョン率改善</h4>
+                            <p>人脈からの見込み顧客に対して、Instagramで信頼感・親近感を醸成。物件の魅力を視覚的に訴求し、背中を押す役割を果たす。</p>
+                        </div>
+
+                        <div class="conclusion-card">
+                            <h4><i class="fas fa-brain"></i> マーケター視点の制作</h4>
+                            <p>ただの制作会社ではなく、戦略的なコンテンツ企画が強み。エンゲージメント最大化・データ分析による継続的改善。</p>
+                        </div>
+                    </div>
+
+                    <div class="final-message">
+                        <i class="fas fa-star"></i>
+                        <p>この調査結果から、不動産業界におけるSNS活用は<strong>継続性・質の高いコンテンツ・ターゲット特化</strong>が成功の鍵であることが明確になりました。</p>
+                    </div>
+                </section>
+            </div>
+        </div><!-- /research-tab -->
+    </div><!-- /tab-content-wrapper -->
 
     <!-- フッター -->
     <footer class="footer">
@@ -927,6 +1938,23 @@
 
     <!-- JavaScript -->
     <script>
+        // タブ切り替え機能
+        function switchTab(tabName) {
+            // すべてのタブボタンとコンテンツから active クラスを削除
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // 選択されたタブに active クラスを追加
+            event.target.closest('.tab-btn').classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+
+            // ページトップにスムーススクロール
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         // 目次の開閉
         function toggleToc() {
             const floatingToc = document.getElementById('floatingToc');
