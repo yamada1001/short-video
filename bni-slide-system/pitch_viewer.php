@@ -174,9 +174,65 @@ $pdfUrl = 'api_get_pitch_file.php?file=' . urlencode($file);
             color: white;
             font-size: 24px;
         }
+
+        /* フルスクリーン開始オーバーレイ */
+        #fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+        #fullscreen-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #fullscreen-start-btn {
+            background: #FFD700;
+            color: #1a1a1a;
+            border: none;
+            padding: 30px 60px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 28px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s;
+        }
+
+        #fullscreen-start-btn:hover {
+            background: #FFC700;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+        }
+
+        #fullscreen-overlay p {
+            color: #ccc;
+            font-size: 18px;
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    <!-- フルスクリーン開始オーバーレイ -->
+    <div id="fullscreen-overlay">
+        <button id="fullscreen-start-btn" onclick="startFullscreen()">
+            <span class="icon">⛶</span> フルスクリーンで開始
+        </button>
+        <p>キーボード操作: 矢印キー/Spaceでページ送り、Escで終了</p>
+    </div>
+
     <div id="viewer-container">
         <div id="controls">
             <div class="controls-left">
@@ -235,11 +291,6 @@ $pdfUrl = 'api_get_pitch_file.php?file=' . urlencode($file);
 
             // 最初のページをレンダリング
             renderPage(pageNum);
-
-            // 読み込み完了後、自動的にフルスクリーンに
-            setTimeout(() => {
-                toggleFullscreen();
-            }, 500);
         }).catch(function(error) {
             loadingEl.textContent = 'PDFの読み込みに失敗しました: ' + error.message;
             console.error('Error loading PDF:', error);
@@ -317,6 +368,20 @@ $pdfUrl = 'api_get_pitch_file.php?file=' . urlencode($file);
             }
             pageNum++;
             queueRenderPage(pageNum);
+        }
+
+        // フルスクリーン開始（オーバーレイから）
+        function startFullscreen() {
+            const overlay = document.getElementById('fullscreen-overlay');
+            const container = document.getElementById('viewer-container');
+
+            container.requestFullscreen().then(() => {
+                document.body.classList.add('fullscreen-mode');
+                initControlsAutoHide();
+                overlay.classList.add('hidden');
+            }).catch(err => {
+                alert(`フルスクリーンの有効化に失敗しました: ${err.message}`);
+            });
         }
 
         // フルスクリーン切り替え
