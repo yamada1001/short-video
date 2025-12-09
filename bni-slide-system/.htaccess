@@ -115,16 +115,17 @@ RewriteRule ^(.+)\.html$ /$1.php [R=301,L]
 DirectoryIndex index.php
 
 # ====================================
-# Maintenance Mode (Auto Prepend)
+# Maintenance Mode (Auto Prepend) - 一時的に無効化
 # ====================================
 # 全PHPファイルで自動的にメンテナンスチェックを実行
-# 注意: 相対パスではエラーが発生するため、絶対パスを使用
-<FilesMatch "\.php$">
-    # メンテナンスチェックを自動実行（絶対パス）
-    php_value auto_prepend_file "/home/xs545151/yojitu.com/public_html/bni-slide-system/includes/maintenance_check.php"
-</FilesMatch>
-
-# 除外: maintenance.php と admin/maintenance_toggle.php
-<FilesMatch "(maintenance\.php|maintenance_toggle\.php)$">
-    php_value auto_prepend_file "none"
-</FilesMatch>
+# 注意: auto_prepend_fileが500エラーを引き起こすため、一旦コメントアウト
+# TODO: 後で別の方法で実装する（各ファイルに手動でrequire_once追加）
+#<FilesMatch "\.php$">
+#    # メンテナンスチェックを自動実行（絶対パス）
+#    php_value auto_prepend_file "/home/xs545151/yojitu.com/public_html/bni-slide-system/includes/maintenance_check.php"
+#</FilesMatch>
+#
+## 除外: maintenance.php と admin/maintenance_toggle.php
+#<FilesMatch "(maintenance\.php|maintenance_toggle\.php)$">
+#    php_value auto_prepend_file "none"
+#</FilesMatch>
