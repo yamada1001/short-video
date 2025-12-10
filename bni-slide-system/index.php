@@ -938,7 +938,7 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
   </script>
 
   <script>
-// Hamburger menu toggle
+// Hamburger menu toggle - Modern Animation
 (function() {
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const dropdownMenu = document.getElementById('dropdownMenu');
@@ -946,13 +946,15 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
   if (hamburgerBtn && dropdownMenu) {
     hamburgerBtn.addEventListener('click', function(e) {
       e.stopPropagation();
-      dropdownMenu.classList.toggle('show');
+      const isOpen = dropdownMenu.classList.toggle('show');
+      hamburgerBtn.classList.toggle('active', isOpen);
     });
 
     // Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
       if (!dropdownMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
         dropdownMenu.classList.remove('show');
+        hamburgerBtn.classList.remove('active');
       }
     });
 
@@ -960,7 +962,16 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
     dropdownMenu.querySelectorAll('a').forEach(function(link) {
       link.addEventListener('click', function() {
         dropdownMenu.classList.remove('show');
+        hamburgerBtn.classList.remove('active');
       });
+    });
+
+    // Close dropdown on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && dropdownMenu.classList.contains('show')) {
+        dropdownMenu.classList.remove('show');
+        hamburgerBtn.classList.remove('active');
+      }
     });
   }
 })();
