@@ -551,6 +551,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   // Phase 11: BNI Philosophy & Core Values
   slides += generateBNIPhilosophySlides();
 
+  // Phase 19: Closing - Chapter Logo
+  if (slideConfig && slideConfig.chapter) {
+    slides += generateChapterClosingSlide(slideConfig);
+  }
+
   // Slide 8: Thank You
   slides += `
     <section class="title-slide">
@@ -865,4 +870,22 @@ function generateBNIPhilosophySlides() {
   `;
 
   return slides;
+}
+
+/**
+ * Phase 19: Generate Chapter Closing Slide
+ */
+function generateChapterClosingSlide(config) {
+  const chapter = config.chapter || {};
+  const chapterName = chapter.name || '宗麟';
+  const motto = chapter.motto || 'Keep growing';
+  const subtitle = chapter.subtitle || '〜貢献の絆で未来を創る〜';
+
+  return `
+    <section class="chapter-closing-slide">
+      <div class="chapter-logo-large">${escapeHtml(chapterName)}</div>
+      <div class="chapter-motto">${escapeHtml(motto)}</div>
+      <div class="chapter-subtitle">${escapeHtml(subtitle)}</div>
+    </section>
+  `;
 }
