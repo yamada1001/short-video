@@ -46,11 +46,11 @@
   text-align: left;
 }
 
-.reveal a {
+.reveal a:not(.btn-fullscreen):not(.btn-download) {
   color: #FFD700 !important;
 }
 
-.reveal a:hover {
+.reveal a:not(.btn-fullscreen):not(.btn-download):hover {
   color: #FFF !important;
 }
 
