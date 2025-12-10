@@ -548,6 +548,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     slides += generateSpeakerRotationSlide(slideConfig);
   }
 
+  // Phase 4: New Members
+  if (slideConfig && slideConfig.new_members && slideConfig.new_members.length > 0) {
+    slides += generateNewMembersSlides(slideConfig);
+  }
+
   // Phase 5: Monthly Champions
   if (slideConfig && slideConfig.monthly_champions) {
     slides += generateMonthlyChampionsSlides(slideConfig);
@@ -873,6 +878,49 @@ function generateBNIPhilosophySlides() {
       </div>
     </section>
   `;
+
+  return slides;
+}
+
+/**
+ * Phase 4: Generate New Members Slides
+ */
+function generateNewMembersSlides(config) {
+  const newMembers = config.new_members || [];
+  if (newMembers.length === 0) return '';
+
+  let slides = '';
+
+  // Intro Slide
+  slides += `
+    <section class="new-members-intro-slide">
+      <h2 class="new-members-title">新入会メンバー<br>承認式</h2>
+    </section>
+  `;
+
+  // Individual member slides
+  newMembers.forEach(member => {
+    const photoUrl = member.photo || 'assets/images/default-avatar.svg';
+    const joinedDate = member.joined_date || '';
+
+    slides += `
+      <section class="new-member-slide">
+        <h2 class="new-member-header">新入会メンバー</h2>
+        ${joinedDate ? `<div class="new-member-date">(${escapeHtml(joinedDate)})</div>` : ''}
+
+        <div class="new-member-content">
+          <div class="new-member-photo-container">
+            <img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(member.name)}" class="new-member-photo" />
+          </div>
+          <div class="new-member-info">
+            <div class="new-member-name">${escapeHtml(member.name)}</div>
+            <div class="new-member-company">${escapeHtml(member.company)}</div>
+            <div class="new-member-category">(${escapeHtml(member.category)})</div>
+          </div>
+        </div>
+      </section>
+    `;
+  });
 
   return slides;
 }
