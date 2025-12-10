@@ -1570,3 +1570,232 @@
     font-size: 1.5em;
   }
 }
+
+/* ============================================
+   Phase 5: Monthly Champions Slides
+   ============================================ */
+
+/* Champions Intro Slide */
+.champions-intro-slide {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 700px;
+  padding: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.champions-intro-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+.champions-main-title {
+  font-size: 4em;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 60px;
+  text-align: center;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+.champion-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  z-index: 1;
+}
+
+.category-badge {
+  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  color: white;
+  font-size: 2em;
+  font-weight: 700;
+  padding: 25px 50px;
+  text-align: center;
+  border-radius: 0;
+  box-shadow: 0 8px 20px rgba(207, 32, 48, 0.4);
+  transform: skewX(-5deg);
+  transition: all 0.3s ease;
+}
+
+/* Champion Detail Slide */
+.champion-detail-slide {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  color: white;
+  padding: 60px 80px;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.champion-header {
+  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  color: white;
+  font-size: 2.5em;
+  font-weight: 800;
+  padding: 20px 60px;
+  text-align: center;
+  margin: -60px -80px 40px;
+  transform: skewX(-5deg);
+  box-shadow: 0 8px 20px rgba(207, 32, 48, 0.4);
+}
+
+.champion-summary {
+  font-size: 1.5em;
+  color: white;
+  margin-bottom: 30px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.winner-category {
+  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  color: white;
+  font-size: 1.8em;
+  font-weight: 700;
+  padding: 15px 40px;
+  display: inline-block;
+  margin-bottom: 40px;
+  transform: skewX(-5deg);
+  box-shadow: 0 4px 12px rgba(207, 32, 48, 0.3);
+}
+
+.winner-main {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 40px 0;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 8px solid #FFD700;
+  border-radius: 8px;
+}
+
+.winner-rank-badge {
+  font-size: 3em;
+  font-weight: 900;
+  color: #FFD700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.winner-info {
+  flex: 1;
+}
+
+.winner-name {
+  font-size: 3.5em;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.winner-count {
+  font-size: 2em;
+  color: #FFD700;
+}
+
+.runners-up {
+  margin-top: 40px;
+  padding-left: 40px;
+}
+
+.runner-up {
+  font-size: 2em;
+  margin: 20px 0;
+  color: white;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 5px solid rgba(255, 215, 0, 0.5);
+  border-radius: 4px;
+}
+
+.runner-rank {
+  font-weight: 800;
+  color: #FFD700;
+  margin-right: 10px;
+}
+
+.runner-name {
+  font-weight: 600;
+}
+
+.runner-count {
+  margin-left: 20px;
+  color: #FFD700;
+  font-weight: 700;
+}
+
+/* Responsive Adjustments for Phase 5 */
+@media (max-width: 1400px) {
+  .champions-main-title {
+    font-size: 3.5em;
+  }
+
+  .category-badge {
+    font-size: 1.8em;
+    padding: 20px 40px;
+  }
+
+  .champion-header {
+    font-size: 2.2em;
+  }
+
+  .winner-name {
+    font-size: 3em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .champions-main-title {
+    font-size: 2.5em;
+  }
+
+  .category-badge {
+    font-size: 1.5em;
+    padding: 15px 30px;
+  }
+
+  .champion-header {
+    font-size: 1.8em;
+  }
+
+  .winner-main {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .winner-name {
+    font-size: 2.5em;
+  }
+
+  .runner-up {
+    font-size: 1.5em;
+  }
+}

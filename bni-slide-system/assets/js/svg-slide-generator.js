@@ -548,6 +548,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     slides += generateSpeakerRotationSlide(slideConfig);
   }
 
+  // Phase 5: Monthly Champions
+  if (slideConfig && slideConfig.monthly_champions) {
+    slides += generateMonthlyChampionsSlides(slideConfig);
+  }
+
   // Phase 11: BNI Philosophy & Core Values
   slides += generateBNIPhilosophySlides();
 
@@ -888,4 +893,75 @@ function generateChapterClosingSlide(config) {
       <div class="chapter-subtitle">${escapeHtml(subtitle)}</div>
     </section>
   `;
+}
+
+/**
+ * Phase 5: Generate Monthly Champions Slides
+ */
+function generateMonthlyChampionsSlides(config) {
+  const champions = config.monthly_champions || {};
+  let slides = '';
+
+  // Intro Slide: All Champion Categories
+  slides += `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+
+  // Individual Champion Slides
+  const championTypes = ['referral', 'value', 'visitor', 'one_to_one', 'ceu'];
+
+  championTypes.forEach(type => {
+    const championData = champions[type];
+    if (!championData) return;
+
+    const winner1 = championData.winners[0] || {};
+    const winner2 = championData.winners[1] || {};
+    const winner3 = championData.winners[2] || {};
+
+    slides += `
+      <section class="champion-detail-slide">
+        <div class="champion-header">${escapeHtml(championData.title)}</div>
+        <div class="champion-summary">お言葉　${escapeHtml(championData.summary)}</div>
+
+        ${winner1.category ? `<div class="winner-category">${escapeHtml(winner1.category)}</div>` : ''}
+
+        <div class="winner-main">
+          <div class="winner-rank-badge">【1位】</div>
+          <div class="winner-info">
+            <div class="winner-name">${escapeHtml(winner1.name)}さん</div>
+            ${winner1.count ? `<div class="winner-count"></div>` : ''}
+          </div>
+        </div>
+
+        <div class="runners-up">
+          ${winner2.name ? `
+            <div class="runner-up">
+              <span class="runner-rank">【2位】</span>
+              <span class="runner-name">: ${escapeHtml(winner2.name)}さん</span>
+              ${winner2.count ? `<span class="runner-count">${escapeHtml(winner2.count)}</span>` : ''}
+            </div>
+          ` : ''}
+
+          ${winner3.name ? `
+            <div class="runner-up">
+              <span class="runner-rank">【3位】</span>
+              <span class="runner-name">: ${escapeHtml(winner3.name)}</span>
+              ${winner3.count ? `<span class="runner-count">${escapeHtml(winner3.count)}</span>` : ''}
+            </div>
+          ` : ''}
+        </div>
+      </section>
+    `;
+  });
+
+  return slides;
 }

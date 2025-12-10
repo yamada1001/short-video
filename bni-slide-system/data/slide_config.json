@@ -248,5 +248,120 @@
     "description": "与えるものは与えられる",
     "explanation": "他の人に惜しみなくビジネスを提供すれば\n自分も他の人からビジネスを提供してもらえる。"
   },
+  "monthly_champions": {
+    "referral": {
+      "title": "リファーラルチャンピオン",
+      "summary": "月間リファーラル件数29件（歴代 3位タイ）",
+      "winners": [
+        {
+          "rank": 1,
+          "name": "早野大介",
+          "category": "便利屋",
+          "count": "29件",
+          "photo": null
+        },
+        {
+          "rank": 2,
+          "name": "加藤博子",
+          "count": "21件"
+        },
+        {
+          "rank": 3,
+          "name": "藤田亮/花本昭彦",
+          "count": "19件"
+        }
+      ]
+    },
+    "value": {
+      "title": "バリューチャンピオン",
+      "summary": "月間バリュー貢献総額 3,209千円（歴代1位）",
+      "winners": [
+        {
+          "rank": 1,
+          "name": "吉良都広",
+          "category": "高校野球BAR",
+          "count": "3,209千円",
+          "photo": null
+        },
+        {
+          "rank": 2,
+          "name": "佐藤公重",
+          "count": "1,370千円"
+        },
+        {
+          "rank": 3,
+          "name": "野口浩乃",
+          "count": "980千円"
+        }
+      ]
+    },
+    "visitor": {
+      "title": "ビジターチャンピオン",
+      "summary": "月間ビジター招待数 6人",
+      "winners": [
+        {
+          "rank": 1,
+          "name": "吉岡恭介",
+          "category": "高齢者コンシェルジュ",
+          "count": "6人",
+          "photo": null
+        },
+        {
+          "rank": 2,
+          "name": "野口浩乃"
+        },
+        {
+          "rank": 3,
+          "name": "橋本翔"
+        }
+      ]
+    },
+    "one_to_one": {
+      "title": "1to1チャンピオン",
+      "summary": "月間1to1件数 30 件",
+      "winners": [
+        {
+          "rank": 1,
+          "name": "吉岡彩耶加",
+          "category": "写真家",
+          "count": "30件",
+          "photo": null
+        },
+        {
+          "rank": 2,
+          "name": "佐々木賢一",
+          "count": "25件"
+        },
+        {
+          "rank": 3,
+          "name": "吉田惇哉",
+          "count": "24件"
+        }
+      ]
+    },
+    "ceu": {
+      "title": "CEUチャンピオン",
+      "summary": "月間CEU得点 35 点",
+      "winners": [
+        {
+          "rank": 1,
+          "name": "早野大介",
+          "category": "便利屋",
+          "count": "35点",
+          "photo": null
+        },
+        {
+          "rank": 2,
+          "name": "高橋昂大",
+          "count": "25点"
+        },
+        {
+          "rank": 3,
+          "name": "加藤博子",
+          "count": "14点"
+        }
+      ]
+    }
+  },
   "updated_at": "2025-12-11"
 }
