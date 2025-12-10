@@ -20,6 +20,7 @@ if (!$currentUser) {
 }
 
 $userName = htmlspecialchars($currentUser['name'], ENT_QUOTES, 'UTF-8');
+$userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
 $userLastName = htmlspecialchars($currentUser['last_name'] ?? '', ENT_QUOTES, 'UTF-8');
 $userFirstName = htmlspecialchars($currentUser['first_name'] ?? '', ENT_QUOTES, 'UTF-8');
 $userLastNameKana = htmlspecialchars($currentUser['last_name_kana'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -70,6 +71,9 @@ $createdAt = htmlspecialchars($currentUser['created_at'] ?? '', ENT_QUOTES, 'UTF
           <li><a href="dashboard.php">ダッシュボード</a></li>
           <li><a href="index.php">アンケート</a></li>
           <li><a href="my-data.php">マイデータ</a></li>
+          <?php if ($userRole === 'admin'): ?>
+          <li><a href="admin/slide.php" style="color: #FFD700;">📊 スライド</a></li>
+          <?php endif; ?>
           <li><a href="manual.php">マニュアル</a></li>
           <li><a href="profile.php" class="active">プロフィール</a></li>
           <li><a href="logout.php" style="color: #999;">ログアウト</a></li>

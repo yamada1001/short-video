@@ -17,6 +17,7 @@ if (!$currentUser) {
 
 $userName = htmlspecialchars($currentUser['name'], ENT_QUOTES, 'UTF-8');
 $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
+$userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
 
 // Get week parameter
 $csvFile = $_GET['week'] ?? '';
@@ -129,6 +130,9 @@ $referrals = array_values($referrals);
         <ul>
           <li><a href="index.php">アンケート</a></li>
           <li><a href="my-data.php" class="active">マイデータ</a></li>
+          <?php if ($userRole === 'admin'): ?>
+          <li><a href="admin/slide.php" style="color: #FFD700;">📊 スライド</a></li>
+          <?php endif; ?>
           <li><a href="profile.php">プロフィール</a></li>
           <li><a href="logout.php" style="color: #999;">ログアウト</a></li>
         </ul>
