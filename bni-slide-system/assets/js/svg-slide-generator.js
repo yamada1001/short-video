@@ -27,6 +27,27 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     </section>
   `;
 
+  // Phase 1: Opening Section
+  if (slideConfig) {
+    // 1.1: Attendance Check
+    if (slideConfig.attendance_check) {
+      slides += generateAttendanceCheckSlide(slideConfig);
+    }
+
+    // 1.2: Business Card Seating Chart
+    if (slideConfig.business_card_seating) {
+      slides += generateBusinessCardSeatingSlide(slideConfig);
+    }
+
+    // 1.3: President's Message
+    if (slideConfig.president) {
+      slides += generatePresidentMessageSlide(slideConfig);
+    }
+
+    // 1.4: Good & New
+    slides += generateGoodAndNewSlide();
+  }
+
   // Slide 2: Summary
   slides += `
     <section>
@@ -577,4 +598,91 @@ function getIndustryIcon(iconKey) {
     'building': 'building'
   };
   return iconMap[iconKey] || 'briefcase';
+}
+
+/**
+ * Phase 1.1: Generate Attendance Check Slide
+ */
+function generateAttendanceCheckSlide(config) {
+  const instruction = config.attendance_check?.instruction || '各チームリーダーは20秒で出席確認と遅刻確認をお願いします';
+  const teams = config.attendance_check?.team_leaders || ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
+  return `
+    <section class="opening-slide attendance-slide">
+      <h2>出欠確認</h2>
+      <p class="instruction">${escapeHtml(instruction)}</p>
+      <div class="team-grid">
+        ${teams.map(team => `
+          <div class="team-box">
+            <div class="team-label">チーム ${team}</div>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 1.2: Generate Business Card Seating Chart
+ */
+function generateBusinessCardSeatingSlide(config) {
+  const podiumMembers = config.business_card_seating?.podium_members || ['ポーディアム'];
+  const screenLabel = config.business_card_seating?.screen_label || 'スクリーン';
+  const teams = config.teams || {};
+
+  return `
+    <section class="opening-slide seating-slide">
+      <div class="seating-header">
+        <div class="podium-label">${podiumMembers.join(' ')}</div>
+        <h2>名刺交換時</h2>
+      </div>
+      <div class="seating-chart">
+        ${Object.entries(teams).map(([teamName, members]) => {
+          if (members.length === 0) return '';
+          return `
+            <div class="team-circle">
+              <div class="team-name">${teamName}</div>
+              <div class="team-members">${members.map(m => m.split(' ')[1] || m).join('<br>')}</div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+      <div class="screen-label">${screenLabel}</div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 1.3: Generate President's Message Slide
+ */
+function generatePresidentMessageSlide(config) {
+  const president = config.president || {};
+  const presidentName = president.name || 'プレジデント';
+  const message = president.message || '本日も宜しくお願いします';
+
+  return `
+    <section class="opening-slide president-slide">
+      <h2>朝礼</h2>
+      <div class="president-content">
+        <div class="president-name">プレジ: ${escapeHtml(presidentName)}</div>
+        <div class="president-message">${escapeHtml(message)}</div>
+        <div class="timer-note">Good & New（30秒）</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 1.4: Generate Good & New Slide
+ */
+function generateGoodAndNewSlide() {
+  return `
+    <section class="opening-slide goodnew-slide">
+      <h2>Good & New</h2>
+      <div class="goodnew-content">
+        <p class="goodnew-instruction">最近あった良いこと、新しいことを30秒で共有してください</p>
+        <div class="countdown-display">30秒</div>
+      </div>
+    </section>
+  `;
 }
