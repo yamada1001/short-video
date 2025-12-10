@@ -1059,3 +1059,102 @@
   text-shadow: 4px 4px 16px rgba(0, 0, 0, 0.5);
   font-family: 'Courier New', monospace;
 }
+
+/* ============================
+   Phase 15: スピーカーローテーション
+   ============================ */
+.rotation-slide {
+  background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  color: white;
+}
+
+.rotation-slide h2 {
+  font-size: 64px;
+  margin-bottom: 50px;
+  color: #FFD700;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.rotation-table {
+  width: 100%;
+  max-width: 1400px;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.rotation-table thead {
+  background: rgba(207, 32, 48, 0.8);
+}
+
+.rotation-table th {
+  padding: 25px;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 700;
+  border-bottom: 3px solid rgba(255, 215, 0, 0.5);
+}
+
+.rotation-table tbody tr {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.rotation-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.rotation-table td {
+  padding: 25px;
+  font-size: 20px;
+}
+
+.date-cell {
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFD700;
+  width: 150px;
+}
+
+.presenter-cell {
+  width: 350px;
+}
+
+.presenter-name {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.presenter-category {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.target-cell {
+  line-height: 1.6;
+}
+
+/* 行の色分け */
+.current-row {
+  background: rgba(255, 165, 0, 0.15) !important;
+  border-left: 5px solid #FFA500;
+}
+
+.future-row {
+  background: rgba(100, 200, 255, 0.1) !important;
+  border-left: 5px solid #64C8FF;
+}
+
+.past-row {
+  opacity: 0.6;
+  border-left: 5px solid rgba(255, 255, 255, 0.2);
+}

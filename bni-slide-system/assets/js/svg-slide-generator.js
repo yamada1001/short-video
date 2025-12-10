@@ -543,6 +543,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     });
   }
 
+  // Phase 15: Speaker Rotation
+  if (slideConfig && slideConfig.speaker_rotation) {
+    slides += generateSpeakerRotationSlide(slideConfig);
+  }
+
   // Slide 8: Thank You
   slides += `
     <section class="title-slide">
@@ -683,6 +688,47 @@ function generateGoodAndNewSlide() {
         <p class="goodnew-instruction">最近あった良いこと、新しいことを30秒で共有してください</p>
         <div class="countdown-display">30秒</div>
       </div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 15: Generate Speaker Rotation Slide
+ */
+function generateSpeakerRotationSlide(config) {
+  const speakers = config.speaker_rotation || [];
+
+  // 最新4-5件を表示
+  const recentSpeakers = speakers.slice(0, 4);
+
+  return `
+    <section class="rotation-slide">
+      <h2>スピーカーローテーション</h2>
+      <table class="rotation-table">
+        <thead>
+          <tr>
+            <th>日程</th>
+            <th>メインプレゼン</th>
+            <th>ご紹介してほしい方</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${recentSpeakers.map(speaker => {
+            const statusClass = speaker.status === 'current' ? 'current-row' :
+                              speaker.status === 'future' ? 'future-row' : 'past-row';
+            return `
+              <tr class="${statusClass}">
+                <td class="date-cell">${escapeHtml(speaker.date)}</td>
+                <td class="presenter-cell">
+                  <div class="presenter-name">${escapeHtml(speaker.presenter)}</div>
+                  <div class="presenter-category">(${escapeHtml(speaker.category || '')})</div>
+                </td>
+                <td class="target-cell">${escapeHtml(speaker.target || '').replace(/\n/g, '<br>')}</td>
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
     </section>
   `;
 }
