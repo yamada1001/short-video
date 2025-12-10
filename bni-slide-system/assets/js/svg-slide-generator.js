@@ -548,6 +548,9 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     slides += generateSpeakerRotationSlide(slideConfig);
   }
 
+  // Phase 11: BNI Philosophy & Core Values
+  slides += generateBNIPhilosophySlides();
+
   // Slide 8: Thank You
   slides += `
     <section class="title-slide">
@@ -731,4 +734,135 @@ function generateSpeakerRotationSlide(config) {
       </table>
     </section>
   `;
+}
+
+/**
+ * Phase 11: Generate BNI Philosophy & Core Values Slides
+ */
+function generateBNIPhilosophySlides() {
+  let slides = '';
+
+  // Slide 1: BNI Overview (World Statistics)
+  slides += `
+    <section class="bni-philosophy-slide">
+      <h2>BNIの概観</h2>
+      <h3 class="sub-heading">世界の統計</h3>
+      <div class="bni-stats-grid">
+        <div class="stat-row">
+          <div class="stat-label">BNI参入国数</div>
+          <div class="stat-value">77カ国</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label">総メンバー数</div>
+          <div class="stat-value">328,456名超</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label">総チャプター数</div>
+          <div class="stat-value">11,121超</div>
+        </div>
+        <div class="stat-row highlight">
+          <div class="stat-label">リファーラル数</div>
+          <div class="stat-value">約1400万件超</div>
+        </div>
+        <div class="stat-row highlight">
+          <div class="stat-label">得られたビジネス金額</div>
+          <div class="stat-value">約2兆2000億円</div>
+        </div>
+      </div>
+      <p class="stat-note">※2024年6月1日付</p>
+    </section>
+  `;
+
+  // Slide 2: 3つのお約束（BNI成功の鍵）
+  slides += `
+    <section class="bni-philosophy-slide">
+      <h2>3つのお約束（BNI成功の鍵）</h2>
+      <div class="promise-list">
+        <div class="promise-item">
+          <div class="promise-number">1</div>
+          <div class="promise-content">
+            <strong>出席と時間</strong>（年間約50回、金曜日 6:00-8:30）
+            <p class="promise-detail">※詳しくは個別ミーティングにて</p>
+          </div>
+        </div>
+        <div class="promise-item">
+          <div class="promise-number">2</div>
+          <div class="promise-content">
+            <strong>学び</strong>（各種トレーニング等）
+          </div>
+        </div>
+        <div class="promise-item">
+          <div class="promise-number">3</div>
+          <div class="promise-content">
+            <strong>貢献</strong>（Givers Gainの実践、リファーラル・ビジター等）
+          </div>
+        </div>
+      </div>
+      <div class="member-rules">
+        <h3>&lt;BNIメンバー規定&gt;</h3>
+        <p>◆BNIメンバーは、定刻までに会場に到着し、<br>ミーティングが終了するまで退室は認められない。</p>
+        <p>◆各メンバーは直近6か月間に3回までの欠席が認められる。<br>メンバーは、ミーティングに出席できない場合は、<br>代理人を立てるものとする。この場合、欠席扱いにはならない。</p>
+      </div>
+    </section>
+  `;
+
+  // Slide 3: 他の人の成功を助けることを通じて自分の成功を築いていく
+  slides += `
+    <section class="bni-philosophy-slide philosophy-main">
+      <div class="philosophy-statement">
+        <p class="philosophy-text-line1">他の人の<span class="highlight-red">成功を助ける</span>ことを通じて</p>
+        <p class="philosophy-text-line2"><span class="highlight-red">自分の成功</span>を築いていく</p>
+      </div>
+    </section>
+  `;
+
+  // Slide 4: Benefit 3 - 年間50回継続的なビジネス機会
+  slides += `
+    <section class="bni-philosophy-slide benefit-slide">
+      <div class="benefit-header">Benefit 3</div>
+      <h2>年間50回<br><span class="highlight-red">継続的なビジネス機会</span></h2>
+      <div class="benefit-list">
+        <p>•リファーラル</p>
+        <p>•ビジター</p>
+      </div>
+    </section>
+  `;
+
+  // Slide 5: Benefit 5 - 強い信頼関係から生まれるコーチングおよびビジネスサポート
+  slides += `
+    <section class="bni-philosophy-slide benefit-slide">
+      <div class="benefit-header">Benefit 5</div>
+      <h2><span class="highlight-red">強い信頼関係</span>から生まれる<br>コーチングおよびビジネスサポート</h2>
+    </section>
+  `;
+
+  // Slide 6: Benefit +1 - 地域、日本、そして世界へ
+  slides += `
+    <section class="bni-philosophy-slide benefit-slide">
+      <div class="benefit-header">Benefit +1</div>
+      <h2>地域、<span class="highlight-red">日本</span>、そして<span class="highlight-red">世界へ</span></h2>
+      <p class="japan-stats">1都1道2府23県　367チャプター</p>
+    </section>
+  `;
+
+  // Slide 7: 売上獲得までのプロセス
+  slides += `
+    <section class="bni-philosophy-slide process-slide">
+      <h2>売上獲得までのプロセス</h2>
+      <div class="process-diagram">
+        <div class="process-box marketing">マーケティング</div>
+        <div class="process-arrow">→</div>
+        <div class="process-box sales">セールス</div>
+        <div class="process-arrow">→</div>
+        <div class="process-box contract">成約</div>
+      </div>
+      <div class="process-description">
+        <p class="desc-marketing"><span class="highlight-green">マーケティング</span>...見込み客を獲得する方法</p>
+        <p class="desc-sales"><span class="highlight-blue">セールス</span>...見込み客を顧客に変える方法</p>
+        <p class="desc-contract"><strong>成約...ビジネス獲得の成果</strong></p>
+      </div>
+    </section>
+  `;
+
+  return slides;
 }

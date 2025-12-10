@@ -1158,3 +1158,347 @@
   opacity: 0.6;
   border-left: 5px solid rgba(255, 255, 255, 0.2);
 }
+
+/* ============================================
+   Phase 11: BNI Philosophy & Core Values Slides
+   ============================================ */
+
+.bni-philosophy-slide {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 100%);
+  color: #333333;
+  padding: 60px 80px;
+  text-align: center;
+}
+
+.bni-philosophy-slide h2 {
+  color: #CF2030 !important;
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.bni-philosophy-slide h3.sub-heading {
+  color: #CF2030 !important;
+  font-size: 1.8em;
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* BNI Stats Grid */
+.bni-stats-grid {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.bni-stats-grid .stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  margin: 10px 0;
+  background: white;
+  border-left: 5px solid #CF2030;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bni-stats-grid .stat-row.highlight {
+  background: linear-gradient(135deg, #FFF5F5 0%, #FFE8E8 100%);
+  border-left: 8px solid #CF2030;
+}
+
+.bni-stats-grid .stat-label {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #333;
+  text-align: left;
+}
+
+.bni-stats-grid .stat-value {
+  font-size: 1.8em;
+  font-weight: 800;
+  color: #CF2030;
+  text-align: right;
+}
+
+.stat-note {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 20px;
+  text-align: right;
+}
+
+/* Promise List (3つのお約束) */
+.promise-list {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.promise-item {
+  display: flex;
+  align-items: flex-start;
+  margin: 30px 0;
+  padding: 25px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.promise-number {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  color: white;
+  font-size: 2em;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 25px;
+}
+
+.promise-content {
+  flex: 1;
+}
+
+.promise-content strong {
+  font-size: 1.4em;
+  color: #CF2030;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.promise-detail {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Member Rules */
+.member-rules {
+  max-width: 900px;
+  margin: 40px auto 0;
+  padding: 30px;
+  background: linear-gradient(135deg, #FFF9E6 0%, #FFF5CC 100%);
+  border-left: 8px solid #FFB800;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.member-rules h3 {
+  color: #CF2030 !important;
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.member-rules p {
+  font-size: 1em;
+  line-height: 1.8;
+  margin: 15px 0;
+  color: #333;
+}
+
+/* Philosophy Main Statement */
+.bni-philosophy-slide.philosophy-main {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8F8F8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+}
+
+.philosophy-statement {
+  text-align: center;
+  padding: 40px;
+}
+
+.philosophy-text-line1,
+.philosophy-text-line2 {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #333;
+  margin: 20px 0;
+  line-height: 1.5;
+}
+
+.philosophy-statement .highlight-red {
+  color: #CF2030;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 8px;
+}
+
+/* Benefit Slides */
+.bni-philosophy-slide.benefit-slide {
+  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  color: white;
+}
+
+.bni-philosophy-slide.benefit-slide h2 {
+  color: white !important;
+  font-size: 2.8em;
+  line-height: 1.4;
+  margin-top: 30px;
+}
+
+.benefit-header {
+  font-size: 3em;
+  font-weight: 800;
+  color: #FFD700;
+  margin-bottom: 20px;
+}
+
+.benefit-list {
+  font-size: 1.8em;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.benefit-list p {
+  margin: 15px 0;
+  font-weight: 600;
+}
+
+.japan-stats {
+  font-size: 1.5em;
+  margin-top: 40px;
+  font-weight: 600;
+  color: #FFD700;
+}
+
+/* Process Slide */
+.bni-philosophy-slide.process-slide {
+  padding: 60px 100px;
+}
+
+.process-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0;
+  gap: 20px;
+}
+
+.process-box {
+  padding: 30px 50px;
+  border-radius: 12px;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: white;
+  min-width: 200px;
+  text-align: center;
+}
+
+.process-box.marketing {
+  background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+  border: 4px solid #2E7D32;
+}
+
+.process-box.sales {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  border: 4px solid #1565C0;
+}
+
+.process-box.contract {
+  background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
+  border: 4px solid #000000;
+}
+
+.process-arrow {
+  font-size: 3em;
+  font-weight: 800;
+  color: #CF2030;
+}
+
+.process-description {
+  max-width: 900px;
+  margin: 50px auto 0;
+  text-align: left;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.process-description p {
+  font-size: 1.3em;
+  margin: 20px 0;
+  color: #333;
+  font-weight: 600;
+}
+
+.desc-marketing .highlight-green {
+  color: #4CAF50;
+  font-weight: 800;
+}
+
+.desc-sales .highlight-blue {
+  color: #2196F3;
+  font-weight: 800;
+}
+
+.desc-contract strong {
+  color: #333;
+  font-weight: 800;
+}
+
+/* Responsive Adjustments for Phase 11 */
+@media (max-width: 1400px) {
+  .bni-philosophy-slide {
+    padding: 50px 60px;
+  }
+
+  .bni-philosophy-slide h2 {
+    font-size: 2.2em;
+  }
+
+  .philosophy-text-line1,
+  .philosophy-text-line2 {
+    font-size: 2em;
+  }
+
+  .process-box {
+    padding: 25px 40px;
+    font-size: 1.5em;
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .bni-philosophy-slide {
+    padding: 40px 40px;
+  }
+
+  .bni-philosophy-slide h2 {
+    font-size: 1.8em;
+  }
+
+  .promise-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .promise-number {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .process-diagram {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .process-arrow {
+    transform: rotate(90deg);
+  }
+}
