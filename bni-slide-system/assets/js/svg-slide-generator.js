@@ -6,7 +6,7 @@
 /**
  * Generate all slides from data
  */
-async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null) {
+async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, slideConfig = null) {
   const slideContainer = document.getElementById('slideContainer');
 
   // Use provided date from API, or fall back to today's date
@@ -313,26 +313,56 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
       `;
     }
 
-    // Slide 5.5: Member Pitch Countdown (30 seconds for each member)
-    const allMembers = Object.keys(stats.members);
-    allMembers.forEach(member => {
-      // Add space before 様 if it exists
-      let memberName = member;
-      if (memberName && memberName.includes('様')) {
-        memberName = memberName.replace(/([^\s])様/, '$1 様');
-      }
+    // Slide 5.5: Member 60-Second Pitch Slides (Full version with photos)
+    if (slideConfig && slideConfig.members && slideConfig.members.length > 0) {
+      slideConfig.members.forEach(member => {
+        const photoUrl = member.photo || 'assets/images/default-avatar.svg';
+        const industryIcon = getIndustryIcon(member.industry_icon || 'briefcase');
+        const pitchTime = member.pitch_time || 33;
+        const timeDisplay = `<<00:${String(pitchTime).padStart(2, '0')}>>`;
 
-      slides += `
-        <section class="pitch-slide" data-member="${escapeHtml(member)}">
-          <h2 class="pitch-member-name">${escapeHtml(memberName)}</h2>
-          <p class="pitch-label">30秒ピッチ</p>
-          <div class="countdown-timer" data-seconds="30">30</div>
-          <div class="countdown-progress">
-            <div class="countdown-progress-bar"></div>
-          </div>
-        </section>
-      `;
-    });
+        slides += `
+          <section class="member-pitch-slide-full" data-member="${escapeHtml(member.name)}">
+            <div class="pitch-layout-full">
+              <div class="member-photo-large">
+                <img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(member.name)}" onerror="this.src='assets/images/default-avatar.svg'">
+              </div>
+              <div class="member-info-right">
+                <div class="industry-badge-large">
+                  <i class="fas fa-${escapeHtml(industryIcon)}"></i>
+                  <span>${escapeHtml(member.category || '')}</span>
+                </div>
+                <h2 class="member-name-large">${escapeHtml(member.name)}</h2>
+                <p class="member-company-large">${escapeHtml(member.company || '')}</p>
+                <div class="pitch-timer-large" data-time="${pitchTime}">
+                  ${timeDisplay}
+                </div>
+              </div>
+            </div>
+          </section>
+        `;
+      });
+    } else {
+      // Fallback: Use existing member list from stats
+      const allMembers = Object.keys(stats.members);
+      allMembers.forEach(member => {
+        let memberName = member;
+        if (memberName && memberName.includes('様')) {
+          memberName = memberName.replace(/([^\s])様/, '$1 様');
+        }
+
+        slides += `
+          <section class="pitch-slide" data-member="${escapeHtml(member)}">
+            <h2 class="pitch-member-name">${escapeHtml(memberName)}</h2>
+            <p class="pitch-label">30秒ピッチ</p>
+            <div class="countdown-timer" data-seconds="30">30</div>
+            <div class="countdown-progress">
+              <div class="countdown-progress-bar"></div>
+            </div>
+          </section>
+        `;
+      });
+    }
   }
 
   // Slide 6: Detailed Referral List (split into multiple pages if needed)
@@ -523,4 +553,28 @@ function escapeHtml(text) {
     "'": '&#039;'
   };
   return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+/**
+ * Get Font Awesome icon name for industry category
+ */
+function getIndustryIcon(iconKey) {
+  const iconMap = {
+    'briefcase': 'briefcase',
+    'utensils': 'utensils',
+    'spa': 'spa',
+    'paint-brush': 'paint-brush',
+    'home': 'home',
+    'shield-alt': 'shield-alt',
+    'leaf': 'leaf',
+    'hands-helping': 'hands-helping',
+    'graduation-cap': 'graduation-cap',
+    'store': 'store',
+    'laptop-code': 'laptop-code',
+    'calculator': 'calculator',
+    'balance-scale': 'balance-scale',
+    'chart-line': 'chart-line',
+    'building': 'building'
+  };
+  return iconMap[iconKey] || 'briefcase';
 }

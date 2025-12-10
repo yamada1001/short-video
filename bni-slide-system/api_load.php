@@ -55,6 +55,9 @@ try {
     $slideDate = $weekDate;
   }
 
+  // Load slide configuration
+  $slideConfig = loadSlideConfig();
+
   dbClose($db);
 
   echo json_encode([
@@ -62,6 +65,7 @@ try {
     'data' => $data,
     'stats' => $stats,
     'pitch_presenter' => $pitchPresenter,
+    'slide_config' => $slideConfig,
     'count' => count($data),
     'date' => $slideDate,
     'week' => $weekDate
@@ -285,4 +289,30 @@ function getPitchPresenter($db, $weekDate) {
     'file_original_name' => $result['pitch_file_original_name'],
     'file_type' => $result['pitch_file_type']
   ];
+}
+
+/**
+ * Load slide configuration from JSON file
+ */
+function loadSlideConfig() {
+  $configPath = __DIR__ . '/data/slide_config.json';
+
+  if (!file_exists($configPath)) {
+    error_log('[API LOAD] slide_config.json not found');
+    return null;
+  }
+
+  $jsonContent = file_get_contents($configPath);
+  if ($jsonContent === false) {
+    error_log('[API LOAD] Failed to read slide_config.json');
+    return null;
+  }
+
+  $config = json_decode($jsonContent, true);
+  if (json_last_error() !== JSON_ERROR_NONE) {
+    error_log('[API LOAD] Invalid JSON in slide_config.json: ' . json_last_error_msg());
+    return null;
+  }
+
+  return $config;
 }
