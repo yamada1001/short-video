@@ -2216,3 +2216,108 @@
     font-size: 1.5em;
   }
 }
+
+/* ============================================
+   Phase 8: Secretary Slide
+   ============================================ */
+
+.secretary-slide {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8F8F8 100%);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+}
+
+.secretary-title {
+  font-size: 4em;
+  font-weight: 900;
+  color: #CF2030;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.secretary-info-box {
+  background: white;
+  border: 5px solid #CF2030;
+  border-radius: 16px;
+  padding: 40px 80px;
+  margin-bottom: 50px;
+  box-shadow: 0 8px 24px rgba(207, 32, 48, 0.2);
+  text-align: center;
+}
+
+.secretary-name {
+  font-size: 3em;
+  font-weight: 900;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.secretary-role {
+  font-size: 1.8em;
+  color: #666;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.secretary-category {
+  font-size: 1.5em;
+  color: #CF2030;
+  font-weight: 700;
+}
+
+.secretary-message {
+  max-width: 900px;
+  background: linear-gradient(135deg, #FFF9E6 0%, #FFF5CC 100%);
+  border-left: 8px solid #FFB800;
+  border-radius: 12px;
+  padding: 40px 50px;
+  text-align: center;
+}
+
+.secretary-message p {
+  font-size: 2em;
+  color: #333;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+/* Responsive Adjustments for Phase 8 */
+@media (max-width: 1400px) {
+  .secretary-title {
+    font-size: 3.5em;
+  }
+
+  .secretary-name {
+    font-size: 2.5em;
+  }
+
+  .secretary-message p {
+    font-size: 1.7em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .secretary-title {
+    font-size: 2.5em;
+  }
+
+  .secretary-info-box {
+    padding: 30px 50px;
+  }
+
+  .secretary-name {
+    font-size: 2em;
+  }
+
+  .secretary-role {
+    font-size: 1.5em;
+  }
+
+  .secretary-message p {
+    font-size: 1.5em;
+  }
+}

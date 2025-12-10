@@ -566,6 +566,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     slides += generateMonthlyChampionsSlides(slideConfig);
   }
 
+  // Phase 8: Secretary Message
+  if (slideConfig && slideConfig.secretary) {
+    slides += generateSecretarySlide(slideConfig.secretary);
+  }
+
   // Phase 10: Visitor Hosts
   if (slideConfig && slideConfig.visitor_hosts && slideConfig.visitor_hosts.length > 0) {
     slides += generateVisitorHostsSlide(slideConfig);
@@ -968,6 +973,25 @@ function generateNewMembersSlides(config) {
   });
 
   return slides;
+}
+
+/**
+ * Phase 8: Generate Secretary Slide
+ */
+function generateSecretarySlide(secretary) {
+  return `
+    <section class="secretary-slide">
+      <h2 class="secretary-title">書記兼会計より</h2>
+      <div class="secretary-info-box">
+        <div class="secretary-name">${escapeHtml(secretary.name)}</div>
+        <div class="secretary-role">${escapeHtml(secretary.company)}</div>
+        <div class="secretary-category">(${escapeHtml(secretary.category)})</div>
+      </div>
+      <div class="secretary-message">
+        <p>${escapeHtml(secretary.message)}</p>
+      </div>
+    </section>
+  `;
 }
 
 /**
