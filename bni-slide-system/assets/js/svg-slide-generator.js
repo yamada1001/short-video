@@ -543,6 +543,14 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     });
   }
 
+  // Phase 2: Main Presentation (Weekly Presentation)
+  if (slideConfig && slideConfig.speaker_rotation) {
+    const currentSpeaker = slideConfig.speaker_rotation.find(s => s.status === 'current');
+    if (currentSpeaker) {
+      slides += generateMainPresentationSlides(currentSpeaker);
+    }
+  }
+
   // Phase 15: Speaker Rotation
   if (slideConfig && slideConfig.speaker_rotation) {
     slides += generateSpeakerRotationSlide(slideConfig);
@@ -713,6 +721,38 @@ function generateGoodAndNewSlide() {
       </div>
     </section>
   `;
+}
+
+/**
+ * Phase 2: Generate Main Presentation Slides
+ */
+function generateMainPresentationSlides(speaker) {
+  let slides = '';
+
+  // Intro slide: Weekly Presentation
+  slides += `
+    <section class="main-presentation-intro-slide">
+      <div class="presentation-photo-left">
+        <img src="assets/images/presentation-people.jpg" alt="Presentation" class="presentation-bg-image" />
+      </div>
+      <div class="presentation-title-right">
+        <h2 class="presentation-main-title">ウィークリー<br>プレゼンテーション</h2>
+      </div>
+    </section>
+  `;
+
+  // 4-minute presentation slide
+  slides += `
+    <section class="four-minute-presentation-slide">
+      <div class="four-minute-header">4分プレゼンテーション</div>
+      <div class="four-minute-presenter-box">
+        <div class="presenter-name-large">${escapeHtml(speaker.presenter)}</div>
+        <div class="presenter-category-large">${escapeHtml(speaker.category)}</div>
+      </div>
+    </section>
+  `;
+
+  return slides;
 }
 
 /**
