@@ -1943,3 +1943,127 @@
     font-size: 1.5em;
   }
 }
+
+/* ============================================
+   Phase 10: Visitor Hosts Slide
+   ============================================ */
+
+.visitor-hosts-slide {
+  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  color: white;
+  padding: 60px 80px;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.visitor-hosts-title {
+  font-size: 4em;
+  font-weight: 900;
+  color: white;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.visitor-hosts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.visitor-host-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.visitor-host-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.visitor-host-photo-container {
+  margin-bottom: 20px;
+}
+
+.visitor-host-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #CF2030;
+  box-shadow: 0 4px 12px rgba(207, 32, 48, 0.3);
+}
+
+.visitor-host-info {
+  width: 100%;
+}
+
+.visitor-host-name {
+  font-size: 1.8em;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.visitor-host-company {
+  font-size: 1.2em;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.visitor-host-category {
+  font-size: 1.1em;
+  color: #CF2030;
+  font-weight: 700;
+}
+
+/* Responsive Adjustments for Phase 10 */
+@media (max-width: 1400px) {
+  .visitor-hosts-title {
+    font-size: 3.5em;
+  }
+
+  .visitor-hosts-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .visitor-hosts-title {
+    font-size: 2.5em;
+  }
+
+  .visitor-hosts-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .visitor-host-photo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .visitor-host-name {
+    font-size: 1.5em;
+  }
+
+  .visitor-host-company {
+    font-size: 1em;
+  }
+
+  .visitor-host-category {
+    font-size: 0.9em;
+  }
+}

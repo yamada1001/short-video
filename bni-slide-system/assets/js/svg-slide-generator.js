@@ -558,6 +558,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     slides += generateMonthlyChampionsSlides(slideConfig);
   }
 
+  // Phase 10: Visitor Hosts
+  if (slideConfig && slideConfig.visitor_hosts && slideConfig.visitor_hosts.length > 0) {
+    slides += generateVisitorHostsSlide(slideConfig);
+  }
+
   // Phase 11: BNI Philosophy & Core Values
   slides += generateBNIPhilosophySlides();
 
@@ -923,6 +928,37 @@ function generateNewMembersSlides(config) {
   });
 
   return slides;
+}
+
+/**
+ * Phase 10: Generate Visitor Hosts Slide
+ */
+function generateVisitorHostsSlide(config) {
+  const visitorHosts = config.visitor_hosts || [];
+  if (visitorHosts.length === 0) return '';
+
+  return `
+    <section class="visitor-hosts-slide">
+      <h2 class="visitor-hosts-title">ビジターホスト</h2>
+      <div class="visitor-hosts-grid">
+        ${visitorHosts.map(host => {
+          const photoUrl = host.photo || 'assets/images/default-avatar.svg';
+          return `
+            <div class="visitor-host-card">
+              <div class="visitor-host-photo-container">
+                <img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(host.name)}" class="visitor-host-photo" />
+              </div>
+              <div class="visitor-host-info">
+                <div class="visitor-host-name">${escapeHtml(host.name)}</div>
+                <div class="visitor-host-company">${escapeHtml(host.company)}</div>
+                <div class="visitor-host-category">${escapeHtml(host.category)}</div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </section>
+  `;
 }
 
 /**
