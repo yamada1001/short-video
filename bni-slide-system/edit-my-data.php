@@ -128,15 +128,33 @@ $referrals = array_values($referrals);
       <div class="site-logo">BNI Slide System</div>
       <nav class="site-nav">
         <ul>
+          <li><a href="dashboard.php">ダッシュボード</a></li>
           <li><a href="index.php">アンケート</a></li>
           <li><a href="my-data.php" class="active">マイデータ</a></li>
-          <?php if ($userRole === 'admin'): ?>
-          <li><a href="admin/slide.php" style="color: #FFD700;">📊 スライド</a></li>
-          <?php endif; ?>
-          <li><a href="profile.php">プロフィール</a></li>
-          <li><a href="logout.php" style="color: #999;">ログアウト</a></li>
+          <li><a href="manual.php">マニュアル</a></li>
         </ul>
       </nav>
+      <div class="user-menu">
+        <button class="hamburger-btn" id="hamburgerBtn">
+          <div class="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span>メニュー</span>
+        </button>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <ul>
+            <?php if ($userRole === 'admin'): ?>
+            <li><a href="admin/slide.php" style="color: #FFD700;">📊 スライド</a></li>
+            <li><div class="divider"></div></li>
+            <?php endif; ?>
+            <li><a href="profile.php">👤 プロフィール</a></li>
+            <li><div class="divider"></div></li>
+            <li><a href="logout.php" style="color: #CF2030;">🚪 ログアウト</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -419,6 +437,35 @@ $referrals = array_values($referrals);
       messageDiv.textContent = text;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  </script>
+
+  <script>
+// Hamburger menu toggle
+(function() {
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+
+  if (hamburgerBtn && dropdownMenu) {
+    hamburgerBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('show');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!dropdownMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+        dropdownMenu.classList.remove('show');
+      }
+    });
+
+    // Close dropdown when clicking a link
+    dropdownMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        dropdownMenu.classList.remove('show');
+      });
+    });
+  }
+})();
   </script>
 </body>
 </html>

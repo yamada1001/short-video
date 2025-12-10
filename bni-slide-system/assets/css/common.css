@@ -112,6 +112,100 @@ a:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Hamburger Menu */
+.hamburger-btn {
+  background: none;
+  border: none;
+  color: var(--bni-white);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+  position: relative;
+}
+
+.hamburger-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hamburger-icon {
+  width: 24px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger-icon span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--bni-white);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Dropdown Menu */
+.user-menu {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background-color: var(--bni-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  margin: 0;
+}
+
+.dropdown-menu a {
+  color: var(--text-dark);
+  padding: 12px 20px;
+  display: block;
+  transition: background-color 0.2s ease;
+  font-weight: 500;
+  border-radius: 0;
+}
+
+.dropdown-menu a:hover {
+  background-color: var(--bg-light);
+  opacity: 1;
+}
+
+.dropdown-menu .divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 8px 0;
+}
+
 /* Main Content */
 .main-content {
   padding: 40px 0;
@@ -214,19 +308,16 @@ a:hover {
   h3 { font-size: 18px; }
 
   .site-header .container {
-    flex-direction: column;
-    gap: 15px;
+    flex-wrap: wrap;
   }
 
   .site-nav ul {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
+    gap: 15px;
   }
 
   .site-nav a {
-    display: block;
-    text-align: center;
+    font-size: 14px;
+    padding: 6px 12px;
   }
 
   .card {
@@ -236,6 +327,10 @@ a:hover {
   .btn {
     width: 100%;
     padding: 14px;
+  }
+
+  .hamburger-btn span:nth-child(2) {
+    font-size: 14px;
   }
 }
 
