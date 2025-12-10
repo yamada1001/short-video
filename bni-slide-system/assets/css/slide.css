@@ -2321,3 +2321,90 @@
     font-size: 1.5em;
   }
 }
+
+/* ============================================
+   Phase 9: Director Slide
+   ============================================ */
+
+.director-slide {
+  background: linear-gradient(135deg, #1e3a5f 0%, #0d1f36 100%);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+}
+
+.director-title {
+  font-size: 4em;
+  font-weight: 900;
+  color: white;
+  text-align: center;
+  margin-bottom: 60px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.director-info-box {
+  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  border-radius: 16px;
+  padding: 40px 80px;
+  margin-bottom: 50px;
+  box-shadow: 0 8px 24px rgba(207, 32, 48, 0.4);
+  text-align: center;
+}
+
+.director-name {
+  font-size: 3.5em;
+  font-weight: 900;
+  color: white;
+}
+
+.director-message {
+  max-width: 900px;
+  background: white;
+  border-radius: 12px;
+  padding: 40px 50px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.director-message p {
+  font-size: 2em;
+  color: #333;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+/* Responsive Adjustments for Phase 9 */
+@media (max-width: 1400px) {
+  .director-title {
+    font-size: 3.5em;
+  }
+
+  .director-name {
+    font-size: 3em;
+  }
+
+  .director-message p {
+    font-size: 1.7em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .director-title {
+    font-size: 2.5em;
+  }
+
+  .director-info-box {
+    padding: 30px 50px;
+  }
+
+  .director-name {
+    font-size: 2em;
+  }
+
+  .director-message p {
+    font-size: 1.5em;
+  }
+}

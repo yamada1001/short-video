@@ -571,6 +571,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     slides += generateSecretarySlide(slideConfig.secretary);
   }
 
+  // Phase 9: Director Message
+  if (slideConfig && slideConfig.director) {
+    slides += generateDirectorSlide(slideConfig.director);
+  }
+
   // Phase 10: Visitor Hosts
   if (slideConfig && slideConfig.visitor_hosts && slideConfig.visitor_hosts.length > 0) {
     slides += generateVisitorHostsSlide(slideConfig);
@@ -989,6 +994,23 @@ function generateSecretarySlide(secretary) {
       </div>
       <div class="secretary-message">
         <p>${escapeHtml(secretary.message)}</p>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 9: Generate Director Slide
+ */
+function generateDirectorSlide(director) {
+  return `
+    <section class="director-slide">
+      <h2 class="director-title">ディレクターより</h2>
+      <div class="director-info-box">
+        <div class="director-name">${escapeHtml(director.name)}</div>
+      </div>
+      <div class="director-message">
+        <p>${escapeHtml(director.message)}</p>
       </div>
     </section>
   `;
