@@ -1460,8 +1460,8 @@ function generateMemberPitchSlides(members) {
   // Title slide for pitch section
   slides += `
     <section class="title-slide">
-      <h1>メンバー60秒ピッチ</h1>
-      <p class="subtitle">各メンバー33秒</p>
+      <h1>メンバー30秒ピッチ</h1>
+      <p class="subtitle">各メンバー30秒</p>
     </section>
   `;
 
