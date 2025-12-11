@@ -2905,3 +2905,338 @@
     font-size: 1.3em;
   }
 }
+
+/* =====================================
+   Phase 3: Referral Announcements Template
+   ===================================== */
+.referral-template-slide {
+  background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  text-align: center;
+}
+
+.referral-template-title {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #F57C00 !important;
+  margin-bottom: 20px;
+}
+
+.referral-template-subtitle {
+  font-size: 2em;
+  color: #E65100;
+  font-weight: 500;
+  margin-bottom: 80px;
+}
+
+.referral-template-instruction {
+  background: white;
+  border-radius: 20px;
+  padding: 60px 80px;
+  box-shadow: 0 10px 30px rgba(245, 124, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.referral-template-instruction i {
+  font-size: 5em;
+  color: #F57C00;
+}
+
+.referral-template-instruction p {
+  font-size: 2.5em;
+  color: #333;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* =====================================
+   Phase 14: Visitor Self-Introduction Template
+   ===================================== */
+.visitor-intro-template-slide {
+  background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  text-align: center;
+}
+
+.visitor-intro-title {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #1976D2 !important;
+  margin-bottom: 20px;
+}
+
+.visitor-intro-subtitle {
+  font-size: 2em;
+  color: #0D47A1;
+  font-weight: 500;
+  margin-bottom: 80px;
+}
+
+.visitor-intro-instruction {
+  background: white;
+  border-radius: 20px;
+  padding: 60px 80px;
+  box-shadow: 0 10px 30px rgba(25, 118, 210, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.visitor-intro-instruction i {
+  font-size: 5em;
+  color: #1976D2;
+}
+
+.visitor-intro-instruction p {
+  font-size: 2.5em;
+  color: #333;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* =====================================
+   Phase 16: Today's Comment Template
+   ===================================== */
+.todays-comment-template-slide {
+  background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  text-align: center;
+}
+
+.todays-comment-title {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #7B1FA2 !important;
+  margin-bottom: 20px;
+}
+
+.todays-comment-subtitle {
+  font-size: 2em;
+  color: #4A148C;
+  font-weight: 500;
+  margin-bottom: 80px;
+}
+
+.todays-comment-instruction {
+  background: white;
+  border-radius: 20px;
+  padding: 60px 80px;
+  box-shadow: 0 10px 30px rgba(123, 31, 162, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.todays-comment-instruction i {
+  font-size: 5em;
+  color: #7B1FA2;
+}
+
+.todays-comment-instruction p {
+  font-size: 2.5em;
+  color: #333;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* =====================================
+   Phase 17: Visitor Orientation
+   ===================================== */
+.visitor-orientation-slide {
+  background: linear-gradient(135deg, #E0F2F1 0%, #B2DFDB 100%);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  text-align: center;
+}
+
+.visitor-orientation-title {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #00796B !important;
+  margin-bottom: 20px;
+}
+
+.visitor-orientation-subtitle {
+  font-size: 2em;
+  color: #004D40;
+  font-weight: 500;
+  margin-bottom: 60px;
+}
+
+.visitor-orientation-facilitator {
+  background: white;
+  border-radius: 20px;
+  padding: 60px 100px;
+  box-shadow: 0 10px 30px rgba(0, 121, 107, 0.2);
+}
+
+.facilitator-label {
+  font-size: 1.8em;
+  color: #00796B;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.facilitator-name {
+  font-size: 4em;
+  font-weight: 800;
+  color: #004D40;
+  margin-bottom: 20px;
+}
+
+.facilitator-title {
+  font-size: 2em;
+  color: #666;
+  font-weight: 500;
+}
+
+/* =====================================
+   Phase 18: From Coordinators Template
+   ===================================== */
+.coordinators-template-slide {
+  background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  text-align: center;
+}
+
+.coordinators-title {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #E65100 !important;
+  margin-bottom: 20px;
+}
+
+.coordinators-subtitle {
+  font-size: 2em;
+  color: #BF360C;
+  font-weight: 500;
+  margin-bottom: 80px;
+}
+
+.coordinators-instruction {
+  background: white;
+  border-radius: 20px;
+  padding: 60px 80px;
+  box-shadow: 0 10px 30px rgba(230, 81, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.coordinators-instruction i {
+  font-size: 5em;
+  color: #E65100;
+}
+
+.coordinators-instruction p {
+  font-size: 2.5em;
+  color: #333;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Responsive Design for Template Slides */
+@media (max-width: 1400px) {
+  .referral-template-title,
+  .visitor-intro-title,
+  .todays-comment-title,
+  .visitor-orientation-title,
+  .coordinators-title {
+    font-size: 4em;
+  }
+
+  .referral-template-instruction p,
+  .visitor-intro-instruction p,
+  .todays-comment-instruction p,
+  .coordinators-instruction p {
+    font-size: 2.2em;
+  }
+
+  .facilitator-name {
+    font-size: 3.5em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .referral-template-slide,
+  .visitor-intro-template-slide,
+  .todays-comment-template-slide,
+  .visitor-orientation-slide,
+  .coordinators-template-slide {
+    padding: 50px;
+  }
+
+  .referral-template-title,
+  .visitor-intro-title,
+  .todays-comment-title,
+  .visitor-orientation-title,
+  .coordinators-title {
+    font-size: 3em;
+  }
+
+  .referral-template-subtitle,
+  .visitor-intro-subtitle,
+  .todays-comment-subtitle,
+  .visitor-orientation-subtitle,
+  .coordinators-subtitle {
+    font-size: 1.5em;
+    margin-bottom: 50px;
+  }
+
+  .referral-template-instruction,
+  .visitor-intro-instruction,
+  .todays-comment-instruction,
+  .visitor-orientation-facilitator,
+  .coordinators-instruction {
+    flex-direction: column;
+    padding: 40px 50px;
+  }
+
+  .referral-template-instruction i,
+  .visitor-intro-instruction i,
+  .todays-comment-instruction i,
+  .coordinators-instruction i {
+    font-size: 4em;
+  }
+
+  .referral-template-instruction p,
+  .visitor-intro-instruction p,
+  .todays-comment-instruction p,
+  .coordinators-instruction p {
+    font-size: 1.8em;
+  }
+
+  .facilitator-name {
+    font-size: 2.5em;
+  }
+
+  .facilitator-title {
+    font-size: 1.5em;
+  }
+}

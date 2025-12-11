@@ -551,6 +551,9 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     }
   }
 
+  // Phase 3: Referral Announcements Template
+  slides += generateReferralAnnouncementsSlide();
+
   // Phase 15: Speaker Rotation
   if (slideConfig && slideConfig.speaker_rotation) {
     slides += generateSpeakerRotationSlide(slideConfig);
@@ -598,6 +601,25 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   if (slideConfig && slideConfig.networking_education) {
     slides += generateNetworkingEducationSlide(slideConfig.networking_education);
   }
+
+  // Phase 13: Member 60-second Pitch Slides
+  if (slideConfig && slideConfig.members && slideConfig.members.length > 0) {
+    slides += generateMemberPitchSlides(slideConfig.members);
+  }
+
+  // Phase 14: Visitor Self-Introduction Template
+  slides += generateVisitorIntroductionSlide();
+
+  // Phase 16: Today's Comment Template
+  slides += generateTodaysCommentSlide();
+
+  // Phase 17: Visitor Orientation
+  if (slideConfig && slideConfig.orientation_facilitator) {
+    slides += generateVisitorOrientationSlide(slideConfig.orientation_facilitator);
+  }
+
+  // Phase 18: From Coordinators
+  slides += generateCoordinatorsSlide();
 
   // Phase 19: Closing - Chapter Logo
   if (slideConfig && slideConfig.chapter) {
@@ -1179,6 +1201,87 @@ function generateChapterClosingSlide(config) {
       <div class="chapter-logo-large">${escapeHtml(chapterName)}</div>
       <div class="chapter-motto">${escapeHtml(motto)}</div>
       <div class="chapter-subtitle">${escapeHtml(subtitle)}</div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 3: Generate Referral Announcements Template Slide
+ */
+function generateReferralAnnouncementsSlide() {
+  return `
+    <section class="referral-template-slide">
+      <h2 class="referral-template-title">リファーラル・推薦発表</h2>
+      <div class="referral-template-subtitle">Referral Announcements</div>
+      <div class="referral-template-instruction">
+        <i class="fas fa-handshake"></i>
+        <p>メンバーからのリファーラルと推薦を発表してください</p>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 14: Generate Visitor Self-Introduction Template Slide
+ */
+function generateVisitorIntroductionSlide() {
+  return `
+    <section class="visitor-intro-template-slide">
+      <h2 class="visitor-intro-title">ビジター様による自己紹介</h2>
+      <div class="visitor-intro-subtitle">Visitor Self-Introduction</div>
+      <div class="visitor-intro-instruction">
+        <i class="fas fa-users"></i>
+        <p>ビジターの皆様、1分程度で自己紹介をお願いします</p>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 16: Generate Today's Comment Template Slide
+ */
+function generateTodaysCommentSlide() {
+  return `
+    <section class="todays-comment-template-slide">
+      <h2 class="todays-comment-title">様による本日の一言感想</h2>
+      <div class="todays-comment-subtitle">Today's Comment</div>
+      <div class="todays-comment-instruction">
+        <i class="fas fa-comment-dots"></i>
+        <p>本日の感想を一言お願いします</p>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 17: Generate Visitor Orientation Slide
+ */
+function generateVisitorOrientationSlide(facilitator) {
+  return `
+    <section class="visitor-orientation-slide">
+      <h2 class="visitor-orientation-title">ビジターオリエンテーション</h2>
+      <div class="visitor-orientation-subtitle">Visitor Orientation</div>
+      <div class="visitor-orientation-facilitator">
+        <div class="facilitator-label">ファシリテーター</div>
+        <div class="facilitator-name">${escapeHtml(facilitator.name)}</div>
+        <div class="facilitator-title">${escapeHtml(facilitator.title)}</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 18: Generate Coordinators Slide
+ */
+function generateCoordinatorsSlide() {
+  return `
+    <section class="coordinators-template-slide">
+      <h2 class="coordinators-title">各コーディネーターより</h2>
+      <div class="coordinators-subtitle">From Coordinators</div>
+      <div class="coordinators-instruction">
+        <i class="fas fa-bullhorn"></i>
+        <p>各コーディネーターからのお知らせ・報告をお願いします</p>
+      </div>
     </section>
   `;
 }
