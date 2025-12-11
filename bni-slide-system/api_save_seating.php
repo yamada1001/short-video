@@ -76,12 +76,43 @@ try {
         throw new Exception('テーブルデータが不正です');
     }
 
-    // Save to file
+    // Save to seating_chart.json
     $seatingFile = __DIR__ . '/data/seating_chart.json';
     $jsonContent = json_encode($seatingData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
     if (file_put_contents($seatingFile, $jsonContent) === false) {
         throw new Exception('座席表データの保存に失敗しました');
+    }
+
+    // Also update slide_config.json teams property
+    $slideConfigFile = __DIR__ . '/data/slide_config.json';
+    if (file_exists($slideConfigFile)) {
+        $slideConfigContent = file_get_contents($slideConfigFile);
+        $slideConfig = json_decode($slideConfigContent, true);
+
+        if ($slideConfig !== null) {
+            // Convert seating_chart format to teams format
+            $teams = [];
+            foreach ($seatingData['tables'] as $tableName => $tableData) {
+                $teams[$tableName] = [];
+                if (isset($tableData['positions']) && is_array($tableData['positions'])) {
+                    foreach ($tableData['positions'] as $position) {
+                        if (isset($position['member_name']) && !empty($position['member_name'])) {
+                            $teams[$tableName][] = $position['member_name'];
+                        }
+                    }
+                }
+            }
+
+            // Update teams in slide_config
+            $slideConfig['teams'] = $teams;
+            $slideConfig['updated_at'] = date('Y-m-d');
+
+            $slideConfigJson = json_encode($slideConfig, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            if (file_put_contents($slideConfigFile, $slideConfigJson) === false) {
+                error_log('[SEATING SAVE] Warning: Failed to update slide_config.json');
+            }
+        }
     }
 
     // 監査ログ
