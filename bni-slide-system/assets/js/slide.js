@@ -112,7 +112,8 @@
       const { data, stats, date, pitch_presenter, slide_config } = result;
 
       // Generate slides using SVG templates
-      await generateSVGSlides(data, stats, date, pitch_presenter, slide_config);
+      // Note: slide_config may be null if slide_config.json doesn't exist
+      await generateSVGSlides(data, stats, date, pitch_presenter, slide_config || null);
 
       // Initialize or sync Reveal.js
       if (!Reveal.isReady()) {
