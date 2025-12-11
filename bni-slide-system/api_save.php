@@ -41,11 +41,7 @@ try {
     'input_date' => sanitize($_POST['input_date'] ?? ''),
     'introducer_name' => sanitize($_POST['introducer_name'] ?? ''),
     'email' => sanitize($_POST['email'] ?? ''),
-    'attendance' => sanitize($_POST['attendance'] ?? ''),
-    'thanks_slips' => intval($_POST['thanks_slips'] ?? 0),
-    'one_to_one_count' => intval($_POST['one_to_one_count'] ?? 0),
-    'activities' => isset($_POST['activities']) ? implode('|', array_map('sanitize', $_POST['activities'])) : '',
-    'comments' => sanitize($_POST['comments'] ?? '')
+    'is_share_story' => intval($_POST['is_share_story'] ?? 0)
   ];
 
   // Get pitch presenter data (validate but don't upload yet)
@@ -66,9 +62,27 @@ try {
     }
   }
 
+  // Get education presenter data (validate but don't upload yet)
+  $isEducationPresenter = intval($_POST['is_education_presenter'] ?? 0);
+  $educationFileToUpload = null;
+
+  // Validate education file if user is education presenter
+  if ($isEducationPresenter === 1) {
+    if (isset($_FILES['education_file']) && $_FILES['education_file']['error'] !== UPLOAD_ERR_NO_FILE) {
+      // Validate education file (but don't save yet - we need user ID first)
+      $validation = validatePitchFile($_FILES['education_file']); // Use same validation as pitch
+      if (!$validation['success']) {
+        throw new Exception($validation['message']);
+      }
+      $educationFileToUpload = $_FILES['education_file'];
+    } else {
+      throw new Exception('エデュケーション資料をアップロードしてください');
+    }
+  }
+
   // Validate required fields
   if (empty($baseData['input_date']) || empty($baseData['introducer_name']) ||
-      empty($baseData['email']) || empty($baseData['attendance'])) {
+      empty($baseData['email'])) {
     throw new Exception('必須項目が入力されていません');
   }
 
@@ -94,40 +108,6 @@ try {
     }
   }
 
-  // Get referral data (multiple items)
-  $referrals = [];
-  if (isset($_POST['referral_name']) && is_array($_POST['referral_name'])) {
-    $count = count($_POST['referral_name']);
-    for ($i = 0; $i < $count; $i++) {
-      $referralName = sanitize($_POST['referral_name'][$i] ?? '');
-      $referralAmount = sanitize($_POST['referral_amount'][$i] ?? '0');
-      $referralCategory = sanitize($_POST['referral_category'][$i] ?? '');
-      $referralProvider = sanitize($_POST['referral_provider'][$i] ?? '');
-
-      // Skip empty referrals
-      if (empty($referralName)) {
-        continue;
-      }
-
-      $referrals[] = [
-        'name' => $referralName,
-        'amount' => intval($referralAmount),
-        'category' => $referralCategory,
-        'provider' => $referralProvider
-      ];
-    }
-  }
-
-  // Referrals are now optional - if none provided, create a dummy referral with 0 amount
-  if (count($referrals) === 0) {
-    $referrals[] = [
-      'name' => '-',
-      'amount' => 0,
-      'category' => 'その他',
-      'provider' => ''
-    ];
-  }
-
   // Check for duplicate submission in the same week
   $duplicateCheck = checkDuplicateSubmission($baseData['timestamp'], $baseData['introducer_name'], $baseData['email']);
   if ($duplicateCheck['isDuplicate']) {
@@ -136,7 +116,7 @@ try {
 
   // Save to database
   $db = getDbConnection();
-  $surveyId = saveToDatabase($db, $baseData, $visitors, $referrals, $isPitchPresenter, $pitchFileToUpload);
+  $surveyId = saveToDatabase($db, $baseData, $visitors, $isPitchPresenter, $pitchFileToUpload, $isEducationPresenter, $educationFileToUpload);
   dbClose($db);
 
   if (!$surveyId) {
@@ -150,16 +130,17 @@ try {
     [
       'input_date' => $baseData['input_date'],
       'introducer_name' => $baseData['introducer_name'],
-      'attendance' => $baseData['attendance'],
       'visitor_count' => count($visitors),
-      'referral_count' => count($referrals)
+      'is_share_story' => $baseData['is_share_story'],
+      'is_pitch_presenter' => $isPitchPresenter,
+      'is_education_presenter' => $isEducationPresenter
     ],
     $baseData['email'],
     $baseData['introducer_name']
   );
 
   // Send email notification
-  $emailSent = sendEmailNotification($baseData, $visitors, $referrals);
+  $emailSent = sendEmailNotification($baseData, $visitors, $isPitchPresenter, $isEducationPresenter);
 
   // Response
   echo json_encode([
@@ -167,7 +148,8 @@ try {
     'message' => 'アンケートを送信しました！',
     'data' => $baseData,
     'visitors' => $visitors,
-    'referrals' => $referrals,
+    'is_pitch_presenter' => $isPitchPresenter,
+    'is_education_presenter' => $isEducationPresenter,
     'email_sent' => $emailSent
   ]);
 
@@ -188,7 +170,7 @@ function sanitize($input) {
 /**
  * Save data to SQLite database
  */
-function saveToDatabase($db, $baseData, $visitors, $referrals, $isPitchPresenter = 0, $pitchFileData = null) {
+function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitchFileData = null, $isEducationPresenter = 0, $educationFileData = null) {
   try {
     // Start transaction
     dbBeginTransaction($db);
@@ -225,6 +207,26 @@ function saveToDatabase($db, $baseData, $visitors, $referrals, $isPitchPresenter
       }
     }
 
+    // Handle education file upload if educationFileData is actually the uploaded file
+    $actualEducationFileData = null;
+    if ($isEducationPresenter === 1 && $educationFileData !== null) {
+      // If $educationFileData is the uploaded file array (not processed data), process it now
+      if (isset($educationFileData['tmp_name'])) {
+        $fileResult = saveEducationFile($educationFileData, $weekDate, $userId ?? 0);
+        if (!$fileResult['success']) {
+          throw new Exception($fileResult['message']);
+        }
+        $actualEducationFileData = [
+          'path' => $fileResult['file_path'],
+          'type' => $fileResult['file_type'],
+          'original_name' => $fileResult['original_name']
+        ];
+      } else {
+        // Already processed education file data
+        $actualEducationFileData = $educationFileData;
+      }
+    }
+
     // Insert survey_data
     $surveyQuery = "INSERT INTO survey_data (
       week_date,
@@ -233,15 +235,15 @@ function saveToDatabase($db, $baseData, $visitors, $referrals, $isPitchPresenter
       user_id,
       user_name,
       user_email,
-      attendance,
-      thanks_slips,
-      one_to_one,
-      activities,
-      comments,
+      is_share_story,
       is_pitch_presenter,
       pitch_file_path,
       pitch_file_original_name,
       pitch_file_type,
+      is_education_presenter,
+      education_file_path,
+      education_file_original_name,
+      education_file_type,
       created_at
     ) VALUES (
       :week_date,
@@ -250,15 +252,15 @@ function saveToDatabase($db, $baseData, $visitors, $referrals, $isPitchPresenter
       :user_id,
       :user_name,
       :user_email,
-      :attendance,
-      :thanks_slips,
-      :one_to_one,
-      :activities,
-      :comments,
+      :is_share_story,
       :is_pitch_presenter,
       :pitch_file_path,
       :pitch_file_original_name,
       :pitch_file_type,
+      :is_education_presenter,
+      :education_file_path,
+      :education_file_original_name,
+      :education_file_type,
       :created_at
     )";
 
@@ -269,15 +271,15 @@ function saveToDatabase($db, $baseData, $visitors, $referrals, $isPitchPresenter
       ':user_id' => $userId,
       ':user_name' => $userName,
       ':user_email' => $baseData['email'],
-      ':attendance' => $baseData['attendance'],
-      ':thanks_slips' => $baseData['thanks_slips'],
-      ':one_to_one' => $baseData['one_to_one_count'],
-      ':activities' => $baseData['activities'] ?: null,
-      ':comments' => $baseData['comments'] ?: null,
+      ':is_share_story' => $baseData['is_share_story'],
       ':is_pitch_presenter' => $isPitchPresenter,
       ':pitch_file_path' => $actualPitchFileData ? $actualPitchFileData['path'] : null,
       ':pitch_file_original_name' => $actualPitchFileData ? $actualPitchFileData['original_name'] : null,
       ':pitch_file_type' => $actualPitchFileData ? $actualPitchFileData['type'] : null,
+      ':is_education_presenter' => $isEducationPresenter,
+      ':education_file_path' => $actualEducationFileData ? $actualEducationFileData['path'] : null,
+      ':education_file_original_name' => $actualEducationFileData ? $actualEducationFileData['original_name'] : null,
+      ':education_file_type' => $actualEducationFileData ? $actualEducationFileData['type'] : null,
       ':created_at' => $baseData['timestamp']
     ];
 
@@ -312,36 +314,6 @@ function saveToDatabase($db, $baseData, $visitors, $referrals, $isPitchPresenter
       }
     }
 
-    // Insert referrals
-    foreach ($referrals as $referral) {
-      $referralQuery = "INSERT INTO referrals (
-        survey_data_id,
-        referral_name,
-        referral_amount,
-        referral_category,
-        referral_provider,
-        created_at
-      ) VALUES (
-        :survey_data_id,
-        :referral_name,
-        :referral_amount,
-        :referral_category,
-        :referral_provider,
-        :created_at
-      )";
-
-      $referralParams = [
-        ':survey_data_id' => $surveyId,
-        ':referral_name' => $referral['name'],
-        ':referral_amount' => $referral['amount'],
-        ':referral_category' => $referral['category'] ?: null,
-        ':referral_provider' => $referral['provider'] ?: null,
-        ':created_at' => $baseData['timestamp']
-      ];
-
-      dbExecute($db, $referralQuery, $referralParams);
-    }
-
     // Commit transaction
     dbCommit($db);
 
@@ -360,7 +332,7 @@ function saveToDatabase($db, $baseData, $visitors, $referrals, $isPitchPresenter
 /**
  * Send email notification to admin
  */
-function sendEmailNotification($baseData, $visitors, $referrals) {
+function sendEmailNotification($baseData, $visitors, $isPitchPresenter, $isEducationPresenter) {
   $to = MAIL_TO;
   $subject = '[BNI] 新しいアンケート回答がありました - ' . $baseData['introducer_name'];
 
@@ -369,7 +341,7 @@ function sendEmailNotification($baseData, $visitors, $referrals) {
   if (count($visitors) > 0) {
     foreach ($visitors as $index => $visitor) {
       $visitorListHTML .= '
-        <div style="margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border-left: 3px solid #CF2030;">
+        <div style="margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border-left: 3px solid #D00C24;">
           <div class="field">
             <span class="label">ビジター' . ($index + 1) . ':</span>
             <span class="value">' . htmlspecialchars($visitor['name']) . '</span>
@@ -389,46 +361,35 @@ function sendEmailNotification($baseData, $visitors, $referrals) {
     $visitorListHTML = '<p style="color: #999;">ビジター紹介なし</p>';
   }
 
-  // Build referral list HTML
-  $referralListHTML = '';
-  $totalAmount = 0;
-  $realReferralsCount = 0;
+  // Build presenter info HTML
+  $presenterInfoHTML = '';
 
-  foreach ($referrals as $index => $referral) {
-    $totalAmount += $referral['amount'];
+  // Share Story
+  $shareStoryStatus = ($baseData['is_share_story'] == 1) ? 'はい（担当）' : 'いいえ';
+  $presenterInfoHTML .= '
+    <div class="field">
+      <span class="label">シェアストーリー担当:</span>
+      <span class="value">' . htmlspecialchars($shareStoryStatus) . '</span>
+    </div>
+  ';
 
-    // Check if this is a real referral (not dummy)
-    $isRealReferral = ($referral['name'] !== '-' || $referral['amount'] > 0);
+  // Pitch Presenter
+  $pitchStatus = ($isPitchPresenter == 1) ? 'はい（ピッチ資料あり）' : 'いいえ';
+  $presenterInfoHTML .= '
+    <div class="field">
+      <span class="label">33秒ピッチ担当:</span>
+      <span class="value">' . htmlspecialchars($pitchStatus) . '</span>
+    </div>
+  ';
 
-    if ($isRealReferral) {
-      $realReferralsCount++;
-      $referralListHTML .= '
-        <div style="margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border-left: 3px solid #CF2030;">
-          <div class="field">
-            <span class="label">案件' . $realReferralsCount . ':</span>
-            <span class="value">' . htmlspecialchars($referral['name']) . '</span>
-          </div>
-          <div class="field">
-            <span class="label">金額:</span>
-            <span class="value">¥' . number_format($referral['amount']) . '</span>
-          </div>
-          <div class="field">
-            <span class="label">カテゴリ:</span>
-            <span class="value">' . htmlspecialchars($referral['category']) . '</span>
-          </div>
-          <div class="field">
-            <span class="label">提供者:</span>
-            <span class="value">' . htmlspecialchars($referral['provider'] ?: '-') . '</span>
-          </div>
-        </div>
-      ';
-    }
-  }
-
-  // If no real referrals, show message
-  if ($realReferralsCount === 0) {
-    $referralListHTML = '<p style="color: #999;">リファーラルなし</p>';
-  }
+  // Education Presenter
+  $educationStatus = ($isEducationPresenter == 1) ? 'はい（エデュケーション資料あり）' : 'いいえ';
+  $presenterInfoHTML .= '
+    <div class="field">
+      <span class="label">エデュケーション担当:</span>
+      <span class="value">' . htmlspecialchars($educationStatus) . '</span>
+    </div>
+  ';
 
   // Email body (HTML)
   $message = '<!DOCTYPE html>
@@ -438,15 +399,14 @@ function sendEmailNotification($baseData, $visitors, $referrals) {
   <style>
     body { font-family: sans-serif; line-height: 1.6; color: #333; }
     .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background-color: #CF2030; color: white; padding: 20px; text-align: center; }
+    .header { background-color: #D00C24; color: white; padding: 20px; text-align: center; }
     .content { background-color: #f5f5f5; padding: 20px; }
     .section { background-color: white; padding: 15px; margin-bottom: 15px; border-radius: 4px; }
-    .section h3 { color: #CF2030; margin-top: 0; }
+    .section h3 { color: #D00C24; margin-top: 0; }
     .field { margin-bottom: 10px; }
     .label { font-weight: bold; color: #666; }
     .value { margin-left: 10px; }
     .footer { text-align: center; color: #999; font-size: 12px; margin-top: 20px; }
-    .total { font-size: 18px; font-weight: bold; color: #CF2030; margin-top: 15px; }
   </style>
 </head>
 <body>
@@ -478,35 +438,8 @@ function sendEmailNotification($baseData, $visitors, $referrals) {
       </div>
 
       <div class="section">
-        <h3>2. リファーラル金額情報（' . $realReferralsCount . '件）</h3>
-        ' . $referralListHTML . '
-        <div class="total">
-          合計: ¥' . number_format($totalAmount) . '
-        </div>
-      </div>
-
-      <div class="section">
-        <h3>3. メンバー情報</h3>
-        <div class="field">
-          <span class="label">出席状況:</span>
-          <span class="value">' . htmlspecialchars($baseData['attendance']) . '</span>
-        </div>
-        <div class="field">
-          <span class="label">サンクスリップ:</span>
-          <span class="value">' . $baseData['thanks_slips'] . '件</span>
-        </div>
-        <div class="field">
-          <span class="label">ワンツーワン:</span>
-          <span class="value">' . $baseData['one_to_one_count'] . '回</span>
-        </div>
-        <div class="field">
-          <span class="label">アクティビティ:</span>
-          <span class="value">' . htmlspecialchars(str_replace('|', ', ', $baseData['activities']) ?: '-') . '</span>
-        </div>
-        <div class="field">
-          <span class="label">コメント:</span>
-          <span class="value">' . nl2br(htmlspecialchars($baseData['comments'] ?: '-')) . '</span>
-        </div>
+        <h3>2. プレゼンター情報</h3>
+        ' . $presenterInfoHTML . '
       </div>
 
       <div class="footer">
@@ -550,7 +483,7 @@ function sendThanksEmail($baseData) {
   <style>
     body { font-family: sans-serif; line-height: 1.8; color: #333; }
     .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background-color: #CF2030; color: white; padding: 30px 20px; text-align: center; }
+    .header { background-color: #D00C24; color: white; padding: 30px 20px; text-align: center; }
     .content { background-color: #ffffff; padding: 30px; }
     .message { font-size: 16px; margin-bottom: 20px; }
     .footer { text-align: center; color: #999; font-size: 13px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
