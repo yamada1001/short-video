@@ -200,7 +200,6 @@ try {
           <li><a href="referrals.php">リファーラル管理</a></li>
           <li><a href="seating.php">座席表編集</a></li>
           <li><a href="users.php" class="active">ユーザー管理</a></li>
-          <li><a href="audit_log.php">監査ログ</a></li>
           <li><a href="../logout.php" style="color: #999;">ログアウト</a></li>
         </ul>
       </nav>

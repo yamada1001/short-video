@@ -85,7 +85,6 @@ if (!$isAdmin) {
           <li><a href="referrals.php">リファーラル管理</a></li>
           <li><a href="seating.php">座席表編集</a></li>
           <li><a href="users.php">ユーザー管理</a></li>
-          <li><a href="audit_log.php">監査ログ</a></li>
           <li><a href="../logout.php" style="color: #999;">ログアウト</a></li>
         </ul>
       </nav>
@@ -145,6 +144,18 @@ if (!$isAdmin) {
       <!-- Table of contents will be generated dynamically -->
     </div>
   </div>
+
+  <!-- Toggle Sidebar Button (Show when collapsed) -->
+  <button id="showSidebarBtn" class="sidebar-toggle-show" style="display: none;">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="3" width="7" height="7"></rect>
+      <rect x="3" y="14" width="7" height="7"></rect>
+      <line x1="14" y1="4" x2="21" y2="4"></line>
+      <line x1="14" y1="8" x2="21" y2="8"></line>
+      <line x1="14" y1="15" x2="21" y2="15"></line>
+      <line x1="14" y1="19" x2="21" y2="19"></line>
+    </svg>
+  </button>
 
   <!-- Reveal.js Presentation -->
   <div class="reveal">

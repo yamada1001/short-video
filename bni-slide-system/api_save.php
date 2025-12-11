@@ -14,7 +14,6 @@ header('Access-Control-Allow-Methods: POST');
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/csrf.php';
 require_once __DIR__ . '/includes/date_helper.php';
-require_once __DIR__ . '/includes/audit_logger.php';
 require_once __DIR__ . '/includes/file_upload_helper.php';
 
 // Config
@@ -122,22 +121,6 @@ try {
   if (!$surveyId) {
     throw new Exception('データベースへの保存に失敗しました');
   }
-
-  // Write audit log to database
-  writeAuditLogToDb(
-    'create',
-    'survey_data',
-    [
-      'input_date' => $baseData['input_date'],
-      'introducer_name' => $baseData['introducer_name'],
-      'visitor_count' => count($visitors),
-      'is_share_story' => $baseData['is_share_story'],
-      'is_pitch_presenter' => $isPitchPresenter,
-      'is_education_presenter' => $isEducationPresenter
-    ],
-    $baseData['email'],
-    $baseData['introducer_name']
-  );
 
   // Send email notification
   $emailSent = sendEmailNotification($baseData, $visitors, $isPitchPresenter, $isEducationPresenter);
@@ -326,8 +309,6 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
     return false;
   }
 }
-
-// writeAuditLogToDb() はincludes/audit_logger.phpで定義されています
 
 /**
  * Send email notification to admin

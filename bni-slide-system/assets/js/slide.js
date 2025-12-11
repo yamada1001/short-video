@@ -608,13 +608,26 @@ function setupSidebarTOC() {
   const sidebar = document.getElementById('sidebarToc');
   const tocContent = document.getElementById('tocContent');
   const toggleBtn = document.getElementById('toggleSidebar');
+  const showSidebarBtn = document.getElementById('showSidebarBtn');
 
   if (!sidebar || !tocContent || !toggleBtn) return;
 
   // Toggle sidebar
   toggleBtn.addEventListener('click', () => {
     sidebar.classList.toggle('collapsed');
+    // Show/hide the show button
+    if (showSidebarBtn) {
+      showSidebarBtn.style.display = sidebar.classList.contains('collapsed') ? 'flex' : 'none';
+    }
   });
+
+  // Show sidebar button click handler
+  if (showSidebarBtn) {
+    showSidebarBtn.addEventListener('click', () => {
+      sidebar.classList.remove('collapsed');
+      showSidebarBtn.style.display = 'none';
+    });
+  }
 
   // Generate TOC from slides
   function generateTOC() {
