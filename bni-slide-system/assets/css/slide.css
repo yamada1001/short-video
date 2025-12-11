@@ -2560,6 +2560,192 @@
 }
 
 /* =====================================
+   Phase 12: Networking Education Corner Slide
+   ===================================== */
+.networking-education-slide {
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+}
+
+.networking-education-title {
+  font-size: 4em;
+  font-weight: 800;
+  color: #2E7D32 !important;
+  margin-bottom: 15px;
+  text-align: center !important;
+}
+
+.networking-education-subtitle {
+  font-size: 1.5em;
+  color: #558B2F;
+  font-weight: 500;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.networking-education-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.networking-education-presenter-box {
+  background: white;
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 10px 30px rgba(46, 125, 50, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.networking-education-presenter-photo {
+  flex-shrink: 0;
+}
+
+.networking-education-presenter-photo img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #2E7D32;
+}
+
+.networking-education-presenter-info {
+  flex: 1;
+}
+
+.networking-education-presenter-name {
+  font-size: 3em;
+  font-weight: 700;
+  color: #1B5E20;
+  margin-bottom: 15px;
+}
+
+.networking-education-presenter-role {
+  font-size: 1.8em;
+  color: #424242;
+  margin-bottom: 10px;
+}
+
+.networking-education-presenter-category {
+  font-size: 1.5em;
+  color: #666;
+  font-style: italic;
+}
+
+.networking-education-topic {
+  background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+  border-radius: 20px;
+  padding: 40px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  box-shadow: 0 8px 24px rgba(46, 125, 50, 0.3);
+}
+
+.topic-icon {
+  font-size: 3.5em;
+  color: white;
+  animation: float-book 3s ease-in-out infinite;
+}
+
+@keyframes float-book {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.topic-text {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: white;
+  flex: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .networking-education-title {
+    font-size: 3.5em;
+  }
+
+  .networking-education-presenter-photo img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .networking-education-presenter-name {
+    font-size: 2.5em;
+  }
+
+  .topic-text {
+    font-size: 2.2em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .networking-education-slide {
+    padding: 40px;
+  }
+
+  .networking-education-title {
+    font-size: 2.5em;
+  }
+
+  .networking-education-subtitle {
+    font-size: 1.2em;
+  }
+
+  .networking-education-presenter-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .networking-education-presenter-photo img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .networking-education-presenter-name {
+    font-size: 2em;
+  }
+
+  .networking-education-presenter-role {
+    font-size: 1.5em;
+  }
+
+  .networking-education-presenter-category {
+    font-size: 1.3em;
+  }
+
+  .networking-education-topic {
+    flex-direction: column;
+    padding: 30px 40px;
+  }
+
+  .topic-icon {
+    font-size: 3em;
+  }
+
+  .topic-text {
+    font-size: 1.8em;
+    text-align: center;
+  }
+}
+
+/* =====================================
    Phase 7: Weekly NO.1 Slide (Past Records)
    ===================================== */
 .weekly-no1-slide {

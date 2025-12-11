@@ -594,6 +594,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   // Phase 11: BNI Philosophy & Core Values
   slides += generateBNIPhilosophySlides();
 
+  // Phase 12: Networking Education Corner
+  if (slideConfig && slideConfig.networking_education) {
+    slides += generateNetworkingEducationSlide(slideConfig.networking_education);
+  }
+
   // Phase 19: Closing - Chapter Logo
   if (slideConfig && slideConfig.chapter) {
     slides += generateChapterClosingSlide(slideConfig);
@@ -988,6 +993,38 @@ function generateNewMembersSlides(config) {
   });
 
   return slides;
+}
+
+/**
+ * Phase 12: Generate Networking Education Corner Slide
+ */
+function generateNetworkingEducationSlide(education) {
+  const photoUrl = education.photo || 'assets/images/default-avatar.svg';
+
+  return `
+    <section class="networking-education-slide">
+      <h2 class="networking-education-title">ネットワーキング学習コーナー</h2>
+      <div class="networking-education-subtitle">Networking Education Corner</div>
+
+      <div class="networking-education-content">
+        <div class="networking-education-presenter-box">
+          <div class="networking-education-presenter-photo">
+            <img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(education.presenter)}" />
+          </div>
+          <div class="networking-education-presenter-info">
+            <div class="networking-education-presenter-name">${escapeHtml(education.presenter)}</div>
+            <div class="networking-education-presenter-role">${escapeHtml(education.role)}</div>
+            <div class="networking-education-presenter-category">(${escapeHtml(education.category)})</div>
+          </div>
+        </div>
+
+        <div class="networking-education-topic">
+          <i class="fas fa-book-open topic-icon"></i>
+          <div class="topic-text">今週のテーマ: BNIのコアバリュー</div>
+        </div>
+      </div>
+    </section>
+  `;
 }
 
 /**
