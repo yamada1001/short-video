@@ -214,74 +214,7 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     });
   }
 
-  // Pitch Section: Insert between Visitors and Referrals
-  if (pitchPresenter && pitchPresenter.file_path) {
-    const presenterName = escapeHtml(pitchPresenter.name || 'メンバー');
-    const fileType = pitchPresenter.file_type || 'unknown';
-    const fileName = escapeHtml(pitchPresenter.file_original_name || 'ピッチ資料');
-    const filePath = pitchPresenter.file_path;
-
-    if (fileType === 'pdf') {
-      // PDFの場合：iframe で埋め込み表示 + フルスクリーンボタン（PDF.jsビューアー）
-      const pdfFile = encodeURIComponent(filePath.split('/').pop());
-      const pdfUrl = `../api_get_pitch_file.php?file=${pdfFile}`;
-      const viewerUrl = `../pitch_viewer.php?file=${pdfFile}`;
-      slides += `
-      <section>
-        <h2>メインプレゼン</h2>
-        <div class="pitch-presenter-info">
-          <h3>${presenterName}さん</h3>
-          <a
-            href="${viewerUrl}"
-            target="_blank"
-            class="btn-fullscreen"
-            title="フルスクリーンで開く"
-          >
-            <i class="fas fa-expand"></i> フルスクリーンで開く
-          </a>
-        </div>
-        <div class="pitch-file-container">
-          <iframe
-            src="${pdfUrl}"
-            width="100%"
-            height="600"
-            style="border: 1px solid #ddd; border-radius: 8px;"
-            title="ピッチ資料 - ${fileName}"
-          ></iframe>
-        </div>
-      `;
-    } else {
-      // PowerPointの場合：ダウンロードリンクのみ
-      slides += `
-      <section>
-        <h2>メインプレゼン</h2>
-        <div class="pitch-presenter-info">
-          <h3>${presenterName}さん</h3>
-        </div>
-        <div class="pitch-download-container">
-          <div class="download-box">
-            <i class="fas fa-file-powerpoint" style="font-size: 64px; color: #CF2030; margin-bottom: 20px;"></i>
-            <p style="font-size: 18px; margin-bottom: 20px;">${fileName}</p>
-            <a
-              href="../api_get_pitch_file.php?file=${encodeURIComponent(filePath.split('/').pop())}"
-              class="btn-download"
-              download
-              target="_blank"
-            >
-              <i class="fas fa-download"></i> ダウンロード
-            </a>
-            <p style="font-size: 14px; color: #666; margin-top: 15px;">
-              PowerPoint形式のファイルです。ダウンロードしてご覧ください。
-            </p>
-          </div>
-        </div>
-      `;
-    }
-
-    slides += `
-      </section>
-    `;
-  }
+  // Pitch Section: Removed (duplicate, use the one after seating chart instead)
 
   // Share Story Presenter Section
   if (shareStoryPresenter) {
@@ -577,31 +510,7 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     }
   }
 
-  // Slide 7: Activity Summary
-  slides += `
-    <section>
-
-      <h2>アクティビティサマリー</h2>
-      <div class="stats-simple">
-        <div class="stat-item">
-          <div class="stat-item-number">${stats.total_thanks_slips}</div>
-          <div class="stat-item-label">サンクスリップ提出数</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-item-number">${stats.total_one_to_one}</div>
-          <div class="stat-item-label">121実施数</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-item-number">${stats.total_attendance}</div>
-          <div class="stat-item-label">出席者数</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-item-number">${data.length}</div>
-          <div class="stat-item-label">回答者数</div>
-        </div>
-      </div>
-    </section>
-  `;
+  // Slide 7: Activity Summary - Removed (not needed)
 
   // Slide 7.5: Visitor Feedback Slides (at the end)
   if (data.length > 0) {
