@@ -554,11 +554,6 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   // Phase 3: Referral Announcements Template
   slides += generateReferralAnnouncementsSlide();
 
-  // Phase 15: Speaker Rotation
-  if (slideConfig && slideConfig.speaker_rotation) {
-    slides += generateSpeakerRotationSlide(slideConfig);
-  }
-
   // Phase 4: New Members
   if (slideConfig && slideConfig.new_members && slideConfig.new_members.length > 0) {
     slides += generateNewMembersSlides(slideConfig);
@@ -609,6 +604,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
 
   // Phase 14: Visitor Self-Introduction Template
   slides += generateVisitorIntroductionSlide();
+
+  // Phase 15: Speaker Rotation
+  if (slideConfig && slideConfig.speaker_rotation) {
+    slides += generateSpeakerRotationSlide(slideConfig);
+  }
 
   // Phase 16: Today's Comment Template
   slides += generateTodaysCommentSlide();
