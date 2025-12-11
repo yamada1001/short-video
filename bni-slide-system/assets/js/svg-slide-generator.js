@@ -598,10 +598,9 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   }
 
   // Phase 13: Member 60-second Pitch Slides
-  // TODO: Implement generateMemberPitchSlides function
-  // if (slideConfig && slideConfig.members && slideConfig.members.length > 0) {
-  //   slides += generateMemberPitchSlides(slideConfig.members);
-  // }
+  if (slideConfig && slideConfig.members && slideConfig.members.length > 0) {
+    slides += generateMemberPitchSlides(slideConfig.members);
+  }
 
   // Phase 14: Visitor Self-Introduction Template
   slides += generateVisitorIntroductionSlide();
@@ -1350,6 +1349,69 @@ function generateMonthlyChampionsSlides(config) {
               ${winner3.count ? `<span class="runner-count">${escapeHtml(winner3.count)}</span>` : ''}
             </div>
           ` : ''}
+        </div>
+      </section>
+    `;
+  });
+
+  return slides;
+}
+
+
+/**
+ * Generate Member 60-second Pitch Slides
+ * 各メンバーのピッチスライドを生成（カウントダウンタイマー付き）
+ */
+function generateMemberPitchSlides(members) {
+  if (!members || members.length === 0) return '';
+
+  let slides = '';
+
+  // Title slide for pitch section
+  slides += `
+    <section class="title-slide">
+      <h1>メンバー60秒ピッチ</h1>
+      <p class="subtitle">各メンバー33秒</p>
+    </section>
+  `;
+
+  // Generate individual pitch slides for each member
+  members.forEach(member => {
+    const pitchTime = member.pitch_time || 33;
+    const industryIcon = member.industry_icon || 'briefcase';
+
+    slides += `
+      <section class="pitch-slide">
+        <div class="pitch-slide-container">
+          <div class="pitch-header">
+            <i class="fas fa-${escapeHtml(industryIcon)} pitch-icon"></i>
+            <h2 class="pitch-member-name">${escapeHtml(member.name)}</h2>
+          </div>
+
+          <div class="pitch-details">
+            <div class="pitch-company">
+              <i class="fas fa-building"></i>
+              <span>${escapeHtml(member.company)}</span>
+            </div>
+            <div class="pitch-category">
+              <i class="fas fa-tag"></i>
+              <span>${escapeHtml(member.category)}</span>
+            </div>
+            ${member.team ? `
+              <div class="pitch-team">
+                <i class="fas fa-users"></i>
+                <span>チーム ${escapeHtml(member.team)}</span>
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="countdown-container">
+            <div class="countdown-label">残り時間</div>
+            <div class="countdown-timer" data-seconds="${pitchTime}">${pitchTime}</div>
+            <div class="countdown-progress">
+              <div class="countdown-progress-bar" style="width: 100%;"></div>
+            </div>
+          </div>
         </div>
       </section>
     `;
