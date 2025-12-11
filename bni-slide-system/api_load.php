@@ -46,6 +46,12 @@ try {
   // Get pitch presenter info
   $pitchPresenter = getPitchPresenter($db, $weekDate);
 
+  // Get share story presenter info
+  $shareStoryPresenter = getShareStoryPresenter($db, $weekDate);
+
+  // Get education presenter info
+  $educationPresenter = getEducationPresenter($db, $weekDate);
+
   // Format date for title slide
   $slideDate = '';
   try {
@@ -65,6 +71,8 @@ try {
     'data' => $data,
     'stats' => $stats,
     'pitch_presenter' => $pitchPresenter,
+    'share_story_presenter' => $shareStoryPresenter,
+    'education_presenter' => $educationPresenter,
     'slide_config' => $slideConfig,
     'count' => count($data),
     'date' => $slideDate,
@@ -288,6 +296,68 @@ function getPitchPresenter($db, $weekDate) {
     'file_path' => $result['pitch_file_path'],
     'file_original_name' => $result['pitch_file_original_name'],
     'file_type' => $result['pitch_file_type']
+  ];
+}
+
+/**
+ * Get share story presenter info for the week
+ * Returns single share story presenter (one per week)
+ */
+function getShareStoryPresenter($db, $weekDate) {
+  $query = "
+    SELECT
+      user_name,
+      user_email
+    FROM survey_data
+    WHERE week_date = :week_date
+      AND is_share_story = 1
+    ORDER BY id ASC
+    LIMIT 1
+  ";
+
+  $result = dbQueryOne($db, $query, [':week_date' => $weekDate]);
+
+  if (!$result) {
+    return null;
+  }
+
+  return [
+    'name' => $result['user_name'],
+    'email' => $result['user_email']
+  ];
+}
+
+/**
+ * Get education presenter info for the week
+ * Returns single education presenter (one per week)
+ */
+function getEducationPresenter($db, $weekDate) {
+  $query = "
+    SELECT
+      user_name,
+      user_email,
+      education_file_path,
+      education_file_original_name,
+      education_file_type
+    FROM survey_data
+    WHERE week_date = :week_date
+      AND is_education_presenter = 1
+    ORDER BY id ASC
+    LIMIT 1
+  ";
+
+  $result = dbQueryOne($db, $query, [':week_date' => $weekDate]);
+
+  if (!$result) {
+    return null;
+  }
+
+  return [
+    'name' => $result['user_name'],
+    'email' => $result['user_email'],
+    'file_path' => $result['education_file_path'],
+    'file_original_name' => $result['education_file_original_name'],
+    'file_type' => $result['education_file_type']
   ];
 }
 
