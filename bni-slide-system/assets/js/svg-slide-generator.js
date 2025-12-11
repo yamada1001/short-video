@@ -598,9 +598,10 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   }
 
   // Phase 13: Member 60-second Pitch Slides
-  if (slideConfig && slideConfig.members && slideConfig.members.length > 0) {
-    slides += generateMemberPitchSlides(slideConfig.members);
-  }
+  // TODO: Implement generateMemberPitchSlides function
+  // if (slideConfig && slideConfig.members && slideConfig.members.length > 0) {
+  //   slides += generateMemberPitchSlides(slideConfig.members);
+  // }
 
   // Phase 14: Visitor Self-Introduction Template
   slides += generateVisitorIntroductionSlide();
