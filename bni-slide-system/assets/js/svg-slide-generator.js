@@ -798,6 +798,7 @@ function generateBusinessCardSeatingSlide(config) {
       <div class="seating-top-area">
         <div class="podium-area">${podiumMembers[0] || 'ポーディアム'}</div>
         <div class="screen-area">${screenLabel}</div>
+        <div class="seating-title">名刺交換時</div>
         <div class="special-names-area">
           ${(config.business_card_seating?.top_right_names || ['山本', '花田', '佳子', '野口']).join(' ')}
         </div>
