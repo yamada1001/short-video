@@ -29,7 +29,7 @@ function extractYouTubeVideoId(url) {
 /**
  * Generate all slides from data
  */
-async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, shareStoryPresenter = null, educationPresenter = null, referralTotal = null, slideConfig = null) {
+async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, shareStoryPresenter = null, educationPresenter = null, referralTotal = null, slideConfig = null, monthlyRankingData = null) {
   const slideContainer = document.getElementById('slideContainer');
 
   // Use provided date from API, or fall back to today's date
@@ -49,6 +49,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
       <p class="branding">Givers Gain® | BNI Slide System</p>
     </section>
   `;
+
+  // Monthly Ranking Slides (if data exists)
+  if (monthlyRankingData) {
+    slides += generateMonthlyRankingSlides(monthlyRankingData);
+  }
 
   // Phase 1: Opening Section
   if (slideConfig) {
@@ -1568,6 +1573,178 @@ function generateMemberPitchSlides(members) {
       </section>
     `;
   });
+
+  return slides;
+}
+
+/**
+ * Generate Monthly Ranking Slides
+ * 月間ランキングスライドを生成（4種類）
+ */
+function generateMonthlyRankingSlides(rankingData) {
+  if (!rankingData) return '';
+
+  let slides = '';
+  const today = new Date();
+  const previousMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+  const monthName = previousMonth.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long' });
+
+  // Title slide for rankings
+  slides += `
+    <section class="title-slide">
+      <h1>月間ランキング発表</h1>
+      <p class="subtitle">${monthName}</p>
+      <p class="branding">Givers Gain® | BNI Slide System</p>
+    </section>
+  `;
+
+  // 1. リファーラル金額ランキング
+  if (rankingData.referral_amount && rankingData.referral_amount.length > 0) {
+    slides += `
+      <section>
+        <h2><i class="fas fa-dollar-sign"></i> リファーラル金額ランキング</h2>
+        <div class="ranking-table-container">
+          <table class="ranking-table">
+            <thead>
+              <tr>
+                <th style="width: 80px;">順位</th>
+                <th>メンバー名</th>
+                <th style="width: 200px;">金額</th>
+              </tr>
+            </thead>
+            <tbody>
+    `;
+
+    rankingData.referral_amount.forEach((entry, index) => {
+      const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
+      const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
+      slides += `
+        <tr class="${rankClass}">
+          <td style="font-size: 32px; font-weight: bold;">${medal} ${entry.rank}位</td>
+          <td style="font-size: 28px;">${escapeHtml(entry.name)}</td>
+          <td style="font-size: 32px; font-weight: bold; color: #CF2030;">¥${entry.value.toLocaleString()}</td>
+        </tr>
+      `;
+    });
+
+    slides += `
+            </tbody>
+          </table>
+        </div>
+      </section>
+    `;
+  }
+
+  // 2. ビジター紹介数ランキング
+  if (rankingData.visitor_count && rankingData.visitor_count.length > 0) {
+    slides += `
+      <section>
+        <h2><i class="fas fa-users"></i> ビジター紹介数ランキング</h2>
+        <div class="ranking-table-container">
+          <table class="ranking-table">
+            <thead>
+              <tr>
+                <th style="width: 80px;">順位</th>
+                <th>メンバー名</th>
+                <th style="width: 200px;">紹介数</th>
+              </tr>
+            </thead>
+            <tbody>
+    `;
+
+    rankingData.visitor_count.forEach((entry, index) => {
+      const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
+      const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
+      slides += `
+        <tr class="${rankClass}">
+          <td style="font-size: 32px; font-weight: bold;">${medal} ${entry.rank}位</td>
+          <td style="font-size: 28px;">${escapeHtml(entry.name)}</td>
+          <td style="font-size: 32px; font-weight: bold; color: #CF2030;">${entry.value}人</td>
+        </tr>
+      `;
+    });
+
+    slides += `
+            </tbody>
+          </table>
+        </div>
+      </section>
+    `;
+  }
+
+  // 3. 出席率ランキング
+  if (rankingData.attendance_rate && rankingData.attendance_rate.length > 0) {
+    slides += `
+      <section>
+        <h2><i class="fas fa-calendar-check"></i> 出席率ランキング</h2>
+        <div class="ranking-table-container">
+          <table class="ranking-table">
+            <thead>
+              <tr>
+                <th style="width: 80px;">順位</th>
+                <th>メンバー名</th>
+                <th style="width: 200px;">出席率</th>
+              </tr>
+            </thead>
+            <tbody>
+    `;
+
+    rankingData.attendance_rate.forEach((entry, index) => {
+      const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
+      const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
+      slides += `
+        <tr class="${rankClass}">
+          <td style="font-size: 32px; font-weight: bold;">${medal} ${entry.rank}位</td>
+          <td style="font-size: 28px;">${escapeHtml(entry.name)}</td>
+          <td style="font-size: 32px; font-weight: bold; color: #CF2030;">${entry.value}%</td>
+        </tr>
+      `;
+    });
+
+    slides += `
+            </tbody>
+          </table>
+        </div>
+      </section>
+    `;
+  }
+
+  // 4. 121回数ランキング
+  if (rankingData.one_to_one_count && rankingData.one_to_one_count.length > 0) {
+    slides += `
+      <section>
+        <h2><i class="fas fa-handshake"></i> 121回数ランキング</h2>
+        <div class="ranking-table-container">
+          <table class="ranking-table">
+            <thead>
+              <tr>
+                <th style="width: 80px;">順位</th>
+                <th>メンバー名</th>
+                <th style="width: 200px;">実施回数</th>
+              </tr>
+            </thead>
+            <tbody>
+    `;
+
+    rankingData.one_to_one_count.forEach((entry, index) => {
+      const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
+      const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
+      slides += `
+        <tr class="${rankClass}">
+          <td style="font-size: 32px; font-weight: bold;">${medal} ${entry.rank}位</td>
+          <td style="font-size: 28px;">${escapeHtml(entry.name)}</td>
+          <td style="font-size: 32px; font-weight: bold; color: #CF2030;">${entry.value}回</td>
+        </tr>
+      `;
+    });
+
+    slides += `
+            </tbody>
+          </table>
+        </div>
+      </section>
+    `;
+  }
 
   return slides;
 }

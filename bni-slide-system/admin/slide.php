@@ -126,12 +126,21 @@ if (!$isAdmin) {
           </select>
         </div>
         <div class="control-group">
+          <label>スライドパターン:</label>
+          <select id="slidePattern">
+            <option value="normal">通常スライド</option>
+            <option value="monthly_ranking">月初ランキング</option>
+          </select>
+          <p style="font-size: 12px; color: #666; margin-top: 5px;">※ 月初ランキングは先月のデータを表示</p>
+        </div>
+        <div class="control-group">
           <button id="exportPdfBtn" class="btn btn-success" style="width: 100%; margin-bottom: 10px;">
             <i class="fas fa-file-pdf"></i> PDFで出力
           </button>
         </div>
         <div class="control-group">
           <a href="edit.php" class="edit-link">📝 編集モード</a>
+          <a href="monthly_ranking.php" class="edit-link" style="margin-left: 10px;">📊 ランキング入力</a>
         </div>
       </div>
     </div>

@@ -342,6 +342,7 @@ usort($activeMembers, function($a, $b) use ($seatingMemberNames) {
           <li><a href="bulk_input.php" class="active">一括入力</a></li>
           <li><a href="referrals.php">リファーラル管理</a></li>
           <li><a href="seating.php">座席表編集</a></li>
+          <li><a href="monthly_ranking.php">月間ランキング</a></li>
           <li><a href="users.php">ユーザー管理</a></li>
           <li><a href="../logout.php" style="color: #999;">ログアウト</a></li>
         </ul>

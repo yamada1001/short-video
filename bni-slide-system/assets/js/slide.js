@@ -6,6 +6,7 @@
   const loadingScreen = document.getElementById('loadingScreen');
   const slideContainer = document.getElementById('slideContainer');
   const weekSelector = document.getElementById('weekSelector');
+  const slidePattern = document.getElementById('slidePattern');
   const controlButton = document.getElementById('controlButton');
   const controlPanel = document.getElementById('controlPanel');
   const closeControlPanel = document.getElementById('closeControlPanel');
@@ -61,6 +62,15 @@
     loadingScreen.classList.remove('hidden');
     await loadSlideData(this.value);
   });
+
+  // Slide pattern change handler
+  if (slidePattern) {
+    slidePattern.addEventListener('change', async function() {
+      controlPanel.classList.add('hidden');
+      loadingScreen.classList.remove('hidden');
+      await loadSlideData(weekSelector.value);
+    });
+  }
 
   /**
    * Load list of available weeks
@@ -123,9 +133,30 @@
 
       const { data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config } = result;
 
+      // Check if monthly ranking pattern is selected
+      let monthlyRankingData = null;
+      const pattern = slidePattern ? slidePattern.value : 'normal';
+
+      if (pattern === 'monthly_ranking') {
+        // Load monthly ranking data (previous month)
+        const today = new Date();
+        const previousMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+        const yearMonth = previousMonth.toISOString().slice(0, 7); // YYYY-MM
+
+        try {
+          const rankingResponse = await fetch(`${apiBasePath}api_load_monthly_ranking.php?year_month=${yearMonth}`);
+          const rankingResult = await rankingResponse.json();
+          if (rankingResult.success) {
+            monthlyRankingData = rankingResult.data;
+          }
+        } catch (error) {
+          console.warn('Failed to load monthly ranking data:', error);
+        }
+      }
+
       // Generate slides using SVG templates
       // Note: slide_config may be null if slide_config.json doesn't exist
-      await generateSVGSlides(data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config || null);
+      await generateSVGSlides(data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config || null, monthlyRankingData);
 
       // Initialize or sync Reveal.js
       if (!Reveal.isReady()) {

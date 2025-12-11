@@ -108,3 +108,14 @@ CREATE TABLE IF NOT EXISTS audit_logs (
 CREATE INDEX idx_audit_logs_created_at ON audit_logs(created_at);
 CREATE INDEX idx_audit_logs_user_email ON audit_logs(user_email);
 CREATE INDEX idx_audit_logs_action ON audit_logs(action);
+
+-- 月間ランキングデータテーブル
+CREATE TABLE IF NOT EXISTS monthly_ranking_data (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    year_month TEXT UNIQUE NOT NULL,  -- YYYY-MM形式
+    ranking_data TEXT NOT NULL,  -- JSON形式でランキングデータ保存
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_monthly_ranking_year_month ON monthly_ranking_data(year_month);
