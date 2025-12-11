@@ -892,20 +892,31 @@
   position: relative;
   width: 240px;
   height: 240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seating-table-spacer {
+  width: 240px;
+  height: 240px;
+  margin: 0 auto;
+}
+
+.table-circle {
+  width: 220px;
+  height: 220px;
   border: 3px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.05);
-  margin: 0 auto;
+  position: relative;
 }
 
 .table-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   font-size: 48px;
   font-weight: 900;
   color: rgba(255, 255, 255, 0.3);
@@ -914,23 +925,16 @@
 
 .member-name {
   position: absolute;
+  top: 50%;
+  left: 50%;
   font-size: 18px;
   font-weight: 600;
   color: #fff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   white-space: nowrap;
   z-index: 2;
+  /* transform は JavaScript で動的に設定 */
 }
-
-/* メンバー名を円周上に配置 */
-.seating-table .member-name:nth-child(2) { top: 5%; left: 50%; transform: translateX(-50%); }
-.seating-table .member-name:nth-child(3) { top: 15%; right: 15%; }
-.seating-table .member-name:nth-child(4) { top: 40%; right: 5%; }
-.seating-table .member-name:nth-child(5) { bottom: 20%; right: 10%; }
-.seating-table .member-name:nth-child(6) { bottom: 5%; left: 50%; transform: translateX(-50%); }
-.seating-table .member-name:nth-child(7) { bottom: 20%; left: 10%; }
-.seating-table .member-name:nth-child(8) { top: 40%; left: 5%; }
-.seating-table .member-name:nth-child(9) { top: 15%; left: 15%; }
 
 /* Old seating styles (keep for backward compatibility) */
 .seating-slide {

@@ -758,25 +758,36 @@ function generateBusinessCardSeatingSlide(config) {
   const teams = config.teams || {};
   const specialAreas = config.business_card_seating?.special_areas || [];
 
-  // テーブル配置: 本番PDFレイアウト
-  // 左列: A, B, C
-  // 中央列: H, F
-  // 右列: E, D, G
+  // テーブル配置: 本番PDFレイアウト（正確に）
+  // 左列（上から下）: A, B, C
+  // 中央列（上から下）: H（上）、F（下）
+  // 右列（上から下）: E, D, G
   const tableLayout = {
     left: ['A', 'B', 'C'],
-    center: ['H', 'F'],
+    center: ['H', '', 'F'],  // H は上、F は下（間は空白）
     right: ['E', 'D', 'G']
   };
 
   // 各テーブルのHTMLを生成
   function renderTable(tableName) {
+    if (!tableName) return '<div class="seating-table-spacer"></div>'; // 空白スペース
+
     const members = teams[tableName] || [];
     if (members.length === 0 && tableName !== 'H') return ''; // H は空でも表示
 
     return `
       <div class="seating-table" data-table="${tableName}">
-        <div class="table-label">${tableName}</div>
-        ${members.map(name => `<div class="member-name">${escapeHtml(name)}</div>`).join('')}
+        <div class="table-circle">
+          <div class="table-label">${tableName}</div>
+        </div>
+        ${members.map((name, idx) => {
+          // 円周上に配置するため、角度を計算
+          const angle = (idx * 360 / Math.max(members.length, 1)) - 90; // -90で12時方向スタート
+          const radius = 140; // 円の半径 + オフセット
+          const x = Math.cos(angle * Math.PI / 180) * radius;
+          const y = Math.sin(angle * Math.PI / 180) * radius;
+          return `<div class="member-name" style="transform: translate(${x}px, ${y}px);">${escapeHtml(name)}</div>`;
+        }).join('')}
       </div>
     `;
   }
