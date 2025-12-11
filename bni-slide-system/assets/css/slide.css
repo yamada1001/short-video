@@ -9,7 +9,7 @@
   font-size: 28px;
   font-weight: 400;
   color: #FFFFFF;
-  background: #CF2030;
+  background: #D00C24;
 }
 
 /* BNI Color Override */
@@ -456,7 +456,7 @@
   width: 50px;
   height: 50px;
   border: 4px solid rgba(207, 32, 48, 0.3);
-  border-top-color: #CF2030;
+  border-top-color: #D00C24;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -587,7 +587,7 @@
   margin: 0;
   font-size: 20px;
   font-weight: 700;
-  color: #CF2030;
+  color: #D00C24;
 }
 
 .close-button {
@@ -607,7 +607,7 @@
 
 .close-button:hover {
   background: #f0f0f0;
-  color: #CF2030;
+  color: #D00C24;
 }
 
 .control-panel-body {
@@ -633,7 +633,7 @@
 .control-group select {
   width: 100%;
   padding: 10px 12px;
-  border: 2px solid #CF2030;
+  border: 2px solid #D00C24;
   border-radius: 6px;
   font-size: 14px;
   color: #333;
@@ -651,7 +651,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: #CF2030;
+  background: #D00C24;
   color: white;
   text-decoration: none;
   border-radius: 6px;
@@ -706,7 +706,7 @@
   align-items: center;
   gap: 10px;
   padding: 15px 30px;
-  background: #CF2030;
+  background: #D00C24;
   color: #FFFFFF !important;
   font-size: 18px;
   font-weight: 600;
@@ -747,7 +747,7 @@
 .btn-download {
   display: inline-block;
   background: #FFD700;
-  color: #CF2030 !important;
+  color: #D00C24 !important;
   padding: 15px 40px;
   border-radius: 8px;
   text-decoration: none !important;
@@ -771,7 +771,7 @@
    60秒ピッチスライド (Full Version)
    ============================ */
 .member-pitch-slide-full {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%);
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -901,7 +901,7 @@
    Phase 1: オープニングセクション
    ============================ */
 .opening-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -1064,7 +1064,7 @@
    Phase 15: スピーカーローテーション
    ============================ */
 .rotation-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -1164,7 +1164,7 @@
    ============================================ */
 
 .bni-philosophy-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   color: #FFFFFF;
   padding: 60px 80px;
   text-align: center;
@@ -1252,7 +1252,7 @@
   width: 60px;
   height: 60px;
   background: #FFD700;
-  color: #CF2030;
+  color: #D00C24;
   font-size: 2em;
   font-weight: 800;
   display: flex;
@@ -1308,7 +1308,7 @@
 
 /* Philosophy Main Statement */
 .bni-philosophy-slide.philosophy-main {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1339,7 +1339,7 @@
 
 /* Benefit Slides */
 .bni-philosophy-slide.benefit-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
   color: white;
 }
 
@@ -1416,7 +1416,7 @@
 .process-arrow {
   font-size: 3em;
   font-weight: 800;
-  color: #CF2030;
+  color: #D00C24;
 }
 
 .process-description {
@@ -1508,7 +1508,7 @@
    ============================================ */
 
 .chapter-closing-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1627,7 +1627,7 @@
 }
 
 .category-badge {
-  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
   color: white;
   font-size: 2em;
   font-weight: 700;
@@ -1656,7 +1656,7 @@
 }
 
 .champion-header {
-  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
   color: white;
   font-size: 2.5em;
   font-weight: 800;
@@ -1676,7 +1676,7 @@
 }
 
 .winner-category {
-  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
   color: white;
   font-size: 1.8em;
   font-weight: 700;
@@ -1805,7 +1805,7 @@
    ============================================ */
 
 .new-members-intro-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1822,7 +1822,7 @@
 }
 
 .new-member-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   padding: 60px 80px;
   min-height: 700px;
   display: flex;
@@ -1949,7 +1949,7 @@
    ============================================ */
 
 .visitor-hosts-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
   color: white;
   padding: 60px 80px;
   min-height: 700px;
@@ -2000,7 +2000,7 @@
   height: 180px;
   object-fit: cover;
   border-radius: 50%;
-  border: 5px solid #CF2030;
+  border: 5px solid #D00C24;
   box-shadow: 0 4px 12px rgba(207, 32, 48, 0.3);
 }
 
@@ -2024,7 +2024,7 @@
 
 .visitor-host-category {
   font-size: 1.1em;
-  color: #CF2030;
+  color: #D00C24;
   font-weight: 700;
 }
 
@@ -2091,7 +2091,7 @@
 
 .presentation-title-right {
   flex: 1;
-  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2132,7 +2132,7 @@
 }
 
 .four-minute-header {
-  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
   color: white;
   font-size: 3em;
   font-weight: 800;
@@ -2163,7 +2163,7 @@
 
 .presenter-category-large {
   font-size: 2.5em;
-  color: #CF2030;
+  color: #D00C24;
   font-weight: 700;
 }
 
@@ -2222,7 +2222,7 @@
    ============================================ */
 
 .secretary-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -2234,14 +2234,14 @@
 .secretary-title {
   font-size: 4em;
   font-weight: 900;
-  color: #CF2030;
+  color: #D00C24;
   text-align: center;
   margin-bottom: 60px;
 }
 
 .secretary-info-box {
   background: white;
-  border: 5px solid #CF2030;
+  border: 5px solid #D00C24;
   border-radius: 16px;
   padding: 40px 80px;
   margin-bottom: 50px;
@@ -2265,7 +2265,7 @@
 
 .secretary-category {
   font-size: 1.5em;
-  color: #CF2030;
+  color: #D00C24;
   font-weight: 700;
 }
 
@@ -2327,7 +2327,7 @@
    ============================================ */
 
 .director-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -2346,7 +2346,7 @@
 }
 
 .director-info-box {
-  background: linear-gradient(135deg, #CF2030 0%, #A01828 100%);
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
   border-radius: 16px;
   padding: 40px 80px;
   margin-bottom: 50px;
@@ -2413,7 +2413,7 @@
    Phase 6: Happy Birthday Slide
    ===================================== */
 .happy-birthday-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -2509,7 +2509,7 @@
 .birthday-names {
   font-size: 3em;
   font-weight: 700;
-  color: #CF2030;
+  color: #D00C24;
   margin-top: 40px;
 }
 
@@ -2566,7 +2566,7 @@
    Phase 12: Networking Education Corner Slide
    ===================================== */
 .networking-education-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -2752,7 +2752,7 @@
    Phase 7: Weekly NO.1 Slide (Past Records)
    ===================================== */
 .weekly-no1-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -2777,7 +2777,7 @@
 .weekly-no1-title {
   font-size: 4em;
   font-weight: 800;
-  color: #CF2030 !important;
+  color: #D00C24 !important;
   margin: 0;
   text-align: center !important;
 }
@@ -2814,7 +2814,7 @@
 .weekly-no1-count {
   font-size: 4.5em;
   font-weight: 800;
-  color: #CF2030;
+  color: #D00C24;
   margin-bottom: 20px;
   line-height: 1;
 }
@@ -2914,7 +2914,7 @@
    Phase 3: Referral Announcements Template
    ===================================== */
 .referral-template-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -2964,7 +2964,7 @@
    Phase 14: Visitor Self-Introduction Template
    ===================================== */
 .visitor-intro-template-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -3014,7 +3014,7 @@
    Phase 16: Today's Comment Template
    ===================================== */
 .todays-comment-template-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -3064,7 +3064,7 @@
    Phase 17: Visitor Orientation
    ===================================== */
 .visitor-orientation-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -3119,7 +3119,7 @@
    Phase 18: From Coordinators Template
    ===================================== */
 .coordinators-template-slide {
-  background: linear-gradient(135deg, #CF2030 0%, #9a1826 100%) !important;
+  background: linear-gradient(135deg, #D00C24 0%, #a00920 100%) !important;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -3251,7 +3251,7 @@
    ============================ */
 
 .pitch-slide {
-  background: #CF2030 !important;
+  background: #D00C24 !important;
 }
 
 .pitch-slide-container {
