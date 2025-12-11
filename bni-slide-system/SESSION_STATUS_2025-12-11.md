@@ -51,17 +51,24 @@
     - git push origin main完了
     - コミットハッシュ: 1f63913
 
+11. [16:25] 座席表保存機能のCSRF検証エラーを修正
+    - 問題: "保存に失敗しました"とエラー、ネットワークタブにapi_save_seating.phpが表示されない
+    - 原因: api_save_seating.phpがverifyCSRFToken()を呼び出していたが、この関数は存在しない
+    - 修正: CSRF検証を手動実装（hash_equals使用）
+    - git commit: "Fix: api_save_seatingのCSRF検証を修正"
+    - コミットハッシュ: a00cb43
+
 ---
 
 ## 🔄 進行中のタスク
 
-**現在**: 次のタスクを決定中
+**現在**: 座席表保存機能の動作確認待ち
 
-**進捗**: リファーラル管理画面完了 / 次は座席表確認 or ビデオ対応 or 監査ログ削除
+**進捗**: リファーラル管理画面完了 → 座席表CSRF修正完了 → 次はユーザーの動作確認
 
 **次のステップ**:
-1. ユーザーに次のタスクを確認
-2. 優先度に応じて実装開始
+1. ユーザーに座席表保存を再度試してもらう
+2. 保存が成功したら次のタスク（監査ログ削除 or ビデオ対応）に進む
 
 ---
 
@@ -124,17 +131,17 @@
 ## 📊 Git状況
 
 - **ブランチ**: main
-- **最新コミット**: 1f63913 - "Improve: リファーラル管理画面に金額カンマ区切り表示を追加"
+- **最新コミット**: a00cb43 - "Fix: api_save_seatingのCSRF検証を修正"
 - **未コミット**: SESSION_STATUS_2025-12-11.md（更新中）
-- **プッシュ状況**: 最新（1f63913まで）
+- **プッシュ状況**: 最新（a00cb43まで）
 
 ### 最近のコミット履歴
 ```
+a00cb43 Fix: api_save_seatingのCSRF検証を修正
+277f2d1 Fix: api_save_referralsのCSRF関数名を修正
+cb86da5 Docs: SESSION_STATUS更新 - リファーラル管理完了
 1f63913 Improve: リファーラル管理画面に金額カンマ区切り表示を追加
 9f2af4b Docs: ターミナルクラッシュ対策の自動保存ルール追加
-b11fc99 Fix: referrals_weeklyテーブル定義を追加
-47246cb Docs: PROGRESS_TRACKING.md最終更新 - 全機能完了
-c3cd382 Update: PDFから座席表メンバー情報を読み取り反映
 ```
 
 ---
@@ -147,13 +154,18 @@ c3cd382 Update: PDFから座席表メンバー情報を読み取り反映
 4. ✅ 本番環境でマイグレーション実行
 5. ✅ リファーラル管理画面にカンマ区切り追加
 6. ✅ SESSION_STATUSファイルを更新
-7. ⏳ 監査ログ機能を削除
-8. ⏳ index.phpのピッチプレゼンフォームにYouTube URL入力欄を追加
-9. ⏳ api_save.phpでYouTube URLを保存する処理を追加
-10. ⏳ データベースにyoutube_url列を追加（マイグレーション）
-11. ⏳ api_load.phpでYouTube URL情報を取得する処理を追加
-12. ⏳ svg-slide-generator.jsでYouTubeビデオスライドを生成
-13. ⏳ 動作テストとデバッグ
+7. ✅ スライド真っ白問題を解決（is_share_storyエラー）
+8. ✅ CSRF関数名修正（verifyCSRFToken→requireCSRFToken）
+9. ✅ リファーラル金額スライド表示確認
+10. ✅ 座席表保存機能のCSRF検証エラーを修正
+11. ⏳ 監査ログ機能を削除
+12. ⏳ index.phpのピッチプレゼンフォームにYouTube URL入力欄を追加
+13. ⏳ api_save.phpでYouTube URLを保存する処理を追加
+14. ⏳ データベースにyoutube_url列を追加（マイグレーション）
+15. ⏳ api_load.phpでYouTube URL情報を取得する処理を追加
+16. ⏳ svg-slide-generator.jsでYouTubeビデオスライドを生成
+17. ⏳ 動作テストとデバッグ
+18. ⏳ マニュアルページ（manual.php）を最新状態に更新
 
 ---
 
@@ -166,4 +178,4 @@ c3cd382 Update: PDFから座席表メンバー情報を読み取り反映
 
 ---
 
-**次のアクション**: ユーザーに本番環境でのマイグレーション実行を依頼する
+**次のアクション**: ユーザーに座席表の保存を再度試してもらい、成功したら次のタスクに進む
