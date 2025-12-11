@@ -320,6 +320,7 @@
 
   /**
    * Setup logo display based on slide type
+   * ロゴは最初と最後のスライドのみ表示
    */
   function setupLogoDisplay() {
     const logoTopRight = document.getElementById('logoTopRight');
@@ -329,14 +330,22 @@
 
     function updateLogoDisplay() {
       const currentSlide = Reveal.getCurrentSlide();
+      const indices = Reveal.getIndices();
+      const totalSlides = Reveal.getTotalSlides();
+      const isFirstSlide = indices.h === 0 && indices.v === 0;
+      const isLastSlide = indices.h === totalSlides - 1;
 
-      if (currentSlide && currentSlide.classList.contains('title-slide')) {
-        // Title slide: show bottom-right logo
+      if (isFirstSlide && currentSlide && currentSlide.classList.contains('title-slide')) {
+        // 最初のスライド（タイトル）: bottom-rightロゴ表示
+        logoTopRight.classList.add('hidden');
+        logoBottomRight.classList.remove('hidden');
+      } else if (isLastSlide) {
+        // 最後のスライド: bottom-rightロゴ表示
         logoTopRight.classList.add('hidden');
         logoBottomRight.classList.remove('hidden');
       } else {
-        // Normal slide: show top-right logo
-        logoTopRight.classList.remove('hidden');
+        // その他のスライド: ロゴ非表示
+        logoTopRight.classList.add('hidden');
         logoBottomRight.classList.add('hidden');
       }
     }
