@@ -52,6 +52,9 @@ try {
   // Get education presenter info
   $educationPresenter = getEducationPresenter($db, $weekDate);
 
+  // Get referral total amount (admin-managed)
+  $referralTotal = getReferralTotal($db, $weekDate);
+
   // Format date for title slide
   $slideDate = '';
   try {
@@ -73,6 +76,7 @@ try {
     'pitch_presenter' => $pitchPresenter,
     'share_story_presenter' => $shareStoryPresenter,
     'education_presenter' => $educationPresenter,
+    'referral_total' => $referralTotal,
     'slide_config' => $slideConfig,
     'count' => count($data),
     'date' => $slideDate,
@@ -358,6 +362,32 @@ function getEducationPresenter($db, $weekDate) {
     'file_path' => $result['education_file_path'],
     'file_original_name' => $result['education_file_original_name'],
     'file_type' => $result['education_file_type']
+  ];
+}
+
+/**
+ * Get referral total amount for the week (admin-managed)
+ * Returns total amount from referrals_weekly table
+ */
+function getReferralTotal($db, $weekDate) {
+  $query = "
+    SELECT
+      total_amount,
+      notes
+    FROM referrals_weekly
+    WHERE week_date = :week_date
+    LIMIT 1
+  ";
+
+  $result = dbQueryOne($db, $query, [':week_date' => $weekDate]);
+
+  if (!$result) {
+    return null;
+  }
+
+  return [
+    'amount' => intval($result['total_amount']),
+    'notes' => $result['notes']
   ];
 }
 

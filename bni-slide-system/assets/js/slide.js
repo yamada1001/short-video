@@ -109,11 +109,11 @@
       throw new Error(result.message || 'データの読み込みに失敗しました');
     }
 
-      const { data, stats, date, pitch_presenter, share_story_presenter, education_presenter, slide_config } = result;
+      const { data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config } = result;
 
       // Generate slides using SVG templates
       // Note: slide_config may be null if slide_config.json doesn't exist
-      await generateSVGSlides(data, stats, date, pitch_presenter, share_story_presenter, education_presenter, slide_config || null);
+      await generateSVGSlides(data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config || null);
 
       // Initialize or sync Reveal.js
       if (!Reveal.isReady()) {

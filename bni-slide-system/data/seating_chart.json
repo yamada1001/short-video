@@ -1,0 +1,103 @@
+{
+  "last_updated": "2025-12-11 18:05:00",
+  "tables": {
+    "A": {
+      "positions": [
+        {"position": "top", "member_name": ""},
+        {"position": "right", "member_name": ""},
+        {"position": "bottom-right", "member_name": ""},
+        {"position": "bottom-left", "member_name": ""},
+        {"position": "left", "member_name": ""},
+        {"position": "top-left", "member_name": ""},
+        {"position": "top-right", "member_name": ""}
+      ]
+    },
+    "B": {
+      "positions": [
+        {"position": "top", "member_name": ""},
+        {"position": "right", "member_name": ""},
+        {"position": "bottom-right", "member_name": ""},
+        {"position": "bottom-left", "member_name": ""},
+        {"position": "left", "member_name": ""},
+        {"position": "top-left", "member_name": ""},
+        {"position": "top-right", "member_name": ""}
+      ]
+    },
+    "C": {
+      "positions": [
+        {"position": "top", "member_name": ""},
+        {"position": "right", "member_name": ""},
+        {"position": "bottom-right", "member_name": ""},
+        {"position": "bottom-left", "member_name": ""},
+        {"position": "left", "member_name": ""},
+        {"position": "top-left", "member_name": ""},
+        {"position": "top-right", "member_name": ""}
+      ]
+    },
+    "D": {
+      "positions": [
+        {"position": "top", "member_name": ""},
+        {"position": "right", "member_name": ""},
+        {"position": "bottom-right", "member_name": ""},
+        {"position": "bottom-left", "member_name": ""},
+        {"position": "left", "member_name": ""},
+        {"position": "top-left", "member_name": ""},
+        {"position": "top-right", "member_name": ""}
+      ]
+    },
+    "E": {
+      "positions": [
+        {"position": "top", "member_name": ""},
+        {"position": "right", "member_name": ""},
+        {"position": "bottom-right", "member_name": ""},
+        {"position": "bottom-left", "member_name": ""},
+        {"position": "left", "member_name": ""},
+        {"position": "top-left", "member_name": ""},
+        {"position": "top-right", "member_name": ""}
+      ]
+    },
+    "F": {
+      "positions": [
+        {"position": "top", "member_name": ""},
+        {"position": "right", "member_name": ""},
+        {"position": "bottom-right", "member_name": ""},
+        {"position": "bottom-left", "member_name": ""},
+        {"position": "left", "member_name": ""},
+        {"position": "top-left", "member_name": ""},
+        {"position": "top-right", "member_name": ""}
+      ]
+    },
+    "G": {
+      "positions": [
+        {"position": "top", "member_name": ""},
+        {"position": "right", "member_name": ""},
+        {"position": "bottom-right", "member_name": ""},
+        {"position": "bottom-left", "member_name": ""},
+        {"position": "left", "member_name": ""},
+        {"position": "top-left", "member_name": ""},
+        {"position": "top-right", "member_name": ""}
+      ]
+    },
+    "H": {
+      "positions": [
+        {"position": "top", "member_name": ""},
+        {"position": "right", "member_name": ""},
+        {"position": "bottom-right", "member_name": ""},
+        {"position": "bottom-left", "member_name": ""},
+        {"position": "left", "member_name": ""},
+        {"position": "top-left", "member_name": ""},
+        {"position": "top-right", "member_name": ""}
+      ]
+    }
+  },
+  "special_areas": {
+    "porch_time": {
+      "position": "top-left",
+      "label": "ポーチタイム"
+    },
+    "screen": {
+      "position": "top-center",
+      "label": "スクリーン"
+    }
+  }
+}

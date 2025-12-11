@@ -1,0 +1,14 @@
+{
+  "attendance_check": false,
+  "business_card_seating": false,
+  "president": null,
+  "secretary": null,
+  "director": null,
+  "visitor_hosts": [],
+  "orientation_facilitator": null,
+  "networking_education": null,
+  "champions": [],
+  "birthdays": [],
+  "speaker_rotation": [],
+  "coordinators": []
+}

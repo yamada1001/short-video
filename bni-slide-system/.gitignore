@@ -29,3 +29,6 @@ data/*.csv
 data/pitch/*.pdf
 data/pitch/*.ppt
 data/pitch/*.pptx
+slide_images/
+*.png
+database/bni_system.db

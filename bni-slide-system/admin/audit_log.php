@@ -301,6 +301,8 @@ $targetLabels = [
           <li><a href="../index.php">アンケート</a></li>
           <li><a href="slide.php">スライド</a></li>
           <li><a href="edit.php">データ編集</a></li>
+          <li><a href="referrals.php">リファーラル管理</a></li>
+          <li><a href="seating.php">座席表編集</a></li>
           <li><a href="users.php">ユーザー管理</a></li>
           <li><a href="audit_log.php" class="active">監査ログ</a></li>
           <li><a href="../logout.php" style="color: #999;">ログアウト</a></li>

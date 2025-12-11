@@ -6,7 +6,7 @@
 /**
  * Generate all slides from data
  */
-async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, shareStoryPresenter = null, educationPresenter = null, slideConfig = null) {
+async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, shareStoryPresenter = null, educationPresenter = null, referralTotal = null, slideConfig = null) {
   const slideContainer = document.getElementById('slideContainer');
 
   // Use provided date from API, or fall back to today's date
@@ -340,12 +340,17 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   }
 
   // Slide 4: Referral Amount Breakdown
+  // Use admin-managed total if available, otherwise fall back to calculated total
+  const displayReferralAmount = referralTotal && referralTotal.amount !== null
+    ? referralTotal.amount
+    : stats.total_referral_amount;
+
   slides += `
     <section data-auto-animate>
 
       <h2>リファーラル金額内訳</h2>
       <div class="highlight-box">
-        <h3>総額: <span class="currency animate-number" data-value="${stats.total_referral_amount}">¥0</span></h3>
+        <h3>総額: <span class="currency animate-number" data-value="${displayReferralAmount}">¥0</span></h3>
       </div>
   `;
 

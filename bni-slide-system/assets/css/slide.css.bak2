@@ -1,0 +1,3634 @@
+/* ===================================
+   BNI Slide System - Simple & Clean Design
+   Inspired by: Making Sense of Programming Languages
+   =================================== */
+
+/* Global Styles */
+.reveal {
+  font-family: 'LINE Seed JP';
+  font-size: 28px;
+  font-weight: 400;
+  color: #FFFFFF;
+  background: #D00C24;
+}
+
+/* BNI Color Override */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  color: #FFFFFF !important;
+  font-family: 'LINE Seed JP';
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+.reveal h1 {
+  font-size: 2.8em;
+  font-weight: 800;
+}
+
+.reveal h2 {
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.reveal h3 {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.reveal p {
+  line-height: 1.4;
+  text-align: left;
+}
+
+.reveal a:not(.btn-fullscreen):not(.btn-download) {
+  color: #FFD700 !important;
+}
+
+.reveal a:not(.btn-fullscreen):not(.btn-download):hover {
+  color: #FFF !important;
+}
+
+/* Slide Layout - Left Aligned */
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  padding: 50px 70px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.reveal .slides section > * {
+  max-width: 100%;
+}
+
+/* Title Slide */
+.reveal .slides section.title-slide {
+  justify-content: center;
+}
+
+.reveal .slides section.title-slide h1 {
+  font-size: 3em;
+  margin-bottom: 0.3em;
+  text-align: left;
+}
+
+.reveal .slides section.title-slide .subtitle {
+  font-size: 1.3em;
+  color: #FFE6E8;
+  margin-bottom: 2em;
+  text-align: left;
+}
+
+.reveal .slides section.title-slide .branding {
+  font-size: 0.85em;
+  color: #FFD6D9;
+  margin-top: 3em;
+  text-align: left;
+}
+
+/* Stats - Card Style (Vertical Layout) */
+.stats-simple {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 30px 0;
+  max-width: 100%;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 5px solid #FFFFFF;
+  padding: 18px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
+}
+
+.stat-item-number {
+  font-size: 2.5em;
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: 'LINE Seed JP';
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.stat-item-label {
+  font-size: 0.95em;
+  color: #FFE6E8;
+  font-weight: 500;
+  text-align: right;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+/* Table Styling - Minimal */
+.reveal table {
+  font-size: 0.7em;
+  margin: 30px 0;
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.reveal table td,
+.reveal table th {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.reveal table thead {
+  border-bottom: 3px solid #FFFFFF;
+}
+
+.reveal table thead th {
+  background: none;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-align: left;
+  padding: 15px 20px;
+  border: none;
+}
+
+.reveal table tbody td {
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+.reveal table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.reveal table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Progress Section - Minimal */
+.progress-section {
+  margin: 40px 0;
+  max-width: 100%;
+}
+
+.progress-item {
+  margin-bottom: 30px;
+}
+
+.progress-item-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.progress-item-label {
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.progress-item-value {
+  font-weight: 700;
+  color: #FFFFFF;
+  font-family: 'LINE Seed JP';
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #FFFFFF;
+  transition: width 1s ease;
+}
+
+/* Member Cards - Simple Grid */
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin: 40px 0;
+  max-width: 100%;
+}
+
+.member-item {
+  border-left: 3px solid #FFFFFF;
+  padding-left: 20px;
+}
+
+.member-item-name {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+}
+
+.member-item-stats {
+  font-size: 0.85em;
+  color: #FFE6E8;
+  line-height: 1.6;
+}
+
+/* Visitor Slide - Self Introduction */
+.visitor-slide {
+  text-align: center !important;
+}
+
+.visitor-name {
+  font-size: 3.5em !important;
+  margin-bottom: 30px;
+  color: #FFFFFF !important;
+  text-align: center !important;
+}
+
+.visitor-company {
+  font-size: 1.8em;
+  color: #FFFFFF;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.visitor-industry {
+  font-size: 1.3em;
+  color: #FFE6E8;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.visitor-prompt {
+  margin-top: 50px;
+  padding: 30px 45px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  display: inline-block;
+  max-width: 90%;
+}
+
+.visitor-prompt .prompt-title {
+  font-size: 1.3em;
+  color: #FFFFFF;
+  margin: 0 0 20px 0;
+  text-align: center;
+  font-weight: 600;
+}
+
+.prompt-themes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.theme-item {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  color: #FFFFFF;
+  text-align: left;
+  font-weight: 500;
+  border-left: 3px solid #FFFFFF;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  line-height: 1.3;
+}
+
+.theme-item i {
+  font-size: 1.1em;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+  margin-right: 5px;
+}
+
+.theme-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(5px);
+}
+
+/* Pitch Slide - Countdown Timer */
+.pitch-slide {
+  text-align: center !important;
+}
+
+.pitch-member-name {
+  font-size: 3em !important;
+  margin-bottom: 20px;
+  color: #FFFFFF !important;
+  text-align: center !important;
+}
+
+.pitch-label {
+  font-size: 1.2em;
+  color: #FFE6E8;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.countdown-timer {
+  font-size: 10em;
+  font-weight: 900;
+  color: #FFFFFF;
+  font-family: 'LINE Seed JP';
+  line-height: 1;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.countdown-progress {
+  width: 80%;
+  max-width: 600px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.countdown-progress-bar {
+  height: 100%;
+  background: #FFFFFF;
+  width: 100%;
+  transition: width 1s linear;
+}
+
+/* Highlight Box - Minimal */
+.highlight-box {
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #FFFFFF;
+  padding: 30px 40px;
+  margin: 30px 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.highlight-box h3 {
+  margin: 0;
+  text-align: left;
+}
+
+.currency {
+  font-size: 1.5em;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-family: 'LINE Seed JP';
+}
+
+/* Number Animation Effects */
+.animate-number {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.highlight-box .animate-number {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+  }
+}
+
+.progress-item-value.animate-number {
+  font-weight: 800;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+.progress-fill {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-screen.hidden {
+  display: none;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(207, 32, 48, 0.3);
+  border-top-color: #D00C24;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 20px;
+  color: #333;
+  font-size: 18px;
+}
+
+/* Control Icon Button */
+.control-icon-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+}
+
+.control-icon-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.control-icon-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* BNI Logo - Top Right (for normal slides) */
+.bni-logo-top-right {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  width: 320px;
+  height: auto;
+  opacity: 0.95;
+  z-index: 1000;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* BNI Logo - Bottom Right (for title slides) */
+.bni-logo-bottom-right {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 450px;
+  height: auto;
+  opacity: 0.95;
+  z-index: 1000;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.bni-logo-top-right.hidden,
+.bni-logo-bottom-right.hidden {
+  opacity: 0;
+  display: none;
+}
+
+/* Control Panel Modal */
+.control-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.control-panel.hidden {
+  display: none;
+}
+
+.control-panel-content {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  min-width: 400px;
+  max-width: 90%;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.control-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.control-panel-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #D00C24;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #666;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background: #f0f0f0;
+  color: #D00C24;
+}
+
+.control-panel-body {
+  padding: 24px;
+}
+
+.control-group {
+  margin-bottom: 20px;
+}
+
+.control-group:last-child {
+  margin-bottom: 0;
+}
+
+.control-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.control-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #D00C24;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.control-group select:focus {
+  outline: none;
+  border-color: #A01828;
+  box-shadow: 0 0 0 3px rgba(207, 32, 48, 0.1);
+}
+
+.edit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #D00C24;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.edit-link:hover {
+  background: #A01828;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(207, 32, 48, 0.3);
+}
+/* ===================================
+   Pitch Section Styles
+   =================================== */
+
+.pitch-presenter-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.pitch-presenter-info h3 {
+  font-size: 1.8em;
+  color: #FFD700 !important;
+  margin: 0;
+}
+
+.pitch-file-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.pitch-file-container iframe {
+  width: 100%;
+  height: 600px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.btn-fullscreen {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: #D00C24;
+  color: #FFFFFF !important;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none !important;
+  transition: all 0.3s;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn-fullscreen:hover {
+  background: #a01828;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.btn-fullscreen i {
+  font-size: 20px;
+}
+
+.pitch-download-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.download-box {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 60px 80px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.btn-download {
+  display: inline-block;
+  background: #FFD700;
+  color: #D00C24 !important;
+  padding: 15px 40px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.btn-download:hover {
+  background: #FFC700;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
+}
+
+.btn-download i {
+  margin-right: 8px;
+}
+
+/* ============================
+   60秒ピッチスライド (Full Version)
+   ============================ */
+.member-pitch-slide-full {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+}
+
+.pitch-layout-full {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  max-width: 1400px;
+  width: 100%;
+}
+
+.member-photo-large {
+  flex-shrink: 0;
+  width: 500px;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 8px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.member-photo-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.member-info-right {
+  flex: 1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.industry-badge-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 24px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  align-self: flex-start;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.industry-badge-large i {
+  font-size: 32px;
+  color: #FFD700;
+}
+
+.member-name-large {
+  font-size: 80px;
+  font-weight: 900;
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.02em;
+}
+
+.member-company-large {
+  font-size: 36px;
+  margin: 0;
+  opacity: 0.95;
+  line-height: 1.4;
+  font-weight: 500;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.pitch-timer-large {
+  font-size: 64px;
+  font-weight: 900;
+  font-family: 'Courier New', monospace;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px 50px;
+  border-radius: 20px;
+  display: inline-block;
+  align-self: flex-start;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.1em;
+  margin-top: 20px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 1400px) {
+  .pitch-layout-full {
+    gap: 50px;
+  }
+
+  .member-photo-large {
+    width: 400px;
+    height: 400px;
+  }
+
+  .member-name-large {
+    font-size: 60px;
+  }
+
+  .member-company-large {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pitch-layout-full {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .member-photo-large {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+/* ============================
+   Phase 1: オープニングセクション
+   ============================ */
+.opening-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  color: white;
+}
+
+.opening-slide h2 {
+  font-size: 64px;
+  margin-bottom: 50px;
+  color: #FFD700;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* 出欠確認スライド */
+.attendance-slide .instruction {
+  font-size: 28px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+}
+
+.team-box {
+  background: rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(255, 215, 0, 0.5);
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.team-label {
+  font-size: 48px;
+  font-weight: 700;
+  color: #FFD700;
+}
+
+/* 名刺交換席次表 */
+.seating-slide {
+  padding: 40px;
+}
+
+.seating-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.podium-label {
+  font-size: 24px;
+  padding: 10px 20px;
+  background: rgba(207, 32, 48, 0.3);
+  border-radius: 10px;
+}
+
+.seating-chart {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-circle {
+  background: rgba(255, 255, 255, 0.15);
+  border: 4px solid rgba(207, 32, 48, 0.6);
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.team-name {
+  font-size: 36px;
+  font-weight: 900;
+  color: #FFD700;
+  margin-bottom: 10px;
+}
+
+.team-members {
+  font-size: 16px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.screen-label {
+  margin-top: 50px;
+  font-size: 32px;
+  padding: 15px 40px;
+  background: rgba(255, 215, 0, 0.2);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+}
+
+/* プレジの挨拶 */
+.president-slide .president-content {
+  text-align: center;
+  max-width: 800px;
+}
+
+.president-name {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #FFD700;
+}
+
+.president-message {
+  font-size: 36px;
+  margin-bottom: 50px;
+  line-height: 1.6;
+}
+
+.timer-note {
+  font-size: 32px;
+  color: #FF6B6B;
+  padding: 20px 40px;
+  background: rgba(255, 107, 107, 0.2);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 107, 107, 0.5);
+}
+
+/* Good & New */
+.goodnew-slide .goodnew-content {
+  text-align: center;
+  max-width: 900px;
+}
+
+.goodnew-instruction {
+  font-size: 32px;
+  margin-bottom: 60px;
+  line-height: 1.6;
+}
+
+.countdown-display {
+  font-size: 120px;
+  font-weight: 900;
+  color: #FFD700;
+  text-shadow: 4px 4px 16px rgba(0, 0, 0, 0.5);
+  font-family: 'Courier New', monospace;
+}
+
+/* ============================
+   Phase 15: スピーカーローテーション
+   ============================ */
+.rotation-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  color: white;
+}
+
+.rotation-slide h2 {
+  font-size: 64px;
+  margin-bottom: 50px;
+  color: #FFD700;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.rotation-table {
+  width: 100%;
+  max-width: 1400px;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.rotation-table thead {
+  background: rgba(207, 32, 48, 0.8);
+}
+
+.rotation-table th {
+  padding: 25px;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 700;
+  border-bottom: 3px solid rgba(255, 215, 0, 0.5);
+}
+
+.rotation-table tbody tr {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.rotation-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.rotation-table td {
+  padding: 25px;
+  font-size: 20px;
+}
+
+.date-cell {
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFD700;
+  width: 150px;
+}
+
+.presenter-cell {
+  width: 350px;
+}
+
+.presenter-name {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.presenter-category {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.target-cell {
+  line-height: 1.6;
+}
+
+/* 行の色分け */
+.current-row {
+  background: rgba(255, 165, 0, 0.15) !important;
+  border-left: 5px solid #FFA500;
+}
+
+.future-row {
+  background: rgba(100, 200, 255, 0.1) !important;
+  border-left: 5px solid #64C8FF;
+}
+
+.past-row {
+  opacity: 0.6;
+  border-left: 5px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   Phase 11: BNI Philosophy & Core Values Slides
+   ============================================ */
+
+.bni-philosophy-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  color: #FFFFFF;
+  padding: 60px 80px;
+  text-align: center;
+}
+
+.bni-philosophy-slide h2 {
+  color: #FFFFFF !important;
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.bni-philosophy-slide h3.sub-heading {
+  color: #FFD700 !important;
+  font-size: 1.8em;
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* BNI Stats Grid */
+.bni-stats-grid {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.bni-stats-grid .stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-left: 5px solid #FFD700;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bni-stats-grid .stat-row.highlight {
+  background: rgba(255, 255, 255, 0.25);
+  border-left: 8px solid #FFD700;
+}
+
+.bni-stats-grid .stat-label {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-align: left;
+}
+
+.bni-stats-grid .stat-value {
+  font-size: 1.8em;
+  font-weight: 800;
+  color: #FFD700;
+  text-align: right;
+}
+
+.stat-note {
+  font-size: 0.9em;
+  color: #FFE6E8;
+  margin-top: 20px;
+  text-align: right;
+}
+
+/* Promise List (3つのお約束) */
+.promise-list {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.promise-item {
+  display: flex;
+  align-items: flex-start;
+  margin: 30px 0;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.promise-number {
+  width: 60px;
+  height: 60px;
+  background: #FFD700;
+  color: #D00C24;
+  font-size: 2em;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 25px;
+}
+
+.promise-content {
+  flex: 1;
+}
+
+.promise-content strong {
+  font-size: 1.4em;
+  color: #FFD700;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.promise-detail {
+  font-size: 0.9em;
+  color: #FFE6E8;
+  margin-top: 5px;
+}
+
+/* Member Rules */
+.member-rules {
+  max-width: 900px;
+  margin: 40px auto 0;
+  padding: 30px;
+  background: rgba(255, 215, 0, 0.2);
+  border-left: 8px solid #FFD700;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.member-rules h3 {
+  color: #FFD700 !important;
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.member-rules p {
+  font-size: 1em;
+  line-height: 1.8;
+  margin: 15px 0;
+  color: #FFFFFF;
+}
+
+/* Philosophy Main Statement */
+.bni-philosophy-slide.philosophy-main {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+}
+
+.philosophy-statement {
+  text-align: center;
+  padding: 40px;
+}
+
+.philosophy-text-line1,
+.philosophy-text-line2 {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 20px 0;
+  line-height: 1.5;
+}
+
+.philosophy-statement .highlight-red {
+  color: #FFD700;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 8px;
+}
+
+/* Benefit Slides */
+.bni-philosophy-slide.benefit-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
+  color: white;
+}
+
+.bni-philosophy-slide.benefit-slide h2 {
+  color: white !important;
+  font-size: 2.8em;
+  line-height: 1.4;
+  margin-top: 30px;
+}
+
+.benefit-header {
+  font-size: 3em;
+  font-weight: 800;
+  color: #FFD700;
+  margin-bottom: 20px;
+}
+
+.benefit-list {
+  font-size: 1.8em;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.benefit-list p {
+  margin: 15px 0;
+  font-weight: 600;
+}
+
+.japan-stats {
+  font-size: 1.5em;
+  margin-top: 40px;
+  font-weight: 600;
+  color: #FFD700;
+}
+
+/* Process Slide */
+.bni-philosophy-slide.process-slide {
+  padding: 60px 100px;
+}
+
+.process-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0;
+  gap: 20px;
+}
+
+.process-box {
+  padding: 30px 50px;
+  border-radius: 12px;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: white;
+  min-width: 200px;
+  text-align: center;
+}
+
+.process-box.marketing {
+  background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+  border: 4px solid #2E7D32;
+}
+
+.process-box.sales {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  border: 4px solid #1565C0;
+}
+
+.process-box.contract {
+  background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
+  border: 4px solid #000000;
+}
+
+.process-arrow {
+  font-size: 3em;
+  font-weight: 800;
+  color: #D00C24;
+}
+
+.process-description {
+  max-width: 900px;
+  margin: 50px auto 0;
+  text-align: left;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.process-description p {
+  font-size: 1.3em;
+  margin: 20px 0;
+  color: #333;
+  font-weight: 600;
+}
+
+.desc-marketing .highlight-green {
+  color: #4CAF50;
+  font-weight: 800;
+}
+
+.desc-sales .highlight-blue {
+  color: #2196F3;
+  font-weight: 800;
+}
+
+.desc-contract strong {
+  color: #333;
+  font-weight: 800;
+}
+
+/* Responsive Adjustments for Phase 11 */
+@media (max-width: 1400px) {
+  .bni-philosophy-slide {
+    padding: 50px 60px;
+  }
+
+  .bni-philosophy-slide h2 {
+    font-size: 2.2em;
+  }
+
+  .philosophy-text-line1,
+  .philosophy-text-line2 {
+    font-size: 2em;
+  }
+
+  .process-box {
+    padding: 25px 40px;
+    font-size: 1.5em;
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .bni-philosophy-slide {
+    padding: 40px 40px;
+  }
+
+  .bni-philosophy-slide h2 {
+    font-size: 1.8em;
+  }
+
+  .promise-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .promise-number {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .process-diagram {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .process-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* ============================================
+   Phase 19: Chapter Closing Slide
+   ============================================ */
+
+.chapter-closing-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 700px;
+  padding: 80px;
+}
+
+.chapter-logo-large {
+  font-size: 10em;
+  font-weight: 900;
+  color: #FFFFFF;
+  margin-bottom: 40px;
+  text-align: center;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.chapter-motto {
+  font-size: 3em;
+  font-weight: 700;
+  color: #FFD700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.chapter-subtitle {
+  font-size: 2em;
+  font-weight: 600;
+  color: #FFE6E8;
+  text-align: center;
+}
+
+/* Responsive Adjustments for Phase 19 */
+@media (max-width: 1400px) {
+  .chapter-logo-large {
+    font-size: 8em;
+  }
+
+  .chapter-motto {
+    font-size: 2.5em;
+  }
+
+  .chapter-subtitle {
+    font-size: 1.7em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .chapter-logo-large {
+    font-size: 6em;
+  }
+
+  .chapter-motto {
+    font-size: 2em;
+  }
+
+  .chapter-subtitle {
+    font-size: 1.5em;
+  }
+}
+
+/* ============================================
+   Phase 5: Monthly Champions Slides
+   ============================================ */
+
+/* Champions Intro Slide */
+.champions-intro-slide {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 700px;
+  padding: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.champions-intro-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+.champions-main-title {
+  font-size: 4em;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 60px;
+  text-align: center;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+.champion-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  z-index: 1;
+}
+
+.category-badge {
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
+  color: white;
+  font-size: 2em;
+  font-weight: 700;
+  padding: 25px 50px;
+  text-align: center;
+  border-radius: 0;
+  box-shadow: 0 8px 20px rgba(207, 32, 48, 0.4);
+  transform: skewX(-5deg);
+  transition: all 0.3s ease;
+}
+
+/* Champion Detail Slide */
+.champion-detail-slide {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  color: white;
+  padding: 60px 80px;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.champion-header {
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
+  color: white;
+  font-size: 2.5em;
+  font-weight: 800;
+  padding: 20px 60px;
+  text-align: center;
+  margin: -60px -80px 40px;
+  transform: skewX(-5deg);
+  box-shadow: 0 8px 20px rgba(207, 32, 48, 0.4);
+}
+
+.champion-summary {
+  font-size: 1.5em;
+  color: white;
+  margin-bottom: 30px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.winner-category {
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
+  color: white;
+  font-size: 1.8em;
+  font-weight: 700;
+  padding: 15px 40px;
+  display: inline-block;
+  margin-bottom: 40px;
+  transform: skewX(-5deg);
+  box-shadow: 0 4px 12px rgba(207, 32, 48, 0.3);
+}
+
+.winner-main {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 40px 0;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 8px solid #FFD700;
+  border-radius: 8px;
+}
+
+.winner-rank-badge {
+  font-size: 3em;
+  font-weight: 900;
+  color: #FFD700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.winner-info {
+  flex: 1;
+}
+
+.winner-name {
+  font-size: 3.5em;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.winner-count {
+  font-size: 2em;
+  color: #FFD700;
+}
+
+.runners-up {
+  margin-top: 40px;
+  padding-left: 40px;
+}
+
+.runner-up {
+  font-size: 2em;
+  margin: 20px 0;
+  color: white;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 5px solid rgba(255, 215, 0, 0.5);
+  border-radius: 4px;
+}
+
+.runner-rank {
+  font-weight: 800;
+  color: #FFD700;
+  margin-right: 10px;
+}
+
+.runner-name {
+  font-weight: 600;
+}
+
+.runner-count {
+  margin-left: 20px;
+  color: #FFD700;
+  font-weight: 700;
+}
+
+/* Responsive Adjustments for Phase 5 */
+@media (max-width: 1400px) {
+  .champions-main-title {
+    font-size: 3.5em;
+  }
+
+  .category-badge {
+    font-size: 1.8em;
+    padding: 20px 40px;
+  }
+
+  .champion-header {
+    font-size: 2.2em;
+  }
+
+  .winner-name {
+    font-size: 3em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .champions-main-title {
+    font-size: 2.5em;
+  }
+
+  .category-badge {
+    font-size: 1.5em;
+    padding: 15px 30px;
+  }
+
+  .champion-header {
+    font-size: 1.8em;
+  }
+
+  .winner-main {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .winner-name {
+    font-size: 2.5em;
+  }
+
+  .runner-up {
+    font-size: 1.5em;
+  }
+}
+
+/* ============================================
+   Phase 4: New Members Slides
+   ============================================ */
+
+.new-members-intro-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 700px;
+  padding: 80px;
+}
+
+.new-members-title {
+  font-size: 5em;
+  font-weight: 900;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.new-member-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  padding: 60px 80px;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.new-member-header {
+  font-size: 3em;
+  font-weight: 900;
+  color: #FFD700;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.new-member-date {
+  font-size: 2em;
+  color: #FFD700;
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.new-member-content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.new-member-photo-container {
+  flex-shrink: 0;
+}
+
+.new-member-photo {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 8px solid #FFFFFF;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.new-member-info {
+  flex: 1;
+  text-align: left;
+}
+
+.new-member-name {
+  font-size: 4em;
+  font-weight: 900;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+}
+
+.new-member-company {
+  font-size: 2em;
+  color: #FFE6E8;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.new-member-category {
+  font-size: 1.8em;
+  color: #FFD700;
+  font-weight: 700;
+}
+
+/* Responsive Adjustments for Phase 4 */
+@media (max-width: 1400px) {
+  .new-members-title {
+    font-size: 4em;
+  }
+
+  .new-member-header {
+    font-size: 2.5em;
+  }
+
+  .new-member-photo {
+    width: 350px;
+    height: 350px;
+  }
+
+  .new-member-name {
+    font-size: 3.5em;
+  }
+
+  .new-member-company {
+    font-size: 1.8em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .new-members-title {
+    font-size: 3em;
+  }
+
+  .new-member-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .new-member-info {
+    text-align: center;
+  }
+
+  .new-member-photo {
+    width: 300px;
+    height: 300px;
+  }
+
+  .new-member-name {
+    font-size: 2.5em;
+  }
+
+  .new-member-company {
+    font-size: 1.5em;
+  }
+}
+
+/* ============================================
+   Phase 10: Visitor Hosts Slide
+   ============================================ */
+
+.visitor-hosts-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
+  color: white;
+  padding: 60px 80px;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.visitor-hosts-title {
+  font-size: 4em;
+  font-weight: 900;
+  color: white;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.visitor-hosts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.visitor-host-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.visitor-host-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.visitor-host-photo-container {
+  margin-bottom: 20px;
+}
+
+.visitor-host-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #D00C24;
+  box-shadow: 0 4px 12px rgba(207, 32, 48, 0.3);
+}
+
+.visitor-host-info {
+  width: 100%;
+}
+
+.visitor-host-name {
+  font-size: 1.8em;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.visitor-host-company {
+  font-size: 1.2em;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.visitor-host-category {
+  font-size: 1.1em;
+  color: #D00C24;
+  font-weight: 700;
+}
+
+/* Responsive Adjustments for Phase 10 */
+@media (max-width: 1400px) {
+  .visitor-hosts-title {
+    font-size: 3.5em;
+  }
+
+  .visitor-hosts-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .visitor-hosts-title {
+    font-size: 2.5em;
+  }
+
+  .visitor-hosts-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .visitor-host-photo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .visitor-host-name {
+    font-size: 1.5em;
+  }
+
+  .visitor-host-company {
+    font-size: 1em;
+  }
+
+  .visitor-host-category {
+    font-size: 0.9em;
+  }
+}
+
+/* ============================================
+   Phase 2: Main Presentation Slides
+   ============================================ */
+
+.main-presentation-intro-slide {
+  display: flex;
+  min-height: 700px;
+  background: white;
+}
+
+.presentation-photo-left {
+  flex: 1;
+  overflow: hidden;
+}
+
+.presentation-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.presentation-title-right {
+  flex: 1;
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+}
+
+.presentation-main-title {
+  font-size: 4.5em;
+  font-weight: 900;
+  color: white;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.four-minute-presentation-slide {
+  background: linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 100%);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.four-minute-presentation-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.3) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+.four-minute-header {
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
+  color: white;
+  font-size: 3em;
+  font-weight: 800;
+  padding: 20px 80px;
+  margin-bottom: 80px;
+  transform: skewX(-5deg);
+  box-shadow: 0 8px 24px rgba(207, 32, 48, 0.4);
+  position: relative;
+  z-index: 1;
+}
+
+.four-minute-presenter-box {
+  background: white;
+  border-radius: 24px;
+  padding: 60px 100px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.presenter-name-large {
+  font-size: 5em;
+  font-weight: 900;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.presenter-category-large {
+  font-size: 2.5em;
+  color: #D00C24;
+  font-weight: 700;
+}
+
+/* Responsive Adjustments for Phase 2 */
+@media (max-width: 1400px) {
+  .presentation-main-title {
+    font-size: 3.5em;
+  }
+
+  .four-minute-header {
+    font-size: 2.5em;
+  }
+
+  .presenter-name-large {
+    font-size: 4em;
+  }
+
+  .presenter-category-large {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-presentation-intro-slide {
+    flex-direction: column;
+  }
+
+  .presentation-photo-left {
+    min-height: 300px;
+  }
+
+  .presentation-main-title {
+    font-size: 2.5em;
+  }
+
+  .four-minute-header {
+    font-size: 2em;
+    padding: 15px 50px;
+  }
+
+  .four-minute-presenter-box {
+    padding: 40px 60px;
+  }
+
+  .presenter-name-large {
+    font-size: 3em;
+  }
+
+  .presenter-category-large {
+    font-size: 1.5em;
+  }
+}
+
+/* ============================================
+   Phase 8: Secretary Slide
+   ============================================ */
+
+.secretary-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+}
+
+.secretary-title {
+  font-size: 4em;
+  font-weight: 900;
+  color: #D00C24;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.secretary-info-box {
+  background: white;
+  border: 5px solid #D00C24;
+  border-radius: 16px;
+  padding: 40px 80px;
+  margin-bottom: 50px;
+  box-shadow: 0 8px 24px rgba(207, 32, 48, 0.2);
+  text-align: center;
+}
+
+.secretary-name {
+  font-size: 3em;
+  font-weight: 900;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.secretary-role {
+  font-size: 1.8em;
+  color: #666;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.secretary-category {
+  font-size: 1.5em;
+  color: #D00C24;
+  font-weight: 700;
+}
+
+.secretary-message {
+  max-width: 900px;
+  background: linear-gradient(135deg, #FFF9E6 0%, #FFF5CC 100%);
+  border-left: 8px solid #FFB800;
+  border-radius: 12px;
+  padding: 40px 50px;
+  text-align: center;
+}
+
+.secretary-message p {
+  font-size: 2em;
+  color: #333;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+/* Responsive Adjustments for Phase 8 */
+@media (max-width: 1400px) {
+  .secretary-title {
+    font-size: 3.5em;
+  }
+
+  .secretary-name {
+    font-size: 2.5em;
+  }
+
+  .secretary-message p {
+    font-size: 1.7em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .secretary-title {
+    font-size: 2.5em;
+  }
+
+  .secretary-info-box {
+    padding: 30px 50px;
+  }
+
+  .secretary-name {
+    font-size: 2em;
+  }
+
+  .secretary-role {
+    font-size: 1.5em;
+  }
+
+  .secretary-message p {
+    font-size: 1.5em;
+  }
+}
+
+/* ============================================
+   Phase 9: Director Slide
+   ============================================ */
+
+.director-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+}
+
+.director-title {
+  font-size: 4em;
+  font-weight: 900;
+  color: white;
+  text-align: center;
+  margin-bottom: 60px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.director-info-box {
+  background: linear-gradient(135deg, #D00C24 0%, #A01828 100%);
+  border-radius: 16px;
+  padding: 40px 80px;
+  margin-bottom: 50px;
+  box-shadow: 0 8px 24px rgba(207, 32, 48, 0.4);
+  text-align: center;
+}
+
+.director-name {
+  font-size: 3.5em;
+  font-weight: 900;
+  color: white;
+}
+
+.director-message {
+  max-width: 900px;
+  background: white;
+  border-radius: 12px;
+  padding: 40px 50px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.director-message p {
+  font-size: 2em;
+  color: #333;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+/* Responsive Adjustments for Phase 9 */
+@media (max-width: 1400px) {
+  .director-title {
+    font-size: 3.5em;
+  }
+
+  .director-name {
+    font-size: 3em;
+  }
+
+  .director-message p {
+    font-size: 1.7em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .director-title {
+    font-size: 2.5em;
+  }
+
+  .director-info-box {
+    padding: 30px 50px;
+  }
+
+  .director-name {
+    font-size: 2em;
+  }
+
+  .director-message p {
+    font-size: 1.5em;
+  }
+}
+
+/* =====================================
+   Phase 6: Happy Birthday Slide
+   ===================================== */
+.happy-birthday-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  text-align: center;
+}
+
+.birthday-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.cake-icon {
+  font-size: 4em;
+  color: #FF6B9D;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.birthday-title {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #333 !important;
+  margin: 0;
+  text-align: center !important;
+}
+
+.birthday-celebration {
+  margin: 60px 0;
+}
+
+.party-icon {
+  font-size: 12em;
+  color: #FFB347;
+  animation: rotate-celebrate 3s ease-in-out infinite;
+}
+
+@keyframes rotate-celebrate {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(-15deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(15deg) scale(1.1);
+  }
+}
+
+.birthday-message {
+  font-size: 3.5em;
+  font-weight: 700;
+  color: #333;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.heart-icon {
+  font-size: 1.2em;
+  color: #FF1744;
+  animation: heartbeat 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25%, 75% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+.birthday-names {
+  font-size: 3em;
+  font-weight: 700;
+  color: #D00C24;
+  margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .birthday-title {
+    font-size: 4em;
+  }
+
+  .cake-icon {
+    font-size: 3.5em;
+  }
+
+  .party-icon {
+    font-size: 10em;
+  }
+
+  .birthday-message {
+    font-size: 3em;
+  }
+
+  .birthday-names {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .happy-birthday-slide {
+    padding: 50px;
+  }
+
+  .birthday-title {
+    font-size: 3em;
+  }
+
+  .cake-icon {
+    font-size: 2.5em;
+  }
+
+  .party-icon {
+    font-size: 8em;
+  }
+
+  .birthday-message {
+    font-size: 2.5em;
+  }
+
+  .birthday-names {
+    font-size: 2em;
+  }
+}
+
+/* =====================================
+   Phase 12: Networking Education Corner Slide
+   ===================================== */
+.networking-education-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+}
+
+.networking-education-title {
+  font-size: 4em;
+  font-weight: 800;
+  color: #2E7D32 !important;
+  margin-bottom: 15px;
+  text-align: center !important;
+}
+
+.networking-education-subtitle {
+  font-size: 1.5em;
+  color: #558B2F;
+  font-weight: 500;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.networking-education-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.networking-education-presenter-box {
+  background: white;
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 10px 30px rgba(46, 125, 50, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.networking-education-presenter-photo {
+  flex-shrink: 0;
+}
+
+.networking-education-presenter-photo img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #2E7D32;
+}
+
+.networking-education-presenter-info {
+  flex: 1;
+}
+
+.networking-education-presenter-name {
+  font-size: 3em;
+  font-weight: 700;
+  color: #1B5E20;
+  margin-bottom: 15px;
+}
+
+.networking-education-presenter-role {
+  font-size: 1.8em;
+  color: #424242;
+  margin-bottom: 10px;
+}
+
+.networking-education-presenter-category {
+  font-size: 1.5em;
+  color: #666;
+  font-style: italic;
+}
+
+.networking-education-topic {
+  background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+  border-radius: 20px;
+  padding: 40px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  box-shadow: 0 8px 24px rgba(46, 125, 50, 0.3);
+}
+
+.topic-icon {
+  font-size: 3.5em;
+  color: white;
+  animation: float-book 3s ease-in-out infinite;
+}
+
+@keyframes float-book {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.topic-text {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: white;
+  flex: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .networking-education-title {
+    font-size: 3.5em;
+  }
+
+  .networking-education-presenter-photo img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .networking-education-presenter-name {
+    font-size: 2.5em;
+  }
+
+  .topic-text {
+    font-size: 2.2em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .networking-education-slide {
+    padding: 40px;
+  }
+
+  .networking-education-title {
+    font-size: 2.5em;
+  }
+
+  .networking-education-subtitle {
+    font-size: 1.2em;
+  }
+
+  .networking-education-presenter-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .networking-education-presenter-photo img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .networking-education-presenter-name {
+    font-size: 2em;
+  }
+
+  .networking-education-presenter-role {
+    font-size: 1.5em;
+  }
+
+  .networking-education-presenter-category {
+    font-size: 1.3em;
+  }
+
+  .networking-education-topic {
+    flex-direction: column;
+    padding: 30px 40px;
+  }
+
+  .topic-icon {
+    font-size: 3em;
+  }
+
+  .topic-text {
+    font-size: 1.8em;
+    text-align: center;
+  }
+}
+
+/* =====================================
+   Phase 7: Weekly NO.1 Slide (Past Records)
+   ===================================== */
+.weekly-no1-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+  text-align: center;
+}
+
+.weekly-no1-header {
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.weekly-no1-date {
+  font-size: 1.2em;
+  color: #666;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.weekly-no1-title {
+  font-size: 4em;
+  font-weight: 800;
+  color: #D00C24 !important;
+  margin: 0;
+  text-align: center !important;
+}
+
+.weekly-no1-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  width: 100%;
+  max-width: 1400px;
+  margin-bottom: 50px;
+}
+
+.weekly-no1-item {
+  background: white;
+  border-radius: 20px;
+  padding: 50px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weekly-no1-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(207, 32, 48, 0.2);
+}
+
+.weekly-no1-category {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.weekly-no1-count {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #D00C24;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.sparkle-icon {
+  font-size: 0.6em;
+  margin-left: 10px;
+  color: #FFD700;
+  display: inline-block;
+  animation: sparkle-pulse 1.5s ease-in-out infinite;
+}
+
+.weekly-no1-winner {
+  font-size: 2em;
+  font-weight: 600;
+  color: #333;
+}
+
+.weekly-no1-footer {
+  font-size: 1.5em;
+  color: #666;
+  font-weight: 500;
+  margin-top: 30px;
+}
+
+.weekly-no1-footer .sparkle-icon {
+  display: inline-block;
+  animation: sparkle-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .weekly-no1-title {
+    font-size: 3.5em;
+  }
+
+  .weekly-no1-grid {
+    gap: 40px;
+  }
+
+  .weekly-no1-count {
+    font-size: 4em;
+  }
+
+  .weekly-no1-winner {
+    font-size: 1.8em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .weekly-no1-slide {
+    padding: 40px;
+  }
+
+  .weekly-no1-title {
+    font-size: 2.5em;
+  }
+
+  .weekly-no1-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .weekly-no1-item {
+    padding: 40px 25px;
+  }
+
+  .weekly-no1-category {
+    font-size: 1.5em;
+  }
+
+  .weekly-no1-count {
+    font-size: 3.5em;
+  }
+
+  .weekly-no1-winner {
+    font-size: 1.6em;
+  }
+
+  .weekly-no1-footer {
+    font-size: 1.3em;
+  }
+}
+
+/* =====================================
+   Phase 3: Referral Announcements Template
+   ===================================== */
+.referral-template-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  text-align: center;
+}
+
+.referral-template-title {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #FFFFFF !important;
+  margin-bottom: 20px;
+}
+
+.referral-template-subtitle {
+  font-size: 2em;
+  color: #FFD700;
+  font-weight: 500;
+  margin-bottom: 80px;
+}
+
+.referral-template-instruction {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 60px 80px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.referral-template-instruction i {
+  font-size: 5em;
+  color: #FFD700;
+}
+
+.referral-template-instruction p {
+  font-size: 2.5em;
+  color: #FFFFFF;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* =====================================
+   Phase 14: Visitor Self-Introduction Template
+   ===================================== */
+.visitor-intro-template-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  text-align: center;
+}
+
+.visitor-intro-title {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #FFFFFF !important;
+  margin-bottom: 20px;
+}
+
+.visitor-intro-subtitle {
+  font-size: 2em;
+  color: #FFD700;
+  font-weight: 500;
+  margin-bottom: 80px;
+}
+
+.visitor-intro-instruction {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 60px 80px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.visitor-intro-instruction i {
+  font-size: 5em;
+  color: #FFD700;
+}
+
+.visitor-intro-instruction p {
+  font-size: 2.5em;
+  color: #FFFFFF;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* =====================================
+   Phase 16: Today's Comment Template
+   ===================================== */
+.todays-comment-template-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  text-align: center;
+}
+
+.todays-comment-title {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #FFFFFF !important;
+  margin-bottom: 20px;
+}
+
+.todays-comment-subtitle {
+  font-size: 2em;
+  color: #FFD700;
+  font-weight: 500;
+  margin-bottom: 80px;
+}
+
+.todays-comment-instruction {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 60px 80px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.todays-comment-instruction i {
+  font-size: 5em;
+  color: #FFD700;
+}
+
+.todays-comment-instruction p {
+  font-size: 2.5em;
+  color: #FFFFFF;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* =====================================
+   Phase 17: Visitor Orientation
+   ===================================== */
+.visitor-orientation-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  text-align: center;
+}
+
+.visitor-orientation-title {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #FFFFFF !important;
+  margin-bottom: 20px;
+}
+
+.visitor-orientation-subtitle {
+  font-size: 2em;
+  color: #FFD700;
+  font-weight: 500;
+  margin-bottom: 60px;
+}
+
+.visitor-orientation-facilitator {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 60px 100px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.facilitator-label {
+  font-size: 1.8em;
+  color: #FFD700;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.facilitator-name {
+  font-size: 4em;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+}
+
+.facilitator-title {
+  font-size: 2em;
+  color: #FFE6E8;
+  font-weight: 500;
+}
+
+/* =====================================
+   Phase 18: From Coordinators Template
+   ===================================== */
+.coordinators-template-slide {
+  background: linear-gradient(135deg, #D00C24 0%, #9a1826 100%) !important;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  text-align: center;
+}
+
+.coordinators-title {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #FFFFFF !important;
+  margin-bottom: 20px;
+}
+
+.coordinators-subtitle {
+  font-size: 2em;
+  color: #FFD700;
+  font-weight: 500;
+  margin-bottom: 80px;
+}
+
+.coordinators-instruction {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 60px 80px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.coordinators-instruction i {
+  font-size: 5em;
+  color: #FFD700;
+}
+
+.coordinators-instruction p {
+  font-size: 2.5em;
+  color: #FFFFFF;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Responsive Design for Template Slides */
+@media (max-width: 1400px) {
+  .referral-template-title,
+  .visitor-intro-title,
+  .todays-comment-title,
+  .visitor-orientation-title,
+  .coordinators-title {
+    font-size: 4em;
+  }
+
+  .referral-template-instruction p,
+  .visitor-intro-instruction p,
+  .todays-comment-instruction p,
+  .coordinators-instruction p {
+    font-size: 2.2em;
+  }
+
+  .facilitator-name {
+    font-size: 3.5em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .referral-template-slide,
+  .visitor-intro-template-slide,
+  .todays-comment-template-slide,
+  .visitor-orientation-slide,
+  .coordinators-template-slide {
+    padding: 50px;
+  }
+
+  .referral-template-title,
+  .visitor-intro-title,
+  .todays-comment-title,
+  .visitor-orientation-title,
+  .coordinators-title {
+    font-size: 3em;
+  }
+
+  .referral-template-subtitle,
+  .visitor-intro-subtitle,
+  .todays-comment-subtitle,
+  .visitor-orientation-subtitle,
+  .coordinators-subtitle {
+    font-size: 1.5em;
+    margin-bottom: 50px;
+  }
+
+  .referral-template-instruction,
+  .visitor-intro-instruction,
+  .todays-comment-instruction,
+  .visitor-orientation-facilitator,
+  .coordinators-instruction {
+    flex-direction: column;
+    padding: 40px 50px;
+  }
+
+  .referral-template-instruction i,
+  .visitor-intro-instruction i,
+  .todays-comment-instruction i,
+  .coordinators-instruction i {
+    font-size: 4em;
+  }
+
+  .referral-template-instruction p,
+  .visitor-intro-instruction p,
+  .todays-comment-instruction p,
+  .coordinators-instruction p {
+    font-size: 1.8em;
+  }
+
+  .facilitator-name {
+    font-size: 2.5em;
+  }
+
+  .facilitator-title {
+    font-size: 1.5em;
+  }
+}
+
+/* ============================
+   Member Pitch Slides (Phase 13)
+   メンバーピッチスライド用スタイル
+   ============================ */
+
+.pitch-slide {
+  background: #D00C24 !important;
+}
+
+.pitch-slide-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 40px;
+}
+
+.pitch-profile-section {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.pitch-photo {
+  flex-shrink: 0;
+}
+
+.pitch-photo img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #FFFFFF;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.pitch-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pitch-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 0;
+}
+
+.pitch-icon {
+  font-size: 60px;
+  color: #FFD700;
+}
+
+.pitch-member-name {
+  font-size: 2.8em !important;
+  font-weight: 900 !important;
+  color: #FFFFFF !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+.pitch-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 0;
+  align-items: flex-start;
+}
+
+.pitch-company,
+.pitch-category,
+.pitch-team {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.3em;
+  color: #FFE6E8;
+}
+
+.pitch-company i,
+.pitch-category i,
+.pitch-team i {
+  font-size: 1.1em;
+  color: #FFD700;
+  width: 25px;
+  text-align: center;
+}
+
+.countdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.countdown-label {
+  font-size: 1.5em;
+  color: #FFE6E8;
+  font-weight: 600;
+}
+
+.countdown-timer {
+  font-size: 6em;
+  font-weight: 900;
+  color: #FFFFFF;
+  font-family: 'Noto Sans JP', sans-serif;
+  line-height: 1;
+  text-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
+  min-width: 200px;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.countdown-progress {
+  width: 500px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.countdown-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #FFFFFF, #FFD700);
+  width: 100%;
+  transition: width 1s linear;
+}
+
+/* Responsive Design for Pitch Slides */
+@media (max-width: 1024px) {
+  .pitch-profile-section {
+    gap: 30px;
+  }
+
+  .pitch-photo img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .pitch-member-name {
+    font-size: 2.8em !important;
+  }
+
+  .pitch-icon {
+    font-size: 60px;
+  }
+
+  .pitch-details {
+    font-size: 1.3em;
+  }
+
+  .countdown-timer {
+    font-size: 8em;
+  }
+
+  .countdown-progress {
+    width: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pitch-slide-container {
+    padding: 40px 20px;
+  }
+
+  .pitch-profile-section {
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+  }
+
+  .pitch-photo img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .pitch-info {
+    align-items: center;
+  }
+
+  .pitch-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .pitch-details {
+    align-items: center;
+  }
+
+  .pitch-member-name {
+    font-size: 2.2em !important;
+  }
+
+  .pitch-icon {
+    font-size: 50px;
+  }
+
+  .countdown-timer {
+    font-size: 6em;
+  }
+
+  .countdown-progress {
+    width: 300px;
+  }
+}
+
+/* ============================
+   Sidebar Table of Contents
+   サイドバー目次
+   ============================ */
+
+.sidebar-toc {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  background: rgba(207, 32, 48, 0.98);
+  color: #FFFFFF;
+  z-index: 999;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-toc.collapsed {
+  transform: translateX(-280px);
+}
+
+.sidebar-toc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: sticky;
+  top: 0;
+  background: rgba(207, 32, 48, 1);
+  z-index: 10;
+}
+
+.sidebar-toc-header h4 {
+  margin: 0;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #FFFFFF !important;
+}
+
+.toggle-sidebar-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-sidebar-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #FFFFFF;
+}
+
+.sidebar-toc.collapsed .toggle-sidebar-btn i {
+  transform: rotate(180deg);
+}
+
+.sidebar-toc-content {
+  padding: 10px 0;
+}
+
+.toc-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  transition: all 0.2s ease;
+  font-size: 0.95em;
+  line-height: 1.4;
+}
+
+.toc-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-left-color: #FFD700;
+}
+
+.toc-item.active {
+  background: rgba(255, 255, 255, 0.15);
+  border-left-color: #FFD700;
+  font-weight: 600;
+}
+
+.toc-item-title {
+  display: block;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.toc-item-subtitle {
+  display: block;
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 4px;
+}
+
+/* Toggle button when sidebar is collapsed */
+.sidebar-toggle-show {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(207, 32, 48, 0.9);
+  color: #FFFFFF;
+  border: none;
+  padding: 15px 8px;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.sidebar-toc.collapsed ~ .sidebar-toggle-show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar-toggle-show:hover {
+  background: rgba(207, 32, 48, 1);
+  padding-right: 12px;
+}
+
+/* Adjust Reveal.js container when sidebar is visible */
+.reveal {
+  margin-left: 280px;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar-toc.collapsed ~ .reveal {
+  margin-left: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .sidebar-toc {
+    width: 240px;
+  }
+
+  .sidebar-toc.collapsed {
+    transform: translateX(-240px);
+  }
+
+  .reveal {
+    margin-left: 240px;
+  }
+
+  .sidebar-toc.collapsed ~ .reveal {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-toc {
+    width: 100%;
+    transform: translateX(-100%);
+  }
+
+  .sidebar-toc.collapsed {
+    transform: translateX(-100%);
+  }
+
+  .reveal {
+    margin-left: 0 !important;
+  }
+
+  .sidebar-toc:not(.collapsed) {
+    transform: translateX(0);
+  }
+}
