@@ -242,9 +242,10 @@ dbClose($db);
               <label class="form-label">
                 今週のリファーラル総額（円）<span style="color: #D00C24;">*</span>
               </label>
-              <input type="number" name="total_amount" id="totalAmount" class="form-input" min="0" step="1" required placeholder="例: 500000">
+              <input type="text" name="total_amount_display" id="totalAmountDisplay" class="form-input" placeholder="例: 500,000" required>
+              <input type="hidden" name="total_amount" id="totalAmount">
               <p style="font-size: 14px; color: #666; margin-top: 5px;">
-                全メンバーのリファーラル金額の合計を入力してください
+                全メンバーのリファーラル金額の合計を入力してください（カンマは自動挿入されます）
               </p>
             </div>
 
@@ -275,9 +276,34 @@ dbClose($db);
     const saveForm = document.getElementById('saveReferralForm');
     const weekDateInput = document.getElementById('weekDateInput');
     const totalAmount = document.getElementById('totalAmount');
+    const totalAmountDisplay = document.getElementById('totalAmountDisplay');
     const notes = document.getElementById('notes');
     const loading = document.getElementById('loading');
     const message = document.getElementById('message');
+
+    // カンマ区切り表示関数
+    function formatNumber(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    // カンマ除去関数
+    function removeCommas(str) {
+      return str.replace(/,/g, '');
+    }
+
+    // 金額入力フィールドのイベントリスナー
+    totalAmountDisplay.addEventListener('input', function(e) {
+      let value = removeCommas(e.target.value);
+      // 数字のみ許可
+      value = value.replace(/\D/g, '');
+      if (value) {
+        e.target.value = formatNumber(value);
+        totalAmount.value = value;
+      } else {
+        e.target.value = '';
+        totalAmount.value = '';
+      }
+    });
 
     // Week selector change handler
     weekSelect.addEventListener('change', async function() {
@@ -300,11 +326,14 @@ dbClose($db);
 
         if (result.success && result.data) {
           // Load existing data
-          totalAmount.value = result.data.total_amount || '';
+          const amount = result.data.total_amount || '';
+          totalAmount.value = amount;
+          totalAmountDisplay.value = amount ? formatNumber(amount) : '';
           notes.value = result.data.notes || '';
         } else {
           // New entry
           totalAmount.value = '';
+          totalAmountDisplay.value = '';
           notes.value = '';
         }
 
