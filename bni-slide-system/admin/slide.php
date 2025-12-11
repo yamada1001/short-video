@@ -103,6 +103,19 @@ if (!$isAdmin) {
     </div>
   </div>
 
+  <!-- Sidebar Table of Contents -->
+  <div id="sidebarToc" class="sidebar-toc">
+    <div class="sidebar-toc-header">
+      <h4>目次</h4>
+      <button id="toggleSidebar" class="toggle-sidebar-btn">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+    </div>
+    <div class="sidebar-toc-content" id="tocContent">
+      <!-- Table of contents will be generated dynamically -->
+    </div>
+  </div>
+
   <!-- Reveal.js Presentation -->
   <div class="reveal">
     <div class="slides" id="slideContainer">

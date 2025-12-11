@@ -195,6 +195,9 @@
       // Setup logo display
       setupLogoDisplay();
 
+      // Setup sidebar table of contents
+      setupSidebarTOC();
+
     } catch (error) {
       console.error('Error loading slide data:', error);
       slideContainer.innerHTML = `
@@ -587,4 +590,81 @@ function escapeHtml(text) {
     "'": '&#039;'
   };
   return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+/**
+ * Setup Sidebar Table of Contents
+ */
+function setupSidebarTOC() {
+  const sidebar = document.getElementById('sidebarToc');
+  const tocContent = document.getElementById('tocContent');
+  const toggleBtn = document.getElementById('toggleSidebar');
+
+  if (!sidebar || !tocContent || !toggleBtn) return;
+
+  // Toggle sidebar
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+  });
+
+  // Generate TOC from slides
+  function generateTOC() {
+    const slides = document.querySelectorAll('.reveal .slides > section');
+    tocContent.innerHTML = '';
+
+    slides.forEach((slide, index) => {
+      const title = slide.querySelector('h1, h2');
+      const subtitle = slide.querySelector('h3, .subtitle');
+
+      if (title) {
+        const tocItem = document.createElement('div');
+        tocItem.className = 'toc-item';
+        tocItem.dataset.slideIndex = index;
+
+        const titleSpan = document.createElement('span');
+        titleSpan.className = 'toc-item-title';
+        titleSpan.textContent = title.textContent.trim();
+        tocItem.appendChild(titleSpan);
+
+        if (subtitle) {
+          const subtitleSpan = document.createElement('span');
+          subtitleSpan.className = 'toc-item-subtitle';
+          subtitleSpan.textContent = subtitle.textContent.trim();
+          tocItem.appendChild(subtitleSpan);
+        }
+
+        // Click handler
+        tocItem.addEventListener('click', () => {
+          Reveal.slide(index);
+        });
+
+        tocContent.appendChild(tocItem);
+      }
+    });
+
+    // Update active item on slide change
+    updateActiveTOCItem();
+  }
+
+  // Update active TOC item
+  function updateActiveTOCItem() {
+    const currentSlideIndex = Reveal.getIndices().h;
+    const tocItems = tocContent.querySelectorAll('.toc-item');
+
+    tocItems.forEach((item, index) => {
+      if (parseInt(item.dataset.slideIndex) === currentSlideIndex) {
+        item.classList.add('active');
+        // Scroll active item into view
+        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+
+  // Listen to slide changes
+  Reveal.on('slidechanged', updateActiveTOCItem);
+
+  // Generate TOC after slides are loaded
+  setTimeout(generateTOC, 500);
 }
