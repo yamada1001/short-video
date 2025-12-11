@@ -170,9 +170,9 @@
       postMessage: true,
       postMessageEvents: false,
       focusBodyOnPageVisibilityChange: true,
-      width: 1200,
-      height: 700,
-      margin: 0.04,
+      width: 1920,
+      height: 1080,
+      margin: 0.05,
       minScale: 0.2,
       maxScale: 2.0,
       disableLayout: false
