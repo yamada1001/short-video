@@ -56,7 +56,10 @@ try {
     }
 
     // CSRFトークン検証
-    if (!isset($data['csrf_token']) || !verifyCSRFToken($data['csrf_token'])) {
+    $sessionToken = $_SESSION['csrf_token'] ?? '';
+    $requestToken = $data['csrf_token'] ?? '';
+
+    if (empty($sessionToken) || empty($requestToken) || !hash_equals($sessionToken, $requestToken)) {
         http_response_code(403);
         throw new Exception('不正なリクエストです');
     }
