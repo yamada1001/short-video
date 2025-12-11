@@ -86,6 +86,8 @@ try {
 
     // Also update slide_config.json teams property
     $slideConfigFile = __DIR__ . '/data/slide_config.json';
+    error_log('[SEATING SAVE] Attempting to update slide_config.json at: ' . $slideConfigFile);
+
     if (file_exists($slideConfigFile)) {
         $slideConfigContent = file_get_contents($slideConfigFile);
         $slideConfig = json_decode($slideConfigContent, true);
@@ -104,15 +106,25 @@ try {
                 }
             }
 
+            error_log('[SEATING SAVE] Teams data: ' . json_encode($teams, JSON_UNESCAPED_UNICODE));
+
             // Update teams in slide_config
             $slideConfig['teams'] = $teams;
             $slideConfig['updated_at'] = date('Y-m-d');
 
             $slideConfigJson = json_encode($slideConfig, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-            if (file_put_contents($slideConfigFile, $slideConfigJson) === false) {
-                error_log('[SEATING SAVE] Warning: Failed to update slide_config.json');
+            $writeResult = file_put_contents($slideConfigFile, $slideConfigJson);
+
+            if ($writeResult === false) {
+                error_log('[SEATING SAVE] ERROR: Failed to write slide_config.json');
+            } else {
+                error_log('[SEATING SAVE] SUCCESS: Updated slide_config.json with ' . count($teams) . ' tables');
             }
+        } else {
+            error_log('[SEATING SAVE] ERROR: Failed to decode slide_config.json');
         }
+    } else {
+        error_log('[SEATING SAVE] ERROR: slide_config.json does not exist');
     }
 
     // 監査ログ
