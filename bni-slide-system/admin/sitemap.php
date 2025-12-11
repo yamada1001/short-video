@@ -567,20 +567,54 @@ header('Content-Type: text/html; charset=UTF-8');
               </div>
             </div>
 
-            <!-- admin/audit_log.php -->
+            <!-- admin/bulk_input.php -->
             <div class="page-item">
               <div class="page-icon">
-                <i class="fas fa-history"></i>
+                <i class="fas fa-list-check"></i>
               </div>
               <div class="page-content">
                 <div class="page-name">
-                  <a href="audit_log.php" target="_blank">監査ログ</a>
+                  <a href="bulk_input.php" target="_blank">一括入力</a>
                   <span class="badge badge-admin">管理者</span>
                 </div>
                 <div class="page-description">
-                  システムの操作履歴を表示。データの作成・更新・削除などの操作ログを記録。フィルタ機能（アクション・ユーザー）搭載。
+                  週を選択して全メンバーの出席状況・ビジター・121などを一括入力。座席表に登録されているメンバーのみ表示。
                 </div>
-                <div class="page-path">admin/audit_log.php</div>
+                <div class="page-path">admin/bulk_input.php</div>
+              </div>
+            </div>
+
+            <!-- admin/referrals.php -->
+            <div class="page-item">
+              <div class="page-icon">
+                <i class="fas fa-money-bill-wave"></i>
+              </div>
+              <div class="page-content">
+                <div class="page-name">
+                  <a href="referrals.php" target="_blank">リファーラル管理</a>
+                  <span class="badge badge-admin">管理者</span>
+                </div>
+                <div class="page-description">
+                  週ごとのリファーラル総額を管理。金額はカンマ区切りで表示され、スライドに反映されます。
+                </div>
+                <div class="page-path">admin/referrals.php</div>
+              </div>
+            </div>
+
+            <!-- admin/seating.php -->
+            <div class="page-item">
+              <div class="page-icon">
+                <i class="fas fa-chair"></i>
+              </div>
+              <div class="page-content">
+                <div class="page-name">
+                  <a href="seating.php" target="_blank">座席表編集</a>
+                  <span class="badge badge-admin">管理者</span>
+                </div>
+                <div class="page-description">
+                  チャプターミーティングの座席配置をドラッグ&ドロップで編集。8テーブル固定、最大7名/テーブル。
+                </div>
+                <div class="page-path">admin/seating.php</div>
               </div>
             </div>
 

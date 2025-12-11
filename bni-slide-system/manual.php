@@ -401,8 +401,8 @@ $currentUser = getCurrentUserInfo();
     <div class="manual-header">
       <h1><i class="fas fa-book"></i> BNI Slide System 利用マニュアル</h1>
       <p class="subtitle">BNI宗麟チャプター メンバー様・管理者様</p>
-      <span class="version">Version 1.0</span>
-      <p style="margin-top: 15px; font-size: 14px; color: #666;">最終更新: 2025年12月5日</p>
+      <span class="version">Version 2.0</span>
+      <p style="margin-top: 15px; font-size: 14px; color: #666;">最終更新: 2025年12月11日</p>
     </div>
 
     <!-- Table of Contents -->
@@ -677,6 +677,22 @@ $currentUser = getCurrentUserInfo();
         <li>Enter キーで確定（自動保存）</li>
         <li>「CSVダウンロード」ボタンでバックアップ可能</li>
       </ol>
+
+      <h3>一括入力（管理者専用）</h3>
+      <p>週を選択して、全メンバーの出席状況やビジター紹介などを一括で入力できます。</p>
+
+      <ol class="step-list">
+        <li>管理者メニューから「一括入力」をクリック</li>
+        <li>対象週をドロップダウンから選択</li>
+        <li>各メンバーのフォームが縦並びで表示されます</li>
+        <li>出席状況・ビジター・121・コメントなどを入力</li>
+        <li>ページ下部の「一括保存」ボタンをクリック</li>
+      </ol>
+
+      <div class="info-box">
+        <h4><i class="fas fa-info-circle"></i> 一括入力について</h4>
+        <p>座席表に登録されているメンバーのみが表示されます。メンバーは座席表の順序で並んでいます。各メンバーのフォームは独立しており、個別に入力できます。</p>
+      </div>
 
       <h3>リファーラル管理（管理者専用）</h3>
       <p>週ごとのリファーラル総額を管理します。</p>
