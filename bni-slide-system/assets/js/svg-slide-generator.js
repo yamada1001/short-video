@@ -1077,19 +1077,19 @@ function generateHappyBirthdaySlide(birthdays) {
   return `
     <section class="happy-birthday-slide">
       <div class="birthday-header">
-        <span class="cake-emoji">🎂</span>
+        <i class="fas fa-birthday-cake cake-icon"></i>
         <h2 class="birthday-title">今週のハッピーバースデー</h2>
-        <span class="cake-emoji">🎂</span>
+        <i class="fas fa-birthday-cake cake-icon"></i>
       </div>
 
       <div class="birthday-celebration">
-        <div class="party-popper">🎉</div>
+        <i class="fas fa-gift party-icon"></i>
       </div>
 
       <div class="birthday-message">
-        <span class="heart-emoji">❤️</span>
+        <i class="fas fa-heart heart-icon"></i>
         お誕生日おめでとうございます
-        <span class="heart-emoji">❤️</span>
+        <i class="fas fa-heart heart-icon"></i>
       </div>
 
       ${birthdays.length > 0 ? `
@@ -1115,25 +1115,25 @@ function generateWeeklyNo1Slide(weeklyNo1) {
       <div class="weekly-no1-grid">
         <div class="weekly-no1-item">
           <div class="weekly-no1-category">外部リファーラル</div>
-          <div class="weekly-no1-count">${escapeHtml(weeklyNo1.referral.count)}<span class="sparkle">✨</span></div>
+          <div class="weekly-no1-count">${escapeHtml(weeklyNo1.referral.count)}<i class="fas fa-star sparkle-icon"></i></div>
           <div class="weekly-no1-winner">${escapeHtml(weeklyNo1.referral.name)}</div>
         </div>
 
         <div class="weekly-no1-item">
           <div class="weekly-no1-category">ビジター招待</div>
-          <div class="weekly-no1-count">${escapeHtml(weeklyNo1.visitor.count)}<span class="sparkle">✨</span></div>
+          <div class="weekly-no1-count">${escapeHtml(weeklyNo1.visitor.count)}<i class="fas fa-star sparkle-icon"></i></div>
           <div class="weekly-no1-winner">${escapeHtml(weeklyNo1.visitor.name)}</div>
         </div>
 
         <div class="weekly-no1-item">
           <div class="weekly-no1-category">1to1</div>
-          <div class="weekly-no1-count">${escapeHtml(weeklyNo1.one_to_one.count)}<span class="sparkle">✨</span></div>
+          <div class="weekly-no1-count">${escapeHtml(weeklyNo1.one_to_one.count)}<i class="fas fa-star sparkle-icon"></i></div>
           <div class="weekly-no1-winner">${escapeHtml(weeklyNo1.one_to_one.name)}</div>
         </div>
       </div>
 
       <div class="weekly-no1-footer">
-        日々のメンバーへの貢献ありがとうございます<span class="sparkle">✨</span>
+        日々のメンバーへの貢献ありがとうございます<i class="fas fa-star sparkle-icon"></i>
       </div>
     </section>
   `;

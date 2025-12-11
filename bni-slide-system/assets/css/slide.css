@@ -2431,8 +2431,9 @@
   margin-bottom: 60px;
 }
 
-.cake-emoji {
+.cake-icon {
   font-size: 4em;
+  color: #FF6B9D;
   animation: bounce 2s ease-in-out infinite;
 }
 
@@ -2457,8 +2458,9 @@
   margin: 60px 0;
 }
 
-.party-popper {
+.party-icon {
   font-size: 12em;
+  color: #FFB347;
   animation: rotate-celebrate 3s ease-in-out infinite;
 }
 
@@ -2485,8 +2487,9 @@
   gap: 20px;
 }
 
-.heart-emoji {
+.heart-icon {
   font-size: 1.2em;
+  color: #FF1744;
   animation: heartbeat 1.5s ease-in-out infinite;
   display: inline-block;
 }
@@ -2516,11 +2519,11 @@
     font-size: 4em;
   }
 
-  .cake-emoji {
+  .cake-icon {
     font-size: 3.5em;
   }
 
-  .party-popper {
+  .party-icon {
     font-size: 10em;
   }
 
@@ -2542,11 +2545,11 @@
     font-size: 3em;
   }
 
-  .cake-emoji {
+  .cake-icon {
     font-size: 2.5em;
   }
 
-  .party-popper {
+  .party-icon {
     font-size: 8em;
   }
 
@@ -2816,9 +2819,10 @@
   line-height: 1;
 }
 
-.weekly-no1-count .sparkle {
+.sparkle-icon {
   font-size: 0.6em;
   margin-left: 10px;
+  color: #FFD700;
   display: inline-block;
   animation: sparkle-pulse 1.5s ease-in-out infinite;
 }
@@ -2836,7 +2840,7 @@
   margin-top: 30px;
 }
 
-.weekly-no1-footer .sparkle {
+.weekly-no1-footer .sparkle-icon {
   display: inline-block;
   animation: sparkle-pulse 1.5s ease-in-out infinite;
 }
