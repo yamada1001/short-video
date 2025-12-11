@@ -610,31 +610,26 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     slides += generateNetworkingEducationSlide(slideConfig.networking_education);
   }
 
-  // Phase 13: Member 60-second Pitch Slides
-  if (slideConfig && slideConfig.members && slideConfig.members.length > 0) {
-    slides += generateMemberPitchSlides(slideConfig.members);
-  }
-
-  // Phase 14: Visitor Self-Introduction Template
+  // Phase 13: Visitor Self-Introduction Template
   slides += generateVisitorIntroductionSlide();
 
-  // Phase 15: Speaker Rotation
+  // Phase 14: Speaker Rotation
   if (slideConfig && slideConfig.speaker_rotation) {
     slides += generateSpeakerRotationSlide(slideConfig);
   }
 
-  // Phase 16: Today's Comment Template
+  // Phase 15: Today's Comment Template
   slides += generateTodaysCommentSlide();
 
-  // Phase 17: Visitor Orientation
+  // Phase 16: Visitor Orientation
   if (slideConfig && slideConfig.orientation_facilitator) {
     slides += generateVisitorOrientationSlide(slideConfig.orientation_facilitator);
   }
 
-  // Phase 18: From Coordinators
+  // Phase 17: From Coordinators
   slides += generateCoordinatorsSlide();
 
-  // Phase 19: Closing - Chapter Logo
+  // Phase 18: Closing - Chapter Logo
   if (slideConfig && slideConfig.chapter) {
     slides += generateChapterClosingSlide(slideConfig);
   }
