@@ -363,5 +363,20 @@
       ]
     }
   },
+  "weekly_no1": {
+    "date": "12月5日",
+    "referral": {
+      "name": "藤田 亮",
+      "count": "6件"
+    },
+    "visitor": {
+      "name": "野口浩乃",
+      "count": "2名"
+    },
+    "one_to_one": {
+      "name": "早野大介",
+      "count": "10回"
+    }
+  },
   "updated_at": "2025-12-11"
 }

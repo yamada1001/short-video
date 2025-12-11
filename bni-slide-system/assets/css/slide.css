@@ -2408,3 +2408,164 @@
     font-size: 1.5em;
   }
 }
+
+/* =====================================
+   Phase 7: Weekly NO.1 Slide (Past Records)
+   ===================================== */
+.weekly-no1-slide {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F0F0F0 100%);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+  text-align: center;
+}
+
+.weekly-no1-header {
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.weekly-no1-date {
+  font-size: 1.2em;
+  color: #666;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.weekly-no1-title {
+  font-size: 4em;
+  font-weight: 800;
+  color: #CF2030 !important;
+  margin: 0;
+  text-align: center !important;
+}
+
+.weekly-no1-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  width: 100%;
+  max-width: 1400px;
+  margin-bottom: 50px;
+}
+
+.weekly-no1-item {
+  background: white;
+  border-radius: 20px;
+  padding: 50px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weekly-no1-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(207, 32, 48, 0.2);
+}
+
+.weekly-no1-category {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.weekly-no1-count {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #CF2030;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.weekly-no1-count .sparkle {
+  font-size: 0.6em;
+  margin-left: 10px;
+  display: inline-block;
+  animation: sparkle-pulse 1.5s ease-in-out infinite;
+}
+
+.weekly-no1-winner {
+  font-size: 2em;
+  font-weight: 600;
+  color: #333;
+}
+
+.weekly-no1-footer {
+  font-size: 1.5em;
+  color: #666;
+  font-weight: 500;
+  margin-top: 30px;
+}
+
+.weekly-no1-footer .sparkle {
+  display: inline-block;
+  animation: sparkle-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .weekly-no1-title {
+    font-size: 3.5em;
+  }
+
+  .weekly-no1-grid {
+    gap: 40px;
+  }
+
+  .weekly-no1-count {
+    font-size: 4em;
+  }
+
+  .weekly-no1-winner {
+    font-size: 1.8em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .weekly-no1-slide {
+    padding: 40px;
+  }
+
+  .weekly-no1-title {
+    font-size: 2.5em;
+  }
+
+  .weekly-no1-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .weekly-no1-item {
+    padding: 40px 25px;
+  }
+
+  .weekly-no1-category {
+    font-size: 1.5em;
+  }
+
+  .weekly-no1-count {
+    font-size: 3.5em;
+  }
+
+  .weekly-no1-winner {
+    font-size: 1.6em;
+  }
+
+  .weekly-no1-footer {
+    font-size: 1.3em;
+  }
+}

@@ -566,6 +566,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     slides += generateMonthlyChampionsSlides(slideConfig);
   }
 
+  // Phase 7: Weekly NO.1 (Past Records)
+  if (slideConfig && slideConfig.weekly_no1) {
+    slides += generateWeeklyNo1Slide(slideConfig.weekly_no1);
+  }
+
   // Phase 8: Secretary Message
   if (slideConfig && slideConfig.secretary) {
     slides += generateSecretarySlide(slideConfig.secretary);
@@ -994,6 +999,44 @@ function generateSecretarySlide(secretary) {
       </div>
       <div class="secretary-message">
         <p>${escapeHtml(secretary.message)}</p>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 7: Generate Weekly NO.1 Slide (Past Records)
+ */
+function generateWeeklyNo1Slide(weeklyNo1) {
+  return `
+    <section class="weekly-no1-slide">
+      <div class="weekly-no1-header">
+        <div class="weekly-no1-date">${escapeHtml(weeklyNo1.date)}のPALMSレポートより</div>
+        <h2 class="weekly-no1-title">先週の週間NO.1</h2>
+      </div>
+
+      <div class="weekly-no1-grid">
+        <div class="weekly-no1-item">
+          <div class="weekly-no1-category">外部リファーラル</div>
+          <div class="weekly-no1-count">${escapeHtml(weeklyNo1.referral.count)}<span class="sparkle">✨</span></div>
+          <div class="weekly-no1-winner">${escapeHtml(weeklyNo1.referral.name)}</div>
+        </div>
+
+        <div class="weekly-no1-item">
+          <div class="weekly-no1-category">ビジター招待</div>
+          <div class="weekly-no1-count">${escapeHtml(weeklyNo1.visitor.count)}<span class="sparkle">✨</span></div>
+          <div class="weekly-no1-winner">${escapeHtml(weeklyNo1.visitor.name)}</div>
+        </div>
+
+        <div class="weekly-no1-item">
+          <div class="weekly-no1-category">1to1</div>
+          <div class="weekly-no1-count">${escapeHtml(weeklyNo1.one_to_one.count)}<span class="sparkle">✨</span></div>
+          <div class="weekly-no1-winner">${escapeHtml(weeklyNo1.one_to_one.name)}</div>
+        </div>
+      </div>
+
+      <div class="weekly-no1-footer">
+        日々のメンバーへの貢献ありがとうございます<span class="sparkle">✨</span>
       </div>
     </section>
   `;
