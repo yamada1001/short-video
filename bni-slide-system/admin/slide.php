@@ -41,6 +41,17 @@ if (!$isAdmin) {
   <meta name="robots" content="noindex, nofollow">
   <title>BNI週次レポート | BNI Slide System</title>
 
+  <!-- Google Fonts: Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Common CSS -->
+  <link rel="stylesheet" href="../assets/css/common.css">
+
   <!-- Reveal.js CSS -->
   <link rel="stylesheet" href="../assets/lib/reveal.js/dist/reveal.css">
   <link rel="stylesheet" href="../assets/lib/reveal.js/dist/theme/white.css" id="theme">
@@ -61,6 +72,25 @@ if (!$isAdmin) {
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-logo">BNI Slide System</div>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="slide.php" class="active">スライド表示</a></li>
+          <li><a href="edit.php">編集</a></li>
+          <li><a href="bulk_input.php">一括入力</a></li>
+          <li><a href="referrals.php">リファーラル管理</a></li>
+          <li><a href="seating.php">座席表編集</a></li>
+          <li><a href="users.php">ユーザー管理</a></li>
+          <li><a href="audit_log.php">監査ログ</a></li>
+          <li><a href="../logout.php" style="color: #999;">ログアウト</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <!-- Loading Screen -->
   <div class="loading-screen" id="loadingScreen">

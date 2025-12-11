@@ -534,8 +534,8 @@ $currentUser = getCurrentUserInfo();
       </ul>
 
       <div class="info-box">
-        <h4><i class="fas fa-info-circle"></i> ピッチプレゼンテーションとの違い</h4>
-        <p>ピッチプレゼンテーション（60秒）とエデュケーション（BNI教育コンテンツ）は別のスライドとして表示されます。</p>
+        <h4><i class="fas fa-info-circle"></i> メインプレゼンテーションとの違い</h4>
+        <p>メインプレゼンテーション（30秒）とエデュケーション（BNI教育コンテンツ）は別のスライドとして表示されます。</p>
       </div>
 
       <h4>6. 送信</h4>
@@ -651,7 +651,7 @@ $currentUser = getCurrentUserInfo();
         <li>ビジター自己紹介スライド（各1枚）</li>
         <li>リファーラル金額内訳</li>
         <li>メンバー別貢献度</li>
-        <li>メンバーピッチカウントダウン（各1枚、30秒）</li>
+        <li>メインプレゼンカウントダウン（各1枚、30秒）</li>
         <li>リファーラル詳細</li>
         <li>アクティビティサマリー</li>
         <li>ビジターフィードバックスライド（各1枚）</li>
@@ -659,9 +659,9 @@ $currentUser = getCurrentUserInfo();
       </ol>
 
       <div class="info-box">
-        <h4><i class="fas fa-stopwatch"></i> ピッチカウントダウン機能</h4>
+        <h4><i class="fas fa-stopwatch"></i> メインプレゼンカウントダウン機能</h4>
         <ul>
-          <li>各メンバーのピッチスライドには30秒カウントダウンが表示されます</li>
+          <li>各メンバーのメインプレゼンスライドには30秒カウントダウンが表示されます</li>
           <li>スライドに移動すると自動的にカウントダウン開始</li>
           <li>視覚的なプログレスバーも表示</li>
         </ul>

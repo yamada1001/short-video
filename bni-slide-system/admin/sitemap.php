@@ -281,9 +281,11 @@ header('Content-Type: text/html; charset=UTF-8');
         <ul>
           <li><a href="slide.php">スライド表示</a></li>
           <li><a href="edit.php">編集</a></li>
+          <li><a href="bulk_input.php">一括入力</a></li>
+          <li><a href="referrals.php">リファーラル管理</a></li>
+          <li><a href="seating.php">座席表編集</a></li>
           <li><a href="users.php">ユーザー管理</a></li>
           <li><a href="audit_log.php">監査ログ</a></li>
-          <li><a href="maintenance_toggle.php">メンテナンス設定</a></li>
           <li><a href="sitemap.php" class="active">サイトマップ</a></li>
           <li><a href="../logout.php" style="color: #999;">ログアウト</a></li>
         </ul>

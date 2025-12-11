@@ -172,6 +172,7 @@ if (!$isAdmin) {
         <ul>
           <li><a href="slide.php">スライド表示</a></li>
           <li><a href="edit.php" class="active">編集</a></li>
+          <li><a href="bulk_input.php">一括入力</a></li>
           <li><a href="referrals.php">リファーラル管理</a></li>
           <li><a href="seating.php">座席表編集</a></li>
           <li><a href="users.php">ユーザー管理</a></li>

@@ -200,7 +200,7 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
       const viewerUrl = `../pitch_viewer.php?file=${pdfFile}`;
       slides += `
       <section>
-        <h2>メンバーのピッチ</h2>
+        <h2>メインプレゼン</h2>
         <div class="pitch-presenter-info">
           <h3>${presenterName}さん</h3>
           <a
@@ -226,7 +226,7 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
       // PowerPointの場合：ダウンロードリンクのみ
       slides += `
       <section>
-        <h2>メンバーのピッチ</h2>
+        <h2>メインプレゼン</h2>
         <div class="pitch-presenter-info">
           <h3>${presenterName}さん</h3>
         </div>
@@ -491,7 +491,7 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
 
       slides += `
         <section>
-          <h2>メンバーのピッチ</h2>
+          <h2>メインプレゼン</h2>
           <div class="pitch-presenter-info">
             <h3>${presenterName}さん</h3>
             <a
@@ -1450,7 +1450,7 @@ function generateMonthlyChampionsSlides(config) {
 
 /**
  * Generate Member 60-second Pitch Slides
- * 各メンバーのピッチスライドを生成（カウントダウンタイマー付き）
+ * 各メンバーのメインプレゼンスライドを生成（カウントダウンタイマー付き）
  */
 function generateMemberPitchSlides(members) {
   if (!members || members.length === 0) return '';
