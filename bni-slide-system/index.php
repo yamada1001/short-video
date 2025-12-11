@@ -367,6 +367,18 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
                     </p>
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label class="form-label">
+                    YouTube動画URL（オプション）
+                  </label>
+                  <input type="url" name="youtube_url" id="youtube_url" class="form-input" placeholder="https://www.youtube.com/watch?v=...">
+                  <span class="form-help">
+                    ピッチで使用するYouTube動画のURLを入力してください。<br>
+                    <strong>例:</strong> https://www.youtube.com/watch?v=xxxxx または https://youtu.be/xxxxx<br>
+                    動画はスライドに自動埋め込みされます。
+                  </span>
+                </div>
               </div>
             </div>
 

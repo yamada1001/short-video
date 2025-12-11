@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS survey_data (
     pitch_file_path TEXT,  -- ピッチファイルのパス
     pitch_file_original_name TEXT,  -- 元のファイル名
     pitch_file_type TEXT,  -- ファイルタイプ (pdf, pptx)
+    youtube_url TEXT,  -- YouTube動画URL (ピッチ・プレゼン用)
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );

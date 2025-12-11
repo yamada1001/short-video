@@ -4,6 +4,29 @@
  */
 
 /**
+ * Extract YouTube video ID from various URL formats
+ * @param {string} url - YouTube URL
+ * @returns {string|null} - Video ID or null if invalid
+ */
+function extractYouTubeVideoId(url) {
+  if (!url) return null;
+
+  // https://www.youtube.com/watch?v=VIDEO_ID
+  const watchMatch = url.match(/[?&]v=([^&]+)/);
+  if (watchMatch) return watchMatch[1];
+
+  // https://youtu.be/VIDEO_ID
+  const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+  if (shortMatch) return shortMatch[1];
+
+  // https://www.youtube.com/embed/VIDEO_ID
+  const embedMatch = url.match(/youtube\.com\/embed\/([^?&]+)/);
+  if (embedMatch) return embedMatch[1];
+
+  return null;
+}
+
+/**
  * Generate all slides from data
  */
 async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, shareStoryPresenter = null, educationPresenter = null, referralTotal = null, slideConfig = null) {
@@ -476,44 +499,76 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     }
   }
 
-  // Slide 6.5: Member Pitch Presentation (PDF only, one per week)
-  if (pitchPresenter && pitchPresenter.file_path) {
+  // Slide 6.5: Member Pitch Presentation (PDF or YouTube video)
+  if (pitchPresenter && (pitchPresenter.file_path || pitchPresenter.youtube_url)) {
     const presenterName = escapeHtml(pitchPresenter.name || 'メンバー');
-    const fileType = pitchPresenter.file_type || 'unknown';
-    const fileName = escapeHtml(pitchPresenter.file_original_name || 'ピッチ資料');
-    const filePath = pitchPresenter.file_path;
 
-    if (fileType === 'pdf') {
-      // PDFの場合のみ表示
-      const pdfFile = encodeURIComponent(filePath.split('/').pop());
-      const pdfUrl = `../api_get_pitch_file.php?file=${pdfFile}`;
-      const viewerUrl = `../pitch_viewer.php?file=${pdfFile}`;
+    // YouTube動画がある場合
+    if (pitchPresenter.youtube_url) {
+      const youtubeId = extractYouTubeVideoId(pitchPresenter.youtube_url);
+      if (youtubeId) {
+        const embedUrl = `https://www.youtube.com/embed/${youtubeId}`;
+        slides += `
+          <section>
+            <h2>メインプレゼン</h2>
+            <div class="pitch-presenter-info">
+              <h3>${presenterName}さん</h3>
+            </div>
+            <div class="pitch-file-container">
+              <iframe
+                width="100%"
+                height="600"
+                src="${embedUrl}"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                style="border: 1px solid #ddd; border-radius: 8px;"
+              ></iframe>
+            </div>
+          </section>
+        `;
+      }
+    }
 
-      slides += `
-        <section>
-          <h2>メインプレゼン</h2>
-          <div class="pitch-presenter-info">
-            <h3>${presenterName}さん</h3>
-            <a
-              href="${viewerUrl}"
-              target="_blank"
-              class="btn-fullscreen"
-              title="フルスクリーンで開く"
-            >
-              <i class="fas fa-expand"></i> フルスクリーンで開く
-            </a>
-          </div>
-          <div class="pitch-file-container">
-            <iframe
-              src="${pdfUrl}"
-              width="100%"
-              height="600"
-              style="border: 1px solid #ddd; border-radius: 8px;"
-              title="ピッチ資料 - ${fileName}"
-            ></iframe>
-          </div>
-        </section>
-      `;
+    // PDFファイルがある場合
+    if (pitchPresenter.file_path) {
+      const fileType = pitchPresenter.file_type || 'unknown';
+      const fileName = escapeHtml(pitchPresenter.file_original_name || 'ピッチ資料');
+      const filePath = pitchPresenter.file_path;
+
+      if (fileType === 'pdf') {
+        // PDFの場合のみ表示
+        const pdfFile = encodeURIComponent(filePath.split('/').pop());
+        const pdfUrl = `../api_get_pitch_file.php?file=${pdfFile}`;
+        const viewerUrl = `../pitch_viewer.php?file=${pdfFile}`;
+
+        slides += `
+          <section>
+            <h2>メインプレゼン（資料）</h2>
+            <div class="pitch-presenter-info">
+              <h3>${presenterName}さん</h3>
+              <a
+                href="${viewerUrl}"
+                target="_blank"
+                class="btn-fullscreen"
+                title="フルスクリーンで開く"
+              >
+                <i class="fas fa-expand"></i> フルスクリーンで開く
+              </a>
+            </div>
+            <div class="pitch-file-container">
+              <iframe
+                src="${pdfUrl}"
+                width="100%"
+                height="600"
+                style="border: 1px solid #ddd; border-radius: 8px;"
+                title="ピッチ資料 - ${fileName}"
+              ></iframe>
+            </div>
+          </section>
+        `;
+      }
     }
   }
 

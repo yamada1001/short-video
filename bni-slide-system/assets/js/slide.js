@@ -43,6 +43,18 @@
     }
   });
 
+  // PDF Export button handler
+  const exportPdfBtn = document.getElementById('exportPdfBtn');
+  if (exportPdfBtn) {
+    exportPdfBtn.addEventListener('click', function() {
+      // Reveal.jsのPDF出力機能を使用
+      // ?print-pdfパラメータを追加してページを再読み込み
+      const url = new URL(window.location.href);
+      url.searchParams.set('print-pdf', '');
+      window.open(url.toString(), '_blank');
+    });
+  }
+
   // Week selector change handler
   weekSelector.addEventListener('change', async function() {
     controlPanel.classList.add('hidden');

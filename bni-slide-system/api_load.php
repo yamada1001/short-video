@@ -280,7 +280,8 @@ function getPitchPresenter($db, $weekDate) {
       user_email,
       pitch_file_path,
       pitch_file_original_name,
-      pitch_file_type
+      pitch_file_type,
+      youtube_url
     FROM survey_data
     WHERE week_date = :week_date
       AND is_pitch_presenter = 1
@@ -299,7 +300,8 @@ function getPitchPresenter($db, $weekDate) {
     'email' => $result['user_email'],
     'file_path' => $result['pitch_file_path'],
     'file_original_name' => $result['pitch_file_original_name'],
-    'file_type' => $result['pitch_file_type']
+    'file_type' => $result['pitch_file_type'],
+    'youtube_url' => $result['youtube_url']
   ];
 }
 

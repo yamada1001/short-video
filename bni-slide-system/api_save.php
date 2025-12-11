@@ -46,18 +46,22 @@ try {
   // Get pitch presenter data (validate but don't upload yet)
   $isPitchPresenter = intval($_POST['is_pitch_presenter'] ?? 0);
   $pitchFileToUpload = null;
+  $youtubeUrl = trim($_POST['youtube_url'] ?? '');
 
-  // Validate pitch file if user is pitch presenter
+  // Validate pitch file or YouTube URL if user is pitch presenter
   if ($isPitchPresenter === 1) {
-    if (isset($_FILES['pitch_file']) && $_FILES['pitch_file']['error'] !== UPLOAD_ERR_NO_FILE) {
+    $hasPitchFile = isset($_FILES['pitch_file']) && $_FILES['pitch_file']['error'] !== UPLOAD_ERR_NO_FILE;
+    $hasYoutubeUrl = !empty($youtubeUrl);
+
+    if ($hasPitchFile) {
       // Validate pitch file (but don't save yet - we need user ID first)
       $validation = validatePitchFile($_FILES['pitch_file']);
       if (!$validation['success']) {
         throw new Exception($validation['message']);
       }
       $pitchFileToUpload = $_FILES['pitch_file'];
-    } else {
-      throw new Exception('ピッチ資料をアップロードしてください');
+    } elseif (!$hasYoutubeUrl) {
+      throw new Exception('ピッチ資料をアップロードするか、YouTube動画URLを入力してください');
     }
   }
 
@@ -223,6 +227,7 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
       pitch_file_path,
       pitch_file_original_name,
       pitch_file_type,
+      youtube_url,
       is_education_presenter,
       education_file_path,
       education_file_original_name,
@@ -240,6 +245,7 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
       :pitch_file_path,
       :pitch_file_original_name,
       :pitch_file_type,
+      :youtube_url,
       :is_education_presenter,
       :education_file_path,
       :education_file_original_name,
@@ -259,6 +265,7 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
       ':pitch_file_path' => $actualPitchFileData ? $actualPitchFileData['path'] : null,
       ':pitch_file_original_name' => $actualPitchFileData ? $actualPitchFileData['original_name'] : null,
       ':pitch_file_type' => $actualPitchFileData ? $actualPitchFileData['type'] : null,
+      ':youtube_url' => !empty($youtubeUrl) ? $youtubeUrl : null,
       ':is_education_presenter' => $isEducationPresenter,
       ':education_file_path' => $actualEducationFileData ? $actualEducationFileData['path'] : null,
       ':education_file_original_name' => $actualEducationFileData ? $actualEducationFileData['original_name'] : null,

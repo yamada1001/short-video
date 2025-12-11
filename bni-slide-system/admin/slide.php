@@ -126,6 +126,11 @@ if (!$isAdmin) {
           </select>
         </div>
         <div class="control-group">
+          <button id="exportPdfBtn" class="btn btn-success" style="width: 100%; margin-bottom: 10px;">
+            <i class="fas fa-file-pdf"></i> PDFで出力
+          </button>
+        </div>
+        <div class="control-group">
           <a href="edit.php" class="edit-link">📝 編集モード</a>
         </div>
       </div>
