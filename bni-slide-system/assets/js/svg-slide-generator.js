@@ -566,6 +566,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     slides += generateMonthlyChampionsSlides(slideConfig);
   }
 
+  // Phase 6: Happy Birthday (only if there are birthdays this week)
+  if (slideConfig && slideConfig.birthdays_this_week && slideConfig.birthdays_this_week.length > 0) {
+    slides += generateHappyBirthdaySlide(slideConfig.birthdays_this_week);
+  }
+
   // Phase 7: Weekly NO.1 (Past Records)
   if (slideConfig && slideConfig.weekly_no1) {
     slides += generateWeeklyNo1Slide(slideConfig.weekly_no1);
@@ -1000,6 +1005,39 @@ function generateSecretarySlide(secretary) {
       <div class="secretary-message">
         <p>${escapeHtml(secretary.message)}</p>
       </div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 6: Generate Happy Birthday Slide
+ */
+function generateHappyBirthdaySlide(birthdays) {
+  const birthdayNames = birthdays.map(b => escapeHtml(b.name || b)).join('、');
+
+  return `
+    <section class="happy-birthday-slide">
+      <div class="birthday-header">
+        <span class="cake-emoji">🎂</span>
+        <h2 class="birthday-title">今週のハッピーバースデー</h2>
+        <span class="cake-emoji">🎂</span>
+      </div>
+
+      <div class="birthday-celebration">
+        <div class="party-popper">🎉</div>
+      </div>
+
+      <div class="birthday-message">
+        <span class="heart-emoji">❤️</span>
+        お誕生日おめでとうございます
+        <span class="heart-emoji">❤️</span>
+      </div>
+
+      ${birthdays.length > 0 ? `
+        <div class="birthday-names">
+          ${birthdayNames}
+        </div>
+      ` : ''}
     </section>
   `;
 }
