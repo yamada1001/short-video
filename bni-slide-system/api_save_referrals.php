@@ -48,14 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // CSRFトークン検証
-if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
-    http_response_code(403);
-    echo json_encode([
-        'success' => false,
-        'message' => '不正なリクエストです'
-    ]);
-    exit;
-}
+requireCSRFToken();
 
 try {
     // バリデーション
