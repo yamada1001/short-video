@@ -73,24 +73,6 @@ if (!$isAdmin) {
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container">
-      <div class="site-logo">BNI Slide System</div>
-      <nav class="site-nav">
-        <ul>
-          <li><a href="slide.php" class="active">スライド表示</a></li>
-          <li><a href="edit.php">編集</a></li>
-          <li><a href="bulk_input.php">一括入力</a></li>
-          <li><a href="referrals.php">リファーラル管理</a></li>
-          <li><a href="seating.php">座席表編集</a></li>
-          <li><a href="users.php">ユーザー管理</a></li>
-          <li><a href="../logout.php" style="color: #999;">ログアウト</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
   <!-- Loading Screen -->
   <div class="loading-screen" id="loadingScreen">
     <div class="spinner"></div>
