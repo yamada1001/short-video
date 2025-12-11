@@ -79,6 +79,18 @@ CREATE TABLE IF NOT EXISTS referrals (
 
 CREATE INDEX idx_referrals_survey_data_id ON referrals(survey_data_id);
 
+-- 週次リファーラル総額テーブル（管理者入力用）
+CREATE TABLE IF NOT EXISTS referrals_weekly (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    week_date TEXT UNIQUE NOT NULL,  -- 金曜日の日付 (YYYY-MM-DD)
+    total_amount INTEGER DEFAULT 0,  -- リファーラル総額
+    notes TEXT,  -- メモ
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_referrals_weekly_week_date ON referrals_weekly(week_date);
+
 -- 監査ログテーブル
 CREATE TABLE IF NOT EXISTS audit_logs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
