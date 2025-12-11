@@ -817,7 +817,122 @@
   color: #FFD700;
 }
 
-/* 名刺交換席次表 */
+/* 名刺交換席次表 - New Layout (本番PDF準拠) */
+.seating-slide-new {
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Top Area: Screen, Podium, Special Names */
+.seating-top-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.podium-area {
+  font-size: 20px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  border: 2px solid #333;
+  transform: rotate(-8deg);
+  font-weight: 600;
+}
+
+.screen-area {
+  font-size: 28px;
+  font-weight: 700;
+  padding: 15px 80px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #000;
+  border: 2px solid #333;
+}
+
+.special-names-area {
+  font-size: 20px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  border: 2px solid #333;
+  transform: rotate(8deg);
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* Main Seating Area: 3 Columns */
+.seating-main-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex: 1;
+  gap: 60px;
+  padding: 0 20px;
+}
+
+.seating-column {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  flex: 1;
+}
+
+.center-column {
+  gap: 120px;
+  padding-top: 60px;
+}
+
+/* Individual Table */
+.seating-table {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  border: 3px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 0 auto;
+}
+
+.table-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.3);
+  z-index: 1;
+}
+
+.member-name {
+  position: absolute;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* メンバー名を円周上に配置 */
+.seating-table .member-name:nth-child(2) { top: 5%; left: 50%; transform: translateX(-50%); }
+.seating-table .member-name:nth-child(3) { top: 15%; right: 15%; }
+.seating-table .member-name:nth-child(4) { top: 40%; right: 5%; }
+.seating-table .member-name:nth-child(5) { bottom: 20%; right: 10%; }
+.seating-table .member-name:nth-child(6) { bottom: 5%; left: 50%; transform: translateX(-50%); }
+.seating-table .member-name:nth-child(7) { bottom: 20%; left: 10%; }
+.seating-table .member-name:nth-child(8) { top: 40%; left: 5%; }
+.seating-table .member-name:nth-child(9) { top: 15%; left: 15%; }
+
+/* Old seating styles (keep for backward compatibility) */
 .seating-slide {
   padding: 40px;
 }
@@ -836,41 +951,6 @@
   padding: 10px 20px;
   background: rgba(207, 32, 48, 0.3);
   border-radius: 10px;
-}
-
-.seating-chart {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.team-circle {
-  background: rgba(255, 255, 255, 0.15);
-  border: 4px solid rgba(207, 32, 48, 0.6);
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  backdrop-filter: blur(10px);
-}
-
-.team-name {
-  font-size: 36px;
-  font-weight: 900;
-  color: #FFD700;
-  margin-bottom: 10px;
-}
-
-.team-members {
-  font-size: 16px;
-  text-align: center;
-  line-height: 1.6;
 }
 
 .screen-label {

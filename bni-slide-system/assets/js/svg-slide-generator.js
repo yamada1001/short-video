@@ -756,25 +756,59 @@ function generateBusinessCardSeatingSlide(config) {
   const podiumMembers = config.business_card_seating?.podium_members || ['ポーディアム'];
   const screenLabel = config.business_card_seating?.screen_label || 'スクリーン';
   const teams = config.teams || {};
+  const specialAreas = config.business_card_seating?.special_areas || [];
+
+  // テーブル配置: 本番PDFレイアウト
+  // 左列: A, B, C
+  // 中央列: H, F
+  // 右列: E, D, G
+  const tableLayout = {
+    left: ['A', 'B', 'C'],
+    center: ['H', 'F'],
+    right: ['E', 'D', 'G']
+  };
+
+  // 各テーブルのHTMLを生成
+  function renderTable(tableName) {
+    const members = teams[tableName] || [];
+    if (members.length === 0 && tableName !== 'H') return ''; // H は空でも表示
+
+    return `
+      <div class="seating-table" data-table="${tableName}">
+        <div class="table-label">${tableName}</div>
+        ${members.map(name => `<div class="member-name">${escapeHtml(name)}</div>`).join('')}
+      </div>
+    `;
+  }
 
   return `
-    <section class="opening-slide seating-slide">
-      <div class="seating-header">
-        <div class="podium-label">${podiumMembers.join(' ')}</div>
-        <h2>名刺交換時</h2>
+    <section class="opening-slide seating-slide-new">
+      <!-- Top Area: Screen, Podium, Special Names -->
+      <div class="seating-top-area">
+        <div class="podium-area">${podiumMembers[0] || 'ポーディアム'}</div>
+        <div class="screen-area">${screenLabel}</div>
+        <div class="special-names-area">
+          ${(config.business_card_seating?.top_right_names || ['山本', '花田', '佳子', '野口']).join(' ')}
+        </div>
       </div>
-      <div class="seating-chart">
-        ${Object.entries(teams).map(([teamName, members]) => {
-          if (members.length === 0) return '';
-          return `
-            <div class="team-circle">
-              <div class="team-name">${teamName}</div>
-              <div class="team-members">${members.map(m => m.split(' ')[1] || m).join('<br>')}</div>
-            </div>
-          `;
-        }).join('')}
+
+      <!-- Main Seating Area -->
+      <div class="seating-main-area">
+        <!-- Left Column: A, B, C -->
+        <div class="seating-column left-column">
+          ${tableLayout.left.map(t => renderTable(t)).join('')}
+        </div>
+
+        <!-- Center Column: H, F -->
+        <div class="seating-column center-column">
+          ${tableLayout.center.map(t => renderTable(t)).join('')}
+        </div>
+
+        <!-- Right Column: E, D, G -->
+        <div class="seating-column right-column">
+          ${tableLayout.right.map(t => renderTable(t)).join('')}
+        </div>
       </div>
-      <div class="screen-label">${screenLabel}</div>
     </section>
   `;
 }
