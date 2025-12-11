@@ -335,54 +335,9 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     }
 
     // Slide 5.5: Member 60-Second Pitch Slides (Full version with photos)
+    // Use generateMemberPitchSlides function (33-second pitch with photos)
     if (slideConfig && slideConfig.members && slideConfig.members.length > 0) {
-      slideConfig.members.forEach(member => {
-        const photoUrl = member.photo || 'assets/images/default-avatar.svg';
-        const industryIcon = getIndustryIcon(member.industry_icon || 'briefcase');
-        const pitchTime = member.pitch_time || 33;
-        const timeDisplay = `<<00:${String(pitchTime).padStart(2, '0')}>>`;
-
-        slides += `
-          <section class="member-pitch-slide-full" data-member="${escapeHtml(member.name)}">
-            <div class="pitch-layout-full">
-              <div class="member-photo-large">
-                <img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(member.name)}" onerror="this.src='assets/images/default-avatar.svg'">
-              </div>
-              <div class="member-info-right">
-                <div class="industry-badge-large">
-                  <i class="fas fa-${escapeHtml(industryIcon)}"></i>
-                  <span>${escapeHtml(member.category || '')}</span>
-                </div>
-                <h2 class="member-name-large">${escapeHtml(member.name)}</h2>
-                <p class="member-company-large">${escapeHtml(member.company || '')}</p>
-                <div class="pitch-timer-large" data-time="${pitchTime}">
-                  ${timeDisplay}
-                </div>
-              </div>
-            </div>
-          </section>
-        `;
-      });
-    } else {
-      // Fallback: Use existing member list from stats
-      const allMembers = Object.keys(stats.members);
-      allMembers.forEach(member => {
-        let memberName = member;
-        if (memberName && memberName.includes('様')) {
-          memberName = memberName.replace(/([^\s])様/, '$1 様');
-        }
-
-        slides += `
-          <section class="pitch-slide" data-member="${escapeHtml(member)}">
-            <h2 class="pitch-member-name">${escapeHtml(memberName)}</h2>
-            <p class="pitch-label">30秒ピッチ</p>
-            <div class="countdown-timer" data-seconds="30">30</div>
-            <div class="countdown-progress">
-              <div class="countdown-progress-bar"></div>
-            </div>
-          </section>
-        `;
-      });
+      slides += generateMemberPitchSlides(slideConfig.members);
     }
   }
 
