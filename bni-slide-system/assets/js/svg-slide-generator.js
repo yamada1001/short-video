@@ -1379,30 +1379,37 @@ function generateMemberPitchSlides(members) {
   members.forEach(member => {
     const pitchTime = member.pitch_time || 33;
     const industryIcon = member.industry_icon || 'briefcase';
+    const photoUrl = member.photo || '../assets/images/profile-placeholder.svg';
 
     slides += `
       <section class="pitch-slide">
         <div class="pitch-slide-container">
-          <div class="pitch-header">
-            <i class="fas fa-${escapeHtml(industryIcon)} pitch-icon"></i>
-            <h2 class="pitch-member-name">${escapeHtml(member.name)}</h2>
-          </div>
-
-          <div class="pitch-details">
-            <div class="pitch-company">
-              <i class="fas fa-building"></i>
-              <span>${escapeHtml(member.company)}</span>
+          <div class="pitch-profile-section">
+            <div class="pitch-photo">
+              <img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(member.name)}" />
             </div>
-            <div class="pitch-category">
-              <i class="fas fa-tag"></i>
-              <span>${escapeHtml(member.category)}</span>
-            </div>
-            ${member.team ? `
-              <div class="pitch-team">
-                <i class="fas fa-users"></i>
-                <span>チーム ${escapeHtml(member.team)}</span>
+            <div class="pitch-info">
+              <div class="pitch-header">
+                <i class="fas fa-${escapeHtml(industryIcon)} pitch-icon"></i>
+                <h2 class="pitch-member-name">${escapeHtml(member.name)}</h2>
               </div>
-            ` : ''}
+              <div class="pitch-details">
+                <div class="pitch-company">
+                  <i class="fas fa-building"></i>
+                  <span>${escapeHtml(member.company)}</span>
+                </div>
+                <div class="pitch-category">
+                  <i class="fas fa-tag"></i>
+                  <span>${escapeHtml(member.category)}</span>
+                </div>
+                ${member.team ? `
+                  <div class="pitch-team">
+                    <i class="fas fa-users"></i>
+                    <span>チーム ${escapeHtml(member.team)}</span>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
           </div>
 
           <div class="countdown-container">
