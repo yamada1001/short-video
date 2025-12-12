@@ -53,6 +53,10 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   // Monthly Ranking Slides (if data exists)
   if (monthlyRankingData) {
     slides += generateMonthlyRankingSlides(monthlyRankingData);
+
+    // If monthly ranking data exists, ONLY show ranking slides (not normal slides)
+    slideContainer.innerHTML = slides;
+    return;
   }
 
   // Phase 1: Opening Section
