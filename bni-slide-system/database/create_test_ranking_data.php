@@ -21,35 +21,35 @@ try {
 
     echo "<h2>作成する月: {$yearMonth}</h2>";
 
-    // テストデータ
+    // テストデータ（admin/monthly_ranking.phpの送信形式に合わせる）
     $testData = [
         'referral_amount' => [
-            ['name' => '山田太郎', 'value' => 5000000],
-            ['name' => '佐藤花子', 'value' => 3500000],
-            ['name' => '鈴木次郎', 'value' => 2800000],
-            ['name' => '高橋美咲', 'value' => 2100000],
-            ['name' => '田中健一', 'value' => 1800000]
+            ['rank' => 1, 'name' => '山田太郎', 'value' => 5000000],
+            ['rank' => 2, 'name' => '佐藤花子', 'value' => 3500000],
+            ['rank' => 3, 'name' => '鈴木次郎', 'value' => 2800000],
+            ['rank' => 4, 'name' => '高橋美咲', 'value' => 2100000],
+            ['rank' => 5, 'name' => '田中健一', 'value' => 1800000]
         ],
         'visitor_count' => [
-            ['name' => '佐藤花子', 'value' => 8],
-            ['name' => '山田太郎', 'value' => 7],
-            ['name' => '鈴木次郎', 'value' => 6],
-            ['name' => '高橋美咲', 'value' => 5],
-            ['name' => '田中健一', 'value' => 4]
+            ['rank' => 1, 'name' => '佐藤花子', 'value' => 8],
+            ['rank' => 2, 'name' => '山田太郎', 'value' => 7],
+            ['rank' => 3, 'name' => '鈴木次郎', 'value' => 6],
+            ['rank' => 4, 'name' => '高橋美咲', 'value' => 5],
+            ['rank' => 5, 'name' => '田中健一', 'value' => 4]
         ],
         'attendance_rate' => [
-            ['name' => '田中健一', 'value' => 100.0],
-            ['name' => '山田太郎', 'value' => 95.5],
-            ['name' => '佐藤花子', 'value' => 90.0],
-            ['name' => '高橋美咲', 'value' => 85.5],
-            ['name' => '鈴木次郎', 'value' => 80.0]
+            ['rank' => 1, 'name' => '田中健一', 'value' => 100.0],
+            ['rank' => 2, 'name' => '山田太郎', 'value' => 95.5],
+            ['rank' => 3, 'name' => '佐藤花子', 'value' => 90.0],
+            ['rank' => 4, 'name' => '高橋美咲', 'value' => 85.5],
+            ['rank' => 5, 'name' => '鈴木次郎', 'value' => 80.0]
         ],
-        'meeting_121_count' => [
-            ['name' => '高橋美咲', 'value' => 12],
-            ['name' => '鈴木次郎', 'value' => 10],
-            ['name' => '山田太郎', 'value' => 9],
-            ['name' => '佐藤花子', 'value' => 8],
-            ['name' => '田中健一', 'value' => 7]
+        'one_to_one_count' => [
+            ['rank' => 1, 'name' => '高橋美咲', 'value' => 12],
+            ['rank' => 2, 'name' => '鈴木次郎', 'value' => 10],
+            ['rank' => 3, 'name' => '山田太郎', 'value' => 9],
+            ['rank' => 4, 'name' => '佐藤花子', 'value' => 8],
+            ['rank' => 5, 'name' => '田中健一', 'value' => 7]
         ]
     ];
 
@@ -61,58 +61,58 @@ try {
         dbExecute($db, "DELETE FROM monthly_ranking_data WHERE year_month = ?", [$yearMonth]);
     }
 
-    // データを挿入
-    foreach ($testData as $rankingType => $rankings) {
-        $rankingJson = json_encode($rankings, JSON_UNESCAPED_UNICODE);
+    // 全てのランキングデータを1つのJSONとして保存（api_save_monthly_ranking.phpと同じ形式）
+    $rankingJson = json_encode($testData, JSON_UNESCAPED_UNICODE);
 
-        dbExecute($db,
-            "INSERT INTO monthly_ranking_data (year_month, ranking_type, ranking_data, created_at, updated_at)
-             VALUES (?, ?, ?, datetime('now', 'localtime'), datetime('now', 'localtime'))",
-            [$yearMonth, $rankingType, $rankingJson]
-        );
+    dbExecute($db,
+        "INSERT INTO monthly_ranking_data (year_month, ranking_data, created_at, updated_at)
+         VALUES (?, ?, datetime('now', 'localtime'), datetime('now', 'localtime'))",
+        [$yearMonth, $rankingJson]
+    );
 
-        echo "<p>✅ {$rankingType} のランキングデータを作成しました</p>";
-    }
+    echo "<p>✅ 月間ランキングデータを作成しました</p>";
 
     // 作成されたデータを表示
     echo "<h2>作成されたデータ</h2>";
 
-    $allData = dbQuery($db, "SELECT * FROM monthly_ranking_data WHERE year_month = ? ORDER BY ranking_type", [$yearMonth]);
+    $row = dbQueryOne($db, "SELECT * FROM monthly_ranking_data WHERE year_month = ?", [$yearMonth]);
 
-    foreach ($allData as $row) {
-        $rankings = json_decode($row['ranking_data'], true);
+    if ($row) {
+        $allRankings = json_decode($row['ranking_data'], true);
 
         $typeNames = [
             'referral_amount' => 'リファーラル金額ランキング',
             'visitor_count' => 'ビジター紹介数ランキング',
             'attendance_rate' => '出席率ランキング',
-            'meeting_121_count' => '121回数ランキング'
+            'one_to_one_count' => '121回数ランキング'
         ];
 
-        echo "<h3>" . ($typeNames[$row['ranking_type']] ?? $row['ranking_type']) . "</h3>";
-        echo "<table>";
-        echo "<tr><th>順位</th><th>名前</th><th>値</th></tr>";
+        foreach ($allRankings as $rankingType => $rankings) {
+            echo "<h3>" . ($typeNames[$rankingType] ?? $rankingType) . "</h3>";
+            echo "<table>";
+            echo "<tr><th>順位</th><th>名前</th><th>値</th></tr>";
 
-        $rank = 1;
-        foreach ($rankings as $ranking) {
-            $displayValue = $ranking['value'];
-            if ($row['ranking_type'] === 'referral_amount') {
-                $displayValue = '¥' . number_format($ranking['value']);
-            } elseif ($row['ranking_type'] === 'attendance_rate') {
-                $displayValue = $ranking['value'] . '%';
-            } else {
+            foreach ($rankings as $ranking) {
                 $displayValue = $ranking['value'];
+                if ($rankingType === 'referral_amount') {
+                    $displayValue = '¥' . number_format($ranking['value']);
+                } elseif ($rankingType === 'attendance_rate') {
+                    $displayValue = $ranking['value'] . '%';
+                } else {
+                    $displayValue = $ranking['value'];
+                }
+
+                echo "<tr>";
+                echo "<td>{$ranking['rank']}</td>";
+                echo "<td>" . htmlspecialchars($ranking['name']) . "</td>";
+                echo "<td>{$displayValue}</td>";
+                echo "</tr>";
             }
 
-            echo "<tr>";
-            echo "<td>" . $rank . "</td>";
-            echo "<td>" . htmlspecialchars($ranking['name']) . "</td>";
-            echo "<td>" . $displayValue . "</td>";
-            echo "</tr>";
-            $rank++;
+            echo "</table>";
         }
-
-        echo "</table>";
+    } else {
+        echo "<p style='color:red'>データの取得に失敗しました</p>";
     }
 
     dbClose($db);
