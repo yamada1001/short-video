@@ -77,7 +77,7 @@ try {
 
     // getTargetFriday関数をシミュレート
     require_once __DIR__ . '/../includes/date_helper.php';
-    $targetFriday = getTargetFriday();
+    $targetFriday = getTargetFriday(date('Y-m-d'));
     echo "対象金曜日（getTargetFriday）: {$targetFriday}\n";
     echo "</pre>";
 
