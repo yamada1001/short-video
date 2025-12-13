@@ -428,6 +428,29 @@
   }
 })();
 
+/**
+ * Setup Slide Timers
+ * Automatically start timers when slides with data-timer attribute are displayed
+ */
+(function setupSlideTimers() {
+  Reveal.on('slidechanged', event => {
+    const currentSlide = event.currentSlide;
+
+    // Check if slide has data-timer attribute
+    if (currentSlide && currentSlide.dataset && currentSlide.dataset.timer) {
+      const timerType = currentSlide.dataset.timer;
+      if (window.slideTimer) {
+        window.slideTimer.start(timerType);
+      }
+    } else {
+      // Stop timer when moving to a slide without timer
+      if (window.slideTimer) {
+        window.slideTimer.stop();
+      }
+    }
+  });
+})();
+
 
 /**
  * Format number with commas

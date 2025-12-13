@@ -166,6 +166,9 @@ if (!$isAdmin) {
   <!-- Slide Generator -->
   <script src="../assets/js/svg-slide-generator.js?v=20251213"></script>
 
+  <!-- Slide Timer -->
+  <script src="../assets/js/slide-timer.js"></script>
+
   <!-- Custom Slide Script -->
   <script src="../assets/js/slide.js"></script>
 

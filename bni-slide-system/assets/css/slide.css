@@ -1267,6 +1267,87 @@
 }
 
 /* ============================================
+   Slide Timer
+   ============================================ */
+
+.slide-timer {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 9999;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.slide-timer.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+.timer-content {
+  background: linear-gradient(135deg, #D00C24 0%, #A01020 100%);
+  color: #FFFFFF;
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(208, 12, 36, 0.4);
+  text-align: center;
+  min-width: 180px;
+}
+
+.timer-label {
+  font-size: 0.9em;
+  font-weight: 600;
+  margin-bottom: 8px;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+}
+
+.timer-display {
+  font-size: 3em;
+  font-weight: 900;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.slide-timer.warning .timer-content {
+  background: linear-gradient(135deg, #FF6B00 0%, #FF4500 100%);
+  animation: pulse 0.5s ease-in-out infinite alternate;
+}
+
+.slide-timer.ended .timer-content {
+  background: linear-gradient(135deg, #28A745 0%, #20A038 100%);
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(255, 107, 0, 0.4);
+  }
+  to {
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(255, 107, 0, 0.6);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .slide-timer {
+    top: 20px;
+    right: 20px;
+  }
+
+  .timer-content {
+    padding: 15px 25px;
+    min-width: 150px;
+  }
+
+  .timer-display {
+    font-size: 2.5em;
+  }
+}
+
+/* ============================================
    Phase 10.5-10.8: PDF Image Slides
    ============================================ */
 
