@@ -3694,6 +3694,9 @@
 .ranking-table tbody td:last-child {
   text-align: right;
   padding-right: 40px;
+  max-width: 400px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Ranking Amount Styling */
@@ -3703,6 +3706,8 @@
   font-size: 38px;
   font-family: 'Courier New', Consolas, monospace;
   letter-spacing: 1px;
+  max-width: 100%;
+  word-break: break-all;
 }
 
 /* Rank 1 - Gold Medal 🥇 */

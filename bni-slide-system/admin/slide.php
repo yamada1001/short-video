@@ -57,7 +57,7 @@ if (!$isAdmin) {
   <link rel="stylesheet" href="../assets/lib/reveal.js/dist/theme/white.css" id="theme">
 
   <!-- Custom Slide CSS -->
-  <link rel="stylesheet" href="../assets/css/slide.css?v=20251213-3">
+  <link rel="stylesheet" href="../assets/css/slide.css?v=20251213-4">
 
   <!-- Google Fonts: Noto Sans JP -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
