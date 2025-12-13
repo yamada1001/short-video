@@ -34,7 +34,7 @@ try {
     $db = getDbConnection();
 
     // ビジター一覧を取得（display_order順）
-    $visitors = dbQueryAll($db,
+    $visitors = dbQuery($db,
         "SELECT * FROM visitor_introductions
         WHERE week_date = ?
         ORDER BY display_order ASC, created_at ASC",
