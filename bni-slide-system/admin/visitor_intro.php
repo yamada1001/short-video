@@ -211,6 +211,20 @@ if (!$isAdmin) {
       margin-bottom: 20px;
       color: #ddd;
     }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .badge-info {
+      background: #17a2b8;
+      color: #fff;
+    }
   </style>
 </head>
 <body>

@@ -114,6 +114,13 @@ function displayVisitors(visitors) {
   `;
 
   visitors.forEach(visitor => {
+    const isReadOnly = visitor.source === 'survey';
+    const deleteButton = isReadOnly
+      ? `<span class="badge badge-info">アンケート由来</span>`
+      : `<button class="btn btn-danger" onclick="deleteVisitor(${visitor.id}, '${visitor.source}')">
+           <i class="fas fa-trash"></i> 削除
+         </button>`;
+
     html += `
       <tr>
         <td><strong>${escapeHtml(visitor.visitor_name)}</strong></td>
@@ -121,11 +128,7 @@ function displayVisitors(visitors) {
         <td>${escapeHtml(visitor.specialty || '-')}</td>
         <td>${escapeHtml(visitor.sponsor)}</td>
         <td>${escapeHtml(visitor.attendant)}</td>
-        <td>
-          <button class="btn btn-danger" onclick="deleteVisitor(${visitor.id})">
-            <i class="fas fa-trash"></i> 削除
-          </button>
-        </td>
+        <td>${deleteButton}</td>
       </tr>
     `;
   });
@@ -210,9 +213,15 @@ async function handleSubmit(e) {
 }
 
 /**
- * Delete visitor
+ * Delete visitor (only admin-managed visitors, not survey-based)
  */
-async function deleteVisitor(id) {
+async function deleteVisitor(id, source) {
+  // Prevent deletion of survey-based visitors
+  if (source === 'survey') {
+    alert('アンケート由来のビジターは削除できません');
+    return;
+  }
+
   if (!confirm('このビジターを削除してもよろしいですか？')) {
     return;
   }

@@ -33,13 +33,54 @@ try {
     // データベース接続
     $db = getDbConnection();
 
-    // ビジター一覧を取得（display_order順）
-    $visitors = dbQuery($db,
-        "SELECT * FROM visitor_introductions
+    $visitors = [];
+
+    // 1. Get admin-managed visitor introductions
+    $adminVisitors = dbQuery($db,
+        "SELECT
+            id,
+            visitor_name,
+            company,
+            specialty,
+            sponsor,
+            attendant,
+            display_order,
+            'admin' as source,
+            created_at
+        FROM visitor_introductions
         WHERE week_date = ?
         ORDER BY display_order ASC, created_at ASC",
         [$weekDate]
     );
+
+    if ($adminVisitors) {
+        $visitors = array_merge($visitors, $adminVisitors);
+    }
+
+    // 2. Get survey-based visitors (read-only, cannot be deleted)
+    $surveyVisitors = dbQuery($db,
+        "SELECT
+            v.id,
+            v.visitor_name,
+            v.visitor_company as company,
+            v.visitor_industry as specialty,
+            s.user_name as sponsor,
+            s.user_name as attendant,
+            0 as display_order,
+            'survey' as source,
+            v.created_at
+        FROM visitors v
+        JOIN survey_data s ON v.survey_data_id = s.id
+        WHERE s.week_date = ?
+            AND v.visitor_name IS NOT NULL
+            AND v.visitor_name != ''
+        ORDER BY v.created_at ASC",
+        [$weekDate]
+    );
+
+    if ($surveyVisitors) {
+        $visitors = array_merge($visitors, $surveyVisitors);
+    }
 
     dbClose($db);
 

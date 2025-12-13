@@ -442,10 +442,14 @@ function loadSlideConfig() {
 
 /**
  * Get visitor introductions for the week
+ * Merges data from both visitor_introductions (admin) and visitors (survey) tables
  * Returns array of visitor introduction data
  */
 function getVisitorIntroductions($db, $weekDate) {
-  $query = "
+  $visitors = [];
+
+  // 1. Get admin-managed visitor introductions
+  $adminVisitors = dbQuery($db, "
     SELECT
       id,
       visitor_name,
@@ -453,15 +457,41 @@ function getVisitorIntroductions($db, $weekDate) {
       specialty,
       sponsor,
       attendant,
-      display_order
+      display_order,
+      'admin' as source
     FROM visitor_introductions
     WHERE week_date = :week_date
     ORDER BY display_order ASC, created_at ASC
-  ";
+  ", [':week_date' => $weekDate]);
 
-  $result = dbQuery($db, $query, [':week_date' => $weekDate]);
+  if ($adminVisitors) {
+    $visitors = array_merge($visitors, $adminVisitors);
+  }
 
-  return $result ?: [];
+  // 2. Get survey-based visitors (from user questionnaires)
+  $surveyVisitors = dbQuery($db, "
+    SELECT
+      v.id,
+      v.visitor_name,
+      v.visitor_company as company,
+      v.visitor_industry as specialty,
+      s.user_name as sponsor,
+      s.user_name as attendant,
+      0 as display_order,
+      'survey' as source
+    FROM visitors v
+    JOIN survey_data s ON v.survey_data_id = s.id
+    WHERE s.week_date = :week_date
+      AND v.visitor_name IS NOT NULL
+      AND v.visitor_name != ''
+    ORDER BY v.created_at ASC
+  ", [':week_date' => $weekDate]);
+
+  if ($surveyVisitors) {
+    $visitors = array_merge($visitors, $surveyVisitors);
+  }
+
+  return $visitors;
 }
 
 /**
