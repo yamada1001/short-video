@@ -5334,3 +5334,143 @@
   z-index: 2;
   position: relative;
 }
+
+/* ===================================
+   Closing Slides (p.303-309)
+   =================================== */
+
+/* Common Closing Slide Styles */
+.closing-slide {
+  background: #f5f5f5 !important;
+  color: #000 !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Diagonal Decoration (Bottom Right) */
+.closing-diagonal {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 300px 350px;
+  border-color: transparent transparent #C8102E transparent;
+  z-index: 1;
+}
+
+.closing-diagonal::before {
+  content: '';
+  position: absolute;
+  bottom: -300px;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 300px 100px;
+  border-color: transparent transparent #999 transparent;
+}
+
+/* p.303, 305, 306, 307: Title Slides */
+.closing-title-slide {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.closing-main-title {
+  font-size: 5em !important;
+  font-weight: 900 !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin: 0 !important;
+  z-index: 2;
+  position: relative;
+}
+
+/* p.304: Content Slide (List) */
+.closing-content-slide {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding-top: 100px !important;
+}
+
+.closing-section-title {
+  font-size: 3em !important;
+  font-weight: 700 !important;
+  color: #000 !important;
+  text-align: left !important;
+  margin-bottom: 60px !important;
+  z-index: 2;
+  position: relative;
+}
+
+.closing-list {
+  z-index: 2;
+  position: relative;
+}
+
+.closing-list-item {
+  font-size: 1.8em !important;
+  color: #000 !important;
+  line-height: 2.2 !important;
+  margin-bottom: 20px !important;
+  text-align: left !important;
+}
+
+/* p.308: Message Slide */
+.closing-message-slide {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.closing-message-text {
+  font-size: 4.5em !important;
+  font-weight: 700 !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin: 0 !important;
+  z-index: 2;
+  position: relative;
+}
+
+/* p.309: Motto Slide (栄勝 Keep growing) */
+.closing-motto-slide {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.closing-motto-kanji {
+  font-size: 10em !important;
+  font-weight: 900 !important;
+  color: #C8102E !important;
+  text-align: center !important;
+  margin-bottom: 60px !important;
+  letter-spacing: 0.1em;
+  z-index: 2;
+  position: relative;
+}
+
+.closing-motto-english {
+  font-size: 4.5em !important;
+  font-weight: 900 !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin-bottom: 30px !important;
+  z-index: 2;
+  position: relative;
+}
+
+.closing-motto-subtitle {
+  font-size: 2.2em !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin: 0 !important;
+  z-index: 2;
+  position: relative;
+}

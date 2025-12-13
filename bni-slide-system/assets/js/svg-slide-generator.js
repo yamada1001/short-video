@@ -1114,21 +1114,78 @@ function generateReferralTrustSlides() {
 }
 
 /**
- * Phase 11.5: Closing Slides (PDF p.303-328)
+ * Phase 11.5: Closing Slides (PDF p.303-309)
+ * HTML/CSS version - 7 slides
  */
 function generateClosingSlides() {
   let slides = '';
-  const pageNumbers = [303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328];
 
-  pageNumbers.forEach(pageNum => {
-    slides += `
-      <section class="pdf-image-slide">
-        <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
-             alt="Closing ${pageNum}"
-             class="pdf-full-image">
-      </section>
-    `;
-  });
+  // p.303: 書記兼会計より
+  slides += `
+    <section class="closing-slide closing-title-slide">
+      <h1 class="closing-main-title">書記兼会計より</h1>
+      <div class="closing-diagonal"></div>
+    </section>
+  `;
+
+  // p.304: 終礼で伝えていきたいこと
+  slides += `
+    <section class="closing-slide closing-content-slide">
+      <h2 class="closing-section-title">終礼で伝えていきたいこと</h2>
+      <div class="closing-list">
+        <div class="closing-list-item">40名リスト（メンバーシップの審査で新メンバーに質問してる）</div>
+        <div class="closing-list-item">今週ある外部のイベント案内　（○月○日（○）○○時〜</div>
+        <div class="closing-list-item">40秒プレゼンのクオリティアップ</div>
+        <div class="closing-list-item">毎週6名のビジター　150名カウントダウン</div>
+        <div class="closing-list-item">4月1日から11名のビジター参加者　139/150</div>
+        <div class="closing-list-item">募集カテゴリーのアナウンス</div>
+        <div class="closing-list-item">自分で呼べない人は、呼ぶのが得意な人に繋ぐ</div>
+      </div>
+      <div class="closing-diagonal"></div>
+    </section>
+  `;
+
+  // p.305: 各コーディネーターより
+  slides += `
+    <section class="closing-slide closing-title-slide">
+      <h1 class="closing-main-title">各コーディネーターより</h1>
+      <div class="closing-diagonal"></div>
+    </section>
+  `;
+
+  // p.306: その他連絡事項
+  slides += `
+    <section class="closing-slide closing-title-slide">
+      <h1 class="closing-main-title">その他連絡事項</h1>
+      <div class="closing-diagonal"></div>
+    </section>
+  `;
+
+  // p.307: ディレクターより
+  slides += `
+    <section class="closing-slide closing-title-slide">
+      <h1 class="closing-main-title">ディレクターより</h1>
+      <div class="closing-diagonal"></div>
+    </section>
+  `;
+
+  // p.308: 来週また元気にお会いしましょう
+  slides += `
+    <section class="closing-slide closing-message-slide">
+      <h1 class="closing-message-text">来週また元気にお会いしましょう♪</h1>
+      <div class="closing-diagonal"></div>
+    </section>
+  `;
+
+  // p.309: 栄勝 Keep growing
+  slides += `
+    <section class="closing-slide closing-motto-slide">
+      <h1 class="closing-motto-kanji">栄勝</h1>
+      <h2 class="closing-motto-english">Keep growing</h2>
+      <p class="closing-motto-subtitle">〜貢献の絆で未来を創る〜</p>
+      <div class="closing-diagonal"></div>
+    </section>
+  `;
 
   return slides;
 }
