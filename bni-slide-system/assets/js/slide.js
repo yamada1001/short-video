@@ -52,7 +52,25 @@
       // ?print-pdfパラメータを追加してページを再読み込み
       const url = new URL(window.location.href);
       url.searchParams.set('print-pdf', '');
-      window.open(url.toString(), '_blank');
+
+      // PDF印刷用のウィンドウを開く
+      const pdfWindow = window.open(url.toString(), '_blank');
+
+      // ウィンドウが開いたら印刷ダイアログの説明を表示
+      if (pdfWindow) {
+        // 少し待ってから印刷ダイアログの案内を表示
+        setTimeout(() => {
+          alert(
+            'PDF出力モードで開きました。\n\n' +
+            '次の手順でPDFを保存してください：\n' +
+            '1. Ctrl+P (Mac: Cmd+P) を押して印刷ダイアログを開く\n' +
+            '2. 送信先を「PDFに保存」に変更\n' +
+            '3. レイアウトを「横向き」に設定\n' +
+            '4. 余白を「なし」に設定\n' +
+            '5. 「保存」をクリック'
+          );
+        }, 500);
+      }
     });
   }
 
@@ -132,6 +150,12 @@
     }
 
       const { data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config, monthly_ranking_data, visitor_introductions, networking_learning_presenter } = result;
+
+      // ページタイトルをPDFファイル名に適したものに設定
+      if (date) {
+        const formattedDate = formatDateForFilename(date);
+        document.title = `BNI_Slide_${formattedDate}`;
+      }
 
       // Check if monthly ranking pattern is selected
       let monthlyRankingData = null;
@@ -631,6 +655,33 @@ function generateSlides(data, stats) {
  */
 function formatNumber(num) {
   return parseInt(num).toLocaleString('ja-JP');
+}
+
+/**
+ * Format date for PDF filename (YYYY-MM-DD)
+ */
+function formatDateForFilename(dateStr) {
+  if (!dateStr) return '';
+
+  // dateStrが "YYYY-MM-DD" の形式の場合はそのまま返す
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+    return dateStr;
+  }
+
+  // dateStrが日本語形式の場合は変換
+  try {
+    const date = new Date(dateStr);
+    if (!isNaN(date.getTime())) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+  } catch (error) {
+    console.error('Failed to format date:', error);
+  }
+
+  return dateStr;
 }
 
 /**

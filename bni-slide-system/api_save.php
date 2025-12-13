@@ -119,7 +119,7 @@ try {
 
   // Save to database
   $db = getDbConnection();
-  $surveyId = saveToDatabase($db, $baseData, $visitors, $isPitchPresenter, $pitchFileToUpload, $isEducationPresenter, $educationFileToUpload);
+  $surveyId = saveToDatabase($db, $baseData, $visitors, $isPitchPresenter, $pitchFileToUpload, $isEducationPresenter, $educationFileToUpload, $youtubeUrl);
   dbClose($db);
 
   if (!$surveyId) {
@@ -157,7 +157,7 @@ function sanitize($input) {
 /**
  * Save data to SQLite database
  */
-function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitchFileData = null, $isEducationPresenter = 0, $educationFileData = null) {
+function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitchFileData = null, $isEducationPresenter = 0, $educationFileData = null, $youtubeUrl = '') {
   try {
     // Start transaction
     dbBeginTransaction($db);

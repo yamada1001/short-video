@@ -3831,3 +3831,67 @@
     font-size: 36px;
   }
 }
+
+/* ========================================================================
+   PDF Print Mode Styles
+   ======================================================================== */
+
+/* PDF出力モード時にコントロールパネルやサイドバーを非表示 */
+.print-pdf .control-icon-button,
+.print-pdf .control-panel,
+.print-pdf .sidebar-toc,
+.print-pdf .sidebar-toggle-show,
+.print-pdf .loading-screen {
+  display: none !important;
+}
+
+/* PDF出力モード時にスライド番号を表示 */
+.print-pdf .reveal .slide-number {
+  display: block !important;
+}
+
+/* PDF出力モード時にBNIロゴを各ページに表示 */
+.print-pdf .bni-logo-top-right {
+  display: block !important;
+  opacity: 0.8;
+}
+
+.print-pdf .bni-logo-bottom-right {
+  display: none !important;
+}
+
+/* PDF出力モード時のタイトルスライド用ロゴ */
+.print-pdf .title-slide .bni-logo-top-right {
+  display: none !important;
+}
+
+.print-pdf .title-slide .bni-logo-bottom-right {
+  display: block !important;
+  opacity: 1;
+}
+
+/* PDF出力モード時のページ余白調整 */
+@media print {
+  @page {
+    size: 1920px 1080px;
+    margin: 0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 印刷時に背景を確実に印刷 */
+  .reveal section {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* カウントダウンタイマーは印刷時非表示 */
+  .countdown-timer,
+  .countdown-progress,
+  .countdown-controls {
+    display: none !important;
+  }
+}
