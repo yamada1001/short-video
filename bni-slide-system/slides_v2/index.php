@@ -36,6 +36,20 @@
         .reveal {
             background: #000;
         }
+
+        /* ページ番号表示 */
+        .slide-number {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -54,6 +68,9 @@
         </div>
     </div>
 
+    <!-- ページ番号表示 -->
+    <div class="slide-number" id="slideNumber">1 / 309</div>
+
     <!-- Reveal.js JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
     <script>
@@ -67,6 +84,12 @@
             margin: 0,
             minScale: 0.2,
             maxScale: 2.0
+        });
+
+        // ページ番号更新
+        Reveal.on('slidechanged', event => {
+            const slideNumber = event.indexh + 1;
+            document.getElementById('slideNumber').textContent = slideNumber + ' / 309';
         });
     </script>
 </body>
