@@ -499,6 +499,8 @@ function getVisitorIntroductions($db, $weekDate) {
  * Returns single presenter data or null
  */
 function getNetworkingLearningPresenter($db, $weekDate) {
+  require_once __DIR__ . '/includes/pdf_helper.php';
+
   $query = "
     SELECT
       presenter_name,
@@ -506,13 +508,24 @@ function getNetworkingLearningPresenter($db, $weekDate) {
       presenter_company,
       presenter_category,
       pdf_file_path,
-      pdf_file_original_name
+      pdf_file_original_name,
+      pdf_page_count,
+      pdf_image_paths
     FROM networking_learning_presenters
     WHERE week_date = :week_date
     LIMIT 1
   ";
 
   $result = dbQueryOne($db, $query, [':week_date' => $weekDate]);
+
+  if ($result) {
+    // PDF画像パスをデコードして配列として追加
+    if (!empty($result['pdf_image_paths'])) {
+      $result['pdf_image_paths_array'] = decodeImagePaths($result['pdf_image_paths']);
+    } else {
+      $result['pdf_image_paths_array'] = [];
+    }
+  }
 
   return $result ?: null;
 }
