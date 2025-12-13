@@ -78,7 +78,10 @@ function convertPdfToImages($pdfPath, $outputDir, $baseFilename) {
             }
 
             // Store relative path (from project root)
-            $imagePaths[] = str_replace(__DIR__ . '/../', '', $outputPath);
+            // Remove the absolute path prefix to get relative path
+            $projectRoot = realpath(__DIR__ . '/../');
+            $relativePath = str_replace($projectRoot . '/', '', $outputPath);
+            $imagePaths[] = $relativePath;
         }
 
         // Clean up
