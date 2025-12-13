@@ -344,6 +344,9 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     slides += generateVisitorHostsSlide(slideConfig);
   }
 
+  // Phase 10.5: Core Values (PDF p.62)
+  slides += generateCoreValuesSlide();
+
   // Phase 11: BNI Philosophy & Core Values
   slides += generateBNIPhilosophySlides();
 
@@ -629,6 +632,43 @@ function generateSpeakerRotationSlide(config) {
           }).join('')}
         </tbody>
       </table>
+    </section>
+  `;
+}
+
+/**
+ * Phase 10.5: Generate Core Values Slide (PDF p.62)
+ */
+function generateCoreValuesSlide() {
+  return `
+    <section class="core-values-slide">
+      <div class="core-values-container">
+        <h1 class="core-values-title">
+          <span class="bni-red">BNI</span>のコアバリュー<span class="subtitle-text">(基本的価値観)</span>
+        </h1>
+
+        <div class="core-values-content">
+          <div class="core-values-icon">
+            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="30" r="12" fill="#808080" opacity="0.6"/>
+              <path d="M 20 50 Q 20 42 28 42 L 52 42 Q 60 42 60 50 L 60 65 L 20 65 Z" fill="#808080" opacity="0.6"/>
+              <circle cx="75" cy="25" r="14" fill="#808080" opacity="0.7"/>
+              <path d="M 52 47 Q 52 38 62 38 L 88 38 Q 98 38 98 47 L 98 65 L 52 65 Z" fill="#808080" opacity="0.7"/>
+            </svg>
+          </div>
+
+          <div class="core-values-main">
+            <h2 class="core-values-heading">Building Relationships</h2>
+            <h3 class="core-values-heading-jp">(関係構築)</h3>
+
+            <p class="core-values-text">
+              ひとりで成功できる人はいません。質の高い信頼関係を築き、サポートネットワークを構築し、自分の人脈を常に成長させることが、ビジネスそして人生で成功する上で大切です。
+            </p>
+          </div>
+        </div>
+
+        <div class="core-values-diagonal"></div>
+      </div>
     </section>
   `;
 }
