@@ -182,7 +182,7 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
         <div class="card">
           <div class="form-header">
             <h1>BNI週次アンケート</h1>
-            <p>毎週のビジター紹介・リファーラル情報をご入力ください</p>
+            <p>毎週のビジター紹介情報をご入力ください</p>
           </div>
 
           <!-- Survey Form -->
@@ -511,9 +511,8 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
           formData['activities[]'] = activities;
         }
 
-        // ビジターとリファーラルの数を保存
+        // ビジターの数を保存
         formData._visitorCount = document.querySelectorAll('#visitorContainer .referral-item').length;
-        formData._referralCount = document.querySelectorAll('#referralContainer .referral-item').length;
 
         return formData;
       }
@@ -522,15 +521,10 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
       function restoreFormData(data) {
         const form = document.getElementById('surveyForm');
 
-        // ビジターとリファーラルの項目を追加
+        // ビジターの項目を追加
         if (data._visitorCount > 1) {
           for (let i = 1; i < data._visitorCount; i++) {
             $('#addVisitorBtn').click();
-          }
-        }
-        if (data._referralCount > 1) {
-          for (let i = 1; i < data._referralCount; i++) {
-            $('#addReferralBtn').click();
           }
         }
 
