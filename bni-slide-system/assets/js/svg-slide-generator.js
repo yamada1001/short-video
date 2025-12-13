@@ -612,6 +612,276 @@ function generateMainPresentationSlides(speaker) {
 }
 
 /**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
+}
+
+/**
  * Phase 15: Generate Speaker Rotation Slide
  */
 function generateSpeakerRotationSlide(config) {
@@ -734,6 +1004,276 @@ function generateMemberIntroductionSlides(memberData) {
   });
 
   return slides;
+}
+
+/**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
 }
 
 /**
@@ -1001,6 +1541,276 @@ function generateBNIPurposeSlides() {
 }
 
 /**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
+}
+
+/**
  * Phase 11.1: Visitor Self-Introduction Template (PDF p.182)
  * HTML/CSS version - Business Breakout intro slide
  */
@@ -1053,6 +1863,276 @@ function generateBusinessBreakoutSlides() {
 }
 
 /**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
+}
+
+/**
  * Phase 11.3: Vice President Statistics Slides (PDF p.203-206)
  * HTML/CSS dynamic version with database integration
  */
@@ -1072,6 +2152,276 @@ function generateVicePresidentStatsSlides(rotationData = null, presenterDetail =
   slides += generateReferralMessageSlide();
 
   return slides;
+}
+
+/**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
 }
 
 /**
@@ -1341,6 +2691,276 @@ function generateReferralTrustSlides() {
 }
 
 /**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
+}
+
+/**
  * Phase 11.5: Closing Slides (PDF p.303-309)
  * HTML/CSS version - 7 slides
  */
@@ -1415,6 +3035,276 @@ function generateClosingSlides() {
   `;
 
   return slides;
+}
+
+/**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
 }
 
 /**
@@ -1549,6 +3439,276 @@ function generateBNIPhilosophySlides() {
 }
 
 /**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
+}
+
+/**
  * Phase 4: Generate New Members Slides
  */
 function generateNewMembersSlides(config) {
@@ -1589,6 +3749,276 @@ function generateNewMembersSlides(config) {
   });
 
   return slides;
+}
+
+/**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
 }
 
 /**
@@ -1931,6 +4361,276 @@ function generateMonthlyChampionsSlides(config) {
   return slides;
 }
 
+/**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
+}
+
 
 /**
  * Generate Member 60-second Pitch Slides
@@ -1999,6 +4699,276 @@ function generateMemberPitchSlides(members) {
   });
 
   return slides;
+}
+
+/**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
 }
 
 /**
@@ -2143,6 +5113,276 @@ function generateMonthlyRankingSlides(rankingData) {
 }
 
 /**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
+}
+
+/**
  * Generate Visitor Introduction List Slides
  * ビジターご紹介一覧スライドを生成（visitor_introductionsテーブルから）
  */
@@ -2196,6 +5436,276 @@ function generateVisitorIntroductionListSlides(visitorIntroductions) {
 }
 
 /**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
+}
+
+/**
  * Generate Visitor Self-Introduction Slides
  * ビジター自己紹介スライドを生成（visitor_introductionsテーブルから）
  */
@@ -2226,6 +5736,276 @@ function generateVisitorSelfIntroductionSlides(visitorIntroductions) {
   });
 
   return slides;
+}
+
+/**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
 }
 
 /**
@@ -2272,5 +6052,275 @@ function generateNetworkingLearningSlide(presenter) {
   }
 
   return slides;
+}
+
+/**
+ * =====================================================
+ * HYBRID MODE FUNCTIONS
+ * ハイブリッドモード: 本番PDF画像ベース + 動的ページ差し替え
+ * =====================================================
+ */
+
+/**
+ * Generate Hybrid Slides: Base PDF images + Dynamic page replacement
+ * ハイブリッドスライド生成: 本番PDF全309ページ（画像）+ 特定ページのみ動的生成
+ */
+async function generateHybridSlides(slideConfig, dynamicData) {
+  const config = {
+    basePath: '../assets/images/slides/production',
+    totalSlides: 309,
+    dynamicPages: {
+      8: () => generateMainPresenterHybridSlide(dynamicData.presenter),
+      9: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 1),
+      10: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 2),
+      11: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 3),
+      12: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 4),
+      13: () => generateSpeakerRotationHybridSlide(dynamicData.rotation, 5),
+      19: () => generateVisitorIntroductionHybridSlide(dynamicData.visitors),
+      22: () => generateSubstituteHybridSlide(dynamicData.substitutes, 0),
+      23: () => generateSubstituteHybridSlide(dynamicData.substitutes, 1),
+      24: () => generateSubstituteHybridSlide(dynamicData.substitutes, 2),
+      25: () => generateNewMemberHybridSlide(dynamicData.newMembers, 0),
+      26: () => generateNewMemberHybridSlide(dynamicData.newMembers, 1),
+      27: () => generateNewMemberHybridSlide(dynamicData.newMembers, 2),
+      28: () => generateWeeklyNo1HybridSlide(dynamicData.weeklyStats),
+      29: () => generateMonthlyChampionTitleHybridSlide(),
+      30: () => generateMonthlyChampionDetailHybridSlide(dynamicData.champions)
+    }
+  };
+
+  let slides = '';
+
+  for (let i = 1; i <= config.totalSlides; i++) {
+    if (config.dynamicPages[i]) {
+      // 動的ページ: 関数で生成
+      slides += config.dynamicPages[i]();
+    } else {
+      // 静的ページ: 画像表示
+      const pageNum = String(i).padStart(3, '0');
+      slides += `
+        <section>
+          <img src="${config.basePath}/slide_${pageNum}.png"
+               alt="Slide ${i}"
+               style="width: 100%; height: 100%; object-fit: contain;" />
+        </section>
+      `;
+    }
+  }
+
+  return slides;
+}
+
+/**
+ * Hybrid Slide: Main Presenter (Page 8)
+ * メインプレゼンター紹介スライド
+ */
+function generateMainPresenterHybridSlide(presenterData) {
+  if (!presenterData || !presenterData.member_name) {
+    // データがない場合は既存関数を使用
+    return generateMainPresenterSlide(null);
+  }
+  return generateMainPresenterSlide(presenterData);
+}
+
+/**
+ * Hybrid Slide: Speaker Rotation (Pages 9-13)
+ * スピーカーローテーション（5週分）
+ */
+function generateSpeakerRotationHybridSlide(rotationData, weekOffset) {
+  if (!rotationData || rotationData.length === 0) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  // weekOffsetに該当する週のデータを取得
+  const weekData = rotationData.find(item => item.week_offset === weekOffset);
+  if (!weekData) {
+    return `<section><h2>スピーカーローテーション（第${weekOffset}週）</h2><p>データがありません</p></section>`;
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="rotation-title">スピーカーローテーション</h2>
+      <div class="rotation-week">${escapeHtml(weekData.week_date)} （第${weekOffset}週）</div>
+      <div class="rotation-grid">
+        <div class="rotation-item">
+          <div class="rotation-role">メインプレゼン</div>
+          <div class="rotation-name">${escapeHtml(weekData.main_presentation || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">ネットワーキング学習</div>
+          <div class="rotation-name">${escapeHtml(weekData.networking_learning || '未定')}</div>
+        </div>
+        <div class="rotation-item">
+          <div class="rotation-role">書記</div>
+          <div class="rotation-name">${escapeHtml(weekData.secretary || '未定')}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Visitor Introduction (Page 19)
+ * ビジター紹介スライド
+ */
+function generateVisitorIntroductionHybridSlide(visitorsData) {
+  if (!visitorsData || visitorsData.length === 0) {
+    return `<section><h2>ビジター紹介</h2><p>本日はビジターの参加はありません</p></section>`;
+  }
+
+  let visitorsList = '';
+  visitorsData.forEach((visitor, index) => {
+    visitorsList += `
+      <div class="visitor-item">
+        <div class="visitor-number">${index + 1}</div>
+        <div class="visitor-details">
+          <div class="visitor-name">${escapeHtml(visitor.visitor_name)}</div>
+          <div class="visitor-company">${escapeHtml(visitor.company || '')}</div>
+          <div class="visitor-sponsor">スポンサー: ${escapeHtml(visitor.sponsor)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="visitor-intro-slide">
+      <h2 class="visitor-intro-title">ビジター紹介</h2>
+      <div class="visitor-list">
+        ${visitorsList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Substitute Members (Pages 22-24)
+ * 代理出席者スライド（3ページ分）
+ */
+function generateSubstituteHybridSlide(substitutesData, pageIndex) {
+  if (!substitutesData || substitutesData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり3名表示
+  const itemsPerPage = 3;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = substitutesData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>代理出席者（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let substitutesList = '';
+  pageData.forEach(sub => {
+    substitutesList += `
+      <div class="substitute-item">
+        <div class="substitute-original">${escapeHtml(sub.original_member)}</div>
+        <div class="substitute-arrow">→</div>
+        <div class="substitute-proxy">${escapeHtml(sub.proxy_member)}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="substitute-slide">
+      <h2 class="substitute-title">代理出席者（${pageIndex + 1}/3）</h2>
+      <div class="substitute-list">
+        ${substitutesList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: New Members (Pages 25-27)
+ * 新メンバー紹介スライド（3ページ分）
+ */
+function generateNewMemberHybridSlide(newMembersData, pageIndex) {
+  if (!newMembersData || newMembersData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  // 1ページあたり2名表示
+  const itemsPerPage = 2;
+  const start = pageIndex * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = newMembersData.slice(start, end);
+
+  if (pageData.length === 0) {
+    return `<section><h2>新メンバー紹介（${pageIndex + 1}/3）</h2><p>該当者なし</p></section>`;
+  }
+
+  let membersList = '';
+  pageData.forEach(member => {
+    membersList += `
+      <div class="new-member-item">
+        <div class="new-member-name">${escapeHtml(member.member_name)}</div>
+        <div class="new-member-company">${escapeHtml(member.company || '')}</div>
+        <div class="new-member-category">${escapeHtml(member.category || '')}</div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="new-member-slide">
+      <h2 class="new-member-title">新メンバー紹介（${pageIndex + 1}/3）</h2>
+      <div class="new-member-list">
+        ${membersList}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Weekly No.1 (Page 28)
+ * 週間NO.1スライド
+ */
+function generateWeeklyNo1HybridSlide(weeklyStatsData) {
+  if (!weeklyStatsData) {
+    // デフォルトデータで表示
+    const defaultData = {
+      date: '先週',
+      referral: { count: 0, name: '未定' },
+      visitor: { count: 0, name: '未定' },
+      one_to_one: { count: 0, name: '未定' }
+    };
+    return generateWeeklyNo1Slide(defaultData);
+  }
+  return generateWeeklyNo1Slide(weeklyStatsData);
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Title (Page 29)
+ * 月間チャンピオン タイトルスライド
+ */
+function generateMonthlyChampionTitleHybridSlide() {
+  return `
+    <section class="champions-intro-slide">
+      <h2 class="champions-main-title">月間チャンピオン</h2>
+      <div class="champion-categories">
+        <div class="category-badge">リファーラルチャンピオン</div>
+        <div class="category-badge">バリューチャンピオン</div>
+        <div class="category-badge">ビジターチャンピオン</div>
+        <div class="category-badge">1to1チャンピオン</div>
+        <div class="category-badge">CEUチャンピオン</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Hybrid Slide: Monthly Champion Detail (Page 30)
+ * 月間チャンピオン 詳細スライド
+ */
+function generateMonthlyChampionDetailHybridSlide(championsData) {
+  if (!championsData || Object.keys(championsData).length === 0) {
+    return `<section><h2>月間チャンピオン</h2><p>データがありません</p></section>`;
+  }
+
+  // 既存のgenerateMonthlyChampionsSlides関数を活用
+  const config = { monthly_champions: championsData };
+  return generateMonthlyChampionsSlides(config);
 }
 

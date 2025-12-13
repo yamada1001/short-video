@@ -157,9 +157,68 @@
         document.title = `BNI_Slide_${formattedDate}`;
       }
 
-      // Check if monthly ranking pattern is selected
+      // Check if hybrid or monthly ranking pattern is selected
       let monthlyRankingData = null;
       const pattern = slidePattern ? slidePattern.value : 'normal';
+
+      // Hybrid mode processing
+      if (pattern === 'hybrid') {
+        try {
+          const hybridResponse = await fetch(`${apiBasePath}api_load_hybrid_data.php?week_date=${date}`);
+          const hybridResult = await hybridResponse.json();
+          if (hybridResult.success) {
+            const hybridSlides = await generateHybridSlides(slide_config || {}, hybridResult.data);
+            slideContainer.innerHTML = hybridSlides;
+            // Initialize or sync Reveal.js
+            if (!Reveal.isReady()) {
+              Reveal.initialize({
+                hash: true,
+                controls: false,
+                progress: true,
+                center: false,
+                transition: 'fade',
+                transitionSpeed: 'default',
+                backgroundTransition: 'fade',
+                slideNumber: 'c/t',
+                keyboard: true,
+                overview: true,
+                touch: true,
+                loop: false,
+                rtl: false,
+                navigationMode: 'default',
+                shuffle: false,
+                fragments: true,
+                fragmentInURL: true,
+                embedded: false,
+                help: true,
+                pause: true,
+                showNotes: false,
+                autoPlayMedia: null,
+                preloadIframes: null,
+                autoAnimate: true,
+                autoAnimateEasing: 'ease',
+                autoAnimateDuration: 1.0,
+                width: 1920,
+                height: 1080,
+                margin: 0.05,
+                minScale: 0.2,
+                maxScale: 2.0
+              });
+            } else {
+              Reveal.sync();
+              Reveal.slide(0);
+            }
+            loadingScreen.classList.add('hidden');
+            setupCountdownTimers();
+            setupNumberAnimations();
+            setupLogoDisplay();
+            setupSidebarTOC();
+            return;
+          }
+        } catch (error) {
+          console.warn('Failed to load hybrid data:', error);
+        }
+      }
 
       if (pattern === 'monthly_ranking') {
         // Load monthly ranking data (previous month)

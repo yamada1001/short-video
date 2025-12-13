@@ -111,6 +111,7 @@ if (!$isAdmin) {
           <label>スライドパターン:</label>
           <select id="slidePattern">
             <option value="normal">通常スライド</option>
+            <option value="hybrid">ハイブリッド（本番PDF+動的）</option>
             <option value="monthly_ranking">月初ランキング</option>
           </select>
           <p style="font-size: 12px; color: #666; margin-top: 5px;">※ 月初ランキングは先月のデータを表示</p>
