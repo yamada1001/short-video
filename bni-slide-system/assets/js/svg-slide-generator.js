@@ -41,15 +41,6 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
 
   let slides = '';
 
-  // Slide 1: Title
-  slides += `
-    <section class="title-slide">
-      <h1>BNI週次レポート</h1>
-      <p class="subtitle">${displayDate}</p>
-      <p class="branding">Givers Gain® | BNI Slide System</p>
-    </section>
-  `;
-
   // Monthly Ranking Slides (if data exists)
   if (monthlyRankingData) {
     slides += generateMonthlyRankingSlides(monthlyRankingData);
@@ -58,6 +49,15 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     slideContainer.innerHTML = slides;
     return;
   }
+
+  // Slide 1: Title (for normal weekly report)
+  slides += `
+    <section class="title-slide">
+      <h1>BNI週次レポート</h1>
+      <p class="subtitle">${displayDate}</p>
+      <p class="branding">Givers Gain® | BNI Slide System</p>
+    </section>
+  `;
 
   // Phase 1: Opening Section
   if (slideConfig) {
@@ -1580,48 +1580,11 @@ function generateMonthlyRankingSlides(rankingData) {
     `;
   }
 
-  // 3. 出席率ランキング
-  if (rankingData.attendance_rate && rankingData.attendance_rate.length > 0) {
-    slides += `
-      <section>
-        <h2><i class="fas fa-calendar-check"></i> 出席率ランキング</h2>
-        <div class="ranking-table-container">
-          <table class="ranking-table">
-            <thead>
-              <tr>
-                <th style="width: 80px;">順位</th>
-                <th>メンバー名</th>
-                <th style="width: 200px;">出席率</th>
-              </tr>
-            </thead>
-            <tbody>
-    `;
-
-    rankingData.attendance_rate.forEach((entry, index) => {
-      const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
-      const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
-      slides += `
-        <tr class="${rankClass}">
-          <td style="font-size: 32px; font-weight: bold;">${medal} ${entry.rank}位</td>
-          <td style="font-size: 28px;">${escapeHtml(entry.name)}</td>
-          <td style="font-size: 32px; font-weight: bold; color: #CF2030;">${entry.value}%</td>
-        </tr>
-      `;
-    });
-
-    slides += `
-            </tbody>
-          </table>
-        </div>
-      </section>
-    `;
-  }
-
-  // 4. 121回数ランキング
+  // 3. 1to1回数ランキング
   if (rankingData.one_to_one_count && rankingData.one_to_one_count.length > 0) {
     slides += `
       <section>
-        <h2><i class="fas fa-handshake"></i> 121回数ランキング</h2>
+        <h2><i class="fas fa-handshake"></i> 1to1回数ランキング</h2>
         <div class="ranking-table-container">
           <table class="ranking-table">
             <thead>
