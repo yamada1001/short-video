@@ -4,8 +4,9 @@
  * ユーザー自身のデータ編集画面
  */
 
-// Load user authentication helper
+// Load dependencies
 require_once __DIR__ . '/includes/user_auth.php';
+require_once __DIR__ . '/includes/db.php';
 
 // Get current user info
 $currentUser = getCurrentUserInfo();
@@ -20,76 +21,105 @@ $userEmail = htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8');
 $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
 
 // Get week parameter
-$csvFile = $_GET['week'] ?? '';
-if (empty($csvFile)) {
+$weekDate = $_GET['week'] ?? '';
+if (empty($weekDate)) {
     die('<h1>エラー</h1><p>編集する週が指定されていません。</p>');
 }
 
-// Load data from CSV
-$csvPath = __DIR__ . '/data/' . basename($csvFile) . '.csv';
-if (!file_exists($csvPath)) {
-    die('<h1>エラー</h1><p>データファイルが見つかりません。</p>');
-}
+// Load data from SQLite database
+try {
+    $db = getDbConnection();
 
-// Read user's data from CSV
-$userData = [];
-if (($handle = fopen($csvPath, 'r')) !== false) {
-    $header = fgetcsv($handle);
-    while (($row = fgetcsv($handle)) !== false) {
-        if (count($row) >= count($header)) {
-            $rowData = array_combine($header, $row);
-            if ($rowData['メールアドレス'] === $currentUser['email']) {
-                $userData[] = $rowData;
-            }
-        }
+    // Get survey data for this week and user
+    $query = "
+        SELECT
+            s.id,
+            s.week_date,
+            s.timestamp,
+            s.input_date,
+            s.user_name,
+            s.user_email,
+            s.attendance,
+            s.thanks_slips,
+            s.one_to_one,
+            s.activities,
+            s.comments,
+            s.is_pitch_presenter,
+            s.pitch_file_path,
+            s.pitch_file_original_name,
+            s.pitch_file_type,
+            s.youtube_url
+        FROM survey_data s
+        WHERE s.week_date = :week_date
+        AND s.user_email = :email
+        LIMIT 1
+    ";
+
+    $surveyData = dbQueryOne($db, $query, [
+        ':week_date' => $weekDate,
+        ':email' => $currentUser['email']
+    ]);
+
+    if (!$surveyData) {
+        dbClose($db);
+        die('<h1>エラー</h1><p>データが見つかりません。</p>');
     }
-    fclose($handle);
-}
 
-if (empty($userData)) {
-    die('<h1>エラー</h1><p>データが見つかりません。</p>');
-}
+    $surveyDataId = $surveyData['id'];
 
-// Extract data
-$baseData = $userData[0];
-$inputDate = htmlspecialchars($baseData['入力日'], ENT_QUOTES, 'UTF-8');
-$attendance = htmlspecialchars($baseData['出席状況'], ENT_QUOTES, 'UTF-8');
-$thanksSlips = intval($baseData['サンクスリップ数']);
-$oneToOne = intval($baseData['ワンツーワン数']);
-$activities = $baseData['アクティビティ'];
-$comments = htmlspecialchars($baseData['コメント'], ENT_QUOTES, 'UTF-8');
+    // Extract base data
+    $inputDate = htmlspecialchars($surveyData['input_date'], ENT_QUOTES, 'UTF-8');
+    $attendance = htmlspecialchars($surveyData['attendance'], ENT_QUOTES, 'UTF-8');
+    $thanksSlips = intval($surveyData['thanks_slips']);
+    $oneToOne = intval($surveyData['one_to_one']);
+    $activities = $surveyData['activities'];
+    $comments = htmlspecialchars($surveyData['comments'], ENT_QUOTES, 'UTF-8');
 
-// Extract visitors
-$visitors = [];
-foreach ($userData as $row) {
-    if (!empty($row['ビジター名'])) {
-        $visitorKey = $row['ビジター名'] . '|' . $row['ビジター会社名'];
-        if (!isset($visitors[$visitorKey])) {
-            $visitors[$visitorKey] = [
-                'name' => $row['ビジター名'],
-                'company' => $row['ビジター会社名'],
-                'industry' => $row['ビジター業種']
-            ];
-        }
+    // Get visitors
+    $visitorsQuery = "
+        SELECT visitor_name, visitor_company, visitor_industry
+        FROM visitors
+        WHERE survey_data_id = :survey_data_id
+        ORDER BY id
+    ";
+    $visitorsData = dbQuery($db, $visitorsQuery, [':survey_data_id' => $surveyDataId]);
+
+    $visitors = [];
+    foreach ($visitorsData as $row) {
+        $visitors[] = [
+            'name' => $row['visitor_name'],
+            'company' => $row['visitor_company'],
+            'industry' => $row['visitor_industry']
+        ];
     }
-}
-$visitors = array_values($visitors);
 
-// Extract referrals
-$referrals = [];
-foreach ($userData as $row) {
-    if (!empty($row['案件名']) && $row['案件名'] !== '-') {
-        $referralKey = $row['案件名'] . '|' . $row['リファーラル金額'];
-        if (!isset($referrals[$referralKey])) {
-            $referrals[$referralKey] = [
-                'name' => $row['案件名'],
-                'amount' => $row['リファーラル金額'],
-                'provider' => $row['リファーラル提供者']
-            ];
-        }
+    // Get referrals
+    $referralsQuery = "
+        SELECT referral_name, referral_amount, referral_provider
+        FROM referrals
+        WHERE survey_data_id = :survey_data_id
+        ORDER BY id
+    ";
+    $referralsData = dbQuery($db, $referralsQuery, [':survey_data_id' => $surveyDataId]);
+
+    $referrals = [];
+    foreach ($referralsData as $row) {
+        $referrals[] = [
+            'name' => $row['referral_name'],
+            'amount' => $row['referral_amount'],
+            'provider' => $row['referral_provider']
+        ];
     }
+
+    dbClose($db);
+
+} catch (Exception $e) {
+    if (isset($db)) {
+        dbClose($db);
+    }
+    error_log('[EDIT MY DATA] Error: ' . $e->getMessage());
+    die('<h1>エラー</h1><p>データの読み込み中にエラーが発生しました。</p>');
 }
-$referrals = array_values($referrals);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -173,7 +203,7 @@ $referrals = array_values($referrals);
 
           <!-- Edit Form -->
           <form id="editForm">
-            <input type="hidden" name="csv_file" value="<?php echo htmlspecialchars($csvFile, ENT_QUOTES, 'UTF-8'); ?>">
+            <input type="hidden" name="week_date" value="<?php echo htmlspecialchars($weekDate, ENT_QUOTES, 'UTF-8'); ?>">
             <input type="hidden" name="input_date" value="<?php echo $inputDate; ?>">
 
             <!-- Section 1: ビジター紹介 -->
