@@ -51,84 +51,131 @@ $currentUser = getCurrentUserInfo();
       display: flex;
       max-width: 1400px;
       margin: 0 auto;
-      gap: 40px;
-      padding: 40px 20px;
+      position: relative;
     }
 
-    .manual-sidebar {
-      position: sticky;
-      top: 20px;
-      width: 280px;
-      height: fit-content;
+    .manual-container {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
       background: white;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      border-radius: 8px;
-      padding: 20px;
-      flex-shrink: 0;
     }
 
-    .manual-sidebar h2 {
-      font-size: 18px;
-      font-weight: 600;
+    /* Floating Sidebar Table of Contents */
+    .floating-toc {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      width: 280px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 20px;
+      max-height: calc(100vh - 140px);
+      overflow-y: auto;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    .floating-toc.hidden {
+      transform: translateX(320px);
+      opacity: 0;
+    }
+
+    .floating-toc h3 {
+      font-size: 16px;
+      font-weight: 700;
       color: #CF2030;
       margin: 0 0 15px 0;
       padding-bottom: 10px;
       border-bottom: 2px solid #CF2030;
     }
 
-    .manual-sidebar ul {
+    .floating-toc ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
 
-    .manual-sidebar li {
+    .floating-toc li {
       margin: 0;
+      padding: 0;
     }
 
-    .manual-sidebar a {
+    .floating-toc a {
       display: block;
-      padding: 10px 12px;
-      color: #333;
+      padding: 8px 12px;
+      color: #666;
       text-decoration: none;
-      border-radius: 4px;
-      transition: all 0.2s;
       font-size: 14px;
       border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+      margin-bottom: 4px;
     }
 
-    .manual-sidebar a:hover {
+    .floating-toc a:hover {
       background: #F9F9F9;
-      border-left-color: #CF2030;
-      padding-left: 16px;
-    }
-
-    .manual-sidebar a.active {
-      background: #FFF5F5;
-      border-left-color: #CF2030;
       color: #CF2030;
+      border-left-color: #CF2030;
+    }
+
+    .floating-toc a.active {
+      background: #FFF5F5;
+      color: #CF2030;
+      border-left-color: #CF2030;
       font-weight: 600;
-      padding-left: 16px;
     }
 
-    .manual-container {
-      flex: 1;
-      max-width: 900px;
-      padding: 40px;
-      background: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      border-radius: 8px;
+    .floating-toc-toggle {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: #CF2030;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(207, 32, 48, 0.3);
+      z-index: 101;
+      transition: all 0.3s ease;
     }
 
-    @media (max-width: 1024px) {
+    .floating-toc-toggle:hover {
+      background: #A01828;
+      transform: scale(1.1);
+    }
+
+    .floating-toc-toggle.show {
+      display: flex;
+    }
+
+    /* Responsive */
+    @media (max-width: 1400px) {
+      .floating-toc {
+        display: none;
+      }
+      .floating-toc-toggle.show {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 768px) {
       .manual-wrapper {
         flex-direction: column;
       }
-
-      .manual-sidebar {
-        position: relative;
-        width: 100%;
-        top: 0;
+      .floating-toc {
+        position: fixed;
+        top: 60px;
+        right: 10px;
+        width: 240px;
       }
     }
 
@@ -472,30 +519,48 @@ $currentUser = getCurrentUserInfo();
   </div>
   <?php endif; ?>
 
-  <div class="manual-wrapper">
-    <!-- Floating Sidebar TOC -->
-    <aside class="manual-sidebar">
-      <h2><i class="fas fa-list"></i> 目次</h2>
-      <ul id="toc">
-        <li><a href="#overview" class="toc-link">1. システム概要</a></li>
-        <li><a href="#login" class="toc-link">2. ログイン方法</a></li>
-        <li><a href="#member" class="toc-link">3. 一般メンバーの使い方</a></li>
-        <li><a href="#admin" class="toc-link">4. 管理者の使い方</a></li>
-        <li><a href="#faq" class="toc-link">5. よくある質問</a></li>
-        <li><a href="#troubleshooting" class="toc-link">6. トラブルシューティング</a></li>
-        <li><a href="#contact" class="toc-link">7. お問い合わせ</a></li>
-      </ul>
-    </aside>
+  <!-- Floating Table of Contents -->
+  <div class="floating-toc" id="floatingToc">
+    <h3><i class="fas fa-list"></i> 目次</h3>
+    <ul>
+      <li><a href="#overview" class="toc-link">1. システム概要</a></li>
+      <li><a href="#login" class="toc-link">2. ログイン方法</a></li>
+      <li><a href="#member" class="toc-link">3. 一般メンバーの使い方</a></li>
+      <li><a href="#admin" class="toc-link">4. 管理者の使い方</a></li>
+      <li><a href="#faq" class="toc-link">5. よくある質問</a></li>
+      <li><a href="#troubleshooting" class="toc-link">6. トラブルシューティング</a></li>
+      <li><a href="#contact" class="toc-link">7. お問い合わせ</a></li>
+    </ul>
+  </div>
 
-    <!-- Main Content -->
+  <!-- Toggle Button for Mobile -->
+  <button class="floating-toc-toggle show" id="tocToggle">
+    <i class="fas fa-list"></i>
+  </button>
+
+  <div class="manual-wrapper">
     <div class="manual-container">
-      <!-- Header -->
-      <div class="manual-header">
-        <h1><i class="fas fa-book"></i> BNI Slide System 利用マニュアル</h1>
-        <p class="subtitle">BNI宗麟チャプター メンバー様・管理者様</p>
-        <span class="version">Version 3.0</span>
-        <p style="margin-top: 15px; font-size: 14px; color: #666;">最終更新: 2025年12月13日</p>
-      </div>
+    <!-- Header -->
+    <div class="manual-header">
+      <h1><i class="fas fa-book"></i> BNI Slide System 利用マニュアル</h1>
+      <p class="subtitle">BNI宗麟チャプター メンバー様・管理者様</p>
+      <span class="version">Version 3.0</span>
+      <p style="margin-top: 15px; font-size: 14px; color: #666;">最終更新: 2025年12月13日</p>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="manual-nav">
+      <h2><i class="fas fa-list"></i> 目次</h2>
+      <ul>
+        <li><a href="#overview">1. システム概要</a></li>
+        <li><a href="#login">2. ログイン方法</a></li>
+        <li><a href="#member">3. 一般メンバーの使い方</a></li>
+        <li><a href="#admin">4. 管理者の使い方</a></li>
+        <li><a href="#faq">5. よくある質問</a></li>
+        <li><a href="#troubleshooting">6. トラブルシューティング</a></li>
+        <li><a href="#contact">7. お問い合わせ</a></li>
+      </ul>
+    </div>
 
     <!-- Section 1: システム概要 -->
     <div id="overview" class="manual-section">
@@ -1176,8 +1241,8 @@ $currentUser = getCurrentUserInfo();
       <p style="margin-top: 30px; font-size: 14px;">このマニュアルに関するご意見・ご要望は管理者までお寄せください。</p>
       <p style="margin-top: 10px; font-size: 14px; color: #CF2030; font-weight: 600;">Givers Gain® | BNI Slide System</p>
     </div>
-    </div>
-  </div>
+    </div><!-- /.manual-container -->
+  </div><!-- /.manual-wrapper -->
 
   <!-- Back to Top Button -->
   <div class="back-to-top" id="backToTop">
@@ -1217,42 +1282,68 @@ $currentUser = getCurrentUserInfo();
       });
     });
 
-    // Table of Contents scroll spy
+    // Floating TOC Scroll Highlighting
     const sections = document.querySelectorAll('.manual-section');
     const tocLinks = document.querySelectorAll('.toc-link');
+    const floatingToc = document.getElementById('floatingToc');
+    const tocToggle = document.getElementById('tocToggle');
 
-    function updateActiveLink() {
-      let current = '';
-      const scrollPosition = window.pageYOffset + 150;
+    // Toggle floating TOC on mobile
+    if (tocToggle) {
+      tocToggle.addEventListener('click', () => {
+        floatingToc.classList.toggle('hidden');
+      });
+    }
+
+    // Highlight active section in TOC based on scroll position
+    function highlightActiveTocItem() {
+      let currentSection = '';
+      const scrollPosition = window.scrollY + 150;
 
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
+        const sectionHeight = section.offsetHeight;
 
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          current = section.getAttribute('id');
+          currentSection = section.getAttribute('id');
         }
       });
 
       tocLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
+        const href = link.getAttribute('href').substring(1);
+
+        if (href === currentSection) {
           link.classList.add('active');
+
+          // Auto-scroll TOC to show active item
+          if (floatingToc && !floatingToc.classList.contains('hidden')) {
+            const linkTop = link.offsetTop;
+            const tocScrollTop = floatingToc.scrollTop;
+            const tocHeight = floatingToc.offsetHeight;
+
+            if (linkTop < tocScrollTop || linkTop > tocScrollTop + tocHeight - 100) {
+              floatingToc.scrollTo({
+                top: linkTop - 100,
+                behavior: 'smooth'
+              });
+            }
+          }
         }
       });
     }
 
-    // Update on scroll (throttled for performance)
+    // Run on scroll with throttle
     let scrollTimeout;
     window.addEventListener('scroll', () => {
       if (scrollTimeout) {
-        window.cancelAnimationFrame(scrollTimeout);
+        clearTimeout(scrollTimeout);
       }
-      scrollTimeout = window.requestAnimationFrame(updateActiveLink);
+      scrollTimeout = setTimeout(highlightActiveTocItem, 50);
     });
 
-    // Update on load
-    updateActiveLink();
+    // Initial highlight
+    highlightActiveTocItem();
   </script>
 </body>
 </html>
