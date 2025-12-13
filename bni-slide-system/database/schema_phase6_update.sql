@@ -1,8 +1,6 @@
 -- Phase 6 Schema Update
 -- weekly_presentersテーブルに「ご紹介してほしい方」カラムを追加
 
--- referral_targetカラムを追加
-ALTER TABLE weekly_presenters ADD COLUMN referral_target TEXT;
-
--- 確認
-PRAGMA table_info(weekly_presenters);
+-- referral_targetカラムを追加（既に存在する場合はスキップ）
+-- SQLiteはIF NOT EXISTSをサポートしていないため、
+-- migrate.phpでカラムの存在チェックを行う

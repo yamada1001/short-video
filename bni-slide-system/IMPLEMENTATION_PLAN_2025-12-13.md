@@ -1222,3 +1222,33 @@ sqlite3 database/bni_slide.db < database/test_data_member_photos.sql
 
 これでSSH接続不要！ブラウザから簡単にマイグレーション実行可能。
 
+---
+
+**2025年12月14日 00:00** - マイグレーションエラー修正
+
+### ✅ 重複カラムエラーを修正
+
+**エラー内容**:
+```
+Warning: SQLite3::exec(): duplicate column name: referral_target
+```
+
+**原因**:
+- referral_targetカラムが既に本番DBに存在
+- ALTER TABLE実行時にエラー
+
+**修正内容**:
+1. schema_phase6_update.sql: ALTER文を削除（migrate.phpで処理）
+2. admin/migrate.php: カラム存在チェックを追加
+   - PRAGMA table_infoでカラムの存在確認
+   - 既に存在する場合はスキップ
+   - 存在しない場合のみALTER TABLE実行
+3. 既存テーブル/データエラーも自動スキップ
+
+**結果**:
+- 何度実行しても安全
+- 既存データを保護
+- エラーではなくスキップとして表示
+
+修正完了。本番環境で再度実行可能。
+

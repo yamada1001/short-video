@@ -63,10 +63,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['execute_migration']))
                 continue;
             }
 
-            $sql = file_get_contents($sqlPath);
-
             try {
                 $db = new SQLite3($dbPath);
+
+                // 特別処理: schema_phase6_update.sql
+                if ($file === 'schema_phase6_update.sql') {
+                    // weekly_presentersテーブルにreferral_targetカラムが存在するかチェック
+                    $result = $db->query("PRAGMA table_info(weekly_presenters)");
+                    $columnExists = false;
+
+                    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                        if ($row['name'] === 'referral_target') {
+                            $columnExists = true;
+                            break;
+                        }
+                    }
+
+                    if ($columnExists) {
+                        $db->close();
+                        $migrationResults[] = [
+                            'file' => $file,
+                            'description' => $description,
+                            'status' => 'skip',
+                            'message' => 'referral_targetカラムは既に存在します（スキップ）'
+                        ];
+                        continue;
+                    }
+
+                    // カラムが存在しない場合のみ追加
+                    $db->exec('BEGIN TRANSACTION');
+                    $db->exec('ALTER TABLE weekly_presenters ADD COLUMN referral_target TEXT');
+                    $db->exec('COMMIT');
+                    $db->close();
+
+                    $migrationResults[] = [
+                        'file' => $file,
+                        'description' => $description,
+                        'status' => 'success',
+                        'message' => 'referral_targetカラムを追加しました'
+                    ];
+                    continue;
+                }
+
+                // その他のマイグレーション
+                $sql = file_get_contents($sqlPath);
                 $db->exec('BEGIN TRANSACTION');
 
                 // SQLを実行
@@ -92,12 +132,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['execute_migration']))
                     $db->close();
                 }
 
-                $migrationResults[] = [
-                    'file' => $file,
-                    'description' => $description,
-                    'status' => 'error',
-                    'message' => $e->getMessage()
-                ];
+                // 既に存在するエラーはスキップとして扱う
+                if (strpos($e->getMessage(), 'already exists') !== false ||
+                    strpos($e->getMessage(), 'duplicate') !== false) {
+                    $migrationResults[] = [
+                        'file' => $file,
+                        'description' => $description,
+                        'status' => 'skip',
+                        'message' => '既に存在します（スキップ）'
+                    ];
+                } else {
+                    $migrationResults[] = [
+                        'file' => $file,
+                        'description' => $description,
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ];
+                }
             }
         }
 
