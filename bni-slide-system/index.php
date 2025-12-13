@@ -262,74 +262,9 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
               </div>
             </div>
 
-            <!-- Section 2: シェアストーリー -->
+            <!-- Section 2: ピッチ担当者情報 -->
             <div class="form-section">
-              <h2 class="form-section-title">2. シェアストーリー</h2>
-
-              <div class="form-group">
-                <label class="form-label">
-                  今週のシェアストーリー担当ですか？<span class="required">*</span>
-                </label>
-                <div class="form-radio-group">
-                  <div class="form-radio">
-                    <input type="radio" id="share_story_yes" name="is_share_story" value="1" required>
-                    <label for="share_story_yes">はい</label>
-                  </div>
-                  <div class="form-radio">
-                    <input type="radio" id="share_story_no" name="is_share_story" value="0" required checked>
-                    <label for="share_story_no">いいえ</label>
-                  </div>
-                </div>
-                <span class="form-error">シェアストーリー担当の可否を選択してください</span>
-              </div>
-            </div>
-
-            <!-- Section 3: エデュケーション -->
-            <div class="form-section">
-              <h2 class="form-section-title">3. エデュケーション</h2>
-
-              <div class="form-group">
-                <label class="form-label">
-                  今週のエデュケーション担当ですか？<span class="required">*</span>
-                </label>
-                <div class="form-radio-group">
-                  <div class="form-radio">
-                    <input type="radio" id="education_yes" name="is_education_presenter" value="1" required>
-                    <label for="education_yes">はい（エデュケーション資料をアップロードします）</label>
-                  </div>
-                  <div class="form-radio">
-                    <input type="radio" id="education_no" name="is_education_presenter" value="0" required checked>
-                    <label for="education_no">いいえ</label>
-                  </div>
-                </div>
-                <span class="form-error">エデュケーション担当の可否を選択してください</span>
-              </div>
-
-              <!-- ファイルアップロード欄（エデュケーション担当者の場合のみ表示） -->
-              <div id="educationFileUploadSection" style="display: none;">
-                <div class="form-group">
-                  <label class="form-label">
-                    エデュケーション資料をアップロード<span class="required">*</span>
-                  </label>
-                  <input type="file" name="education_file" id="education_file" class="form-input" accept=".pdf,.pptx,.ppt">
-                  <span class="form-help">
-                    対応形式: PDF (.pdf) または PowerPoint (.pptx, .ppt)<br>
-                    最大ファイルサイズ: 30MB<br>
-                    <strong>推奨:</strong> PDF形式でアップロードすると、スライドに直接埋め込み表示されます。<br>
-                    PowerPoint形式の場合は、ダウンロードリンクのみ表示されます。
-                  </span>
-                  <div id="educationFilePreview" style="margin-top: 10px; padding: 10px; background: #F0F8FF; border: 1px solid #B0D4FF; border-radius: 4px; display: none;">
-                    <p style="margin: 0; font-size: 14px; color: #333;">
-                      <strong>選択されたファイル:</strong> <span id="educationFileName"></span> (<span id="educationFileSize"></span>)
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Section 4: ピッチ担当者情報 -->
-            <div class="form-section">
-              <h2 class="form-section-title">4. ピッチ担当者情報</h2>
+              <h2 class="form-section-title">2. ピッチ担当者情報</h2>
 
               <div class="form-group">
                 <label class="form-label">
@@ -792,74 +727,11 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
         togglePitchFileUpload();
       }
 
-      // エデュケーションファイルアップロードセクションの動的制御
-      function setupEducationFileUpload() {
-        const educationYes = document.getElementById('education_yes');
-        const educationNo = document.getElementById('education_no');
-        const educationFileUploadSection = document.getElementById('educationFileUploadSection');
-        const educationFileInput = document.getElementById('education_file');
-        const educationFilePreview = document.getElementById('educationFilePreview');
-        const educationFileName = document.getElementById('educationFileName');
-        const educationFileSize = document.getElementById('educationFileSize');
-
-        // ラジオボタンの変更イベント
-        function toggleEducationFileUpload() {
-          if (educationYes.checked) {
-            educationFileUploadSection.style.display = 'block';
-            educationFileInput.setAttribute('required', 'required');
-          } else {
-            educationFileUploadSection.style.display = 'none';
-            educationFileInput.removeAttribute('required');
-            educationFileInput.value = ''; // ファイル選択をクリア
-            educationFilePreview.style.display = 'none';
-          }
-        }
-
-        educationYes.addEventListener('change', toggleEducationFileUpload);
-        educationNo.addEventListener('change', toggleEducationFileUpload);
-
-        // ファイル選択時のプレビュー表示
-        educationFileInput.addEventListener('change', function() {
-          const file = this.files[0];
-          if (file) {
-            // ファイルサイズチェック (30MB)
-            const maxSize = 30 * 1024 * 1024; // 30MB in bytes
-            if (file.size > maxSize) {
-              alert('ファイルサイズが大きすぎます。30MB以下のファイルを選択してください。\n現在のファイルサイズ: ' + (file.size / 1024 / 1024).toFixed(2) + 'MB');
-              this.value = '';
-              educationFilePreview.style.display = 'none';
-              return;
-            }
-
-            // ファイル形式チェック
-            const allowedExts = ['pdf', 'pptx', 'ppt'];
-            const ext = file.name.split('.').pop().toLowerCase();
-            if (!allowedExts.includes(ext)) {
-              alert('対応していないファイル形式です。PDF (.pdf) または PowerPoint (.pptx, .ppt) をアップロードしてください。');
-              this.value = '';
-              educationFilePreview.style.display = 'none';
-              return;
-            }
-
-            // プレビュー表示
-            educationFileName.textContent = file.name;
-            educationFileSize.textContent = (file.size / 1024 / 1024).toFixed(2) + ' MB';
-            educationFilePreview.style.display = 'block';
-          } else {
-            educationFilePreview.style.display = 'none';
-          }
-        });
-
-        // 初期状態設定
-        toggleEducationFileUpload();
-      }
-
       // ページ読み込み時に実行
       document.addEventListener('DOMContentLoaded', function() {
         checkAndRestoreDraft();
         attachAutosaveListeners();
         setupPitchFileUpload(); // ピッチファイルアップロードの設定
-        setupEducationFileUpload(); // エデュケーションファイルアップロードの設定
       });
 
     })();

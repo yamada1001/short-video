@@ -136,30 +136,30 @@ function getTargetFriday($timestamp) {
     $dayOfWeek = intval($dt->format('w')); // 0=Sunday, 5=Friday
     $hour = intval($dt->format('H'));
 
-    // Friday 0:00-4:59 → This Friday (today)
+    // Friday 0:00-4:59 → Previous Friday (last week)
     if ($dayOfWeek === 5 && $hour < 5) {
+        $dt->modify('-7 days');
         return $dt->format('Y-m-d');
     }
 
-    // Friday 5:00 onwards → Next Friday
+    // Friday 5:00-23:59 → This Friday (today)
     if ($dayOfWeek === 5 && $hour >= 5) {
-        $dt->modify('+7 days');
         return $dt->format('Y-m-d');
     }
 
     // For any other day (Sat, Sun, Mon, Tue, Wed, Thu):
-    // Find the PREVIOUS Friday (this is the week's start date)
-    // Sat(6) → -1 day, Sun(0) → -2 days, Mon(1) → -3 days, ..., Thu(4) → -6 days
+    // Find the NEXT Friday
+    // Sat(6) → +6 days, Sun(0) → +5 days, Mon(1) → +4 days, ..., Thu(4) → +1 day
     if ($dayOfWeek === 0) {
-        // Sunday → go back 2 days to Friday
-        $dt->modify('-2 days');
+        // Sunday → go forward 5 days to Friday
+        $dt->modify('+5 days');
+    } else if ($dayOfWeek < 5) {
+        // Mon-Thu → go forward to next Friday
+        $daysToAdd = 5 - $dayOfWeek;
+        $dt->modify("+$daysToAdd days");
     } else {
-        // Other days: calculate days back to Friday
-        $daysToSubtract = $dayOfWeek - 5;
-        if ($daysToSubtract < 0) {
-            $daysToSubtract += 7;
-        }
-        $dt->modify("-$daysToSubtract days");
+        // Saturday (6) → go forward 6 days to next Friday
+        $dt->modify('+6 days');
     }
 
     return $dt->format('Y-m-d');

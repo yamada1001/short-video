@@ -39,8 +39,7 @@ try {
     'timestamp' => date('Y-m-d H:i:s'),
     'input_date' => sanitize($_POST['input_date'] ?? ''),
     'introducer_name' => sanitize($_POST['introducer_name'] ?? ''),
-    'email' => sanitize($_POST['email'] ?? ''),
-    'is_share_story' => intval($_POST['is_share_story'] ?? 0)
+    'email' => sanitize($_POST['email'] ?? '')
   ];
 
   // Get pitch presenter data (validate but don't upload yet)
@@ -62,24 +61,6 @@ try {
       $pitchFileToUpload = $_FILES['pitch_file'];
     } elseif (!$hasYoutubeUrl) {
       throw new Exception('ピッチ資料をアップロードするか、YouTube動画URLを入力してください');
-    }
-  }
-
-  // Get education presenter data (validate but don't upload yet)
-  $isEducationPresenter = intval($_POST['is_education_presenter'] ?? 0);
-  $educationFileToUpload = null;
-
-  // Validate education file if user is education presenter
-  if ($isEducationPresenter === 1) {
-    if (isset($_FILES['education_file']) && $_FILES['education_file']['error'] !== UPLOAD_ERR_NO_FILE) {
-      // Validate education file (but don't save yet - we need user ID first)
-      $validation = validatePitchFile($_FILES['education_file']); // Use same validation as pitch
-      if (!$validation['success']) {
-        throw new Exception($validation['message']);
-      }
-      $educationFileToUpload = $_FILES['education_file'];
-    } else {
-      throw new Exception('エデュケーション資料をアップロードしてください');
     }
   }
 
@@ -119,7 +100,7 @@ try {
 
   // Save to database
   $db = getDbConnection();
-  $surveyId = saveToDatabase($db, $baseData, $visitors, $isPitchPresenter, $pitchFileToUpload, $isEducationPresenter, $educationFileToUpload, $youtubeUrl);
+  $surveyId = saveToDatabase($db, $baseData, $visitors, $isPitchPresenter, $pitchFileToUpload, $youtubeUrl);
   dbClose($db);
 
   if (!$surveyId) {
@@ -127,7 +108,7 @@ try {
   }
 
   // Send email notification
-  $emailSent = sendEmailNotification($baseData, $visitors, $isPitchPresenter, $isEducationPresenter);
+  $emailSent = sendEmailNotification($baseData, $visitors, $isPitchPresenter);
 
   // Response
   echo json_encode([
@@ -136,7 +117,6 @@ try {
     'data' => $baseData,
     'visitors' => $visitors,
     'is_pitch_presenter' => $isPitchPresenter,
-    'is_education_presenter' => $isEducationPresenter,
     'email_sent' => $emailSent
   ]);
 
@@ -157,7 +137,7 @@ function sanitize($input) {
 /**
  * Save data to SQLite database
  */
-function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitchFileData = null, $isEducationPresenter = 0, $educationFileData = null, $youtubeUrl = '') {
+function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitchFileData = null, $youtubeUrl = '') {
   try {
     // Start transaction
     dbBeginTransaction($db);
@@ -194,26 +174,6 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
       }
     }
 
-    // Handle education file upload if educationFileData is actually the uploaded file
-    $actualEducationFileData = null;
-    if ($isEducationPresenter === 1 && $educationFileData !== null) {
-      // If $educationFileData is the uploaded file array (not processed data), process it now
-      if (isset($educationFileData['tmp_name'])) {
-        $fileResult = saveEducationFile($educationFileData, $weekDate, $userId ?? 0);
-        if (!$fileResult['success']) {
-          throw new Exception($fileResult['message']);
-        }
-        $actualEducationFileData = [
-          'path' => $fileResult['file_path'],
-          'type' => $fileResult['file_type'],
-          'original_name' => $fileResult['original_name']
-        ];
-      } else {
-        // Already processed education file data
-        $actualEducationFileData = $educationFileData;
-      }
-    }
-
     // Insert survey_data
     $surveyQuery = "INSERT INTO survey_data (
       week_date,
@@ -222,16 +182,11 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
       user_id,
       user_name,
       user_email,
-      is_share_story,
       is_pitch_presenter,
       pitch_file_path,
       pitch_file_original_name,
       pitch_file_type,
       youtube_url,
-      is_education_presenter,
-      education_file_path,
-      education_file_original_name,
-      education_file_type,
       created_at
     ) VALUES (
       :week_date,
@@ -240,16 +195,11 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
       :user_id,
       :user_name,
       :user_email,
-      :is_share_story,
       :is_pitch_presenter,
       :pitch_file_path,
       :pitch_file_original_name,
       :pitch_file_type,
       :youtube_url,
-      :is_education_presenter,
-      :education_file_path,
-      :education_file_original_name,
-      :education_file_type,
       :created_at
     )";
 
@@ -260,16 +210,11 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
       ':user_id' => $userId,
       ':user_name' => $userName,
       ':user_email' => $baseData['email'],
-      ':is_share_story' => $baseData['is_share_story'],
       ':is_pitch_presenter' => $isPitchPresenter,
       ':pitch_file_path' => $actualPitchFileData ? $actualPitchFileData['path'] : null,
       ':pitch_file_original_name' => $actualPitchFileData ? $actualPitchFileData['original_name'] : null,
       ':pitch_file_type' => $actualPitchFileData ? $actualPitchFileData['type'] : null,
       ':youtube_url' => !empty($youtubeUrl) ? $youtubeUrl : null,
-      ':is_education_presenter' => $isEducationPresenter,
-      ':education_file_path' => $actualEducationFileData ? $actualEducationFileData['path'] : null,
-      ':education_file_original_name' => $actualEducationFileData ? $actualEducationFileData['original_name'] : null,
-      ':education_file_type' => $actualEducationFileData ? $actualEducationFileData['type'] : null,
       ':created_at' => $baseData['timestamp']
     ];
 
@@ -320,7 +265,7 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
 /**
  * Send email notification to admin
  */
-function sendEmailNotification($baseData, $visitors, $isPitchPresenter, $isEducationPresenter) {
+function sendEmailNotification($baseData, $visitors, $isPitchPresenter) {
   $to = MAIL_TO;
   $subject = '[BNI] 新しいアンケート回答がありました - ' . $baseData['introducer_name'];
 
@@ -352,30 +297,12 @@ function sendEmailNotification($baseData, $visitors, $isPitchPresenter, $isEduca
   // Build presenter info HTML
   $presenterInfoHTML = '';
 
-  // Share Story
-  $shareStoryStatus = ($baseData['is_share_story'] == 1) ? 'はい（担当）' : 'いいえ';
-  $presenterInfoHTML .= '
-    <div class="field">
-      <span class="label">シェアストーリー担当:</span>
-      <span class="value">' . htmlspecialchars($shareStoryStatus) . '</span>
-    </div>
-  ';
-
   // Pitch Presenter
   $pitchStatus = ($isPitchPresenter == 1) ? 'はい（ピッチ資料あり）' : 'いいえ';
   $presenterInfoHTML .= '
     <div class="field">
       <span class="label">33秒ピッチ担当:</span>
       <span class="value">' . htmlspecialchars($pitchStatus) . '</span>
-    </div>
-  ';
-
-  // Education Presenter
-  $educationStatus = ($isEducationPresenter == 1) ? 'はい（エデュケーション資料あり）' : 'いいえ';
-  $presenterInfoHTML .= '
-    <div class="field">
-      <span class="label">エデュケーション担当:</span>
-      <span class="value">' . htmlspecialchars($educationStatus) . '</span>
     </div>
   ';
 
