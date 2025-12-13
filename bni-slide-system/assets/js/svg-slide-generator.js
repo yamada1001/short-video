@@ -1617,22 +1617,10 @@ function generateVisitorSelfIntroductionSlides(visitorIntroductions) {
  * ネットワーキング学習コーナースライドを生成（networking_learning_presentersテーブルから）
  */
 function generateNetworkingLearningSlide(presenter) {
-  // PDFがある場合はPDF表示用のスライドを生成
-  if (presenter.pdf_file_path) {
-    return `
-      <section class="networking-learning-pdf-slide" data-background-iframe="../${escapeHtml(presenter.pdf_file_path)}" data-background-interactive>
-        <div style="position: absolute; top: 20px; left: 20px; background: rgba(207, 32, 48, 0.95); color: white; padding: 15px 25px; border-radius: 8px; font-size: 24px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
-          ネットワーキング学習コーナー
-        </div>
-        <div style="position: absolute; bottom: 20px; right: 20px; background: rgba(255, 255, 255, 0.95); padding: 12px 20px; border-radius: 8px; font-size: 18px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-          担当: ${escapeHtml(presenter.presenter_name)}
-        </div>
-      </section>
-    `;
-  }
+  let slides = '';
 
-  // PDFがない場合は従来の担当者表示スライド
-  return `
+  // タイトルスライドを追加
+  slides += `
     <section class="networking-education-slide">
       <h2 class="networking-education-title">ネットワーキング学習コーナー</h2>
       <div class="networking-education-subtitle">Networking Education Corner</div>
@@ -1653,5 +1641,20 @@ function generateNetworkingLearningSlide(presenter) {
       </div>
     </section>
   `;
+
+  // PDF画像がある場合、各ページを個別スライドとして追加
+  if (presenter.pdf_image_paths_array && presenter.pdf_image_paths_array.length > 0) {
+    presenter.pdf_image_paths_array.forEach((imagePath, index) => {
+      slides += `
+        <section class="networking-learning-image-slide" data-background-image="../${escapeHtml(imagePath)}" data-background-size="contain" data-background-color="#ffffff">
+          <div style="position: absolute; top: 20px; left: 20px; background: rgba(207, 32, 48, 0.95); color: white; padding: 12px 20px; border-radius: 8px; font-size: 18px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+            ネットワーキング学習 ${index + 1}/${presenter.pdf_image_paths_array.length}
+          </div>
+        </section>
+      `;
+    });
+  }
+
+  return slides;
 }
 
