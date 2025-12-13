@@ -3643,16 +3643,18 @@
   border-bottom: 3px solid rgba(255, 255, 255, 0.2);
   letter-spacing: 1px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
 }
 
 .ranking-table thead th:first-child {
   text-align: center;
-  width: 120px;
+  width: 100px;
 }
 
 .ranking-table thead th:last-child {
   text-align: right;
-  width: 280px;
+  width: 350px;
+  min-width: 350px;
 }
 
 /* Table Body */
@@ -3684,6 +3686,7 @@
   text-align: center;
   font-size: 42px;
   font-weight: 800;
+  width: 100px;
 }
 
 .ranking-table tbody td:nth-child(2) {
@@ -3694,7 +3697,12 @@
 .ranking-table tbody td:last-child {
   text-align: right;
   font-weight: 700;
-  font-size: 36px;
+  font-size: 38px;
+  font-family: 'Courier New', Consolas, monospace;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  width: 350px;
+  min-width: 350px;
 }
 
 /* Rank 1 - Gold Medal 🥇 */
@@ -3736,18 +3744,19 @@
 
 .ranking-table tbody tr.rank-1 td {
   font-weight: 800;
-  text-shadow:
-    0 0 15px rgba(255, 215, 0, 0.6),
-    0 2px 4px rgba(0, 0, 0, 0.3);
   color: #FFF;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .ranking-table tbody tr.rank-1 td:first-child {
   font-size: 48px;
   color: #FFD700;
-  text-shadow:
-    0 0 20px rgba(255, 215, 0, 0.8),
-    0 2px 8px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.ranking-table tbody tr.rank-1 td:last-child {
+  color: #FFF;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .ranking-table tbody tr.rank-1:hover {

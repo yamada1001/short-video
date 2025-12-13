@@ -1527,13 +1527,13 @@ function generateMonthlyRankingSlides(rankingData) {
     `;
 
     rankingData.referral_amount.forEach((entry, index) => {
-      const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
-      const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
+      const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : index === 3 ? 'rank-4' : 'rank-5';
+      const medal = index === 0 ? '🥇 ' : index === 1 ? '🥈 ' : index === 2 ? '🥉 ' : '';
       slides += `
         <tr class="${rankClass}">
-          <td style="font-size: 32px; font-weight: bold;">${medal} ${entry.rank}位</td>
-          <td style="font-size: 28px;">${escapeHtml(entry.name)}</td>
-          <td style="font-size: 32px; font-weight: bold; color: #CF2030;">¥${entry.value.toLocaleString()}</td>
+          <td>${medal}${entry.rank}</td>
+          <td>${escapeHtml(entry.name)}</td>
+          <td>¥${entry.value.toLocaleString()}</td>
         </tr>
       `;
     });
@@ -1564,13 +1564,13 @@ function generateMonthlyRankingSlides(rankingData) {
     `;
 
     rankingData.visitor_count.forEach((entry, index) => {
-      const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
-      const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
+      const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : index === 3 ? 'rank-4' : 'rank-5';
+      const medal = index === 0 ? '🥇 ' : index === 1 ? '🥈 ' : index === 2 ? '🥉 ' : '';
       slides += `
         <tr class="${rankClass}">
-          <td style="font-size: 32px; font-weight: bold;">${medal} ${entry.rank}位</td>
-          <td style="font-size: 28px;">${escapeHtml(entry.name)}</td>
-          <td style="font-size: 32px; font-weight: bold; color: #CF2030;">${entry.value}人</td>
+          <td>${medal}${entry.rank}</td>
+          <td>${escapeHtml(entry.name)}</td>
+          <td>${entry.value}人</td>
         </tr>
       `;
     });
@@ -1601,13 +1601,13 @@ function generateMonthlyRankingSlides(rankingData) {
     `;
 
     rankingData.one_to_one_count.forEach((entry, index) => {
-      const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
-      const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
+      const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : index === 3 ? 'rank-4' : 'rank-5';
+      const medal = index === 0 ? '🥇 ' : index === 1 ? '🥈 ' : index === 2 ? '🥉 ' : '';
       slides += `
         <tr class="${rankClass}">
-          <td style="font-size: 32px; font-weight: bold;">${medal} ${entry.rank}位</td>
-          <td style="font-size: 28px;">${escapeHtml(entry.name)}</td>
-          <td style="font-size: 32px; font-weight: bold; color: #CF2030;">${entry.value}回</td>
+          <td>${medal}${entry.rank}</td>
+          <td>${escapeHtml(entry.name)}</td>
+          <td>${entry.value}回</td>
         </tr>
       `;
     });
