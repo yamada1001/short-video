@@ -5730,3 +5730,261 @@
   line-height: 1.6 !important;
   letter-spacing: 0.05em;
 }
+
+/* ============================
+   Member Introduction Slides
+   メンバー紹介スライド (p.42-59)
+   ============================ */
+
+/* Single Member Slide Layout (1名スライド) */
+.member-intro-single {
+  background: #FFFFFF !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Red Triangle Top Right */
+.member-intro-single::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 400px 400px 0;
+  border-color: transparent #C8102E transparent transparent;
+  z-index: 1;
+}
+
+/* Bottom Right Decoration */
+.member-intro-single::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 600px;
+  height: 200px;
+  background: linear-gradient(135deg, #E0E0E0 0%, #C0C0C0 50%, #C8102E 100%);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  z-index: 1;
+}
+
+.member-single-position-title {
+  font-size: 4em !important;
+  font-weight: 900 !important;
+  color: #C8102E !important;
+  text-align: center !important;
+  margin-bottom: 20px !important;
+  z-index: 2;
+  position: relative;
+}
+
+.member-single-position-en {
+  font-size: 3em !important;
+  font-weight: 700 !important;
+  color: #C8102E !important;
+  text-align: center !important;
+  margin-bottom: 60px !important;
+  z-index: 2;
+  position: relative;
+}
+
+.member-single-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  z-index: 2;
+  position: relative;
+}
+
+.member-single-photo {
+  width: 450px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.member-single-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.member-single-name {
+  font-size: 5em !important;
+  font-weight: 900 !important;
+  color: #000000 !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.member-single-name .highlight {
+  color: #C8102E !important;
+}
+
+.member-single-company {
+  font-size: 2.5em !important;
+  font-weight: 600 !important;
+  color: #000000 !important;
+  margin: 10px 0 !important;
+}
+
+.member-single-industry {
+  font-size: 2em !important;
+  font-weight: 400 !important;
+  color: #333333 !important;
+  margin: 0 !important;
+}
+
+/* Multi-Member Grid Layout (3-4名スライド) */
+.member-intro-multi {
+  background: #FFFFFF !important;
+  padding: 80px 60px !important;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Bottom Right Decoration for Multi */
+.member-intro-multi::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 500px;
+  height: 180px;
+  background: linear-gradient(135deg, #E0E0E0 0%, #C0C0C0 50%, #C8102E 100%);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  z-index: 1;
+}
+
+.member-multi-position-title {
+  font-size: 3.5em !important;
+  font-weight: 900 !important;
+  color: #C8102E !important;
+  text-align: center !important;
+  margin-bottom: 10px !important;
+  z-index: 2;
+  position: relative;
+}
+
+.member-multi-position-en {
+  font-size: 2.5em !important;
+  font-weight: 700 !important;
+  color: #C8102E !important;
+  text-align: center !important;
+  margin-bottom: 60px !important;
+  z-index: 2;
+  position: relative;
+}
+
+.member-multi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  z-index: 2;
+  position: relative;
+  margin-bottom: 100px;
+}
+
+.member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Red Triangle for Each Card */
+.member-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 120px 120px 0 0;
+  border-color: #C8102E transparent transparent transparent;
+  z-index: 1;
+}
+
+.member-card-photo-wrapper {
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.member-card-photo {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.member-card-name {
+  font-size: 2.5em !important;
+  font-weight: 900 !important;
+  color: #000000 !important;
+  text-align: center !important;
+  margin: 10px 0 !important;
+  line-height: 1.2 !important;
+  z-index: 2;
+  position: relative;
+}
+
+.member-card-name .highlight {
+  color: #C8102E !important;
+}
+
+.member-card-company {
+  font-size: 1.4em !important;
+  font-weight: 600 !important;
+  color: #000000 !important;
+  text-align: center !important;
+  margin: 5px 0 !important;
+  z-index: 2;
+  position: relative;
+}
+
+.member-card-industry {
+  font-size: 1.2em !important;
+  font-weight: 400 !important;
+  color: #333333 !important;
+  text-align: center !important;
+  margin: 0 !important;
+  z-index: 2;
+  position: relative;
+}
+
+/* BNI Online Logo for Multi-Member Slides */
+.bni-online-logo {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  z-index: 2;
+}
+
+.bni-online-logo-text {
+  font-size: 2.5em !important;
+  font-weight: 900 !important;
+  color: #C8102E !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+.bni-online-logo-sub {
+  font-size: 1.5em !important;
+  font-weight: 700 !important;
+  color: #C8102E !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+}

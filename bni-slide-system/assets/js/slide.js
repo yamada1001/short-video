@@ -205,9 +205,21 @@
         console.warn('Failed to load presenter detail data:', error);
       }
 
+      // Load Member Introduction data
+      let memberData = null;
+      try {
+        const memberResponse = await fetch(`${apiBasePath}api_load_member_introductions.php`);
+        const memberResult = await memberResponse.json();
+        if (memberResult.success) {
+          memberData = memberResult;
+        }
+      } catch (error) {
+        console.warn('Failed to load member introduction data:', error);
+      }
+
       // Generate slides using SVG templates
       // Note: slide_config may be null if slide_config.json doesn't exist
-      await generateSVGSlides(data, stats, date, pitch_presenter, referral_total, slide_config || null, monthlyRankingData, visitor_introductions, networking_learning_presenter, rotationData, presenterDetail);
+      await generateSVGSlides(data, stats, date, pitch_presenter, referral_total, slide_config || null, monthlyRankingData, visitor_introductions, networking_learning_presenter, rotationData, presenterDetail, memberData);
 
       // Initialize or sync Reveal.js
       if (!Reveal.isReady()) {

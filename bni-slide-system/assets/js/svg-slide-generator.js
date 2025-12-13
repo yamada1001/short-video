@@ -29,7 +29,7 @@ function extractYouTubeVideoId(url) {
 /**
  * Generate all slides from data
  */
-async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, referralTotal = null, slideConfig = null, monthlyRankingData = null, visitorIntroductions = null, networkingLearningPresenter = null, rotationData = null, presenterDetail = null) {
+async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, referralTotal = null, slideConfig = null, monthlyRankingData = null, visitorIntroductions = null, networkingLearningPresenter = null, rotationData = null, presenterDetail = null, memberData = null) {
   const slideContainer = document.getElementById('slideContainer');
 
   // Use provided date from API, or fall back to today's date
@@ -351,7 +351,7 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   slides += generateShareStorySlide();
 
   // Phase 10.7: Member Introduction Slides (PDF p.42-59)
-  slides += generateMemberIntroductionSlides();
+  slides += generateMemberIntroductionSlides(memberData);
 
   // Phase 10.8: BNI Purpose Slides (PDF p.65-71)
   slides += generateBNIPurposeSlides();
@@ -712,22 +712,107 @@ function generateShareStorySlide() {
 /**
  * Phase 10.7: Generate Member Introduction Slides (PDF p.42-59)
  * 18 pages of member introductions with photos
+ * データベースから動的に生成
  */
-function generateMemberIntroductionSlides() {
+function generateMemberIntroductionSlides(memberData) {
   let slides = '';
-  const pageNumbers = [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59];
 
-  pageNumbers.forEach(pageNum => {
-    slides += `
-      <section class="pdf-image-slide">
-        <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
-             alt="Member Introduction ${pageNum}"
-             class="pdf-full-image">
-      </section>
-    `;
+  // memberDataが無い場合は空を返す
+  if (!memberData || !memberData.slides || memberData.slides.length === 0) {
+    return '';
+  }
+
+  // 各スライドを生成
+  memberData.slides.forEach(slide => {
+    if (slide.type === 'single') {
+      // 単独メンバースライド（1名）
+      slides += generateSingleMemberSlide(slide);
+    } else {
+      // 複数メンバースライド（3-4名）
+      slides += generateMultiMemberSlide(slide);
+    }
   });
 
   return slides;
+}
+
+/**
+ * 単独メンバースライド生成（1名）
+ */
+function generateSingleMemberSlide(slide) {
+  const member = slide.members[0];
+  const photoUrl = member.photo_url || 'assets/images/placeholder-member.jpg';
+  const nameWithHighlight = highlightName(member.name, member.name_highlight);
+
+  return `
+    <section class="member-intro-single">
+      <div class="member-single-position-title">${escapeHtml(slide.position_title)}</div>
+      <div class="member-single-position-en">${escapeHtml(slide.position_title_en)}</div>
+      <div class="member-single-content">
+        <img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(member.name)}" class="member-single-photo">
+        <div class="member-single-info">
+          <div class="member-single-name">${nameWithHighlight}</div>
+          <div class="member-single-company">${escapeHtml(member.company)}</div>
+          <div class="member-single-industry">${escapeHtml(member.industry)}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * 複数メンバースライド生成（3-4名グリッド）
+ */
+function generateMultiMemberSlide(slide) {
+  const membersHtml = slide.members.map(member => {
+    const photoUrl = member.photo_url || 'assets/images/placeholder-member.jpg';
+    const nameWithHighlight = highlightName(member.name, member.name_highlight);
+
+    return `
+      <div class="member-card">
+        <div class="member-card-photo-wrapper">
+          <img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(member.name)}" class="member-card-photo">
+        </div>
+        <div class="member-card-name">${nameWithHighlight}</div>
+        <div class="member-card-company">${escapeHtml(member.company)}</div>
+        <div class="member-card-industry">${escapeHtml(member.industry)}</div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <section class="member-intro-multi">
+      <div class="member-multi-position-title">${escapeHtml(slide.position_title)}</div>
+      <div class="member-multi-position-en">${escapeHtml(slide.position_title_en)}</div>
+      <div class="member-multi-grid">
+        ${membersHtml}
+      </div>
+      <div class="bni-online-logo">
+        <div class="bni-online-logo-text">BNI</div>
+        <div class="bni-online-logo-sub">online</div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * 名前の一部を赤強調
+ */
+function highlightName(fullName, highlightPart) {
+  if (!highlightPart || highlightPart.trim() === '') {
+    return escapeHtml(fullName);
+  }
+
+  const escapedFullName = escapeHtml(fullName);
+  const escapedHighlight = escapeHtml(highlightPart);
+
+  // 強調部分を<span class="highlight">で囲む
+  const highlighted = escapedFullName.replace(
+    new RegExp(escapedHighlight, 'g'),
+    `<span class="highlight">${escapedHighlight}</span>`
+  );
+
+  return highlighted;
 }
 
 /**
