@@ -64,21 +64,21 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
       slides += generateAttendanceCheckSlide(slideConfig);
     }
 
-    // 1.2: Business Card Seating Chart
-    if (slideConfig.business_card_seating) {
-      slides += generateBusinessCardSeatingSlide(slideConfig);
-    }
-
     // 1.3: President's Message
     if (slideConfig.president) {
       slides += generatePresidentMessageSlide(slideConfig);
     }
   }
 
-  // Visitor Introductions (from visitor_introductions table)
+  // Visitor Introductions (from visitor_introductions table) - MOVED BEFORE Business Card
   if (visitorIntroductions && visitorIntroductions.length > 0) {
     slides += generateVisitorIntroductionListSlides(visitorIntroductions);
     slides += generateVisitorSelfIntroductionSlides(visitorIntroductions);
+  }
+
+  // 1.2: Business Card Seating Chart - MOVED AFTER Visitor Introductions
+  if (slideConfig && slideConfig.business_card_seating) {
+    slides += generateBusinessCardSeatingSlide(slideConfig);
   }
 
   // Member Contributions (split into multiple pages if needed)
