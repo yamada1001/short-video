@@ -288,12 +288,31 @@ if (!$isAdmin) {
             <i class="fas fa-info-circle"></i> この週にネットワーキング学習コーナーを担当するメンバーを1名選択してください。
           </p>
 
-          <form id="presenterForm">
+          <form id="presenterForm" enctype="multipart/form-data">
             <div class="form-group">
               <label for="memberSelect">担当メンバー <span class="required">*</span></label>
               <select id="memberSelect" required>
                 <option value="">-- メンバーを選択 --</option>
               </select>
+            </div>
+
+            <div class="form-group">
+              <label for="pdfFile">学習資料PDF（任意）</label>
+              <input type="file" id="pdfFile" name="pdf_file" accept=".pdf">
+              <small style="display: block; margin-top: 8px; color: #666;">
+                <i class="fas fa-info-circle"></i> スライドに表示する学習資料PDFをアップロードできます
+              </small>
+            </div>
+
+            <!-- Current PDF Display -->
+            <div id="currentPdfSection" style="display: none; margin-top: 15px; padding: 15px; background: #e3f2fd; border-radius: 8px;">
+              <h4 style="margin: 0 0 10px 0; font-size: 14px;">
+                <i class="fas fa-file-pdf" style="color: #d32f2f;"></i> 現在の資料
+              </h4>
+              <div id="currentPdfName" style="font-weight: 600; color: #333;"></div>
+              <button type="button" id="deletePdfBtn" class="btn btn-danger" style="margin-top: 10px; padding: 8px 16px; font-size: 14px;">
+                <i class="fas fa-trash"></i> PDFを削除
+              </button>
             </div>
 
             <div class="button-group">

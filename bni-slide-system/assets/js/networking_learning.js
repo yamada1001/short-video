@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('loadDataBtn').addEventListener('click', loadPresenterData);
   document.getElementById('presenterForm').addEventListener('submit', handleSubmit);
   document.getElementById('clearBtn').addEventListener('click', clearSelection);
+  document.getElementById('deletePdfBtn').addEventListener('click', deletePdf);
 });
 
 /**
@@ -117,9 +118,18 @@ async function loadPresenterData() {
 
       // Set the select value
       document.getElementById('memberSelect').value = result.presenter.presenter_name;
+
+      // Display current PDF if exists
+      if (result.presenter.pdf_file_path && result.presenter.pdf_file_original_name) {
+        document.getElementById('currentPdfName').textContent = result.presenter.pdf_file_original_name;
+        document.getElementById('currentPdfSection').style.display = 'block';
+      } else {
+        document.getElementById('currentPdfSection').style.display = 'none';
+      }
     } else {
       document.getElementById('memberSelect').value = '';
       document.getElementById('currentPresenterSection').style.display = 'none';
+      document.getElementById('currentPdfSection').style.display = 'none';
     }
 
   } catch (error) {
@@ -129,13 +139,14 @@ async function loadPresenterData() {
 }
 
 /**
- * Handle form submission
+ * Handle form submission (with PDF upload)
  */
 async function handleSubmit(e) {
   e.preventDefault();
 
   const weekDate = document.getElementById('weekSelector').value;
   const memberName = document.getElementById('memberSelect').value;
+  const pdfFile = document.getElementById('pdfFile').files[0];
 
   if (!weekDate) {
     showMessage('週を選択してください', 'error');
@@ -147,18 +158,19 @@ async function handleSubmit(e) {
     return;
   }
 
-  const formData = {
-    week_date: weekDate,
-    presenter_name: memberName
-  };
+  // Use FormData for file upload
+  const formData = new FormData();
+  formData.append('week_date', weekDate);
+  formData.append('presenter_name', memberName);
+
+  if (pdfFile) {
+    formData.append('pdf_file', pdfFile);
+  }
 
   try {
     const response = await fetch('../api_save_networking_learning.php', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
+      body: formData  // Don't set Content-Type header, browser will set it with boundary
     });
 
     if (!response.ok) {
@@ -174,6 +186,9 @@ async function handleSubmit(e) {
     // Success
     showMessage('担当者を保存しました', 'success');
 
+    // Clear file input
+    document.getElementById('pdfFile').value = '';
+
     // Reload presenter data
     loadPresenterData();
 
@@ -188,7 +203,52 @@ async function handleSubmit(e) {
  */
 function clearSelection() {
   document.getElementById('memberSelect').value = '';
+  document.getElementById('pdfFile').value = '';
   document.getElementById('currentPresenterSection').style.display = 'none';
+  document.getElementById('currentPdfSection').style.display = 'none';
+}
+
+/**
+ * Delete PDF file
+ */
+async function deletePdf() {
+  const weekDate = document.getElementById('weekSelector').value;
+
+  if (!weekDate) {
+    showMessage('週を選択してください', 'error');
+    return;
+  }
+
+  if (!confirm('PDF資料を削除してもよろしいですか？')) {
+    return;
+  }
+
+  try {
+    const response = await fetch('../api_delete_networking_pdf.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ week_date: weekDate })
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    if (!result.success) {
+      throw new Error(result.error || 'Failed to delete PDF');
+    }
+
+    showMessage('PDF資料を削除しました', 'success');
+    loadPresenterData();
+
+  } catch (error) {
+    console.error('Error deleting PDF:', error);
+    showMessage('PDF削除に失敗しました: ' + error.message, 'error');
+  }
 }
 
 /**

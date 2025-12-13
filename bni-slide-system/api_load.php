@@ -504,7 +504,9 @@ function getNetworkingLearningPresenter($db, $weekDate) {
       presenter_name,
       presenter_email,
       presenter_company,
-      presenter_category
+      presenter_category,
+      pdf_file_path,
+      pdf_file_original_name
     FROM networking_learning_presenters
     WHERE week_date = :week_date
     LIMIT 1
