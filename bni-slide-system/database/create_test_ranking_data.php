@@ -65,8 +65,8 @@ try {
     $rankingJson = json_encode($testData, JSON_UNESCAPED_UNICODE);
 
     dbExecute($db,
-        "INSERT INTO monthly_ranking_data (year_month, ranking_data, created_at, updated_at)
-         VALUES (?, ?, datetime('now', 'localtime'), datetime('now', 'localtime'))",
+        "INSERT INTO monthly_ranking_data (year_month, ranking_data, display_in_slide, created_at, updated_at)
+         VALUES (?, ?, 0, datetime('now', 'localtime'), datetime('now', 'localtime'))",
         [$yearMonth, $rankingJson]
     );
 

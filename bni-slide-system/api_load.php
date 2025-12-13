@@ -69,9 +69,14 @@ try {
 
   // Load monthly ranking data if display_in_slide = 1
   $monthlyRankingData = null;
-  $rankingResult = dbQueryOne($db, "SELECT ranking_data FROM monthly_ranking_data WHERE display_in_slide = 1 ORDER BY year_month DESC LIMIT 1", []);
-  if ($rankingResult) {
-    $monthlyRankingData = json_decode($rankingResult['ranking_data'], true);
+  try {
+    $rankingResult = dbQueryOne($db, "SELECT ranking_data FROM monthly_ranking_data WHERE display_in_slide = 1 ORDER BY year_month DESC LIMIT 1", []);
+    if ($rankingResult) {
+      $monthlyRankingData = json_decode($rankingResult['ranking_data'], true);
+    }
+  } catch (Exception $e) {
+    // Silently ignore if monthly_ranking_data table or column doesn't exist
+    error_log('[API LOAD] Monthly ranking data load failed: ' . $e->getMessage());
   }
 
   dbClose($db);
