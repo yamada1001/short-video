@@ -107,8 +107,9 @@ try {
     throw new Exception('データベースへの保存に失敗しました');
   }
 
-  // Send email notification
-  $emailSent = sendEmailNotification($baseData, $visitors, $isPitchPresenter);
+  // Send email notification (DISABLED 2025-12-13)
+  // $emailSent = sendEmailNotification($baseData, $visitors, $isPitchPresenter);
+  $emailSent = false; // Email notification disabled
 
   // Response
   echo json_encode([

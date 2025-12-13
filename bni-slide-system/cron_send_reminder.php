@@ -19,6 +19,11 @@ if (php_sapi_name() !== 'cli') {
     die('このスクリプトはコマンドラインからのみ実行できます');
 }
 
+// リマインダー機能は一時停止中 (2025-12-13)
+echo "[" . date('Y-m-d H:i:s') . "] リマインダー送信機能は現在停止しています\n";
+echo "理由: システム修正が頻繁に行われるため、ユーザーへの通知を一時停止\n";
+exit(0);
+
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/date_helper.php';
 
