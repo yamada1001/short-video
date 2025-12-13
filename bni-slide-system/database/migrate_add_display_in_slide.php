@@ -22,7 +22,10 @@ try {
 
   // Check if column already exists
   $result = $db->query("PRAGMA table_info(monthly_ranking_data)");
-  $columns = $result->fetchAll(PDO::FETCH_ASSOC);
+  $columns = [];
+  while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+    $columns[] = $row;
+  }
   $columnExists = false;
 
   foreach ($columns as $column) {
