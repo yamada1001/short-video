@@ -17,18 +17,24 @@
         }
 
         .reveal .slides section {
-            height: 100vh;
-            width: 100vw;
+            height: 100%;
+            width: 100%;
+            padding: 0 !important;
         }
 
         .reveal .slides section img {
-            width: 100vw;
-            height: 100vh;
-            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
             margin: 0;
+            padding: 0;
             border: none;
             box-shadow: none;
-            background: black;
+            background: none;
+        }
+
+        .reveal {
+            background: #000;
         }
     </style>
 </head>
