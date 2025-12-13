@@ -1267,6 +1267,111 @@
 }
 
 /* ============================================
+   Phase 10.6: Share Story Slide (PDF p.73)
+   ============================================ */
+
+.share-story-slide {
+  background: #FFFFFF !important;
+  color: #000000;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-story-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px;
+}
+
+.share-story-kanji {
+  font-size: 10em;
+  font-weight: 900;
+  color: #D00C24;
+  margin: 0 0 60px 0;
+  line-height: 1;
+  letter-spacing: 0.1em;
+}
+
+.share-story-content {
+  text-align: center;
+}
+
+.share-story-heading {
+  font-size: 4.5em;
+  font-weight: 800;
+  color: #000000;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+}
+
+.share-story-subtitle {
+  font-size: 2em;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+}
+
+.share-story-diagonal {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 600px;
+  height: 350px;
+  background: linear-gradient(to top right, #D00C24 0%, #D00C24 50%, #C0C0C0 50%, #C0C0C0 100%);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  z-index: 0;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+  .share-story-kanji {
+    font-size: 8em;
+  }
+
+  .share-story-heading {
+    font-size: 3.8em;
+  }
+
+  .share-story-subtitle {
+    font-size: 1.7em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .share-story-container {
+    padding: 80px 60px;
+  }
+
+  .share-story-kanji {
+    font-size: 6em;
+  }
+
+  .share-story-heading {
+    font-size: 3em;
+  }
+
+  .share-story-subtitle {
+    font-size: 1.4em;
+  }
+
+  .share-story-diagonal {
+    width: 400px;
+    height: 250px;
+  }
+}
+
+/* ============================================
    Phase 11: BNI Philosophy & Core Values Slides
    ============================================ */
 

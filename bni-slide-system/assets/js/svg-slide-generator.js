@@ -347,6 +347,9 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   // Phase 10.5: Core Values (PDF p.62)
   slides += generateCoreValuesSlide();
 
+  // Phase 10.6: Share Story (PDF p.73)
+  slides += generateShareStorySlide();
+
   // Phase 11: BNI Philosophy & Core Values
   slides += generateBNIPhilosophySlides();
 
@@ -668,6 +671,26 @@ function generateCoreValuesSlide() {
         </div>
 
         <div class="core-values-diagonal"></div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Phase 10.6: Generate Share Story Slide (PDF p.73)
+ */
+function generateShareStorySlide() {
+  return `
+    <section class="share-story-slide">
+      <div class="share-story-container">
+        <h1 class="share-story-kanji">栄光</h1>
+
+        <div class="share-story-content">
+          <h2 class="share-story-heading">Keep growing</h2>
+          <p class="share-story-subtitle">〜貢献の絆で未来を創る〜</p>
+        </div>
+
+        <div class="share-story-diagonal"></div>
       </div>
     </section>
   `;
