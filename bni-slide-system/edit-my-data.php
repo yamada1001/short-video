@@ -75,6 +75,11 @@ try {
     $activities = $surveyData['activities'];
     $comments = htmlspecialchars($surveyData['comments'], ENT_QUOTES, 'UTF-8');
 
+    // Extract pitch presenter data
+    $isPitchPresenter = intval($surveyData['is_pitch_presenter']);
+    $pitchFileOriginalName = $surveyData['pitch_file_original_name'];
+    $youtubeUrl = $surveyData['youtube_url'];
+
     // Get visitors
     $visitorsQuery = "
         SELECT visitor_name, visitor_company, visitor_industry
@@ -90,24 +95,6 @@ try {
             'name' => $row['visitor_name'],
             'company' => $row['visitor_company'],
             'industry' => $row['visitor_industry']
-        ];
-    }
-
-    // Get referrals
-    $referralsQuery = "
-        SELECT referral_name, referral_amount, referral_provider
-        FROM referrals
-        WHERE survey_data_id = :survey_data_id
-        ORDER BY id
-    ";
-    $referralsData = dbQuery($db, $referralsQuery, [':survey_data_id' => $surveyDataId]);
-
-    $referrals = [];
-    foreach ($referralsData as $row) {
-        $referrals[] = [
-            'name' => $row['referral_name'],
-            'amount' => $row['referral_amount'],
-            'provider' => $row['referral_provider']
         ];
     }
 
@@ -233,31 +220,46 @@ try {
               <button type="button" class="btn-add" onclick="addVisitor()">+ ビジター追加</button>
             </div>
 
-            <!-- Section 2: リファーラル金額 -->
+            <!-- Section 2: ピッチプレゼンター情報 -->
             <div class="form-section">
-              <h2 class="form-section-title">2. リファーラル金額</h2>
-              
-              <div id="referralContainer">
-                <?php foreach ($referrals as $index => $referral): ?>
-                <div class="referral-item" data-index="<?php echo $index; ?>">
-                  <div class="form-group">
-                    <label class="form-label">案件名</label>
-                    <input type="text" name="referral_name[]" class="form-input" value="<?php echo htmlspecialchars($referral['name'], ENT_QUOTES, 'UTF-8'); ?>">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">金額（円）</label>
-                    <input type="text" name="referral_amount[]" class="form-input amount-input" value="<?php echo number_format($referral['amount']); ?>">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">提供者</label>
-                    <input type="text" name="referral_provider[]" class="form-input" value="<?php echo htmlspecialchars($referral['provider'], ENT_QUOTES, 'UTF-8'); ?>">
-                  </div>
-                  <button type="button" class="btn-remove" onclick="removeReferral(this)">削除</button>
-                </div>
-                <?php endforeach; ?>
+              <h2 class="form-section-title">2. メインプレゼンテーション</h2>
+
+              <div class="form-group">
+                <label class="form-label">
+                  <input type="checkbox" name="is_pitch_presenter" id="pitchPresenterCheckbox" value="1" <?php echo ($isPitchPresenter == 1) ? 'checked' : ''; ?>>
+                  次の会でピッチを担当する
+                </label>
               </div>
 
-              <button type="button" class="btn-add" onclick="addReferral()">+ リファーラル追加</button>
+              <div id="pitchFileSection" style="display: <?php echo ($isPitchPresenter == 1) ? 'block' : 'none'; ?>;">
+                <?php if (!empty($pitchFileOriginalName)): ?>
+                <div style="margin-bottom: 15px; padding: 10px; background: #F0F8FF; border: 1px solid #B0D4FF; border-radius: 4px;">
+                  <strong>現在のファイル:</strong> <?php echo htmlspecialchars($pitchFileOriginalName, ENT_QUOTES, 'UTF-8'); ?>
+                </div>
+                <?php endif; ?>
+
+                <div class="form-group">
+                  <label class="form-label">ピッチ資料（PDF）</label>
+                  <input type="file" name="pitch_file" id="pitch_file" accept=".pdf" class="form-input">
+                  <span class="form-help">
+                    対応形式: PDF (.pdf)<br>
+                    最大ファイルサイズ: 30MB<br>
+                    <?php if (!empty($pitchFileOriginalName)): ?>
+                    <strong style="color: #CF2030;">※ファイルを選択すると既存のファイルが置き換えられます</strong>
+                    <?php endif; ?>
+                  </span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">YouTube動画URL（オプション）</label>
+                  <input type="url" name="youtube_url" id="youtube_url" class="form-input" value="<?php echo htmlspecialchars($youtubeUrl ?? '', ENT_QUOTES, 'UTF-8'); ?>" placeholder="https://www.youtube.com/watch?v=...">
+                  <span class="form-help">
+                    ピッチで使用するYouTube動画のURLを入力してください。<br>
+                    <strong>例:</strong> https://www.youtube.com/watch?v=xxxxx または https://youtu.be/xxxxx<br>
+                    動画はスライドに自動埋め込みされます。
+                  </span>
+                </div>
+              </div>
             </div>
 
             <!-- Section 3: メンバー情報 -->
@@ -319,7 +321,6 @@ try {
   <!-- Scripts -->
   <script>
     let visitorIndex = <?php echo count($visitors); ?>;
-    let referralIndex = <?php echo count($referrals); ?>;
 
     function addVisitor() {
       const container = document.getElementById('visitorContainer');
@@ -348,74 +349,21 @@ try {
       btn.closest('.visitor-item').remove();
     }
 
-    function addReferral() {
-      const container = document.getElementById('referralContainer');
-      const html = `
-        <div class="referral-item" data-index="${referralIndex}">
-          <div class="form-group">
-            <label class="form-label">案件名</label>
-            <input type="text" name="referral_name[]" class="form-input">
-          </div>
-          <div class="form-group">
-            <label class="form-label">金額（円）</label>
-            <input type="text" name="referral_amount[]" class="form-input amount-input">
-          </div>
-          <div class="form-group">
-            <label class="form-label">提供者</label>
-            <input type="text" name="referral_provider[]" class="form-input">
-          </div>
-          <button type="button" class="btn-remove" onclick="removeReferral(this)">削除</button>
-        </div>
-      `;
-      container.insertAdjacentHTML('beforeend', html);
-
-      // Add comma formatting to new amount input
-      const newInputs = container.querySelectorAll('.amount-input');
-      const newInput = newInputs[newInputs.length - 1];
-      addCommaFormatting(newInput);
-
-      referralIndex++;
-    }
-
-    function removeReferral(btn) {
-      btn.closest('.referral-item').remove();
-    }
-
-    // Add comma formatting to amount inputs
-    function addCommaFormatting(input) {
-      input.addEventListener('input', function(e) {
-        // Remove non-digit characters except for existing value
-        let value = e.target.value.replace(/,/g, '');
-
-        // Only allow digits
-        value = value.replace(/\D/g, '');
-
-        // Add comma formatting
-        if (value) {
-          e.target.value = parseInt(value).toLocaleString('ja-JP');
-        } else {
-          e.target.value = '';
-        }
-      });
-    }
-
-    // Initialize comma formatting for existing amount inputs
+    // Toggle pitch file section
     document.addEventListener('DOMContentLoaded', function() {
-      const amountInputs = document.querySelectorAll('.amount-input');
-      amountInputs.forEach(input => {
-        addCommaFormatting(input);
-      });
+      const pitchCheckbox = document.getElementById('pitchPresenterCheckbox');
+      const pitchFileSection = document.getElementById('pitchFileSection');
+
+      if (pitchCheckbox) {
+        pitchCheckbox.addEventListener('change', function() {
+          pitchFileSection.style.display = this.checked ? 'block' : 'none';
+        });
+      }
     });
 
     // Form submission
     document.getElementById('editForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-
-      // Remove commas from amount inputs before submission
-      const amountInputs = this.querySelectorAll('.amount-input');
-      amountInputs.forEach(input => {
-        input.value = input.value.replace(/,/g, '');
-      });
 
       const formData = new FormData(this);
       const submitBtn = this.querySelector('button[type="submit"]');
@@ -438,24 +386,12 @@ try {
           }, 2000);
         } else {
           showMessage('error', result.message || '更新に失敗しました。');
-          // Re-add commas to amount inputs
-          amountInputs.forEach(input => {
-            if (input.value) {
-              input.value = parseInt(input.value).toLocaleString('ja-JP');
-            }
-          });
           submitBtn.disabled = false;
           submitBtn.textContent = '更新する';
         }
       } catch (error) {
         console.error('Update error:', error);
         showMessage('error', 'エラーが発生しました。');
-        // Re-add commas to amount inputs
-        amountInputs.forEach(input => {
-          if (input.value) {
-            input.value = parseInt(input.value).toLocaleString('ja-JP');
-          }
-        });
         submitBtn.disabled = false;
         submitBtn.textContent = '更新する';
       }

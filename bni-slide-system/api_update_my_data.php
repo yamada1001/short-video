@@ -27,12 +27,16 @@ if (!$currentUser) {
 
 try {
     // Get POST data
-    $weekDate = $_POST['csv_file'] ?? ''; // week_date
+    $weekDate = $_POST['week_date'] ?? '';
     $inputDate = $_POST['input_date'] ?? '';
     $attendance = $_POST['attendance'] ?? '';
     $thanksSlips = intval($_POST['thanks_slips'] ?? 0);
     $oneToOneCount = intval($_POST['one_to_one_count'] ?? 0);
     $comments = $_POST['comments'] ?? '';
+
+    // Pitch presenter data
+    $isPitchPresenter = isset($_POST['is_pitch_presenter']) ? 1 : 0;
+    $youtubeUrl = trim($_POST['youtube_url'] ?? '');
 
     // Validate required fields
     if (empty($weekDate)) {
@@ -58,38 +62,70 @@ try {
         }
     }
 
-    // Get referrals data
-    $referrals = [];
-    if (!empty($_POST['referral_name'])) {
-        foreach ($_POST['referral_name'] as $index => $name) {
-            $name = trim($name);
-            $amount = intval($_POST['referral_amount'][$index] ?? 0);
-            $provider = trim($_POST['referral_provider'][$index] ?? '');
-
-            // Only add referral if name is provided
-            if (!empty($name)) {
-                $referrals[] = [
-                    'name' => $name,
-                    'amount' => $amount,
-                    'provider' => $provider
-                ];
-            }
-        }
-    }
-
-    // If no referrals, create a dummy one
-    if (empty($referrals)) {
-        $referrals[] = [
-            'name' => '-',
-            'amount' => 0,
-            'provider' => ''
-        ];
-    }
-
     $db = getDbConnection();
 
     // Start transaction
     dbBeginTransaction($db);
+
+    // Get existing survey data to preserve pitch file info
+    $existingData = dbQueryOne($db,
+        "SELECT pitch_file_path, pitch_file_original_name, pitch_file_type
+         FROM survey_data
+         WHERE week_date = :week_date AND user_email = :email",
+        [':week_date' => $weekDate, ':email' => $currentUser['email']]
+    );
+
+    // Handle file upload
+    $pitchFilePath = $existingData['pitch_file_path'] ?? null;
+    $pitchFileOriginalName = $existingData['pitch_file_original_name'] ?? null;
+    $pitchFileType = $existingData['pitch_file_type'] ?? null;
+
+    if ($isPitchPresenter && isset($_FILES['pitch_file']) && $_FILES['pitch_file']['error'] === UPLOAD_ERR_OK) {
+        $file = $_FILES['pitch_file'];
+        $allowedTypes = ['application/pdf'];
+        $maxFileSize = 30 * 1024 * 1024; // 30MB
+
+        if (!in_array($file['type'], $allowedTypes)) {
+            throw new Exception('PDFファイルのみアップロード可能です');
+        }
+
+        if ($file['size'] > $maxFileSize) {
+            throw new Exception('ファイルサイズは30MB以下にしてください');
+        }
+
+        // Delete old file if exists
+        if ($pitchFilePath && file_exists($pitchFilePath)) {
+            unlink($pitchFilePath);
+        }
+
+        // Generate unique filename
+        $uploadDir = __DIR__ . '/uploads/pitch/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+
+        $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $uniqueFileName = uniqid('pitch_') . '_' . time() . '.' . $fileExtension;
+        $uploadPath = $uploadDir . $uniqueFileName;
+
+        if (!move_uploaded_file($file['tmp_name'], $uploadPath)) {
+            throw new Exception('ファイルのアップロードに失敗しました');
+        }
+
+        $pitchFilePath = $uploadPath;
+        $pitchFileOriginalName = $file['name'];
+        $pitchFileType = $file['type'];
+    }
+
+    // If not pitch presenter anymore, clear file info
+    if (!$isPitchPresenter) {
+        if ($pitchFilePath && file_exists($pitchFilePath)) {
+            unlink($pitchFilePath);
+        }
+        $pitchFilePath = null;
+        $pitchFileOriginalName = null;
+        $pitchFileType = null;
+    }
 
     // Delete existing data for this user and week
     $deleteQuery = "DELETE FROM survey_data
@@ -115,6 +151,11 @@ try {
         one_to_one,
         activities,
         comments,
+        is_pitch_presenter,
+        pitch_file_path,
+        pitch_file_original_name,
+        pitch_file_type,
+        youtube_url,
         created_at
     ) VALUES (
         :week_date,
@@ -128,6 +169,11 @@ try {
         :one_to_one,
         :activities,
         :comments,
+        :is_pitch_presenter,
+        :pitch_file_path,
+        :pitch_file_original_name,
+        :pitch_file_type,
+        :youtube_url,
         :created_at
     )";
 
@@ -150,6 +196,11 @@ try {
         ':one_to_one' => $oneToOneCount,
         ':activities' => null,
         ':comments' => $comments ?: null,
+        ':is_pitch_presenter' => $isPitchPresenter,
+        ':pitch_file_path' => $pitchFilePath,
+        ':pitch_file_original_name' => $pitchFileOriginalName,
+        ':pitch_file_type' => $pitchFileType,
+        ':youtube_url' => $youtubeUrl ?: null,
         ':created_at' => $timestamp
     ];
 
@@ -182,36 +233,6 @@ try {
         dbExecute($db, $visitorQuery, $visitorParams);
     }
 
-    // Insert referrals
-    foreach ($referrals as $referral) {
-        $referralQuery = "INSERT INTO referrals (
-            survey_data_id,
-            referral_name,
-            referral_amount,
-            referral_category,
-            referral_provider,
-            created_at
-        ) VALUES (
-            :survey_data_id,
-            :referral_name,
-            :referral_amount,
-            :referral_category,
-            :referral_provider,
-            :created_at
-        )";
-
-        $referralParams = [
-            ':survey_data_id' => $surveyId,
-            ':referral_name' => $referral['name'],
-            ':referral_amount' => $referral['amount'],
-            ':referral_category' => null,
-            ':referral_provider' => $referral['provider'] ?: null,
-            ':created_at' => $timestamp
-        ];
-
-        dbExecute($db, $referralQuery, $referralParams);
-    }
-
     // Commit transaction
     dbCommit($db);
 
@@ -242,11 +263,12 @@ try {
         ':user_email' => $currentUser['email'],
         ':user_name' => $currentUser['name'],
         ':data' => json_encode([
-            'csv_file' => $weekDate,
+            'week_date' => $weekDate,
             'input_date' => $inputDate,
             'attendance' => $attendance,
             'visitor_count' => count($visitors),
-            'referral_count' => count($referrals)
+            'is_pitch_presenter' => $isPitchPresenter,
+            'has_pitch_file' => !empty($pitchFilePath)
         ], JSON_UNESCAPED_UNICODE),
         ':ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
         ':user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown',
