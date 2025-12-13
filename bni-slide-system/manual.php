@@ -47,12 +47,89 @@ $currentUser = getCurrentUserInfo();
       padding: 0;
     }
 
-    .manual-container {
-      max-width: 900px;
+    .manual-wrapper {
+      display: flex;
+      max-width: 1400px;
       margin: 0 auto;
+      gap: 40px;
       padding: 40px 20px;
+    }
+
+    .manual-sidebar {
+      position: sticky;
+      top: 20px;
+      width: 280px;
+      height: fit-content;
       background: white;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      padding: 20px;
+      flex-shrink: 0;
+    }
+
+    .manual-sidebar h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #CF2030;
+      margin: 0 0 15px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #CF2030;
+    }
+
+    .manual-sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .manual-sidebar li {
+      margin: 0;
+    }
+
+    .manual-sidebar a {
+      display: block;
+      padding: 10px 12px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.2s;
+      font-size: 14px;
+      border-left: 3px solid transparent;
+    }
+
+    .manual-sidebar a:hover {
+      background: #F9F9F9;
+      border-left-color: #CF2030;
+      padding-left: 16px;
+    }
+
+    .manual-sidebar a.active {
+      background: #FFF5F5;
+      border-left-color: #CF2030;
+      color: #CF2030;
+      font-weight: 600;
+      padding-left: 16px;
+    }
+
+    .manual-container {
+      flex: 1;
+      max-width: 900px;
+      padding: 40px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    @media (max-width: 1024px) {
+      .manual-wrapper {
+        flex-direction: column;
+      }
+
+      .manual-sidebar {
+        position: relative;
+        width: 100%;
+        top: 0;
+      }
     }
 
     .manual-header {
@@ -395,28 +472,30 @@ $currentUser = getCurrentUserInfo();
   </div>
   <?php endif; ?>
 
-  <div class="manual-container">
-    <!-- Header -->
-    <div class="manual-header">
-      <h1><i class="fas fa-book"></i> BNI Slide System 利用マニュアル</h1>
-      <p class="subtitle">BNI宗麟チャプター メンバー様・管理者様</p>
-      <span class="version">Version 3.0</span>
-      <p style="margin-top: 15px; font-size: 14px; color: #666;">最終更新: 2025年12月13日</p>
-    </div>
-
-    <!-- Table of Contents -->
-    <div class="manual-nav">
+  <div class="manual-wrapper">
+    <!-- Floating Sidebar TOC -->
+    <aside class="manual-sidebar">
       <h2><i class="fas fa-list"></i> 目次</h2>
-      <ul>
-        <li><a href="#overview">1. システム概要</a></li>
-        <li><a href="#login">2. ログイン方法</a></li>
-        <li><a href="#member">3. 一般メンバーの使い方</a></li>
-        <li><a href="#admin">4. 管理者の使い方</a></li>
-        <li><a href="#faq">5. よくある質問</a></li>
-        <li><a href="#troubleshooting">6. トラブルシューティング</a></li>
-        <li><a href="#contact">7. お問い合わせ</a></li>
+      <ul id="toc">
+        <li><a href="#overview" class="toc-link">1. システム概要</a></li>
+        <li><a href="#login" class="toc-link">2. ログイン方法</a></li>
+        <li><a href="#member" class="toc-link">3. 一般メンバーの使い方</a></li>
+        <li><a href="#admin" class="toc-link">4. 管理者の使い方</a></li>
+        <li><a href="#faq" class="toc-link">5. よくある質問</a></li>
+        <li><a href="#troubleshooting" class="toc-link">6. トラブルシューティング</a></li>
+        <li><a href="#contact" class="toc-link">7. お問い合わせ</a></li>
       </ul>
-    </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="manual-container">
+      <!-- Header -->
+      <div class="manual-header">
+        <h1><i class="fas fa-book"></i> BNI Slide System 利用マニュアル</h1>
+        <p class="subtitle">BNI宗麟チャプター メンバー様・管理者様</p>
+        <span class="version">Version 3.0</span>
+        <p style="margin-top: 15px; font-size: 14px; color: #666;">最終更新: 2025年12月13日</p>
+      </div>
 
     <!-- Section 1: システム概要 -->
     <div id="overview" class="manual-section">
@@ -1097,6 +1176,7 @@ $currentUser = getCurrentUserInfo();
       <p style="margin-top: 30px; font-size: 14px;">このマニュアルに関するご意見・ご要望は管理者までお寄せください。</p>
       <p style="margin-top: 10px; font-size: 14px; color: #CF2030; font-weight: 600;">Givers Gain® | BNI Slide System</p>
     </div>
+    </div>
   </div>
 
   <!-- Back to Top Button -->
@@ -1136,6 +1216,43 @@ $currentUser = getCurrentUserInfo();
         }
       });
     });
+
+    // Table of Contents scroll spy
+    const sections = document.querySelectorAll('.manual-section');
+    const tocLinks = document.querySelectorAll('.toc-link');
+
+    function updateActiveLink() {
+      let current = '';
+      const scrollPosition = window.pageYOffset + 150;
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      tocLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    // Update on scroll (throttled for performance)
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      if (scrollTimeout) {
+        window.cancelAnimationFrame(scrollTimeout);
+      }
+      scrollTimeout = window.requestAnimationFrame(updateActiveLink);
+    });
+
+    // Update on load
+    updateActiveLink();
   </script>
 </body>
 </html>
