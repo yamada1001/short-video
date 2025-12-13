@@ -57,7 +57,7 @@ if (!$isAdmin) {
   <link rel="stylesheet" href="../assets/lib/reveal.js/dist/theme/white.css" id="theme">
 
   <!-- Custom Slide CSS -->
-  <link rel="stylesheet" href="../assets/css/slide.css">
+  <link rel="stylesheet" href="../assets/css/slide.css?v=20251213">
 
   <!-- Google Fonts: Noto Sans JP -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -164,7 +164,7 @@ if (!$isAdmin) {
   <script src="../assets/lib/reveal.js/dist/reveal.js"></script>
 
   <!-- Slide Generator -->
-  <script src="../assets/js/svg-slide-generator.js"></script>
+  <script src="../assets/js/svg-slide-generator.js?v=20251213"></script>
 
   <!-- Custom Slide Script -->
   <script src="../assets/js/slide.js"></script>
