@@ -10,18 +10,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
 
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
         .reveal .slides section {
-            height: 100%;
-            width: 100%;
+            height: 100vh;
+            width: 100vw;
         }
 
         .reveal .slides section img {
-            max-width: 100%;
-            max-height: 100%;
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
             margin: 0;
             border: none;
             box-shadow: none;
-            background: none;
+            background: black;
         }
     </style>
 </head>
