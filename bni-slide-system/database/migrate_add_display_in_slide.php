@@ -52,7 +52,10 @@ try {
   echo "<tr><th>カラム名</th><th>型</th><th>NULL可</th><th>デフォルト値</th></tr>\n";
 
   $result = $db->query("PRAGMA table_info(monthly_ranking_data)");
-  $columns = $result->fetchAll(PDO::FETCH_ASSOC);
+  $columns = [];
+  while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+    $columns[] = $row;
+  }
 
   foreach ($columns as $column) {
     echo "<tr>";
