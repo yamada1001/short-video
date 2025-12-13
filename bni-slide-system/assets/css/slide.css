@@ -3652,8 +3652,8 @@
 
 .ranking-table thead th:last-child {
   text-align: right;
-  width: 350px;
-  min-width: 350px;
+  width: 450px;
+  min-width: 450px;
 }
 
 /* Table Body */
@@ -3700,8 +3700,8 @@
   font-family: 'Courier New', Consolas, monospace;
   letter-spacing: 1px;
   white-space: nowrap;
-  width: 350px;
-  min-width: 350px;
+  width: 450px;
+  min-width: 450px;
 }
 
 /* Rank 1 - Gold Medal 🥇 */
