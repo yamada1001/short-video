@@ -501,28 +501,6 @@ usort($activeMembers, function($a, $b) use ($seatingMemberNames) {
             </div>
           </div>
 
-          <!-- シェアストーリー -->
-          <div class="form-section">
-            <h4>シェアストーリー（2分間）</h4>
-            <div class="checkbox-group">
-              <label>
-                <input type="checkbox" name="members[${index}][is_share_story]" value="1" ${existingRecord && existingRecord['is_share_story'] == 1 ? 'checked' : ''}>
-                この週の担当者
-              </label>
-            </div>
-          </div>
-
-          <!-- エデュケーション -->
-          <div class="form-section">
-            <h4>エデュケーション</h4>
-            <div class="checkbox-group">
-              <label>
-                <input type="checkbox" name="members[${index}][is_education_presenter]" value="1" ${existingRecord && existingRecord['is_education_presenter'] == 1 ? 'checked' : ''}>
-                この週の担当者
-              </label>
-            </div>
-          </div>
-
           <!-- ビジター -->
           <div class="form-section">
             <h4>ビジター紹介</h4>

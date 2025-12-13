@@ -29,7 +29,7 @@ function extractYouTubeVideoId(url) {
 /**
  * Generate all slides from data
  */
-async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, shareStoryPresenter = null, educationPresenter = null, referralTotal = null, slideConfig = null, monthlyRankingData = null, visitorIntroductions = null, networkingLearningPresenter = null) {
+async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, referralTotal = null, slideConfig = null, monthlyRankingData = null, visitorIntroductions = null, networkingLearningPresenter = null) {
   const slideContainer = document.getElementById('slideContainer');
 
   // Use provided date from API, or fall back to today's date
@@ -108,92 +108,6 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   if (visitorIntroductions && visitorIntroductions.length > 0) {
     slides += generateVisitorIntroductionListSlides(visitorIntroductions);
     slides += generateVisitorSelfIntroductionSlides(visitorIntroductions);
-  }
-
-  // Pitch Section: Removed (duplicate, use the one after seating chart instead)
-
-  // Share Story Presenter Section
-  if (shareStoryPresenter) {
-    const presenterName = escapeHtml(shareStoryPresenter.name || 'メンバー');
-    slides += `
-      <section>
-        <h2>今週のシェアストーリー</h2>
-        <div class="pitch-presenter-info">
-          <h3>${presenterName}さん</h3>
-          <p style="font-size: 24px; margin-top: 30px;">2分間のシェアストーリー</p>
-        </div>
-      </section>
-    `;
-  }
-
-  // Education Presenter Section
-  if (educationPresenter && educationPresenter.file_path) {
-    const presenterName = escapeHtml(educationPresenter.name || 'メンバー');
-    const fileType = educationPresenter.file_type || 'unknown';
-    const fileName = escapeHtml(educationPresenter.file_original_name || 'エデュケーション資料');
-    const filePath = educationPresenter.file_path;
-
-    if (fileType === 'pdf') {
-      // PDFの場合：iframe で埋め込み表示 + フルスクリーンボタン（PDF.jsビューアー）
-      const pdfFile = encodeURIComponent(filePath.split('/').pop());
-      const pdfUrl = `../api_get_education_file.php?file=${pdfFile}`;
-      const viewerUrl = `../education_viewer.php?file=${pdfFile}`;
-      slides += `
-      <section>
-        <h2>エデュケーション</h2>
-        <div class="pitch-presenter-info">
-          <h3>${presenterName}さん</h3>
-          <a
-            href="${viewerUrl}"
-            target="_blank"
-            class="btn-fullscreen"
-            title="フルスクリーンで開く"
-          >
-            <i class="fas fa-expand"></i> フルスクリーンで開く
-          </a>
-        </div>
-        <div class="pitch-file-container">
-          <iframe
-            src="../pdfjs/web/viewer.html?file=${encodeURIComponent('../../' + filePath)}"
-            width="100%"
-            height="600"
-            style="border: 2px solid #ddd; border-radius: 8px;"
-          ></iframe>
-        </div>
-      </section>
-      `;
-    } else {
-      // PowerPointの場合：ダウンロードリンクのみ
-      const pptxFile = encodeURIComponent(filePath.split('/').pop());
-      const downloadUrl = `../api_get_education_file.php?file=${pptxFile}`;
-      slides += `
-      <section>
-        <h2>エデュケーション</h2>
-        <div class="pitch-presenter-info">
-          <h3>${presenterName}さん</h3>
-          <div class="pitch-file-container" style="text-align: center; padding: 50px;">
-            <i class="fas fa-file-powerpoint" style="font-size: 80px; color: #D04423; margin-bottom: 20px;"></i>
-            <h3>${fileName}</h3>
-            <a
-              href="${downloadUrl}"
-              class="btn-fullscreen"
-              style="display: inline-block; margin-top: 20px;"
-              download
-              target="_blank"
-            >
-              <i class="fas fa-download"></i> ダウンロード
-            </a>
-            <p style="font-size: 14px; color: #666; margin-top: 15px;">
-              PowerPoint形式のファイルです。ダウンロードしてご覧ください。
-            </p>
-          </div>
-        </div>
-      `;
-    }
-
-    slides += `
-      </section>
-    `;
   }
 
   // Slide 4: Referral Amount Breakdown

@@ -149,7 +149,7 @@
       throw new Error(result.message || 'データの読み込みに失敗しました');
     }
 
-      const { data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config, monthly_ranking_data, visitor_introductions, networking_learning_presenter } = result;
+      const { data, stats, date, pitch_presenter, referral_total, slide_config, monthly_ranking_data, visitor_introductions, networking_learning_presenter } = result;
 
       // ページタイトルをPDFファイル名に適したものに設定
       if (date) {
@@ -183,7 +183,7 @@
 
       // Generate slides using SVG templates
       // Note: slide_config may be null if slide_config.json doesn't exist
-      await generateSVGSlides(data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config || null, monthlyRankingData, visitor_introductions, networking_learning_presenter);
+      await generateSVGSlides(data, stats, date, pitch_presenter, referral_total, slide_config || null, monthlyRankingData, visitor_introductions, networking_learning_presenter);
 
       // Initialize or sync Reveal.js
       if (!Reveal.isReady()) {
