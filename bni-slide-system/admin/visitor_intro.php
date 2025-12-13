@@ -284,14 +284,18 @@ if (!$isAdmin) {
             </div>
             <div class="form-group">
               <label for="sponsor">スポンサー（紹介者） <span class="required">*</span></label>
-              <input type="text" id="sponsor" name="sponsor" required placeholder="鈴木 花子">
+              <select id="sponsor" name="sponsor" required>
+                <option value="">読み込み中...</option>
+              </select>
             </div>
           </div>
 
           <div class="form-row full">
             <div class="form-group">
               <label for="attendant">アテンド（同行者） <span class="required">*</span></label>
-              <input type="text" id="attendant" name="attendant" required placeholder="佐藤 次郎">
+              <select id="attendant" name="attendant" required>
+                <option value="">読み込み中...</option>
+              </select>
             </div>
           </div>
 

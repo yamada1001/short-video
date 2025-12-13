@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Load weeks for dropdown
   loadWeeks();
 
+  // Load members for attendant dropdown
+  loadMembers();
+
   // Event listeners
   document.getElementById('loadDataBtn').addEventListener('click', loadVisitors);
   document.getElementById('visitorForm').addEventListener('submit', handleSubmit);
@@ -242,6 +245,46 @@ async function deleteVisitor(id) {
   } catch (error) {
     console.error('Error deleting visitor:', error);
     alert('ビジターの削除に失敗しました: ' + error.message);
+  }
+}
+
+/**
+ * Load members for attendant dropdown
+ */
+async function loadMembers() {
+  try {
+    const response = await fetch('../data/members.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const members = await response.json();
+
+    // Populate attendant dropdown
+    const attendantSelect = document.getElementById('attendant');
+    attendantSelect.innerHTML = '<option value="">選択してください</option>';
+
+    members.forEach(member => {
+      const option = document.createElement('option');
+      option.value = member.name;
+      option.textContent = member.name;
+      attendantSelect.appendChild(option);
+    });
+
+    // Populate sponsor dropdown
+    const sponsorSelect = document.getElementById('sponsor');
+    sponsorSelect.innerHTML = '<option value="">選択してください</option>';
+
+    members.forEach(member => {
+      const option = document.createElement('option');
+      option.value = member.name;
+      option.textContent = member.name;
+      sponsorSelect.appendChild(option);
+    });
+
+  } catch (error) {
+    console.error('Error loading members:', error);
+    alert('メンバー一覧の読み込みに失敗しました: ' + error.message);
   }
 }
 
