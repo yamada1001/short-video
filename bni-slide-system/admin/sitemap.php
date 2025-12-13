@@ -219,6 +219,17 @@ header('Content-Type: text/html; charset=UTF-8');
       color: #721C24;
     }
 
+    .badge-new {
+      background: #FF6B00;
+      color: white;
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-badge {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -514,6 +525,24 @@ header('Content-Type: text/html; charset=UTF-8');
                   週次ミーティング用スライドをReveal.js形式で表示。週選択、PDF出力、タイトルスライド、サマリー、ビジター紹介、ピッチプレゼンテーション（PDF/YouTube埋め込み）、ビジターご紹介スライド、ネットワーキング学習コーナー、月間ランキングなど。コントロールパネル（歯車アイコン）から週選択とPDF出力が可能。
                 </div>
                 <div class="page-path">admin/slide.php</div>
+              </div>
+            </div>
+
+            <!-- admin/migrate.php -->
+            <div class="page-item">
+              <div class="page-icon">
+                <i class="fas fa-database"></i>
+              </div>
+              <div class="page-content">
+                <div class="page-name">
+                  <a href="migrate.php" target="_blank">データベースマイグレーション</a>
+                  <span class="badge badge-admin">管理者</span>
+                  <span class="badge badge-new">NEW</span>
+                </div>
+                <div class="page-description">
+                  Phase 10実装で追加された新機能のためのデータベース更新をワンクリックで実行。VP統計情報テーブル更新、メンバー写真テーブル作成、テストデータ投入を自動実行。
+                </div>
+                <div class="page-path">admin/migrate.php</div>
               </div>
             </div>
 
