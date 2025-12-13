@@ -44,6 +44,7 @@ try {
       $label = $date->format('Y年n月j日') . '（' . $dayLabel . '）';
 
       $weeks[] = [
+        'value' => $weekDate,
         'filename' => $weekDate,
         'label' => $label,
         'date' => $date->format('Y-m-d'),
@@ -69,6 +70,7 @@ try {
 
       // Add to beginning of array
       array_unshift($weeks, [
+        'value' => $currentWeekFriday,
         'filename' => $currentWeekFriday,
         'label' => $label,
         'date' => $date->format('Y-m-d'),
