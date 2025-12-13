@@ -181,9 +181,33 @@
         monthlyRankingData = monthly_ranking_data;
       }
 
+      // Load VP Statistics data (Speaker Rotation & Presenter Detail)
+      let rotationData = null;
+      let presenterDetail = null;
+
+      try {
+        const rotationResponse = await fetch(`${apiBasePath}api_load_speaker_rotation.php?week_date=${date}`);
+        const rotationResult = await rotationResponse.json();
+        if (rotationResult.success) {
+          rotationData = rotationResult.data;
+        }
+      } catch (error) {
+        console.warn('Failed to load speaker rotation data:', error);
+      }
+
+      try {
+        const presenterResponse = await fetch(`${apiBasePath}api_load_presenter_detail.php?week_date=${date}`);
+        const presenterResult = await presenterResponse.json();
+        if (presenterResult.success) {
+          presenterDetail = presenterResult.data;
+        }
+      } catch (error) {
+        console.warn('Failed to load presenter detail data:', error);
+      }
+
       // Generate slides using SVG templates
       // Note: slide_config may be null if slide_config.json doesn't exist
-      await generateSVGSlides(data, stats, date, pitch_presenter, referral_total, slide_config || null, monthlyRankingData, visitor_introductions, networking_learning_presenter);
+      await generateSVGSlides(data, stats, date, pitch_presenter, referral_total, slide_config || null, monthlyRankingData, visitor_introductions, networking_learning_presenter, rotationData, presenterDetail);
 
       // Initialize or sync Reveal.js
       if (!Reveal.isReady()) {

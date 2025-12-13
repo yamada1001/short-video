@@ -56,6 +56,7 @@ try {
     $memberId = trim($_POST['member_id'] ?? '');
     $memberName = trim($_POST['member_name'] ?? '');
     $topic = trim($_POST['topic'] ?? '');
+    $referralTarget = trim($_POST['referral_target'] ?? '');
     $notes = trim($_POST['notes'] ?? '');
 
     if (empty($weekDate)) {
@@ -80,6 +81,7 @@ try {
             SET member_id = :member_id,
                 member_name = :member_name,
                 topic = :topic,
+                referral_target = :referral_target,
                 notes = :notes,
                 updated_at = datetime('now', 'localtime')
             WHERE week_date = :week_date
@@ -89,6 +91,7 @@ try {
             ':member_id' => $memberId,
             ':member_name' => $memberName,
             ':topic' => $topic,
+            ':referral_target' => $referralTarget,
             ':notes' => $notes,
             ':week_date' => $weekDate
         ]);
@@ -97,8 +100,8 @@ try {
     } else {
         // INSERT
         $insertQuery = "
-            INSERT INTO weekly_presenters (week_date, member_id, member_name, topic, notes, created_at, updated_at)
-            VALUES (:week_date, :member_id, :member_name, :topic, :notes, datetime('now', 'localtime'), datetime('now', 'localtime'))
+            INSERT INTO weekly_presenters (week_date, member_id, member_name, topic, referral_target, notes, created_at, updated_at)
+            VALUES (:week_date, :member_id, :member_name, :topic, :referral_target, :notes, datetime('now', 'localtime'), datetime('now', 'localtime'))
         ";
 
         dbExecute($db, $insertQuery, [
@@ -106,6 +109,7 @@ try {
             ':member_id' => $memberId,
             ':member_name' => $memberName,
             ':topic' => $topic,
+            ':referral_target' => $referralTarget,
             ':notes' => $notes
         ]);
 

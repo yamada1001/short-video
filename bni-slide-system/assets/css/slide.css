@@ -5474,3 +5474,259 @@
   z-index: 2;
   position: relative;
 }
+
+/* ===================================
+   VP Statistics Slides (p.203-206)
+   =================================== */
+
+/* Page 203: Speaker Rotation Table */
+.speaker-rotation-slide {
+  background: #F5F5F5 !important;
+  padding: 60px 80px !important;
+}
+
+.speaker-rotation-title {
+  background: linear-gradient(to right, #C8102E 0%, #C8102E 92%, transparent 92%);
+  color: #FFF !important;
+  font-size: 3.5em !important;
+  font-weight: 700 !important;
+  padding: 30px 60px !important;
+  margin: 0 0 80px -80px !important;
+  text-align: center !important;
+  position: relative;
+  clip-path: polygon(0 0, 97% 0, 100% 100%, 0 100%);
+}
+
+.speaker-rotation-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  margin: 0 auto;
+}
+
+.speaker-rotation-table thead th {
+  background: #F39800 !important;
+  color: #000 !important;
+  font-size: 1.8em !important;
+  font-weight: 700 !important;
+  padding: 20px 30px !important;
+  text-align: center !important;
+  border: none;
+}
+
+.speaker-rotation-table thead th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.speaker-rotation-table thead th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.speaker-rotation-table tbody tr {
+  background: #FFF3E0 !important;
+}
+
+.speaker-rotation-table tbody tr.current-row {
+  background: #F39800 !important;
+  border: 5px solid #C8102E;
+  box-shadow: 0 4px 8px rgba(200, 16, 46, 0.3);
+}
+
+.speaker-rotation-table tbody tr.highlight-row {
+  background: #F39800 !important;
+}
+
+.speaker-rotation-table tbody td {
+  color: #000 !important;
+  font-size: 1.6em !important;
+  font-weight: 600 !important;
+  padding: 25px 30px !important;
+  text-align: center !important;
+  border: none;
+}
+
+.speaker-rotation-table tbody td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.speaker-rotation-table tbody td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.speaker-rotation-table .presenter-name {
+  font-size: 1.8em !important;
+  font-weight: 700 !important;
+  margin-bottom: 5px;
+}
+
+.speaker-rotation-table .presenter-topic {
+  font-size: 1.2em !important;
+  font-weight: 400 !important;
+  color: #333 !important;
+}
+
+/* Page 204: Main Presenter Detail */
+.main-presenter-slide {
+  background: linear-gradient(135deg, #E8F5F7 0%, #F0F9FA 100%) !important;
+  padding: 80px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-presenter-slide::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: rgba(72, 209, 204, 0.15);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.main-presenter-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.presenter-image-container {
+  flex: 0 0 400px;
+}
+
+.presenter-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.presenter-info-container {
+  flex: 1;
+  text-align: left;
+}
+
+.presenter-label-top {
+  background: linear-gradient(to right, #C8102E 0%, #C8102E 85%, transparent 85%);
+  color: #FFF !important;
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  padding: 15px 40px !important;
+  margin-bottom: 20px;
+  display: inline-block;
+  clip-path: polygon(0 0, 95% 0, 100% 100%, 0 100%);
+}
+
+.presenter-topic-label {
+  background: linear-gradient(to right, #C8102E 0%, #C8102E 85%, transparent 85%);
+  color: #FFF !important;
+  font-size: 1.6em !important;
+  font-weight: 600 !important;
+  padding: 12px 35px !important;
+  margin-bottom: 40px;
+  display: inline-block;
+  clip-path: polygon(0 0, 95% 0, 100% 100%, 0 100%);
+}
+
+.presenter-name-large {
+  font-size: 5em !important;
+  font-weight: 900 !important;
+  color: #000 !important;
+  margin: 30px 0 !important;
+  line-height: 1.2;
+}
+
+.presenter-name-large .name-highlight {
+  color: #C8102E !important;
+}
+
+.presenter-company {
+  font-size: 2.5em !important;
+  font-weight: 600 !important;
+  color: #000 !important;
+  margin-top: 30px;
+}
+
+/* Page 205: Kanso (Complete Victory) */
+.kanso-slide {
+  background: #F5F5F5 !important;
+  padding: 100px 80px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.kanso-main-text {
+  font-size: 12em !important;
+  font-weight: 900 !important;
+  color: #C8102E !important;
+  text-align: center !important;
+  margin-bottom: 60px !important;
+  letter-spacing: 0.15em;
+  line-height: 1;
+}
+
+.kanso-english-text {
+  font-size: 5.5em !important;
+  font-weight: 900 !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin-bottom: 40px !important;
+  font-family: 'Arial', sans-serif;
+}
+
+.kanso-subtitle {
+  font-size: 2.8em !important;
+  font-weight: 600 !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin: 0 !important;
+}
+
+/* Page 206: Referral & Recommendation */
+.referral-message-slide {
+  background: #F5F5F5 !important;
+  padding: 0 !important;
+  display: flex;
+  overflow: hidden;
+}
+
+.referral-message-left {
+  flex: 1;
+  background: #E8E8E8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+}
+
+.referral-message-image {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.referral-message-right {
+  flex: 0 0 450px;
+  background: #C8102E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+}
+
+.referral-message-text {
+  color: #FFF !important;
+  font-size: 3.2em !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.05em;
+}

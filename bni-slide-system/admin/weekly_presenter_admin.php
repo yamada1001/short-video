@@ -157,7 +157,12 @@ if (!$isAdmin) {
 
             <div class="form-group">
               <label for="topic">プレゼントピック</label>
-              <input type="text" id="topic" name="topic" placeholder="プレゼンのトピックを入力してください">
+              <input type="text" id="topic" name="topic" placeholder="例: ラジコン草刈り代行">
+            </div>
+
+            <div class="form-group">
+              <label for="referralTarget">ご紹介してほしい方</label>
+              <textarea id="referralTarget" name="referral_target" rows="2" placeholder="例: 不動産管理会社・風力発電事業者・農家"></textarea>
             </div>
 
             <div class="form-group">
@@ -220,6 +225,7 @@ if (!$isAdmin) {
         if (data.success && data.data) {
           document.getElementById('memberId').value = data.data.member_id || '';
           document.getElementById('topic').value = data.data.topic || '';
+          document.getElementById('referralTarget').value = data.data.referral_target || '';
           document.getElementById('notes').value = data.data.notes || '';
 
           showMessage('データを読み込みました', 'success');
@@ -237,6 +243,7 @@ if (!$isAdmin) {
       const memberId = document.getElementById('memberId').value;
       const memberName = document.getElementById('memberId').selectedOptions[0]?.dataset.name || '';
       const topic = document.getElementById('topic').value;
+      const referralTarget = document.getElementById('referralTarget').value;
       const notes = document.getElementById('notes').value;
 
       const formData = new FormData();
@@ -245,6 +252,7 @@ if (!$isAdmin) {
       formData.append('member_id', memberId);
       formData.append('member_name', memberName);
       formData.append('topic', topic);
+      formData.append('referral_target', referralTarget);
       formData.append('notes', notes);
 
       try {

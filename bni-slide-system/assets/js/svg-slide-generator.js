@@ -29,7 +29,7 @@ function extractYouTubeVideoId(url) {
 /**
  * Generate all slides from data
  */
-async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, referralTotal = null, slideConfig = null, monthlyRankingData = null, visitorIntroductions = null, networkingLearningPresenter = null) {
+async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, referralTotal = null, slideConfig = null, monthlyRankingData = null, visitorIntroductions = null, networkingLearningPresenter = null, rotationData = null, presenterDetail = null) {
   const slideContainer = document.getElementById('slideContainer');
 
   // Use provided date from API, or fall back to today's date
@@ -362,7 +362,7 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   // Phase 11.5: Additional PDF Slides
   slides += generateVisitorSelfIntroTemplateSlide(); // p.182
   slides += generateBusinessBreakoutSlides(); // p.198-200
-  slides += generateVicePresidentStatsSlides(); // p.203-206
+  slides += generateVicePresidentStatsSlides(rotationData, presenterDetail); // p.203-206
   slides += generateReferralTrustSlides(); // p.246-253
   slides += generateClosingSlides(); // p.303-328
 
@@ -969,22 +969,164 @@ function generateBusinessBreakoutSlides() {
 
 /**
  * Phase 11.3: Vice President Statistics Slides (PDF p.203-206)
+ * HTML/CSS dynamic version with database integration
  */
-function generateVicePresidentStatsSlides() {
+function generateVicePresidentStatsSlides(rotationData = null, presenterDetail = null) {
   let slides = '';
-  const pageNumbers = [203, 204, 205, 206];
 
-  pageNumbers.forEach(pageNum => {
-    slides += `
-      <section class="pdf-image-slide">
-        <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
-             alt="VP Statistics ${pageNum}"
-             class="pdf-full-image">
-      </section>
-    `;
-  });
+  // Page 203: Speaker Rotation Table
+  slides += generateSpeakerRotationSlide(rotationData);
+
+  // Page 204: Main Presenter Detail
+  slides += generateMainPresenterSlide(presenterDetail);
+
+  // Page 205: Kanso (Complete Victory)
+  slides += generateKansoSlide();
+
+  // Page 206: Referral & Recommendation Message
+  slides += generateReferralMessageSlide();
 
   return slides;
+}
+
+/**
+ * Page 203: Speaker Rotation Table
+ */
+function generateSpeakerRotationSlide(rotationData) {
+  let tableRows = '';
+
+  if (rotationData && rotationData.length > 0) {
+    rotationData.forEach(row => {
+      const rowClass = row.is_current ? 'current-row' : '';
+      const memberName = row.member_name || '';
+      const topic = row.topic || '';
+      const referralTarget = row.referral_target || '';
+
+      tableRows += `
+        <tr class="${rowClass}">
+          <td>${row.date_display}</td>
+          <td>
+            <div class="presenter-name">${memberName}</div>
+            ${topic ? `<div class="presenter-topic">(${topic})</div>` : ''}
+          </td>
+          <td>${referralTarget}</td>
+        </tr>
+      `;
+    });
+  } else {
+    // データがない場合はダミー行を表示
+    for (let i = 0; i < 4; i++) {
+      tableRows += `
+        <tr>
+          <td>-</td>
+          <td><div class="presenter-name">-</div></td>
+          <td>-</td>
+        </tr>
+      `;
+    }
+  }
+
+  return `
+    <section class="speaker-rotation-slide">
+      <h2 class="speaker-rotation-title">スピーカーローテーション</h2>
+      <table class="speaker-rotation-table">
+        <thead>
+          <tr>
+            <th>日 程</th>
+            <th>メインプレゼン</th>
+            <th>ご紹介してほしい方</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows}
+        </tbody>
+      </table>
+    </section>
+  `;
+}
+
+/**
+ * Page 204: Main Presenter Detail
+ */
+function generateMainPresenterSlide(presenterDetail) {
+  // デフォルト値
+  let memberName = '伊東 健太';
+  let topic = 'ラジコン草刈り代行';
+  let company = 'ブルーベリーファームうすき';
+  let highlightChar = '健';
+  let imagePath = '../pdf_analysis/required_pages/page_204.png';
+
+  // データがあれば上書き
+  if (presenterDetail && presenterDetail.member_name) {
+    memberName = presenterDetail.member_name;
+    topic = presenterDetail.topic || '';
+    company = presenterDetail.user_company || '';
+
+    // 名前をハイライト文字で分割
+    if (presenterDetail.highlight_char) {
+      highlightChar = presenterDetail.highlight_char;
+    } else {
+      // 自動検出: 名前の2文字目をデフォルトでハイライト
+      if (memberName.length > 1) {
+        highlightChar = memberName.charAt(1);
+      }
+    }
+  }
+
+  // 名前をハイライト処理
+  const nameHTML = memberName.split('').map(char => {
+    if (char === highlightChar) {
+      return `<span class="name-highlight">${char}</span>`;
+    }
+    return char;
+  }).join('');
+
+  return `
+    <section class="main-presenter-slide">
+      <div class="main-presenter-container">
+        <div class="presenter-image-container">
+          <img src="${imagePath}" alt="${memberName}" class="presenter-image" />
+        </div>
+        <div class="presenter-info-container">
+          <div class="presenter-label-top">メインプレゼンテーション</div>
+          ${topic ? `<div class="presenter-topic-label">${topic}</div>` : ''}
+          <div class="presenter-name-large">${nameHTML}</div>
+          ${company ? `<div class="presenter-company">${company}</div>` : ''}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Page 205: Kanso (Complete Victory)
+ */
+function generateKansoSlide() {
+  return `
+    <section class="kanso-slide">
+      <div class="kanso-main-text">完勝</div>
+      <div class="kanso-english-text">Keep growing</div>
+      <div class="kanso-subtitle">〜貢献の絆で未来を創る〜</div>
+    </section>
+  `;
+}
+
+/**
+ * Page 206: Referral & Recommendation Message
+ */
+function generateReferralMessageSlide() {
+  return `
+    <section class="referral-message-slide">
+      <div class="referral-message-left">
+        <img src="../pdf_analysis/required_pages/page_206.png" alt="Referral" class="referral-message-image" />
+      </div>
+      <div class="referral-message-right">
+        <div class="referral-message-text">
+          リファーラル<br />と<br />推薦のことば
+        </div>
+      </div>
+    </section>
+  `;
 }
 
 /**
