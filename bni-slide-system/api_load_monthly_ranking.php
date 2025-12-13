@@ -30,7 +30,7 @@ try {
   // データベース接続
   $db = getDbConnection();
 
-  $result = dbQueryOne($db, "SELECT ranking_data FROM monthly_ranking_data WHERE year_month = :year_month", [
+  $result = dbQueryOne($db, "SELECT ranking_data, display_in_slide FROM monthly_ranking_data WHERE year_month = :year_month", [
     ':year_month' => $yearMonth
   ]);
 
@@ -45,11 +45,13 @@ try {
   }
 
   $rankingData = json_decode($result['ranking_data'], true);
+  $displayInSlide = isset($result['display_in_slide']) ? (int)$result['display_in_slide'] : 0;
 
   echo json_encode([
     'success' => true,
     'year_month' => $yearMonth,
-    'data' => $rankingData
+    'data' => $rankingData,
+    'display_in_slide' => $displayInSlide
   ], JSON_UNESCAPED_UNICODE);
 
 } catch (Exception $e) {

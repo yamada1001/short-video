@@ -246,6 +246,20 @@ $defaultYearMonth = date('Y-m', strtotime('last month'));
             </div>
           </div>
 
+          <!-- Display in Slide Checkbox -->
+          <div class="form-group" style="background: #f0f8ff; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 2px solid #4CAF50;">
+            <label style="display: flex; align-items: center; font-size: 18px; font-weight: 600; cursor: pointer;">
+              <input type="checkbox" id="displayInSlide" name="display_in_slide" value="1" style="width: 24px; height: 24px; margin-right: 12px; cursor: pointer;">
+              <span>
+                <i class="fas fa-presentation-screen" style="color: #4CAF50; margin-right: 8px;"></i>
+                このランキングをスライドに表示する
+              </span>
+            </label>
+            <p style="margin: 10px 0 0 36px; font-size: 14px; color: #666;">
+              チェックを入れると、通常スライドの最後にこの月間ランキングが自動的に表示されます。
+            </p>
+          </div>
+
           <!-- Save Button -->
           <div class="save-button-container">
             <button type="submit" class="btn btn-primary" style="padding: 15px 40px; font-size: 18px;">
@@ -315,6 +329,9 @@ $defaultYearMonth = date('Y-m', strtotime('last month'));
         }
       }
 
+      // display_in_slide の値を取得
+      const displayInSlide = document.getElementById('displayInSlide').checked ? 1 : 0;
+
       // 保存API呼び出し
       try {
         const response = await fetch('../api_save_monthly_ranking.php', {
@@ -324,7 +341,8 @@ $defaultYearMonth = date('Y-m', strtotime('last month'));
           },
           body: JSON.stringify({
             year_month: yearMonth,
-            ranking_data: rankingData
+            ranking_data: rankingData,
+            display_in_slide: displayInSlide
           })
         });
 
@@ -368,6 +386,12 @@ $defaultYearMonth = date('Y-m', strtotime('last month'));
               });
             }
           });
+
+          // チェックボックスの状態を復元
+          const displayInSlide = document.getElementById('displayInSlide');
+          if (displayInSlide && result.display_in_slide !== undefined) {
+            displayInSlide.checked = result.display_in_slide == 1;
+          }
 
           showMessage('データを読み込みました', 'success');
         } else {

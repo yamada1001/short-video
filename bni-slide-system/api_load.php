@@ -67,6 +67,13 @@ try {
   // Load slide configuration
   $slideConfig = loadSlideConfig();
 
+  // Load monthly ranking data if display_in_slide = 1
+  $monthlyRankingData = null;
+  $rankingResult = dbQueryOne($db, "SELECT ranking_data FROM monthly_ranking_data WHERE display_in_slide = 1 ORDER BY year_month DESC LIMIT 1", []);
+  if ($rankingResult) {
+    $monthlyRankingData = json_decode($rankingResult['ranking_data'], true);
+  }
+
   dbClose($db);
 
   echo json_encode([
@@ -78,6 +85,7 @@ try {
     'education_presenter' => $educationPresenter,
     'referral_total' => $referralTotal,
     'slide_config' => $slideConfig,
+    'monthly_ranking_data' => $monthlyRankingData,
     'count' => count($data),
     'date' => $slideDate,
     'week' => $weekDate

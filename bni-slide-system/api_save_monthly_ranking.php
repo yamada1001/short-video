@@ -31,6 +31,7 @@ try {
 
   $yearMonth = $data['year_month'] ?? '';
   $rankingData = $data['ranking_data'] ?? null;
+  $displayInSlide = isset($data['display_in_slide']) ? (int)$data['display_in_slide'] : 0;
 
   if (empty($yearMonth)) {
     throw new Exception('対象月を指定してください');
@@ -54,21 +55,24 @@ try {
     // 更新
     $query = "UPDATE monthly_ranking_data
               SET ranking_data = :ranking_data,
+                  display_in_slide = :display_in_slide,
                   updated_at = CURRENT_TIMESTAMP
               WHERE year_month = :year_month";
 
     dbExecute($db, $query, [
       ':ranking_data' => $rankingJson,
+      ':display_in_slide' => $displayInSlide,
       ':year_month' => $yearMonth
     ]);
   } else {
     // 新規作成
-    $query = "INSERT INTO monthly_ranking_data (year_month, ranking_data)
-              VALUES (:year_month, :ranking_data)";
+    $query = "INSERT INTO monthly_ranking_data (year_month, ranking_data, display_in_slide)
+              VALUES (:year_month, :ranking_data, :display_in_slide)";
 
     dbExecute($db, $query, [
       ':year_month' => $yearMonth,
-      ':ranking_data' => $rankingJson
+      ':ranking_data' => $rankingJson,
+      ':display_in_slide' => $displayInSlide
     ]);
   }
 

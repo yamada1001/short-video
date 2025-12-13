@@ -41,11 +41,9 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
 
   let slides = '';
 
-  // Monthly Ranking Slides (if data exists)
-  if (monthlyRankingData) {
+  // If no data, show only monthly ranking slides (for "monthly_ranking" pattern)
+  if ((!data || data.length === 0) && monthlyRankingData) {
     slides += generateMonthlyRankingSlides(monthlyRankingData);
-
-    // If monthly ranking data exists, ONLY show ranking slides (not normal slides)
     slideContainer.innerHTML = slides;
     return;
   }
@@ -639,6 +637,11 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   }
 
   // Slide 8: Thank You
+  // Add monthly ranking slides if display_in_slide = 1
+  if (monthlyRankingData) {
+    slides += generateMonthlyRankingSlides(monthlyRankingData);
+  }
+
   slides += `
     <section class="title-slide">
       <h1>ありがとうございました</h1>

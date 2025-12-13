@@ -131,7 +131,7 @@
       throw new Error(result.message || 'データの読み込みに失敗しました');
     }
 
-      const { data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config } = result;
+      const { data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config, monthly_ranking_data } = result;
 
       // Check if monthly ranking pattern is selected
       let monthlyRankingData = null;
@@ -152,6 +152,9 @@
         } catch (error) {
           console.warn('Failed to load monthly ranking data:', error);
         }
+      } else if (monthly_ranking_data) {
+        // For normal slides, use ranking data from api_load.php if display_in_slide = 1
+        monthlyRankingData = monthly_ranking_data;
       }
 
       // Generate slides using SVG templates
