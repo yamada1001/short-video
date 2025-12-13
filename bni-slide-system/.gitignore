@@ -31,6 +31,8 @@ data/pitch/*.ppt
 data/pitch/*.pptx
 slide_images/
 *.png
+# 例外: production スライド画像はコミット対象
+!assets/images/slides/production/*.png
 database/bni_system.db
 
 # Uploaded files (but keep directory structure)
