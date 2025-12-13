@@ -262,44 +262,6 @@ try {
               </div>
             </div>
 
-            <!-- Section 3: メンバー情報 -->
-            <div class="form-section">
-              <h2 class="form-section-title">3. メンバー情報</h2>
-
-              <div class="form-group">
-                <label class="form-label">出席状況</label>
-                <div class="form-radio-group">
-                  <div class="form-radio">
-                    <input type="radio" id="attendance_yes" name="attendance" value="出席" <?php echo ($attendance === '出席') ? 'checked' : ''; ?> required>
-                    <label for="attendance_yes">出席</label>
-                  </div>
-                  <div class="form-radio">
-                    <input type="radio" id="attendance_substitute" name="attendance" value="代理出席" <?php echo ($attendance === '代理出席') ? 'checked' : ''; ?> required>
-                    <label for="attendance_substitute">代理出席</label>
-                  </div>
-                  <div class="form-radio">
-                    <input type="radio" id="attendance_absent" name="attendance" value="欠席" <?php echo ($attendance === '欠席') ? 'checked' : ''; ?> required>
-                    <label for="attendance_absent">欠席</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">サンクスリップ提出数</label>
-                <input type="number" name="thanks_slips" class="form-input" value="<?php echo $thanksSlips; ?>" min="0">
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">ワンツーワン実施数</label>
-                <input type="number" name="one_to_one_count" class="form-input" value="<?php echo $oneToOne; ?>" min="0">
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">コメント</label>
-                <textarea name="comments" class="form-input" rows="4"><?php echo $comments; ?></textarea>
-              </div>
-            </div>
-
             <!-- Submit Buttons -->
             <div class="form-submit">
               <button type="submit" class="btn btn-primary">更新する</button>
