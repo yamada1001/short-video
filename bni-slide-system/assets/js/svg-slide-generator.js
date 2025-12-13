@@ -1617,6 +1617,21 @@ function generateVisitorSelfIntroductionSlides(visitorIntroductions) {
  * ネットワーキング学習コーナースライドを生成（networking_learning_presentersテーブルから）
  */
 function generateNetworkingLearningSlide(presenter) {
+  // PDFがある場合はPDF表示用のスライドを生成
+  if (presenter.pdf_file_path) {
+    return `
+      <section class="networking-learning-pdf-slide" data-background-iframe="../${escapeHtml(presenter.pdf_file_path)}" data-background-interactive>
+        <div style="position: absolute; top: 20px; left: 20px; background: rgba(207, 32, 48, 0.95); color: white; padding: 15px 25px; border-radius: 8px; font-size: 24px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+          ネットワーキング学習コーナー
+        </div>
+        <div style="position: absolute; bottom: 20px; right: 20px; background: rgba(255, 255, 255, 0.95); padding: 12px 20px; border-radius: 8px; font-size: 18px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+          担当: ${escapeHtml(presenter.presenter_name)}
+        </div>
+      </section>
+    `;
+  }
+
+  // PDFがない場合は従来の担当者表示スライド
   return `
     <section class="networking-education-slide">
       <h2 class="networking-education-title">ネットワーキング学習コーナー</h2>
