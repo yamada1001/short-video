@@ -1528,12 +1528,14 @@ function generateMonthlyRankingSlides(rankingData) {
 
     rankingData.referral_amount.forEach((entry, index) => {
       const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : index === 3 ? 'rank-4' : 'rank-5';
-      const medal = index === 0 ? '🥇 ' : index === 1 ? '🥈 ' : index === 2 ? '🥉 ' : '';
+      const medalIcon = index === 0 ? '<i class="fas fa-trophy" style="color: #FFD700;"></i> ' :
+                        index === 1 ? '<i class="fas fa-medal" style="color: #C0C0C0;"></i> ' :
+                        index === 2 ? '<i class="fas fa-medal" style="color: #CD7F32;"></i> ' : '';
       slides += `
         <tr class="${rankClass}">
-          <td>${medal}${entry.rank}</td>
+          <td>${medalIcon}${entry.rank}</td>
           <td>${escapeHtml(entry.name)}</td>
-          <td>¥${entry.value.toLocaleString()}</td>
+          <td><span class="ranking-amount">¥${entry.value.toLocaleString()}</span></td>
         </tr>
       `;
     });
@@ -1565,12 +1567,14 @@ function generateMonthlyRankingSlides(rankingData) {
 
     rankingData.visitor_count.forEach((entry, index) => {
       const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : index === 3 ? 'rank-4' : 'rank-5';
-      const medal = index === 0 ? '🥇 ' : index === 1 ? '🥈 ' : index === 2 ? '🥉 ' : '';
+      const medalIcon = index === 0 ? '<i class="fas fa-trophy" style="color: #FFD700;"></i> ' :
+                        index === 1 ? '<i class="fas fa-medal" style="color: #C0C0C0;"></i> ' :
+                        index === 2 ? '<i class="fas fa-medal" style="color: #CD7F32;"></i> ' : '';
       slides += `
         <tr class="${rankClass}">
-          <td>${medal}${entry.rank}</td>
+          <td>${medalIcon}${entry.rank}</td>
           <td>${escapeHtml(entry.name)}</td>
-          <td>${entry.value}人</td>
+          <td><span class="ranking-amount">${entry.value}人</span></td>
         </tr>
       `;
     });
@@ -1602,12 +1606,14 @@ function generateMonthlyRankingSlides(rankingData) {
 
     rankingData.one_to_one_count.forEach((entry, index) => {
       const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : index === 3 ? 'rank-4' : 'rank-5';
-      const medal = index === 0 ? '🥇 ' : index === 1 ? '🥈 ' : index === 2 ? '🥉 ' : '';
+      const medalIcon = index === 0 ? '<i class="fas fa-trophy" style="color: #FFD700;"></i> ' :
+                        index === 1 ? '<i class="fas fa-medal" style="color: #C0C0C0;"></i> ' :
+                        index === 2 ? '<i class="fas fa-medal" style="color: #CD7F32;"></i> ' : '';
       slides += `
         <tr class="${rankClass}">
-          <td>${medal}${entry.rank}</td>
+          <td>${medalIcon}${entry.rank}</td>
           <td>${escapeHtml(entry.name)}</td>
-          <td>${entry.value}回</td>
+          <td><span class="ranking-amount">${entry.value}回</span></td>
         </tr>
       `;
     });
