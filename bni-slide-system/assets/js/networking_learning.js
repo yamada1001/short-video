@@ -30,16 +30,16 @@ async function loadMembers() {
     }
 
     const data = await response.json();
-    membersData = data;
+    const members = Object.values(data.users || {});
 
     // Populate member select dropdown
     const memberSelect = document.getElementById('memberSelect');
     memberSelect.innerHTML = '<option value="">-- メンバーを選択 --</option>';
 
-    membersData.forEach(member => {
+    members.forEach(member => {
       const option = document.createElement('option');
-      option.value = member;
-      option.textContent = member;
+      option.value = member.name;
+      option.textContent = member.name;
       memberSelect.appendChild(option);
     });
 
