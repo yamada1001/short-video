@@ -73,83 +73,15 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     if (slideConfig.president) {
       slides += generatePresidentMessageSlide(slideConfig);
     }
-
-    // 1.4: Good & New
-    slides += generateGoodAndNewSlide();
   }
 
-  // Slide 2: Summary
-  slides += `
-    <section>
-
-      <h2>今週のサマリー</h2>
-      <div class="stats-simple">
-        <div class="stat-item">
-          <div class="stat-item-number">${stats.total_visitors || 0}</div>
-          <div class="stat-item-label">ビジター紹介数</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-item-number">¥${formatNumber(stats.total_referral_amount || 0)}</div>
-          <div class="stat-item-label">総リファーラル金額</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-item-number">${stats.total_attendance || 0}</div>
-          <div class="stat-item-label">出席者数</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-item-number">${stats.total_one_to_one || 0}</div>
-          <div class="stat-item-label">121実施数</div>
-        </div>
-      </div>
-    </section>
-  `;
-
-  // Slide 3: Visitor Introductions (from visitor_introductions table)
+  // Visitor Introductions (from visitor_introductions table)
   if (visitorIntroductions && visitorIntroductions.length > 0) {
     slides += generateVisitorIntroductionListSlides(visitorIntroductions);
     slides += generateVisitorSelfIntroductionSlides(visitorIntroductions);
   }
 
-  // Slide 4: Referral Amount Breakdown
-  // Use admin-managed total if available, otherwise fall back to calculated total
-  const displayReferralAmount = referralTotal && referralTotal.amount !== null
-    ? referralTotal.amount
-    : stats.total_referral_amount;
-
-  slides += `
-    <section data-auto-animate>
-
-      <h2>リファーラル金額内訳</h2>
-      <div class="highlight-box">
-        <h3>総額: <span class="currency animate-number" data-value="${displayReferralAmount}">¥0</span></h3>
-      </div>
-  `;
-
-  if (Object.keys(stats.categories).length > 0) {
-    slides += `<div class="progress-section">`;
-    Object.entries(stats.categories).forEach(([category, amount]) => {
-      const percentage = stats.total_referral_amount > 0
-        ? ((amount / stats.total_referral_amount) * 100).toFixed(1)
-        : 0;
-
-      slides += `
-        <div class="progress-item">
-          <div class="progress-item-header">
-            <span class="progress-item-label">${escapeHtml(category)}</span>
-            <span class="progress-item-value animate-number" data-value="${amount}">¥0</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill" data-width="${percentage}" style="width: 0%;"></div>
-          </div>
-        </div>
-      `;
-    });
-    slides += `</div>`;
-  }
-
-  slides += `</section>`;
-
-  // Slide 5: Member Contributions (split into multiple pages if needed)
+  // Member Contributions (split into multiple pages if needed)
   if (Object.keys(stats.members).length > 0) {
     // Filter out members with 0 referral amount AND 0 visitors
     const memberEntries = Object.entries(stats.members).filter(([member, memberStats]) => {
@@ -627,20 +559,6 @@ function generatePresidentMessageSlide(config) {
   `;
 }
 
-/**
- * Phase 1.4: Generate Good & New Slide
- */
-function generateGoodAndNewSlide() {
-  return `
-    <section class="opening-slide goodnew-slide">
-      <h2>Good & New</h2>
-      <div class="goodnew-content">
-        <p class="goodnew-instruction">最近あった良いこと、新しいことを30秒で共有してください</p>
-        <div class="countdown-display">30秒</div>
-      </div>
-    </section>
-  `;
-}
 
 /**
  * Phase 2: Generate Main Presentation Slides
