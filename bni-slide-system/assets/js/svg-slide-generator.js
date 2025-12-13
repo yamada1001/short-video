@@ -350,8 +350,21 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   // Phase 10.6: Share Story (PDF p.73)
   slides += generateShareStorySlide();
 
+  // Phase 10.7: Member Introduction Slides (PDF p.42-59)
+  slides += generateMemberIntroductionSlides();
+
+  // Phase 10.8: BNI Purpose Slides (PDF p.65-71)
+  slides += generateBNIPurposeSlides();
+
   // Phase 11: BNI Philosophy & Core Values
   slides += generateBNIPhilosophySlides();
+
+  // Phase 11.5: Additional PDF Slides
+  slides += generateVisitorSelfIntroTemplateSlide(); // p.182
+  slides += generateBusinessBreakoutSlides(); // p.198-200
+  slides += generateVicePresidentStatsSlides(); // p.203-206
+  slides += generateReferralTrustSlides(); // p.246-253
+  slides += generateClosingSlides(); // p.303-328
 
   // Phase 12: Networking Education Corner
   // Use networkingLearningPresenter data if available, otherwise fall back to slideConfig
@@ -694,6 +707,141 @@ function generateShareStorySlide() {
       </div>
     </section>
   `;
+}
+
+/**
+ * Phase 10.7: Generate Member Introduction Slides (PDF p.42-59)
+ * 18 pages of member introductions with photos
+ */
+function generateMemberIntroductionSlides() {
+  let slides = '';
+  const pageNumbers = [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59];
+
+  pageNumbers.forEach(pageNum => {
+    slides += `
+      <section class="pdf-image-slide">
+        <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
+             alt="Member Introduction ${pageNum}"
+             class="pdf-full-image">
+      </section>
+    `;
+  });
+
+  return slides;
+}
+
+/**
+ * Phase 10.8: Generate BNI Purpose Slides (PDF p.65-71)
+ * 7 pages explaining BNI's purpose
+ */
+function generateBNIPurposeSlides() {
+  let slides = '';
+  const pageNumbers = [65, 66, 67, 68, 69, 70, 71];
+
+  pageNumbers.forEach(pageNum => {
+    slides += `
+      <section class="pdf-image-slide">
+        <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
+             alt="BNI Purpose ${pageNum}"
+             class="pdf-full-image">
+      </section>
+    `;
+  });
+
+  return slides;
+}
+
+/**
+ * Phase 11.1: Visitor Self-Introduction Template (PDF p.182)
+ */
+function generateVisitorSelfIntroTemplateSlide() {
+  return `
+    <section class="pdf-image-slide">
+      <img src="../pdf_analysis/required_pages/page_182.png"
+           alt="Visitor Self Introduction Template"
+           class="pdf-full-image">
+    </section>
+  `;
+}
+
+/**
+ * Phase 11.2: Business Breakout Slides (PDF p.198-200)
+ */
+function generateBusinessBreakoutSlides() {
+  let slides = '';
+  const pageNumbers = [198, 199, 200];
+
+  pageNumbers.forEach(pageNum => {
+    slides += `
+      <section class="pdf-image-slide">
+        <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
+             alt="Business Breakout ${pageNum}"
+             class="pdf-full-image">
+      </section>
+    `;
+  });
+
+  return slides;
+}
+
+/**
+ * Phase 11.3: Vice President Statistics Slides (PDF p.203-206)
+ */
+function generateVicePresidentStatsSlides() {
+  let slides = '';
+  const pageNumbers = [203, 204, 205, 206];
+
+  pageNumbers.forEach(pageNum => {
+    slides += `
+      <section class="pdf-image-slide">
+        <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
+             alt="VP Statistics ${pageNum}"
+             class="pdf-full-image">
+      </section>
+    `;
+  });
+
+  return slides;
+}
+
+/**
+ * Phase 11.4: Referral Trust Slides (PDF p.246-253)
+ */
+function generateReferralTrustSlides() {
+  let slides = '';
+  const pageNumbers = [246, 247, 248, 249, 250, 251, 252, 253];
+
+  pageNumbers.forEach(pageNum => {
+    slides += `
+      <section class="pdf-image-slide">
+        <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
+             alt="Referral Trust ${pageNum}"
+             class="pdf-full-image">
+      </section>
+    `;
+  });
+
+  return slides;
+}
+
+/**
+ * Phase 11.5: Closing Slides (PDF p.303-328)
+ */
+function generateClosingSlides() {
+  let slides = '';
+  const pageNumbers = [303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328];
+
+  pageNumbers.forEach(pageNum => {
+    slides += `
+      <section class="pdf-image-slide">
+        <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
+             alt="Closing ${pageNum}"
+             class="pdf-full-image">
+      </section>
+    `;
+  });
+
+  return slides;
 }
 
 /**
