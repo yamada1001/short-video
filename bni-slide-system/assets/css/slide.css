@@ -3601,3 +3601,171 @@
     transform: translateX(0);
   }
 }
+
+/* ===================================
+   Monthly Ranking Slides Styles
+   月初ランキングスライド用スタイル
+   =================================== */
+
+/* Ranking Table Container */
+.ranking-table-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+/* Ranking Table */
+.ranking-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Table Header */
+.ranking-table thead {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.ranking-table thead th {
+  padding: 20px 24px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: left;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.ranking-table thead th:first-child {
+  text-align: center;
+}
+
+.ranking-table thead th:last-child {
+  text-align: right;
+}
+
+/* Table Body */
+.ranking-table tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ranking-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.ranking-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.01);
+}
+
+.ranking-table tbody td {
+  padding: 24px;
+  color: #FFFFFF;
+  vertical-align: middle;
+}
+
+.ranking-table tbody td:first-child {
+  text-align: center;
+}
+
+.ranking-table tbody td:last-child {
+  text-align: right;
+}
+
+/* Rank 1 - Gold Medal 🥇 */
+.ranking-table tbody tr.rank-1 {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.15) 100%);
+  border: 2px solid rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+  position: relative;
+}
+
+.ranking-table tbody tr.rank-1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 215, 0, 0.1) 50%,
+    transparent 100%);
+  animation: shimmer 2s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.ranking-table tbody tr.rank-1 td {
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.ranking-table tbody tr.rank-1:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.35) 0%, rgba(255, 215, 0, 0.25) 100%);
+  transform: scale(1.02);
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+}
+
+/* Rank 2 - Silver Medal 🥈 */
+.ranking-table tbody tr.rank-2 {
+  background: linear-gradient(135deg, rgba(192, 192, 192, 0.2) 0%, rgba(192, 192, 192, 0.1) 100%);
+  border: 2px solid rgba(192, 192, 192, 0.4);
+  box-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
+}
+
+.ranking-table tbody tr.rank-2 td {
+  font-weight: 600;
+}
+
+.ranking-table tbody tr.rank-2:hover {
+  background: linear-gradient(135deg, rgba(192, 192, 192, 0.3) 0%, rgba(192, 192, 192, 0.2) 100%);
+  box-shadow: 0 0 30px rgba(192, 192, 192, 0.4);
+}
+
+/* Rank 3 - Bronze Medal 🥉 */
+.ranking-table tbody tr.rank-3 {
+  background: linear-gradient(135deg, rgba(205, 127, 50, 0.2) 0%, rgba(205, 127, 50, 0.1) 100%);
+  border: 2px solid rgba(205, 127, 50, 0.4);
+  box-shadow: 0 0 20px rgba(205, 127, 50, 0.3);
+}
+
+.ranking-table tbody tr.rank-3 td {
+  font-weight: 600;
+}
+
+.ranking-table tbody tr.rank-3:hover {
+  background: linear-gradient(135deg, rgba(205, 127, 50, 0.3) 0%, rgba(205, 127, 50, 0.2) 100%);
+  box-shadow: 0 0 30px rgba(205, 127, 50, 0.4);
+}
+
+/* Responsive Design for Ranking Tables */
+@media screen and (max-width: 768px) {
+  .ranking-table thead th,
+  .ranking-table tbody td {
+    padding: 16px 12px;
+    font-size: 20px;
+  }
+
+  .ranking-table tbody td:first-child {
+    font-size: 28px;
+  }
+
+  .ranking-table tbody td:last-child {
+    font-size: 28px;
+  }
+}
