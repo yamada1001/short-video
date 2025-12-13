@@ -4,6 +4,15 @@
  * ネットワーキング学習コーナーにPDFファイルパスカラムを追加
  */
 
+// HTML mode for browser access
+if (php_sapi_name() !== 'cli') {
+    header('Content-Type: text/html; charset=UTF-8');
+    echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>マイグレーション実行</title>';
+    echo '<style>body{font-family:monospace;padding:20px;background:#f5f5f5;}pre{background:white;padding:20px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}</style>';
+    echo '</head><body><pre>';
+    ob_start();
+}
+
 require_once __DIR__ . '/../includes/db.php';
 
 try {
@@ -44,4 +53,11 @@ try {
         dbClose($db);
     }
     exit(1);
+}
+
+// Close HTML for browser mode
+if (php_sapi_name() !== 'cli') {
+    $output = ob_get_clean();
+    echo htmlspecialchars($output);
+    echo '</pre></body></html>';
 }
