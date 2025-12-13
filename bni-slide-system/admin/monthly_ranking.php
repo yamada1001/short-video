@@ -169,6 +169,8 @@ $defaultYearMonth = date('Y-m', strtotime('last month'));
           <li><a href="referrals.php">リファーラル管理</a></li>
           <li><a href="seating.php">座席表編集</a></li>
           <li><a href="monthly_ranking.php" class="active">月間ランキング</a></li>
+          <li><a href="visitor_intro.php">ビジターご紹介</a></li>
+          <li><a href="networking_learning.php">ネットワーキング学習</a></li>
           <li><a href="users.php">ユーザー管理</a></li>
           <li><a href="../logout.php" style="color: #999;">ログアウト</a></li>
         </ul>

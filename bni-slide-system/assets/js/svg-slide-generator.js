@@ -29,7 +29,7 @@ function extractYouTubeVideoId(url) {
 /**
  * Generate all slides from data
  */
-async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, shareStoryPresenter = null, educationPresenter = null, referralTotal = null, slideConfig = null, monthlyRankingData = null) {
+async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = null, shareStoryPresenter = null, educationPresenter = null, referralTotal = null, slideConfig = null, monthlyRankingData = null, visitorIntroductions = null, networkingLearningPresenter = null) {
   const slideContainer = document.getElementById('slideContainer');
 
   // Use provided date from API, or fall back to today's date
@@ -104,116 +104,10 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
     </section>
   `;
 
-  // Slide 3: Visitor Introductions (split into multiple pages if needed)
-  if (data.length > 0) {
-    const visitorsWithData = data.filter(row => row['ビジター名']);
-    const itemsPerPage = 5;
-    const totalPages = Math.ceil(visitorsWithData.length / itemsPerPage);
-
-    for (let page = 0; page < totalPages; page++) {
-      const start = page * itemsPerPage;
-      const end = start + itemsPerPage;
-      const pageData = visitorsWithData.slice(start, end);
-
-      slides += `
-        <section>
-    
-          <h2>ビジター紹介一覧${totalPages > 1 ? ` (${page + 1}/${totalPages})` : ''}</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>紹介者</th>
-                <th>お名前</th>
-                <th>会社名（屋号）</th>
-                <th>業種</th>
-              </tr>
-            </thead>
-            <tbody>
-      `;
-
-      pageData.forEach(row => {
-        // Parse visitor name - format might be "会社名 名前様" or just "名前様"
-        const fullVisitorName = row['ビジター名'] || '';
-        const visitorCompany = row['ビジター会社名'] || '';
-
-        // If company name is not in separate field, try to extract it
-        let displayName = fullVisitorName;
-        let displayCompany = visitorCompany;
-
-        // If no separate company field and name contains space, split it
-        if (!visitorCompany && fullVisitorName.includes(' ')) {
-          const parts = fullVisitorName.split(' ');
-          displayCompany = parts[0];
-          displayName = parts.slice(1).join(' ');
-        }
-
-        // Add space before 様 if it exists
-        if (displayName && displayName.includes('様')) {
-          displayName = displayName.replace(/([^\s])様/, '$1 様');
-        }
-
-        // Add space before 様 in 紹介者名 as well
-        let introducerName = row['紹介者名'] || '';
-        if (introducerName && introducerName.includes('様')) {
-          introducerName = introducerName.replace(/([^\s])様/, '$1 様');
-        }
-
-        slides += `
-          <tr>
-            <td>${escapeHtml(introducerName)}</td>
-            <td><strong>${escapeHtml(displayName)}</strong></td>
-            <td>${escapeHtml(displayCompany || '-')}</td>
-            <td>${escapeHtml(row['ビジター業種'] || '-')}</td>
-          </tr>
-        `;
-      });
-
-      slides += `
-            </tbody>
-          </table>
-        </section>
-      `;
-    }
-
-    // Slide 3.5: Visitor Self-Introduction Slides
-    visitorsWithData.forEach(row => {
-      // Parse visitor name
-      const fullVisitorName = row['ビジター名'] || '';
-      const visitorCompany = row['ビジター会社名'] || '';
-
-      let displayName = fullVisitorName;
-      let displayCompany = visitorCompany;
-
-      if (!visitorCompany && fullVisitorName.includes(' ')) {
-        const parts = fullVisitorName.split(' ');
-        displayCompany = parts[0];
-        displayName = parts.slice(1).join(' ');
-      }
-
-      // Add space before 様 if it exists
-      if (displayName && displayName.includes('様')) {
-        displayName = displayName.replace(/([^\s])様/, '$1 様');
-      }
-
-      const visitorIndustry = escapeHtml(row['ビジター業種'] || '');
-
-      slides += `
-        <section class="visitor-slide">
-          <h2 class="visitor-name">${escapeHtml(displayName)}</h2>
-          <p class="visitor-company">${escapeHtml(displayCompany)}</p>
-          <p class="visitor-industry">${visitorIndustry}</p>
-          <div class="visitor-prompt">
-            <p class="prompt-title">自己紹介をお願いします</p>
-            <div class="prompt-themes">
-              <div class="theme-item"><i class="fas fa-building"></i> 会社名（屋号）・事業内容</div>
-              <div class="theme-item"><i class="fas fa-briefcase"></i> ご自身のお仕事について</div>
-              <div class="theme-item"><i class="fas fa-bullseye"></i> 今日の参加目的</div>
-              <div class="theme-item"><i class="fas fa-heart"></i> 趣味・好きなこと</div>
-            </div>
-          </div>
-        </section>
-      `;
-    });
+  // Slide 3: Visitor Introductions (from visitor_introductions table)
+  if (visitorIntroductions && visitorIntroductions.length > 0) {
+    slides += generateVisitorIntroductionListSlides(visitorIntroductions);
+    slides += generateVisitorSelfIntroductionSlides(visitorIntroductions);
   }
 
   // Pitch Section: Removed (duplicate, use the one after seating chart instead)
@@ -608,7 +502,10 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   slides += generateBNIPhilosophySlides();
 
   // Phase 12: Networking Education Corner
-  if (slideConfig && slideConfig.networking_education) {
+  // Use networkingLearningPresenter data if available, otherwise fall back to slideConfig
+  if (networkingLearningPresenter) {
+    slides += generateNetworkingLearningSlide(networkingLearningPresenter);
+  } else if (slideConfig && slideConfig.networking_education) {
     slides += generateNetworkingEducationSlide(slideConfig.networking_education);
   }
 
@@ -1628,3 +1525,118 @@ function generateMonthlyRankingSlides(rankingData) {
 
   return slides;
 }
+
+/**
+ * Generate Visitor Introduction List Slides
+ * ビジターご紹介一覧スライドを生成（visitor_introductionsテーブルから）
+ */
+function generateVisitorIntroductionListSlides(visitorIntroductions) {
+  let slides = "";
+
+  const itemsPerPage = 5;
+  const totalPages = Math.ceil(visitorIntroductions.length / itemsPerPage);
+
+  for (let page = 0; page < totalPages; page++) {
+    const start = page * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageData = visitorIntroductions.slice(start, end);
+
+    slides += `
+      <section>
+        <h2>ビジターご紹介${totalPages > 1 ? ` (${page + 1}/${totalPages})` : ""}</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>お名前</th>
+              <th>会社名（屋号）</th>
+              <th>専門分野</th>
+              <th>スポンサー</th>
+              <th>アテンド</th>
+            </tr>
+          </thead>
+          <tbody>
+    `;
+
+    pageData.forEach(visitor => {
+      slides += `
+        <tr>
+          <td><strong>${escapeHtml(visitor.visitor_name)}</strong></td>
+          <td>${escapeHtml(visitor.company || "-")}</td>
+          <td>${escapeHtml(visitor.specialty || "-")}</td>
+          <td>${escapeHtml(visitor.sponsor)}</td>
+          <td>${escapeHtml(visitor.attendant)}</td>
+        </tr>
+      `;
+    });
+
+    slides += `
+          </tbody>
+        </table>
+      </section>
+    `;
+  }
+
+  return slides;
+}
+
+/**
+ * Generate Visitor Self-Introduction Slides
+ * ビジター自己紹介スライドを生成（visitor_introductionsテーブルから）
+ */
+function generateVisitorSelfIntroductionSlides(visitorIntroductions) {
+  let slides = "";
+
+  visitorIntroductions.forEach(visitor => {
+    slides += `
+      <section class="visitor-slide">
+        <h2 class="visitor-name">${escapeHtml(visitor.visitor_name)}</h2>
+        <p class="visitor-company">${escapeHtml(visitor.company || "")}</p>
+        <p class="visitor-industry">${escapeHtml(visitor.specialty || "")}</p>
+        <div class="visitor-prompt">
+          <p class="prompt-title">自己紹介をお願いします</p>
+          <div class="prompt-themes">
+            <div class="theme-item"><i class="fas fa-building"></i> 会社名（屋号）・事業内容</div>
+            <div class="theme-item"><i class="fas fa-briefcase"></i> ご自身のお仕事について</div>
+            <div class="theme-item"><i class="fas fa-bullseye"></i> 今日の参加目的</div>
+            <div class="theme-item"><i class="fas fa-heart"></i> 趣味・好きなこと</div>
+          </div>
+        </div>
+        <div class="visitor-meta">
+          <p><i class="fas fa-handshake"></i> スポンサー: ${escapeHtml(visitor.sponsor)}</p>
+          <p><i class="fas fa-user-friends"></i> アテンド: ${escapeHtml(visitor.attendant)}</p>
+        </div>
+      </section>
+    `;
+  });
+
+  return slides;
+}
+
+/**
+ * Generate Networking Learning Corner Slide
+ * ネットワーキング学習コーナースライドを生成（networking_learning_presentersテーブルから）
+ */
+function generateNetworkingLearningSlide(presenter) {
+  return `
+    <section class="networking-education-slide">
+      <h2 class="networking-education-title">ネットワーキング学習コーナー</h2>
+      <div class="networking-education-subtitle">Networking Education Corner</div>
+
+      <div class="networking-education-content">
+        <div class="networking-education-presenter-box">
+          <div class="networking-education-presenter-info">
+            <div class="networking-education-presenter-name">${escapeHtml(presenter.presenter_name)}</div>
+            ${presenter.presenter_company ? `<div class="networking-education-presenter-role">${escapeHtml(presenter.presenter_company)}</div>` : ""}
+            ${presenter.presenter_category ? `<div class="networking-education-presenter-category">(${escapeHtml(presenter.presenter_category)})</div>` : ""}
+          </div>
+        </div>
+
+        <div class="networking-education-topic">
+          <i class="fas fa-book-open topic-icon"></i>
+          <div class="topic-text">今週の担当者</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+

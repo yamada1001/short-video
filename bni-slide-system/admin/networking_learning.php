@@ -1,7 +1,7 @@
 <?php
 /**
- * BNI Slide System - Visitor Introduction Management (Admin Only)
- * 管理者専用 - ビジターご紹介管理画面
+ * BNI Slide System - Networking Learning Corner Management (Admin Only)
+ * 管理者専用 - ネットワーキング学習コーナー管理画面
  */
 
 require_once __DIR__ . '/../includes/session_auth.php';
@@ -39,7 +39,7 @@ if (!$isAdmin) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>ビジターご紹介管理 | BNI Slide System</title>
+  <title>ネットワーキング学習コーナー管理 | BNI Slide System</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,7 +53,12 @@ if (!$isAdmin) {
   <link rel="stylesheet" href="../assets/css/common.css">
 
   <style>
-    .visitor-form {
+    .learning-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .form-section {
       background: #fff;
       padding: 30px;
       border-radius: 12px;
@@ -61,15 +66,11 @@ if (!$isAdmin) {
       margin-bottom: 30px;
     }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    .form-section h2 {
+      color: #CF2030;
       margin-bottom: 20px;
-    }
-
-    .form-row.full {
-      grid-template-columns: 1fr;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #CF2030;
     }
 
     .form-group {
@@ -88,8 +89,8 @@ if (!$isAdmin) {
       margin-left: 4px;
     }
 
-    .form-group input,
-    .form-group select {
+    .form-group select,
+    .form-group input {
       width: 100%;
       padding: 12px 16px;
       border: 2px solid #e0e0e0;
@@ -99,41 +100,48 @@ if (!$isAdmin) {
       transition: border-color 0.3s;
     }
 
-    .form-group input:focus,
-    .form-group select:focus {
+    .form-group select:focus,
+    .form-group input:focus {
       outline: none;
       border-color: #CF2030;
     }
 
-    .visitor-list {
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      margin-top: 30px;
+    .member-selection {
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: #fafafa;
     }
 
-    .visitor-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
+    .member-checkbox {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 8px;
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
 
-    .visitor-table th,
-    .visitor-table td {
-      padding: 12px 16px;
-      text-align: left;
-      border-bottom: 1px solid #e0e0e0;
+    .member-checkbox:hover {
+      background: #f0f8ff;
     }
 
-    .visitor-table th {
-      background: #f5f5f5;
-      font-weight: 600;
-      color: #333;
+    .member-checkbox input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      cursor: pointer;
     }
 
-    .visitor-table tr:hover {
-      background: #f9f9f9;
+    .member-checkbox label {
+      margin: 0;
+      cursor: pointer;
+      font-weight: normal;
+      flex: 1;
     }
 
     .btn {
@@ -167,49 +175,53 @@ if (!$isAdmin) {
       background: #5a6268;
     }
 
-    .btn-danger {
-      background: #dc3545;
-      color: #fff;
-      padding: 8px 16px;
-      font-size: 14px;
-    }
-
-    .btn-danger:hover {
-      background: #c82333;
-    }
-
     .message {
       padding: 16px;
       border-radius: 8px;
       margin-bottom: 20px;
+      display: none;
     }
 
     .message.success {
       background: #d4edda;
       color: #155724;
       border: 1px solid #c3e6cb;
+      display: block;
     }
 
     .message.error {
       background: #f8d7da;
       color: #721c24;
       border: 1px solid #f5c6cb;
+      display: block;
     }
 
-    .add-visitor-btn {
+    .current-presenter {
+      background: #e8f5e9;
+      padding: 20px;
+      border-radius: 8px;
       margin-bottom: 20px;
+      border: 2px solid #4caf50;
     }
 
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      color: #999;
+    .current-presenter h3 {
+      color: #2e7d32;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .empty-state i {
-      font-size: 64px;
-      margin-bottom: 20px;
-      color: #ddd;
+    .current-presenter .presenter-info {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1b5e20;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -232,8 +244,8 @@ if (!$isAdmin) {
             <li><a href="referrals.php">リファーラル管理</a></li>
             <li><a href="seating.php">座席表編集</a></li>
             <li><a href="monthly_ranking.php">月間ランキング</a></li>
-            <li><a href="visitor_intro.php" class="active">ビジターご紹介</a></li>
-            <li><a href="networking_learning.php">ネットワーキング学習</a></li>
+            <li><a href="visitor_intro.php">ビジターご紹介</a></li>
+            <li><a href="networking_learning.php" class="active">ネットワーキング学習</a></li>
             <li><a href="users.php">ユーザー管理</a></li>
             <li><a href="../logout.php" style="color: #999;">ログアウト</a></li>
           </ul>
@@ -242,78 +254,62 @@ if (!$isAdmin) {
     </header>
 
     <main>
-      <h1>ビジターご紹介管理</h1>
+      <div class="learning-container">
+        <h1>ネットワーキング学習コーナー管理</h1>
 
-      <!-- Week Selection -->
-      <div class="visitor-form">
-        <h2><i class="fas fa-calendar-week"></i> 対象週を選択</h2>
-        <div class="form-row">
+        <div id="messageContainer"></div>
+
+        <!-- Week Selection -->
+        <div class="form-section">
+          <h2><i class="fas fa-calendar-week"></i> 対象週を選択</h2>
           <div class="form-group">
             <label for="weekSelector">表示する週 <span class="required">*</span></label>
             <select id="weekSelector">
               <option value="">読み込み中...</option>
             </select>
           </div>
-          <div class="form-group" style="display: flex; align-items: flex-end;">
-            <button id="loadDataBtn" class="btn btn-secondary">
-              <i class="fas fa-download"></i> データ読み込み
-            </button>
+          <button id="loadDataBtn" class="btn btn-secondary">
+            <i class="fas fa-download"></i> データ読み込み
+          </button>
+        </div>
+
+        <!-- Current Presenter Display -->
+        <div id="currentPresenterSection" style="display: none;">
+          <div class="current-presenter">
+            <h3><i class="fas fa-user-check"></i> 現在の担当者</h3>
+            <div class="presenter-info" id="currentPresenterName"></div>
           </div>
         </div>
-      </div>
 
-      <!-- Add New Visitor Form -->
-      <div class="visitor-form">
-        <h2><i class="fas fa-user-plus"></i> ビジターを追加</h2>
-        <form id="visitorForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="visitorName">お名前 <span class="required">*</span></label>
-              <input type="text" id="visitorName" name="visitor_name" required placeholder="山田 太郎">
-            </div>
-            <div class="form-group">
-              <label for="company">会社名（屋号）</label>
-              <input type="text" id="company" name="company" placeholder="株式会社Example">
-            </div>
-          </div>
+        <!-- Member Selection Form -->
+        <div class="form-section">
+          <h2><i class="fas fa-users"></i> 担当メンバーを選択</h2>
+          <p style="color: #666; margin-bottom: 20px;">
+            <i class="fas fa-info-circle"></i> この週にネットワーキング学習コーナーを担当するメンバーを1名選択してください。
+          </p>
 
-          <div class="form-row">
+          <form id="presenterForm">
             <div class="form-group">
-              <label for="specialty">専門分野</label>
-              <input type="text" id="specialty" name="specialty" placeholder="経営コンサルティング">
+              <label for="memberSelect">担当メンバー <span class="required">*</span></label>
+              <select id="memberSelect" required>
+                <option value="">-- メンバーを選択 --</option>
+              </select>
             </div>
-            <div class="form-group">
-              <label for="sponsor">スポンサー（紹介者） <span class="required">*</span></label>
-              <input type="text" id="sponsor" name="sponsor" required placeholder="鈴木 花子">
+
+            <div class="button-group">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> 保存
+              </button>
+              <button type="button" id="clearBtn" class="btn btn-secondary">
+                <i class="fas fa-times"></i> 選択解除
+              </button>
             </div>
-          </div>
-
-          <div class="form-row full">
-            <div class="form-group">
-              <label for="attendant">アテンド（同行者） <span class="required">*</span></label>
-              <input type="text" id="attendant" name="attendant" required placeholder="佐藤 次郎">
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary">
-            <i class="fas fa-plus-circle"></i> ビジターを追加
-          </button>
-        </form>
-      </div>
-
-      <!-- Visitor List -->
-      <div class="visitor-list">
-        <h2><i class="fas fa-list"></i> 登録済みビジター一覧</h2>
-        <div id="visitorListContainer">
-          <div class="empty-state">
-            <i class="fas fa-user-friends"></i>
-            <p>週を選択してデータを読み込んでください</p>
-          </div>
+          </form>
         </div>
       </div>
     </main>
   </div>
 
-  <script src="../assets/js/visitor_intro.js"></script>
+  <script src="../assets/js/networking_learning.js"></script>
 </body>
 </html>

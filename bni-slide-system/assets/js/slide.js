@@ -159,7 +159,7 @@
 
       // Generate slides using SVG templates
       // Note: slide_config may be null if slide_config.json doesn't exist
-      await generateSVGSlides(data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config || null, monthlyRankingData);
+      await generateSVGSlides(data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config || null, monthlyRankingData, visitor_introductions, networking_learning_presenter);
 
       // Initialize or sync Reveal.js
       if (!Reveal.isReady()) {

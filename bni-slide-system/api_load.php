@@ -79,6 +79,12 @@ try {
     error_log('[API LOAD] Monthly ranking data load failed: ' . $e->getMessage());
   }
 
+  // Load visitor introductions
+  $visitorIntroductions = getVisitorIntroductions($db, $weekDate);
+
+  // Load networking learning corner presenter
+  $networkingLearningPresenter = getNetworkingLearningPresenter($db, $weekDate);
+
   dbClose($db);
 
   echo json_encode([
@@ -91,6 +97,8 @@ try {
     'referral_total' => $referralTotal,
     'slide_config' => $slideConfig,
     'monthly_ranking_data' => $monthlyRankingData,
+    'visitor_introductions' => $visitorIntroductions,
+    'networking_learning_presenter' => $networkingLearningPresenter,
     'count' => count($data),
     'date' => $slideDate,
     'week' => $weekDate
@@ -430,4 +438,49 @@ function loadSlideConfig() {
   }
 
   return $config;
+}
+
+/**
+ * Get visitor introductions for the week
+ * Returns array of visitor introduction data
+ */
+function getVisitorIntroductions($db, $weekDate) {
+  $query = "
+    SELECT
+      id,
+      visitor_name,
+      company,
+      specialty,
+      sponsor,
+      attendant,
+      display_order
+    FROM visitor_introductions
+    WHERE week_date = :week_date
+    ORDER BY display_order ASC, created_at ASC
+  ";
+
+  $result = dbQuery($db, $query, [':week_date' => $weekDate]);
+
+  return $result ?: [];
+}
+
+/**
+ * Get networking learning corner presenter for the week
+ * Returns single presenter data or null
+ */
+function getNetworkingLearningPresenter($db, $weekDate) {
+  $query = "
+    SELECT
+      presenter_name,
+      presenter_email,
+      presenter_company,
+      presenter_category
+    FROM networking_learning_presenters
+    WHERE week_date = :week_date
+    LIMIT 1
+  ";
+
+  $result = dbQueryOne($db, $query, [':week_date' => $weekDate]);
+
+  return $result ?: null;
 }
