@@ -253,12 +253,13 @@ async function deleteVisitor(id) {
  */
 async function loadMembers() {
   try {
-    const response = await fetch('../data/members.json');
+    const response = await fetch('/bni-slide-system/data/members.json');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const members = await response.json();
+    const data = await response.json();
+    const members = Object.values(data.users || {});
 
     // Populate attendant dropdown
     const attendantSelect = document.getElementById('attendant');

@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 async function loadMembers() {
   try {
-    const response = await fetch('../data/members.json');
+    const response = await fetch('/bni-slide-system/data/members.json');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    membersData = data.members || [];
+    membersData = data;
 
     // Populate member select dropdown
     const memberSelect = document.getElementById('memberSelect');
