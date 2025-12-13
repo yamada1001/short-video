@@ -585,9 +585,9 @@ function generatePresidentMessageSlide(config) {
 function generateMainPresentationSlides(speaker) {
   let slides = '';
 
-  // Intro slide: Weekly Presentation
+  // Intro slide: Weekly Presentation (with 2-minute timer)
   slides += `
-    <section class="main-presentation-intro-slide">
+    <section class="main-presentation-intro-slide" data-timer="weekly_presentation">
       <div class="presentation-photo-left">
         <img src="assets/images/presentation-people.jpg" alt="Presentation" class="presentation-bg-image" />
       </div>
@@ -756,7 +756,7 @@ function generateBNIPurposeSlides() {
  */
 function generateVisitorSelfIntroTemplateSlide() {
   return `
-    <section class="pdf-image-slide">
+    <section class="pdf-image-slide" data-timer="visitor_intro">
       <img src="../pdf_analysis/required_pages/page_182.png"
            alt="Visitor Self Introduction Template"
            class="pdf-full-image">
@@ -771,9 +771,11 @@ function generateBusinessBreakoutSlides() {
   let slides = '';
   const pageNumbers = [198, 199, 200];
 
-  pageNumbers.forEach(pageNum => {
+  pageNumbers.forEach((pageNum, index) => {
+    // Add timer only to first slide (p.198)
+    const timerAttr = index === 0 ? ' data-timer="business_breakout"' : '';
     slides += `
-      <section class="pdf-image-slide">
+      <section class="pdf-image-slide"${timerAttr}>
         <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
              alt="Business Breakout ${pageNum}"
              class="pdf-full-image">
