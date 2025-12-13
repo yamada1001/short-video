@@ -753,35 +753,52 @@ function generateBNIPurposeSlides() {
 
 /**
  * Phase 11.1: Visitor Self-Introduction Template (PDF p.182)
+ * HTML/CSS version - Business Breakout intro slide
  */
 function generateVisitorSelfIntroTemplateSlide() {
   return `
-    <section class="pdf-image-slide" data-timer="visitor_intro">
-      <img src="../pdf_analysis/required_pages/page_182.png"
-           alt="Visitor Self Introduction Template"
-           class="pdf-full-image">
+    <section class="business-breakout-intro-slide" data-timer="visitor_intro">
+      <div class="business-breakout-left">
+        <img src="assets/images/slides/page_182.png" alt="Business Meeting" class="business-breakout-photo" />
+      </div>
+      <div class="business-breakout-right">
+        <h1 class="business-breakout-title">ビジネス<br>ブレイクアウト</h1>
+        <p class="business-breakout-subtitle">ウィークリープレゼンテーションを聴いて、<br>誰のためにどんな事ができるか<br>お互いにシェアしましょう。</p>
+      </div>
     </section>
   `;
 }
 
 /**
  * Phase 11.2: Business Breakout Slides (PDF p.198-200)
+ * HTML/CSS version - Main Presentation intro and Speaker Rotation title
  */
 function generateBusinessBreakoutSlides() {
   let slides = '';
-  const pageNumbers = [198, 199, 200];
 
-  pageNumbers.forEach((pageNum, index) => {
-    // Add timer only to first slide (p.198)
-    const timerAttr = index === 0 ? ' data-timer="business_breakout"' : '';
-    slides += `
-      <section class="pdf-image-slide"${timerAttr}>
-        <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
-             alt="Business Breakout ${pageNum}"
-             class="pdf-full-image">
-      </section>
-    `;
-  });
+  // p.198: メインプレゼンテーション
+  slides += `
+    <section class="main-presentation-intro-slide-v2" data-timer="business_breakout">
+      <div class="main-presentation-left">
+        <img src="assets/images/slides/page_198.png" alt="Microphone" class="main-presentation-photo" />
+      </div>
+      <div class="main-presentation-right">
+        <h1 class="main-presentation-title">メイン<br>プレゼンテーション</h1>
+      </div>
+    </section>
+  `;
+
+  // p.199: スピーカーローテーション（スキップ - 動的データ必要）
+  // This slide will be handled by the existing generateSpeakerRotationSlide function
+
+  // p.200: スピーカーローテーション（タイトルスライド）
+  slides += `
+    <section class="speaker-rotation-title-slide">
+      <div class="speaker-rotation-title-bar">
+        <h1 class="speaker-rotation-title-text">スピーカーローテーション</h1>
+      </div>
+    </section>
+  `;
 
   return slides;
 }
@@ -808,20 +825,126 @@ function generateVicePresidentStatsSlides() {
 
 /**
  * Phase 11.4: Referral Trust Slides (PDF p.246-253)
+ * HTML/CSS version - 11 static slides
  */
 function generateReferralTrustSlides() {
   let slides = '';
-  const pageNumbers = [246, 247, 248, 249, 250, 251, 252, 253];
 
-  pageNumbers.forEach(pageNum => {
-    slides += `
-      <section class="pdf-image-slide">
-        <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
-             alt="Referral Trust ${pageNum}"
-             class="pdf-full-image">
-      </section>
-    `;
-  });
+  // p.246: BNIとは？
+  slides += `
+    <section class="referral-trust-slide bni-overview-slide">
+      <div class="bni-overview-container">
+        <div class="bni-overview-left">
+          <h2 class="bni-overview-title">BNIとは？</h2>
+          <div class="bni-overview-list">
+            <div class="bni-overview-item negative">
+              <span class="marker">✕</span>
+              <span class="text">異業種交流会</span>
+            </div>
+            <div class="bni-overview-item positive">
+              <span class="marker">○</span>
+              <span class="text">ビジネスチーム</span>
+            </div>
+          </div>
+        </div>
+        <div class="bni-overview-right">
+          <img src="assets/images/slides/page_246.png" alt="BNI Business Team" class="bni-overview-image" />
+        </div>
+      </div>
+      <div class="bni-logo-bottom">BNI</div>
+    </section>
+  `;
+
+  // p.247: ビジネスの課題を解決できる場所
+  slides += `
+    <section class="referral-trust-slide business-solution-slide">
+      <div class="business-solution-container">
+        <div class="business-solution-title-box">
+          <h2 class="business-solution-title">ビジネスの課題を解決できる場所</h2>
+        </div>
+        <div class="business-solution-image">
+          <img src="assets/images/slides/page_247.png" alt="Business Solution" />
+        </div>
+      </div>
+      <div class="bni-logo-bottom">BNI</div>
+    </section>
+  `;
+
+  // p.248: 5つの BENEFITS
+  slides += `
+    <section class="referral-trust-slide benefits-title-slide">
+      <div class="benefits-title-container">
+        <h2 class="benefits-title-main">5つの <span class="benefits-word">BENEFITS</span></h2>
+        <div class="benefits-hand-image">
+          <img src="assets/images/slides/page_248.png" alt="5 Benefits" />
+        </div>
+      </div>
+      <div class="bni-logo-bottom-right">BNI</div>
+    </section>
+  `;
+
+  // p.249: あなたの営業チームは何人？
+  slides += `
+    <section class="referral-trust-slide sales-team-question-slide">
+      <h1 class="sales-team-question">あなたの<span class="highlight-red">営業チーム</span>は何人？</h1>
+      <div class="bni-logo-bottom-right">BNI</div>
+    </section>
+  `;
+
+  // p.250: 売上獲得までのプロセス
+  slides += `
+    <section class="referral-trust-slide sales-process-slide">
+      <h2 class="sales-process-title">売上獲得までのプロセス</h2>
+      <div class="sales-process-diagram">
+        <div class="process-step marketing-step">
+          <div class="process-box-outer marketing-outer">
+            <div class="process-box-inner">マーケティング</div>
+          </div>
+          <div class="process-arrow">→</div>
+          <div class="process-box sales-box">セールス</div>
+          <div class="process-arrow">→</div>
+          <div class="process-box contract-box">成約</div>
+        </div>
+      </div>
+      <div class="sales-process-descriptions">
+        <p class="desc-marketing"><span class="highlight-green">マーケティング</span>...見込み客を獲得する方法</p>
+        <p class="desc-sales"><span class="highlight-blue">セールス</span>...見込み客を顧客に変える方法</p>
+        <p class="desc-contract"><strong>成約...ビジネス獲得の成果</strong></p>
+      </div>
+      <div class="bni-logo-bottom">BNI</div>
+    </section>
+  `;
+
+  // p.251: メンバーの力を借りましょう
+  slides += `
+    <section class="referral-trust-slide member-power-slide">
+      <h1 class="member-power-title"><span class="highlight-red">メンバー</span>の力を借りましょう</h1>
+      <div class="bni-logo-bottom-right">BNI</div>
+    </section>
+  `;
+
+  // p.252: Benefit 1 - 49人以上のマーケティングチーム
+  slides += `
+    <section class="referral-trust-slide benefit-one-slide">
+      <div class="benefit-header-badge">Benefit 1</div>
+      <h2 class="benefit-one-title">もしも...<br><span class="highlight-red">49人以上のマーケティングチーム</span></h2>
+      <div class="benefit-one-images">
+        <img src="assets/images/slides/page_252.png" alt="Marketing Team" />
+      </div>
+      <div class="bni-logo-bottom">BNI</div>
+    </section>
+  `;
+
+  // p.253: あなたに代わって営業活動
+  slides += `
+    <section class="referral-trust-slide sales-activity-slide">
+      <h2 class="sales-activity-title">あなたに<span class="highlight-red">代わって営業活動</span></h2>
+      <div class="sales-activity-image">
+        <img src="assets/images/slides/page_253.png" alt="Sales Activity" />
+      </div>
+      <div class="bni-logo-bottom">BNI</div>
+    </section>
+  `;
 
   return slides;
 }

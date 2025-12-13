@@ -4243,3 +4243,561 @@
     display: none !important;
   }
 }
+
+/* ========================================
+   NEW STATIC SLIDES STYLES (p.182, 198, 200, 246-253)
+   ======================================== */
+
+/* ========================================
+   1. Business Breakout Intro Slide (p.182)
+   ======================================== */
+.business-breakout-intro-slide {
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: stretch !important;
+  align-items: stretch !important;
+  background: white !important;
+}
+
+.business-breakout-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.business-breakout-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.business-breakout-right {
+  flex: 1;
+  background: #C8102E;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 80px 100px;
+}
+
+.business-breakout-title {
+  font-size: 5em !important;
+  font-weight: 900 !important;
+  color: white !important;
+  line-height: 1.2 !important;
+  margin: 0 0 40px 0 !important;
+  text-align: left !important;
+}
+
+.business-breakout-subtitle {
+  font-size: 1.5em;
+  color: white;
+  line-height: 1.6;
+  margin: 0;
+  text-align: left;
+}
+
+/* ========================================
+   2. Main Presentation Intro Slide V2 (p.198)
+   ======================================== */
+.main-presentation-intro-slide-v2 {
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: stretch !important;
+  align-items: stretch !important;
+  background: white !important;
+}
+
+.main-presentation-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0066CC 0%, #00BFFF 100%);
+}
+
+.main-presentation-photo {
+  width: 60%;
+  height: auto;
+  object-fit: contain;
+}
+
+.main-presentation-right {
+  flex: 1;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 80px 100px;
+}
+
+.main-presentation-title {
+  font-size: 5.5em !important;
+  font-weight: 900 !important;
+  color: #333 !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+/* ========================================
+   3. Speaker Rotation Title Slide (p.200)
+   ======================================== */
+.speaker-rotation-title-slide {
+  padding: 0 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%) !important;
+}
+
+.speaker-rotation-title-bar {
+  width: 100%;
+  background: #C8102E;
+  padding: 50px 80px;
+  transform: skewX(-5deg);
+  margin-top: 100px;
+  margin-left: -50px;
+  box-shadow: 0 8px 24px rgba(200, 16, 46, 0.3);
+}
+
+.speaker-rotation-title-text {
+  font-size: 5.5em !important;
+  font-weight: 900 !important;
+  color: white !important;
+  margin: 0 !important;
+  text-align: left !important;
+  transform: skewX(5deg);
+  padding-left: 50px;
+}
+
+/* ========================================
+   4. Referral Trust Slides Base Styles
+   ======================================== */
+.referral-trust-slide {
+  background: white !important;
+  padding: 60px 80px !important;
+  position: relative;
+}
+
+.bni-logo-bottom {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  font-size: 3em;
+  font-weight: 900;
+  color: #C8102E;
+  font-family: 'LINE Seed JP';
+}
+
+.bni-logo-bottom-right {
+  position: absolute;
+  bottom: 40px;
+  right: 60px;
+  font-size: 3em;
+  font-weight: 900;
+  color: #C8102E;
+  font-family: 'LINE Seed JP';
+}
+
+/* ========================================
+   5. BNI Overview Slide (p.246)
+   ======================================== */
+.bni-overview-slide {
+  background: white !important;
+}
+
+.bni-overview-container {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  height: 100%;
+}
+
+.bni-overview-left {
+  flex: 1;
+  padding: 40px;
+}
+
+.bni-overview-title {
+  font-size: 4.5em !important;
+  font-weight: 900 !important;
+  color: #333 !important;
+  margin: 0 0 60px 0 !important;
+  text-align: left !important;
+}
+
+.bni-overview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.bni-overview-item {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 30px 40px;
+  border-radius: 12px;
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+.bni-overview-item.negative {
+  background: #FFF4CC;
+}
+
+.bni-overview-item.positive {
+  background: #FFF4CC;
+}
+
+.bni-overview-item .marker {
+  font-size: 1.5em;
+  font-weight: 900;
+  width: 60px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.bni-overview-item.negative .marker {
+  color: #C8102E;
+}
+
+.bni-overview-item.positive .marker {
+  color: #C8102E;
+}
+
+.bni-overview-item .text {
+  color: #333;
+}
+
+.bni-overview-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bni-overview-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ========================================
+   6. Business Solution Slide (p.247)
+   ======================================== */
+.business-solution-slide {
+  background: white !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.business-solution-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+
+.business-solution-title-box {
+  background: #FFF4CC;
+  padding: 30px 80px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.business-solution-title {
+  font-size: 3.5em !important;
+  font-weight: 900 !important;
+  color: #C8102E !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+.business-solution-image {
+  width: 100%;
+  max-width: 900px;
+}
+
+.business-solution-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ========================================
+   7. Benefits Title Slide (p.248)
+   ======================================== */
+.benefits-title-slide {
+  background: white !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.benefits-title-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.benefits-title-main {
+  font-size: 5em !important;
+  font-weight: 700 !important;
+  color: #333 !important;
+  margin: 0 0 -80px 0 !important;
+  text-align: center !important;
+}
+
+.benefits-word {
+  color: #5DADE2;
+  font-weight: 900;
+  font-size: 1.3em;
+}
+
+.benefits-hand-image {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+}
+
+.benefits-hand-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ========================================
+   8. Sales Team Question Slide (p.249)
+   ======================================== */
+.sales-team-question-slide {
+  background: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sales-team-question {
+  font-size: 5.5em !important;
+  font-weight: 900 !important;
+  color: #333 !important;
+  text-align: center !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+}
+
+.sales-team-question .highlight-red {
+  color: #C8102E;
+}
+
+/* ========================================
+   9. Sales Process Slide (p.250)
+   ======================================== */
+.sales-process-slide {
+  background: white !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sales-process-title {
+  font-size: 3.5em !important;
+  font-weight: 900 !important;
+  color: #333 !important;
+  text-align: center !important;
+  margin: 0 0 80px 0 !important;
+}
+
+.sales-process-diagram {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 80px 0;
+}
+
+.process-step {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.process-box-outer {
+  position: relative;
+  display: inline-block;
+}
+
+.marketing-outer {
+  background: #C8102E;
+  padding: 8px;
+  border-radius: 12px;
+  transform: scale(1.3);
+  box-shadow: 0 8px 24px rgba(200, 16, 46, 0.4);
+}
+
+.process-box-inner {
+  background: white;
+  color: #C8102E;
+  font-size: 2.5em;
+  font-weight: 900;
+  padding: 30px 50px;
+  border-radius: 8px;
+}
+
+.process-box {
+  font-size: 2.5em;
+  font-weight: 900;
+  padding: 30px 50px;
+  border-radius: 12px;
+  border: 3px solid #333;
+}
+
+.sales-box {
+  color: #333;
+  background: white;
+}
+
+.contract-box {
+  color: #333;
+  background: white;
+}
+
+.process-arrow {
+  font-size: 3em;
+  color: #ccc;
+  font-weight: 700;
+}
+
+.sales-process-descriptions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 100px;
+}
+
+.sales-process-descriptions p {
+  font-size: 1.8em;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+}
+
+.highlight-green {
+  color: #27AE60;
+  font-weight: 900;
+}
+
+.highlight-blue {
+  color: #3498DB;
+  font-weight: 900;
+}
+
+.desc-contract {
+  font-weight: 900 !important;
+}
+
+/* ========================================
+   10. Member Power Slide (p.251)
+   ======================================== */
+.member-power-slide {
+  background: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-power-title {
+  font-size: 6em !important;
+  font-weight: 900 !important;
+  color: #333 !important;
+  text-align: center !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+}
+
+/* ========================================
+   11. Benefit One Slide (p.252)
+   ======================================== */
+.benefit-one-slide {
+  background: white !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.benefit-header-badge {
+  font-size: 2.5em;
+  font-weight: 900;
+  color: #C8102E;
+  background: white;
+  border: 4px solid #C8102E;
+  padding: 15px 40px;
+  border-radius: 50px;
+  margin-bottom: 60px;
+  display: inline-block;
+}
+
+.benefit-one-title {
+  font-size: 4em !important;
+  font-weight: 900 !important;
+  color: #333 !important;
+  text-align: center !important;
+  line-height: 1.4 !important;
+  margin: 0 0 80px 0 !important;
+}
+
+.benefit-one-images {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.benefit-one-images img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ========================================
+   12. Sales Activity Slide (p.253)
+   ======================================== */
+.sales-activity-slide {
+  background: white !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sales-activity-title {
+  font-size: 4.5em !important;
+  font-weight: 900 !important;
+  color: #333 !important;
+  text-align: center !important;
+  line-height: 1.4 !important;
+  margin: 0 0 80px 0 !important;
+}
+
+.sales-activity-image {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.sales-activity-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
