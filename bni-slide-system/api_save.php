@@ -39,7 +39,12 @@ try {
     'timestamp' => date('Y-m-d H:i:s'),
     'input_date' => sanitize($_POST['input_date'] ?? ''),
     'introducer_name' => sanitize($_POST['introducer_name'] ?? ''),
-    'email' => sanitize($_POST['email'] ?? '')
+    'email' => sanitize($_POST['email'] ?? ''),
+    'attendance' => sanitize($_POST['attendance'] ?? ''),
+    'thanks_slips' => intval($_POST['thanks_slips'] ?? 0),
+    'one_to_one' => intval($_POST['one_to_one'] ?? 0),
+    'activities' => sanitize($_POST['activities'] ?? ''),
+    'comments' => sanitize($_POST['comments'] ?? '')
   ];
 
   // Get pitch presenter data (validate but don't upload yet)
@@ -92,6 +97,30 @@ try {
     }
   }
 
+  // Get referral data (multiple items, optional)
+  $referrals = [];
+  if (isset($_POST['referral_name']) && is_array($_POST['referral_name'])) {
+    $count = count($_POST['referral_name']);
+    for ($i = 0; $i < $count; $i++) {
+      $referralName = sanitize($_POST['referral_name'][$i] ?? '');
+      $referralAmount = intval($_POST['referral_amount'][$i] ?? 0);
+      $referralCategory = sanitize($_POST['referral_category'][$i] ?? '');
+      $referralProvider = sanitize($_POST['referral_provider'][$i] ?? '');
+
+      // Skip empty referrals
+      if (empty($referralName) && $referralAmount === 0) {
+        continue;
+      }
+
+      $referrals[] = [
+        'name' => $referralName,
+        'amount' => $referralAmount,
+        'category' => $referralCategory,
+        'provider' => $referralProvider
+      ];
+    }
+  }
+
   // Check for duplicate submission in the same week
   $duplicateCheck = checkDuplicateSubmission($baseData['timestamp'], $baseData['introducer_name'], $baseData['email']);
   if ($duplicateCheck['isDuplicate']) {
@@ -100,7 +129,7 @@ try {
 
   // Save to database
   $db = getDbConnection();
-  $surveyId = saveToDatabase($db, $baseData, $visitors, $isPitchPresenter, $pitchFileToUpload, $youtubeUrl);
+  $surveyId = saveToDatabase($db, $baseData, $visitors, $referrals, $isPitchPresenter, $pitchFileToUpload, $youtubeUrl);
   dbClose($db);
 
   if (!$surveyId) {
@@ -137,7 +166,7 @@ function sanitize($input) {
 /**
  * Save data to SQLite database
  */
-function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitchFileData = null, $youtubeUrl = '') {
+function saveToDatabase($db, $baseData, $visitors, $referrals, $isPitchPresenter = 0, $pitchFileData = null, $youtubeUrl = '') {
   try {
     // Start transaction
     dbBeginTransaction($db);
@@ -182,6 +211,11 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
       user_id,
       user_name,
       user_email,
+      attendance,
+      thanks_slips,
+      one_to_one,
+      activities,
+      comments,
       is_pitch_presenter,
       pitch_file_path,
       pitch_file_original_name,
@@ -195,6 +229,11 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
       :user_id,
       :user_name,
       :user_email,
+      :attendance,
+      :thanks_slips,
+      :one_to_one,
+      :activities,
+      :comments,
       :is_pitch_presenter,
       :pitch_file_path,
       :pitch_file_original_name,
@@ -210,6 +249,11 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
       ':user_id' => $userId,
       ':user_name' => $userName,
       ':user_email' => $baseData['email'],
+      ':attendance' => $baseData['attendance'],
+      ':thanks_slips' => $baseData['thanks_slips'],
+      ':one_to_one' => $baseData['one_to_one'],
+      ':activities' => $baseData['activities'],
+      ':comments' => $baseData['comments'],
       ':is_pitch_presenter' => $isPitchPresenter,
       ':pitch_file_path' => $actualPitchFileData ? $actualPitchFileData['path'] : null,
       ':pitch_file_original_name' => $actualPitchFileData ? $actualPitchFileData['original_name'] : null,
@@ -246,6 +290,38 @@ function saveToDatabase($db, $baseData, $visitors, $isPitchPresenter = 0, $pitch
         ];
 
         dbExecute($db, $visitorQuery, $visitorParams);
+      }
+    }
+
+    // Insert referrals
+    if (count($referrals) > 0) {
+      foreach ($referrals as $referral) {
+        $referralQuery = "INSERT INTO referrals (
+          survey_data_id,
+          referral_name,
+          referral_amount,
+          referral_category,
+          referral_provider,
+          created_at
+        ) VALUES (
+          :survey_data_id,
+          :referral_name,
+          :referral_amount,
+          :referral_category,
+          :referral_provider,
+          :created_at
+        )";
+
+        $referralParams = [
+          ':survey_data_id' => $surveyId,
+          ':referral_name' => $referral['name'] ?: null,
+          ':referral_amount' => $referral['amount'],
+          ':referral_category' => $referral['category'] ?: null,
+          ':referral_provider' => $referral['provider'] ?: null,
+          ':created_at' => $baseData['timestamp']
+        ];
+
+        dbExecute($db, $referralQuery, $referralParams);
       }
     }
 
