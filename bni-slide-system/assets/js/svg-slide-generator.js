@@ -736,17 +736,181 @@ function generateMemberIntroductionSlides() {
  */
 function generateBNIPurposeSlides() {
   let slides = '';
-  const pageNumbers = [65, 66, 67, 68, 69, 70, 71];
 
-  pageNumbers.forEach(pageNum => {
-    slides += `
-      <section class="pdf-image-slide">
-        <img src="../pdf_analysis/required_pages/page_${String(pageNum).padStart(3, '0')}.png"
-             alt="BNI Purpose ${pageNum}"
-             class="pdf-full-image">
-      </section>
-    `;
-  });
+  // p.65: BNIの目的と概要（タイトル + テキスト）
+  slides += `
+    <section class="bni-purpose-p65">
+      <h1 class="bni-purpose-title"><span class="bni-red">BNI</span>の目的と概要</h1>
+      <div class="bni-purpose-content">
+        <h2 class="bni-purpose-number">2.</h2>
+        <p class="bni-purpose-text">
+          BNIは、プロフェッショナルのためのビジネスネットワーキング組織であり、各専門分野につき1名のみがメンバーとして加入することが出来るのが特徴です。チャプターの唯一の目的は、メンバーに多くのビジネスをもたらす事です。「与えるものは、与えられる」という考え方の基づいて運営されています。<br>
+          あなたがチャプターメンバーにビジネスリファーラルを提供したら、他のチャプターメンバーもあなたにリファーラルを出したいと考えますよね？
+        </p>
+      </div>
+    </section>
+  `;
+
+  // p.66: BNIの目的と概要のコピペページ（8項目のリスト + 赤枠ハイライト）
+  slides += `
+    <section class="bni-purpose-p66">
+      <h2 class="bni-purpose-p66-title"><span class="bni-red">BNI</span>の目的と概要のコピペページ</h2>
+      <div class="bni-purpose-p66-content">
+        <div class="bni-purpose-p66-left">
+          <div class="bni-purpose-item">
+            <span class="item-number">1.</span>
+            <p>各チャプターでは、1つの専門分野につき1名のみ加入することが出来ます。<br>
+            チャプターに既に入っている複数のチャプターに従業員を加入させている複数拠点的な企業も存在します。チャプターが大きくなるに連れ、加入したくてもカテゴリーが埋まってしまっていて、加入できないビジターも増えてくるでしょう。</p>
+          </div>
+
+          <div class="bni-purpose-item bni-purpose-highlight">
+            <span class="item-number">2.</span>
+            <p>BNIは、プロフェッショナルのためのビジネスネットワーキング組織であり、各専門分野につき1名のみがメンバーとして加入することが出来るのが特徴です。<br>
+            チャプターの唯一の目的は、メンバーに多くのビジネスをもたらす事です。「与えるものは、与えられる」という考え方の基づいて運営されています。<br>
+            あなたがチャプターメンバーにビジネスリファーラルを提供したら、他のチャプターメンバーもあなたにリファーラルを出したいと考えますよね？</p>
+            <div class="highlight-date">12月12日</div>
+          </div>
+
+          <div class="bni-purpose-item">
+            <span class="item-number">3.</span>
+            <p>BNIのメンバーになれば、全メンバーが、あなたの営業担当になってくれるようなものです。各メンバーはメンバー全員の名刺が入っている名刺ファイルを持ち歩きます。そして、自分のクライアント、知り合い、友人がチャプターメンバーの提供している商品やサービスを必要としている事がわかったら、適切なメンバーを紹介することが可能です。</p>
+          </div>
+
+          <div class="bni-purpose-item">
+            <span class="item-number">4.</span>
+            <p>口コミは、もっとも費用対効果が高い広告ですBNIは、質の高いビジネスリファーラルを生み出し、支えるための体系的なシステムを提供します。あなたのビジネスにとってリファーラルが必要不可欠だとしたらBNIはあなたにぴったりの組織です。</p>
+          </div>
+        </div>
+
+        <div class="bni-purpose-p66-right">
+          <div class="bni-purpose-item">
+            <span class="item-number">5.</span>
+            <p>各チャプターでのネットワークは、メンバーにとどまりません。それぞれのメンバーに、数十人の知人がいます。そしてその知人にはまた、数十人の知人がいます。毎週交わされるビジネスリファーラルは、このようなネットワークの中から生まれます。一般的な少なくとも発足から6か月過ぎているBNIチャプターでは、メンバー間で毎月50件以上のリファーラルが交わされます。</p>
+          </div>
+
+          <div class="bni-purpose-item">
+            <span class="item-number">6.</span>
+            <p>BNIでは、ネットワーキングは「狩猟」よりも「農耕」に近いとメンバーに伝えています。信頼関係をはぐくむことが、リファーラルにつながっていきます。</p>
+          </div>
+
+          <div class="bni-purpose-item">
+            <span class="item-number">7.</span>
+            <p>どのようなビジネスを行っているのか、どのようなリファーラルを求めているのか、BNIメンバーは、ウィークリープレゼンテーションを通じて、リファーラルでビジネスを継続的に深く伝えることが可能になります。チャプターミーティングの引き、あなたのビジネスの成功に深く関わっているのです。</p>
+          </div>
+
+          <div class="bni-purpose-item">
+            <span class="item-number">8.</span>
+            <p>私たちは、誰もがプロフェッショナルとして最高に対し優位に立つ必要があります。この世提で、どれほど多くの人があなたと競合する事業をしているでしょうか？BNIでは、競合に対し優位に立つ事が出来ます。なぜならBNIでは各専門分野につき1名しかメンバーになれないため、同じチャプター内に競合が存在しないからです。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+
+  // p.67: BNIの概観（リファーラルの重要性 + 2つの画像）
+  slides += `
+    <section class="bni-overview-p67">
+      <h1 class="bni-overview-title">BNIの概観</h1>
+      <h2 class="bni-overview-subtitle">
+        ～ビジネスにおける「<span class="bni-red">リファーラル</span>」の重要性～<br>
+        多くの人達が、<span class="bni-red">リファーラル（紹介）</span>を通して<br>
+        ビジネスを獲得しています。
+      </h2>
+      <div class="bni-overview-images">
+        <img src="assets/images/slides/bni-purpose-business-team.jpg" alt="Business Team" class="bni-overview-img-left">
+        <img src="assets/images/slides/bni-purpose-business-growth.jpg" alt="Business Growth" class="bni-overview-img-right">
+      </div>
+      <p class="bni-overview-bottom-text">
+        BNIでは <span class="bni-red underline">メンバーにビジネスを提供すること</span> が最大の目的なのです。
+      </p>
+    </section>
+  `;
+
+  // p.68: BNIの概観（世界の統計）
+  slides += `
+    <section class="bni-overview-p68">
+      <h1 class="bni-overview-title">BNIの概観</h1>
+      <h2 class="bni-stats-title">世界の統計</h2>
+      <div class="bni-stats-content">
+        <div class="bni-stats-row">
+          <div class="bni-stats-label">BNI参入国数</div>
+          <div class="bni-stats-value">: <span class="bni-red">77カ国</span></div>
+        </div>
+        <div class="bni-stats-row">
+          <div class="bni-stats-label">総メンバー数</div>
+          <div class="bni-stats-value">: <span class="bni-red">346,150名超</span></div>
+        </div>
+        <div class="bni-stats-row">
+          <div class="bni-stats-label">総チャプター数</div>
+          <div class="bni-stats-value">: <span class="bni-red">11,390超</span></div>
+        </div>
+        <div class="bni-stats-divider"></div>
+        <div class="bni-stats-row">
+          <div class="bni-stats-label"><span class="bni-red">リファーラル</span> 数</div>
+          <div class="bni-stats-value">: <span class="bni-red">約1400万件超</span></div>
+        </div>
+        <div class="bni-stats-row">
+          <div class="bni-stats-label">得られたビジネス金額</div>
+          <div class="bni-stats-value">: <span class="bni-red">約2兆2000億円</span></div>
+        </div>
+      </div>
+      <p class="bni-stats-date">※2024年8月1日付</p>
+    </section>
+  `;
+
+  // p.69: BNIの概観（日本の統計）
+  slides += `
+    <section class="bni-overview-p69">
+      <h1 class="bni-overview-title">BNIの概観</h1>
+      <h2 class="bni-stats-title">日本の統計</h2>
+      <div class="bni-stats-content">
+        <div class="bni-stats-row">
+          <div class="bni-stats-label">BNI参加都道府県数</div>
+          <div class="bni-stats-value">: <span class="bni-red">全国27都道府県</span></div>
+        </div>
+        <div class="bni-stats-row">
+          <div class="bni-stats-label">総メンバー数</div>
+          <div class="bni-stats-value">: <span class="bni-red">12,571名</span></div>
+        </div>
+        <div class="bni-stats-row">
+          <div class="bni-stats-label">総チャプター数</div>
+          <div class="bni-stats-value">: <span class="bni-red">381チャプター</span></div>
+        </div>
+        <div class="bni-stats-divider"></div>
+        <div class="bni-stats-row">
+          <div class="bni-stats-label"><span class="bni-red">リファーラル</span> 数</div>
+          <div class="bni-stats-value">: <span class="bni-red">約110万件以上</span></div>
+        </div>
+        <div class="bni-stats-row">
+          <div class="bni-stats-label">得られたビジネス金額</div>
+          <div class="bni-stats-value">: <span class="bni-red">約1,100億円超</span></div>
+        </div>
+      </div>
+      <p class="bni-stats-date">※2024年9月29日付</p>
+    </section>
+  `;
+
+  // p.70: BNIの理念（Givers Gain）
+  slides += `
+    <section class="bni-philosophy-p70">
+      <h1 class="bni-philosophy-title">BNIの理念</h1>
+      <h2 class="givers-gain-logo"><span class="bracket">[</span>Givers Gain<span class="bracket">]</span><sup>®</sup></h2>
+      <p class="givers-gain-text">与えるものは与えられる</p>
+      <p class="bni-philosophy-description">
+        他の人に惜しみなくビジネスを提供すれば<br>
+        自分も他の人からビジネスを提供してもらえる。
+      </p>
+    </section>
+  `;
+
+  // p.71: 栄勝（Keep growing）
+  slides += `
+    <section class="bni-motto-p71">
+      <h1 class="eikachi-logo">栄勝</h1>
+      <h2 class="keep-growing-title">Keep growing</h2>
+      <p class="keep-growing-subtitle">～貢献の絆で未来を創る～</p>
+    </section>
+  `;
 
   return slides;
 }

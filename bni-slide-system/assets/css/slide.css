@@ -4801,3 +4801,536 @@
   height: auto;
   object-fit: contain;
 }
+
+/* ========================================
+   13. BNI Purpose Slides (p.65-71)
+   ======================================== */
+
+/* p.65: BNIの目的と概要 */
+.bni-purpose-p65 {
+  background: linear-gradient(to bottom, white 0%, white 75%, #f0f0f0 75%, #f0f0f0 100%) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 100px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.bni-purpose-p65::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-left: 300px solid transparent;
+  border-bottom: 300px solid #C8102E;
+  z-index: 1;
+}
+
+.bni-purpose-p65::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 300px;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-bottom: 300px solid #999;
+  z-index: 1;
+}
+
+.bni-purpose-title {
+  font-size: 4.5em !important;
+  font-weight: 900 !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin-bottom: 100px !important;
+  z-index: 2;
+  position: relative;
+}
+
+.bni-purpose-title .bni-red {
+  color: #C8102E !important;
+}
+
+.bni-purpose-content {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  gap: 30px;
+  z-index: 2;
+  position: relative;
+}
+
+.bni-purpose-number {
+  font-size: 4em !important;
+  font-weight: 900 !important;
+  color: #C8102E !important;
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+
+.bni-purpose-text {
+  font-size: 1.8em !important;
+  color: #000 !important;
+  line-height: 1.8 !important;
+  text-align: left !important;
+  margin: 0 !important;
+}
+
+/* p.66: BNIの目的と概要のコピペページ */
+.bni-purpose-p66 {
+  background: linear-gradient(to bottom, white 0%, white 75%, #f0f0f0 75%, #f0f0f0 100%) !important;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 60px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.bni-purpose-p66::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-left: 300px solid transparent;
+  border-bottom: 300px solid #C8102E;
+  z-index: 1;
+}
+
+.bni-purpose-p66::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 300px;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-bottom: 300px solid #999;
+  z-index: 1;
+}
+
+.bni-purpose-p66-title {
+  font-size: 1.6em !important;
+  font-weight: 700 !important;
+  color: #C8102E !important;
+  text-align: left !important;
+  margin-bottom: 30px !important;
+  z-index: 2;
+  position: relative;
+}
+
+.bni-purpose-p66-content {
+  display: flex;
+  gap: 40px;
+  z-index: 2;
+  position: relative;
+}
+
+.bni-purpose-p66-left,
+.bni-purpose-p66-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bni-purpose-item {
+  display: flex;
+  gap: 15px;
+  background: transparent;
+  padding: 15px;
+  position: relative;
+}
+
+.bni-purpose-item .item-number {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #000;
+  flex-shrink: 0;
+}
+
+.bni-purpose-item p {
+  font-size: 0.9em !important;
+  color: #000 !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+}
+
+.bni-purpose-highlight {
+  border: 4px solid #C8102E;
+  border-radius: 20px;
+  background: white;
+  padding: 20px;
+  position: relative;
+}
+
+.highlight-date {
+  position: absolute;
+  bottom: 15px;
+  right: 25px;
+  font-size: 1.8em;
+  font-weight: 900;
+  color: #C8102E;
+}
+
+/* p.67: BNIの概観（リファーラルの重要性） */
+.bni-overview-p67 {
+  background: linear-gradient(to bottom, white 0%, white 75%, #f0f0f0 75%, #f0f0f0 100%) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 100px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.bni-overview-p67::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-left: 300px solid transparent;
+  border-bottom: 300px solid #C8102E;
+  z-index: 1;
+}
+
+.bni-overview-p67::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 300px;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-bottom: 300px solid #999;
+  z-index: 1;
+}
+
+.bni-overview-title {
+  font-size: 4em !important;
+  font-weight: 900 !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin-bottom: 40px !important;
+  z-index: 2;
+  position: relative;
+}
+
+.bni-overview-subtitle {
+  font-size: 2em !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin-bottom: 50px !important;
+  line-height: 1.6 !important;
+  z-index: 2;
+  position: relative;
+}
+
+.bni-overview-subtitle .bni-red {
+  color: #C8102E !important;
+}
+
+.bni-overview-images {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 50px;
+  z-index: 2;
+  position: relative;
+}
+
+.bni-overview-img-left,
+.bni-overview-img-right {
+  width: 450px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.bni-overview-bottom-text {
+  font-size: 2.2em !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin: 0 !important;
+  z-index: 2;
+  position: relative;
+}
+
+.bni-overview-bottom-text .bni-red {
+  color: #C8102E !important;
+}
+
+.bni-overview-bottom-text .underline {
+  text-decoration: underline;
+  text-decoration-color: #C8102E;
+  text-decoration-thickness: 3px;
+}
+
+/* p.68 & p.69: BNIの概観（統計） */
+.bni-overview-p68,
+.bni-overview-p69 {
+  background: linear-gradient(to bottom, white 0%, white 75%, #f0f0f0 75%, #f0f0f0 100%) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 100px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.bni-overview-p68::after,
+.bni-overview-p69::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-left: 300px solid transparent;
+  border-bottom: 300px solid #C8102E;
+  z-index: 1;
+}
+
+.bni-overview-p68::before,
+.bni-overview-p69::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 300px;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-bottom: 300px solid #999;
+  z-index: 1;
+}
+
+.bni-stats-title {
+  font-size: 3.5em !important;
+  font-weight: 900 !important;
+  color: #C8102E !important;
+  text-align: center !important;
+  margin-bottom: 80px !important;
+  text-decoration: underline;
+  text-decoration-color: #C8102E;
+  text-decoration-thickness: 4px;
+  z-index: 2;
+  position: relative;
+}
+
+.bni-stats-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 40px;
+  z-index: 2;
+  position: relative;
+}
+
+.bni-stats-row {
+  display: flex;
+  align-items: baseline;
+  gap: 30px;
+}
+
+.bni-stats-label {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #000 !important;
+  flex-shrink: 0;
+  width: 400px;
+  text-align: left !important;
+}
+
+.bni-stats-value {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #000 !important;
+  flex: 1;
+  text-align: left !important;
+}
+
+.bni-stats-value .bni-red {
+  color: #C8102E !important;
+  font-size: 1.1em;
+}
+
+.bni-stats-divider {
+  height: 3px;
+  background: #333;
+  margin: 20px 0;
+}
+
+.bni-stats-date {
+  font-size: 1.2em !important;
+  color: #666 !important;
+  text-align: right !important;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 !important;
+  z-index: 2;
+  position: relative;
+}
+
+/* p.70: BNIの理念（Givers Gain） */
+.bni-philosophy-p70 {
+  background: linear-gradient(to bottom, white 0%, white 75%, #f0f0f0 75%, #f0f0f0 100%) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 100px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.bni-philosophy-p70::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-left: 300px solid transparent;
+  border-bottom: 300px solid #C8102E;
+  z-index: 1;
+}
+
+.bni-philosophy-p70::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 300px;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-bottom: 300px solid #999;
+  z-index: 1;
+}
+
+.bni-philosophy-title {
+  font-size: 4em !important;
+  font-weight: 900 !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin-bottom: 80px !important;
+  z-index: 2;
+  position: relative;
+}
+
+.givers-gain-logo {
+  font-size: 5em !important;
+  font-weight: 900 !important;
+  color: #C8102E !important;
+  text-align: center !important;
+  margin-bottom: 40px !important;
+  z-index: 2;
+  position: relative;
+}
+
+.givers-gain-logo .bracket {
+  color: #C8102E !important;
+}
+
+.givers-gain-logo sup {
+  font-size: 0.4em;
+  vertical-align: super;
+}
+
+.givers-gain-text {
+  font-size: 3em !important;
+  font-weight: 700 !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin-bottom: 60px !important;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  z-index: 2;
+  position: relative;
+}
+
+.bni-philosophy-description {
+  font-size: 2.2em !important;
+  color: #000 !important;
+  text-align: center !important;
+  line-height: 1.8 !important;
+  margin: 0 !important;
+  z-index: 2;
+  position: relative;
+}
+
+/* p.71: 栄勝（Keep growing） */
+.bni-motto-p71 {
+  background: linear-gradient(to bottom, white 0%, white 75%, #f0f0f0 75%, #f0f0f0 100%) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 100px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.bni-motto-p71::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-left: 300px solid transparent;
+  border-bottom: 300px solid #C8102E;
+  z-index: 1;
+}
+
+.bni-motto-p71::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 300px;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-bottom: 300px solid #999;
+  z-index: 1;
+}
+
+.eikachi-logo {
+  font-size: 10em !important;
+  font-weight: 900 !important;
+  color: #C8102E !important;
+  text-align: center !important;
+  margin-bottom: 60px !important;
+  letter-spacing: 0.1em;
+  z-index: 2;
+  position: relative;
+}
+
+.keep-growing-title {
+  font-size: 4.5em !important;
+  font-weight: 900 !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin-bottom: 30px !important;
+  z-index: 2;
+  position: relative;
+}
+
+.keep-growing-subtitle {
+  font-size: 2.2em !important;
+  color: #000 !important;
+  text-align: center !important;
+  margin: 0 !important;
+  z-index: 2;
+  position: relative;
+}
