@@ -106,7 +106,8 @@
             progress: false,
             center: false,
             hash: true,
-            transition: 'slide',
+            transition: 'none',
+            transitionSpeed: 'fast',
             backgroundTransition: 'none'
         });
 
