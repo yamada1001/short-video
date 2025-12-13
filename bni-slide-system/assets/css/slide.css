@@ -3617,13 +3617,12 @@
 
 /* Ranking Table */
 .ranking-table {
-  width: auto;
-  min-width: 100%;
+  width: 100%;
+  table-layout: auto;
   border-collapse: separate;
   border-spacing: 0;
   background: transparent;
   border-radius: 16px;
-  overflow: visible;
   border: 2px solid #CF2030;
 }
 
