@@ -3621,11 +3621,11 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  background: rgba(255, 255, 255, 0.08);
+  background: #2A0A0F;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 2px solid #CF2030;
 }
 
 /* Table Header */
@@ -3658,8 +3658,8 @@
 /* Table Body */
 .ranking-table tbody tr {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(207, 32, 48, 0.3);
+  background: #1F0609;
 }
 
 .ranking-table tbody tr:last-child {
@@ -3667,7 +3667,7 @@
 }
 
 .ranking-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: #3D0D15;
   transform: scale(1.01);
   z-index: 1;
 }
@@ -3700,13 +3700,13 @@
 /* Rank 1 - Gold Medal 🥇 */
 .ranking-table tbody tr.rank-1 {
   background: linear-gradient(135deg,
-    rgba(255, 215, 0, 0.35) 0%,
-    rgba(255, 200, 0, 0.25) 50%,
-    rgba(255, 215, 0, 0.35) 100%);
-  border: 3px solid rgba(255, 215, 0, 0.8);
+    #4D3800 0%,
+    #3D2D00 50%,
+    #4D3800 100%);
+  border: 3px solid #FFD700;
   box-shadow:
-    0 0 40px rgba(255, 215, 0, 0.5),
-    inset 0 0 20px rgba(255, 215, 0, 0.2);
+    0 0 40px rgba(255, 215, 0, 0.6),
+    inset 0 0 20px rgba(255, 215, 0, 0.3);
   position: relative;
 }
 
@@ -3752,90 +3752,90 @@
 
 .ranking-table tbody tr.rank-1:hover {
   background: linear-gradient(135deg,
-    rgba(255, 215, 0, 0.45) 0%,
-    rgba(255, 200, 0, 0.35) 50%,
-    rgba(255, 215, 0, 0.45) 100%);
+    #5D4500 0%,
+    #4D3800 50%,
+    #5D4500 100%);
   transform: scale(1.02);
   box-shadow:
-    0 0 50px rgba(255, 215, 0, 0.7),
-    inset 0 0 30px rgba(255, 215, 0, 0.3);
+    0 0 50px rgba(255, 215, 0, 0.8),
+    inset 0 0 30px rgba(255, 215, 0, 0.4);
 }
 
 /* Rank 2 - Silver Medal 🥈 */
 .ranking-table tbody tr.rank-2 {
   background: linear-gradient(135deg,
-    rgba(220, 220, 220, 0.25) 0%,
-    rgba(192, 192, 192, 0.15) 50%,
-    rgba(220, 220, 220, 0.25) 100%);
-  border: 2px solid rgba(220, 220, 220, 0.6);
+    #2A2A2A 0%,
+    #1C1C1C 50%,
+    #2A2A2A 100%);
+  border: 2px solid #C0C0C0;
   box-shadow:
-    0 0 25px rgba(220, 220, 220, 0.4),
-    inset 0 0 15px rgba(220, 220, 220, 0.15);
+    0 0 25px rgba(192, 192, 192, 0.5),
+    inset 0 0 15px rgba(192, 192, 192, 0.2);
 }
 
 .ranking-table tbody tr.rank-2 td {
   font-weight: 700;
-  text-shadow: 0 0 10px rgba(220, 220, 220, 0.4);
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
 }
 
 .ranking-table tbody tr.rank-2 td:first-child {
   color: #E0E0E0;
-  text-shadow: 0 0 15px rgba(220, 220, 220, 0.6);
+  text-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
 }
 
 .ranking-table tbody tr.rank-2:hover {
   background: linear-gradient(135deg,
-    rgba(220, 220, 220, 0.35) 0%,
-    rgba(192, 192, 192, 0.25) 50%,
-    rgba(220, 220, 220, 0.35) 100%);
+    #353535 0%,
+    #282828 50%,
+    #353535 100%);
   box-shadow:
-    0 0 35px rgba(220, 220, 220, 0.5),
-    inset 0 0 20px rgba(220, 220, 220, 0.2);
+    0 0 35px rgba(192, 192, 192, 0.6),
+    inset 0 0 20px rgba(192, 192, 192, 0.3);
 }
 
 /* Rank 3 - Bronze Medal 🥉 */
 .ranking-table tbody tr.rank-3 {
   background: linear-gradient(135deg,
-    rgba(205, 127, 50, 0.25) 0%,
-    rgba(184, 115, 51, 0.15) 50%,
-    rgba(205, 127, 50, 0.25) 100%);
-  border: 2px solid rgba(205, 127, 50, 0.6);
+    #3D2010 0%,
+    #2D1808 50%,
+    #3D2010 100%);
+  border: 2px solid #CD7F32;
   box-shadow:
-    0 0 25px rgba(205, 127, 50, 0.4),
-    inset 0 0 15px rgba(205, 127, 50, 0.15);
+    0 0 25px rgba(205, 127, 50, 0.5),
+    inset 0 0 15px rgba(205, 127, 50, 0.2);
 }
 
 .ranking-table tbody tr.rank-3 td {
   font-weight: 700;
-  text-shadow: 0 0 10px rgba(205, 127, 50, 0.4);
+  text-shadow: 0 0 10px rgba(205, 127, 50, 0.5);
 }
 
 .ranking-table tbody tr.rank-3 td:first-child {
   color: #E8A87C;
-  text-shadow: 0 0 15px rgba(205, 127, 50, 0.6);
+  text-shadow: 0 0 15px rgba(205, 127, 50, 0.7);
 }
 
 .ranking-table tbody tr.rank-3:hover {
   background: linear-gradient(135deg,
-    rgba(205, 127, 50, 0.35) 0%,
-    rgba(184, 115, 51, 0.25) 50%,
-    rgba(205, 127, 50, 0.35) 100%);
+    #4D2818 0%,
+    #3D2010 50%,
+    #4D2818 100%);
   box-shadow:
-    0 0 35px rgba(205, 127, 50, 0.5),
-    inset 0 0 20px rgba(205, 127, 50, 0.2);
+    0 0 35px rgba(205, 127, 50, 0.6),
+    inset 0 0 20px rgba(205, 127, 50, 0.3);
 }
 
 /* Rank 4 & 5 - Enhanced Styling */
 .ranking-table tbody tr.rank-4,
 .ranking-table tbody tr.rank-5 {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #250709;
+  border: 1px solid rgba(207, 32, 48, 0.2);
 }
 
 .ranking-table tbody tr.rank-4:hover,
 .ranking-table tbody tr.rank-5:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: #3D0D15;
+  border: 1px solid rgba(207, 32, 48, 0.4);
 }
 
 /* Responsive Design for Ranking Tables */
