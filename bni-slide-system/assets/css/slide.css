@@ -3618,7 +3618,7 @@
 /* Ranking Table */
 .ranking-table {
   width: 100%;
-  table-layout: auto;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
   background: transparent;
@@ -3646,12 +3646,17 @@
 
 .ranking-table thead th:first-child {
   text-align: center;
-  width: 100px;
+  width: 120px;
+}
+
+.ranking-table thead th:nth-child(2) {
+  width: 35%;
 }
 
 .ranking-table thead th:last-child {
   text-align: right;
   padding-right: 40px;
+  width: auto;
 }
 
 /* Table Body */
@@ -3683,20 +3688,24 @@
   text-align: center;
   font-size: 42px;
   font-weight: 800;
-  width: 100px;
+  width: 120px;
 }
 
 .ranking-table tbody td:nth-child(2) {
   font-weight: 600;
   font-size: 32px;
+  width: 35%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ranking-table tbody td:last-child {
   text-align: right;
   padding-right: 40px;
-  max-width: 400px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Ranking Amount Styling */
@@ -3705,9 +3714,8 @@
   font-weight: 700;
   font-size: 38px;
   font-family: 'Courier New', Consolas, monospace;
-  letter-spacing: 1px;
-  max-width: 100%;
-  word-break: break-all;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 /* Rank 1 - Gold Medal 🥇 */
