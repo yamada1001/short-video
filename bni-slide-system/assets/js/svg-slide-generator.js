@@ -51,17 +51,13 @@ async function generateSVGSlides(data, stats, slideDate = '', pitchPresenter = n
   `;
 
   // Monthly Ranking Slides (if data exists)
-  console.log('[DEBUG] monthlyRankingData:', monthlyRankingData);
   if (monthlyRankingData) {
-    console.log('[DEBUG] Generating monthly ranking slides...');
     slides += generateMonthlyRankingSlides(monthlyRankingData);
 
     // If monthly ranking data exists, ONLY show ranking slides (not normal slides)
     slideContainer.innerHTML = slides;
-    console.log('[DEBUG] Monthly ranking slides set. Returning.');
     return;
   }
-  console.log('[DEBUG] No monthly ranking data. Generating normal slides.');
 
   // Phase 1: Opening Section
   if (slideConfig) {

@@ -142,23 +142,16 @@
         const today = new Date();
         const previousMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
         const yearMonth = previousMonth.toISOString().slice(0, 7); // YYYY-MM
-        console.log('[DEBUG] Loading monthly ranking for:', yearMonth);
 
         try {
           const rankingResponse = await fetch(`${apiBasePath}api_load_monthly_ranking.php?year_month=${yearMonth}`);
           const rankingResult = await rankingResponse.json();
-          console.log('[DEBUG] Ranking API response:', rankingResult);
           if (rankingResult.success) {
             monthlyRankingData = rankingResult.data;
-            console.log('[DEBUG] monthlyRankingData set:', monthlyRankingData);
-          } else {
-            console.warn('[DEBUG] Ranking API returned success=false');
           }
         } catch (error) {
           console.warn('Failed to load monthly ranking data:', error);
         }
-      } else {
-        console.log('[DEBUG] Pattern is not monthly_ranking, pattern=', pattern);
       }
 
       // Generate slides using SVG templates
