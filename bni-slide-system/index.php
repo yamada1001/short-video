@@ -145,7 +145,6 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
       <div class="site-logo">BNI Slide System</div>
       <nav class="site-nav">
         <ul>
-          <li><a href="dashboard.php">ダッシュボード</a></li>
           <li><a href="index.php" class="active">アンケート</a></li>
           <li><a href="my-data.php">マイデータ</a></li>
           <li><a href="manual.php">マニュアル</a></li>

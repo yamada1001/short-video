@@ -385,7 +385,6 @@ $currentUser = getCurrentUserInfo();
 
   <?php if ($currentUser): ?>
   <div class="nav-menu">
-    <a href="dashboard.php"><i class="fas fa-chart-line"></i> ダッシュボード</a>
     <a href="index.php"><i class="fas fa-home"></i> ホーム</a>
     <a href="my-data.php"><i class="fas fa-database"></i> マイデータ</a>
     <a href="profile.php"><i class="fas fa-user"></i> プロフィール</a>
@@ -401,8 +400,8 @@ $currentUser = getCurrentUserInfo();
     <div class="manual-header">
       <h1><i class="fas fa-book"></i> BNI Slide System 利用マニュアル</h1>
       <p class="subtitle">BNI宗麟チャプター メンバー様・管理者様</p>
-      <span class="version">Version 2.0</span>
-      <p style="margin-top: 15px; font-size: 14px; color: #666;">最終更新: 2025年12月11日</p>
+      <span class="version">Version 3.0</span>
+      <p style="margin-top: 15px; font-size: 14px; color: #666;">最終更新: 2025年12月13日</p>
     </div>
 
     <!-- Table of Contents -->
@@ -427,11 +426,29 @@ $currentUser = getCurrentUserInfo();
 
       <h3>主な機能</h3>
       <ul>
-        <li><strong>週次アンケート機能</strong>: メンバーがビジター紹介、リファーラル、出席状況などを入力</li>
+        <li><strong>週次アンケート機能</strong>: メンバーがビジター紹介とピッチプレゼンテーション資料を入力</li>
         <li><strong>自動スライド生成</strong>: 入力されたデータから美しいスライド資料を自動作成</li>
         <li><strong>マイデータ管理</strong>: 自分が入力したデータの閲覧・編集が可能</li>
-        <li><strong>管理機能</strong>: 管理者によるデータ編集・ユーザー管理</li>
+        <li><strong>管理機能</strong>: 管理者によるデータ編集・一括入力・ユーザー管理</li>
       </ul>
+
+      <div class="important-box">
+        <h4><i class="fas fa-exclamation-circle"></i> 重要: ユーザー入力項目の変更について</h4>
+        <p><strong>ユーザーアンケート(index.php)で入力する項目:</strong></p>
+        <ul style="margin: 10px 0 0 20px;">
+          <li>ビジター情報（名前、会社名、業種）</li>
+          <li>ピッチプレゼンテーション資料（PDF、YouTube URL）</li>
+        </ul>
+        <p style="margin-top: 10px;"><strong>管理者専用の入力項目（一括入力画面から）:</strong></p>
+        <ul style="margin: 10px 0 0 20px;">
+          <li>出席状況</li>
+          <li>サンクスリップ</li>
+          <li>ワンツーワン（121）</li>
+          <li>アクティビティ</li>
+          <li>コメント</li>
+          <li>リファーラル情報</li>
+        </ul>
+      </div>
 
       <div class="info-box">
         <h4><i class="fas fa-link"></i> アクセスURL</h4>
@@ -493,15 +510,7 @@ $currentUser = getCurrentUserInfo();
       <h4>1. アンケートページにアクセス</h4>
       <p>ログイン後、トップページ（<a href="https://yojitu.com/bni-slide-system/index.php" target="_blank">index.php</a>）に自動的にアンケートフォームが表示されます。</p>
 
-      <h4>2. 基本情報の入力</h4>
-      <ul>
-        <li><strong>入力日</strong>: 今日の日付が自動的に入力されます（変更可能）</li>
-        <li><strong>紹介者名</strong>: あなたの名前が自動的に入力されます</li>
-        <li><strong>メールアドレス</strong>: 登録時のメールアドレスが自動的に入力されます</li>
-        <li><strong>出席状況</strong>: 「出席」「欠席」「代理出席」から選択（必須）</li>
-      </ul>
-
-      <h4>3. ビジター情報の入力（複数可）</h4>
+      <h4>2. ビジター情報の入力（複数可）</h4>
       <p>ビジターを紹介した場合、以下の情報を入力します。</p>
       <ul>
         <li><strong>ビジター名</strong>: ゲストの氏名（例: 佐藤花子様）</li>
@@ -518,27 +527,21 @@ $currentUser = getCurrentUserInfo();
         </ul>
       </div>
 
-      <h4>4. シェアストーリー担当</h4>
-      <p>今週のシェアストーリー担当の場合、ラジオボタンで「はい」を選択してください。</p>
+      <h4>3. ピッチプレゼンテーション資料</h4>
+      <p>ピッチプレゼンテーション（30秒プレゼン）の資料を登録します。</p>
       <ul>
-        <li>2分間のシェアストーリー発表を担当する場合に選択</li>
-        <li>スライドに担当者として表示されます</li>
-      </ul>
-
-      <h4>5. エデュケーション担当</h4>
-      <p>今週のエデュケーションプレゼン担当の場合、ラジオボタンで「はい」を選択し、資料をアップロードしてください。</p>
-      <ul>
-        <li><strong>PDF/PowerPointファイル</strong>: 最大30MBまで</li>
-        <li>アップロードしたファイルはスライド表示時に使用されます</li>
-        <li>フルスクリーンで表示可能</li>
+        <li><strong>PDFファイル</strong>: 最大30MBまで（スライド埋め込み表示）</li>
+        <li><strong>YouTube URL</strong>: YouTube動画URLを入力（動画埋め込み再生）</li>
+        <li>PDF、YouTubeどちらか一方、または両方を登録可能</li>
+        <li>何も登録しない場合はテキストのみのスライドが表示されます</li>
       </ul>
 
       <div class="info-box">
-        <h4><i class="fas fa-info-circle"></i> メインプレゼンテーションとの違い</h4>
-        <p>メインプレゼンテーション（30秒）とエデュケーション（BNI教育コンテンツ）は別のスライドとして表示されます。</p>
+        <h4><i class="fas fa-info-circle"></i> ピッチプレゼンテーションについて</h4>
+        <p>毎週30秒で自社サービスや商品を紹介するプレゼンテーションです。視覚的な資料を事前に登録することで、スライド表示時に自動的に表示されます。</p>
       </div>
 
-      <h4>6. 送信</h4>
+      <h4>4. 送信</h4>
       <ol class="step-list">
         <li>すべて入力したら「送信」ボタンをクリック</li>
         <li>送信完了画面が表示されます</li>
@@ -551,6 +554,7 @@ $currentUser = getCurrentUserInfo();
           <li><strong>週1回制限</strong>: 同じ週に2回以上送信することはできません</li>
           <li><strong>編集可能</strong>: 送信後も「マイデータ」から編集可能です</li>
           <li><strong>締切</strong>: 金曜日の午前5時までに入力してください</li>
+          <li><strong>出席状況・リファーラルなど</strong>: これらは管理者が一括入力します（メンバーは入力不要）</li>
         </ul>
       </div>
 
@@ -600,75 +604,165 @@ $currentUser = getCurrentUserInfo();
         <p>管理者ログイン情報は、チャプター管理者の方から別途ご案内いたします。</p>
       </div>
 
-      <h3>スライド表示</h3>
-      <p>週次ミーティングで使用するスライドを表示します。</p>
+      <h3>スライド管理画面（admin/slide.php）</h3>
+      <p>週次ミーティングで使用するスライドを表示・管理する最も重要な画面です。</p>
 
       <h4>1. スライドページにアクセス</h4>
-      <p>管理者メニューから「スライド表示」をクリック、または <a href="admin/slide.php" target="_blank">admin/slide.php</a> にアクセス</p>
+      <ol class="step-list">
+        <li>管理者でログイン後、ヘッダーメニューから「スライド表示」をクリック</li>
+        <li>または直接 <a href="admin/slide.php" target="_blank">admin/slide.php</a> にアクセス</li>
+        <li>画面が読み込まれ、最新週のスライドが自動生成されます</li>
+      </ol>
 
-      <h4>2. 表示する週を選択</h4>
-      <ul>
-        <li>ページ上部の「表示する週」ドロップダウンから選択</li>
-        <li>金曜日のデータのみ表示されます</li>
-        <li>デフォルトは最新の週</li>
-      </ul>
+      <h4>2. 週の選択方法</h4>
+      <ol class="step-list">
+        <li>画面左下の「歯車アイコン」をクリック（コントロールパネルが開きます）</li>
+        <li>「表示する週」ドロップダウンから金曜日の日付を選択</li>
+        <li>選択すると自動的にスライドが再生成されます</li>
+      </ol>
 
-      <h4>3. スライド操作</h4>
+      <div class="info-box">
+        <h4><i class="fas fa-calendar-alt"></i> 週の選択について</h4>
+        <ul>
+          <li>金曜日のデータのみがリストに表示されます</li>
+          <li>デフォルトは最新の週が選択されています</li>
+          <li>過去のスライドも選択して閲覧可能です</li>
+        </ul>
+      </div>
+
+      <h4>3. スライド操作方法</h4>
       <div class="table-container">
         <table>
           <thead>
             <tr>
               <th>操作</th>
               <th>方法</th>
+              <th>説明</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>次のスライド</td>
-              <td>右矢印キー または 画面右側をクリック</td>
+              <td>右矢印キー / 画面右側クリック / スペースキー</td>
+              <td>次のスライドに進みます</td>
             </tr>
             <tr>
               <td>前のスライド</td>
-              <td>左矢印キー または 画面左側をクリック</td>
+              <td>左矢印キー / 画面左側クリック</td>
+              <td>前のスライドに戻ります</td>
             </tr>
             <tr>
               <td>スライド一覧</td>
               <td>ESCキー</td>
+              <td>全スライドのサムネイル一覧を表示（クリックでジャンプ可能）</td>
             </tr>
             <tr>
               <td>フルスクリーン</td>
               <td>Fキー</td>
+              <td>フルスクリーン表示/解除を切り替え</td>
+            </tr>
+            <tr>
+              <td>目次表示</td>
+              <td>画面左の目次パネル</td>
+              <td>スライド名をクリックで直接ジャンプ可能</td>
+            </tr>
+            <tr>
+              <td>コントロールパネル</td>
+              <td>画面左下の歯車アイコン</td>
+              <td>週の選択、PDF出力などの設定</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h4>4. スライドの構成</h4>
-      <ol>
-        <li>タイトルスライド</li>
-        <li>今週のサマリー</li>
-        <li>ビジター紹介一覧</li>
-        <li>ビジター自己紹介スライド（各1枚）</li>
-        <li>リファーラル金額内訳</li>
-        <li>メンバー別貢献度</li>
-        <li>メインプレゼンカウントダウン（各1枚、30秒）</li>
-        <li>リファーラル詳細</li>
-        <li>アクティビティサマリー</li>
-        <li>ビジターフィードバックスライド（各1枚）</li>
-        <li>ありがとうございましたスライド</li>
+      <h4>4. PDF出力方法</h4>
+      <ol class="step-list">
+        <li>コントロールパネル（歯車アイコン）を開く</li>
+        <li>「PDFで出力」ボタンをクリック</li>
+        <li>ブラウザの印刷プレビューが開きます</li>
+        <li>「送信先」を「PDFに保存」に設定</li>
+        <li>「保存」をクリックしてPDFファイルをダウンロード</li>
       </ol>
 
-      <div class="info-box">
-        <h4><i class="fas fa-stopwatch"></i> メインプレゼンカウントダウン機能</h4>
+      <div class="warning-box">
+        <h4><i class="fas fa-exclamation-triangle"></i> PDF出力時の注意点</h4>
         <ul>
-          <li>各メンバーのメインプレゼンスライドには30秒カウントダウンが表示されます</li>
-          <li>スライドに移動すると自動的にカウントダウン開始</li>
-          <li>視覚的なプログレスバーも表示</li>
+          <li>推奨ブラウザ: Google Chrome（最も安定したPDF出力が可能）</li>
+          <li>用紙サイズ: A4横向き推奨</li>
+          <li>余白: なし（または最小）</li>
+          <li>背景のグラフィック: 有効にする</li>
         </ul>
       </div>
 
-      <h3>データ編集</h3>
-      <p>全メンバーのデータを編集できます。</p>
+      <h4>5. スライドの構成</h4>
+      <p>スライドは以下の順序で自動生成されます:</p>
+      <ol>
+        <li><strong>タイトルスライド</strong>: BNI宗麟チャプター ロゴとタイトル</li>
+        <li><strong>今週のサマリー</strong>: 出席人数、ビジター数、リファーラル総額、サンクスリップ数</li>
+        <li><strong>ビジター紹介一覧</strong>: 全ビジターの一覧表示</li>
+        <li><strong>ビジター自己紹介スライド</strong>: 各ビジターごとに1枚（名前、会社名、業種）</li>
+        <li><strong>ピッチプレゼンテーション</strong>: 各メンバーの30秒ピッチスライド（PDF/動画埋め込み）</li>
+        <li><strong>ビジターご紹介スライド</strong>: 管理者が登録したビジター紹介画像表示</li>
+        <li><strong>ネットワーキング学習コーナー</strong>: 管理者が登録した学習コンテンツ画像表示</li>
+        <li><strong>月間ランキング</strong>: 月初の場合、先月のトップ貢献者ランキング</li>
+        <li><strong>ありがとうございました</strong>: エンディングスライド</li>
+      </ol>
+
+      <div class="info-box">
+        <h4><i class="fas fa-video"></i> ピッチプレゼンテーションスライドについて</h4>
+        <ul>
+          <li>メンバーが登録したPDFファイルは自動的にスライドに埋め込まれます</li>
+          <li>YouTube URLが登録されている場合は、動画プレーヤーが表示されます</li>
+          <li>PDF、YouTubeの両方が登録されている場合は、両方が表示されます</li>
+          <li>何も登録されていない場合は、メンバー名のみのシンプルなスライドが表示されます</li>
+        </ul>
+      </div>
+
+      <h3>一括入力画面（admin/bulk_input.php）</h3>
+      <p>週を選択して、全メンバーの出席状況、サンクスリップ、ワンツーワン、アクティビティ、コメントなどを一括で入力できる画面です。</p>
+
+      <h4>1. アクセス方法</h4>
+      <ol class="step-list">
+        <li>管理者メニューから「一括入力」をクリック</li>
+        <li>または <a href="admin/bulk_input.php" target="_blank">admin/bulk_input.php</a> に直接アクセス</li>
+      </ol>
+
+      <h4>2. 週の選択</h4>
+      <ol class="step-list">
+        <li>ページ上部の「対象週」ドロップダウンから入力したい週を選択</li>
+        <li>金曜日の日付のみが表示されます</li>
+        <li>選択すると、その週のデータが自動的に読み込まれます</li>
+      </ol>
+
+      <h4>3. データ入力</h4>
+      <p>各メンバーのフォームが縦並びで表示されます。以下の項目を入力できます:</p>
+      <ul>
+        <li><strong>出席状況</strong>: 出席 / 欠席 / 代理出席</li>
+        <li><strong>サンクスリップ</strong>: 送信数を数値で入力</li>
+        <li><strong>ワンツーワン（121）</strong>: 実施数を数値で入力</li>
+        <li><strong>アクティビティ</strong>: 件数を数値で入力</li>
+        <li><strong>コメント</strong>: 自由記述（スライドに表示されます）</li>
+      </ul>
+
+      <h4>4. 保存</h4>
+      <ol class="step-list">
+        <li>全メンバーの入力が完了したら、ページ下部の「一括保存」ボタンをクリック</li>
+        <li>保存成功のメッセージが表示されます</li>
+        <li>スライド画面で反映を確認できます</li>
+      </ol>
+
+      <div class="info-box">
+        <h4><i class="fas fa-info-circle"></i> 一括入力について</h4>
+        <ul>
+          <li>座席表に登録されているメンバーのみが表示されます</li>
+          <li>メンバーは座席表の順序で並んでいます</li>
+          <li>各メンバーのフォームは独立しており、個別に入力できます</li>
+          <li>既存データがある場合は自動的に読み込まれます</li>
+        </ul>
+      </div>
+
+      <h3>データ編集画面（admin/edit.php）</h3>
+      <p>週次アンケートデータの確認と編集ができる画面です。</p>
 
       <ol class="step-list">
         <li>管理者メニューから「データ編集」をクリック</li>
@@ -678,59 +772,62 @@ $currentUser = getCurrentUserInfo();
         <li>「CSVダウンロード」ボタンでバックアップ可能</li>
       </ol>
 
-      <h3>一括入力（管理者専用）</h3>
-      <p>週を選択して、全メンバーの出席状況やビジター紹介などを一括で入力できます。</p>
+      <h3>ビジターご紹介管理（admin/visitor_intro.php）</h3>
+      <p>スライドに表示するビジター紹介用の画像をアップロードして管理する画面です。</p>
 
+      <h4>使い方</h4>
       <ol class="step-list">
-        <li>管理者メニューから「一括入力」をクリック</li>
-        <li>対象週をドロップダウンから選択</li>
-        <li>各メンバーのフォームが縦並びで表示されます</li>
-        <li>出席状況・ビジター・121・コメントなどを入力</li>
-        <li>ページ下部の「一括保存」ボタンをクリック</li>
+        <li>管理者メニューから「ビジターご紹介管理」にアクセス</li>
+        <li>対象週を選択（金曜日の日付）</li>
+        <li>「画像を選択」ボタンで画像ファイルを選択（JPG, PNG, GIF対応）</li>
+        <li>「アップロード」ボタンをクリック</li>
+        <li>アップロードした画像がスライドの「ビジターご紹介」セクションに表示されます</li>
       </ol>
 
       <div class="info-box">
-        <h4><i class="fas fa-info-circle"></i> 一括入力について</h4>
-        <p>座席表に登録されているメンバーのみが表示されます。メンバーは座席表の順序で並んでいます。各メンバーのフォームは独立しており、個別に入力できます。</p>
-      </div>
-
-      <h3>リファーラル管理（管理者専用）</h3>
-      <p>週ごとのリファーラル総額を管理します。</p>
-
-      <ol class="step-list">
-        <li>管理者メニューから「リファーラル管理」をクリック</li>
-        <li>編集する週をドロップダウンから選択</li>
-        <li>リファーラル総額（円）を入力</li>
-        <li>必要に応じてメモを入力</li>
-        <li>「保存」ボタンをクリック</li>
-      </ol>
-
-      <div class="info-box">
-        <h4><i class="fas fa-info-circle"></i> リファーラル金額について</h4>
-        <p>リファーラル金額はユーザーフォームから削除され、管理者が週ごとに一括入力する方式になりました。入力された金額はスライドの「リファーラル金額内訳」に表示されます。</p>
-      </div>
-
-      <h3>座席表編集（管理者専用）</h3>
-      <p>チャプターミーティングの座席配置を編集できます。</p>
-
-      <ol class="step-list">
-        <li>管理者メニューから「座席表編集」をクリック</li>
-        <li>メンバープール（未配置エリア）から各テーブルにメンバーをドラッグ&ドロップ</li>
-        <li>テーブル内での順序も自由に変更可能</li>
-        <li>「保存」ボタンをクリック</li>
-      </ol>
-
-      <div class="info-box">
-        <h4><i class="fas fa-table"></i> 座席表の仕様</h4>
+        <h4><i class="fas fa-image"></i> 画像について</h4>
         <ul>
-          <li>8つのテーブル（A, B, C, D, E, F, G, H）固定</li>
-          <li>各テーブル最大7名まで</li>
-          <li>ドラッグ&ドロップで直感的に配置可能</li>
-          <li>特別エリア（ポーチタイム、スクリーン）は固定位置</li>
+          <li>推奨サイズ: 1920x1080px（フルHD）</li>
+          <li>最大ファイルサイズ: 10MB</li>
+          <li>複数枚アップロード可能（スライドで順番に表示）</li>
+          <li>不要な画像は削除可能</li>
         </ul>
       </div>
 
-      <h3>ユーザー管理</h3>
+      <h3>ネットワーキング学習コーナー管理（admin/networking_learning.php）</h3>
+      <p>スライドに表示する学習コンテンツ用の画像をアップロードして管理する画面です。</p>
+
+      <h4>使い方</h4>
+      <ol class="step-list">
+        <li>管理者メニューから「ネットワーキング学習コーナー管理」にアクセス</li>
+        <li>対象週を選択（金曜日の日付）</li>
+        <li>「画像を選択」ボタンで画像ファイルを選択（JPG, PNG, GIF対応）</li>
+        <li>「アップロード」ボタンをクリック</li>
+        <li>アップロードした画像がスライドの「ネットワーキング学習コーナー」セクションに表示されます</li>
+      </ol>
+
+      <h3>月間ランキング管理（admin/monthly_ranking.php）</h3>
+      <p>月初のスライドで表示される先月のトップ貢献者ランキングを管理する画面です。</p>
+
+      <h4>使い方</h4>
+      <ol class="step-list">
+        <li>管理者メニューから「月間ランキング」にアクセス</li>
+        <li>対象年月を選択（例: 2025年12月）</li>
+        <li>各メンバーのビジター紹介数、リファーラル金額、ワンツーワン数を入力</li>
+        <li>「保存」ボタンをクリック</li>
+        <li>月初のスライドで自動的にランキング表示されます</li>
+      </ol>
+
+      <div class="info-box">
+        <h4><i class="fas fa-trophy"></i> ランキング表示について</h4>
+        <ul>
+          <li>月初のスライドで自動的に表示されます</li>
+          <li>上位3名がゴールド・シルバー・ブロンズメダルで表彰されます</li>
+          <li>ビジター紹介数とリファーラル金額でソートされます</li>
+        </ul>
+      </div>
+
+      <h3>ユーザー管理（admin/users.php）</h3>
       <p>メンバーアカウントを管理します。</p>
 
       <h4>ユーザー一覧の確認</h4>
@@ -760,6 +857,26 @@ $currentUser = getCurrentUserInfo();
         <h4><i class="fas fa-trash-alt"></i> ユーザーの削除</h4>
         <p><strong>注意</strong>: 削除したユーザーは復元できません。慎重に操作してください。</p>
       </div>
+
+      <h3>座席表編集（admin/seating.php）</h3>
+      <p>チャプターミーティングの座席配置を編集できます。</p>
+
+      <ol class="step-list">
+        <li>管理者メニューから「座席表編集」をクリック</li>
+        <li>メンバープール（未配置エリア）から各テーブルにメンバーをドラッグ&ドロップ</li>
+        <li>テーブル内での順序も自由に変更可能</li>
+        <li>「保存」ボタンをクリック</li>
+      </ol>
+
+      <div class="info-box">
+        <h4><i class="fas fa-table"></i> 座席表の仕様</h4>
+        <ul>
+          <li>8つのテーブル（A, B, C, D, E, F, G, H）固定</li>
+          <li>各テーブル最大7名まで</li>
+          <li>ドラッグ&ドロップで直感的に配置可能</li>
+          <li>特別エリア（ポーチタイム、スクリーン）は固定位置</li>
+        </ul>
+      </div>
     </div>
 
     <!-- Section 5: よくある質問 -->
@@ -772,8 +889,8 @@ $currentUser = getCurrentUserInfo();
       </div>
 
       <div class="faq-item">
-        <div class="faq-question">Q2. ビジターやリファーラルを複数入力したい</div>
-        <div class="faq-answer"><strong>A</strong>: 「+ ビジターを追加」または「+ リファーラルを追加」ボタンをクリックすると、入力欄が追加されます。最大10件まで追加可能です。</div>
+        <div class="faq-question">Q2. ビジターを複数入力したい</div>
+        <div class="faq-answer"><strong>A</strong>: 「+ ビジターを追加」ボタンをクリックすると、入力欄が追加されます。最大10名まで追加可能です。</div>
       </div>
 
       <div class="faq-item">
@@ -963,6 +1080,16 @@ $currentUser = getCurrentUserInfo();
               <td>1.0</td>
               <td>2025-12-05</td>
               <td>初版リリース</td>
+            </tr>
+            <tr>
+              <td>2.0</td>
+              <td>2025-12-11</td>
+              <td>スライド機能の改善とマイデータ機能追加</td>
+            </tr>
+            <tr>
+              <td>3.0</td>
+              <td>2025-12-13</td>
+              <td>ユーザー入力項目の変更、管理者機能の大幅拡張（ビジターご紹介管理、ネットワーキング学習コーナー、月間ランキングなど）</td>
             </tr>
           </tbody>
         </table>

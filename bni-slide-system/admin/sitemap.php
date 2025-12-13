@@ -282,8 +282,8 @@ header('Content-Type: text/html; charset=UTF-8');
           <li><a href="slide.php">スライド表示</a></li>
           <li><a href="edit.php">編集</a></li>
           <li><a href="bulk_input.php">一括入力</a></li>
-          <li><a href="referrals.php">リファーラル管理</a></li>
-          <li><a href="seating.php">座席表編集</a></li>
+          <li><a href="visitor_intro.php">ビジター紹介</a></li>
+          <li><a href="networking_learning.php">学習コーナー</a></li>
           <li><a href="monthly_ranking.php">月間ランキング</a></li>
           <li><a href="users.php">ユーザー管理</a></li>
           <li><a href="sitemap.php" class="active">サイトマップ</a></li>
@@ -311,7 +311,7 @@ header('Content-Type: text/html; charset=UTF-8');
             <div class="stat-label">ユーザーページ</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">5</div>
+            <div class="stat-number">14</div>
             <div class="stat-label">管理者ページ</div>
           </div>
           <div class="stat-card">
@@ -319,7 +319,7 @@ header('Content-Type: text/html; charset=UTF-8');
             <div class="stat-label">APIエンドポイント</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">28</div>
+            <div class="stat-number">37</div>
             <div class="stat-label">合計ページ数</div>
           </div>
         </div>
@@ -345,7 +345,7 @@ header('Content-Type: text/html; charset=UTF-8');
                   <span class="badge badge-user">ユーザー</span>
                 </div>
                 <div class="page-description">
-                  BNI週次アンケートの入力フォーム。ビジター紹介、リファーラル情報、出席状況などを入力。名前・メールアドレスはログイン情報から自動入力。
+                  BNI週次アンケートの入力フォーム。ビジター紹介情報とピッチプレゼンテーション資料（PDF/YouTube URL）を入力。名前・メールアドレスはログイン情報から自動入力。出席状況・リファーラル・サンクスリップなどは管理者が一括入力画面から入力します。
                 </div>
                 <div class="page-path">index.php</div>
               </div>
@@ -416,23 +416,6 @@ header('Content-Type: text/html; charset=UTF-8');
                   ログアウト処理。セッションを破棄してログインページにリダイレクト。
                 </div>
                 <div class="page-path">logout.php</div>
-              </div>
-            </div>
-
-            <!-- dashboard.php -->
-            <div class="page-item">
-              <div class="page-icon">
-                <i class="fas fa-tachometer-alt"></i>
-              </div>
-              <div class="page-content">
-                <div class="page-name">
-                  <a href="../dashboard.php" target="_blank">ダッシュボード</a>
-                  <span class="badge badge-user">ユーザー</span>
-                </div>
-                <div class="page-description">
-                  個人ダッシュボード。今週・先週・今月の実績（リファーラル、ビジター、出席状況など）を表示。チーム統計も確認可能。
-                </div>
-                <div class="page-path">dashboard.php</div>
               </div>
             </div>
 
@@ -528,7 +511,7 @@ header('Content-Type: text/html; charset=UTF-8');
                   <span class="badge badge-admin">管理者</span>
                 </div>
                 <div class="page-description">
-                  週次アンケートデータをReveal.jsスライド形式で表示。週選択、タイトルスライド、サマリー、ビジター紹介、リファーラル詳細、メンバーピッチなど。
+                  週次ミーティング用スライドをReveal.js形式で表示。週選択、PDF出力、タイトルスライド、サマリー、ビジター紹介、ピッチプレゼンテーション（PDF/YouTube埋め込み）、ビジターご紹介スライド、ネットワーキング学習コーナー、月間ランキングなど。コントロールパネル（歯車アイコン）から週選択とPDF出力が可能。
                 </div>
                 <div class="page-path">admin/slide.php</div>
               </div>
@@ -579,7 +562,7 @@ header('Content-Type: text/html; charset=UTF-8');
                   <span class="badge badge-admin">管理者</span>
                 </div>
                 <div class="page-description">
-                  週を選択して全メンバーの出席状況・ビジター・121などを一括入力。座席表に登録されているメンバーのみ表示。
+                  週を選択して全メンバーの出席状況、サンクスリップ、ワンツーワン（121）、アクティビティ、コメントを一括入力。座席表に登録されているメンバーのみ表示。各メンバーのフォームが縦並びで表示され、一括保存ボタンで保存。
                 </div>
                 <div class="page-path">admin/bulk_input.php</div>
               </div>
@@ -633,6 +616,57 @@ header('Content-Type: text/html; charset=UTF-8');
                   システムのメンテナンスモードをON/OFFできます。テスト中は有効にすることで、指定したメールアドレス以外のアクセスをブロックします。
                 </div>
                 <div class="page-path">admin/maintenance_toggle.php</div>
+              </div>
+            </div>
+
+            <!-- admin/visitor_intro.php -->
+            <div class="page-item">
+              <div class="page-icon">
+                <i class="fas fa-image"></i>
+              </div>
+              <div class="page-content">
+                <div class="page-name">
+                  <a href="visitor_intro.php" target="_blank">ビジターご紹介管理</a>
+                  <span class="badge badge-admin">管理者</span>
+                </div>
+                <div class="page-description">
+                  スライドに表示するビジター紹介用の画像をアップロード・管理。週ごとに複数枚の画像を登録可能。画像はスライドの「ビジターご紹介」セクションに表示されます。推奨サイズ: 1920x1080px（フルHD）。
+                </div>
+                <div class="page-path">admin/visitor_intro.php</div>
+              </div>
+            </div>
+
+            <!-- admin/networking_learning.php -->
+            <div class="page-item">
+              <div class="page-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="page-content">
+                <div class="page-name">
+                  <a href="networking_learning.php" target="_blank">ネットワーキング学習コーナー管理</a>
+                  <span class="badge badge-admin">管理者</span>
+                </div>
+                <div class="page-description">
+                  スライドに表示する学習コンテンツ用の画像をアップロード・管理。週ごとに複数枚の画像を登録可能。画像はスライドの「ネットワーキング学習コーナー」セクションに表示されます。推奨サイズ: 1920x1080px（フルHD）。
+                </div>
+                <div class="page-path">admin/networking_learning.php</div>
+              </div>
+            </div>
+
+            <!-- admin/monthly_ranking.php -->
+            <div class="page-item">
+              <div class="page-icon">
+                <i class="fas fa-trophy"></i>
+              </div>
+              <div class="page-content">
+                <div class="page-name">
+                  <a href="monthly_ranking.php" target="_blank">月間ランキング管理</a>
+                  <span class="badge badge-admin">管理者</span>
+                </div>
+                <div class="page-description">
+                  月初のスライドで表示される先月のトップ貢献者ランキングを管理。各メンバーのビジター紹介数、リファーラル金額、ワンツーワン数を入力。月初のスライドで自動的にランキング表示されます。上位3名がメダルで表彰。
+                </div>
+                <div class="page-path">admin/monthly_ranking.php</div>
               </div>
             </div>
 
