@@ -62,9 +62,7 @@ try {
         'last_week' => [
             'user' => [
                 'submitted' => $userLastWeek['submitted'],
-                'visitor_count' => $userLastWeek['visitor_count'],
-                'referral_amount' => $userLastWeek['referral_amount'],
-                'referral_count' => $userLastWeek['referral_count']
+                'visitor_count' => $userLastWeek['visitor_count']
             ]
         ],
         'this_month' => [
@@ -91,7 +89,7 @@ try {
 }
 
 /**
- * 指定週のユーザー統計を取得
+ * 指定週のユーザー統計を取得（ユーザー入力可能フィールドのみ）
  */
 function getUserStats($db, $weekDate, $userEmail) {
     // Check if user submitted
@@ -106,17 +104,13 @@ function getUserStats($db, $weekDate, $userEmail) {
     if (!$submitted) {
         return [
             'submitted' => false,
-            'attendance' => '',
             'visitor_count' => 0,
-            'referral_amount' => 0,
-            'referral_count' => 0,
-            'thanks_slips' => 0,
-            'one_to_one' => 0
+            'is_pitch_presenter' => false
         ];
     }
 
-    // Get attendance and counts
-    $query = "SELECT attendance, thanks_slips, one_to_one
+    // Get pitch presenter status
+    $query = "SELECT is_pitch_presenter
               FROM survey_data
               WHERE week_date = :week_date AND user_email = :email
               LIMIT 1";
@@ -139,31 +133,15 @@ function getUserStats($db, $weekDate, $userEmail) {
     ]);
     $visitorCount = $visitorResult ? intval($visitorResult['count']) : 0;
 
-    // Get referral stats
-    $referralQuery = "SELECT
-                        COUNT(CASE WHEN referral_name IS NOT NULL AND referral_name != '-' AND referral_amount > 0 THEN 1 END) as count,
-                        COALESCE(SUM(referral_amount), 0) as amount
-                      FROM referrals r
-                      JOIN survey_data s ON r.survey_data_id = s.id
-                      WHERE s.week_date = :week_date AND s.user_email = :email";
-    $referralResult = dbQueryOne($db, $referralQuery, [
-        ':week_date' => $weekDate,
-        ':email' => $userEmail
-    ]);
-
     return [
         'submitted' => true,
-        'attendance' => $data['attendance'] ?? '',
         'visitor_count' => $visitorCount,
-        'referral_amount' => $referralResult ? intval($referralResult['amount']) : 0,
-        'referral_count' => $referralResult ? intval($referralResult['count']) : 0,
-        'thanks_slips' => $data['thanks_slips'] ?? 0,
-        'one_to_one' => $data['one_to_one'] ?? 0
+        'is_pitch_presenter' => intval($data['is_pitch_presenter'] ?? 0) === 1
     ];
 }
 
 /**
- * 指定週のチーム統計を取得
+ * 指定週のチーム統計を取得（ユーザー入力可能フィールドのみ）
  */
 function getTeamStats($db, $weekDate) {
     // Total unique members
@@ -183,25 +161,14 @@ function getTeamStats($db, $weekDate) {
     $visitorsResult = dbQueryOne($db, $visitorsQuery, [':week_date' => $weekDate]);
     $visitorCount = $visitorsResult ? intval($visitorsResult['count']) : 0;
 
-    // Total referral stats
-    $referralQuery = "SELECT
-                        COUNT(CASE WHEN referral_name IS NOT NULL AND referral_name != '-' AND referral_amount > 0 THEN 1 END) as count,
-                        COALESCE(SUM(referral_amount), 0) as amount
-                      FROM referrals r
-                      JOIN survey_data s ON r.survey_data_id = s.id
-                      WHERE s.week_date = :week_date";
-    $referralResult = dbQueryOne($db, $referralQuery, [':week_date' => $weekDate]);
-
     return [
         'total_members' => $totalMembers,
-        'visitor_count' => $visitorCount,
-        'referral_amount' => $referralResult ? intval($referralResult['amount']) : 0,
-        'referral_count' => $referralResult ? intval($referralResult['count']) : 0
+        'visitor_count' => $visitorCount
     ];
 }
 
 /**
- * 今月のユーザー統計を取得
+ * 今月のユーザー統計を取得（ユーザー入力可能フィールドのみ）
  */
 function getMonthlyUserStats($db, $userEmail, $firstDay, $lastDay) {
     // Visitor count
@@ -219,31 +186,11 @@ function getMonthlyUserStats($db, $userEmail, $firstDay, $lastDay) {
     ]);
     $visitorCount = $visitorResult ? intval($visitorResult['count']) : 0;
 
-    // Referral stats
-    $referralQuery = "SELECT
-                        COUNT(CASE WHEN referral_name IS NOT NULL AND referral_name != '-' AND referral_amount > 0 THEN 1 END) as count,
-                        COALESCE(SUM(referral_amount), 0) as amount
-                      FROM referrals r
-                      JOIN survey_data s ON r.survey_data_id = s.id
-                      WHERE s.user_email = :email
-                      AND s.week_date BETWEEN :first_day AND :last_day";
-    $referralResult = dbQueryOne($db, $referralQuery, [
-        ':email' => $userEmail,
-        ':first_day' => $firstDay,
-        ':last_day' => $lastDay
-    ]);
-
-    // Thanks slips and one-to-one (sum of distinct records)
-    $countsQuery = "SELECT
-                      COALESCE(SUM(thanks_slips), 0) as thanks_slips,
-                      COALESCE(SUM(one_to_one), 0) as one_to_one,
-                      COUNT(DISTINCT week_date) as attendance_count
-                    FROM (
-                      SELECT DISTINCT week_date, thanks_slips, one_to_one
-                      FROM survey_data
-                      WHERE user_email = :email
-                      AND week_date BETWEEN :first_day AND :last_day
-                    )";
+    // Attendance count (number of weeks submitted)
+    $countsQuery = "SELECT COUNT(DISTINCT week_date) as attendance_count
+                    FROM survey_data
+                    WHERE user_email = :email
+                    AND week_date BETWEEN :first_day AND :last_day";
     $countsResult = dbQueryOne($db, $countsQuery, [
         ':email' => $userEmail,
         ':first_day' => $firstDay,
@@ -252,10 +199,6 @@ function getMonthlyUserStats($db, $userEmail, $firstDay, $lastDay) {
 
     return [
         'visitor_count' => $visitorCount,
-        'referral_amount' => $referralResult ? intval($referralResult['amount']) : 0,
-        'referral_count' => $referralResult ? intval($referralResult['count']) : 0,
-        'thanks_slips' => $countsResult ? intval($countsResult['thanks_slips']) : 0,
-        'one_to_one' => $countsResult ? intval($countsResult['one_to_one']) : 0,
         'attendance_count' => $countsResult ? intval($countsResult['attendance_count']) : 0
     ];
 }

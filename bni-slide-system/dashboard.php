@@ -242,10 +242,6 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
                 <span class="stat-label">総ビジター数:</span>
                 <span id="teamVisitorCount" class="stat-value">-</span>
               </div>
-              <div class="dashboard-stat-row">
-                <span class="stat-label">総リファーラル金額:</span>
-                <span id="teamReferralAmount" class="stat-value">-</span>
-              </div>
             </div>
           </div>
 
@@ -260,16 +256,8 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
                 <span id="userVisitorCount" class="stat-value">-</span>
               </div>
               <div class="dashboard-stat-row">
-                <span class="stat-label">リファーラル金額:</span>
-                <span id="userReferralAmount" class="stat-value">-</span>
-              </div>
-              <div class="dashboard-stat-row">
-                <span class="stat-label">サンクスリップ:</span>
-                <span id="userThanksSlips" class="stat-value">-</span>
-              </div>
-              <div class="dashboard-stat-row">
-                <span class="stat-label">ワンツーワン:</span>
-                <span id="userOneToOne" class="stat-value">-</span>
+                <span class="stat-label">ピッチプレゼンター:</span>
+                <span id="userPitchPresenter" class="stat-value">-</span>
               </div>
             </div>
           </div>
@@ -284,10 +272,6 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
               <div class="dashboard-stat-row">
                 <span class="stat-label">月間ビジター数:</span>
                 <span id="monthlyVisitorCount" class="stat-value">-</span>
-              </div>
-              <div class="dashboard-stat-row">
-                <span class="stat-label">月間リファーラル金額:</span>
-                <span id="monthlyReferralAmount" class="stat-value">-</span>
               </div>
               <div class="dashboard-stat-row">
                 <span class="stat-label">提出回数:</span>
@@ -332,8 +316,7 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
             badge.textContent = '提出済み';
             badge.className = 'dashboard-badge submitted';
             status.innerHTML = `
-              <strong>今週のアンケートは提出済みです</strong><br>
-              出席状況: ${thisWeekUser.attendance || '-'}
+              <strong>今週のアンケートは提出済みです</strong>
             `;
           } else {
             badge.textContent = '未提出';
@@ -345,19 +328,15 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
           const teamStats = data.this_week.team;
           document.getElementById('teamMembersCount').textContent = teamStats.total_members + '人';
           document.getElementById('teamVisitorCount').textContent = teamStats.visitor_count + '人';
-          document.getElementById('teamReferralAmount').textContent = '¥' + teamStats.referral_amount.toLocaleString('ja-JP');
 
           // あなたの今週の統計
           document.getElementById('userVisitorCount').textContent = thisWeekUser.visitor_count + '人';
-          document.getElementById('userReferralAmount').textContent = '¥' + thisWeekUser.referral_amount.toLocaleString('ja-JP');
-          document.getElementById('userThanksSlips').textContent = thisWeekUser.thanks_slips + '枚';
-          document.getElementById('userOneToOne').textContent = thisWeekUser.one_to_one + '回';
+          document.getElementById('userPitchPresenter').textContent = thisWeekUser.is_pitch_presenter ? 'はい' : 'いいえ';
 
           // あなたの今月の統計
           const monthlyStats = data.this_month.user;
           document.getElementById('dashboardMonthLabel').textContent = data.week_dates.month;
           document.getElementById('monthlyVisitorCount').textContent = monthlyStats.visitor_count + '人';
-          document.getElementById('monthlyReferralAmount').textContent = '¥' + monthlyStats.referral_amount.toLocaleString('ja-JP');
           document.getElementById('monthlyAttendanceCount').textContent = monthlyStats.attendance_count + '回';
 
           console.log('✅ ダッシュボードデータを読み込みました');
