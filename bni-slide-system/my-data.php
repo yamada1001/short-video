@@ -209,7 +209,7 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
       <div class="data-container">
         <div class="page-header">
           <h1><i class="fas fa-database"></i> マイデータ編集</h1>
-          <p>あなたが提出したアンケートデータの確認・編集ができます。ビジターやリファーラルの追加・修正が可能です。</p>
+          <p>あなたが提出したアンケートデータの確認・編集ができます。ビジター情報やピッチプレゼンター情報の確認・修正が可能です。</p>
         </div>
 
         <div id="dataList" class="loading">
@@ -275,10 +275,11 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
           const weekData = weeklyData[week];
           const firstRow = weekData[0];
 
-          // Count visitors and referrals
+          // Count visitors (only user-editable fields)
           const visitors = weekData.filter(row => row['ビジター名']).length;
-          const referrals = weekData.filter(row => row['案件名'] && row['案件名'] !== '-').length;
-          const totalAmount = weekData.reduce((sum, row) => sum + parseInt(row['リファーラル金額'] || 0), 0);
+          const isPitchPresenter = firstRow['ピッチ担当'] === 'はい';
+          const pitchFile = firstRow['ピッチファイル'];
+          const youtubeUrl = firstRow['YouTube URL'];
 
           html += `
             <div class="data-card">
@@ -293,29 +294,28 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
               </div>
 
               <div class="data-row">
-                <div class="data-label">出席状況</div>
-                <div class="data-value">${firstRow['出席状況']}</div>
-              </div>
-
-              <div class="data-row">
                 <div class="data-label">ビジター紹介</div>
                 <div class="data-value">${visitors}名</div>
               </div>
 
               <div class="data-row">
-                <div class="data-label">リファーラル</div>
-                <div class="data-value">${referrals}件 / ¥${totalAmount.toLocaleString()}</div>
+                <div class="data-label">メインプレゼンテーション</div>
+                <div class="data-value">${isPitchPresenter ? 'ピッチ担当' : '担当なし'}</div>
               </div>
 
+              ${isPitchPresenter && pitchFile ? `
               <div class="data-row">
-                <div class="data-label">サンクスリップ</div>
-                <div class="data-value">${firstRow['サンクスリップ数']}件</div>
+                <div class="data-label">ピッチ資料</div>
+                <div class="data-value">${pitchFile}</div>
               </div>
+              ` : ''}
 
+              ${isPitchPresenter && youtubeUrl ? `
               <div class="data-row">
-                <div class="data-label">ワンツーワン</div>
-                <div class="data-value">${firstRow['ワンツーワン数']}回</div>
+                <div class="data-label">YouTube動画</div>
+                <div class="data-value"><a href="${youtubeUrl}" target="_blank">${youtubeUrl}</a></div>
               </div>
+              ` : ''}
             </div>
           `;
         });

@@ -502,15 +502,6 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
           formData[radio.name] = radio.value;
         });
 
-        // チェックボックス
-        const activities = [];
-        form.querySelectorAll('input[name="activities[]"]:checked').forEach(checkbox => {
-          activities.push(checkbox.value);
-        });
-        if (activities.length > 0) {
-          formData['activities[]'] = activities;
-        }
-
         // ビジターの数を保存
         formData._visitorCount = document.querySelectorAll('#visitorContainer .referral-item').length;
 
@@ -538,12 +529,6 @@ $userRole = $currentUser['role'] ?? 'member'; // デフォルトはmember
               const inputs = form.querySelectorAll(`[name="${key}"]`);
               data[key].forEach((value, index) => {
                 if (inputs[index]) inputs[index].value = value;
-              });
-            } else if (key === 'activities[]') {
-              // チェックボックス
-              data[key].forEach(value => {
-                const checkbox = form.querySelector(`input[name="activities[]"][value="${value}"]`);
-                if (checkbox) checkbox.checked = true;
               });
             } else {
               // ラジオボタン

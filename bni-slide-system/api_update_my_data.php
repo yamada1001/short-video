@@ -29,10 +29,6 @@ try {
     // Get POST data
     $weekDate = $_POST['week_date'] ?? '';
     $inputDate = $_POST['input_date'] ?? '';
-    $attendance = $_POST['attendance'] ?? '';
-    $thanksSlips = intval($_POST['thanks_slips'] ?? 0);
-    $oneToOneCount = intval($_POST['one_to_one_count'] ?? 0);
-    $comments = $_POST['comments'] ?? '';
 
     // Pitch presenter data
     $isPitchPresenter = isset($_POST['is_pitch_presenter']) ? 1 : 0;
@@ -67,13 +63,21 @@ try {
     // Start transaction
     dbBeginTransaction($db);
 
-    // Get existing survey data to preserve pitch file info
+    // Get existing survey data to preserve pitch file info and admin-only fields
     $existingData = dbQueryOne($db,
-        "SELECT pitch_file_path, pitch_file_original_name, pitch_file_type
+        "SELECT pitch_file_path, pitch_file_original_name, pitch_file_type,
+                attendance, thanks_slips, one_to_one, activities, comments
          FROM survey_data
          WHERE week_date = :week_date AND user_email = :email",
         [':week_date' => $weekDate, ':email' => $currentUser['email']]
     );
+
+    // Preserve admin-only fields from existing data (users cannot modify these)
+    $attendance = $existingData['attendance'] ?? '';
+    $thanksSlips = $existingData['thanks_slips'] ?? 0;
+    $oneToOne = $existingData['one_to_one'] ?? 0;
+    $activities = $existingData['activities'] ?? null;
+    $comments = $existingData['comments'] ?? null;
 
     // Handle file upload
     $pitchFilePath = $existingData['pitch_file_path'] ?? null;
@@ -193,9 +197,9 @@ try {
         ':user_email' => $currentUser['email'],
         ':attendance' => $attendance,
         ':thanks_slips' => $thanksSlips,
-        ':one_to_one' => $oneToOneCount,
-        ':activities' => null,
-        ':comments' => $comments ?: null,
+        ':one_to_one' => $oneToOne,
+        ':activities' => $activities,
+        ':comments' => $comments,
         ':is_pitch_presenter' => $isPitchPresenter,
         ':pitch_file_path' => $pitchFilePath,
         ':pitch_file_original_name' => $pitchFileOriginalName,
@@ -265,10 +269,10 @@ try {
         ':data' => json_encode([
             'week_date' => $weekDate,
             'input_date' => $inputDate,
-            'attendance' => $attendance,
             'visitor_count' => count($visitors),
             'is_pitch_presenter' => $isPitchPresenter,
-            'has_pitch_file' => !empty($pitchFilePath)
+            'has_pitch_file' => !empty($pitchFilePath),
+            'has_youtube_url' => !empty($youtubeUrl)
         ], JSON_UNESCAPED_UNICODE),
         ':ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
         ':user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown',

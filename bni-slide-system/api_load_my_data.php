@@ -27,7 +27,7 @@ $userEmail = $currentUser['email'];
 try {
     $db = getDbConnection();
 
-    // Load user's data from all weeks
+    // Load user's data from all weeks (only user-editable fields)
     $query = "
         SELECT
             s.week_date,
@@ -35,25 +35,16 @@ try {
             s.input_date,
             s.user_name,
             s.user_email,
-            s.attendance,
-            s.thanks_slips,
-            s.one_to_one,
-            s.activities,
-            s.comments,
             s.is_pitch_presenter,
             s.pitch_file_path,
             s.pitch_file_original_name,
             s.pitch_file_type,
+            s.youtube_url,
             v.visitor_name,
             v.visitor_company,
-            v.visitor_industry,
-            r.referral_name,
-            r.referral_amount,
-            r.referral_category,
-            r.referral_provider
+            v.visitor_industry
         FROM survey_data s
         LEFT JOIN visitors v ON s.id = v.survey_data_id
-        LEFT JOIN referrals r ON s.id = r.survey_data_id
         WHERE s.user_email = :email
         ORDER BY s.week_date DESC, s.timestamp DESC
     ";
@@ -62,7 +53,7 @@ try {
 
     $myData = [];
 
-    // Convert to CSV-like format
+    // Convert to structured format (only user-editable fields)
     foreach ($rows as $row) {
         $weekDate = $row['week_date'];
         $weekLabel = getWeekLabel($weekDate);
@@ -75,19 +66,11 @@ try {
             'ビジター名' => $row['visitor_name'] ?: '',
             'ビジター会社名' => $row['visitor_company'] ?: '',
             'ビジター業種' => $row['visitor_industry'] ?: '',
-            '案件名' => $row['referral_name'] ?: '',
-            'リファーラル金額' => $row['referral_amount'] ?: 0,
-            'カテゴリ' => $row['referral_category'] ?: '',
-            'リファーラル提供者' => $row['referral_provider'] ?: '',
-            '出席状況' => $row['attendance'],
-            'サンクスリップ数' => $row['thanks_slips'],
-            'ワンツーワン数' => $row['one_to_one'],
-            'アクティビティ' => $row['activities'] ?: '',
-            'コメント' => $row['comments'] ?: '',
             'ピッチ担当' => $row['is_pitch_presenter'] ? 'はい' : 'いいえ',
             'ピッチファイル' => $row['pitch_file_original_name'] ?: '',
             'ピッチファイルパス' => $row['pitch_file_path'] ?: '',
             'ピッチファイル種類' => $row['pitch_file_type'] ?: '',
+            'YouTube URL' => $row['youtube_url'] ?: '',
             '週' => $weekLabel,
             'CSVファイル' => $weekDate
         ];
