@@ -131,7 +131,7 @@
       throw new Error(result.message || 'データの読み込みに失敗しました');
     }
 
-      const { data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config, monthly_ranking_data } = result;
+      const { data, stats, date, pitch_presenter, share_story_presenter, education_presenter, referral_total, slide_config, monthly_ranking_data, visitor_introductions, networking_learning_presenter } = result;
 
       // Check if monthly ranking pattern is selected
       let monthlyRankingData = null;
