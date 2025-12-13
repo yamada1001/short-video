@@ -1139,7 +1139,7 @@ function generateMainPresenterSlide(presenterDetail) {
   let topic = 'ラジコン草刈り代行';
   let company = 'ブルーベリーファームうすき';
   let highlightChar = '健';
-  let imagePath = '../pdf_analysis/required_pages/page_204.png';
+  let imagePath = '../assets/images/slides/main-presenter-bg.png';
 
   // データがあれば上書き
   if (presenterDetail && presenterDetail.member_name) {
@@ -1203,7 +1203,7 @@ function generateReferralMessageSlide() {
   return `
     <section class="referral-message-slide">
       <div class="referral-message-left">
-        <img src="../pdf_analysis/required_pages/page_206.png" alt="Referral" class="referral-message-image" />
+        <img src="../assets/images/slides/referral-message-bg.png" alt="Referral" class="referral-message-image" />
       </div>
       <div class="referral-message-right">
         <div class="referral-message-text">
