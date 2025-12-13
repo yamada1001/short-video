@@ -6,6 +6,7 @@
 
 require_once __DIR__ . '/includes/session_auth.php';
 require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/pdf_helper.php';
 
 header('Content-Type: application/json; charset=UTF-8');
 
@@ -43,6 +44,13 @@ try {
     dbClose($db);
 
     if ($presenter) {
+        // PDF画像パスをデコード
+        if (!empty($presenter['pdf_image_paths'])) {
+            $presenter['pdf_image_paths_array'] = decodeImagePaths($presenter['pdf_image_paths']);
+        } else {
+            $presenter['pdf_image_paths_array'] = [];
+        }
+
         echo json_encode([
             'success' => true,
             'presenter' => $presenter,

@@ -6,6 +6,7 @@
 
 require_once __DIR__ . '/includes/session_auth.php';
 require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/pdf_helper.php';
 
 header('Content-Type: application/json; charset=UTF-8');
 
@@ -46,6 +47,8 @@ try {
 
     $pdfFilePath = null;
     $pdfFileOriginalName = null;
+    $pdfPageCount = 0;
+    $pdfImagePaths = [];
 
     // PDFファイルのアップロード処理
     if (isset($_FILES['pdf_file']) && $_FILES['pdf_file']['error'] === UPLOAD_ERR_OK) {
@@ -83,22 +86,48 @@ try {
         if (!move_uploaded_file($uploadedFile['tmp_name'], $fullPath)) {
             throw new Exception('ファイルのアップロードに失敗しました');
         }
+
+        // PDFを各ページごとに画像化
+        $imageOutputDir = __DIR__ . '/uploads/networking_learning/images';
+        $baseFilename = date('Ymd_His') . '_' . uniqid();
+
+        $conversionResult = convertPdfToImages($fullPath, $imageOutputDir, $baseFilename);
+
+        if (!$conversionResult['success']) {
+            // 画像化に失敗した場合、PDFファイルを削除
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
+            }
+            throw new Exception('PDFの画像化に失敗しました: ' . $conversionResult['error']);
+        }
+
+        $pdfPageCount = $conversionResult['page_count'];
+        $pdfImagePaths = $conversionResult['image_paths'];
     }
 
     // データベース接続
     $db = getDbConnection();
 
-    // 既存データを削除前にPDFパスを取得
+    // 既存データを削除前にPDFパスと画像パスを取得
     $existing = dbQueryOne($db,
-        "SELECT pdf_file_path FROM networking_learning_presenters WHERE week_date = ?",
+        "SELECT pdf_file_path, pdf_image_paths FROM networking_learning_presenters WHERE week_date = ?",
         [$weekDate]
     );
 
-    // 既存のPDFファイルがあれば削除（新しいPDFがアップロードされた場合のみ）
-    if ($existing && !empty($existing['pdf_file_path']) && $pdfFilePath) {
-        $oldFilePath = __DIR__ . '/' . $existing['pdf_file_path'];
-        if (file_exists($oldFilePath)) {
-            unlink($oldFilePath);
+    // 既存のPDFファイルと画像があれば削除（新しいPDFがアップロードされた場合のみ）
+    if ($existing && $pdfFilePath) {
+        // PDFファイルを削除
+        if (!empty($existing['pdf_file_path'])) {
+            $oldFilePath = __DIR__ . '/' . $existing['pdf_file_path'];
+            if (file_exists($oldFilePath)) {
+                unlink($oldFilePath);
+            }
+        }
+
+        // 画像ファイルを削除
+        if (!empty($existing['pdf_image_paths'])) {
+            $oldImagePaths = decodeImagePaths($existing['pdf_image_paths']);
+            deleteImages($oldImagePaths);
         }
     }
 
@@ -110,27 +139,33 @@ try {
 
     // 新規データを挿入
     if ($pdfFilePath) {
+        $imagePathsJson = encodeImagePaths($pdfImagePaths);
+
         dbExecute($db,
             "INSERT INTO networking_learning_presenters
-            (week_date, presenter_name, pdf_file_path, pdf_file_original_name, created_at, updated_at)
-            VALUES (?, ?, ?, ?, datetime('now', 'localtime'), datetime('now', 'localtime'))",
-            [$weekDate, $presenterName, $pdfFilePath, $pdfFileOriginalName]
+            (week_date, presenter_name, pdf_file_path, pdf_file_original_name, pdf_page_count, pdf_image_paths, created_at, updated_at)
+            VALUES (?, ?, ?, ?, ?, ?, datetime('now', 'localtime'), datetime('now', 'localtime'))",
+            [$weekDate, $presenterName, $pdfFilePath, $pdfFileOriginalName, $pdfPageCount, $imagePathsJson]
         );
     } else {
         // PDFがアップロードされなかった場合、既存のPDFパスを保持
         $existingPdfPath = $existing['pdf_file_path'] ?? null;
         $existingPdfName = null;
+        $existingPageCount = 0;
+        $existingImagePaths = null;
 
         if ($existingPdfPath) {
             // 既存のPDF情報を再取得（削除前のデータから）
             $existingPdfName = basename($existingPdfPath);
+            $existingPageCount = $existing['pdf_page_count'] ?? 0;
+            $existingImagePaths = $existing['pdf_image_paths'] ?? null;
         }
 
         dbExecute($db,
             "INSERT INTO networking_learning_presenters
-            (week_date, presenter_name, pdf_file_path, pdf_file_original_name, created_at, updated_at)
-            VALUES (?, ?, ?, ?, datetime('now', 'localtime'), datetime('now', 'localtime'))",
-            [$weekDate, $presenterName, $existingPdfPath, $existingPdfName]
+            (week_date, presenter_name, pdf_file_path, pdf_file_original_name, pdf_page_count, pdf_image_paths, created_at, updated_at)
+            VALUES (?, ?, ?, ?, ?, ?, datetime('now', 'localtime'), datetime('now', 'localtime'))",
+            [$weekDate, $presenterName, $existingPdfPath, $existingPdfName, $existingPageCount, $existingImagePaths]
         );
     }
 
@@ -142,7 +177,9 @@ try {
         'success' => true,
         'message' => '担当者を保存しました',
         'id' => $newId,
-        'pdf_uploaded' => !is_null($pdfFilePath)
+        'pdf_uploaded' => !is_null($pdfFilePath),
+        'page_count' => $pdfPageCount,
+        'image_count' => count($pdfImagePaths)
     ], JSON_UNESCAPED_UNICODE);
 
 } catch (Exception $e) {
