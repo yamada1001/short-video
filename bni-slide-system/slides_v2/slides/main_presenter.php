@@ -180,19 +180,20 @@ if (!$presentation) {
     </style>
 </head>
 <body>
-    <div class="slide-container">
-        <?php if ($hasData): ?>
-            <?php if ($presentation['presentation_type'] === 'extended' && !empty($presentation['pdf_images'])): ?>
-                <!-- 拡張版: PDF画像表示 -->
-                <?php foreach ($presentation['pdf_images'] as $index => $imagePath): ?>
-                    <div class="pdf-page" style="width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; page-break-after: always;">
-                        <img src="<?= htmlspecialchars($imagePath) ?>"
-                             alt="PDF Page <?= $index + 1 ?>"
-                             style="max-width: 100%; max-height: 100vh; object-fit: contain;">
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <!-- シンプル版: メンバー情報表示 -->
+    <?php if ($hasData): ?>
+        <?php if ($presentation['presentation_type'] === 'extended' && !empty($presentation['pdf_images'])): ?>
+            <!-- 拡張版: PDF画像表示（各画像を1ページずつ） -->
+            <?php foreach ($presentation['pdf_images'] as $index => $imagePath): ?>
+                <div class="slide-container">
+                    <img src="../<?= htmlspecialchars($imagePath) ?>"
+                         alt="PDF Page <?= $index + 1 ?>"
+                         style="max-width: 100%; max-height: 100vh; object-fit: contain;">
+                    <div class="page-number">p.<?= 204 + $index ?></div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <!-- シンプル版: メンバー情報表示 -->
+            <div class="slide-container">
                 <div class="slide-content">
                     <?php if ($presentation['photo_path']): ?>
                         <img src="<?= htmlspecialchars($presentation['photo_path']) ?>"
@@ -218,14 +219,16 @@ if (!$presentation) {
                         </div>
                     <?php endif; ?>
                 </div>
-            <?php endif; ?>
-        <?php else: ?>
+                <div class="page-number">p.8</div>
+            </div>
+        <?php endif; ?>
+    <?php else: ?>
+        <div class="slide-container">
             <div class="no-data">
                 メインプレゼンデータが登録されていません
             </div>
-        <?php endif; ?>
-    </div>
-
-    <div class="page-number">p.8</div>
+            <div class="page-number">p.8</div>
+        </div>
+    <?php endif; ?>
 </body>
 </html>
