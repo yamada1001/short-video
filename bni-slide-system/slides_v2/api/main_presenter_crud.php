@@ -341,7 +341,6 @@ switch ($action) {
  * PDF→画像変換
  */
 function convertPdfToImages($pdfPath, $weekDate) {
-    $pythonScript = __DIR__ . '/../../scripts/pdf_to_images.py';
     $outputDir = dirname($pdfPath) . '/images_' . basename($pdfPath, '.pdf');
 
     // 出力ディレクトリ作成
@@ -349,20 +348,34 @@ function convertPdfToImages($pdfPath, $weekDate) {
         mkdir($outputDir, 0755, true);
     }
 
-    // Pythonスクリプト実行
+    // ImageMagick を使用してPDF→画像変換（Xserver対応）
+    // -density: 解像度（150dpiで十分）
+    // -quality: 画質（85%）
+    $outputPattern = $outputDir . '/page-%03d.png';
+
     $command = sprintf(
-        'python3 %s %s %s 2>&1',
-        escapeshellarg($pythonScript),
+        'convert -density 150 -quality 85 %s %s 2>&1',
         escapeshellarg($pdfPath),
-        escapeshellarg($outputDir)
+        escapeshellarg($outputPattern)
     );
 
     exec($command, $output, $returnCode);
 
     if ($returnCode === 0) {
-        return ['success' => true, 'output_dir' => $outputDir];
+        // 生成された画像ファイルを確認
+        $images = glob($outputDir . '/page-*.png');
+        return [
+            'success' => true,
+            'output_dir' => $outputDir,
+            'image_count' => count($images),
+            'images' => $images
+        ];
     } else {
-        return ['success' => false, 'error' => implode("\n", $output)];
+        return [
+            'success' => false,
+            'error' => implode("\n", $output),
+            'command' => $command
+        ];
     }
 }
 

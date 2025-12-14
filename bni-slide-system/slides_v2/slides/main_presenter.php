@@ -39,6 +39,23 @@ if (!$presentation) {
     $hasData = false;
 } else {
     $hasData = true;
+
+    // 拡張版の場合、PDF画像を取得
+    if ($presentation['presentation_type'] === 'extended' && !empty($presentation['pdf_path'])) {
+        $pdfPath = __DIR__ . '/../' . $presentation['pdf_path'];
+        $imageDir = dirname($pdfPath) . '/images_' . basename($pdfPath, '.pdf');
+
+        if (is_dir($imageDir)) {
+            $pdfImages = glob($imageDir . '/page-*.png');
+            sort($pdfImages);
+            // 相対パスに変換
+            $presentation['pdf_images'] = array_map(function($path) {
+                return str_replace(__DIR__ . '/../', '', $path);
+            }, $pdfImages);
+        } else {
+            $presentation['pdf_images'] = [];
+        }
+    }
 }
 
 ?>
@@ -157,10 +174,15 @@ if (!$presentation) {
 <body>
     <div class="slide-container">
         <?php if ($hasData): ?>
-            <?php if ($presentation['presentation_type'] === 'extended' && !empty($presentation['pdf_path'])): ?>
-                <!-- 拡張版: PDF表示 -->
-                <iframe src="<?= htmlspecialchars($presentation['pdf_path']) ?>"
-                        style="width: 100%; height: 100vh; border: none;"></iframe>
+            <?php if ($presentation['presentation_type'] === 'extended' && !empty($presentation['pdf_images'])): ?>
+                <!-- 拡張版: PDF画像表示 -->
+                <?php foreach ($presentation['pdf_images'] as $index => $imagePath): ?>
+                    <div class="pdf-page" style="width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; page-break-after: always;">
+                        <img src="<?= htmlspecialchars($imagePath) ?>"
+                             alt="PDF Page <?= $index + 1 ?>"
+                             style="max-width: 100%; max-height: 100vh; object-fit: contain;">
+                    </div>
+                <?php endforeach; ?>
             <?php else: ?>
                 <!-- シンプル版: メンバー情報表示 -->
                 <div class="slide-content">
