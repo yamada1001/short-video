@@ -1,0 +1,114 @@
+<?php
+// シェアストーリー管理画面 - 簡易版
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>シェアストーリー管理 | BNI Slide System V2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-book-open"></i> シェアストーリー管理</h1>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="actions-bar">
+                <div class="date-selector">
+                    <label>開催日:</label>
+                    <input type="date" id="weekDate">
+                </div>
+                <button class="btn btn-success" onclick="openSlide()"><i class="fas fa-play"></i> スライド表示</button>
+            </div>
+            <form id="storyForm">
+                <div class="form-group">
+                    <label>メンバー選択</label>
+                    <select id="memberId" required><option value="">選択してください</option></select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> 保存</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteData()"><i class="fas fa-trash"></i> 削除</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        const API = '../api/share_story_crud.php';
+        const MEMBERS_API = '../api/members_crud.php';
+        document.addEventListener('DOMContentLoaded', () => {
+            setDefaultDate();
+            loadMembers();
+            document.getElementById('weekDate').addEventListener('change', loadData);
+            document.getElementById('storyForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData();
+                formData.append('action', 'save');
+                formData.append('week_date', document.getElementById('weekDate').value);
+                formData.append('member_id', document.getElementById('memberId').value);
+                const res = await fetch(API, { method: 'POST', body: formData });
+                const data = await res.json();
+                alert(data.success ? '保存しました' : 'エラー: ' + (data.error || '不明'));
+            });
+        });
+        function setDefaultDate() {
+            const today = new Date(), dayOfWeek = today.getDay();
+            const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7, nextFriday = new Date(today);
+            nextFriday.setDate(today.getDate() + daysUntilFriday);
+            document.getElementById('weekDate').value = nextFriday.toISOString().split('T')[0];
+        }
+        async function loadMembers() {
+            const res = await fetch(MEMBERS_API + '?action=list');
+            const data = await res.json();
+            if (data.success) {
+                document.getElementById('memberId').innerHTML = '<option value="">選択してください</option>' + 
+                    data.members.filter(m => m.is_active == 1).map(m => `<option value="${m.id}">${m.name}</option>`).join('');
+                loadData();
+            }
+        }
+        async function loadData() {
+            const weekDate = document.getElementById('weekDate').value;
+            if (!weekDate) return;
+            const res = await fetch(`${API}?action=get_by_date&week_date=${weekDate}`);
+            const data = await res.json();
+            if (data.success && data.data) document.getElementById('memberId').value = data.data.member_id || '';
+        }
+        async function deleteData() {
+            if (!confirm('削除しますか？')) return;
+            const res = await fetch(API, {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'delete', week_date: document.getElementById('weekDate').value })
+            });
+            const data = await res.json();
+            if (data.success) { alert('削除しました'); loadData(); }
+        }
+        function openSlide() {
+            const weekDate = document.getElementById('weekDate').value;
+            if (!weekDate || !document.getElementById('memberId').value) {
+                alert('開催日とメンバーを選択してください');
+                return;
+            }
+            window.open(`../slides/share_story.php?date=${weekDate}`, '_blank');
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: sans-serif; background: #f5f5f5; }
+        .header { background: linear-gradient(135deg, #C8102E 0%, #a00a24 100%); color: white; padding: 20px 40px; }
+        .header h1 { font-size: 24px; }
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        .card { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 30px; }
+        .actions-bar { display: flex; justify-content: space-between; margin-bottom: 25px; }
+        .date-selector { display: flex; align-items: center; gap: 15px; }
+        .date-selector input { padding: 10px; border: 1px solid #ddd; border-radius: 6px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; display: inline-flex; gap: 8px; }
+        .btn-primary { background: #C8102E; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+        .form-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; }
+        .form-actions { display: flex; gap: 10px; margin-top: 20px; }
+    </style>
+</body>
+</html>
