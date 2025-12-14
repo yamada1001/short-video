@@ -33,6 +33,9 @@
     <div class="container">
         <div class="actions-bar">
             <button class="btn btn-secondary" onclick="location.href='index.php'"><i class="fas fa-arrow-left"></i> 戻る</button>
+            <button class="btn btn-primary" onclick="previewSlide()">
+                <i class="fas fa-eye"></i> スライドをプレビュー
+            </button>
         </div>
 
         <div class="date-selector">
@@ -169,6 +172,18 @@
             } catch (error) {
                 alert('通信エラー: ' + error);
             }
+        }
+
+        // スライドプレビュー
+        function previewSlide() {
+            const weekDate = document.getElementById('weekDate').value;
+            if (!weekDate) {
+                alert('対象週を選択してください');
+                return;
+            }
+
+            const slideUrl = `../slides/referral_verification.php?date=${encodeURIComponent(weekDate)}`;
+            window.open(slideUrl, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>

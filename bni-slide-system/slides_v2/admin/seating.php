@@ -354,6 +354,9 @@
                 <button class="btn btn-success" onclick="saveSeating()">
                     <i class="fas fa-save"></i> 座席配置を保存
                 </button>
+                <button class="btn btn-primary" onclick="previewSlide()">
+                    <i class="fas fa-eye"></i> スライドをプレビュー
+                </button>
             </div>
         </div>
 
@@ -668,6 +671,18 @@
             renderTables();
             renderMemberPool();
             updateStats();
+        }
+
+        // スライドプレビュー
+        function previewSlide() {
+            const targetDate = document.getElementById('targetDate').value;
+            if (!targetDate) {
+                alert('対象日を選択してください');
+                return;
+            }
+
+            const slideUrl = `../slides/seating.php?date=${encodeURIComponent(targetDate)}`;
+            window.open(slideUrl, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>

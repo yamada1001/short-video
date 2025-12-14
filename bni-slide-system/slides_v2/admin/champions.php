@@ -226,6 +226,9 @@
             <button class="btn btn-secondary" onclick="location.href='index.php'">
                 <i class="fas fa-arrow-left"></i> ダッシュボードに戻る
             </button>
+            <button class="btn btn-primary" onclick="previewSlide()">
+                <i class="fas fa-eye"></i> スライドをプレビュー
+            </button>
         </div>
 
         <div class="date-selector">
@@ -466,6 +469,33 @@
                 }
             } catch (error) {
                 alert('通信エラーが発生しました: ' + error);
+            }
+        }
+
+        // スライドプレビュー
+        function previewSlide() {
+            const weekDate = document.getElementById('weekDate').value;
+            if (!weekDate) {
+                alert('対象週を選択してください');
+                return;
+            }
+
+            // チャンピオンスライドは5種類あるため選択させる
+            const types = [
+                { name: 'リファーラルチャンピオン', file: 'referral_champion.php?type=referral' },
+                { name: 'バリューチャンピオン', file: 'referral_champion.php?type=value' },
+                { name: 'ビジターチャンピオン', file: 'referral_champion.php?type=visitor' },
+                { name: '1to1チャンピオン', file: 'referral_champion.php?type=1to1' },
+                { name: 'CEUチャンピオン', file: 'referral_champion.php?type=ceu' }
+            ];
+
+            const message = types.map((t, i) => `${i + 1}. ${t.name}`).join('\n');
+            const choice = prompt(`プレビューするスライドを選択してください (1-5):\n\n${message}`);
+
+            if (choice && choice >= 1 && choice <= 5) {
+                const selected = types[choice - 1];
+                const slideUrl = `../slides/${selected.file}&date=${encodeURIComponent(weekDate)}`;
+                window.open(slideUrl, '_blank', 'width=1920,height=1080');
             }
         }
     </script>
