@@ -51,17 +51,17 @@ switch ($action) {
         ];
 
         foreach ($rows as $row) {
-            if ($row['category'] === 'external_referral') {
+            if ($row['category'] === 'referral') {
                 $data['external_referral_member_id'] = $row['member_id'];
                 $data['external_referral_member_name'] = $row['member_name'];
                 $data['external_referral_company_name'] = $row['company_name'];
                 $data['external_referral_count'] = $row['count'];
-            } elseif ($row['category'] === 'visitor_invitation') {
+            } elseif ($row['category'] === 'visitor') {
                 $data['visitor_invitation_member_id'] = $row['member_id'];
                 $data['visitor_invitation_member_name'] = $row['member_name'];
                 $data['visitor_invitation_company_name'] = $row['company_name'];
                 $data['visitor_invitation_count'] = $row['count'];
-            } elseif ($row['category'] === 'one_to_one') {
+            } elseif ($row['category'] === '1to1') {
                 $data['one_to_one_member_id'] = $row['member_id'];
                 $data['one_to_one_member_name'] = $row['member_name'];
                 $data['one_to_one_company_name'] = $row['company_name'];
@@ -95,7 +95,7 @@ switch ($action) {
         // External Referral
         if ($externalReferralMemberId) {
             $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-            $stmt->bindValue(':category', 'external_referral', PDO::PARAM_STR);
+            $stmt->bindValue(':category', 'referral', PDO::PARAM_STR);
             $stmt->bindValue(':member_id', $externalReferralMemberId, PDO::PARAM_INT);
             $stmt->bindValue(':count', $externalReferralCount, PDO::PARAM_INT);
             $stmt->execute();
@@ -104,7 +104,7 @@ switch ($action) {
         // Visitor Invitation
         if ($visitorInvitationMemberId) {
             $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-            $stmt->bindValue(':category', 'visitor_invitation', PDO::PARAM_STR);
+            $stmt->bindValue(':category', 'visitor', PDO::PARAM_STR);
             $stmt->bindValue(':member_id', $visitorInvitationMemberId, PDO::PARAM_INT);
             $stmt->bindValue(':count', $visitorInvitationCount, PDO::PARAM_INT);
             $stmt->execute();
@@ -113,7 +113,7 @@ switch ($action) {
         // One-to-One
         if ($oneToOneMemberId) {
             $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-            $stmt->bindValue(':category', 'one_to_one', PDO::PARAM_STR);
+            $stmt->bindValue(':category', '1to1', PDO::PARAM_STR);
             $stmt->bindValue(':member_id', $oneToOneMemberId, PDO::PARAM_INT);
             $stmt->bindValue(':count', $oneToOneCount, PDO::PARAM_INT);
             $stmt->execute();
