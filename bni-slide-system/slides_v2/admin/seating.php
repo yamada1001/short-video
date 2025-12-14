@@ -338,8 +338,15 @@
 </head>
 <body>
     <div class="header">
-        <h1><i class="fas fa-chair"></i> 座席管理</h1>
-        <div class="subtitle">BNI Slide System V2 - Seating Arrangement</div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h1><i class="fas fa-chair"></i> 座席管理</h1>
+                <div class="subtitle">BNI Slide System V2 - Seating Arrangement</div>
+            </div>
+            <a href="index.php" style="background: rgba(255,255,255,0.2); color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.3);" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                <i class="fas fa-home"></i> 管理画面トップへ
+            </a>
+        </div>
     </div>
 
     <div class="container">
@@ -439,14 +446,21 @@
             try {
                 const response = await fetch(`${API_BASE}?action=get_latest`);
                 const data = await response.json();
+                console.log('読み込みレスポンス:', data);
 
                 if (data.success) {
                     currentSeating = data.seating;
+                    console.log('currentSeating設定完了:', currentSeating);
                     renderTables();
                     updateStats();
+                } else {
+                    console.warn('座席データ取得失敗');
+                    currentSeating = {};
+                    renderTables();
                 }
             } catch (error) {
                 console.error('座席配置読み込みエラー:', error);
+                currentSeating = {};
                 renderTables(); // 空のテーブルを表示
             }
         }
@@ -619,6 +633,8 @@
                 });
             });
 
+            console.log('保存データ:', seatingData);
+
             try {
                 const response = await fetch(API_BASE, {
                     method: 'POST',
@@ -630,10 +646,12 @@
                 });
 
                 const data = await response.json();
+                console.log('保存レスポンス:', data);
 
                 if (data.success) {
                     alert('座席配置を保存しました');
-                    loadSeating(); // 再読み込み
+                    // 保存成功後、データを再読み込み
+                    await loadSeating();
                 } else {
                     alert('エラー: ' + (data.error || '不明なエラー'));
                 }
