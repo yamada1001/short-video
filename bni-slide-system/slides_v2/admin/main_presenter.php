@@ -786,8 +786,9 @@
                 return;
             }
 
-            alert('スライド生成機能は次のフェーズで実装予定です');
-            // TODO: スライド生成処理を実装
+            // スライドを新しいウィンドウで開く
+            const slideUrl = `../slides/main_presenter.php?date=${encodeURIComponent(selectedDate)}`;
+            window.open(slideUrl, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>
