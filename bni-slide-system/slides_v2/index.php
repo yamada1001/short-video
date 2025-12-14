@@ -100,8 +100,17 @@ if ($mainPresenterPdfPages > 0) {
     }
 }
 
-// 総スライド数
+// 総スライド数（PDFページ数を考慮）
+// 基本: 309ページ
+// PDFが追加される場合: p.205~p.212 の8ページ分が置き換えられ、それ以降が追加される
+// 例: PDF5枚の場合、p.205~p.209 (5ページ) が使用される
 $totalSlides = 309;
+if ($mainPresenterPdfPages > 0) {
+    // PDFページ数が8ページ以下の場合: 総数は変わらない（既存のp.205-212の範囲内）
+    // PDFページ数が8ページより多い場合: 超過分を追加
+    $pdfExtraPages = max(0, $mainPresenterPdfPages - 8);
+    $totalSlides += $pdfExtraPages;
+}
 
 // スライドの表示/非表示設定を取得
 $visibilityMap = [];
