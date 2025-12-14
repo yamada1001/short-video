@@ -23,10 +23,35 @@ if (!$targetDate) {
     }
 }
 
+// メインプレゼンのPDF枚数を取得
+$mainPresenterPdfPages = 0;
+try {
+    $db_path = __DIR__ . '/data/bni_slide_system.db';
+    $db = new PDO('sqlite:' . $db_path);
+    $stmt = $db->query("SELECT pdf_path FROM main_presenter ORDER BY created_at DESC LIMIT 1");
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row && $row['pdf_path']) {
+        $pdfPath = __DIR__ . '/' . $row['pdf_path'];
+        if (is_dir($pdfPath)) {
+            $imageDir = $pdfPath;
+        } else {
+            $imageDir = dirname($pdfPath) . '/images_' . basename($pdfPath, '.pdf');
+        }
+
+        if (is_dir($imageDir)) {
+            $pdfImages = glob($imageDir . '/page-*.png');
+            $mainPresenterPdfPages = count($pdfImages);
+        }
+    }
+} catch (Exception $e) {
+    error_log("PDF page count error: " . $e->getMessage());
+}
+
 // PHPスライドのマッピング（ページ番号 => スライドファイル）
 $phpSlides = [
     7 => 'seating.php',
-    8 => 'main_presenter.php?page=8',
+    8 => 'main_presenter.php',
     9 => 'speaker_rotation.php?page=9',
     10 => 'speaker_rotation.php?page=10',
     11 => 'speaker_rotation.php?page=11',
@@ -54,7 +79,7 @@ $phpSlides = [
     201 => 'speaker_rotation.php?page=201',
     202 => 'speaker_rotation.php?page=202',
     203 => 'speaker_rotation.php?page=203',
-    204 => 'main_presenter.php?page=204',
+    204 => 'main_presenter_204.php',
     213 => 'visitor_feedback.php',
     227 => 'referral_verification.php',
     235 => 'visitor_thanks.php',
@@ -66,6 +91,14 @@ $phpSlides = [
     301 => 'speaker_rotation.php?page=301',
     302 => 'weekly_stats.php'
 ];
+
+// メインプレゼンのPDFページを動的に追加（p.205~）
+if ($mainPresenterPdfPages > 0) {
+    for ($i = 0; $i < $mainPresenterPdfPages; $i++) {
+        $pageNum = 205 + $i;
+        $phpSlides[$pageNum] = "main_presenter_extended.php?page=$pageNum";
+    }
+}
 
 // 総スライド数
 $totalSlides = 309;
