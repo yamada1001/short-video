@@ -588,6 +588,16 @@
                         selectType('simple');
                     }
 
+                    // PDF情報表示とプレビュー
+                    if (currentData.pdf_path) {
+                        const pdfInfo = document.getElementById('pdfFileInfo');
+                        pdfInfo.innerHTML = `<i class="fas fa-check-circle" style="color: #28a745;"></i> PDFデータ保存済み（${currentData.pdf_path}）`;
+                        pdfInfo.style.display = 'block';
+
+                        // PDF画像プレビューを読み込み
+                        loadPdfPreviewFromServer(currentData.pdf_path);
+                    }
+
                     // YouTube URL設定
                     if (currentData.youtube_url) {
                         document.getElementById('youtubeUrl').value = currentData.youtube_url;
@@ -676,7 +686,7 @@
             `;
         }
 
-        // PDFプレビュー更新
+        // PDFプレビュー更新（新規アップロード時）
         function updatePdfPreview() {
             if (convertedImages.length === 0) return;
 
@@ -695,6 +705,44 @@
 
             html += '</div>';
             slideContent.innerHTML = html;
+        }
+
+        // サーバーに保存されたPDF画像をプレビュー表示
+        async function loadPdfPreviewFromServer(pdfPath) {
+            try {
+                // pdf_pathがディレクトリの場合、そこから画像を取得
+                const response = await fetch(`../${pdfPath}/`);
+                const text = await response.text();
+
+                // HTMLから画像ファイル名を抽出（簡易的な方法）
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const links = Array.from(doc.querySelectorAll('a'));
+                const imageFiles = links
+                    .map(a => a.getAttribute('href'))
+                    .filter(href => href && href.endsWith('.png'))
+                    .sort();
+
+                if (imageFiles.length > 0) {
+                    const slideContent = document.getElementById('slideContent');
+                    let html = '<div style="max-height: 600px; overflow-y: auto;">';
+
+                    imageFiles.forEach((filename, index) => {
+                        const imagePath = `../${pdfPath}/${filename}`;
+                        html += `
+                            <div style="margin-bottom: 20px; text-align: center;">
+                                <div style="font-size: 12px; color: #666; margin-bottom: 5px;">ページ ${index + 1}/${imageFiles.length}</div>
+                                <img src="${imagePath}" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;" alt="PDF Page ${index + 1}">
+                            </div>
+                        `;
+                    });
+
+                    html += '</div>';
+                    slideContent.innerHTML = html;
+                }
+            } catch (error) {
+                console.error('PDF画像プレビュー読み込みエラー:', error);
+            }
         }
 
         // プレビューリセット
