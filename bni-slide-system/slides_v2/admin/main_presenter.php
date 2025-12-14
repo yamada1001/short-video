@@ -9,6 +9,13 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        // PDF.js worker設定
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -701,17 +708,84 @@
         }
 
         // PDFファイル変更時
-        function handlePdfChange(e) {
+        async function handlePdfChange(e) {
             const file = e.target.files[0];
             const info = document.getElementById('pdfFileInfo');
 
             if (file) {
                 const sizeMB = (file.size / 1024 / 1024).toFixed(2);
-                info.innerHTML = `<i class="fas fa-check-circle" style="color: #28a745;"></i> ${file.name} (${sizeMB} MB)`;
+                info.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${file.name} (${sizeMB} MB) - 画像変換中...`;
                 info.style.display = 'block';
+
+                // PDF→画像変換を実行
+                try {
+                    await convertPdfToImages(file);
+                    info.innerHTML = `<i class="fas fa-check-circle" style="color: #28a745;"></i> ${file.name} (${sizeMB} MB) - 変換完了`;
+                } catch (error) {
+                    console.error('PDF変換エラー:', error);
+                    info.innerHTML = `<i class="fas fa-exclamation-circle" style="color: #dc3545;"></i> ${file.name} - 変換失敗`;
+                }
             } else {
                 info.style.display = 'none';
             }
+        }
+
+        // PDF→画像変換（グローバル変数に保存）
+        let convertedImages = [];
+
+        async function convertPdfToImages(file) {
+            convertedImages = []; // リセット
+
+            const fileReader = new FileReader();
+
+            return new Promise((resolve, reject) => {
+                fileReader.onload = async function() {
+                    const pdfData = new Uint8Array(this.result);
+
+                    try {
+                        const pdf = await pdfjsLib.getDocument(pdfData).promise;
+                        const numPages = pdf.numPages;
+
+                        console.log(`PDF変換開始: ${numPages}ページ`);
+
+                        for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+                            const page = await pdf.getPage(pageNum);
+                            const viewport = page.getViewport({ scale: 2.0 });
+
+                            const canvas = document.createElement('canvas');
+                            const context = canvas.getContext('2d');
+                            canvas.width = viewport.width;
+                            canvas.height = viewport.height;
+
+                            await page.render({
+                                canvasContext: context,
+                                viewport: viewport
+                            }).promise;
+
+                            // Canvasを画像（Blob）に変換
+                            const blob = await new Promise(resolve => {
+                                canvas.toBlob(resolve, 'image/png');
+                            });
+
+                            convertedImages.push({
+                                pageNum: pageNum,
+                                blob: blob,
+                                filename: `page-${String(pageNum).padStart(3, '0')}.png`
+                            });
+
+                            console.log(`ページ ${pageNum}/${numPages} 変換完了`);
+                        }
+
+                        console.log('PDF変換完了:', convertedImages.length, 'ページ');
+                        resolve(convertedImages);
+                    } catch (error) {
+                        reject(error);
+                    }
+                };
+
+                fileReader.onerror = reject;
+                fileReader.readAsArrayBuffer(file);
+            });
         }
 
         // YouTube URL変更時
@@ -767,9 +841,12 @@
 
             // 拡張版の場合
             if (presentationType === 'extended') {
-                const pdfFile = document.getElementById('pdfFile').files[0];
-                if (pdfFile) {
-                    formData.append('pdf_file', pdfFile);
+                // PDF画像をアップロード（変換済みの場合）
+                if (convertedImages.length > 0) {
+                    console.log(`変換済み画像をアップロード: ${convertedImages.length}枚`);
+                    convertedImages.forEach((img, index) => {
+                        formData.append(`pdf_images[]`, img.blob, img.filename);
+                    });
                 }
 
                 const youtubeUrl = document.getElementById('youtubeUrl').value.trim();
@@ -787,6 +864,8 @@
 
                 if (data.success) {
                     alert(isEditMode ? '更新しました' : '保存しました');
+                    // 変換画像をリセット
+                    convertedImages = [];
                     // 編集モードを維持したまま、データを再ロード
                     loadExistingData();
                 } else {

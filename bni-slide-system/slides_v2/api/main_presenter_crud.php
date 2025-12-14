@@ -118,26 +118,36 @@ switch ($action) {
             exit;
         }
 
-        // PDFアップロード処理
+        // PDF画像アップロード処理（ブラウザ側で変換済み）
         $pdfPath = null;
-        $convertResult = null;
+        $imageCount = 0;
 
-        if (isset($_FILES['pdf_file']) && $_FILES['pdf_file']['error'] === UPLOAD_ERR_OK) {
-            $filename = 'presentation_' . date('Ymd_His') . '.pdf';
-            $uploadPath = $uploadsDir . $filename;
+        if (isset($_FILES['pdf_images']) && is_array($_FILES['pdf_images']['tmp_name'])) {
+            // 画像保存用ディレクトリ作成
+            $timestamp = date('Ymd_His');
+            $imagesDirName = 'images_' . $timestamp;
+            $imagesDir = $uploadsDir . $imagesDirName;
 
-            if (move_uploaded_file($_FILES['pdf_file']['tmp_name'], $uploadPath)) {
-                $pdfPath = 'data/uploads/presentations/' . $filename;
+            if (!is_dir($imagesDir)) {
+                mkdir($imagesDir, 0755, true);
+            }
 
-                // PDF→画像変換を実行
-                $convertResult = convertPdfToImages($uploadPath, $weekDate);
-                if (!$convertResult['success']) {
-                    // 変換失敗してもPDFは保存（後で手動変換可能にする）
-                    error_log('PDF変換エラー: ' . $convertResult['error']);
+            // 各画像を保存
+            foreach ($_FILES['pdf_images']['tmp_name'] as $index => $tmpName) {
+                if ($_FILES['pdf_images']['error'][$index] === UPLOAD_ERR_OK) {
+                    $originalName = $_FILES['pdf_images']['name'][$index];
+                    $savePath = $imagesDir . '/' . $originalName;
+
+                    if (move_uploaded_file($tmpName, $savePath)) {
+                        $imageCount++;
+                    } else {
+                        error_log("画像保存エラー: $originalName");
+                    }
                 }
-            } else {
-                echo json_encode(['success' => false, 'error' => 'PDFファイルのアップロードに失敗しました']);
-                exit;
+            }
+
+            if ($imageCount > 0) {
+                $pdfPath = 'data/uploads/presentations/' . $imagesDirName;
             }
         }
 
@@ -162,7 +172,7 @@ switch ($action) {
             echo json_encode([
                 'success' => true,
                 'id' => $db->lastInsertId(),
-                'pdf_converted' => $convertResult ? $convertResult['success'] : false
+                'image_count' => $imageCount
             ]);
         } catch (Exception $e) {
             echo json_encode([
@@ -195,17 +205,36 @@ switch ($action) {
 
         $id = $existing['id'];
 
-        // PDFアップロード処理
+        // PDF画像アップロード処理（ブラウザ側で変換済み）
         $pdfPath = null;
-        if (isset($_FILES['pdf_file']) && $_FILES['pdf_file']['error'] === UPLOAD_ERR_OK) {
-            $filename = 'presentation_' . date('Ymd_His') . '.pdf';
-            $uploadPath = $uploadsDir . $filename;
+        $imageCount = 0;
 
-            if (move_uploaded_file($_FILES['pdf_file']['tmp_name'], $uploadPath)) {
-                $pdfPath = '../data/uploads/presentations/' . $filename;
+        if (isset($_FILES['pdf_images']) && is_array($_FILES['pdf_images']['tmp_name'])) {
+            // 画像保存用ディレクトリ作成
+            $timestamp = date('Ymd_His');
+            $imagesDirName = 'images_' . $timestamp;
+            $imagesDir = $uploadsDir . $imagesDirName;
 
-                // PDF→画像変換を実行
-                $convertResult = convertPdfToImages($uploadPath, $weekDate);
+            if (!is_dir($imagesDir)) {
+                mkdir($imagesDir, 0755, true);
+            }
+
+            // 各画像を保存
+            foreach ($_FILES['pdf_images']['tmp_name'] as $index => $tmpName) {
+                if ($_FILES['pdf_images']['error'][$index] === UPLOAD_ERR_OK) {
+                    $originalName = $_FILES['pdf_images']['name'][$index];
+                    $savePath = $imagesDir . '/' . $originalName;
+
+                    if (move_uploaded_file($tmpName, $savePath)) {
+                        $imageCount++;
+                    } else {
+                        error_log("画像保存エラー: $originalName");
+                    }
+                }
+            }
+
+            if ($imageCount > 0) {
+                $pdfPath = 'data/uploads/presentations/' . $imagesDirName;
             }
         }
 

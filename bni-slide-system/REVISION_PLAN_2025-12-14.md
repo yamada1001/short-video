@@ -2234,35 +2234,85 @@ VALUES (:table_name, :member_id, :position, :week_date)
 - week_date パラメータ削除
 - シンプル化: 管理画面→保存 / スライド→最新表示
 
-#### 2. main_presenter.php 拡張版対応
-**実装**: PDF を iframe で表示
+#### 2. main_presenter.php 拡張版対応（ImageMagick実装）
+**実装**: PDF→画像変換 → 画像表示
 
+**変更前（iframe表示）**:
 ```php
 <?php if ($presentation['presentation_type'] === 'extended' && !empty($presentation['pdf_path'])): ?>
-    <!-- 拡張版: PDF表示 -->
-    <iframe src="<?= htmlspecialchars($presentation['pdf_path']) ?>"
-            style="width: 100%; height: 100vh; border: none;"></iframe>
-<?php else: ?>
-    <!-- シンプル版: メンバー情報表示 -->
+    <iframe src="<?= htmlspecialchars($presentation['pdf_path']) ?>"></iframe>
 <?php endif; ?>
 ```
 
-#### 3. 課題: PDF画像変換が未実装
-**現状**:
-- PyMuPDF が本番サーバーに未インストール
-- PDF→画像変換が実行されていない
+**変更後（画像表示）**:
+```php
+<?php if ($presentation['presentation_type'] === 'extended' && !empty($presentation['pdf_images'])): ?>
+    <?php foreach ($presentation['pdf_images'] as $index => $imagePath): ?>
+        <div class="pdf-page" style="width: 100%; height: 100vh;">
+            <img src="<?= htmlspecialchars($imagePath) ?>"
+                 style="max-width: 100%; max-height: 100vh; object-fit: contain;">
+        </div>
+    <?php endforeach; ?>
+<?php endif; ?>
+```
 
-**今後の対応**:
-- PyMuPDFインストール OR
-- Puppeteerを使ったPDF→画像変換 OR
-- PDF直接表示（iframe）で対応
+#### 3. PDF→画像変換機能実装（ImageMagick）
+**ファイル**: `api/main_presenter_crud.php`
+
+**変更内容**:
+- PyMuPDF → ImageMagick に変更（Xserver対応）
+- `convertPdfToImages()` 関数を書き換え
+
+```php
+function convertPdfToImages($pdfPath, $weekDate) {
+    $outputDir = dirname($pdfPath) . '/images_' . basename($pdfPath, '.pdf');
+
+    if (!is_dir($outputDir)) {
+        mkdir($outputDir, 0755, true);
+    }
+
+    $outputPattern = $outputDir . '/page-%03d.png';
+
+    $command = sprintf(
+        'convert -density 150 -quality 85 %s %s 2>&1',
+        escapeshellarg($pdfPath),
+        escapeshellarg($outputPattern)
+    );
+
+    exec($command, $output, $returnCode);
+
+    if ($returnCode === 0) {
+        $images = glob($outputDir . '/page-*.png');
+        return [
+            'success' => true,
+            'output_dir' => $outputDir,
+            'image_count' => count($images),
+            'images' => $images
+        ];
+    } else {
+        return [
+            'success' => false,
+            'error' => implode("\n", $output),
+            'command' => $command
+        ];
+    }
+}
+```
+
+#### 4. サーバー環境確認スクリプト追加
+**ファイル**: `test_imagemagick.php`
+- ImageMagick（convert コマンド）確認
+- Ghostscript（gs コマンド）確認
+- PDF→画像変換可否判定
 
 ### コミット履歴
 - f43d340: generateSlideImage から week_date 削除
 - 882f22c: 拡張版PDF iframe表示機能追加
 - 348a11a: PyMuPDFインストールスクリプト追加
+- 2fb8bda: week_date削除 + シンプル化完了
+- d44eb96: PDF画像表示 + ImageMagick対応完了
 
 ---
 
-**最終更新**: 2025-12-14 23:05
-**ステータス**: ⏳ **PDF画像変換機能実装中**
+**最終更新**: 2025-12-14 23:30
+**ステータス**: ✅ **PDF画像変換機能実装完了（ImageMagick使用）**
