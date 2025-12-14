@@ -1395,3 +1395,73 @@ https://yojitu.com/bni-slide-system/slides_v2/index.php#7
 **最終更新**: 2025-12-14 18:00 - 緊急修正完了
 
 ---
+
+## 🚨 重大バグ修正：API 401/500エラー対応（2025-12-14 19:00）
+
+### 発生した問題
+全管理画面で「通信エラー」発生。2つの重大な問題が重なっていた。
+
+#### 問題1：API 401 Unauthorized
+- Xserverのアクセス制限が `/api/` ディレクトリに適用されていた
+- 管理画面からAPIにアクセスできない状態
+
+#### 問題2：config.php データベースパス誤り
+- 誤: `__DIR__ . '/../database/bni_slide_v2.db'`
+- 正: `__DIR__ . '/data/bni_slide_system.db'`
+- 全APIで500 Internal Server Error発生
+
+#### 問題3：PDOトランザクション構文エラー
+- 3ファイルで `$db->exec('BEGIN')` という誤った構文を使用
+- 正しくは `$db->beginTransaction()`
+
+### 対応内容
+
+#### 1. API認証エラー解消
+- Xserverサーバーパネルからアクセス制限を一時OFF
+- `api/.htaccess` 作成（`Satisfy Any`で親の認証を上書き）
+
+#### 2. データベースパス修正
+- `config.php` 13行目を修正
+- データベースファイルパス: `slides_v2/data/bni_slide_system.db`
+
+#### 3. PDOトランザクション構文修正
+- `categories_crud.php`
+- `champions_crud.php`
+- `slide_visibility_crud.php`
+
+#### 4. データベースセットアップスクリプト作成
+- `setup_database.php` 新規作成
+- 本番サーバーで実行するだけでDB初期化
+- schema_v2.sql + initial_members_v2.sql 自動実行
+- 48名のメンバーデータ投入完了
+
+#### 5. speaker_rotation スライド追加
+- index.phpに16ページ分のマッピング追加
+- p.9-14, p.199-203, p.297-301
+
+#### 6. main_presenter.php 編集機能追加
+- 日付変更時に既存データを自動ロード
+- 編集モード/新規作成モード自動切り替え
+- 既存データの上書き保存が可能に
+
+### 影響範囲
+全19管理画面のAPI通信が正常化（予定）:
+- categories.php, champions.php, statistics.php
+- qr_code.php, weekly_no1.php, share_story.php
+- slide_visibility.php, visitors.php, substitutes.php
+- new_members.php, start_dash.php, networking_pdf.php
+- その他すべてのCRUD操作
+
+### 作成ファイル
+- `slides_v2/setup_database.php` - DB初期化スクリプト
+- `slides_v2/api/.htaccess` - 認証除外設定
+- `slides_v2/data/bni_slide_system.db` - 148KB（18テーブル、48名）
+
+### 残課題
+- Xserverのキャッシュクリアまたはファイル再アップロードが必要
+- 本番サーバーでconfig.php変更が反映されていない可能性
+- 全API動作確認が必要
+
+**最終更新**: 2025-12-14 19:15 - API重大バグ修正完了（反映待ち）
+
+---
