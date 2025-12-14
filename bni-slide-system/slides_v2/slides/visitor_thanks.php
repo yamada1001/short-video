@@ -4,7 +4,8 @@
  * ビジターへの感謝スライド（全員をテーブル表示）
  */
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
+require_once __DIR__ . '/../config.php';
+
 $date = $_GET['date'] ?? null;
 
 if (!$date) {
@@ -12,7 +13,7 @@ if (!$date) {
 }
 
 try {
-    $db = new SQLite3($dbPath);
+    $db = new PDO('sqlite:' . $db_path);
 
     // ビジター情報取得
     $stmt = $db->prepare("
@@ -24,16 +25,15 @@ try {
         WHERE v.week_date = :week_date
         ORDER BY v.visitor_no ASC
     ");
-    $stmt->bindValue(':week_date', $date, SQLITE3_TEXT);
-    $result = $stmt->execute();
+    $stmt->bindValue(':week_date', $date, PDO::PARAM_STR);
+    $stmt->execute();
 
     $visitors = [];
-    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $visitors[] = $row;
     }
 
-    $db->close();
-} catch (Exception $e) {
+    } catch (Exception $e) {
     die('データベースエラー: ' . $e->getMessage());
 }
 

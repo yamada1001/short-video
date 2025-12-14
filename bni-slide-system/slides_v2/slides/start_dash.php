@@ -4,13 +4,15 @@
  * スタートダッシュプレゼンスライド表示
  */
 
+require_once __DIR__ . '/../config.php';
+
 // パラメータ取得
 $weekDate = $_GET['date'] ?? date('Y-m-d');
 $pageNumber = $_GET['page'] ?? 15;
 
 // データベース接続
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-$db = new SQLite3($dbPath);
+
+$db = new PDO('sqlite:' . $db_path);
 
 // プレゼンデータ取得
 $stmt = $db->prepare("
@@ -23,10 +25,10 @@ $stmt = $db->prepare("
     LEFT JOIN members m ON sd.member_id = m.id
     WHERE sd.week_date = :week_date AND sd.page_number = :page_number
 ");
-$stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-$stmt->bindValue(':page_number', $pageNumber, SQLITE3_INTEGER);
-$result = $stmt->execute();
-$presenter = $result->fetchArray(SQLITE3_ASSOC);
+$stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+$stmt->bindValue(':page_number', $pageNumber, PDO::PARAM_INT);
+$stmt->execute();
+$presenter = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$presenter) {
     // データがない場合
@@ -40,7 +42,6 @@ if (!$presenter) {
     $hasData = true;
 }
 
-$db->close();
 ?>
 <!DOCTYPE html>
 <html lang="ja">

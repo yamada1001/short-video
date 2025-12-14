@@ -1,0 +1,1856 @@
+[
+  {
+    "page": 1,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 2,
+    "type": "team_leader_check",
+    "name": "チームリーダー確認",
+    "description": "各チームリーダーは「出欠」と「遅刻」の確認を２０秒で"
+  },
+  {
+    "page": 3,
+    "type": "morning_meeting",
+    "name": "朝礼",
+    "description": "宗麟チャプター"
+  },
+  {
+    "page": 4,
+    "type": "membership_committee_opening",
+    "name": "メンバーシップ委員会（開会）",
+    "description": "メンバーシップ委員会"
+  },
+  {
+    "page": 5,
+    "type": "visitor_host_intro",
+    "name": "ビジホから",
+    "description": "ビジホから"
+  },
+  {
+    "page": 6,
+    "type": "other",
+    "name": "その他",
+    "description": "スクリーン"
+  },
+  {
+    "page": 7,
+    "type": "other",
+    "name": "その他",
+    "description": "スクリーン"
+  },
+  {
+    "page": 8,
+    "type": "main_presentation_announcement",
+    "name": "メインプレゼン告知",
+    "description": "ラジコン草刈り代行"
+  },
+  {
+    "page": 9,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 10,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 11,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 12,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 13,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 14,
+    "type": "positive_words",
+    "name": "今日のポジティブな言葉",
+    "description": "びわ温熱療法"
+  },
+  {
+    "page": 15,
+    "type": "education_presentation_2min",
+    "name": "教育プレゼン（2分）",
+    "description": "今週は　佐藤 純也さん　２分間"
+  },
+  {
+    "page": 16,
+    "type": "vice_president_report",
+    "name": "バイスプレジデント（確認と報告）",
+    "description": "バイスプレジデントより"
+  },
+  {
+    "page": 17,
+    "type": "weekly_listener",
+    "name": "ウィークリーの聞き手",
+    "description": "ウィークリーの聞き手は"
+  },
+  {
+    "page": 18,
+    "type": "referral_authenticity_check",
+    "name": "リファーラル真正度確認",
+    "description": "リファーラル真正度の確認"
+  },
+  {
+    "page": 19,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 20,
+    "type": "referral_recommendation_announcement",
+    "name": "リファーラルと推薦発表",
+    "description": "リファーラルと推薦発表"
+  },
+  {
+    "page": 21,
+    "type": "business_breakout",
+    "name": "ビジネスブレイクアウト",
+    "description": "ビジネスブレイクアウト"
+  },
+  {
+    "page": 22,
+    "type": "proxy_attendance",
+    "name": "代理出席",
+    "description": "岩下　正史さん"
+  },
+  {
+    "page": 23,
+    "type": "proxy_attendance",
+    "name": "代理出席",
+    "description": "河野　理枝さん"
+  },
+  {
+    "page": 24,
+    "type": "proxy_attendance",
+    "name": "代理出席",
+    "description": "高橋　昂大さん"
+  },
+  {
+    "page": 25,
+    "type": "new_member_section",
+    "name": "新入会メンバー",
+    "description": ""
+  },
+  {
+    "page": 26,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 木津 裕充",
+    "description": "木津 裕充"
+  },
+  {
+    "page": 27,
+    "type": "new_member_section",
+    "name": "新入会メンバー",
+    "description": ""
+  },
+  {
+    "page": 28,
+    "type": "palms_report",
+    "name": "PALMSレポート",
+    "description": "12月5日のPALMSレポートより"
+  },
+  {
+    "page": 29,
+    "type": "referral_champion",
+    "name": "リファーラルチャンピオン",
+    "description": "月間チャンピオン"
+  },
+  {
+    "page": 30,
+    "type": "monthly_champion",
+    "name": "月間チャンピオン",
+    "description": "ビジターチャンピオン"
+  },
+  {
+    "page": 31,
+    "type": "happy_birthday",
+    "name": "ハッピーバースデー",
+    "description": "🎉"
+  },
+  {
+    "page": 32,
+    "type": "other",
+    "name": "その他",
+    "description": "永峯さん、山村さん　山本に誕生日教えてね⭐"
+  },
+  {
+    "page": 33,
+    "type": "visitor_record",
+    "name": "ビジター記録",
+    "description": "本日過去最多ビジター数　12名‼"
+  },
+  {
+    "page": 34,
+    "type": "secretary_report",
+    "name": "書記兼会計報告",
+    "description": "書記兼会計より"
+  },
+  {
+    "page": 35,
+    "type": "director_report",
+    "name": "ディレクター報告",
+    "description": "ディレクターより"
+  },
+  {
+    "page": 36,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 37,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 38,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟"
+  },
+  {
+    "page": 39,
+    "type": "manner_mode",
+    "name": "マナーモード",
+    "description": "マナーモードで"
+  },
+  {
+    "page": 40,
+    "type": "other",
+    "name": "その他",
+    "description": "chapter"
+  },
+  {
+    "page": 41,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 花田 亜弥",
+    "description": "花田 亜弥"
+  },
+  {
+    "page": 42,
+    "type": "vice_president_intro",
+    "name": "バイスプレジデント紹介",
+    "description": "バイス・プレジデント"
+  },
+  {
+    "page": 43,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": ""
+  },
+  {
+    "page": 44,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": ""
+  },
+  {
+    "page": 45,
+    "type": "secretary_intro",
+    "name": "書記兼会計紹介",
+    "description": ""
+  },
+  {
+    "page": 46,
+    "type": "education_committee",
+    "name": "エデュケーション委員会",
+    "description": ""
+  },
+  {
+    "page": 47,
+    "type": "visitor_host_committee",
+    "name": "ビジターホスト委員会",
+    "description": ""
+  },
+  {
+    "page": 48,
+    "type": "visitor_host_committee",
+    "name": "ビジターホスト委員会",
+    "description": ""
+  },
+  {
+    "page": 49,
+    "type": "visitor_host_committee",
+    "name": "ビジターホスト委員会",
+    "description": ""
+  },
+  {
+    "page": 50,
+    "type": "visitor_host_committee",
+    "name": "ビジターホスト委員会",
+    "description": ""
+  },
+  {
+    "page": 51,
+    "type": "visitor_host_committee",
+    "name": "ビジターホスト委員会",
+    "description": ""
+  },
+  {
+    "page": 52,
+    "type": "training_committee",
+    "name": "トレーニング委員会",
+    "description": ""
+  },
+  {
+    "page": 53,
+    "type": "mentor_coordinator",
+    "name": "メンターコーディネーター",
+    "description": ""
+  },
+  {
+    "page": 54,
+    "type": "one_to_one_coordinator",
+    "name": "1to1コーディネーター",
+    "description": ""
+  },
+  {
+    "page": 55,
+    "type": "webmaster",
+    "name": "ウェブマスター",
+    "description": ""
+  },
+  {
+    "page": 56,
+    "type": "webmaster",
+    "name": "ウェブマスター",
+    "description": ""
+  },
+  {
+    "page": 57,
+    "type": "bcp_committee",
+    "name": "BCP委員会",
+    "description": ""
+  },
+  {
+    "page": 58,
+    "type": "expansion_committee",
+    "name": "拡大委員会",
+    "description": ""
+  },
+  {
+    "page": 59,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 60,
+    "type": "other",
+    "name": "その他",
+    "description": "BNIの"
+  },
+  {
+    "page": 61,
+    "type": "bni_core_values",
+    "name": "BNIコアバリュー",
+    "description": "BNIのコアバリュー（基本的価値観）"
+  },
+  {
+    "page": 62,
+    "type": "bni_core_values",
+    "name": "BNIコアバリュー",
+    "description": "BNIのコアバリュー（基本的価値観）"
+  },
+  {
+    "page": 63,
+    "type": "bni_core_values",
+    "name": "BNIコアバリュー",
+    "description": "感謝の気持ちを周りの人たちに伝えます。その人が"
+  },
+  {
+    "page": 64,
+    "type": "other",
+    "name": "その他",
+    "description": "BNIの"
+  },
+  {
+    "page": 65,
+    "type": "bni_purpose",
+    "name": "BNIの目的と概要",
+    "description": ""
+  },
+  {
+    "page": 66,
+    "type": "bni_purpose",
+    "name": "BNIの目的と概要",
+    "description": ""
+  },
+  {
+    "page": 67,
+    "type": "bni_overview",
+    "name": "BNIの概観",
+    "description": ""
+  },
+  {
+    "page": 68,
+    "type": "bni_overview",
+    "name": "BNIの概観",
+    "description": ""
+  },
+  {
+    "page": 69,
+    "type": "bni_overview",
+    "name": "BNIの概観",
+    "description": ""
+  },
+  {
+    "page": 70,
+    "type": "givers_gain",
+    "name": "Givers Gain",
+    "description": ""
+  },
+  {
+    "page": 71,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟"
+  },
+  {
+    "page": 72,
+    "type": "share_story",
+    "name": "シェアストーリー",
+    "description": ""
+  },
+  {
+    "page": 73,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟"
+  },
+  {
+    "page": 74,
+    "type": "other",
+    "name": "その他",
+    "description": "ネットワーキング"
+  },
+  {
+    "page": 75,
+    "type": "networking_learning",
+    "name": "ネットワーキング学習",
+    "description": "穴井 佑一"
+  },
+  {
+    "page": 76,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": ""
+  },
+  {
+    "page": 77,
+    "type": "one_to_one_coordinator",
+    "name": "1to1コーディネーター",
+    "description": ""
+  },
+  {
+    "page": 78,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": ""
+  },
+  {
+    "page": 79,
+    "type": "education_committee",
+    "name": "エデュケーション委員会",
+    "description": ""
+  },
+  {
+    "page": 80,
+    "type": "secretary_intro",
+    "name": "書記兼会計紹介",
+    "description": ""
+  },
+  {
+    "page": 81,
+    "type": "vice_president_intro",
+    "name": "バイスプレジデント紹介",
+    "description": "ネットワーキング学習コーナー"
+  },
+  {
+    "page": 82,
+    "type": "networking_learning",
+    "name": "ネットワーキング学習",
+    "description": "BNI大分リージョン宗麟チャプター"
+  },
+  {
+    "page": 83,
+    "type": "networking_learning",
+    "name": "ネットワーキング学習",
+    "description": "根上　真由美"
+  },
+  {
+    "page": 84,
+    "type": "visitor_host_committee",
+    "name": "ビジターホスト委員会",
+    "description": ""
+  },
+  {
+    "page": 85,
+    "type": "networking_learning",
+    "name": "ネットワーキング学習",
+    "description": "松崎 佑太"
+  },
+  {
+    "page": 86,
+    "type": "thank_you_slide",
+    "name": "ご清聴ありがとうございました",
+    "description": ""
+  },
+  {
+    "page": 87,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟"
+  },
+  {
+    "page": 88,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 89,
+    "type": "monthly_champion",
+    "name": "月間チャンピオン",
+    "description": "ビジターチャンピオン"
+  },
+  {
+    "page": 90,
+    "type": "referral_champion",
+    "name": "リファーラルチャンピオン",
+    "description": "月間チャンピオン"
+  },
+  {
+    "page": 91,
+    "type": "referral_champion",
+    "name": "リファーラルチャンピオン",
+    "description": "⽉間リファーラル件数29件 （歴代 3位タイ）"
+  },
+  {
+    "page": 92,
+    "type": "other",
+    "name": "その他",
+    "description": "高校野球BAR"
+  },
+  {
+    "page": 93,
+    "type": "other",
+    "name": "その他",
+    "description": "⾼齢者コンシェルジュ"
+  },
+  {
+    "page": 94,
+    "type": "one_to_one_coordinator",
+    "name": "1to1コーディネーター",
+    "description": ""
+  },
+  {
+    "page": 95,
+    "type": "other",
+    "name": "その他",
+    "description": "便利屋"
+  },
+  {
+    "page": 96,
+    "type": "referral_champion",
+    "name": "リファーラルチャンピオン",
+    "description": "各チャンピオン一覧"
+  },
+  {
+    "page": 97,
+    "type": "one_to_one_coordinator",
+    "name": "1to1コーディネーター",
+    "description": ""
+  },
+  {
+    "page": 98,
+    "type": "renewal_members",
+    "name": "更新メンバー",
+    "description": ""
+  },
+  {
+    "page": 99,
+    "type": "new_member_section",
+    "name": "新入会メンバー",
+    "description": ""
+  },
+  {
+    "page": 100,
+    "type": "new_member_section",
+    "name": "新入会メンバー",
+    "description": ""
+  },
+  {
+    "page": 101,
+    "type": "new_member_section",
+    "name": "新入会メンバー",
+    "description": ""
+  },
+  {
+    "page": 102,
+    "type": "new_member_section",
+    "name": "新入会メンバー",
+    "description": ""
+  },
+  {
+    "page": 103,
+    "type": "bni_member_promise",
+    "name": "BNIメンバーの誓い",
+    "description": ""
+  },
+  {
+    "page": 104,
+    "type": "new_member_message",
+    "name": "新メンバーより",
+    "description": ""
+  },
+  {
+    "page": 105,
+    "type": "other",
+    "name": "その他",
+    "description": "ウィークリー"
+  },
+  {
+    "page": 106,
+    "type": "other",
+    "name": "その他",
+    "description": "4分プレゼンテーション"
+  },
+  {
+    "page": 107,
+    "type": "education_presentation_2min",
+    "name": "教育プレゼン（2分）",
+    "description": "今週は　工藤 正和さん　２分間"
+  },
+  {
+    "page": 108,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 工藤 正和",
+    "description": "工藤 正和"
+  },
+  {
+    "page": 109,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 110,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 111,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジネス&"
+  },
+  {
+    "page": 112,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 鷲山 修一",
+    "description": "鷲山 修一"
+  },
+  {
+    "page": 113,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 吉田",
+    "description": "吉田"
+  },
+  {
+    "page": 114,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 藤田 亮",
+    "description": "藤田 亮"
+  },
+  {
+    "page": 115,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 今林 大",
+    "description": "今林 大"
+  },
+  {
+    "page": 116,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 仲嶋  豪",
+    "description": "仲嶋  豪"
+  },
+  {
+    "page": 117,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 安部 佳雄",
+    "description": "安部 佳雄"
+  },
+  {
+    "page": 118,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 佐藤 公重",
+    "description": "佐藤 公重"
+  },
+  {
+    "page": 119,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 佐藤 純也",
+    "description": "佐藤 純也"
+  },
+  {
+    "page": 120,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 木津 裕充",
+    "description": "木津 裕充"
+  },
+  {
+    "page": 121,
+    "type": "other",
+    "name": "その他",
+    "description": "専門分野"
+  },
+  {
+    "page": 122,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 山本 哲郎",
+    "description": "山本 哲郎"
+  },
+  {
+    "page": 123,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 加藤 博子",
+    "description": "加藤 博子"
+  },
+  {
+    "page": 124,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 南金山 真幸",
+    "description": "南金山 真幸"
+  },
+  {
+    "page": 125,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 花本 昭彦",
+    "description": "花本 昭彦"
+  },
+  {
+    "page": 126,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 野口 浩乃",
+    "description": "野口 浩乃"
+  },
+  {
+    "page": 127,
+    "type": "timer_slide",
+    "name": "タイマー",
+    "description": "建築＆不動\n産\n<<00:33>>\n佐々木 賢一\n(株)結笑住建 \n（ペット住宅建築）"
+  },
+  {
+    "page": 128,
+    "type": "other",
+    "name": "その他",
+    "description": "専門分野"
+  },
+  {
+    "page": 129,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 渡邉 貢造",
+    "description": "渡邉 貢造"
+  },
+  {
+    "page": 130,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 藤田 幸夫",
+    "description": "藤田 幸夫"
+  },
+  {
+    "page": 131,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 岩下 正史",
+    "description": "岩下 正史"
+  },
+  {
+    "page": 132,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 吉岡 彩耶加",
+    "description": "吉岡 彩耶加"
+  },
+  {
+    "page": 133,
+    "type": "other",
+    "name": "その他",
+    "description": "専門分野"
+  },
+  {
+    "page": 134,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 山下 哲",
+    "description": "山下 哲"
+  },
+  {
+    "page": 135,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 三浦 幸治",
+    "description": "三浦 幸治"
+  },
+  {
+    "page": 136,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 花田 亜弥",
+    "description": "花田 亜弥"
+  },
+  {
+    "page": 137,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 東野 哲太",
+    "description": "東野 哲太"
+  },
+  {
+    "page": 138,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 早野 大介",
+    "description": "早野 大介"
+  },
+  {
+    "page": 139,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 伊東 健太",
+    "description": "伊東 健太"
+  },
+  {
+    "page": 140,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 漆間 文代",
+    "description": "漆間 文代"
+  },
+  {
+    "page": 141,
+    "type": "other",
+    "name": "その他",
+    "description": "専門分野"
+  },
+  {
+    "page": 142,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 木村 伸嗣",
+    "description": "木村 伸嗣"
+  },
+  {
+    "page": 143,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 矢野　義隆",
+    "description": "矢野　義隆"
+  },
+  {
+    "page": 144,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 橋本 翔",
+    "description": "橋本 翔"
+  },
+  {
+    "page": 145,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 吉岡 恭介",
+    "description": "吉岡 恭介"
+  },
+  {
+    "page": 146,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 工藤 正和",
+    "description": "工藤 正和"
+  },
+  {
+    "page": 147,
+    "type": "timer_slide",
+    "name": "タイマー",
+    "description": "<<00:33>>\n生活サービス\n木原 寛\n一般社団法人まるっと終活大分支援協会\n（タウン情報誌）"
+  },
+  {
+    "page": 148,
+    "type": "other",
+    "name": "その他",
+    "description": "専門分野"
+  },
+  {
+    "page": 149,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 後藤 久美子",
+    "description": "後藤 久美子"
+  },
+  {
+    "page": 150,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 赤嶺 博美",
+    "description": "赤嶺 博美"
+  },
+  {
+    "page": 151,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 甲斐 貴光",
+    "description": "甲斐 貴光"
+  },
+  {
+    "page": 152,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 勝田　秀伸",
+    "description": "勝田　秀伸"
+  },
+  {
+    "page": 153,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 安田  由美",
+    "description": "安田  由美"
+  },
+  {
+    "page": 154,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 吉良 都広",
+    "description": "吉良 都広"
+  },
+  {
+    "page": 155,
+    "type": "other",
+    "name": "その他",
+    "description": "専門分野"
+  },
+  {
+    "page": 156,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 高野 和志",
+    "description": "高野 和志"
+  },
+  {
+    "page": 157,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 渡邉 美由紀",
+    "description": "渡邉 美由紀"
+  },
+  {
+    "page": 158,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 鷲山 佳子",
+    "description": "鷲山 佳子"
+  },
+  {
+    "page": 159,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 高橋 昂大",
+    "description": "高橋 昂大"
+  },
+  {
+    "page": 160,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 三浦 千尋",
+    "description": "三浦 千尋"
+  },
+  {
+    "page": 161,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 水口 亜裕美",
+    "description": "水口 亜裕美"
+  },
+  {
+    "page": 162,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 木村 駿介",
+    "description": "木村 駿介"
+  },
+  {
+    "page": 163,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 河野 里保",
+    "description": "河野 里保"
+  },
+  {
+    "page": 164,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 河野 理枝",
+    "description": "河野 理枝"
+  },
+  {
+    "page": 165,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 永峯 和矢",
+    "description": "永峯 和矢"
+  },
+  {
+    "page": 166,
+    "type": "member_pitch_slide",
+    "name": "メンバープレゼン: 山村 太介",
+    "description": "山村 太介"
+  },
+  {
+    "page": 167,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟"
+  },
+  {
+    "page": 168,
+    "type": "bell_notice",
+    "name": "ベル通知",
+    "description": "ベルがなったら次の方へ🛎"
+  },
+  {
+    "page": 169,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 170,
+    "type": "bell_notice",
+    "name": "ベル通知",
+    "description": "ベルがなったら次の方へ🛎"
+  },
+  {
+    "page": 171,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 172,
+    "type": "bell_notice",
+    "name": "ベル通知",
+    "description": "ベルがなったら次の方へ🛎"
+  },
+  {
+    "page": 173,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 174,
+    "type": "bell_notice",
+    "name": "ベル通知",
+    "description": "ベルがなったら次の方へ🛎"
+  },
+  {
+    "page": 175,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 176,
+    "type": "bell_notice",
+    "name": "ベル通知",
+    "description": "ベルがなったら次の方へ🛎"
+  },
+  {
+    "page": 177,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 178,
+    "type": "bell_notice",
+    "name": "ベル通知",
+    "description": "ベルがなったら次の方へ🛎"
+  },
+  {
+    "page": 179,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 180,
+    "type": "bell_notice",
+    "name": "ベル通知",
+    "description": "ベルがなったら次の方へ🛎"
+  },
+  {
+    "page": 181,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟"
+  },
+  {
+    "page": 182,
+    "type": "weekly_presentation",
+    "name": "ウィークリープレゼン",
+    "description": ""
+  },
+  {
+    "page": 183,
+    "type": "business_breakout",
+    "name": "ビジネスブレイクアウト",
+    "description": "ビジネスブレイクアウト"
+  },
+  {
+    "page": 184,
+    "type": "business_breakout",
+    "name": "ビジネスブレイクアウト",
+    "description": "<<05:00>>"
+  },
+  {
+    "page": 185,
+    "type": "recruiting_categories",
+    "name": "激しく募集中のカテゴリー",
+    "description": ""
+  },
+  {
+    "page": 186,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟"
+  },
+  {
+    "page": 187,
+    "type": "vice_president_progress",
+    "name": "バイスプレジデント進捗報告",
+    "description": ""
+  },
+  {
+    "page": 188,
+    "type": "chapter_history",
+    "name": "チャプター歴史",
+    "description": ""
+  },
+  {
+    "page": 189,
+    "type": "total_referrals",
+    "name": "累計リファーラル件数",
+    "description": ""
+  },
+  {
+    "page": 190,
+    "type": "total_sales",
+    "name": "累計売上",
+    "description": ""
+  },
+  {
+    "page": 191,
+    "type": "membership_committee_report",
+    "name": "メンバーシップ委員会報告",
+    "description": ""
+  },
+  {
+    "page": 192,
+    "type": "recruiting_categories",
+    "name": "激しく募集中のカテゴリー",
+    "description": ""
+  },
+  {
+    "page": 193,
+    "type": "recruiting_categories",
+    "name": "激しく募集中のカテゴリー",
+    "description": ""
+  },
+  {
+    "page": 194,
+    "type": "other",
+    "name": "その他",
+    "description": "1位　花屋"
+  },
+  {
+    "page": 195,
+    "type": "other",
+    "name": "その他",
+    "description": "税理士"
+  },
+  {
+    "page": 196,
+    "type": "general_rules",
+    "name": "一般規定",
+    "description": ""
+  },
+  {
+    "page": 197,
+    "type": "general_rules",
+    "name": "一般規定",
+    "description": ""
+  },
+  {
+    "page": 198,
+    "type": "main_presentation_title",
+    "name": "メインプレゼンタイトル",
+    "description": ""
+  },
+  {
+    "page": 199,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 200,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 201,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 202,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 203,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 204,
+    "type": "main_presentation_announcement",
+    "name": "メインプレゼン告知",
+    "description": "ラジコン草刈り代行"
+  },
+  {
+    "page": 205,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟"
+  },
+  {
+    "page": 206,
+    "type": "other",
+    "name": "その他",
+    "description": "リファーラル"
+  },
+  {
+    "page": 207,
+    "type": "other",
+    "name": "その他",
+    "description": "推薦のことば"
+  },
+  {
+    "page": 208,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 209,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 210,
+    "type": "referral_recommendation_announcement",
+    "name": "リファーラルと推薦発表",
+    "description": "リファーラルと推薦発表"
+  },
+  {
+    "page": 211,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟"
+  },
+  {
+    "page": 212,
+    "type": "visitor_feedback",
+    "name": "ビジター一言感想",
+    "description": ""
+  },
+  {
+    "page": 213,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 214,
+    "type": "visitor_feedback",
+    "name": "ビジター一言感想",
+    "description": ""
+  },
+  {
+    "page": 215,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 216,
+    "type": "visitor_feedback",
+    "name": "ビジター一言感想",
+    "description": ""
+  },
+  {
+    "page": 217,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 218,
+    "type": "visitor_feedback",
+    "name": "ビジター一言感想",
+    "description": ""
+  },
+  {
+    "page": 219,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 220,
+    "type": "visitor_feedback",
+    "name": "ビジター一言感想",
+    "description": ""
+  },
+  {
+    "page": 221,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 222,
+    "type": "visitor_feedback",
+    "name": "ビジター一言感想",
+    "description": ""
+  },
+  {
+    "page": 223,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 224,
+    "type": "visitor_feedback",
+    "name": "ビジター一言感想",
+    "description": ""
+  },
+  {
+    "page": 225,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟"
+  },
+  {
+    "page": 226,
+    "type": "referral_authenticity_check",
+    "name": "リファーラル真正度確認",
+    "description": "リファーラル"
+  },
+  {
+    "page": 227,
+    "type": "referral_authenticity_check",
+    "name": "リファーラル真正度確認",
+    "description": "リファーラル真正度の確認"
+  },
+  {
+    "page": 228,
+    "type": "secretary_intro",
+    "name": "書記兼会計紹介",
+    "description": ""
+  },
+  {
+    "page": 229,
+    "type": "secretary_intro",
+    "name": "書記兼会計紹介",
+    "description": ""
+  },
+  {
+    "page": 230,
+    "type": "secretary_intro",
+    "name": "書記兼会計紹介",
+    "description": ""
+  },
+  {
+    "page": 231,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": ""
+  },
+  {
+    "page": 232,
+    "type": "registration_fee",
+    "name": "登録費",
+    "description": ""
+  },
+  {
+    "page": 233,
+    "type": "bni_effectiveness",
+    "name": "BNIの有効性",
+    "description": ""
+  },
+  {
+    "page": 234,
+    "type": "visitor_thanks",
+    "name": "ビジターへの感謝",
+    "description": ""
+  },
+  {
+    "page": 235,
+    "type": "visitor_introduction_list",
+    "name": "ビジター紹介リスト",
+    "description": "ビジター一覧"
+  },
+  {
+    "page": 236,
+    "type": "visitor_orientation",
+    "name": "ビジターオリエンテーション",
+    "description": ""
+  },
+  {
+    "page": 237,
+    "type": "visitor_orientation",
+    "name": "ビジターオリエンテーション",
+    "description": ""
+  },
+  {
+    "page": 238,
+    "type": "visitor_orientation",
+    "name": "ビジターオリエンテーション",
+    "description": ""
+  },
+  {
+    "page": 239,
+    "type": "visitor_orientation",
+    "name": "ビジターオリエンテーション",
+    "description": ""
+  },
+  {
+    "page": 240,
+    "type": "visitor_orientation",
+    "name": "ビジターオリエンテーション",
+    "description": ""
+  },
+  {
+    "page": 241,
+    "type": "visitor_orientation",
+    "name": "ビジターオリエンテーション",
+    "description": ""
+  },
+  {
+    "page": 242,
+    "type": "visitor_orientation_intro",
+    "name": "ビジターオリエンテーション導入",
+    "description": ""
+  },
+  {
+    "page": 243,
+    "type": "visitor_orientation",
+    "name": "ビジターオリエンテーション",
+    "description": ""
+  },
+  {
+    "page": 244,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 245,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 246,
+    "type": "not_networking_party",
+    "name": "異業種交流会ではない",
+    "description": ""
+  },
+  {
+    "page": 247,
+    "type": "bni_purpose_slide",
+    "name": "BNIの目的",
+    "description": ""
+  },
+  {
+    "page": 248,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 249,
+    "type": "sales_team_question",
+    "name": "営業チーム質問",
+    "description": ""
+  },
+  {
+    "page": 250,
+    "type": "other",
+    "name": "その他",
+    "description": "マーケティング"
+  },
+  {
+    "page": 251,
+    "type": "member_power",
+    "name": "メンバーの力",
+    "description": ""
+  },
+  {
+    "page": 252,
+    "type": "marketing_slide",
+    "name": "マーケティング",
+    "description": ""
+  },
+  {
+    "page": 253,
+    "type": "sales_on_behalf",
+    "name": "代理営業活動",
+    "description": ""
+  },
+  {
+    "page": 254,
+    "type": "referral_opportunity",
+    "name": "リファーラル機会",
+    "description": ""
+  },
+  {
+    "page": 255,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 256,
+    "type": "no_competition",
+    "name": "競合なし",
+    "description": ""
+  },
+  {
+    "page": 257,
+    "type": "exclusive_market",
+    "name": "独占マーケット",
+    "description": ""
+  },
+  {
+    "page": 258,
+    "type": "exclusive_market",
+    "name": "独占マーケット",
+    "description": ""
+  },
+  {
+    "page": 259,
+    "type": "new_business_source",
+    "name": "新規ビジネス源",
+    "description": ""
+  },
+  {
+    "page": 260,
+    "type": "50_times_per_year",
+    "name": "年間50回",
+    "description": ""
+  },
+  {
+    "page": 261,
+    "type": "referral_conditions",
+    "name": "リファーラル条件",
+    "description": ""
+  },
+  {
+    "page": 262,
+    "type": "learning_opportunities",
+    "name": "学びの機会",
+    "description": ""
+  },
+  {
+    "page": 263,
+    "type": "active_members_wanted",
+    "name": "積極的メンバー募集",
+    "description": ""
+  },
+  {
+    "page": 264,
+    "type": "entrepreneur_challenges",
+    "name": "経営者の苦難",
+    "description": ""
+  },
+  {
+    "page": 265,
+    "type": "trust_relationship",
+    "name": "信頼関係",
+    "description": ""
+  },
+  {
+    "page": 266,
+    "type": "member_testimonial",
+    "name": "メンバー体験談",
+    "description": ""
+  },
+  {
+    "page": 267,
+    "type": "member_testimonial",
+    "name": "メンバー体験談",
+    "description": ""
+  },
+  {
+    "page": 268,
+    "type": "member_testimonial",
+    "name": "メンバー体験談",
+    "description": ""
+  },
+  {
+    "page": 269,
+    "type": "givers_gain_support",
+    "name": "Givers Gainサポート",
+    "description": ""
+  },
+  {
+    "page": 270,
+    "type": "local_to_global",
+    "name": "地域から世界へ",
+    "description": ""
+  },
+  {
+    "page": 271,
+    "type": "local_to_global",
+    "name": "地域から世界へ",
+    "description": ""
+  },
+  {
+    "page": 272,
+    "type": "bni_global_network",
+    "name": "BNI世界ネットワーク",
+    "description": ""
+  },
+  {
+    "page": 273,
+    "type": "exclusive_market",
+    "name": "独占マーケット",
+    "description": ""
+  },
+  {
+    "page": 274,
+    "type": "how_to_adopt",
+    "name": "採用方法",
+    "description": ""
+  },
+  {
+    "page": 275,
+    "type": "givers_gain",
+    "name": "Givers Gain",
+    "description": ""
+  },
+  {
+    "page": 276,
+    "type": "next_steps",
+    "name": "今後の流れ",
+    "description": ""
+  },
+  {
+    "page": 277,
+    "type": "schedule_info",
+    "name": "スケジュール",
+    "description": ""
+  },
+  {
+    "page": 278,
+    "type": "for_anxious_visitors",
+    "name": "不安な方へ",
+    "description": ""
+  },
+  {
+    "page": 279,
+    "type": "givers_gain",
+    "name": "Givers Gain",
+    "description": ""
+  },
+  {
+    "page": 280,
+    "type": "helping_others",
+    "name": "他者の成功を助ける",
+    "description": ""
+  },
+  {
+    "page": 281,
+    "type": "message_slide",
+    "name": "メッセージ",
+    "description": ""
+  },
+  {
+    "page": 282,
+    "type": "membership_application",
+    "name": "メンバーシップ申し込み",
+    "description": ""
+  },
+  {
+    "page": 283,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟"
+  },
+  {
+    "page": 284,
+    "type": "secretary_report",
+    "name": "書記兼会計報告",
+    "description": "〜終礼〜"
+  },
+  {
+    "page": 285,
+    "type": "announcements",
+    "name": "お知らせ",
+    "description": ""
+  },
+  {
+    "page": 286,
+    "type": "thank_you_input_info",
+    "name": "サンキュー入力案内",
+    "description": ""
+  },
+  {
+    "page": 287,
+    "type": "power_team_workshop",
+    "name": "パワーチームワークショップ",
+    "description": ""
+  },
+  {
+    "page": 288,
+    "type": "grip_collaboration",
+    "name": "GRIPコラボイベント",
+    "description": ""
+  },
+  {
+    "page": 289,
+    "type": "vice_president_intro",
+    "name": "バイスプレジデント紹介",
+    "description": "バイスプレジデントより"
+  },
+  {
+    "page": 290,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 291,
+    "type": "current_member_count",
+    "name": "現在メンバー数",
+    "description": ""
+  },
+  {
+    "page": 292,
+    "type": "current_member_count",
+    "name": "現在メンバー数",
+    "description": ""
+  },
+  {
+    "page": 293,
+    "type": "positive_words",
+    "name": "今日のポジティブな言葉",
+    "description": "びわ温熱療法"
+  },
+  {
+    "page": 294,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 295,
+    "type": "main_presentation_announcement",
+    "name": "メインプレゼン告知",
+    "description": "ラジコン草刈り代行"
+  },
+  {
+    "page": 296,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": ""
+  },
+  {
+    "page": 297,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 298,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 299,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 300,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 301,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション"
+  },
+  {
+    "page": 302,
+    "type": "other",
+    "name": "その他",
+    "description": "先週ビジター７名　今週11名"
+  },
+  {
+    "page": 303,
+    "type": "secretary_report",
+    "name": "書記兼会計報告",
+    "description": "書記兼会計より"
+  },
+  {
+    "page": 304,
+    "type": "closing_message",
+    "name": "終礼メッセージ",
+    "description": ""
+  },
+  {
+    "page": 305,
+    "type": "coordinators_message",
+    "name": "コーディネーターより",
+    "description": ""
+  },
+  {
+    "page": 306,
+    "type": "other_notices",
+    "name": "その他連絡事項",
+    "description": ""
+  },
+  {
+    "page": 307,
+    "type": "director_report",
+    "name": "ディレクター報告",
+    "description": "ディレクターより"
+  },
+  {
+    "page": 308,
+    "type": "see_you_next_week",
+    "name": "また来週",
+    "description": ""
+  },
+  {
+    "page": 309,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟"
+  }
+]

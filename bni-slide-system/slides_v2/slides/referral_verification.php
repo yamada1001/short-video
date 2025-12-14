@@ -2,16 +2,16 @@
 /**
  * BNI Slide System V2 - Referral Verification (p.227)
  */
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-$db = new SQLite3($dbPath);
-require_once __DIR__ . '/../includes/getTargetFriday.php';
+
+require_once __DIR__ . '/../config.php';
+
+$db = new PDO('sqlite:' . $db_path);
 $targetFriday = getTargetFriday();
 
 $stmt = $db->prepare("SELECT r.*, m1.name as from_name, m2.name as to_name FROM referral_verification r LEFT JOIN members m1 ON r.from_member_id = m1.id LEFT JOIN members m2 ON r.to_member_id = m2.id WHERE r.week_date = :week_date LIMIT 1");
-$stmt->bindValue(':week_date', $targetFriday, SQLITE3_TEXT);
-$result = $stmt->execute();
-$verification = $result->fetchArray(SQLITE3_ASSOC);
-$db->close();
+$stmt->bindValue(':week_date', $targetFriday, PDO::PARAM_STR);
+$stmt->execute();
+$verification = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="ja">

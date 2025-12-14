@@ -12,8 +12,7 @@ $target_date = $_GET['date'] ?? getTargetFriday();
 // データベース接続
 try {
     $db = new PDO('sqlite:' . $db_path);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
+    } catch (PDOException $e) {
     die('データベース接続エラー: ' . $e->getMessage());
 }
 

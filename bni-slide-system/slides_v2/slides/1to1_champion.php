@@ -1,16 +1,16 @@
 <?php
+
+require_once __DIR__ . '/../config.php';
 $type = basename(__FILE__, '_champion.php');
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-$db = new SQLite3($dbPath);
-require_once __DIR__ . '/../includes/getTargetFriday.php';
+
+$db = new PDO('sqlite:' . $db_path);
 $targetFriday = getTargetFriday();
 $stmt = $db->prepare("SELECT c.*, m.name as member_name, m.photo_path FROM champions c LEFT JOIN members m ON c.member_id = m.id WHERE c.week_date = :week_date AND c.type = :type ORDER BY c.rank, c.count DESC, c.id");
-$stmt->bindValue(':week_date', $targetFriday, SQLITE3_TEXT);
-$stmt->bindValue(':type', $type, SQLITE3_TEXT);
-$result = $stmt->execute();
+$stmt->bindValue(':week_date', $targetFriday, PDO::PARAM_STR);
+$stmt->bindValue(':type', $type, PDO::PARAM_STR);
+$stmt->execute();
 $champions = [];
-while ($row = $result->fetchArray(SQLITE3_ASSOC)) { $champions[] = $row; }
-$db->close();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { $champions[] = $row; }
 $grouped = [1 => [], 2 => [], 3 => []];
 foreach ($champions as $champion) { $grouped[$champion['rank']][] = $champion; }
 $title = $type === '1to1' ? '1to1 Champion' : 'CEU Champion';

@@ -1,0 +1,2165 @@
+[
+  {
+    "page": 1,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 2,
+    "type": "team_leader_check",
+    "name": "チームリーダー確認",
+    "description": "各チームリーダーは「出欠」と「遅刻」の確認を２０秒で",
+    "text_preview": "各チームリーダーは「出欠」と「遅刻」の確認を２０秒で 安部・橋本・木村伸嗣・山下・今林・永峯 水口亜裕美・三浦千尋・木村駿介・藤田幸夫・河野理枝・吉良"
+  },
+  {
+    "page": 3,
+    "type": "morning_meeting",
+    "name": "朝礼",
+    "description": "宗麟チャプター",
+    "text_preview": "宗麟チャプター 第57回定例会　朝礼 ６：００〜６：１４"
+  },
+  {
+    "page": 4,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": "メンバーシップ委員会",
+    "text_preview": "メンバーシップ委員会 ①名札バッヂの着用の有無の確認 ②コネクトの入力確認"
+  },
+  {
+    "page": 5,
+    "type": "visitor_host",
+    "name": "ビジホから",
+    "description": "ビジホから",
+    "text_preview": "ビジホから スムーズな誘導手の確認 （２分）"
+  },
+  {
+    "page": 6,
+    "type": "other",
+    "name": "その他",
+    "description": "スクリーン",
+    "text_preview": "スクリーン A 山本　  花田　  佳子"
+  },
+  {
+    "page": 7,
+    "type": "other",
+    "name": "その他",
+    "description": "スクリーン",
+    "text_preview": "スクリーン 藤田幸夫 A"
+  },
+  {
+    "page": 8,
+    "type": "main_presentation_announcement",
+    "name": "メインプレゼン告知",
+    "description": "ラジコン草刈り代行",
+    "text_preview": "ラジコン草刈り代行 メインプレゼンテーション 伊東 健太"
+  },
+  {
+    "page": 9,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 10,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 11,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 12,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 13,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 14,
+    "type": "positive_words",
+    "name": "今日のポジティブな言葉",
+    "description": "今日のポジティブな言葉",
+    "text_preview": "今日のポジティブな言葉 びわ温熱療法 河野 里保"
+  },
+  {
+    "page": 15,
+    "type": "education_presentation",
+    "name": "教育プレゼン（2分）",
+    "description": "今週は　佐藤 純也さん　２分間",
+    "text_preview": "今週は　佐藤 純也さん　２分間"
+  },
+  {
+    "page": 16,
+    "type": "vice_president",
+    "name": "バイスプレジデント",
+    "description": "バイスプレジデントより",
+    "text_preview": "バイスプレジデントより 確認と報告"
+  },
+  {
+    "page": 17,
+    "type": "weekly_listener",
+    "name": "ウィークリーの聞き手",
+    "description": "ウィークリーの聞き手は",
+    "text_preview": "ウィークリーの聞き手は メモとろうね"
+  },
+  {
+    "page": 18,
+    "type": "referral_authenticity",
+    "name": "リファーラル真正度確認",
+    "description": "リファーラル真正度の確認",
+    "text_preview": "リファーラル真正度の確認 ☑　リファーラル先とは連絡が取れましたか？ ☑　リファーラル先には話は通じていましたか？"
+  },
+  {
+    "page": 19,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介 お名前 会社名"
+  },
+  {
+    "page": 20,
+    "type": "referral_recommendation",
+    "name": "リファーラルと推薦発表",
+    "description": "リファーラルと推薦発表",
+    "text_preview": "リファーラルと推薦発表 ①名 前 ②本日は〇件のリファーラルです"
+  },
+  {
+    "page": 21,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジネスブレイクアウト",
+    "text_preview": "ビジネスブレイクアウト 外部リファーラル（紹介）についてのみ 内部リファーラル・ビジター招待については無し"
+  },
+  {
+    "page": 22,
+    "type": "other",
+    "name": "その他",
+    "description": "代理出席",
+    "text_preview": "代理出席 岩下　正史さん 代理：有限会社　大日広告"
+  },
+  {
+    "page": 23,
+    "type": "other",
+    "name": "その他",
+    "description": "代理出席",
+    "text_preview": "代理出席 河野　理枝さん 代理：キッチンカー"
+  },
+  {
+    "page": 24,
+    "type": "other",
+    "name": "その他",
+    "description": "代理出席",
+    "text_preview": "代理出席 高橋　昂大さん 代理：カタラボ"
+  },
+  {
+    "page": 25,
+    "type": "other",
+    "name": "その他",
+    "description": "新入会メンバー",
+    "text_preview": "新入会メンバー （10月31日） 佐々木 賢一"
+  },
+  {
+    "page": 26,
+    "type": "other",
+    "name": "その他",
+    "description": "木津 裕充",
+    "text_preview": "木津 裕充 株式会社トウセイ （経営コンサル）"
+  },
+  {
+    "page": 27,
+    "type": "other",
+    "name": "その他",
+    "description": "永峯 和矢",
+    "text_preview": "永峯 和矢 ASSiST24フレスポ豊後大野店 （24hフィットネスジム）"
+  },
+  {
+    "page": 28,
+    "type": "other",
+    "name": "その他",
+    "description": "12月5日のPALMSレポートより",
+    "text_preview": "12月5日のPALMSレポートより 先週の週間NO,1 外部リファーラル"
+  },
+  {
+    "page": 29,
+    "type": "other",
+    "name": "その他",
+    "description": "リファーラルチャンピオン",
+    "text_preview": "リファーラルチャンピオン 月間チャンピオン バリューチャンピオン"
+  },
+  {
+    "page": 30,
+    "type": "other",
+    "name": "その他",
+    "description": "月間チャンピオン",
+    "text_preview": "月間チャンピオン ビジターチャンピオン 1to1チャンピオン"
+  },
+  {
+    "page": 31,
+    "type": "other",
+    "name": "その他",
+    "description": "🎂今週のハッピーバースデー🎂",
+    "text_preview": "🎂今週のハッピーバースデー🎂 🎉 ❤お誕生日おめでとうございます❤"
+  },
+  {
+    "page": 32,
+    "type": "other",
+    "name": "その他",
+    "description": "永峯さん、山村さん　山本に誕生日教えてね⭐",
+    "text_preview": "永峯さん、山村さん　山本に誕生日教えてね⭐"
+  },
+  {
+    "page": 33,
+    "type": "other",
+    "name": "その他",
+    "description": "本日過去最多ビジター数　12名‼",
+    "text_preview": "本日過去最多ビジター数　12名‼ お一人お一人の積極的な貢献に感謝‼ 特になっちゃん！ビジター招待９人！！"
+  },
+  {
+    "page": 34,
+    "type": "other",
+    "name": "その他",
+    "description": "書記兼会計より",
+    "text_preview": "書記兼会計より"
+  },
+  {
+    "page": 35,
+    "type": "other",
+    "name": "その他",
+    "description": "ディレクターより",
+    "text_preview": "ディレクターより"
+  },
+  {
+    "page": 36,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 37,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介"
+  },
+  {
+    "page": 38,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟",
+    "text_preview": "宗麟 Keep growing 〜貢献の絆で未来を創る〜"
+  },
+  {
+    "page": 39,
+    "type": "other",
+    "name": "その他",
+    "description": "マナーモードで",
+    "text_preview": "マナーモードで 電源OFF又は お願いします"
+  },
+  {
+    "page": 40,
+    "type": "other",
+    "name": "その他",
+    "description": "chapter",
+    "text_preview": "chapter Welcome to 宗麟"
+  },
+  {
+    "page": 41,
+    "type": "other",
+    "name": "その他",
+    "description": "花田 亜弥",
+    "text_preview": "花田 亜弥 株式会社Bambitz （オーナー専属　空調工事）"
+  },
+  {
+    "page": 42,
+    "type": "vice_president",
+    "name": "バイスプレジデント",
+    "description": "バイス・プレジデント",
+    "text_preview": "バイス・プレジデント Vice President 山本 哲郎"
+  },
+  {
+    "page": 43,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": "メンバーシップ委員会",
+    "text_preview": "メンバーシップ委員会 Membership Committee 花本 昭彦"
+  },
+  {
+    "page": 44,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": "メンバーシップ委員会",
+    "text_preview": "メンバーシップ委員会 Membership Committee 三浦 千尋"
+  },
+  {
+    "page": 45,
+    "type": "other",
+    "name": "その他",
+    "description": "書記兼会計",
+    "text_preview": "書記兼会計 Accounting Clerk 鷲山 佳子"
+  },
+  {
+    "page": 46,
+    "type": "other",
+    "name": "その他",
+    "description": "エデュケーション",
+    "text_preview": "エデュケーション ・コーディネーター Education Coordinator"
+  },
+  {
+    "page": 47,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジターホスト",
+    "text_preview": "ビジターホスト ・コーディネーター Visitor Host Coordinator"
+  },
+  {
+    "page": 48,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジターホスト",
+    "text_preview": "ビジターホスト Visitor Host 勝田　秀伸"
+  },
+  {
+    "page": 49,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジターホスト",
+    "text_preview": "ビジターホスト Visitor Host 佐藤 純也"
+  },
+  {
+    "page": 50,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジターホスト",
+    "text_preview": "ビジターホスト Visitor Host 吉田 惇哉"
+  },
+  {
+    "page": 51,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジターホスト",
+    "text_preview": "ビジターホスト Visitor Host 木津 裕充"
+  },
+  {
+    "page": 52,
+    "type": "other",
+    "name": "その他",
+    "description": "トレーニング委員会",
+    "text_preview": "トレーニング委員会 Training Committee 木村 駿介"
+  },
+  {
+    "page": 53,
+    "type": "other",
+    "name": "その他",
+    "description": "メンターコーディネーター",
+    "text_preview": "メンターコーディネーター Mentor Coordinator 甲斐 貴光"
+  },
+  {
+    "page": 54,
+    "type": "other",
+    "name": "その他",
+    "description": "1 to 1 コーディネーター",
+    "text_preview": "1 to 1 コーディネーター 1 to 1 Coordinator 伊東 健太"
+  },
+  {
+    "page": 55,
+    "type": "other",
+    "name": "その他",
+    "description": "ウェブマスター",
+    "text_preview": "ウェブマスター Web Master 赤嶺 博美"
+  },
+  {
+    "page": 56,
+    "type": "other",
+    "name": "その他",
+    "description": "ウェブマスター",
+    "text_preview": "ウェブマスター Web Master 水口 亜裕美"
+  },
+  {
+    "page": 57,
+    "type": "other",
+    "name": "その他",
+    "description": "BCP委員会",
+    "text_preview": "BCP委員会 BCP Committee 仲嶋 豪"
+  },
+  {
+    "page": 58,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟拡大委員会",
+    "text_preview": "宗麟拡大委員会 Orientation Facilitator 加藤 博子"
+  },
+  {
+    "page": 59,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 60,
+    "type": "other",
+    "name": "その他",
+    "description": "BNIの",
+    "text_preview": "BNIの コアバリュー"
+  },
+  {
+    "page": 61,
+    "type": "other",
+    "name": "その他",
+    "description": "BNIのコアバリュー（基本的価値観）",
+    "text_preview": "BNIのコアバリュー（基本的価値観） Givers Gain® （ギバーズゲイン）"
+  },
+  {
+    "page": 62,
+    "type": "other",
+    "name": "その他",
+    "description": "BNIのコアバリュー（基本的価値観）",
+    "text_preview": "BNIのコアバリュー（基本的価値観） Building Relationships （関係構築）"
+  },
+  {
+    "page": 63,
+    "type": "other",
+    "name": "その他",
+    "description": "感謝の気持ちを周りの人たちに伝えます。その人が",
+    "text_preview": "感謝の気持ちを周りの人たちに伝えます。その人が 自分自身やあなた、そして組織のために尽くしていることに感謝します。これは、組織 や社会を構築する上で非常に大切です。承認をマスターすることで強力な人脈を"
+  },
+  {
+    "page": 64,
+    "type": "other",
+    "name": "その他",
+    "description": "BNIの",
+    "text_preview": "BNIの 目的と概要"
+  },
+  {
+    "page": 65,
+    "type": "other",
+    "name": "その他",
+    "description": "BNIの目的と概要",
+    "text_preview": "BNIの目的と概要 2. BNIは、プロフェッショナルのためのビジネスネットワーキング組織であり、各専"
+  },
+  {
+    "page": 66,
+    "type": "other",
+    "name": "その他",
+    "description": "BNIの目的と概要のコピペページ",
+    "text_preview": "BNIの目的と概要のコピペページ 2. BNIは、プロフェッショナルのためのビジネスネットワーキング組織であり、各専"
+  },
+  {
+    "page": 67,
+    "type": "other",
+    "name": "その他",
+    "description": "BNIの概観",
+    "text_preview": "BNIの概観 多くの人達が、リファーラル（紹介）を通して ビジネスを獲得しています。"
+  },
+  {
+    "page": 68,
+    "type": "other",
+    "name": "その他",
+    "description": "世界の統計",
+    "text_preview": "世界の統計 BNI参入国数 総メンバー数"
+  },
+  {
+    "page": 69,
+    "type": "other",
+    "name": "その他",
+    "description": "日本の統計",
+    "text_preview": "日本の統計 BNI参加都道府県数 総メンバー数"
+  },
+  {
+    "page": 70,
+    "type": "other",
+    "name": "その他",
+    "description": "【Givers Gain】",
+    "text_preview": "【Givers Gain】 与えるものは与えられる ®"
+  },
+  {
+    "page": 71,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟",
+    "text_preview": "宗麟 Keep growing 〜貢献の絆で未来を創る〜"
+  },
+  {
+    "page": 72,
+    "type": "other",
+    "name": "その他",
+    "description": "シェアストーリー",
+    "text_preview": "シェアストーリー 山下 哲 有限会社大分オイル販売"
+  },
+  {
+    "page": 73,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟",
+    "text_preview": "宗麟 Keep growing 〜貢献の絆で未来を創る〜"
+  },
+  {
+    "page": 74,
+    "type": "other",
+    "name": "その他",
+    "description": "ネットワーキング",
+    "text_preview": "ネットワーキング 学習コーナー"
+  },
+  {
+    "page": 75,
+    "type": "other",
+    "name": "その他",
+    "description": "ネットワーキング学習コーナー",
+    "text_preview": "ネットワーキング学習コーナー 穴井 佑一 BNI大分リージョン"
+  },
+  {
+    "page": 76,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": "ネットワーキング学習コーナー",
+    "text_preview": "ネットワーキング学習コーナー メンバーシップ委員会 木村 伸嗣"
+  },
+  {
+    "page": 77,
+    "type": "other",
+    "name": "その他",
+    "description": "ネットワーキング学習コーナー",
+    "text_preview": "ネットワーキング学習コーナー 1 to 1 コーディネーター 山下 哲"
+  },
+  {
+    "page": 78,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": "ネットワーキング学習コーナー",
+    "text_preview": "ネットワーキング学習コーナー メンバーシップ委員会 鷲山 修一"
+  },
+  {
+    "page": 79,
+    "type": "other",
+    "name": "その他",
+    "description": "ネットワーキング学習コーナー",
+    "text_preview": "ネットワーキング学習コーナー エデュケーション・コーディネーター 今林 大"
+  },
+  {
+    "page": 80,
+    "type": "other",
+    "name": "その他",
+    "description": "ネットワーキング学習コーナー",
+    "text_preview": "ネットワーキング学習コーナー 書記兼会計 鷲山 佳子"
+  },
+  {
+    "page": 81,
+    "type": "other",
+    "name": "その他",
+    "description": "ネットワーキング学習コーナー",
+    "text_preview": "ネットワーキング学習コーナー バイス・プレジデント 山本 哲郎"
+  },
+  {
+    "page": 82,
+    "type": "other",
+    "name": "その他",
+    "description": "ネットワーキング学習コーナー",
+    "text_preview": "ネットワーキング学習コーナー BNI大分リージョン宗麟チャプター サポートディレクター"
+  },
+  {
+    "page": 83,
+    "type": "other",
+    "name": "その他",
+    "description": "ネットワーキング学習コーナー",
+    "text_preview": "ネットワーキング学習コーナー 根上　真由美 BNI大分リージョン"
+  },
+  {
+    "page": 84,
+    "type": "other",
+    "name": "その他",
+    "description": "ネットワーキング学習コーナー",
+    "text_preview": "ネットワーキング学習コーナー 吉田 惇哉 ビジターホスト"
+  },
+  {
+    "page": 85,
+    "type": "other",
+    "name": "その他",
+    "description": "ネットワーキング学習コーナー",
+    "text_preview": "ネットワーキング学習コーナー 松崎 佑太 BNI熊本シティーリージョン"
+  },
+  {
+    "page": 86,
+    "type": "other",
+    "name": "その他",
+    "description": "ご清聴ありがとうございました！",
+    "text_preview": "ご清聴ありがとうございました！"
+  },
+  {
+    "page": 87,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟",
+    "text_preview": "宗麟 Keep growing 〜貢献の絆で未来を創る〜"
+  },
+  {
+    "page": 88,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 89,
+    "type": "other",
+    "name": "その他",
+    "description": "月間チャンピオン",
+    "text_preview": "月間チャンピオン ビジターチャンピオン 1to1チャンピオン"
+  },
+  {
+    "page": 90,
+    "type": "other",
+    "name": "その他",
+    "description": "リファーラルチャンピオン",
+    "text_preview": "リファーラルチャンピオン 月間チャンピオン バリューチャンピオン"
+  },
+  {
+    "page": 91,
+    "type": "other",
+    "name": "その他",
+    "description": "リファーラルチャンピオン",
+    "text_preview": "リファーラルチャンピオン ⽉間リファーラル件数29件 （歴代 3位タイ） 【1位】：早野 ⼤介さん"
+  },
+  {
+    "page": 92,
+    "type": "other",
+    "name": "その他",
+    "description": "高校野球BAR",
+    "text_preview": "高校野球BAR バリューチャンピオン ⽉間バリュー貢献総額  3.209千円 （歴代1位）"
+  },
+  {
+    "page": 93,
+    "type": "other",
+    "name": "その他",
+    "description": "⾼齢者コンシェルジュ",
+    "text_preview": "⾼齢者コンシェルジュ ビジターチャンピオン ⽉間ビジター招待数 6⼈"
+  },
+  {
+    "page": 94,
+    "type": "other",
+    "name": "その他",
+    "description": "写真家",
+    "text_preview": "写真家 1to1チャンピオン ⽉間1to1件数 30  件"
+  },
+  {
+    "page": 95,
+    "type": "other",
+    "name": "その他",
+    "description": "便利屋",
+    "text_preview": "便利屋 CEUチャンピオン ⽉間CEU得点 35 点"
+  },
+  {
+    "page": 96,
+    "type": "other",
+    "name": "その他",
+    "description": "リファーラルチャンピオン",
+    "text_preview": "リファーラルチャンピオン 各チャンピオン一覧 バリューチャンピオン"
+  },
+  {
+    "page": 97,
+    "type": "other",
+    "name": "その他",
+    "description": "各チャンピオン一覧",
+    "text_preview": "各チャンピオン一覧 ビジターチャンピオン 1to1チャンピオン"
+  },
+  {
+    "page": 98,
+    "type": "other",
+    "name": "その他",
+    "description": "更新メンバー",
+    "text_preview": "更新メンバー （月日） 〇〇"
+  },
+  {
+    "page": 99,
+    "type": "other",
+    "name": "その他",
+    "description": "新入会メンバー",
+    "text_preview": "新入会メンバー 承認式"
+  },
+  {
+    "page": 100,
+    "type": "other",
+    "name": "その他",
+    "description": "新入会メンバー",
+    "text_preview": "新入会メンバー （11月7日） 木津 裕充"
+  },
+  {
+    "page": 101,
+    "type": "other",
+    "name": "その他",
+    "description": "新入会メンバー",
+    "text_preview": "新入会メンバー （9月5日） 安田 由美"
+  },
+  {
+    "page": 102,
+    "type": "other",
+    "name": "その他",
+    "description": "永峯 和矢",
+    "text_preview": "永峯 和矢 ASSiST24フレスポ豊後大野店 （24hフィットネスジム）"
+  },
+  {
+    "page": 103,
+    "type": "other",
+    "name": "その他",
+    "description": "私は、常に前向き、かつ、協力的な態度でBNIのメンバーと接します。",
+    "text_preview": "私は、常に前向き、かつ、協力的な態度でBNIのメンバーと接します。 私は、他のメンバーとの間、およびリファーラル先との間で、信用と信頼を築きます。 私は、他のメンバーと、彼等からのリファーラル先に対し"
+  },
+  {
+    "page": 104,
+    "type": "other",
+    "name": "その他",
+    "description": "新メンバーより",
+    "text_preview": "新メンバーより ・宗麟チャプター加入の理由 ・今後の意気込み"
+  },
+  {
+    "page": 105,
+    "type": "other",
+    "name": "その他",
+    "description": "ウィークリー",
+    "text_preview": "ウィークリー プレゼンテーション"
+  },
+  {
+    "page": 106,
+    "type": "other",
+    "name": "その他",
+    "description": "4分プレゼンテーション",
+    "text_preview": "4分プレゼンテーション 〇〇 〇〇"
+  },
+  {
+    "page": 107,
+    "type": "education_presentation",
+    "name": "教育プレゼン（2分）",
+    "description": "今週は　工藤 正和さん　２分間",
+    "text_preview": "今週は　工藤 正和さん　２分間"
+  },
+  {
+    "page": 108,
+    "type": "other",
+    "name": "その他",
+    "description": "工藤 正和",
+    "text_preview": "工藤 正和 （スマホまるごとサポート） 生活サービス"
+  },
+  {
+    "page": 109,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 110,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 111,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジネス&",
+    "text_preview": "ビジネス& ファイナンス 専門分野"
+  },
+  {
+    "page": 112,
+    "type": "other",
+    "name": "その他",
+    "description": "鷲山 修一",
+    "text_preview": "鷲山 修一 株式会社ワン・ポリシー （保険のセカンドオピニオン）"
+  },
+  {
+    "page": 113,
+    "type": "other",
+    "name": "その他",
+    "description": "吉田",
+    "text_preview": "吉田 惇哉 ジブラルタ生命保険株式会社"
+  },
+  {
+    "page": 114,
+    "type": "other",
+    "name": "その他",
+    "description": "藤田 亮",
+    "text_preview": "藤田 亮 プルデンシャル生命保険 （生命保険スカウト）"
+  },
+  {
+    "page": 115,
+    "type": "other",
+    "name": "その他",
+    "description": "今林 大",
+    "text_preview": "今林 大 株式会社ソニックジャパン （建設業専門保険）"
+  },
+  {
+    "page": 116,
+    "type": "other",
+    "name": "その他",
+    "description": "仲嶋  豪",
+    "text_preview": "仲嶋  豪 じんざい社会保険労務士事務所 （社会保険労務士）"
+  },
+  {
+    "page": 117,
+    "type": "other",
+    "name": "その他",
+    "description": "安部 佳雄",
+    "text_preview": "安部 佳雄 虎ノ門法律事務所 （弁護士）"
+  },
+  {
+    "page": 118,
+    "type": "other",
+    "name": "その他",
+    "description": "佐藤 公重",
+    "text_preview": "佐藤 公重 繋ぐ相続サロン・ミファミリア （相続コーディネーター）"
+  },
+  {
+    "page": 119,
+    "type": "other",
+    "name": "その他",
+    "description": "佐藤 純也",
+    "text_preview": "佐藤 純也 佐藤純也税理士事務所 （税理士）"
+  },
+  {
+    "page": 120,
+    "type": "other",
+    "name": "その他",
+    "description": "木津 裕充",
+    "text_preview": "木津 裕充 株式会社トウセイ （経営コンサル）"
+  },
+  {
+    "page": 121,
+    "type": "other",
+    "name": "その他",
+    "description": "専門分野",
+    "text_preview": "専門分野 メンバー リフォーム"
+  },
+  {
+    "page": 122,
+    "type": "other",
+    "name": "その他",
+    "description": "山本 哲郎",
+    "text_preview": "山本 哲郎 二豊製畳有限会社 （内装リフォーム）"
+  },
+  {
+    "page": 123,
+    "type": "other",
+    "name": "その他",
+    "description": "加藤 博子",
+    "text_preview": "加藤 博子 合同会社passerelle （空家リサイクル）"
+  },
+  {
+    "page": 124,
+    "type": "other",
+    "name": "その他",
+    "description": "南金山 真幸",
+    "text_preview": "南金山 真幸 やまさ商会株式会社 （工業系商社）"
+  },
+  {
+    "page": 125,
+    "type": "other",
+    "name": "その他",
+    "description": "花本 昭彦",
+    "text_preview": "花本 昭彦 HUE合同会社 （住宅塗装）"
+  },
+  {
+    "page": 126,
+    "type": "other",
+    "name": "その他",
+    "description": "野口 浩乃",
+    "text_preview": "野口 浩乃 株式会社くるみ不動産 （不動産売買）"
+  },
+  {
+    "page": 127,
+    "type": "other",
+    "name": "その他",
+    "description": "建築＆不動",
+    "text_preview": "建築＆不動 産 <<00:33>>"
+  },
+  {
+    "page": 128,
+    "type": "other",
+    "name": "その他",
+    "description": "専門分野",
+    "text_preview": "専門分野 メンバー 冠婚葬祭"
+  },
+  {
+    "page": 129,
+    "type": "other",
+    "name": "その他",
+    "description": "渡邉 貢造",
+    "text_preview": "渡邉 貢造 セルモグループ （冠婚葬祭）"
+  },
+  {
+    "page": 130,
+    "type": "other",
+    "name": "その他",
+    "description": "藤田 幸夫",
+    "text_preview": "藤田 幸夫 株式会社プロデュースワン （結婚相談所）"
+  },
+  {
+    "page": 131,
+    "type": "other",
+    "name": "その他",
+    "description": "岩下 正史",
+    "text_preview": "岩下 正史 有限会社 大日広告（サインラボ） （看板・広告業）"
+  },
+  {
+    "page": 132,
+    "type": "other",
+    "name": "その他",
+    "description": "吉岡 彩耶加",
+    "text_preview": "吉岡 彩耶加 （写真家） マーケテイング"
+  },
+  {
+    "page": 133,
+    "type": "other",
+    "name": "その他",
+    "description": "専門分野",
+    "text_preview": "専門分野 メンバー オイル販売"
+  },
+  {
+    "page": 134,
+    "type": "other",
+    "name": "その他",
+    "description": "山下 哲",
+    "text_preview": "山下 哲 有限会社大分オイル販売 （オイル販売）"
+  },
+  {
+    "page": 135,
+    "type": "other",
+    "name": "その他",
+    "description": "三浦 幸治",
+    "text_preview": "三浦 幸治 （ハウスクリーニング） 生活サービス"
+  },
+  {
+    "page": 136,
+    "type": "other",
+    "name": "その他",
+    "description": "花田 亜弥",
+    "text_preview": "花田 亜弥 株式会社Bambitz （オーナー専属　空調工事）"
+  },
+  {
+    "page": 137,
+    "type": "other",
+    "name": "その他",
+    "description": "東野 哲太",
+    "text_preview": "東野 哲太 1対1個別指導専門塾ブリエット （小中学生個別指導専門塾）"
+  },
+  {
+    "page": 138,
+    "type": "other",
+    "name": "その他",
+    "description": "早野 大介",
+    "text_preview": "早野 大介 有限会社 光風 （便利屋）"
+  },
+  {
+    "page": 139,
+    "type": "other",
+    "name": "その他",
+    "description": "伊東 健太",
+    "text_preview": "伊東 健太 ブルーベリーファームうすき （ラジコン草刈り代行）"
+  },
+  {
+    "page": 140,
+    "type": "other",
+    "name": "その他",
+    "description": "漆間 文代",
+    "text_preview": "漆間 文代 子育て支援ワクワクピース （子育て支援）"
+  },
+  {
+    "page": 141,
+    "type": "other",
+    "name": "その他",
+    "description": "専門分野",
+    "text_preview": "専門分野 メンバー 中古車買取"
+  },
+  {
+    "page": 142,
+    "type": "other",
+    "name": "その他",
+    "description": "木村 伸嗣",
+    "text_preview": "木村 伸嗣 くるま買取ケイヴィレッジ （中古車買取）"
+  },
+  {
+    "page": 143,
+    "type": "other",
+    "name": "その他",
+    "description": "矢野　義隆",
+    "text_preview": "矢野　義隆 福運屋　空彩 （福運屋）"
+  },
+  {
+    "page": 144,
+    "type": "other",
+    "name": "その他",
+    "description": "橋本 翔",
+    "text_preview": "橋本 翔 Nico Auto. （自動車整備）"
+  },
+  {
+    "page": 145,
+    "type": "other",
+    "name": "その他",
+    "description": "吉岡 恭介",
+    "text_preview": "吉岡 恭介 Concierto （高齢者コンシェルジュ）"
+  },
+  {
+    "page": 146,
+    "type": "other",
+    "name": "その他",
+    "description": "工藤 正和",
+    "text_preview": "工藤 正和 （スマホまるごとサポート） <<00:33>>"
+  },
+  {
+    "page": 147,
+    "type": "other",
+    "name": "その他",
+    "description": "<<00:33>>",
+    "text_preview": "<<00:33>> 生活サービス 木原 寛"
+  },
+  {
+    "page": 148,
+    "type": "other",
+    "name": "その他",
+    "description": "専門分野",
+    "text_preview": "専門分野 メンバー スナック"
+  },
+  {
+    "page": 149,
+    "type": "other",
+    "name": "その他",
+    "description": "後藤 久美子",
+    "text_preview": "後藤 久美子 デルデ （スナック）"
+  },
+  {
+    "page": 150,
+    "type": "other",
+    "name": "その他",
+    "description": "赤嶺 博美",
+    "text_preview": "赤嶺 博美 月の木 （寿司屋の姉）"
+  },
+  {
+    "page": 151,
+    "type": "other",
+    "name": "その他",
+    "description": "甲斐 貴光",
+    "text_preview": "甲斐 貴光 おでんBARちとせ家 （おでんBAR）"
+  },
+  {
+    "page": 152,
+    "type": "other",
+    "name": "その他",
+    "description": "勝田　秀伸",
+    "text_preview": "勝田　秀伸 Food＆Bar　GLANZ （ダイニングバー）"
+  },
+  {
+    "page": 153,
+    "type": "other",
+    "name": "その他",
+    "description": "安田  由美",
+    "text_preview": "安田  由美 youゆう （ラウンジ）"
+  },
+  {
+    "page": 154,
+    "type": "other",
+    "name": "その他",
+    "description": "吉良 都広",
+    "text_preview": "吉良 都広 STORIES （高校野球BAR"
+  },
+  {
+    "page": 155,
+    "type": "other",
+    "name": "その他",
+    "description": "専門分野",
+    "text_preview": "専門分野 メンバー 乳酸菌サプリメント"
+  },
+  {
+    "page": 156,
+    "type": "other",
+    "name": "その他",
+    "description": "高野 和志",
+    "text_preview": "高野 和志 ニチニチ製薬株式会社 （乳酸菌サプリメント）"
+  },
+  {
+    "page": 157,
+    "type": "other",
+    "name": "その他",
+    "description": "渡邉 美由紀",
+    "text_preview": "渡邉 美由紀 株式会社アルファー （健康下着）"
+  },
+  {
+    "page": 158,
+    "type": "other",
+    "name": "その他",
+    "description": "鷲山 佳子",
+    "text_preview": "鷲山 佳子 （マヤ暦） 健康・美容"
+  },
+  {
+    "page": 159,
+    "type": "other",
+    "name": "その他",
+    "description": "高橋 昂大",
+    "text_preview": "高橋 昂大 カタラボ （肩治療）"
+  },
+  {
+    "page": 160,
+    "type": "other",
+    "name": "その他",
+    "description": "三浦 千尋",
+    "text_preview": "三浦 千尋 POLA　CanMe.towa 畑中店 （POLAエステティシャン）"
+  },
+  {
+    "page": 161,
+    "type": "other",
+    "name": "その他",
+    "description": "水口 亜裕美",
+    "text_preview": "水口 亜裕美 Link株式会社 （スキンケアアドバイザー）"
+  },
+  {
+    "page": 162,
+    "type": "other",
+    "name": "その他",
+    "description": "木村 駿介",
+    "text_preview": "木村 駿介 PREME HAIR SALON （美容室）"
+  },
+  {
+    "page": 163,
+    "type": "other",
+    "name": "その他",
+    "description": "河野 里保",
+    "text_preview": "河野 里保 ぬくもりサロン ひつじのうたた寝 （びわ温熱療法）"
+  },
+  {
+    "page": 164,
+    "type": "other",
+    "name": "その他",
+    "description": "河野 理枝",
+    "text_preview": "河野 理枝 branche （神経施術）"
+  },
+  {
+    "page": 165,
+    "type": "other",
+    "name": "その他",
+    "description": "永峯 和矢",
+    "text_preview": "永峯 和矢 ASSiST24フレスポ豊後大野店 （24hフィットネスジム）"
+  },
+  {
+    "page": 166,
+    "type": "other",
+    "name": "その他",
+    "description": "山村 太介",
+    "text_preview": "山村 太介 株式会社　BUNGOカンパニー （整骨院）"
+  },
+  {
+    "page": 167,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟",
+    "text_preview": "宗麟 Keep growing 〜貢献の絆で未来を創る〜"
+  },
+  {
+    "page": 168,
+    "type": "other",
+    "name": "その他",
+    "description": "ベルがなったら次の方へ🛎",
+    "text_preview": "ベルがなったら次の方へ🛎 20秒で自己紹介をお願いします ビジターさまによる自己紹介"
+  },
+  {
+    "page": 169,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介 お名前 会社名"
+  },
+  {
+    "page": 170,
+    "type": "visitor_self_intro",
+    "name": "ビジター自己紹介",
+    "description": "様による自己紹介",
+    "text_preview": "ベルがなったら次の方へ🛎 様による自己紹介 １．お名前： 様"
+  },
+  {
+    "page": 171,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介"
+  },
+  {
+    "page": 172,
+    "type": "visitor_self_intro",
+    "name": "ビジター自己紹介",
+    "description": "様による自己紹介",
+    "text_preview": "ベルがなったら次の方へ🛎 様による自己紹介 １．お名前： 様"
+  },
+  {
+    "page": 173,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介"
+  },
+  {
+    "page": 174,
+    "type": "visitor_self_intro",
+    "name": "ビジター自己紹介",
+    "description": "様による自己紹介",
+    "text_preview": "ベルがなったら次の方へ🛎 様による自己紹介 １．お名前："
+  },
+  {
+    "page": 175,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介"
+  },
+  {
+    "page": 176,
+    "type": "visitor_self_intro",
+    "name": "ビジター自己紹介",
+    "description": "様による自己紹介",
+    "text_preview": "ベルがなったら次の方へ🛎 様による自己紹介 １．お名前： 様"
+  },
+  {
+    "page": 177,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介"
+  },
+  {
+    "page": 178,
+    "type": "visitor_self_intro",
+    "name": "ビジター自己紹介",
+    "description": "様による自己紹介",
+    "text_preview": "ベルがなったら次の方へ🛎 様による自己紹介 １．お名前： 様"
+  },
+  {
+    "page": 179,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介"
+  },
+  {
+    "page": 180,
+    "type": "visitor_self_intro",
+    "name": "ビジター自己紹介",
+    "description": "様による自己紹介",
+    "text_preview": "ベルがなったら次の方へ🛎 様による自己紹介 １．お名前： 様"
+  },
+  {
+    "page": 181,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟",
+    "text_preview": "宗麟 Keep growing 〜貢献の絆で未来を創る〜"
+  },
+  {
+    "page": 182,
+    "type": "weekly_presentation",
+    "name": "ウィークリープレゼン",
+    "description": "",
+    "text_preview": "ビジネス ブレイクアウト ウィークリープレゼンテーションを聴"
+  },
+  {
+    "page": 183,
+    "type": "weekly_presentation",
+    "name": "ウィークリープレゼン",
+    "description": "",
+    "text_preview": "ビジネスブレイクアウト 目的 メンバーによる30秒のウィークリープレゼンテーションから"
+  },
+  {
+    "page": 184,
+    "type": "other",
+    "name": "その他",
+    "description": "<<05:00>>",
+    "text_preview": "<<05:00>> ビジネスブレイクアウト 残り時間"
+  },
+  {
+    "page": 185,
+    "type": "other",
+    "name": "その他",
+    "description": "激しく募集中のカテゴリー",
+    "text_preview": "激しく募集中のカテゴリー 税理士 花屋さん"
+  },
+  {
+    "page": 186,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟",
+    "text_preview": "宗麟 Keep growing 〜貢献の絆で未来を創る〜"
+  },
+  {
+    "page": 187,
+    "type": "vice_president",
+    "name": "バイスプレジデント",
+    "description": "バイスプレジデントに",
+    "text_preview": "バイスプレジデントに よる統計報告"
+  },
+  {
+    "page": 188,
+    "type": "other",
+    "name": "その他",
+    "description": "立上げ から 現在 までの",
+    "text_preview": "立上げ から 現在 までの ビジター様の数 : 426名 メンバー 53名‼"
+  },
+  {
+    "page": 189,
+    "type": "other",
+    "name": "その他",
+    "description": "現在までのリファーラル件数",
+    "text_preview": "現在までのリファーラル件数 2025年12月5日までの集計 3,000件突破!!"
+  },
+  {
+    "page": 190,
+    "type": "other",
+    "name": "その他",
+    "description": "2025年12月5日までの売上げ",
+    "text_preview": "2025年12月5日までの売上げ ※2024年10/1～の集計 2025年11月28日 〜2025年12月5日"
+  },
+  {
+    "page": 191,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": "メンバーシップ委員会による報告",
+    "text_preview": "メンバーシップ委員会による報告"
+  },
+  {
+    "page": 192,
+    "type": "other",
+    "name": "その他",
+    "description": "激しく募集中のカテゴリー",
+    "text_preview": "激しく募集中のカテゴリー サプリメント スキンケア"
+  },
+  {
+    "page": 193,
+    "type": "other",
+    "name": "その他",
+    "description": "激しく募集中のカテゴリー",
+    "text_preview": "激しく募集中のカテゴリー AI研修 介護士"
+  },
+  {
+    "page": 194,
+    "type": "other",
+    "name": "その他",
+    "description": "1位　花屋",
+    "text_preview": "1位　花屋 2位　その他の飲食店 3位   司法書士"
+  },
+  {
+    "page": 195,
+    "type": "other",
+    "name": "その他",
+    "description": "税理士",
+    "text_preview": "税理士 コンサル業 写真館"
+  },
+  {
+    "page": 196,
+    "type": "other",
+    "name": "その他",
+    "description": "一般規定",
+    "text_preview": "一般規定 11. BNI メンバーの名簿等の個人情報は全て、 リファーラルを与える目的のみに"
+  },
+  {
+    "page": 197,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": "一般規定コピペページ",
+    "text_preview": "一般規定コピペページ 1. 各専門分野（BNI ビジネス・カテゴリー）か ら、1 名に限り BNI"
+  },
+  {
+    "page": 198,
+    "type": "other",
+    "name": "その他",
+    "description": "メイン",
+    "text_preview": "メイン プレゼンテーション"
+  },
+  {
+    "page": 199,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 200,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 201,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 202,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 203,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 204,
+    "type": "main_presentation_announcement",
+    "name": "メインプレゼン告知",
+    "description": "ラジコン草刈り代行",
+    "text_preview": "ラジコン草刈り代行 メインプレゼンテーション 伊東 健太"
+  },
+  {
+    "page": 205,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟",
+    "text_preview": "宗麟 Keep growing 〜貢献の絆で未来を創る〜"
+  },
+  {
+    "page": 206,
+    "type": "other",
+    "name": "その他",
+    "description": "リファーラル",
+    "text_preview": "リファーラル と 推薦のことば"
+  },
+  {
+    "page": 207,
+    "type": "other",
+    "name": "その他",
+    "description": "推薦のことば",
+    "text_preview": "推薦のことば 三浦 幸治 SK Clean"
+  },
+  {
+    "page": 208,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 209,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 210,
+    "type": "referral_recommendation",
+    "name": "リファーラルと推薦発表",
+    "description": "リファーラルと推薦発表",
+    "text_preview": "リファーラルと推薦発表 ①名 前 ②本日は〇件のリファーラルです"
+  },
+  {
+    "page": 211,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟",
+    "text_preview": "宗麟 Keep growing 〜貢献の絆で未来を創る〜"
+  },
+  {
+    "page": 212,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジター様 による 本日の 一言感想",
+    "text_preview": "ビジター様 による 本日の 一言感想 本日の 「良かった点」"
+  },
+  {
+    "page": 213,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介 お名前 会社名"
+  },
+  {
+    "page": 214,
+    "type": "other",
+    "name": "その他",
+    "description": "様 による 本日の 一言感想",
+    "text_preview": "様 による 本日の 一言感想 本日の 「良かった点」"
+  },
+  {
+    "page": 215,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介"
+  },
+  {
+    "page": 216,
+    "type": "other",
+    "name": "その他",
+    "description": "様 による 本日の 一言感想",
+    "text_preview": "様 による 本日の 一言感想 本日の 「良かった点」"
+  },
+  {
+    "page": 217,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介"
+  },
+  {
+    "page": 218,
+    "type": "other",
+    "name": "その他",
+    "description": "様 による 本日の 一言感想",
+    "text_preview": "様 による 本日の 一言感想 本日の 「良かった点」"
+  },
+  {
+    "page": 219,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介"
+  },
+  {
+    "page": 220,
+    "type": "other",
+    "name": "その他",
+    "description": "様 による 本日の 一言感想",
+    "text_preview": "様 による 本日の 一言感想 本日の 「良かった点」"
+  },
+  {
+    "page": 221,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介"
+  },
+  {
+    "page": 222,
+    "type": "other",
+    "name": "その他",
+    "description": "様 による 本日の 一言感想",
+    "text_preview": "様 による 本日の 一言感想 本日の 「良かった点」"
+  },
+  {
+    "page": 223,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介"
+  },
+  {
+    "page": 224,
+    "type": "other",
+    "name": "その他",
+    "description": "様 による 本日の 一言感想",
+    "text_preview": "様 による 本日の 一言感想 本日の 「良かった点」"
+  },
+  {
+    "page": 225,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟",
+    "text_preview": "宗麟 Keep growing 〜貢献の絆で未来を創る〜"
+  },
+  {
+    "page": 226,
+    "type": "referral_authenticity",
+    "name": "リファーラル真正度確認",
+    "description": "リファーラル",
+    "text_preview": "リファーラル 真正度の確認"
+  },
+  {
+    "page": 227,
+    "type": "referral_authenticity",
+    "name": "リファーラル真正度確認",
+    "description": "リファーラル真正度の確認",
+    "text_preview": "リファーラル真正度の確認 加藤博子さん　　→        南金山真幸さん ☑　リファーラル先とは連絡が取れましたか？"
+  },
+  {
+    "page": 228,
+    "type": "other",
+    "name": "その他",
+    "description": "書記兼会計",
+    "text_preview": "書記兼会計 による報告"
+  },
+  {
+    "page": 229,
+    "type": "other",
+    "name": "その他",
+    "description": "書記兼会計による報告",
+    "text_preview": "書記兼会計による報告 12月1日に更新を迎えたメンバー 吉良都広さん"
+  },
+  {
+    "page": 230,
+    "type": "other",
+    "name": "その他",
+    "description": "書記兼会計",
+    "text_preview": "書記兼会計 メンバー申し込みについて 会費体系について"
+  },
+  {
+    "page": 231,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": "•①後援者が必要です。",
+    "text_preview": "•①後援者が必要です。 •②メンバーシップ申込書の記入。 •③メンバーシップ申込書を"
+  },
+  {
+    "page": 232,
+    "type": "other",
+    "name": "その他",
+    "description": "登録費（初回のみ）",
+    "text_preview": "登録費（初回のみ） プログラム利用料 消費税（10％）"
+  },
+  {
+    "page": 233,
+    "type": "other",
+    "name": "その他",
+    "description": "新しいビジネスを生み出すための有効な方法だと",
+    "text_preview": "新しいビジネスを生み出すための有効な方法だと 感じていただけたでしょうか？ 詳しくはビジターオリエンテーションで、ご説明します。"
+  },
+  {
+    "page": 234,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジターへの感謝",
+    "text_preview": "ビジターへの感謝 オリエンテーションを行いますので、 そのままお待ちください。"
+  },
+  {
+    "page": 235,
+    "type": "visitor_introduction",
+    "name": "ビジター紹介",
+    "description": "ビジター一覧",
+    "text_preview": "本日のビジターのご紹介 お名前 会社名"
+  },
+  {
+    "page": 236,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジターオリエンテーション",
+    "text_preview": "ビジターオリエンテーション オリエンテーションファシリテーター 佐藤 公重"
+  },
+  {
+    "page": 237,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジターオリエンテーション",
+    "text_preview": "ビジターオリエンテーション オリエンテーションファシリテーター 吉田 惇哉"
+  },
+  {
+    "page": 238,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジターオリエンテーション",
+    "text_preview": "ビジターオリエンテーション オリエンテーションファシリテーター 佐藤 公重"
+  },
+  {
+    "page": 239,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジターオリエンテーション",
+    "text_preview": "ビジターオリエンテーション オリエンテーションファシリテーター 吉田 惇哉"
+  },
+  {
+    "page": 240,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジターオリエンテーション",
+    "text_preview": "ビジターオリエンテーション オリエンテーションファシリテーター 吉田 惇哉"
+  },
+  {
+    "page": 241,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジターオリエンテーション",
+    "text_preview": "ビジターオリエンテーション オリエンテーションファシリテーター BNI大分リージョン"
+  },
+  {
+    "page": 242,
+    "type": "other",
+    "name": "その他",
+    "description": "まず初めに",
+    "text_preview": "まず初めに アンケートのご協力を お願いいたします。"
+  },
+  {
+    "page": 243,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟チャプター",
+    "text_preview": "宗麟チャプター ビジターオリエンテーション"
+  },
+  {
+    "page": 244,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 245,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 246,
+    "type": "other",
+    "name": "その他",
+    "description": "✖異業種交流会",
+    "text_preview": "✖異業種交流会 BNIとは？ ○ビジネスチーム"
+  },
+  {
+    "page": 247,
+    "type": "other",
+    "name": "その他",
+    "description": "ビジネスの課題を解決できる場所",
+    "text_preview": "ビジネスの課題を解決できる場所"
+  },
+  {
+    "page": 248,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": "５つの"
+  },
+  {
+    "page": 249,
+    "type": "other",
+    "name": "その他",
+    "description": "あなたの営業チームは何人？",
+    "text_preview": "あなたの営業チームは何人？"
+  },
+  {
+    "page": 250,
+    "type": "other",
+    "name": "その他",
+    "description": "マーケティング",
+    "text_preview": "マーケティング セールス 成約"
+  },
+  {
+    "page": 251,
+    "type": "other",
+    "name": "その他",
+    "description": "メンバーの力を借りましょう",
+    "text_preview": "メンバーの力を借りましょう"
+  },
+  {
+    "page": 252,
+    "type": "other",
+    "name": "その他",
+    "description": "もしも・・・",
+    "text_preview": "もしも・・・ ４9人以上のマーケティングチーム Benefit1"
+  },
+  {
+    "page": 253,
+    "type": "other",
+    "name": "その他",
+    "description": "あなたに代わって営業活動",
+    "text_preview": "あなたに代わって営業活動"
+  },
+  {
+    "page": 254,
+    "type": "other",
+    "name": "その他",
+    "description": "求めているリファーラルを伝える機会",
+    "text_preview": "求めているリファーラルを伝える機会 年間50回のビジネスミーティング ⇩"
+  },
+  {
+    "page": 255,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 256,
+    "type": "other",
+    "name": "その他",
+    "description": "競合他社の存在は？",
+    "text_preview": "競合他社の存在は？"
+  },
+  {
+    "page": 257,
+    "type": "other",
+    "name": "その他",
+    "description": "競争のない独占的なマーケット",
+    "text_preview": "競争のない独占的なマーケット 各専門分野から 1名のみ加入"
+  },
+  {
+    "page": 258,
+    "type": "other",
+    "name": "その他",
+    "description": "競争のない",
+    "text_preview": "競争のない 独占的なマーケット ・強みがあり"
+  },
+  {
+    "page": 259,
+    "type": "other",
+    "name": "その他",
+    "description": "新規ビジネスはどこから？",
+    "text_preview": "新規ビジネスはどこから？"
+  },
+  {
+    "page": 260,
+    "type": "other",
+    "name": "その他",
+    "description": "年間50回",
+    "text_preview": "年間50回 継続的なビジネス機会 •リファーラル"
+  },
+  {
+    "page": 261,
+    "type": "other",
+    "name": "その他",
+    "description": "リファーラル（紹介）の条件",
+    "text_preview": "リファーラル（紹介）の条件 •あなたのビジネスについて知っている •あなたのことを好きである"
+  },
+  {
+    "page": 262,
+    "type": "other",
+    "name": "その他",
+    "description": "成功するための学びの機会",
+    "text_preview": "成功するための学びの機会 Benefit4 • 1985年〜（37年の実績）"
+  },
+  {
+    "page": 263,
+    "type": "other",
+    "name": "その他",
+    "description": "積極的なメンバーを募集し",
+    "text_preview": "積極的なメンバーを募集し ます!！"
+  },
+  {
+    "page": 264,
+    "type": "other",
+    "name": "その他",
+    "description": "経営者は苦難の連続？",
+    "text_preview": "経営者は苦難の連続？"
+  },
+  {
+    "page": 265,
+    "type": "other",
+    "name": "その他",
+    "description": "強い信頼関係から生まれる",
+    "text_preview": "強い信頼関係から生まれる コーチングおよびビジネスサポート Benefit5"
+  },
+  {
+    "page": 266,
+    "type": "other",
+    "name": "その他",
+    "description": "メンバー体験談",
+    "text_preview": "メンバー体験談 メンバー体験談 吉田 惇哉"
+  },
+  {
+    "page": 267,
+    "type": "other",
+    "name": "その他",
+    "description": "メンバー体験談",
+    "text_preview": "メンバー体験談 メンバー体験談 佐藤 公重"
+  },
+  {
+    "page": 268,
+    "type": "other",
+    "name": "その他",
+    "description": "メンバー体験談",
+    "text_preview": "メンバー体験談 メンバー体験談 野口 浩乃"
+  },
+  {
+    "page": 269,
+    "type": "other",
+    "name": "その他",
+    "description": "GiversGain。仲間からのサポート。",
+    "text_preview": "GiversGain。仲間からのサポート。 決してお金では買えないメリット"
+  },
+  {
+    "page": 270,
+    "type": "other",
+    "name": "その他",
+    "description": "地域、日本、そして世界へ",
+    "text_preview": "地域、日本、そして世界へ Benefit +1"
+  },
+  {
+    "page": 271,
+    "type": "other",
+    "name": "その他",
+    "description": "世界77ヵ国　1１,000超チャプター",
+    "text_preview": "世界77ヵ国　1１,000超チャプター 地域、日本、そして世界へ Benefit"
+  },
+  {
+    "page": 272,
+    "type": "other",
+    "name": "その他",
+    "description": "国内だけでなく世界に広がる",
+    "text_preview": "国内だけでなく世界に広がる 強力なネットワーク Benefit"
+  },
+  {
+    "page": 273,
+    "type": "other",
+    "name": "その他",
+    "description": "BNIを活用する5つのベネフィット",
+    "text_preview": "BNIを活用する5つのベネフィット 1. 数十人の営業チームを採用 2. 競争のない独占的なマーケット"
+  },
+  {
+    "page": 274,
+    "type": "other",
+    "name": "その他",
+    "description": "自社のマーケティングとして採用するには？",
+    "text_preview": "自社のマーケティングとして採用するには？ BNIのメリットを感じていただけましたか？ しかし、万人向けではありません"
+  },
+  {
+    "page": 275,
+    "type": "other",
+    "name": "その他",
+    "description": "3つのお約束（BNI成功の鍵）",
+    "text_preview": "3つのお約束（BNI成功の鍵） 1. 出席と時間 (年間約50回、金曜日 6:00-8:30) ※詳しくは個別ミーティングにて"
+  },
+  {
+    "page": 276,
+    "type": "other",
+    "name": "その他",
+    "description": "今後の流れ",
+    "text_preview": "今後の流れ １．オンライン申込の手続き ２．料金のお振込後、振込票を提出"
+  },
+  {
+    "page": 277,
+    "type": "other",
+    "name": "その他",
+    "description": "2024年9月1日～",
+    "text_preview": "2024年9月1日～ 登録費 50,000円"
+  },
+  {
+    "page": 278,
+    "type": "membership_committee",
+    "name": "メンバーシップ委員会",
+    "description": "それでも不安な方・・・",
+    "text_preview": "それでも不安な方・・・ 係による面談があります 申し込み後の審査で約60分の面談があります。"
+  },
+  {
+    "page": 279,
+    "type": "other",
+    "name": "その他",
+    "description": "理　念",
+    "text_preview": "理　念 ギバーズゲイン Givers Gain ®"
+  },
+  {
+    "page": 280,
+    "type": "other",
+    "name": "その他",
+    "description": "他の人の成功を助けることを通じて",
+    "text_preview": "他の人の成功を助けることを通じて 自分の成功を築いていく"
+  },
+  {
+    "page": 281,
+    "type": "other",
+    "name": "その他",
+    "description": "MESSAGE",
+    "text_preview": "MESSAGE"
+  },
+  {
+    "page": 282,
+    "type": "other",
+    "name": "その他",
+    "description": "BNIメンバーシップ申し込み",
+    "text_preview": "BNIメンバーシップ申し込み BNIがご自身のビジネスにあっているとご判断いただいた方は、 ＜STEP ：01>"
+  },
+  {
+    "page": 283,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟",
+    "text_preview": "宗麟 Keep growing 〜貢献の絆で未来を創る〜"
+  },
+  {
+    "page": 284,
+    "type": "vice_president",
+    "name": "バイスプレジデント",
+    "description": "〜終礼〜",
+    "text_preview": "〜終礼〜 プレジデントより バイスプレジデント・書記兼会計より"
+  },
+  {
+    "page": 285,
+    "type": "other",
+    "name": "その他",
+    "description": "お知らせ",
+    "text_preview": "お知らせ ◎ 今後の予定の報告 ◎ 各種研修報告"
+  },
+  {
+    "page": 286,
+    "type": "other",
+    "name": "その他",
+    "description": "サンキュー入力について",
+    "text_preview": "サンキュー入力について ・「サンキュー入力てください」は遠慮せずにお相手に依頼を ⭐"
+  },
+  {
+    "page": 287,
+    "type": "other",
+    "name": "その他",
+    "description": "パワーチーム作りのワークショップ開催",
+    "text_preview": "パワーチーム作りのワークショップ開催"
+  },
+  {
+    "page": 288,
+    "type": "other",
+    "name": "その他",
+    "description": "GRIPとのコラボイベント企画中",
+    "text_preview": "GRIPとのコラボイベント企画中 100名規模のイベント"
+  },
+  {
+    "page": 289,
+    "type": "vice_president",
+    "name": "バイスプレジデント",
+    "description": "バイスプレジデントより",
+    "text_preview": "バイスプレジデントより"
+  },
+  {
+    "page": 290,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 291,
+    "type": "other",
+    "name": "その他",
+    "description": "現在メンバー　42名",
+    "text_preview": "現在メンバー　42名 鮎酒プログラム（7月末まで100名） 残り　６０名"
+  },
+  {
+    "page": 292,
+    "type": "other",
+    "name": "その他",
+    "description": "本日の",
+    "text_preview": "本日の ポジティブな 言葉"
+  },
+  {
+    "page": 293,
+    "type": "positive_words",
+    "name": "今日のポジティブな言葉",
+    "description": "今日のポジティブな言葉",
+    "text_preview": "今日のポジティブな言葉 びわ温熱療法 河野 里保"
+  },
+  {
+    "page": 294,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": ""
+  },
+  {
+    "page": 295,
+    "type": "main_presentation_announcement",
+    "name": "メインプレゼン告知",
+    "description": "ラジコン草刈り代行",
+    "text_preview": "ラジコン草刈り代行 メインプレゼンテーション 伊東 健太"
+  },
+  {
+    "page": 296,
+    "type": "empty",
+    "name": "空白ページ",
+    "description": "",
+    "text_preview": "賞品抽選"
+  },
+  {
+    "page": 297,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 298,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 299,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 300,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 301,
+    "type": "rotation",
+    "name": "ローテーション",
+    "description": "役割ローテーション",
+    "text_preview": "スピーカーローテーション 日　程 メインプレゼン"
+  },
+  {
+    "page": 302,
+    "type": "other",
+    "name": "その他",
+    "description": "先週ビジター７名　今週11名",
+    "text_preview": "先週ビジター７名　今週11名 150名カウントダウン １２８名/１５０名"
+  },
+  {
+    "page": 303,
+    "type": "other",
+    "name": "その他",
+    "description": "書記兼会計より",
+    "text_preview": "書記兼会計より"
+  },
+  {
+    "page": 304,
+    "type": "other",
+    "name": "その他",
+    "description": "終礼で伝えていきたいこと",
+    "text_preview": "終礼で伝えていきたいこと ４０名リスト（メンバーシップの審査で新メンバーに質問してる） 今週ある外部のイベント案内　（◯月◯日（◯）◯◯時〜"
+  },
+  {
+    "page": 305,
+    "type": "other",
+    "name": "その他",
+    "description": "各コーディネーターより",
+    "text_preview": "各コーディネーターより"
+  },
+  {
+    "page": 306,
+    "type": "other",
+    "name": "その他",
+    "description": "その他連絡事項",
+    "text_preview": "その他連絡事項"
+  },
+  {
+    "page": 307,
+    "type": "other",
+    "name": "その他",
+    "description": "ディレクターより",
+    "text_preview": "ディレクターより"
+  },
+  {
+    "page": 308,
+    "type": "other",
+    "name": "その他",
+    "description": "来週また元気にお会いしましょう♪",
+    "text_preview": "来週また元気にお会いしましょう♪"
+  },
+  {
+    "page": 309,
+    "type": "other",
+    "name": "その他",
+    "description": "宗麟",
+    "text_preview": "宗麟 Keep growing 〜貢献の絆で未来を創る〜"
+  }
+]

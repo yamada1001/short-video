@@ -2,17 +2,17 @@
 /**
  * BNI Slide System V2 - Open Recruiting Categories (p.185)
  */
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-$db = new SQLite3($dbPath);
-require_once __DIR__ . '/../includes/getTargetFriday.php';
+
+require_once __DIR__ . '/../config.php';
+
+$db = new PDO('sqlite:' . $db_path);
 $targetFriday = getTargetFriday();
 
 $stmt = $db->prepare("SELECT * FROM recruiting_categories WHERE week_date = :week_date AND category_type = 'open' ORDER BY id");
-$stmt->bindValue(':week_date', $targetFriday, SQLITE3_TEXT);
-$result = $stmt->execute();
+$stmt->bindValue(':week_date', $targetFriday, PDO::PARAM_STR);
+$stmt->execute();
 $categories = [];
-while ($row = $result->fetchArray(SQLITE3_ASSOC)) { $categories[] = $row; }
-$db->close();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { $categories[] = $row; }
 ?>
 <!DOCTYPE html>
 <html lang="ja">

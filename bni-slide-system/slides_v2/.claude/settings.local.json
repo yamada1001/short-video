@@ -1,18 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(sqlite3:*)",
-      "Bash(php -r:*)",
-      "Bash(php:*)",
-      "Bash(chmod:*)",
-      "Bash(python3:*)",
-      "Bash(tree:*)",
-      "Bash(curl:*)",
-      "Bash(pkill:*)",
-      "Bash(awk:*)",
-      "Bash(xargs:*)",
-      "Bash(find:*)",
-      "Bash(git add:*)"
+      "Bash(for:*)",
+      "Bash(do grep -q \"require_once __DIR__ . ''/../config.php''\" \"$f\")"
     ],
     "deny": [],
     "ask": []

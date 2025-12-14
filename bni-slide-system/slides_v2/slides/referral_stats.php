@@ -2,17 +2,16 @@
 /**
  * BNI Slide System V2 - Referral Statistics (p.189)
  */
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-$db = new SQLite3($dbPath);
-require_once __DIR__ . '/../includes/getTargetFriday.php';
+
+require_once __DIR__ . '/../config.php';
+
+$db = new PDO('sqlite:' . $db_path);
 $targetFriday = getTargetFriday();
 
 $stmt = $db->prepare("SELECT * FROM statistics WHERE week_date = :week_date AND stat_type = 'referral_stats'");
-$stmt->bindValue(':week_date', $targetFriday, SQLITE3_TEXT);
-$result = $stmt->execute();
-$stat = $result->fetchArray(SQLITE3_ASSOC);
-$db->close();
-
+$stmt->bindValue(':week_date', $targetFriday, PDO::PARAM_STR);
+$stmt->execute();
+$stat = $stmt->fetch(PDO::FETCH_ASSOC);
 $data = $stat ? json_decode($stat['value'], true) : [];
 ?>
 <!DOCTYPE html>

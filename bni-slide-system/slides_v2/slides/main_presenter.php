@@ -4,12 +4,14 @@
  * メインプレゼンスライド表示
  */
 
+require_once __DIR__ . '/../config.php';
+
 // 日付パラメータ取得
 $weekDate = $_GET['date'] ?? date('Y-m-d');
 
 // データベース接続
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-$db = new SQLite3($dbPath);
+
+$db = new PDO('sqlite:' . $db_path);
 
 // プレゼンデータ取得
 $stmt = $db->prepare("
@@ -23,9 +25,9 @@ $stmt = $db->prepare("
     LEFT JOIN members m ON mp.member_id = m.id
     WHERE mp.week_date = :week_date
 ");
-$stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-$result = $stmt->execute();
-$presentation = $result->fetchArray(SQLITE3_ASSOC);
+$stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+$stmt->execute();
+$presentation = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$presentation) {
     // データがない場合
@@ -41,7 +43,6 @@ if (!$presentation) {
     $hasData = true;
 }
 
-$db->close();
 ?>
 <!DOCTYPE html>
 <html lang="ja">

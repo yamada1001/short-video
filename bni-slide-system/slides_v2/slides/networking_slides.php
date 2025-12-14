@@ -4,11 +4,11 @@
  * ネットワーキング学習スライド（86枚目以降に挿入）
  */
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-$db = new SQLite3($dbPath);
+require_once __DIR__ . '/../config.php';
+
+$db = new PDO('sqlite:' . $db_path);
 
 // 対象の金曜日を取得
-require_once __DIR__ . '/../includes/getTargetFriday.php';
 $targetFriday = getTargetFriday();
 
 // IDまたは日付でデータ取得
@@ -17,21 +17,20 @@ $weekDate = $_GET['week_date'] ?? $targetFriday;
 
 if ($id) {
     $stmt = $db->prepare("SELECT * FROM networking_learning WHERE id = :id");
-    $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 } else {
     $stmt = $db->prepare("SELECT * FROM networking_learning WHERE week_date = :week_date ORDER BY id DESC LIMIT 1");
-    $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
+    $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
 }
 
-$result = $stmt->execute();
-$networkingData = $result->fetchArray(SQLITE3_ASSOC);
+$stmt->execute();
+$networkingData = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $imagePaths = [];
 if ($networkingData && $networkingData['image_paths']) {
     $imagePaths = json_decode($networkingData['image_paths'], true);
 }
 
-$db->close();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
