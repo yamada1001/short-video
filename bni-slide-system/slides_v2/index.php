@@ -113,6 +113,7 @@ $phpSlides = [
     204 => 'main_presenter_204.php',
     213 => 'visitor_feedback.php',
     227 => 'referral_verification.php',
+    229 => 'renewal.php',
     235 => 'visitor_thanks.php',
     242 => 'qr_code.php',
     297 => 'speaker_rotation.php?page=297',
