@@ -117,14 +117,16 @@ switch ($action) {
         $stmt->bindValue(':company_name', $companyName, PDO::PARAM_STR);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
 
-        $stmt->execute();
+        $result = $stmt->execute();
 
         if ($result) {
             echo json_encode([
                 'success' => true,
                 'id' => $db->lastInsertId()
             ]);
-        
+        } else {
+            echo json_encode(['success' => false, 'error' => '保存に失敗しました']);
+        }
         break;
 
     case 'update':
@@ -153,11 +155,13 @@ switch ($action) {
         $stmt->bindValue(':company_name', $companyName, PDO::PARAM_STR);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
 
-        $stmt->execute();
+        $result = $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        
+        } else {
+            echo json_encode(['success' => false, 'error' => '更新に失敗しました']);
+        }
         break;
 
     case 'delete':
@@ -172,11 +176,13 @@ switch ($action) {
 
         $stmt = $db->prepare('DELETE FROM substitutes WHERE id = :id');
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
+        $result = $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        
+        } else {
+            echo json_encode(['success' => false, 'error' => '削除に失敗しました']);
+        }
         break;
 
     case 'delete_by_date':
@@ -191,11 +197,13 @@ switch ($action) {
 
         $stmt = $db->prepare('DELETE FROM substitutes WHERE week_date = :week_date');
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->execute();
+        $result = $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        
+        } else {
+            echo json_encode(['success' => false, 'error' => '削除に失敗しました']);
+        }
         break;
 
     case 'get_next_no':

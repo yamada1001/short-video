@@ -79,11 +79,13 @@ switch ($action) {
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
         $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
 
-        $stmt->execute();
+        $result = $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        
+        } else {
+            echo json_encode(['success' => false, 'error' => '保存に失敗しました']);
+        }
         break;
 
     case 'delete':
@@ -97,11 +99,13 @@ switch ($action) {
 
         $stmt = $db->prepare('DELETE FROM share_story WHERE week_date = :week_date');
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->execute();
+        $result = $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        
+        } else {
+            echo json_encode(['success' => false, 'error' => '削除に失敗しました']);
+        }
         break;
 
     default:

@@ -91,11 +91,13 @@ switch ($action) {
         $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
         $stmt->bindValue(':is_absent', $isAbsent, PDO::PARAM_INT);
 
-        $stmt->execute();
+        $result = $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        
+        } else {
+            echo json_encode(['success' => false, 'error' => '保存に失敗しました']);
+        }
         break;
 
     default:

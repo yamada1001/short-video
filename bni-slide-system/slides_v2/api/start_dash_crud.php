@@ -219,11 +219,13 @@ switch ($action) {
 
         $stmt = $db->prepare('DELETE FROM start_dash_presenter WHERE id = :id');
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
+        $result = $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        
+        } else {
+            echo json_encode(['success' => false, 'error' => '削除に失敗しました']);
+        }
         break;
 
     case 'delete_by_date':
@@ -238,11 +240,13 @@ switch ($action) {
 
         $stmt = $db->prepare('DELETE FROM start_dash_presenter WHERE week_date = :week_date');
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->execute();
+        $result = $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        
+        } else {
+            echo json_encode(['success' => false, 'error' => '削除に失敗しました']);
+        }
         break;
 
     case 'get_slide_data':
