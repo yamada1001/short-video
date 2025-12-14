@@ -588,7 +588,7 @@
 
                 if (data.success) {
                     alert('保存しました');
-                    loadRotationData();
+                    await loadRotationData();
                 } else {
                     alert('エラー: ' + (data.error || '不明なエラー'));
                 }

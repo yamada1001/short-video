@@ -149,8 +149,20 @@ function saveSixWeeks($db, $weeks) {
             }
 
             $stmt->bindValue(':rotation_date', $rotationDate, PDO::PARAM_STR);
-            $stmt->bindValue(':main_presenter_id', $mainPresenterId, PDO::PARAM_INT);
-            $stmt->bindValue(':referral_target', $referralTarget, PDO::PARAM_STR);
+
+            // Handle NULL values properly
+            if ($mainPresenterId === null || $mainPresenterId === '') {
+                $stmt->bindValue(':main_presenter_id', null, PDO::PARAM_NULL);
+            } else {
+                $stmt->bindValue(':main_presenter_id', $mainPresenterId, PDO::PARAM_INT);
+            }
+
+            if ($referralTarget === null || $referralTarget === '') {
+                $stmt->bindValue(':referral_target', null, PDO::PARAM_NULL);
+            } else {
+                $stmt->bindValue(':referral_target', $referralTarget, PDO::PARAM_STR);
+            }
+
             $stmt->execute();
         }
 

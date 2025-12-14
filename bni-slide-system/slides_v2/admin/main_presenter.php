@@ -426,7 +426,7 @@
                 <h2><i class="fas fa-edit"></i> プレゼン情報入力</h2>
             </div>
 
-            <form id="presenterForm">
+            <form id="presenterForm" enctype="multipart/form-data">
                 <!-- Week Date -->
                 <div class="form-group">
                     <label>開催日 <span class="required">*</span></label>

@@ -50,6 +50,7 @@ switch ($action) {
         break;
 
     case 'get':
+    case 'read':
         // 特定日付のメインプレゼン取得
         $weekDate = $_GET['week_date'] ?? null;
 
@@ -75,9 +76,9 @@ switch ($action) {
         $presentation = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($presentation) {
-            echo json_encode(['success' => true, 'presentation' => $presentation]);
+            echo json_encode(['success' => true, 'data' => $presentation]);
         } else {
-            echo json_encode(['success' => false, 'error' => '該当データが見つかりません']);
+            echo json_encode(['success' => false, 'data' => null]);
         }
         break;
 
@@ -123,12 +124,13 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('
-            INSERT INTO main_presenter (member_id, week_date, pdf_path, youtube_url)
-            VALUES (:member_id, :week_date, :pdf_path, :youtube_url)
+            INSERT INTO main_presenter (member_id, week_date, presentation_type, pdf_path, youtube_url)
+            VALUES (:member_id, :week_date, :presentation_type, :pdf_path, :youtube_url)
         ');
 
         $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':presentation_type', $presentationType, PDO::PARAM_STR);
         $stmt->bindValue(':pdf_path', $pdfPath, PDO::PARAM_STR);
         $stmt->bindValue(':youtube_url', $youtubeUrl, PDO::PARAM_STR);
 
@@ -147,15 +149,28 @@ switch ($action) {
 
     case 'update':
         // メインプレゼン更新
-        $id = $_POST['id'] ?? null;
         $memberId = $_POST['member_id'] ?? null;
         $weekDate = $_POST['week_date'] ?? null;
+        $presentationType = $_POST['presentation_type'] ?? 'simple';
         $youtubeUrl = $_POST['youtube_url'] ?? null;
 
-        if (!$id || !$memberId || !$weekDate) {
-            echo json_encode(['success' => false, 'error' => 'ID、メンバーID、開催日は必須です']);
+        if (!$memberId || !$weekDate) {
+            echo json_encode(['success' => false, 'error' => 'メンバーID、開催日は必須です']);
             exit;
         }
+
+        // week_dateからIDを取得
+        $checkStmt = $db->prepare('SELECT id FROM main_presenter WHERE week_date = :week_date');
+        $checkStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $checkStmt->execute();
+        $existing = $checkStmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$existing) {
+            echo json_encode(['success' => false, 'error' => '更新対象のデータが見つかりません']);
+            exit;
+        }
+
+        $id = $existing['id'];
 
         // PDFアップロード処理
         $pdfPath = null;
@@ -176,6 +191,7 @@ switch ($action) {
                 UPDATE main_presenter
                 SET member_id = :member_id,
                     week_date = :week_date,
+                    presentation_type = :presentation_type,
                     pdf_path = :pdf_path,
                     youtube_url = :youtube_url,
                     updated_at = CURRENT_TIMESTAMP
@@ -187,6 +203,7 @@ switch ($action) {
                 UPDATE main_presenter
                 SET member_id = :member_id,
                     week_date = :week_date,
+                    presentation_type = :presentation_type,
                     youtube_url = :youtube_url,
                     updated_at = CURRENT_TIMESTAMP
                 WHERE id = :id
@@ -196,6 +213,7 @@ switch ($action) {
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':presentation_type', $presentationType, PDO::PARAM_STR);
         $stmt->bindValue(':youtube_url', $youtubeUrl, PDO::PARAM_STR);
 
         $stmt->execute();
