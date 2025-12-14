@@ -676,6 +676,27 @@
             `;
         }
 
+        // PDFプレビュー更新
+        function updatePdfPreview() {
+            if (convertedImages.length === 0) return;
+
+            const slideContent = document.getElementById('slideContent');
+            let html = '<div style="max-height: 600px; overflow-y: auto;">';
+
+            convertedImages.forEach((img, index) => {
+                const url = URL.createObjectURL(img.blob);
+                html += `
+                    <div style="margin-bottom: 20px; text-align: center;">
+                        <div style="font-size: 12px; color: #666; margin-bottom: 5px;">ページ ${index + 1}/${convertedImages.length}</div>
+                        <img src="${url}" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;" alt="PDF Page ${index + 1}">
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            slideContent.innerHTML = html;
+        }
+
         // プレビューリセット
         function resetPreview() {
             document.getElementById('slideContent').innerHTML = `
@@ -720,7 +741,10 @@
                 // PDF→画像変換を実行
                 try {
                     await convertPdfToImages(file);
-                    info.innerHTML = `<i class="fas fa-check-circle" style="color: #28a745;"></i> ${file.name} (${sizeMB} MB) - 変換完了`;
+                    info.innerHTML = `<i class="fas fa-check-circle" style="color: #28a745;"></i> ${file.name} (${sizeMB} MB) - 変換完了 (${convertedImages.length}ページ)`;
+
+                    // プレビューを更新
+                    updatePdfPreview();
                 } catch (error) {
                     console.error('PDF変換エラー:', error);
                     info.innerHTML = `<i class="fas fa-exclamation-circle" style="color: #dc3545;"></i> ${file.name} - 変換失敗`;
