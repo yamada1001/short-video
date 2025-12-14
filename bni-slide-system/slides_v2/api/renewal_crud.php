@@ -50,11 +50,11 @@ switch ($action) {
         break;
 
     case 'create':
-        $weekDate = $_POST['week_date'] ?? null;
+        $weekDate = $_POST['week_date'] ?? date('Y-m-d');
         $memberId = $_POST['member_id'] ?? null;
 
-        if (!$weekDate || !$memberId) {
-            echo json_encode(['success' => false, 'error' => '全項目は必須です']);
+        if (!$memberId) {
+            echo json_encode(['success' => false, 'error' => 'メンバーは必須です']);
             exit;
         }
 
