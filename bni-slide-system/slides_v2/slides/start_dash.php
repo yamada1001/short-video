@@ -7,7 +7,7 @@
 require_once __DIR__ . '/../config.php';
 
 // パラメータ取得
-$weekDate = getTargetFriday();
+
 $pageNumber = $_GET['page'] ?? 15;
 
 // データベース接続

@@ -87,7 +87,6 @@ switch ($action) {
     case 'save':
         // 座席配置保存（全データを削除して新規保存）
         $seatingData = $postData['seating'] ?? [];
-        $weekDate = getTargetFriday();  // 自動的に次の金曜日を設定
 
         $db->beginTransaction();
 
@@ -98,15 +97,14 @@ switch ($action) {
             // 新しいデータを挿入
             if (!empty($seatingData)) {
                 $insertStmt = $db->prepare('
-                    INSERT INTO seating_arrangement (table_name, member_id, position, week_date)
-                    VALUES (:table_name, :member_id, :position, :week_date)
+                    INSERT INTO seating_arrangement (table_name, member_id, position)
+                    VALUES (:table_name, :member_id, :position)
                 ');
 
                 foreach ($seatingData as $seat) {
                     $insertStmt->bindValue(':table_name', $seat['table_name'], PDO::PARAM_STR);
                     $insertStmt->bindValue(':member_id', $seat['member_id'], PDO::PARAM_INT);
                     $insertStmt->bindValue(':position', $seat['position'], PDO::PARAM_INT);
-                    $insertStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
                     $insertStmt->execute();
                 }
             }
@@ -114,7 +112,7 @@ switch ($action) {
             $db->commit();
 
             // 保存成功後、スライド画像を生成（p.7）
-            generateSlideImage('seating.php', 7, $weekDate);
+            generateSlideImage('seating.php', 7);
 
             echo json_encode(['success' => true]);
         } catch (Exception $e) {

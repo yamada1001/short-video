@@ -7,7 +7,7 @@
 require_once __DIR__ . '/../config.php';
 
 // 対象の金曜日を取得
-$weekDate = getTargetFriday();
+
 
 // データベース接続
 $db = new PDO('sqlite:' . $db_path);

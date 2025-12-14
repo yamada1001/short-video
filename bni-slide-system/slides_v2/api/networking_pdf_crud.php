@@ -77,7 +77,7 @@ switch ($action) {
 
     case 'create':
         // 新規PDF追加
-        $weekDate = $_POST['week_date'] ?? getTargetFriday();
+        $weekDate = date('Y-m-d');  // 本日の日付
 
         // PDFファイルアップロード処理
         if (!isset($_FILES['pdf_file']) || $_FILES['pdf_file']['error'] !== UPLOAD_ERR_OK) {
