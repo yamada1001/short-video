@@ -1,0 +1,8 @@
+# Allow API access (override parent directory authentication)
+Satisfy Any
+Order allow,deny
+Allow from all
+
+# Enable error display for debugging
+php_flag display_errors On
+php_value error_reporting E_ALL
