@@ -96,6 +96,18 @@
             display: inline-block;
         }
 
+        .substitute-for {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .substitute-for strong {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
         .substitute-company {
             font-size: 36px;
             font-weight: 600;
@@ -221,6 +233,7 @@
                 card.className = 'substitute-card';
                 card.innerHTML = `
                     <div class="substitute-no">No.${substitute.substitute_no}</div>
+                    <div class="substitute-for"><strong>${substitute.member_name || 'undefined'}</strong> さんの代理</div>
                     <div class="substitute-company">${substitute.company_name}</div>
                     <div class="substitute-name">${substitute.name}</div>
                 `;

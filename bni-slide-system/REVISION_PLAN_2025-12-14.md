@@ -2316,3 +2316,219 @@ function convertPdfToImages($pdfPath, $weekDate) {
 
 **最終更新**: 2025-12-14 23:30
 **ステータス**: ✅ **PDF画像変換機能実装完了（ImageMagick使用）**
+
+---
+
+## 🔧 追加修正: 代理出席管理機能の拡張
+
+**日時**: 2025-12-14 22:30
+**問題**: 代理出席管理画面で「誰の代理か」が不明確、テストデータが"undefined"表示
+
+### 実施した対応
+
+#### 1. データベーススキーマ修正
+
+**マイグレーション実行**:
+- `migrate_add_substitute_no.php`: `substitute_no`カラム追加
+- `migrate_fix_substitutes_week_date.php`: `week_date`をNULLABLEに変更
+
+**実行前のスキーマ**:
+```sql
+CREATE TABLE substitutes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    week_date TEXT NOT NULL,
+    member_id INTEGER NOT NULL,
+    substitute_company TEXT NOT NULL,
+    substitute_name TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (member_id) REFERENCES members(id) ON DELETE CASCADE
+)
+```
+
+**実行後のスキーマ**:
+```sql
+CREATE TABLE substitutes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    week_date TEXT,  -- NULLABLEに変更
+    member_id INTEGER NOT NULL,
+    substitute_company TEXT NOT NULL,
+    substitute_name TEXT NOT NULL,
+    substitute_no INTEGER NOT NULL DEFAULT 1,  -- 追加
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (member_id) REFERENCES members(id) ON DELETE CASCADE
+)
+```
+
+#### 2. API機能拡張（substitutes_crud.php）
+
+**追加された機能**:
+- `member_id`の処理を追加
+- メンバー情報をJOINして取得（`get_latest`アクション）
+- `create`/`update`アクションで`member_id`を必須化
+
+**変更前**:
+```php
+case 'get_latest':
+    $stmt = $db->query("SELECT * FROM substitutes ORDER BY created_at DESC");
+```
+
+**変更後**:
+```php
+case 'get_latest':
+    $stmt = $db->query("
+        SELECT s.*, m.name as member_name
+        FROM substitutes s
+        LEFT JOIN members m ON s.member_id = m.id
+        ORDER BY s.created_at DESC, s.substitute_no ASC
+    ");
+```
+
+#### 3. 管理画面UI改善（admin/substitutes.php）
+
+**追加された機能**:
+1. テーブルに「誰の代理」列を追加
+2. フォームにメンバー選択ドロップダウンを追加
+3. メンバー一覧を動的に読み込む機能実装
+
+**変更内容**:
+```html
+<!-- 追加: メンバー選択ドロップダウン -->
+<div class="form-group">
+    <label>誰の代理 <span class="required">*</span></label>
+    <select id="memberId" required>
+        <option value="">メンバーを選択してください</option>
+        <!-- メンバー一覧はJavaScriptで読み込み -->
+    </select>
+</div>
+```
+
+**JavaScript追加機能**:
+```javascript
+// メンバー一覧取得
+async function loadMembers() {
+    const response = await fetch(`${MEMBERS_API}?action=list`);
+    const data = await response.json();
+    if (data.success) {
+        members = data.members;
+        populateMemberSelect();
+    }
+}
+
+// メンバーselect要素を設定
+function populateMemberSelect() {
+    const select = document.getElementById('memberId');
+    members.forEach(member => {
+        const option = document.createElement('option');
+        option.value = member.id;
+        option.textContent = member.name;
+        select.appendChild(option);
+    });
+}
+```
+
+#### 4. スライド表示改善（slides/substitutes.php）
+
+**追加された機能**:
+- 「〇〇さんの代理」を表示
+
+**変更前**:
+```html
+<div class="substitute-no">No.1</div>
+<div class="substitute-company">テスト株式会社</div>
+<div class="substitute-name">山田太郎</div>
+```
+
+**変更後**:
+```html
+<div class="substitute-no">No.1</div>
+<div class="substitute-for"><strong>高橋</strong> さんの代理</div>
+<div class="substitute-company">テスト株式会社</div>
+<div class="substitute-name">山田太郎</div>
+```
+
+**CSSスタイル追加**:
+```css
+.substitute-for {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.substitute-for strong {
+    font-size: 28px;
+    font-weight: 700;
+}
+```
+
+#### 5. テストデータ改善
+
+**変更前（insert_test_substitutes.php）**:
+```php
+$testData = [
+    [
+        'member_id' => 1,  // データなし → "undefined"表示
+        'substitute_company' => 'テスト株式会社',
+        'substitute_name' => '山田太郎',
+        'substitute_no' => 1
+    ],
+    // ...
+];
+```
+
+**変更後**:
+```php
+// テストデータ (member_idは実在するメンバーIDを使用)
+// member_id 1: 高橋, 2: 高野, 3: 渡辺美由紀
+$testData = [
+    [
+        'member_id' => 1,  // 高橋の代理
+        'substitute_company' => 'テスト株式会社',
+        'substitute_name' => '山田太郎',
+        'substitute_no' => 1
+    ],
+    [
+        'member_id' => 2,  // 高野の代理
+        'substitute_company' => 'サンプル商事',
+        'substitute_name' => '佐藤花子',
+        'substitute_no' => 2
+    ],
+    [
+        'member_id' => 3,  // 渡辺美由紀の代理
+        'substitute_company' => 'デモ企画',
+        'substitute_name' => '鈴木一郎',
+        'substitute_no' => 3
+    ]
+];
+```
+
+### 実装ファイル一覧
+
+1. **マイグレーション**:
+   - `migrate_add_substitute_no.php`
+   - `migrate_fix_substitutes_week_date.php`
+   - `run_substitutes_migration.php`（本番用）
+
+2. **API**:
+   - `api/substitutes_crud.php`
+
+3. **管理画面**:
+   - `admin/substitutes.php`
+
+4. **スライド**:
+   - `slides/substitutes.php`
+
+5. **テストデータ**:
+   - `insert_test_substitutes.php`
+
+### コミット履歴
+
+- 26ca7ac: Fix: substitutesテーブルのweek_date制約を修正 + マイグレーションスクリプト追加
+- 39ed90b: Feature: 代理出席管理に「誰の代理か」メンバー選択機能を追加
+
+---
+
+**最終更新**: 2025-12-14 22:45
+**ステータス**: ✅ **代理出席管理機能拡張完了（メンバー選択機能追加）**
