@@ -573,10 +573,14 @@
                 const response = await fetch(`${API_BASE}?action=get_latest`);
                 const data = await response.json();
 
+                console.log('既存データ読み込み:', data);
+
                 if (data.success && data.data) {
                     // 編集モードに切り替え
                     isEditMode = true;
                     currentData = data.data;
+
+                    console.log('編集モード: currentData =', currentData);
 
                     // フォームに既存データをセット
                     document.getElementById('memberId').value = currentData.member_id;
@@ -765,7 +769,20 @@
             document.querySelectorAll('.type-option').forEach(opt => {
                 opt.classList.remove('selected');
             });
-            event.currentTarget.classList.add('selected');
+
+            // クリックされた要素を選択状態にする（イベントから呼ばれた場合のみ）
+            if (typeof event !== 'undefined' && event.currentTarget) {
+                event.currentTarget.classList.add('selected');
+            } else {
+                // プログラムから呼ばれた場合は、該当するtype-optionを選択
+                const typeOptions = document.querySelectorAll('.type-option');
+                typeOptions.forEach((opt, index) => {
+                    const input = opt.querySelector('input[type="radio"]');
+                    if (input && input.value === type) {
+                        opt.classList.add('selected');
+                    }
+                });
+            }
 
             // 拡張オプション表示/非表示
             const extendedOptions = document.getElementById('extendedOptions');
