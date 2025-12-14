@@ -1,0 +1,137 @@
+{
+  "comment": "スライドファイルとページ番号のマッピング",
+  "mappings": [
+    {
+      "file": "seating.php",
+      "page": 7,
+      "description": "座席表",
+      "api": "seating_crud.php"
+    },
+    {
+      "file": "main_presenter.php",
+      "page": [8, 204],
+      "description": "メインプレゼン",
+      "api": "main_presenter_crud.php"
+    },
+    {
+      "file": "start_dash.php",
+      "page": [15, 107],
+      "description": "スタートダッシュ",
+      "api": "start_dash_crud.php"
+    },
+    {
+      "file": "visitor_intro.php",
+      "page": 19,
+      "description": "ビジター紹介",
+      "api": "visitors_crud.php"
+    },
+    {
+      "file": "networking_slides.php",
+      "page": 86,
+      "description": "ネットワーキング学習",
+      "api": "networking_pdf_crud.php"
+    },
+    {
+      "file": "referral_champion.php",
+      "page": 91,
+      "description": "リファーラルチャンピオン",
+      "api": "champions_crud.php"
+    },
+    {
+      "file": "value_champion.php",
+      "page": 92,
+      "description": "バリューチャンピオン",
+      "api": "champions_crud.php"
+    },
+    {
+      "file": "visitor_champion.php",
+      "page": 93,
+      "description": "ビジターチャンピオン",
+      "api": "champions_crud.php"
+    },
+    {
+      "file": "1to1_champion.php",
+      "page": 94,
+      "description": "1to1チャンピオン",
+      "api": "champions_crud.php"
+    },
+    {
+      "file": "ceu_champion.php",
+      "page": 95,
+      "description": "CEUチャンピオン",
+      "api": "champions_crud.php"
+    },
+    {
+      "file": "all_champions.php",
+      "page": 96,
+      "description": "全チャンピオン",
+      "api": "champions_crud.php"
+    },
+    {
+      "file": "visitor_self_intro.php",
+      "page": "169-180",
+      "description": "ビジター自己紹介",
+      "api": "visitors_crud.php"
+    },
+    {
+      "file": "recruiting_categories.php",
+      "page": 185,
+      "description": "募集カテゴリ",
+      "api": "categories_crud.php"
+    },
+    {
+      "file": "visitor_stats.php",
+      "page": 188,
+      "description": "ビジター統計",
+      "api": "statistics_crud.php"
+    },
+    {
+      "file": "referral_stats.php",
+      "page": 189,
+      "description": "リファーラル統計",
+      "api": "statistics_crud.php"
+    },
+    {
+      "file": "sales_stats.php",
+      "page": 190,
+      "description": "売上統計",
+      "api": "statistics_crud.php"
+    },
+    {
+      "file": "category_survey.php",
+      "page": 194,
+      "description": "カテゴリ調査",
+      "api": "categories_crud.php"
+    },
+    {
+      "file": "visitor_feedback.php",
+      "page": "213-224",
+      "description": "ビジター感想",
+      "api": "visitors_crud.php"
+    },
+    {
+      "file": "referral_verification.php",
+      "page": 227,
+      "description": "リファーラル確認",
+      "api": "referral_check_crud.php"
+    },
+    {
+      "file": "visitor_thanks.php",
+      "page": 235,
+      "description": "ビジター感謝",
+      "api": "visitors_crud.php"
+    },
+    {
+      "file": "qr_code.php",
+      "page": 242,
+      "description": "QRコード",
+      "api": "qr_code_crud.php"
+    },
+    {
+      "file": "weekly_stats.php",
+      "page": 302,
+      "description": "週次統計",
+      "api": "statistics_crud.php"
+    }
+  ]
+}

@@ -104,6 +104,22 @@ switch ($action) {
         $stmt->bindValue(':value', $value, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
+            // 保存成功後、スライド画像を生成
+            switch ($statType) {
+                case 'visitor':
+                    generateSlideImage('visitor_stats.php', 188, $weekDate);
+                    break;
+                case 'referral':
+                    generateSlideImage('referral_stats.php', 189, $weekDate);
+                    break;
+                case 'sales':
+                    generateSlideImage('sales_stats.php', 190, $weekDate);
+                    break;
+                case 'weekly':
+                    generateSlideImage('weekly_stats.php', 302, $weekDate);
+                    break;
+            }
+
             echo json_encode(['success' => true]);
         } else {
             echo json_encode(['success' => false, 'error' => 'データベースエラー']);

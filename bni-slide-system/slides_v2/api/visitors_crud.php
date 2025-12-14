@@ -135,14 +135,20 @@ switch ($action) {
         $stmt->bindValue(':job_description', $jobDescription, PDO::PARAM_STR);
         $stmt->bindValue(':referral_request', $referralRequest, PDO::PARAM_STR);
 
-        $stmt->execute();
+        if ($stmt->execute()) {
+            // 保存成功後、スライド画像を生成
+            generateSlideImage('visitor_intro.php', 19, $weekDate);
+            generateSlideImage('visitor_self_intro.php', 169, $weekDate);  // 動的ページ（169-180）
+            generateSlideImage('visitor_feedback.php', 213, $weekDate);    // 動的ページ（213-224）
+            generateSlideImage('visitor_thanks.php', 235, $weekDate);
 
-        if ($result) {
             echo json_encode([
                 'success' => true,
                 'id' => $db->lastInsertId()
             ]);
-        
+        } else {
+            echo json_encode(['success' => false, 'error' => 'データベースエラー']);
+        }
         break;
 
     case 'update':
@@ -161,6 +167,13 @@ switch ($action) {
             echo json_encode(['success' => false, 'error' => 'ID、No、お名前は必須です']);
             exit;
         }
+
+        // week_dateを取得
+        $getStmt = $db->prepare('SELECT week_date FROM visitors WHERE id = :id');
+        $getStmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $getStmt->execute();
+        $visitorData = $getStmt->fetch(PDO::FETCH_ASSOC);
+        $weekDate = $visitorData['week_date'] ?? null;
 
         $stmt = $db->prepare('
             UPDATE visitors
@@ -186,11 +199,19 @@ switch ($action) {
         $stmt->bindValue(':job_description', $jobDescription, PDO::PARAM_STR);
         $stmt->bindValue(':referral_request', $referralRequest, PDO::PARAM_STR);
 
-        $stmt->execute();
+        if ($stmt->execute()) {
+            // 保存成功後、スライド画像を生成
+            if ($weekDate) {
+                generateSlideImage('visitor_intro.php', 19, $weekDate);
+                generateSlideImage('visitor_self_intro.php', 169, $weekDate);
+                generateSlideImage('visitor_feedback.php', 213, $weekDate);
+                generateSlideImage('visitor_thanks.php', 235, $weekDate);
+            }
 
-        if ($result) {
             echo json_encode(['success' => true]);
-        
+        } else {
+            echo json_encode(['success' => false, 'error' => 'データベースエラー']);
+        }
         break;
 
     case 'delete':

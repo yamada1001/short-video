@@ -32,8 +32,11 @@ switch ($action) {
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
         $stmt->bindValue(':from_member_id', $fromMemberId, PDO::PARAM_INT);
         $stmt->bindValue(':to_member_id', $toMemberId, PDO::PARAM_INT);
-        
+
         if ($stmt->execute()) {
+            // 保存成功後、スライド画像を生成
+            generateSlideImage('referral_verification.php', 227, $weekDate);
+
             echo json_encode(['success' => true, 'id' => $db->lastInsertId()]);
         } else {
             echo json_encode(['success' => false, 'error' => 'データベースエラー']);
@@ -43,11 +46,23 @@ switch ($action) {
     case 'delete':
         $id = $postData['id'] ?? null;
         if (!$id) { echo json_encode(['success' => false, 'error' => 'IDが必要です']); exit; }
-        
+
+        // week_dateを取得（削除前に）
+        $getStmt = $db->prepare("SELECT week_date FROM referral_verification WHERE id = :id");
+        $getStmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $getStmt->execute();
+        $data = $getStmt->fetch(PDO::FETCH_ASSOC);
+        $weekDate = $data['week_date'] ?? null;
+
         $stmt = $db->prepare("DELETE FROM referral_verification WHERE id = :id");
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        
+
         if ($stmt->execute()) {
+            // 削除成功後、スライド画像を再生成
+            if ($weekDate) {
+                generateSlideImage('referral_verification.php', 227, $weekDate);
+            }
+
             echo json_encode(['success' => true]);
         } else {
             echo json_encode(['success' => false, 'error' => 'データベース削除エラー']);

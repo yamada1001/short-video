@@ -96,6 +96,10 @@ switch ($action) {
             }
 
             $db->commit();
+
+            // 保存成功後、スライド画像を生成（p.7）
+            generateSlideImage('seating.php', 7, $weekDate);
+
             echo json_encode(['success' => true]);
         } catch (Exception $e) {
             $db->rollBack();

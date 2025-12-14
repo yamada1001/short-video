@@ -70,6 +70,9 @@ switch ($action) {
         $stmt->bindValue(':qr_image_path', $relativeQrPath, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
+            // 保存成功後、スライド画像を生成
+            generateSlideImage('qr_code.php', 242, $weekDate);
+
             echo json_encode(['success' => true, 'qr_image_path' => $relativeQrPath]);
         } else {
             echo json_encode(['success' => false, 'error' => 'データベースエラー']);

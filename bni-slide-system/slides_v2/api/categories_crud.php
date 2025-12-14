@@ -59,6 +59,14 @@ switch ($action) {
             }
 
             $db->commit();
+
+            // 保存成功後、スライド画像を生成
+            if ($categoryType === 'recruiting') {
+                generateSlideImage('recruiting_categories.php', 185, $weekDate);
+            } elseif ($categoryType === 'survey') {
+                generateSlideImage('category_survey.php', 194, $weekDate);
+            }
+
             echo json_encode(['success' => true]);
         } catch (Exception $e) {
             $db->rollBack();

@@ -1176,3 +1176,173 @@ DELETE FROM recruiting_categories WHERE category_name LIKE '%【TEST】%';
 **最終更新**: 2025-12-14 15:45 - 全機能完全動作確認済み
 
 ---
+
+## 🚀 画像自動生成機能実装完了（2025-12-14 16:30）
+
+### 背景
+**問題**: 管理画面でデータを保存しても、スライドショー（index.php）には反映されない
+**原因**: スライドショーは309枚のPNG画像を表示する仕組みだが、管理画面で作成したPHPスライドはPNG画像に変換されていなかった
+
+### 実施内容
+
+#### 1. 画像生成スクリプト作成（3ファイル）
+- **`scripts/generate_slide_image.py`**: Pythonスクリプト（PHPスライド → PNG変換）
+- **`scripts/capture_slide.js`**: Node.js + Puppeteer（スクリーンショット撮影）
+- **`scripts/package.json`**: Puppeteer依存関係定義
+
+#### 2. config.php にヘルパー関数追加
+```php
+function generateSlideImage($slideFile, $pageNumber, $date = null)
+```
+- PHPから画像生成Pythonスクリプトを呼び出す
+- バックグラウンド実行（非同期）
+- エラーログ出力機能
+
+#### 3. スライド・ページ番号マッピング作成
+- **`slide_page_mapping.json`**: 全22スライドのページ番号マッピング
+- APIとスライドの対応関係を定義
+
+#### 4. 全9個のCRUD APIに画像生成処理を追加
+
+**修正したAPI**:
+1. **seating_crud.php** - 座席表（p.7）
+2. **categories_crud.php** - 募集カテゴリ（p.185, p.194）
+3. **champions_crud.php** - 全チャンピオン（p.91-96）
+4. **main_presenter_crud.php** - メインプレゼン（p.8, p.204）
+5. **start_dash_crud.php** - スタートダッシュ（p.15, p.107）
+6. **visitors_crud.php** - ビジター関連（p.19, p.169-180, p.213-224, p.235）
+7. **networking_pdf_crud.php** - ネットワーキング学習（p.86）
+8. **qr_code_crud.php** - QRコード（p.242）
+9. **referral_check_crud.php** - リファーラル真正度（p.227）
+10. **statistics_crud.php** - 全統計（p.188, p.189, p.190, p.302）
+
+**実装パターン**:
+```php
+$db->commit();
+
+// 保存成功後、スライド画像を生成
+generateSlideImage('スライドファイル.php', ページ番号, $weekDate);
+
+echo json_encode(['success' => true]);
+```
+
+#### 5. Puppeteer インストール
+```bash
+cd slides_v2/scripts
+npm install puppeteer
+```
+
+### 技術仕様
+
+#### 画像生成フロー
+1. 管理画面でデータ保存 → API（*_crud.php）
+2. API内で `$db->commit()` 成功
+3. `generateSlideImage()` を呼び出し
+4. Pythonスクリプト起動（バックグラウンド）
+5. Node.js + Puppeteer でスライドPHPにアクセス
+6. 1920x1080でスクリーンショット撮影
+7. PNG画像を `assets/images/slides/production/slide_XXX.png` に保存
+
+#### 画像ファイル命名規則
+- ページ7 → `slide_007.png`
+- ページ91 → `slide_091.png`
+- ページ302 → `slide_302.png`
+
+### 動作確認項目
+- ✅ Pythonスクリプト作成完了
+- ✅ Node.js Puppeteerスクリプト作成完了
+- ✅ config.php にヘルパー関数追加完了
+- ✅ 全9個のCRUD APIに画像生成処理追加完了
+- ✅ スライド・ページ番号マッピング作成完了
+- ⏳ 実際の画像生成動作確認（次タスク）
+
+### ファイル統計
+- **新規作成**: 4ファイル（Python, JS, JSON, package.json）
+- **修正**: 10ファイル（config.php + 9 API）
+- **総コード追加**: 約300行
+
+### 次のステップ
+1. Puppeteerインストール完了を確認
+2. テスト環境で画像生成を実行
+3. 生成された画像を確認
+4. 本番環境での動作確認
+
+**最終更新**: 2025-12-14 16:30 - 画像自動生成機能実装完了
+
+---
+
+## ✅ スライドショーPHPベース化完了（2025-12-14 17:00）
+
+### 問題
+画像自動生成機能を実装したが、XserverではNode.js/Puppeteerのインストールが困難
+
+### 解決策
+**スライドショー（index.php）をPHPベースに変更**
+
+### 実施内容
+
+#### 新しいindex.php の仕組み
+- **PHPスライド（22種類）**: iframeで直接読み込み
+- **画像スライド（残り287枚）**: 従来通りPNG画像を表示
+- **日付パラメータ**: 自動で次の金曜日を計算、URLで指定も可能
+
+#### 機能
+✅ **管理画面で保存 → 即座にスライドショーに反映**
+- データベース保存 → PHPスライドが更新 → スライドショーに即反映
+
+✅ **ナビゲーション**
+- 「前へ」「次へ」ボタン
+- キーボード操作対応
+  - 矢印キー（←→）: スライド移動
+  - スペースキー: 次へ
+  - Homeキー: 最初へ
+  - Endキー: 最後へ
+  - Fキー: フルスクリーン切り替え
+
+✅ **ページ番号表示**
+- 右下に「X / 309」を表示
+- URLハッシュで直接ページ指定可能（例: #7で7ページ目）
+
+### PHPスライド対応ページ（22ページ）
+- p.7: 座席表
+- p.8, 204: メインプレゼン
+- p.15, 107: スタートダッシュ
+- p.19: ビジター紹介
+- p.86: ネットワーキング学習
+- p.91-96: 各チャンピオン（6種類）
+- p.169: ビジター自己紹介
+- p.185: 募集カテゴリ
+- p.188-190: 統計（ビジター、リファーラル、売上）
+- p.194: カテゴリ調査
+- p.213: ビジター感想
+- p.227: リファーラル確認
+- p.235: ビジター感謝
+- p.242: QRコード
+- p.302: 週次統計
+
+### 確認URL
+**スライドショー**:
+```
+https://yojitu.com/bni-slide-system/slides_v2/index.php
+```
+
+**特定の日付を指定**:
+```
+https://yojitu.com/bni-slide-system/slides_v2/index.php?date=2025-12-20
+```
+
+**特定ページを直接表示**:
+```
+https://yojitu.com/bni-slide-system/slides_v2/index.php#7
+```
+（7ページ目の座席表を直接表示）
+
+### メリット
+✅ Xserverで完全動作（追加インストール不要）
+✅ 管理画面のデータが即座に反映
+✅ サーバー負荷が低い
+✅ メンテナンスが簡単
+
+**最終更新**: 2025-12-14 17:00 - スライドショーPHPベース化完了
+
+---

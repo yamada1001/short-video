@@ -141,6 +141,9 @@ switch ($action) {
         $stmt->bindValue(':image_paths', $imagePathsJson, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
+            // 保存成功後、スライド画像を生成
+            generateSlideImage('networking_slides.php', 86, $weekDate);
+
             echo json_encode([
                 'success' => true,
                 'id' => $db->lastInsertId(),

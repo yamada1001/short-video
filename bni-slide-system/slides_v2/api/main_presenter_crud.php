@@ -134,6 +134,10 @@ switch ($action) {
 
         $stmt->execute();
 
+        // 保存成功後、スライド画像を生成（p.8とp.204）
+        generateSlideImage('main_presenter.php', 8, $weekDate);
+        generateSlideImage('main_presenter.php', 204, $weekDate);
+
         echo json_encode([
             'success' => true,
             'id' => $db->lastInsertId(),
@@ -195,6 +199,10 @@ switch ($action) {
         $stmt->bindValue(':youtube_url', $youtubeUrl, PDO::PARAM_STR);
 
         $stmt->execute();
+
+        // 保存成功後、スライド画像を生成（p.8とp.204）
+        generateSlideImage('main_presenter.php', 8, $weekDate);
+        generateSlideImage('main_presenter.php', 204, $weekDate);
 
         echo json_encode(['success' => true]);
         break;

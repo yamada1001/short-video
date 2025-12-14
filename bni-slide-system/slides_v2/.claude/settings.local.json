@@ -8,7 +8,11 @@
       "Bash(DATE=2025-12-20 php -r \"$_ET[''''date''''] = ''''2025-12-20''''; include ''''slides/visitor_intro.php'''';\")",
       "Bash(head:*)",
       "Bash(do php -l \"$file\")",
-      "Bash(while read file)"
+      "Bash(while read file)",
+      "Bash(node --version:*)",
+      "Bash(npm install:*)",
+      "Bash(npx puppeteer browsers install chrome)",
+      "Bash(node capture_slide.js:*)"
     ],
     "deny": [],
     "ask": []

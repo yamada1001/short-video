@@ -151,6 +151,11 @@ switch ($action) {
 
             if ($result15 && $result107) {
                 $db->commit();
+
+                // 保存成功後、スライド画像を生成（p.15とp.107）
+                generateSlideImage('start_dash.php', 15, $weekDate);
+                generateSlideImage('start_dash.php', 107, $weekDate);
+
                 echo json_encode([
                     'success' => true,
                     'id_15' => $db->lastInsertId() - 1,
@@ -192,11 +197,14 @@ switch ($action) {
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
         $stmt->bindValue(':page_number', $pageNumber, PDO::PARAM_INT);
 
-        $stmt->execute();
+        if ($stmt->execute()) {
+            // 保存成功後、スライド画像を生成
+            generateSlideImage('start_dash.php', $pageNumber, $weekDate);
 
-        if ($result) {
             echo json_encode(['success' => true]);
-        
+        } else {
+            echo json_encode(['success' => false, 'error' => 'データベースエラー']);
+        }
         break;
 
     case 'delete':

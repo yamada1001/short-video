@@ -113,3 +113,38 @@ define('ALLOWED_DOCUMENT_EXTENSIONS', ['pdf', 'doc', 'docx', 'ppt', 'pptx']);
 
 // BNI カラー
 define('BNI_RED', '#C8102E');
+
+/**
+ * スライドPHPファイルからPNG画像を生成
+ *
+ * @param string $slideFile スライドファイル名（例: seating.php）
+ * @param int $pageNumber ページ番号（例: 7）
+ * @param string|null $date 対象日（省略可）
+ * @return bool 成功したらtrue
+ */
+function generateSlideImage($slideFile, $pageNumber, $date = null) {
+    $scriptPath = __DIR__ . '/scripts/generate_slide_image.py';
+
+    // Pythonスクリプトが存在するか確認
+    if (!file_exists($scriptPath)) {
+        error_log("画像生成スクリプトが見つかりません: {$scriptPath}");
+        return false;
+    }
+
+    // コマンド構築
+    $cmd = sprintf(
+        'python3 %s %s %d %s 2>&1',
+        escapeshellarg($scriptPath),
+        escapeshellarg($slideFile),
+        $pageNumber,
+        $date ? escapeshellarg($date) : ''
+    );
+
+    // バックグラウンドで実行（非同期）
+    exec($cmd . ' &', $output, $returnCode);
+
+    // ログ出力
+    error_log("スライド画像生成開始: {$slideFile} -> page {$pageNumber}");
+
+    return true;
+}

@@ -1,0 +1,15 @@
+{
+  "name": "bni-slide-image-generator",
+  "version": "1.0.0",
+  "description": "BNI Slide System - Slide to Image Generator",
+  "main": "capture_slide.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["puppeteer", "screenshot", "slide"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  }
+}

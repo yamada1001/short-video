@@ -118,6 +118,28 @@ switch ($action) {
             }
 
             $db->commit();
+
+            // 保存成功後、スライド画像を生成
+            switch ($type) {
+                case 'referral':
+                    generateSlideImage('referral_champion.php', 91, $weekDate);
+                    break;
+                case 'value':
+                    generateSlideImage('value_champion.php', 92, $weekDate);
+                    break;
+                case 'visitor':
+                    generateSlideImage('visitor_champion.php', 93, $weekDate);
+                    break;
+                case '1to1':
+                    generateSlideImage('1to1_champion.php', 94, $weekDate);
+                    break;
+                case 'ceu':
+                    generateSlideImage('ceu_champion.php', 95, $weekDate);
+                    break;
+            }
+            // 全チャンピオンスライドも更新
+            generateSlideImage('all_champions.php', 96, $weekDate);
+
             echo json_encode(['success' => true]);
         } catch (Exception $e) {
             $db->rollBack();
