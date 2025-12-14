@@ -25,9 +25,13 @@ if (!$targetDate) {
 
 // メインプレゼンのPDF枚数を取得
 $mainPresenterPdfPages = 0;
+$networkingPdfPages = 0;
+
 try {
     $db_path = __DIR__ . '/data/bni_slide_system.db';
     $db = new PDO('sqlite:' . $db_path);
+
+    // メインプレゼンPDFのページ数
     $stmt = $db->query("SELECT pdf_path FROM main_presenter ORDER BY created_at DESC LIMIT 1");
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -42,6 +46,24 @@ try {
         if (is_dir($imageDir)) {
             $pdfImages = glob($imageDir . '/page-*.png');
             $mainPresenterPdfPages = count($pdfImages);
+        }
+    }
+
+    // ネットワーキング学習PDFのページ数
+    $stmt = $db->query("SELECT pdf_path FROM networking_learning WHERE week_date = '$targetDate' ORDER BY created_at DESC LIMIT 1");
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row && $row['pdf_path']) {
+        $pdfPath = __DIR__ . '/' . $row['pdf_path'];
+        if (is_dir($pdfPath)) {
+            $imageDir = $pdfPath;
+        } else {
+            $imageDir = dirname($pdfPath) . '/images_' . basename($pdfPath, '.pdf');
+        }
+
+        if (is_dir($imageDir)) {
+            $pdfImages = glob($imageDir . '/page-*.png');
+            $networkingPdfPages = count($pdfImages);
         }
     }
 } catch (Exception $e) {
@@ -101,6 +123,15 @@ $phpSlides = [
     302 => 'weekly_stats.php'
 ];
 
+// ネットワーキング学習PDFページを動的に追加（p.86~）
+// p.86に1ページ分の静的スライドがあるため、それを置き換えてから追加する
+if ($networkingPdfPages > 0) {
+    for ($i = 0; $i < $networkingPdfPages; $i++) {
+        $pageNum = 86 + $i;
+        $phpSlides[$pageNum] = "networking_slides.php?page=$pageNum";
+    }
+}
+
 // メインプレゼンのPDFページを動的に追加（p.205~）
 if ($mainPresenterPdfPages > 0) {
     for ($i = 0; $i < $mainPresenterPdfPages; $i++) {
@@ -111,14 +142,20 @@ if ($mainPresenterPdfPages > 0) {
 
 // 総スライド数（PDFページ数を考慮）
 // 基本: 309ページ
-// PDFが追加される場合: p.205~p.212 の8ページ分が置き換えられ、それ以降が追加される
-// 例: PDF5枚の場合、p.205~p.209 (5ページ) が使用される
+// ネットワーキングPDFが追加される場合: p.86の1ページ分が置き換えられ、それ以降が追加される
+// メインプレゼンPDFが追加される場合: p.205~p.212 の8ページ分が置き換えられ、それ以降が追加される
 $totalSlides = 309;
-if ($mainPresenterPdfPages > 0) {
-    // PDFページ数が8ページ以下の場合: 総数は変わらない（既存のp.205-212の範囲内）
-    // PDFページ数が8ページより多い場合: 超過分を追加
-    $pdfExtraPages = max(0, $mainPresenterPdfPages - 8);
-    $totalSlides += $pdfExtraPages;
+
+// ネットワーキング学習PDFの追加ページ数（1ページ以上で超過分を追加）
+if ($networkingPdfPages > 1) {
+    $networkingExtraPages = $networkingPdfPages - 1;
+    $totalSlides += $networkingExtraPages;
+}
+
+// メインプレゼンPDFの追加ページ数（8ページ以上で超過分を追加）
+if ($mainPresenterPdfPages > 8) {
+    $mainPresenterExtraPages = $mainPresenterPdfPages - 8;
+    $totalSlides += $mainPresenterExtraPages;
 }
 
 // スライドの表示/非表示設定を取得

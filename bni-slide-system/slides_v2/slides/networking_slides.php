@@ -14,6 +14,7 @@ $targetFriday = getTargetFriday();
 // IDまたは日付でデータ取得
 $id = $_GET['id'] ?? null;
 $weekDate = $_GET['week_date'] ?? $targetFriday;
+$pageParam = isset($_GET['page']) ? (int)$_GET['page'] : null;
 
 if ($id) {
     $stmt = $db->prepare("SELECT * FROM networking_learning WHERE id = :id");
@@ -27,8 +28,31 @@ $stmt->execute();
 $networkingData = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $imagePaths = [];
-if ($networkingData && $networkingData['image_paths']) {
-    $imagePaths = json_decode($networkingData['image_paths'], true);
+$singlePageMode = false;
+$currentPageIndex = 0;
+
+if ($networkingData && $networkingData['pdf_path']) {
+    // PDFパスから画像ディレクトリを取得
+    $pdfPath = __DIR__ . '/../' . $networkingData['pdf_path'];
+    if (is_dir($pdfPath)) {
+        $imageDir = $pdfPath;
+    } else {
+        $imageDir = dirname($pdfPath) . '/images_' . basename($pdfPath, '.pdf');
+    }
+
+    if (is_dir($imageDir)) {
+        $pdfImages = glob($imageDir . '/page-*.png');
+        sort($pdfImages);
+        foreach ($pdfImages as $imgPath) {
+            $imagePaths[] = str_replace(__DIR__ . '/../', '', $imgPath);
+        }
+    }
+}
+
+// ページパラメータがある場合は単一ページモード（index.phpから呼ばれた場合）
+if ($pageParam !== null && $pageParam >= 86) {
+    $singlePageMode = true;
+    $currentPageIndex = $pageParam - 86; // p.86が最初のページ（index 0）
 }
 
 ?>
@@ -170,7 +194,21 @@ if ($networkingData && $networkingData['image_paths']) {
             <h2>ネットワーキング学習資料がありません</h2>
             <p>管理画面からPDFをアップロードしてください</p>
         </div>
+    <?php elseif ($singlePageMode): ?>
+        <!-- 単一ページモード：index.phpから呼ばれた場合 -->
+        <div class="slide-container">
+            <?php if (isset($imagePaths[$currentPageIndex])): ?>
+                <img class="slide-image" src="../<?php echo htmlspecialchars($imagePaths[$currentPageIndex]); ?>" alt="ネットワーキング学習スライド">
+            <?php else: ?>
+                <div class="no-data">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h2>ページが見つかりません</h2>
+                    <p>指定されたページ番号が範囲外です</p>
+                </div>
+            <?php endif; ?>
+        </div>
     <?php else: ?>
+        <!-- マルチページモード：直接アクセスした場合 -->
         <div class="slide-container">
             <img id="slideImage" class="slide-image" src="" alt="ネットワーキング学習スライド">
         </div>
@@ -188,6 +226,7 @@ if ($networkingData && $networkingData['image_paths']) {
         </div>
     <?php endif; ?>
 
+    <?php if (!$singlePageMode && !empty($imagePaths)): ?>
     <script>
         const imagePaths = <?php echo json_encode($imagePaths); ?>;
         let currentIndex = 0;
@@ -235,5 +274,6 @@ if ($networkingData && $networkingData['image_paths']) {
             showSlide(0);
         }
     </script>
+    <?php endif; ?>
 </body>
 </html>
