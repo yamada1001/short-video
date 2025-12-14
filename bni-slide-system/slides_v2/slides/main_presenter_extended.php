@@ -6,9 +6,9 @@
 
 require_once __DIR__ . '/../config.php';
 
-// ページ番号を取得（デフォルト: 204）
-$pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 204;
-$pdfPageIndex = $pageNumber - 204; // 0-indexed
+// ページ番号を取得（デフォルト: 205、PDFは205から開始）
+$pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 205;
+$pdfPageIndex = $pageNumber - 205; // 0-indexed（205が1ページ目）
 
 // データベース接続
 $db = new PDO('sqlite:' . $db_path);

@@ -166,14 +166,20 @@ switch ($action) {
             $stmt->execute();
 
             // 保存成功後、スライド画像を生成
-            // p.8: メインプレゼンアイキャッチ
+            // p.8: メインプレゼンアイキャッチ（シンプル版・拡張版共通）
             generateSlideImage('main_presenter.php', 8);
 
-            // 拡張版の場合、PDF各ページの画像を生成（p.204~）
-            if ($presentationType === 'extended' && $imageCount > 0) {
-                for ($i = 0; $i < $imageCount; $i++) {
-                    $pageNum = 204 + $i;
-                    generateSlideImage("main_presenter_extended.php?page=$pageNum", $pageNum);
+            // 拡張版の場合
+            if ($presentationType === 'extended') {
+                // p.204: メインプレゼンアイキャッチ（拡張版開始ページ）
+                generateSlideImage('main_presenter_204.php', 204);
+
+                // p.205~: PDF各ページの画像を生成
+                if ($imageCount > 0) {
+                    for ($i = 0; $i < $imageCount; $i++) {
+                        $pageNum = 205 + $i;
+                        generateSlideImage("main_presenter_extended.php?page=$pageNum", $pageNum);
+                    }
                 }
             }
 
@@ -279,14 +285,20 @@ switch ($action) {
         $stmt->execute();
 
         // 保存成功後、スライド画像を生成
-        // p.8: メインプレゼンアイキャッチ
+        // p.8: メインプレゼンアイキャッチ（シンプル版・拡張版共通）
         generateSlideImage('main_presenter.php', 8);
 
-        // 拡張版の場合、PDF各ページの画像を生成（p.204~）
-        if ($presentationType === 'extended' && $imageCount > 0) {
-            for ($i = 0; $i < $imageCount; $i++) {
-                $pageNum = 204 + $i;
-                generateSlideImage("main_presenter_extended.php?page=$pageNum", $pageNum);
+        // 拡張版の場合
+        if ($presentationType === 'extended') {
+            // p.204: メインプレゼンアイキャッチ（拡張版開始ページ）
+            generateSlideImage('main_presenter_204.php', 204);
+
+            // p.205~: PDF各ページの画像を生成
+            if ($imageCount > 0) {
+                for ($i = 0; $i < $imageCount; $i++) {
+                    $pageNum = 205 + $i;
+                    generateSlideImage("main_presenter_extended.php?page=$pageNum", $pageNum);
+                }
             }
         }
 
