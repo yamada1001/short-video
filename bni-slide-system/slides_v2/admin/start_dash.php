@@ -659,10 +659,12 @@
             try {
                 const response = await fetch(`${API_BASE}?action=get_latest`);
                 const data = await response.json();
+                console.log('読み込みレスポンス:', data);
 
                 if (data.success && data.presenters) {
                     // p.15のデータ
                     const p15 = data.presenters.find(p => p.page_number == 15);
+                    console.log('p.15データ:', p15);
                     if (p15) {
                         document.getElementById('memberId15').value = p15.member_id;
                         document.getElementById('memberId15').dispatchEvent(new Event('change'));
@@ -670,10 +672,13 @@
 
                     // p.107のデータ
                     const p107 = data.presenters.find(p => p.page_number == 107);
+                    console.log('p.107データ:', p107);
                     if (p107) {
                         document.getElementById('memberId107').value = p107.member_id;
                         document.getElementById('memberId107').dispatchEvent(new Event('change'));
                     }
+                } else {
+                    console.warn('データなし or 失敗');
                 }
             } catch (error) {
                 console.error('データ読み込みエラー:', error);
@@ -706,6 +711,8 @@
 
                 if (data.success) {
                     alert('保存しました');
+                    // 保存後、データを再読み込み
+                    await loadExistingData();
                 } else {
                     alert('エラー: ' + (data.error || '不明なエラー'));
                 }
