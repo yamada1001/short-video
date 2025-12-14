@@ -1,20 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(for:*)",
-      "Bash(do grep -q \"require_once __DIR__ . ''/../config.php''\" \"$f\")",
-      "Bash(do echo \"=== $file ===\" php -l \"$file\")",
-      "Bash(then echo \"✓ HTML生成成功\" else echo \"⚠ 要確認\" fi done)",
-      "Bash(DATE=2025-12-20 php -r \"$_ET[''''date''''] = ''''2025-12-20''''; include ''''slides/visitor_intro.php'''';\")",
-      "Bash(head:*)",
-      "Bash(do php -l \"$file\")",
-      "Bash(while read file)",
-      "Bash(node --version:*)",
-      "Bash(npm install:*)",
-      "Bash(npx puppeteer browsers install chrome)",
-      "Bash(node capture_slide.js:*)",
-      "Bash(do if ! grep -q \"require_once.*config.php\" \"$file\")",
-      "Bash(then echo \"$file\")"
+      "Bash(gh run list:*)"
     ],
     "deny": [],
     "ask": []
