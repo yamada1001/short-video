@@ -194,26 +194,6 @@
         .save-btn:hover {
             background: #a00a24;
         }
-
-        .date-selector {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .date-selector label {
-            font-weight: 600;
-            margin-right: 10px;
-        }
-
-        .date-selector input {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
     </style>
 </head>
 <body>
@@ -245,11 +225,6 @@
             <button class="btn btn-secondary" onclick="viewSlide(96)">
                 <i class="fas fa-external-link-alt"></i> p.96を確認
             </button>
-        </div>
-
-        <div class="date-selector">
-            <label><i class="fas fa-calendar"></i> 対象週:</label>
-            <input type="date" id="weekDate" onchange="loadChampions()">
         </div>
 
         <div class="champion-types">
@@ -305,10 +280,6 @@
         const championTypes = ['referral', 'value', 'visitor', '1to1', 'ceu'];
 
         document.addEventListener('DOMContentLoaded', function() {
-            // 今日の日付をデフォルト値に設定
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('weekDate').value = today;
-
             loadMembers();
             loadChampions();
         });
@@ -394,10 +365,8 @@
         }
 
         async function loadChampions() {
-            const weekDate = document.getElementById('weekDate').value;
-
             try {
-                const response = await fetch(`../api/champions_crud.php?action=get&week_date=${weekDate}`);
+                const response = await fetch('../api/champions_crud.php?action=get_latest');
                 const data = await response.json();
 
                 if (data.success && data.champions) {
@@ -441,7 +410,6 @@
         }
 
         async function saveChampions(type) {
-            const weekDate = document.getElementById('weekDate').value;
             const championsData = [];
 
             for (let rank = 1; rank <= 3; rank++) {
@@ -470,7 +438,6 @@
                     },
                     body: JSON.stringify({
                         action: 'save',
-                        week_date: weekDate,
                         type: type,
                         champions: championsData
                     })
@@ -490,14 +457,7 @@
 
         // スライドを確認
         function viewSlide(pageNumber) {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('対象週を選択してください');
-                return;
-            }
-
-            const url = `../index.php?date=${weekDate}#${pageNumber}`;
-            window.open(url, '_blank', 'width=1920,height=1080');
+            window.open(`../index.php#${pageNumber}`, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>

@@ -31,7 +31,6 @@
         .remove-btn { background: #dc3545; color: white; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer; }
         .add-btn { background: #28a745; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 15px; }
         .save-btn { width: 100%; padding: 12px; background: #C8102E; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
-        .date-selector { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
         .survey-rank { display: grid; grid-template-columns: 80px 1fr 100px 40px; gap: 10px; align-items: center; margin-bottom: 10px; }
         .rank-label { font-weight: 600; color: #C8102E; }
     </style>
@@ -53,11 +52,6 @@
             <button class="btn btn-secondary" onclick="viewSlide(194)">
                 <i class="fas fa-external-link-alt"></i> p.194を確認
             </button>
-        </div>
-
-        <div class="date-selector">
-            <label><i class="fas fa-calendar"></i> 対象週:</label>
-            <input type="date" id="weekDate" onchange="loadCategories()">
         </div>
 
         <div class="category-sections">
@@ -89,9 +83,6 @@
         let surveyCategories = [];
 
         document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('weekDate').value = today;
-
             initializeSurveyCategories();
             loadCategories();
         });
@@ -133,10 +124,8 @@
         }
 
         async function loadCategories() {
-            const weekDate = document.getElementById('weekDate').value;
-
             try {
-                const response = await fetch(`../api/categories_crud.php?action=get&week_date=${weekDate}`);
+                const response = await fetch('../api/categories_crud.php?action=get_latest');
                 const data = await response.json();
 
                 if (data.success && data.categories) {
@@ -181,7 +170,6 @@
         }
 
         async function saveCategories(type) {
-            const weekDate = document.getElementById('weekDate').value;
             const categoriesData = [];
 
             if (type === 'open') {
@@ -216,7 +204,6 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         action: 'save',
-                        week_date: weekDate,
                         category_type: type,
                         categories: categoriesData
                     })
@@ -236,14 +223,7 @@
 
         // スライドを確認
         function viewSlide(pageNumber) {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('対象週を選択してください');
-                return;
-            }
-
-            const url = `../index.php?date=${weekDate}#${pageNumber}`;
-            window.open(url, '_blank', 'width=1920,height=1080');
+            window.open(`../index.php#${pageNumber}`, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>

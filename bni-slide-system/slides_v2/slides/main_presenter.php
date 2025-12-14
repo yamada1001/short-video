@@ -6,15 +6,14 @@
 
 require_once __DIR__ . '/../config.php';
 
-// 日付パラメータ取得
-$weekDate = $_GET['date'] ?? date('Y-m-d');
+// 対象の金曜日を取得
+$weekDate = getTargetFriday();
 
 // データベース接続
-
 $db = new PDO('sqlite:' . $db_path);
 
-// プレゼンデータ取得
-$stmt = $db->prepare("
+// 最新のプレゼンデータ取得
+$stmt = $db->query("
     SELECT
         mp.*,
         m.name as member_name,
@@ -23,10 +22,9 @@ $stmt = $db->prepare("
         m.photo_path
     FROM main_presenter mp
     LEFT JOIN members m ON mp.member_id = m.id
-    WHERE mp.week_date = :week_date
+    ORDER BY mp.week_date DESC
+    LIMIT 1
 ");
-$stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-$stmt->execute();
 $presentation = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$presentation) {

@@ -51,6 +51,40 @@ switch ($action) {
         echo json_encode(['success' => true, 'members' => $members]);
         break;
 
+    case 'get_latest':
+        // 最新のweek_dateのメンバーピッチ出席データ取得
+        $latestWeekStmt = $db->query("SELECT MAX(week_date) as latest_week FROM member_pitch_attendance");
+        $latestWeekRow = $latestWeekStmt->fetch(PDO::FETCH_ASSOC);
+        $latestWeek = $latestWeekRow['latest_week'];
+
+        if ($latestWeek) {
+            $stmt = $db->prepare("
+                SELECT
+                    m.id,
+                    m.name,
+                    m.company_name,
+                    m.photo_path,
+                    COALESCE(mpa.is_absent, 0) as is_absent
+                FROM members m
+                LEFT JOIN member_pitch_attendance mpa
+                    ON m.id = mpa.member_id AND mpa.week_date = :week_date
+                WHERE m.is_active = 1
+                ORDER BY m.name ASC
+            ");
+            $stmt->bindValue(':week_date', $latestWeek, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $members = [];
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $members[] = $row;
+            }
+
+            echo json_encode(['success' => true, 'members' => $members, 'week_date' => $latestWeek]);
+        } else {
+            echo json_encode(['success' => true, 'members' => [], 'week_date' => null]);
+        }
+        break;
+
     case 'toggle_absence':
         $weekDate = $_POST['week_date'] ?? null;
         $memberId = $_POST['member_id'] ?? null;

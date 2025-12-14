@@ -6,34 +6,29 @@
 
 require_once __DIR__ . '/../config.php';
 
-$date = $_GET['date'] ?? null;
-
-if (!$date) {
-    die('日付パラメータが必要です');
-}
+// 対象の金曜日を取得
+$date = getTargetFriday();
 
 try {
     $db = new PDO('sqlite:' . $db_path);
 
-    // ビジター情報取得
-    $stmt = $db->prepare("
+    // 最新のビジター情報取得
+    $stmt = $db->query("
         SELECT
             v.*,
             m.name as attend_member_name
         FROM visitors v
         LEFT JOIN members m ON v.attend_member_id = m.id
-        WHERE v.week_date = :week_date
+        WHERE v.week_date = (SELECT MAX(week_date) FROM visitors)
         ORDER BY v.visitor_no ASC
     ");
-    $stmt->bindValue(':week_date', $date, PDO::PARAM_STR);
-    $stmt->execute();
 
     $visitors = [];
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $visitors[] = $row;
     }
 
-    } catch (Exception $e) {
+} catch (Exception $e) {
     die('データベースエラー: ' . $e->getMessage());
 }
 

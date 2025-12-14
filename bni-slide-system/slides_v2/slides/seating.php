@@ -6,18 +6,18 @@
 
 require_once __DIR__ . '/../config.php';
 
-// 日付パラメータ（デフォルト: 次の金曜日）
-$target_date = $_GET['date'] ?? getTargetFriday();
+// 対象の金曜日を取得
+$target_date = getTargetFriday();
 
 // データベース接続
 try {
     $db = new PDO('sqlite:' . $db_path);
-    } catch (PDOException $e) {
+} catch (PDOException $e) {
     die('データベース接続エラー: ' . $e->getMessage());
 }
 
-// 座席配置データを取得
-$stmt = $db->prepare("
+// 最新の座席配置データを取得
+$stmt = $db->query("
     SELECT
         sa.table_name,
         sa.position,
@@ -26,10 +26,9 @@ $stmt = $db->prepare("
         m.category
     FROM seating_arrangement sa
     LEFT JOIN members m ON sa.member_id = m.id
-    WHERE sa.week_date = :week_date
+    WHERE sa.week_date = (SELECT MAX(week_date) FROM seating_arrangement)
     ORDER BY sa.table_name, sa.position
 ");
-$stmt->execute(['week_date' => $target_date]);
 $seating_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // テーブル別にグループ化

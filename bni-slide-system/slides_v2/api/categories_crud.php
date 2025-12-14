@@ -35,6 +35,25 @@ switch ($action) {
         echo json_encode(['success' => true, 'categories' => $categories]);
         break;
 
+    case 'get_latest':
+        // 最新のweek_dateのカテゴリーデータ取得
+        $stmt = $db->query("
+            SELECT *
+            FROM recruiting_categories
+            WHERE week_date = (
+                SELECT MAX(week_date) FROM recruiting_categories
+            )
+            ORDER BY category_type, rank
+        ");
+
+        $categories = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $categories[] = $row;
+        }
+
+        echo json_encode(['success' => true, 'categories' => $categories]);
+        break;
+
     case 'save':
         $weekDate = $postData['week_date'] ?? null;
         $categoryType = $postData['category_type'] ?? null;

@@ -27,6 +27,23 @@ switch ($action) {
         }
         break;
 
+    case 'get_latest':
+        // 最新のQRコードデータ取得
+        $stmt = $db->query("
+            SELECT * FROM qr_codes
+            ORDER BY week_date DESC, id DESC
+            LIMIT 1
+        ");
+
+        $qr = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($qr) {
+            echo json_encode(['success' => true, 'qr' => $qr]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'データが見つかりません']);
+        }
+        break;
+
     case 'create':
         $weekDate = $postData['week_date'] ?? null;
         $url = $postData['url'] ?? null;

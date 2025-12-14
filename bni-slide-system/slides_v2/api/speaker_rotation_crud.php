@@ -32,6 +32,28 @@ switch ($action) {
         echo json_encode(['success' => true, 'weeks' => $weeks]);
         break;
 
+    case 'get_latest':
+        // 最新のrotation_dateのスピーカーローテーションデータ取得
+        $stmt = $db->query("
+            SELECT sr.*, m.name as member_name, m.company_name
+            FROM speaker_rotation sr
+            LEFT JOIN members m ON sr.main_presenter_id = m.id
+            WHERE sr.rotation_date = (
+                SELECT MAX(rotation_date) FROM speaker_rotation
+            )
+            ORDER BY sr.id DESC
+            LIMIT 1
+        ");
+
+        $rotation = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($rotation) {
+            echo json_encode(['success' => true, 'rotation' => $rotation]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'データが見つかりません']);
+        }
+        break;
+
     case 'save_six_weeks':
         // 6週分のデータ一括保存
         $weeks = $input['weeks'] ?? null;

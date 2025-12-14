@@ -32,6 +32,23 @@ switch ($action) {
         echo json_encode(['success' => true, 'members' => $members]);
         break;
 
+    case 'get_latest':
+        // 最新のメンバー取得（最新のcreated_atまたはupdated_at）
+        $stmt = $db->query("
+            SELECT * FROM members
+            ORDER BY updated_at DESC, created_at DESC
+            LIMIT 1
+        ");
+
+        $member = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($member) {
+            echo json_encode(['success' => true, 'member' => $member]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'データが見つかりません']);
+        }
+        break;
+
     case 'create':
         // 新規メンバー追加
         $name = $_POST['name'] ?? '';

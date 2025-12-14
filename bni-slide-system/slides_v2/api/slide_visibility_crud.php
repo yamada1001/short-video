@@ -42,6 +42,32 @@ switch ($action) {
         }
         break;
 
+    case 'get_latest':
+        // 最新のweek_dateのスライド表示設定取得
+        $latestWeekStmt = $db->query("SELECT MAX(week_date) as latest_week FROM slide_visibility");
+        $latestWeekRow = $latestWeekStmt->fetch(PDO::FETCH_ASSOC);
+        $latestWeek = $latestWeekRow['latest_week'];
+
+        if ($latestWeek) {
+            $stmt = $db->prepare("
+                SELECT * FROM slide_visibility
+                WHERE week_date = :week_date
+                ORDER BY slide_number
+            ");
+            $stmt->bindValue(':week_date', $latestWeek, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $visibility = [];
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $visibility[] = $row;
+            }
+
+            echo json_encode(['success' => true, 'visibility' => $visibility, 'week_date' => $latestWeek]);
+        } else {
+            echo json_encode(['success' => true, 'visibility' => [], 'week_date' => null]);
+        }
+        break;
+
     case 'save_all':
         $visibilityArray = $postData['visibility'] ?? [];
         if (empty($visibilityArray)) { echo json_encode(['success' => false, 'error' => 'データが不足しています']); exit; }

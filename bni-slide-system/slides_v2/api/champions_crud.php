@@ -81,6 +81,26 @@ switch ($action) {
         echo json_encode(['success' => true, 'champions' => $champions]);
         break;
 
+    case 'get_latest':
+        // 最新のweek_dateのチャンピオンデータ取得
+        $stmt = $db->query("
+            SELECT c.*, m.name as member_name, m.photo_path
+            FROM champions c
+            LEFT JOIN members m ON c.member_id = m.id
+            WHERE c.week_date = (
+                SELECT MAX(week_date) FROM champions
+            )
+            ORDER BY c.type, c.rank, c.id
+        ");
+
+        $champions = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $champions[] = $row;
+        }
+
+        echo json_encode(['success' => true, 'champions' => $champions]);
+        break;
+
     case 'save':
         // チャンピオンデータ保存
         $weekDate = $postData['week_date'] ?? null;

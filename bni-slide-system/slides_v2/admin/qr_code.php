@@ -19,7 +19,6 @@
         .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: #555; }
         .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
         .save-btn { width: 100%; padding: 12px; background: #C8102E; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
-        .date-selector { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
         .preview { margin-top: 30px; text-align: center; padding: 30px; background: #f8f9fa; border-radius: 8px; }
         .preview img { max-width: 300px; border: 2px solid #ddd; border-radius: 8px; }
     </style>
@@ -35,11 +34,6 @@
             <button class="btn btn-secondary" onclick="viewSlide()">
                 <i class="fas fa-external-link-alt"></i> スライドを確認（p.242）
             </button>
-        </div>
-
-        <div class="date-selector">
-            <label><i class="fas fa-calendar"></i> 対象週:</label>
-            <input type="date" id="weekDate" onchange="loadQRCode()">
         </div>
 
         <div class="card">
@@ -61,12 +55,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('weekDate').value = new Date().toISOString().split('T')[0];
             loadQRCode();
 
             document.getElementById('qrForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
-                const weekDate = document.getElementById('weekDate').value;
                 const url = document.getElementById('url').value;
 
                 try {
@@ -75,7 +67,6 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             action: 'create',
-                            week_date: weekDate,
                             url: url
                         })
                     });
@@ -94,11 +85,10 @@
         });
 
         async function loadQRCode() {
-            const weekDate = document.getElementById('weekDate').value;
             try {
-                const response = await fetch(`../api/qr_code_crud.php?action=get&week_date=${weekDate}`);
+                const response = await fetch('../api/qr_code_crud.php?action=get_latest');
                 const data = await response.json();
-                
+
                 if (data.success && data.qr) {
                     document.getElementById('url').value = data.qr.url;
                     document.getElementById('qrImage').src = '../' + data.qr.qr_code_path;
@@ -113,15 +103,8 @@
 
         // スライドを確認
         function viewSlide() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('対象週を選択してください');
-                return;
-            }
-
             const pageNumber = 242;
-            const url = `../index.php?date=${weekDate}#${pageNumber}`;
-            window.open(url, '_blank', 'width=1920,height=1080');
+            window.open(`../index.php#${pageNumber}`, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>

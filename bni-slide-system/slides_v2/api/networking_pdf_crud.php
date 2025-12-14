@@ -58,6 +58,23 @@ switch ($action) {
         }
         break;
 
+    case 'get_latest':
+        // 最新のPDF取得
+        $stmt = $db->query("
+            SELECT * FROM networking_learning
+            ORDER BY week_date DESC, id DESC
+            LIMIT 1
+        ");
+
+        $pdf = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($pdf) {
+            echo json_encode(['success' => true, 'pdf' => $pdf]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'データが見つかりません']);
+        }
+        break;
+
     case 'create':
         // 新規PDF追加
         $weekDate = $_POST['week_date'] ?? '';

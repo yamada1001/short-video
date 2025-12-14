@@ -7,14 +7,13 @@
 require_once __DIR__ . '/../config.php';
 
 // パラメータ取得
-$weekDate = $_GET['date'] ?? date('Y-m-d');
+$weekDate = getTargetFriday();
 $pageNumber = $_GET['page'] ?? 15;
 
 // データベース接続
-
 $db = new PDO('sqlite:' . $db_path);
 
-// プレゼンデータ取得
+// 最新のプレゼンデータ取得
 $stmt = $db->prepare("
     SELECT
         sd.*,
@@ -23,9 +22,10 @@ $stmt = $db->prepare("
         m.photo_path
     FROM start_dash_presenter sd
     LEFT JOIN members m ON sd.member_id = m.id
-    WHERE sd.week_date = :week_date AND sd.page_number = :page_number
+    WHERE sd.page_number = :page_number
+    ORDER BY sd.week_date DESC
+    LIMIT 1
 ");
-$stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
 $stmt->bindValue(':page_number', $pageNumber, PDO::PARAM_INT);
 $stmt->execute();
 $presenter = $stmt->fetch(PDO::FETCH_ASSOC);

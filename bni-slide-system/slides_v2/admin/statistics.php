@@ -27,9 +27,6 @@
         .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
         .save-btn { width: 100%; margin-top: 10px; padding: 12px; background: #C8102E; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
         .save-btn:hover { background: #a00a24; }
-        .date-selector { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .date-selector label { font-weight: 600; margin-right: 10px; }
-        .date-selector input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -55,11 +52,6 @@
             <button class="btn btn-secondary" onclick="viewSlide(302)">
                 <i class="fas fa-external-link-alt"></i> p.302を確認
             </button>
-        </div>
-
-        <div class="date-selector">
-            <label><i class="fas fa-calendar"></i> 対象週:</label>
-            <input type="date" id="weekDate" onchange="loadStatistics()">
         </div>
 
         <div class="stats-grid">
@@ -160,7 +152,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const today = new Date().toISOString().split('T')[0];
-            document.getElementById('weekDate').value = today;
             document.getElementById('referral_date').value = today;
             document.getElementById('sales_date').value = today;
 
@@ -174,10 +165,8 @@
         });
 
         async function loadStatistics() {
-            const weekDate = document.getElementById('weekDate').value;
-
             try {
-                const response = await fetch(`../api/statistics_crud.php?action=get&week_date=${weekDate}`);
+                const response = await fetch('../api/statistics_crud.php?action=get_latest');
                 const data = await response.json();
 
                 if (data.success && data.statistics) {
@@ -204,7 +193,6 @@
 
         async function saveStats(e, type) {
             e.preventDefault();
-            const weekDate = document.getElementById('weekDate').value;
             const formData = {};
 
             // フォームデータ取得
@@ -220,7 +208,6 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         action: 'save',
-                        week_date: weekDate,
                         stat_type: type,
                         value: JSON.stringify(formData)
                     })
@@ -240,14 +227,7 @@
 
         // スライドを確認
         function viewSlide(pageNumber) {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('対象週を選択してください');
-                return;
-            }
-
-            const url = `../index.php?date=${weekDate}#${pageNumber}`;
-            window.open(url, '_blank', 'width=1920,height=1080');
+            window.open(`../index.php#${pageNumber}`, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>

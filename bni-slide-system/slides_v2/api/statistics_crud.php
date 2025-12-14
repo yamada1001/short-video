@@ -67,6 +67,24 @@ switch ($action) {
         }
         break;
 
+    case 'get_latest':
+        // 最新のweek_dateの統計データ取得
+        $stmt = $db->query("
+            SELECT * FROM statistics
+            WHERE week_date = (
+                SELECT MAX(week_date) FROM statistics
+            )
+            ORDER BY id
+        ");
+
+        $statistics = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $statistics[] = $row;
+        }
+
+        echo json_encode(['success' => true, 'statistics' => $statistics]);
+        break;
+
     case 'save':
         $weekDate = $postData['week_date'] ?? null;
         $statType = $postData['stat_type'] ?? null;

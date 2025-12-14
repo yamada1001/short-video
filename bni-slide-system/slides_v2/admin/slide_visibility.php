@@ -56,9 +56,9 @@
     </div>
 
     <script>
-        // 全309ページを生成
-        const TOTAL_PAGES = 309;
-        const slides = [];
+        // スライド総数をindex.phpから動的に取得
+        let TOTAL_PAGES = 309; // デフォルト値
+        let slides = [];
 
         // ページ名のマッピング（特定のページにのみ名前を付ける）
         const pageNames = {
@@ -89,20 +89,46 @@
             302: '週次統計'
         };
 
-        // 全ページをリストに追加
-        for (let i = 1; i <= TOTAL_PAGES; i++) {
-            slides.push({
-                page: i,
-                name: pageNames[i] || `ページ ${i}`
-            });
-        }
-
         let visibilityData = {};
-        let weekDate = '';
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
+            // index.phpから総ページ数を動的に取得
+            await detectTotalPages();
             loadVisibility();
         });
+
+        async function detectTotalPages() {
+            try {
+                const response = await fetch('../index.php');
+                const html = await response.text();
+
+                // class="slide"の出現回数をカウント
+                const matches = html.match(/class="slide"/g);
+                if (matches && matches.length > 0) {
+                    TOTAL_PAGES = matches.length;
+                    console.log(`検出されたスライド総数: ${TOTAL_PAGES}ページ`);
+                }
+
+                // スライドリストを生成
+                slides = [];
+                for (let i = 1; i <= TOTAL_PAGES; i++) {
+                    slides.push({
+                        page: i,
+                        name: pageNames[i] || `ページ ${i}`
+                    });
+                }
+            } catch (error) {
+                console.error('ページ数検出エラー:', error);
+                // エラー時はデフォルト値を使用
+                slides = [];
+                for (let i = 1; i <= TOTAL_PAGES; i++) {
+                    slides.push({
+                        page: i,
+                        name: pageNames[i] || `ページ ${i}`
+                    });
+                }
+            }
+        }
 
         async function loadVisibility() {
             try {
@@ -110,7 +136,6 @@
                 const data = await response.json();
 
                 if (data.success) {
-                    weekDate = data.week_date || '';
                     visibilityData = {};
                     data.visibility.forEach(v => {
                         visibilityData[v.slide_number] = v.is_visible == 1;
@@ -195,7 +220,6 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         action: 'save_all',
-                        week_date: weekDate,
                         visibility: visibilityArray
                     })
                 });

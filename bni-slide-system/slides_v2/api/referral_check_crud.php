@@ -22,6 +22,27 @@ switch ($action) {
         echo json_encode(['success' => true, 'verifications' => $verifications]);
         break;
 
+    case 'get_latest':
+        // 最新のweek_dateのリファーラル確認データ取得
+        $stmt = $db->query("
+            SELECT r.*, m1.name as from_name, m2.name as to_name
+            FROM referral_verification r
+            LEFT JOIN members m1 ON r.from_member_id = m1.id
+            LEFT JOIN members m2 ON r.to_member_id = m2.id
+            WHERE r.week_date = (
+                SELECT MAX(week_date) FROM referral_verification
+            )
+            ORDER BY r.id
+        ");
+
+        $verifications = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $verifications[] = $row;
+        }
+
+        echo json_encode(['success' => true, 'verifications' => $verifications]);
+        break;
+
     case 'create':
         $weekDate = $postData['week_date'] ?? null;
         $fromMemberId = $postData['from_member_id'] ?? null;
