@@ -156,8 +156,8 @@ switch ($action) {
             $stmt->execute();
 
             // 保存成功後、スライド画像を生成（p.8とp.204）
-            generateSlideImage('main_presenter.php', 8, $weekDate);
-            generateSlideImage('main_presenter.php', 204, $weekDate);
+            generateSlideImage('main_presenter.php', 8);
+            generateSlideImage('main_presenter.php', 204);
 
             echo json_encode([
                 'success' => true,
@@ -242,8 +242,8 @@ switch ($action) {
         $stmt->execute();
 
         // 保存成功後、スライド画像を生成（p.8とp.204）
-        generateSlideImage('main_presenter.php', 8, $weekDate);
-        generateSlideImage('main_presenter.php', 204, $weekDate);
+        generateSlideImage('main_presenter.php', 8);
+        generateSlideImage('main_presenter.php', 204);
 
         echo json_encode(['success' => true]);
         break;
