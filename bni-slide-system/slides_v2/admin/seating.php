@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../config.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -354,8 +355,8 @@
                 <button class="btn btn-success" onclick="saveSeating()">
                     <i class="fas fa-save"></i> 座席配置を保存
                 </button>
-                <button class="btn btn-primary" onclick="previewSlide()">
-                    <i class="fas fa-eye"></i> スライドをプレビュー
+                <button class="btn btn-secondary" onclick="viewSlide()">
+                    <i class="fas fa-external-link-alt"></i> スライドを確認
                 </button>
             </div>
         </div>
@@ -673,16 +674,17 @@
             updateStats();
         }
 
-        // スライドプレビュー
-        function previewSlide() {
+        // スライドを確認
+        function viewSlide() {
             const targetDate = document.getElementById('targetDate').value;
             if (!targetDate) {
                 alert('対象日を選択してください');
                 return;
             }
 
-            const slideUrl = `../slides/seating.php?date=${encodeURIComponent(targetDate)}`;
-            window.open(slideUrl, '_blank', 'width=1920,height=1080');
+            const pageNumber = 7;
+            const url = `../index.php?date=${targetDate}#${pageNumber}`;
+            window.open(url, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>

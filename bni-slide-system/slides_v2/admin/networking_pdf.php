@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../config.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -237,6 +238,9 @@
             <button class="btn btn-primary" onclick="openAddModal()">
                 <i class="fas fa-plus"></i> PDFを追加
             </button>
+            <button class="btn btn-secondary" onclick="viewSlide()">
+                <i class="fas fa-external-link-alt"></i> スライドを確認（p.86）
+            </button>
             <button class="btn btn-secondary" onclick="location.href='index.php'">
                 <i class="fas fa-arrow-left"></i> ダッシュボードに戻る
             </button>
@@ -412,6 +416,15 @@
             if (event.target == modal) {
                 closeAddModal();
             }
+        }
+
+        // スライドを確認
+        function viewSlide() {
+            const today = new Date();
+            const weekDate = today.toISOString().split('T')[0];
+            const pageNumber = 86;
+            const url = `../index.php?date=${weekDate}#${pageNumber}`;
+            window.open(url, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>

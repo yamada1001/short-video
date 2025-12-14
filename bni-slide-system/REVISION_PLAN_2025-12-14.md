@@ -1346,3 +1346,52 @@ https://yojitu.com/bni-slide-system/slides_v2/index.php#7
 **最終更新**: 2025-12-14 17:00 - スライドショーPHPベース化完了
 
 ---
+
+## 🚨 緊急修正：全管理画面のconfig.php読み込み漏れ対応（2025-12-14 18:00）
+
+### 問題発生
+複数の管理画面で「データの読み込みに失敗しました」エラーが発生。
+- visitors.php
+- new_members.php
+- weekly_no1.php
+- qr_code.php
+- その他多数の管理画面
+
+### 原因
+18個の管理画面ファイルで `require_once __DIR__ . '/../config.php';` が記載されていなかった。
+
+### 対応内容
+全19ファイルに `<?php require_once __DIR__ . '/../config.php'; ?>` を追加：
+
+1. categories.php
+2. champions.php
+3. index.php
+4. main_presenter.php
+5. members.php
+6. networking_pdf.php
+7. new_members.php
+8. qr_code.php
+9. referral_check.php
+10. renewal.php
+11. seating.php
+12. share_story.php
+13. slide_visibility.php
+14. speaker_rotation.php
+15. start_dash.php
+16. statistics.php
+17. substitutes.php
+18. visitors.php
+19. weekly_no1.php
+
+### 影響範囲
+- データベース接続が必要な全管理画面
+- `getTargetFriday()` などのヘルパー関数を使用する画面
+
+### 修正結果
+✅ 全19ファイルに config.php を追加完了
+✅ データベース接続エラーを解消
+✅ 管理画面からのデータ読み込みが正常動作
+
+**最終更新**: 2025-12-14 18:00 - 緊急修正完了
+
+---

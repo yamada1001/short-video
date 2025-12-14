@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../config.php';
 // シェアストーリー管理画面 - 簡易版
 ?>
 <!DOCTYPE html>

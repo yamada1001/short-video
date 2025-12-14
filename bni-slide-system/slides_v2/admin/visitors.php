@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__ . '/../config.php';
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -438,17 +441,17 @@
             </div>
 
             <div class="slide-buttons" style="margin-top: 30px;">
-                <button class="btn btn-success" onclick="openSlide('visitor_intro')">
-                    <i class="fas fa-play"></i> p.19 ビジター紹介スライド
+                <button class="btn btn-secondary" onclick="viewSlide(19)">
+                    <i class="fas fa-external-link-alt"></i> p.19を確認
                 </button>
-                <button class="btn btn-success" onclick="openSlide('visitor_self_intro')">
-                    <i class="fas fa-play"></i> p.169-180 自己紹介スライド
+                <button class="btn btn-secondary" onclick="viewSlide(169)">
+                    <i class="fas fa-external-link-alt"></i> p.169を確認
                 </button>
-                <button class="btn btn-success" onclick="openSlide('visitor_feedback')">
-                    <i class="fas fa-play"></i> p.213-224 感想スライド
+                <button class="btn btn-secondary" onclick="viewSlide(213)">
+                    <i class="fas fa-external-link-alt"></i> p.213を確認
                 </button>
-                <button class="btn btn-success" onclick="openSlide('visitor_thanks')">
-                    <i class="fas fa-play"></i> p.235 感謝スライド
+                <button class="btn btn-secondary" onclick="viewSlide(235)">
+                    <i class="fas fa-external-link-alt"></i> p.235を確認
                 </button>
             </div>
         </div>
@@ -786,8 +789,8 @@
             }
         }
 
-        // スライド表示
-        function openSlide(slideType) {
+        // スライドを確認
+        function viewSlide(pageNumber) {
             const weekDate = document.getElementById('weekDate').value;
             if (!weekDate) {
                 alert('開催日を選択してください');
@@ -799,8 +802,8 @@
                 return;
             }
 
-            const url = `../slides/${slideType}.php?date=${weekDate}`;
-            window.open(url, '_blank');
+            const url = `../index.php?date=${weekDate}#${pageNumber}`;
+            window.open(url, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>

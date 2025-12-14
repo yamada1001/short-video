@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../config.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -42,8 +43,17 @@
             <button class="btn btn-secondary" onclick="location.href='index.php'">
                 <i class="fas fa-arrow-left"></i> ダッシュボードに戻る
             </button>
-            <button class="btn btn-primary" onclick="previewSlide()">
-                <i class="fas fa-eye"></i> スライドをプレビュー
+            <button class="btn btn-secondary" onclick="viewSlide(188)">
+                <i class="fas fa-external-link-alt"></i> p.188を確認
+            </button>
+            <button class="btn btn-secondary" onclick="viewSlide(189)">
+                <i class="fas fa-external-link-alt"></i> p.189を確認
+            </button>
+            <button class="btn btn-secondary" onclick="viewSlide(190)">
+                <i class="fas fa-external-link-alt"></i> p.190を確認
+            </button>
+            <button class="btn btn-secondary" onclick="viewSlide(302)">
+                <i class="fas fa-external-link-alt"></i> p.302を確認
             </button>
         </div>
 
@@ -228,30 +238,16 @@
             }
         }
 
-        // スライドプレビュー
-        function previewSlide() {
+        // スライドを確認
+        function viewSlide(pageNumber) {
             const weekDate = document.getElementById('weekDate').value;
             if (!weekDate) {
                 alert('対象週を選択してください');
                 return;
             }
 
-            // 統計スライドは4種類あるため選択させる
-            const types = [
-                { name: 'ビジター統計 (p.188)', file: 'visitor_stats.php?type=visitor' },
-                { name: 'リファーラル統計 (p.189)', file: 'visitor_stats.php?type=referral' },
-                { name: '売上統計 (p.190)', file: 'visitor_stats.php?type=sales' },
-                { name: '週次統計 (p.302)', file: 'visitor_stats.php?type=weekly' }
-            ];
-
-            const message = types.map((t, i) => `${i + 1}. ${t.name}`).join('\n');
-            const choice = prompt(`プレビューするスライドを選択してください (1-4):\n\n${message}`);
-
-            if (choice && choice >= 1 && choice <= 4) {
-                const selected = types[choice - 1];
-                const slideUrl = `../slides/${selected.file}&date=${encodeURIComponent(weekDate)}`;
-                window.open(slideUrl, '_blank', 'width=1920,height=1080');
-            }
+            const url = `../index.php?date=${weekDate}#${pageNumber}`;
+            window.open(url, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>

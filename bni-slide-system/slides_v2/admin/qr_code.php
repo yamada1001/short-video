@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../config.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -31,8 +32,8 @@
     <div class="container">
         <div class="actions-bar">
             <button class="btn btn-secondary" onclick="location.href='index.php'"><i class="fas fa-arrow-left"></i> 戻る</button>
-            <button class="btn btn-primary" onclick="previewSlide()">
-                <i class="fas fa-eye"></i> スライドをプレビュー
+            <button class="btn btn-secondary" onclick="viewSlide()">
+                <i class="fas fa-external-link-alt"></i> スライドを確認（p.242）
             </button>
         </div>
 
@@ -110,16 +111,17 @@
             }
         }
 
-        // スライドプレビュー
-        function previewSlide() {
+        // スライドを確認
+        function viewSlide() {
             const weekDate = document.getElementById('weekDate').value;
             if (!weekDate) {
                 alert('対象週を選択してください');
                 return;
             }
 
-            const slideUrl = `../slides/qr_code.php?date=${encodeURIComponent(weekDate)}`;
-            window.open(slideUrl, '_blank', 'width=1920,height=1080');
+            const pageNumber = 242;
+            const url = `../index.php?date=${weekDate}#${pageNumber}`;
+            window.open(url, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>

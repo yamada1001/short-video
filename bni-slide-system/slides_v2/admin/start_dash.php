@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../config.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -481,11 +482,11 @@
                     <button type="button" class="btn btn-secondary" onclick="resetForm()">
                         <i class="fas fa-redo"></i> リセット
                     </button>
-                    <button type="button" class="btn btn-success" onclick="openSlide(15)">
-                        <i class="fas fa-play"></i> p.15スライド表示
+                    <button type="button" class="btn btn-secondary" onclick="viewSlide(15)">
+                        <i class="fas fa-external-link-alt"></i> p.15を確認
                     </button>
-                    <button type="button" class="btn btn-success" onclick="openSlide(107)">
-                        <i class="fas fa-play"></i> p.107スライド表示
+                    <button type="button" class="btn btn-secondary" onclick="viewSlide(107)">
+                        <i class="fas fa-external-link-alt"></i> p.107を確認
                     </button>
                 </div>
             </form>
@@ -741,16 +742,16 @@
             setDefaultDate();
         }
 
-        // スライド表示
-        function openSlide(pageNumber) {
+        // スライドを確認
+        function viewSlide(pageNumber) {
             const weekDate = document.getElementById('weekDate').value;
             if (!weekDate) {
                 alert('開催日を選択してください');
                 return;
             }
 
-            const url = `../slides/start_dash.php?date=${weekDate}&page=${pageNumber}`;
-            window.open(url, '_blank');
+            const url = `../index.php?date=${weekDate}#${pageNumber}`;
+            window.open(url, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>

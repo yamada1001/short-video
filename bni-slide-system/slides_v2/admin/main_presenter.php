@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../config.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -507,8 +508,11 @@
                     <button type="button" class="btn btn-secondary" onclick="resetForm()">
                         <i class="fas fa-redo"></i> リセット
                     </button>
-                    <button type="button" class="btn btn-success" onclick="generateSlide()">
-                        <i class="fas fa-play"></i> スライド生成
+                    <button type="button" class="btn btn-secondary" onclick="viewSlide(8)">
+                        <i class="fas fa-external-link-alt"></i> p.8を確認
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="viewSlide(204)">
+                        <i class="fas fa-external-link-alt"></i> p.204を確認
                     </button>
                 </div>
             </form>
@@ -778,17 +782,16 @@
             selectType('simple');
         }
 
-        // スライド生成（スタブ）
-        function generateSlide() {
+        // スライドを確認
+        function viewSlide(pageNumber) {
             const weekDate = document.getElementById('weekDate').value;
             if (!weekDate) {
                 alert('開催日を選択してください');
                 return;
             }
 
-            // スライドを新しいウィンドウで開く
-            const slideUrl = `../slides/main_presenter.php?date=${encodeURIComponent(selectedDate)}`;
-            window.open(slideUrl, '_blank', 'width=1920,height=1080');
+            const url = `../index.php?date=${weekDate}#${pageNumber}`;
+            window.open(url, '_blank', 'width=1920,height=1080');
         }
     </script>
 </body>
