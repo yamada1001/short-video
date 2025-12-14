@@ -109,7 +109,7 @@ switch ($action) {
     case 'create':
         // 新規メインプレゼン追加
         $memberId = $_POST['member_id'] ?? null;
-        $weekDate = $_POST['week_date'] ?? null;
+        $weekDate = date('Y-m-d');  // 本日の日付を設定
         $presentationType = $_POST['presentation_type'] ?? 'simple';
         $youtubeUrl = $_POST['youtube_url'] ?? null;
 
@@ -118,32 +118,16 @@ switch ($action) {
             exit;
         }
 
-        // week_dateが指定されていない場合はNULLに設定
-        if (empty($weekDate)) {
-            $weekDate = null;
-        }
-
-        // 既存データチェック（week_dateベース、もしくは最新データを更新）
-        if ($weekDate) {
-            $checkStmt = $db->prepare('SELECT id FROM main_presenter WHERE week_date = :week_date');
-            $checkStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-            $checkStmt->execute();
-            $existing = $checkStmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($existing) {
-                echo json_encode(['success' => false, 'error' => 'この日付は既に登録されています']);
-                exit;
-            }
-        }
-
         // PDFアップロード処理
         $pdfPath = null;
+        $convertResult = null;
+
         if (isset($_FILES['pdf_file']) && $_FILES['pdf_file']['error'] === UPLOAD_ERR_OK) {
             $filename = 'presentation_' . date('Ymd_His') . '.pdf';
             $uploadPath = $uploadsDir . $filename;
 
             if (move_uploaded_file($_FILES['pdf_file']['tmp_name'], $uploadPath)) {
-                $pdfPath = '../data/uploads/presentations/' . $filename;
+                $pdfPath = 'data/uploads/presentations/' . $filename;
 
                 // PDF→画像変換を実行
                 $convertResult = convertPdfToImages($uploadPath, $weekDate);
@@ -151,48 +135,53 @@ switch ($action) {
                     // 変換失敗してもPDFは保存（後で手動変換可能にする）
                     error_log('PDF変換エラー: ' . $convertResult['error']);
                 }
+            } else {
+                echo json_encode(['success' => false, 'error' => 'PDFファイルのアップロードに失敗しました']);
+                exit;
             }
         }
 
-        $stmt = $db->prepare('
-            INSERT INTO main_presenter (member_id, week_date, presentation_type, pdf_path, youtube_url)
-            VALUES (:member_id, :week_date, :presentation_type, :pdf_path, :youtube_url)
-        ');
+        try {
+            $stmt = $db->prepare('
+                INSERT INTO main_presenter (member_id, week_date, presentation_type, pdf_path, youtube_url)
+                VALUES (:member_id, :week_date, :presentation_type, :pdf_path, :youtube_url)
+            ');
 
-        $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->bindValue(':presentation_type', $presentationType, PDO::PARAM_STR);
-        $stmt->bindValue(':pdf_path', $pdfPath, PDO::PARAM_STR);
-        $stmt->bindValue(':youtube_url', $youtubeUrl, PDO::PARAM_STR);
+            $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
+            $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+            $stmt->bindValue(':presentation_type', $presentationType, PDO::PARAM_STR);
+            $stmt->bindValue(':pdf_path', $pdfPath, PDO::PARAM_STR);
+            $stmt->bindValue(':youtube_url', $youtubeUrl, PDO::PARAM_STR);
 
-        $stmt->execute();
+            $stmt->execute();
 
-        // 保存成功後、スライド画像を生成（p.8とp.204）
-        generateSlideImage('main_presenter.php', 8, $weekDate);
-        generateSlideImage('main_presenter.php', 204, $weekDate);
+            // 保存成功後、スライド画像を生成（p.8とp.204）
+            generateSlideImage('main_presenter.php', 8, $weekDate);
+            generateSlideImage('main_presenter.php', 204, $weekDate);
 
-        echo json_encode([
-            'success' => true,
-            'id' => $db->lastInsertId(),
-            'pdf_converted' => isset($convertResult) ? $convertResult['success'] : false
-        ]);
+            echo json_encode([
+                'success' => true,
+                'id' => $db->lastInsertId(),
+                'pdf_converted' => $convertResult ? $convertResult['success'] : false
+            ]);
+        } catch (Exception $e) {
+            echo json_encode([
+                'success' => false,
+                'error' => 'データベースエラー: ' . $e->getMessage()
+            ]);
+        }
         break;
 
     case 'update':
         // メインプレゼン更新（最新レコードを更新）
         $memberId = $_POST['member_id'] ?? null;
-        $weekDate = $_POST['week_date'] ?? null;
+        $weekDate = date('Y-m-d');  // 本日の日付を設定
         $presentationType = $_POST['presentation_type'] ?? 'simple';
         $youtubeUrl = $_POST['youtube_url'] ?? null;
 
         if (!$memberId) {
             echo json_encode(['success' => false, 'error' => 'メンバーIDは必須です']);
             exit;
-        }
-
-        // week_dateが指定されていない場合はNULLに設定
-        if (empty($weekDate)) {
-            $weekDate = null;
         }
 
         // 最新のレコードを取得
