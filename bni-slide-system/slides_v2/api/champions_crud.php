@@ -93,7 +93,7 @@ switch ($action) {
         }
 
         // トランザクション開始
-        $db->exec('BEGIN');
+        $db->beginTransaction();
 
         try {
             // 既存データを削除

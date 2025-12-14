@@ -258,7 +258,7 @@
                     <div class="label">管理画面</div>
                 </div>
                 <div class="stat-card">
-                    <div class="number" id="slide-count">37</div>
+                    <div class="number" id="slide-count">38</div>
                     <div class="label">スライド</div>
                 </div>
                 <div class="stat-card">
@@ -476,9 +476,16 @@
         <div class="section">
             <div class="section-header">
                 <div class="icon"><i class="fas fa-images"></i></div>
-                <h2>スライド一覧<span class="phase-badge phase-2">37枚</span></h2>
+                <h2>スライド一覧<span class="phase-badge phase-2">38枚</span></h2>
             </div>
             <div class="link-grid">
+                <a href="slides/seating.php" class="link-item" data-url="slides/seating.php">
+                    <div class="link-item-content">
+                        <div class="link-item-title">座席表スライド</div>
+                        <div class="link-item-pages">p.7</div>
+                    </div>
+                    <div class="link-item-status status-checking"><div class="spinner"></div></div>
+                </a>
                 <a href="slides/main_presenter.php" class="link-item" data-url="slides/main_presenter.php">
                     <div class="link-item-content">
                         <div class="link-item-title">メインプレゼンスライド</div>
@@ -701,8 +708,8 @@
             <div class="link-grid">
                 <a href="index.php" class="link-item" data-url="index.php">
                     <div class="link-item-content">
-                        <div class="link-item-title"><i class="fas fa-play-circle"></i> スライド表示画面</div>
-                        <div class="link-item-desc">全スライドの統合表示画面</div>
+                        <div class="link-item-title"><i class="fas fa-play-circle"></i> スライドショー（PHPベース）</div>
+                        <div class="link-item-desc">管理画面のデータが即座に反映される統合スライド表示画面（309ページ）</div>
                     </div>
                     <div class="link-item-status status-checking"><div class="spinner"></div></div>
                 </a>

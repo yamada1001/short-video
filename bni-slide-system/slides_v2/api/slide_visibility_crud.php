@@ -40,7 +40,7 @@ switch ($action) {
         $visibilityArray = $postData['visibility'] ?? [];
         if (empty($visibilityArray)) { echo json_encode(['success' => false, 'error' => 'データが不足しています']); exit; }
 
-        $db->exec('BEGIN');
+        $db->beginTransaction();
         try {
             foreach ($visibilityArray as $item) {
                 $stmt = $db->prepare("SELECT id FROM slide_visibility WHERE slide_page = :slide_page");

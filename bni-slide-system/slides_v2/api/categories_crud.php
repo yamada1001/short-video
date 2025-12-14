@@ -41,7 +41,7 @@ switch ($action) {
         $categoriesData = $postData['categories'] ?? [];
         if (!$weekDate || !$categoryType) { echo json_encode(['success' => false, 'error' => '必要なデータが不足しています']); exit; }
 
-        $db->exec('BEGIN');
+        $db->beginTransaction();
         try {
             $stmt = $db->prepare("DELETE FROM recruiting_categories WHERE week_date = :week_date AND category_type = :category_type");
             $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);

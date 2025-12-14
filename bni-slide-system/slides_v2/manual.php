@@ -403,7 +403,7 @@
                 <div class="info-box success">
                     <h4><i class="fas fa-check-circle"></i> システムの特徴</h4>
                     <p>
-                        <strong>18個の管理画面</strong>と<strong>37種類のスライド</strong>を統合管理できます。<br>
+                        <strong>18個の管理画面</strong>と<strong>309枚のスライド</strong>を統合管理できます。<br>
                         メンバー情報、ビジター情報、統計データなど、あらゆる情報を一元管理し、定例会をスムーズに進行できます。
                     </p>
                 </div>
@@ -707,6 +707,14 @@
 
                 <p>スライドは<code>https://yojitu.com/bni-slide-system/slides_v2/index.php</code>から表示できます。</p>
 
+                <div class="info-box success">
+                    <h4><i class="fas fa-sync-alt"></i> PHPベースのリアルタイム表示</h4>
+                    <p>
+                        V2では、スライドショーがPHPベースで動作します。管理画面で保存した内容が<strong>即座にスライドショーに反映</strong>されます。<br>
+                        画像の再生成やキャッシュのクリアは不要で、リアルタイムにデータを表示できます。
+                    </p>
+                </div>
+
                 <h3>基本操作</h3>
                 <table>
                     <thead>
@@ -719,17 +727,27 @@
                     <tbody>
                         <tr>
                             <td>次のスライド</td>
-                            <td><code>→</code> または <code>Space</code></td>
+                            <td><code>→</code> または <code>↓</code> または <code>Space</code></td>
                             <td>次のページに進む</td>
                         </tr>
                         <tr>
                             <td>前のスライド</td>
-                            <td><code>←</code></td>
+                            <td><code>←</code> または <code>↑</code></td>
                             <td>前のページに戻る</td>
                         </tr>
                         <tr>
+                            <td>最初のスライド</td>
+                            <td><code>Home</code></td>
+                            <td>1ページ目に移動</td>
+                        </tr>
+                        <tr>
+                            <td>最後のスライド</td>
+                            <td><code>End</code></td>
+                            <td>最終ページに移動</td>
+                        </tr>
+                        <tr>
                             <td>フルスクリーン</td>
-                            <td><code>F11</code></td>
+                            <td><code>F11</code> または <code>F</code></td>
                             <td>フルスクリーン表示切り替え</td>
                         </tr>
                         <tr>
@@ -932,7 +950,7 @@
                         </tr>
                         <tr>
                             <td><strong>リリース日</strong></td>
-                            <td>2024年12月14日</td>
+                            <td>2025年12月14日</td>
                         </tr>
                         <tr>
                             <td><strong>技術スタック</strong></td>
@@ -958,7 +976,7 @@
     </div>
 
     <div class="footer">
-        BNI Slide System V2 - User Manual &copy; 2024 | Powered by PHP & SQLite3
+        BNI Slide System V2 - User Manual &copy; 2025 | Powered by PHP & SQLite3
     </div>
 
     <script>
