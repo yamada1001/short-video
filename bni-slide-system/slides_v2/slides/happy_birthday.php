@@ -201,20 +201,12 @@
         });
 
         async function loadBirthdayMembers() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const weekDate = urlParams.get('date');
-
-            if (!weekDate) {
-                showError('日付が指定されていません');
-                return;
-            }
-
             try {
                 const response = await fetch(`${MEMBERS_API}?action=list`);
                 const data = await response.json();
 
                 if (data.success) {
-                    const birthdayMembers = filterBirthdayMembers(data.members, weekDate);
+                    const birthdayMembers = filterBirthdayMembers(data.members);
                     if (birthdayMembers.length > 0) {
                         renderBirthdayMembers(birthdayMembers);
                     } else {
@@ -229,9 +221,9 @@
             }
         }
 
-        function filterBirthdayMembers(members, weekDate) {
-            const targetDate = new Date(weekDate);
-            const targetYear = targetDate.getFullYear();
+        function filterBirthdayMembers(members) {
+            const today = new Date();
+            const targetYear = today.getFullYear();
 
             // 当日の誕生日メンバーを抽出
             return members.filter(member => {
@@ -242,8 +234,8 @@
                 const birthdayThisYear = new Date(targetYear, birthday.getMonth(), birthday.getDate());
 
                 // 開催日と同じ月日かチェック
-                return birthdayThisYear.getMonth() === targetDate.getMonth() &&
-                       birthdayThisYear.getDate() === targetDate.getDate();
+                return birthdayThisYear.getMonth() === today.getMonth() &&
+                       birthdayThisYear.getDate() === today.getDate();
             });
         }
 

@@ -102,27 +102,24 @@
         });
 
         async function loadShareStory() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const weekDate = urlParams.get('date');
-
-            if (!weekDate) {
-                alert('日付が指定されていません');
-                return;
-            }
-
             try {
-                const response = await fetch(`${API_BASE}?action=get_by_date&week_date=${weekDate}`);
+                const response = await fetch(`${API_BASE}?action=get_latest`);
                 const data = await response.json();
 
                 if (data.success && data.data) {
                     showMember(data.data);
                 } else {
-                    alert('シェアストーリーが登録されていません');
+                    showEmptyState();
                 }
             } catch (error) {
                 console.error('エラー:', error);
                 alert('データの読み込み中にエラーが発生しました');
             }
+        }
+
+        function showEmptyState() {
+            document.getElementById('memberName').textContent = 'データがありません';
+            document.getElementById('memberCompany').textContent = '';
         }
 
         function showMember(member) {

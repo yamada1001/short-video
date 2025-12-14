@@ -182,16 +182,8 @@
         });
 
         async function loadNewMembers() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const weekDate = urlParams.get('date');
-
-            if (!weekDate) {
-                showError('日付が指定されていません');
-                return;
-            }
-
             try {
-                const response = await fetch(`${API_BASE}?action=get_by_date&week_date=${weekDate}`);
+                const response = await fetch(`${API_BASE}?action=get_latest`);
                 const data = await response.json();
 
                 if (data.success) {

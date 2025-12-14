@@ -26,6 +26,30 @@ try {
 $action = $_GET['action'] ?? $_POST['action'] ?? null;
 
 switch ($action) {
+    case 'get_latest':
+        // 最新のメインプレゼン取得
+        $stmt = $db->query("
+            SELECT
+                mp.*,
+                m.name as member_name,
+                m.company_name,
+                m.category,
+                m.photo_path
+            FROM main_presenter mp
+            LEFT JOIN members m ON mp.member_id = m.id
+            ORDER BY mp.created_at DESC
+            LIMIT 1
+        ");
+
+        $presentation = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($presentation) {
+            echo json_encode(['success' => true, 'data' => $presentation]);
+        } else {
+            echo json_encode(['success' => false, 'data' => null]);
+        }
+        break;
+
     case 'list':
         // メインプレゼン一覧取得
         $query = "
@@ -89,20 +113,27 @@ switch ($action) {
         $presentationType = $_POST['presentation_type'] ?? 'simple';
         $youtubeUrl = $_POST['youtube_url'] ?? null;
 
-        if (!$memberId || !$weekDate) {
-            echo json_encode(['success' => false, 'error' => 'メンバーIDと開催日は必須です']);
+        if (!$memberId) {
+            echo json_encode(['success' => false, 'error' => 'メンバーIDは必須です']);
             exit;
         }
 
-        // 既存データチェック
-        $checkStmt = $db->prepare('SELECT id FROM main_presenter WHERE week_date = :week_date');
-        $checkStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $checkStmt->execute();
-        $existing = $checkStmt->fetch(PDO::FETCH_ASSOC);
+        // week_dateが指定されていない場合はNULLに設定
+        if (empty($weekDate)) {
+            $weekDate = null;
+        }
 
-        if ($existing) {
-            echo json_encode(['success' => false, 'error' => 'この日付は既に登録されています']);
-            exit;
+        // 既存データチェック（week_dateベース、もしくは最新データを更新）
+        if ($weekDate) {
+            $checkStmt = $db->prepare('SELECT id FROM main_presenter WHERE week_date = :week_date');
+            $checkStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+            $checkStmt->execute();
+            $existing = $checkStmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($existing) {
+                echo json_encode(['success' => false, 'error' => 'この日付は既に登録されています']);
+                exit;
+            }
         }
 
         // PDFアップロード処理
@@ -148,21 +179,24 @@ switch ($action) {
         break;
 
     case 'update':
-        // メインプレゼン更新
+        // メインプレゼン更新（最新レコードを更新）
         $memberId = $_POST['member_id'] ?? null;
         $weekDate = $_POST['week_date'] ?? null;
         $presentationType = $_POST['presentation_type'] ?? 'simple';
         $youtubeUrl = $_POST['youtube_url'] ?? null;
 
-        if (!$memberId || !$weekDate) {
-            echo json_encode(['success' => false, 'error' => 'メンバーID、開催日は必須です']);
+        if (!$memberId) {
+            echo json_encode(['success' => false, 'error' => 'メンバーIDは必須です']);
             exit;
         }
 
-        // week_dateからIDを取得
-        $checkStmt = $db->prepare('SELECT id FROM main_presenter WHERE week_date = :week_date');
-        $checkStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $checkStmt->execute();
+        // week_dateが指定されていない場合はNULLに設定
+        if (empty($weekDate)) {
+            $weekDate = null;
+        }
+
+        // 最新のレコードを取得
+        $checkStmt = $db->query('SELECT id FROM main_presenter ORDER BY created_at DESC LIMIT 1');
         $existing = $checkStmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$existing) {

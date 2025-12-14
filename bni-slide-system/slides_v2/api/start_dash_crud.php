@@ -19,6 +19,32 @@ try {
 $action = $_GET['action'] ?? $_POST['action'] ?? null;
 
 switch ($action) {
+    case 'get_latest':
+        // 最新のスタートダッシュプレゼン取得
+        $stmt = $db->query("
+            SELECT
+                sd.*,
+                m.name as member_name,
+                m.company_name,
+                m.photo_path
+            FROM start_dash_presenter sd
+            LEFT JOIN members m ON sd.member_id = m.id
+            WHERE sd.created_at = (SELECT MAX(created_at) FROM start_dash_presenter)
+            ORDER BY sd.page_number ASC
+        ");
+
+        $presenters = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $presenters[] = $row;
+        }
+
+        if (count($presenters) > 0) {
+            echo json_encode(['success' => true, 'presenters' => $presenters]);
+        } else {
+            echo json_encode(['success' => false, 'presenters' => []]);
+        }
+        break;
+
     case 'list':
         // スタートダッシュプレゼン一覧取得
         $query = "
@@ -115,19 +141,29 @@ switch ($action) {
         $memberId15 = $_POST['member_id_15'] ?? null;
         $memberId107 = $_POST['member_id_107'] ?? null;
 
-        if (!$weekDate || !$memberId15 || !$memberId107) {
-            echo json_encode(['success' => false, 'error' => '開催日と両方のメンバーIDは必須です']);
+        if (!$memberId15 || !$memberId107) {
+            echo json_encode(['success' => false, 'error' => '両方のメンバーIDは必須です']);
             exit;
+        }
+
+        // week_dateが指定されていない場合はNULLに設定
+        if (empty($weekDate)) {
+            $weekDate = null;
         }
 
         // トランザクション開始
         $db->beginTransaction();
 
         try {
-            // 既存データ削除（同じ日付のデータがあれば）
-            $deleteStmt = $db->prepare('DELETE FROM start_dash_presenter WHERE week_date = :week_date');
-            $deleteStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-            $deleteStmt->execute();
+            // 既存データ削除（最新のデータを削除して置き換える）
+            if ($weekDate) {
+                $deleteStmt = $db->prepare('DELETE FROM start_dash_presenter WHERE week_date = :week_date');
+                $deleteStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+                $deleteStmt->execute();
+            } else {
+                // week_dateがNULLの場合、最新のデータを削除
+                $db->exec('DELETE FROM start_dash_presenter WHERE created_at = (SELECT MAX(created_at) FROM start_dash_presenter)');
+            }
 
             // p.15のデータを登録
             $stmt15 = $db->prepare('

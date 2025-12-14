@@ -427,12 +427,6 @@
             </div>
 
             <form id="presenterForm" enctype="multipart/form-data">
-                <!-- Week Date -->
-                <div class="form-group">
-                    <label>開催日 <span class="required">*</span></label>
-                    <input type="date" id="weekDate" required>
-                </div>
-
                 <!-- Member Selection -->
                 <div class="form-group">
                     <label>メインプレゼンター <span class="required">*</span></label>
@@ -548,14 +542,11 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadMembers();
             setupEventListeners();
-            setDefaultDate();
+            loadExistingData();
         });
 
         // イベントリスナー設定
         function setupEventListeners() {
-            // 日付変更時に既存データをロード
-            document.getElementById('weekDate').addEventListener('change', loadExistingData);
-
             // メンバー選択
             document.getElementById('memberId').addEventListener('change', handleMemberChange);
 
@@ -569,28 +560,10 @@
             document.getElementById('youtubeUrl').addEventListener('input', handleYoutubeChange);
         }
 
-        // デフォルト日付設定（次の金曜日）
-        function setDefaultDate() {
-            const today = new Date();
-            const dayOfWeek = today.getDay();
-            const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
-            const nextFriday = new Date(today);
-            nextFriday.setDate(today.getDate() + daysUntilFriday);
-
-            const formatted = nextFriday.toISOString().split('T')[0];
-            document.getElementById('weekDate').value = formatted;
-
-            // 日付設定後に既存データをロード
-            loadExistingData();
-        }
-
-        // 既存データをロード
+        // 既存データをロード（最新データを取得）
         async function loadExistingData() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) return;
-
             try {
-                const response = await fetch(`${API_BASE}?action=read&week_date=${weekDate}`);
+                const response = await fetch(`${API_BASE}?action=get_latest`);
                 const data = await response.json();
 
                 if (data.success && data.data) {
@@ -779,11 +752,10 @@
             e.preventDefault();
 
             const memberId = document.getElementById('memberId').value;
-            const weekDate = document.getElementById('weekDate').value;
             const presentationType = document.querySelector('input[name="presentationType"]:checked').value;
 
-            if (!memberId || !weekDate) {
-                alert('開催日とメンバーは必須です');
+            if (!memberId) {
+                alert('メンバーは必須です');
                 return;
             }
 
@@ -791,7 +763,6 @@
             // 編集モードの場合は update、新規の場合は create
             formData.append('action', isEditMode ? 'update' : 'create');
             formData.append('member_id', memberId);
-            formData.append('week_date', weekDate);
             formData.append('presentation_type', presentationType);
 
             // 拡張版の場合
@@ -834,19 +805,13 @@
             document.getElementById('pdfFileInfo').style.display = 'none';
             document.getElementById('youtubeInfo').style.display = 'none';
             resetPreview();
-            setDefaultDate();
             selectType('simple');
+            loadExistingData();
         }
 
         // スライドを確認
         function viewSlide(pageNumber) {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('開催日を選択してください');
-                return;
-            }
-
-            const url = `../index.php?date=${weekDate}#${pageNumber}`;
+            const url = `../index.php#${pageNumber}`;
             window.open(url, '_blank', 'width=1920,height=1080');
         }
     </script>

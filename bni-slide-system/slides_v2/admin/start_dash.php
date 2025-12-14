@@ -424,12 +424,6 @@
             </div>
 
             <form id="startDashForm">
-                <!-- Week Date -->
-                <div class="form-group">
-                    <label>開催日 <span class="required">*</span></label>
-                    <input type="date" id="weekDate" required>
-                </div>
-
                 <!-- Page 15 Selection -->
                 <div class="page-card">
                     <h3><i class="fas fa-user"></i> p.15 プレゼンター</h3>
@@ -544,7 +538,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadMembers();
             setupEventListeners();
-            setDefaultDate();
             loadExistingData();
         });
 
@@ -556,18 +549,6 @@
 
             // フォーム送信
             document.getElementById('startDashForm').addEventListener('submit', handleSubmit);
-        }
-
-        // デフォルト日付設定（次の金曜日）
-        function setDefaultDate() {
-            const today = new Date();
-            const dayOfWeek = today.getDay();
-            const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
-            const nextFriday = new Date(today);
-            nextFriday.setDate(today.getDate() + daysUntilFriday);
-
-            const formatted = nextFriday.toISOString().split('T')[0];
-            document.getElementById('weekDate').value = formatted;
         }
 
         // メンバー一覧取得
@@ -666,13 +647,10 @@
             document.getElementById('preview-' + tabId).classList.add('active');
         }
 
-        // 既存データ読み込み
+        // 既存データ読み込み（最新データを取得）
         async function loadExistingData() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) return;
-
             try {
-                const response = await fetch(`${API_BASE}?action=get&week_date=${weekDate}`);
+                const response = await fetch(`${API_BASE}?action=get_latest`);
                 const data = await response.json();
 
                 if (data.success && data.presenters) {
@@ -701,16 +679,14 @@
 
             const memberId15 = document.getElementById('memberId15').value;
             const memberId107 = document.getElementById('memberId107').value;
-            const weekDate = document.getElementById('weekDate').value;
 
-            if (!memberId15 || !memberId107 || !weekDate) {
+            if (!memberId15 || !memberId107) {
                 alert('すべての項目を入力してください');
                 return;
             }
 
             const formData = new FormData();
             formData.append('action', 'create');
-            formData.append('week_date', weekDate);
             formData.append('member_id_15', memberId15);
             formData.append('member_id_107', memberId107);
 
@@ -739,18 +715,12 @@
             document.getElementById('memberPreview107').classList.remove('active');
             resetPreview(15);
             resetPreview(107);
-            setDefaultDate();
+            loadExistingData();
         }
 
         // スライドを確認
         function viewSlide(pageNumber) {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('開催日を選択してください');
-                return;
-            }
-
-            const url = `../index.php?date=${weekDate}#${pageNumber}`;
+            const url = `../index.php#${pageNumber}`;
             window.open(url, '_blank', 'width=1920,height=1080');
         }
     </script>
