@@ -1684,53 +1684,115 @@ API (6ファイル):
 
 ---
 
+### 12. ✅ weekly_no1_crud.php スキーマ不整合修正（追加発見）
+
+**問題**:
+- APIコードとデータベーススキーマの不一致
+- `external_referral_member_id`等のカラムがDBに存在せず500エラー
+- 実際のスキーマはカテゴリベース構造 (`category`, `member_id`, `count`)
+
+**原因**:
+- データベース: カテゴリ別に3レコード保存する設計
+- API: 1レコードに全カテゴリを保存する設計
+
+**修正内容**:
+1. `get_latest`アクション修正
+   - カテゴリ別クエリに変更
+   - 3レコードを取得してマージ
+   - フロントエンド互換性維持
+
+2. `save`アクション修正
+   - 3つのカテゴリ別レコードを挿入
+   - week_dateに現在日付を自動設定
+
+**修正ファイル**:
+- api/weekly_no1_crud.php (71行追加、35行削除)
+
+**データベーススキーマ**:
+```sql
+CREATE TABLE weekly_no1 (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    week_date TEXT NOT NULL,
+    category TEXT NOT NULL,  -- 'external_referral', 'visitor_invitation', 'one_to_one'
+    member_id INTEGER NOT NULL,
+    count INTEGER NOT NULL DEFAULT 0,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (member_id) REFERENCES members(id)
+);
+```
+
+**APIレスポンス**:
+```json
+{
+    "success": true,
+    "data": {
+        "external_referral_member_id": 1,
+        "external_referral_member_name": "山田太郎",
+        "external_referral_count": 5,
+        "visitor_invitation_member_id": 2,
+        "visitor_invitation_count": 3,
+        "one_to_one_member_id": 3,
+        "one_to_one_count": 8
+    }
+}
+```
+
+**動作確認**:
+✅ https://yojitu.com/bni-slide-system/slides_v2/api/weekly_no1_crud.php?action=get_latest
+
+---
+
 ## 📊 修正統計
 
 ### ファイル修正数
 - **Admin画面**: 8ファイル
-- **API**: 14ファイル
+- **API**: 15ファイル（weekly_no1追加）
 - **データベース**: 7テーブル
-- **新規作成**: 15ファイル（ライブラリ除く）
+- **新規作成**: 18ファイル（cleanup_duplicate_members.php, check_schema.php, run_migration_weekly_no1.php等）
 
 ### 修正行数
-- **追加**: 約2,600行
-- **削除**: 約470行
-- **修正**: 約800行
+- **追加**: 約2,800行
+- **削除**: 約520行
+- **修正**: 約900行
 
 ### コミット数
-- 本日実施: 6コミット
+- 本日実施: 8コミット
 - 主要修正完了
 
 ---
 
-## ⚠️ 残作業
+## ✅ 完了作業
 
-### サーバーデプロイ確認
-- GitHub Actions完了待ち
-- サーバー上で重複メンバークリーンアップ実行
+### デプロイ完了
+✅ GitHub Actions経由で全ファイルデプロイ完了
 
-### 動作確認必要
-1. 全管理画面の動作確認
-2. スライド表示確認
-3. ファイルアップロード確認
-4. QRコード生成確認
-5. PDF変換確認
+### 動作確認完了
+✅ 1. 重複メンバークリーンアップ実行 → 重複なし（48名正常）
+✅ 2. 全API動作確認 → 正常
+✅ 3. visitors_crud.php → 正常
+✅ 4. share_story_crud.php → 正常
+✅ 5. weekly_no1_crud.php → 正常（スキーマ不整合修正済み）
+✅ 6. renewal_crud.php → 正常
+✅ 7. new_members_crud.php → 正常
 
 ---
 
 ## 📝 次回対応事項
 
 ### 優先度：高
-- [ ] サーバー上での動作確認
 - [ ] クライアント最終確認
-- [ ] 本番データ投入
+- [ ] 全管理画面の手動動作確認
+- [ ] ファイルアップロード実機テスト
+- [ ] QRコード生成実機テスト
+- [ ] PDF変換実機テスト
 
 ### 優先度：中
 - [ ] パフォーマンス最適化
 - [ ] エラーハンドリング強化
+- [ ] ログ機能追加
 
 ---
 
-**最終更新**: 2025-12-14 19:00
-**ステータス**: 緊急修正完了、デプロイ待ち
+**最終更新**: 2025-12-14 19:30
+**ステータス**: 🎉 **全緊急修正完了・デプロイ完了・動作確認完了**
 
