@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // データベースパス
-$db_path = __DIR__ . '/../database/bni_slide_v2.db';
+$db_path = __DIR__ . '/data/bni_slide_system.db';
 
 // タイムゾーン設定
 date_default_timezone_set('Asia/Tokyo');
