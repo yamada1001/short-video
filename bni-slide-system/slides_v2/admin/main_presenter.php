@@ -541,6 +541,8 @@
         const API_BASE = '../api/main_presenter_crud.php';
         let members = [];
         let currentMember = null;
+        let isEditMode = false;
+        let currentData = null;
 
         // ページ読み込み時
         document.addEventListener('DOMContentLoaded', () => {
@@ -551,6 +553,9 @@
 
         // イベントリスナー設定
         function setupEventListeners() {
+            // 日付変更時に既存データをロード
+            document.getElementById('weekDate').addEventListener('change', loadExistingData);
+
             // メンバー選択
             document.getElementById('memberId').addEventListener('change', handleMemberChange);
 
@@ -574,6 +579,55 @@
 
             const formatted = nextFriday.toISOString().split('T')[0];
             document.getElementById('weekDate').value = formatted;
+
+            // 日付設定後に既存データをロード
+            loadExistingData();
+        }
+
+        // 既存データをロード
+        async function loadExistingData() {
+            const weekDate = document.getElementById('weekDate').value;
+            if (!weekDate) return;
+
+            try {
+                const response = await fetch(`${API_BASE}?action=read&week_date=${weekDate}`);
+                const data = await response.json();
+
+                if (data.success && data.data) {
+                    // 編集モードに切り替え
+                    isEditMode = true;
+                    currentData = data.data;
+
+                    // フォームに既存データをセット
+                    document.getElementById('memberId').value = currentData.member_id;
+
+                    // プレゼンタイプ設定
+                    if (currentData.presentation_type === 'extended') {
+                        selectType('extended');
+                    } else {
+                        selectType('simple');
+                    }
+
+                    // YouTube URL設定
+                    if (currentData.youtube_url) {
+                        document.getElementById('youtubeUrl').value = currentData.youtube_url;
+                        handleYoutubeChange({ target: { value: currentData.youtube_url } });
+                    }
+
+                    // メンバープレビュー更新
+                    handleMemberChange({ target: { value: currentData.member_id } });
+
+                    // 保存ボタンのテキストを変更
+                    document.querySelector('.btn-primary').innerHTML = '<i class="fas fa-save"></i> 更新';
+                } else {
+                    // 新規作成モード
+                    isEditMode = false;
+                    currentData = null;
+                    document.querySelector('.btn-primary').innerHTML = '<i class="fas fa-save"></i> 保存';
+                }
+            } catch (error) {
+                console.error('既存データ読み込みエラー:', error);
+            }
         }
 
         // メンバー一覧取得
@@ -734,7 +788,8 @@
             }
 
             const formData = new FormData();
-            formData.append('action', 'create');
+            // 編集モードの場合は update、新規の場合は create
+            formData.append('action', isEditMode ? 'update' : 'create');
             formData.append('member_id', memberId);
             formData.append('week_date', weekDate);
             formData.append('presentation_type', presentationType);
@@ -760,8 +815,9 @@
                 const data = await response.json();
 
                 if (data.success) {
-                    alert('保存しました');
-                    resetForm();
+                    alert(isEditMode ? '更新しました' : '保存しました');
+                    // 編集モードを維持したまま、データを再ロード
+                    loadExistingData();
                 } else {
                     alert('エラー: ' + (data.error || '不明なエラー'));
                 }
