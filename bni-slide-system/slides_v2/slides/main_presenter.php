@@ -157,31 +157,38 @@ if (!$presentation) {
 <body>
     <div class="slide-container">
         <?php if ($hasData): ?>
-            <div class="slide-content">
-                <?php if ($presentation['photo_path']): ?>
-                    <img src="<?= htmlspecialchars($presentation['photo_path']) ?>"
-                         alt="<?= htmlspecialchars($presentation['member_name']) ?>"
-                         class="member-photo">
-                <?php else: ?>
-                    <div class="member-photo"></div>
-                <?php endif; ?>
+            <?php if ($presentation['presentation_type'] === 'extended' && !empty($presentation['pdf_path'])): ?>
+                <!-- 拡張版: PDF表示 -->
+                <iframe src="<?= htmlspecialchars($presentation['pdf_path']) ?>"
+                        style="width: 100%; height: 100vh; border: none;"></iframe>
+            <?php else: ?>
+                <!-- シンプル版: メンバー情報表示 -->
+                <div class="slide-content">
+                    <?php if ($presentation['photo_path']): ?>
+                        <img src="<?= htmlspecialchars($presentation['photo_path']) ?>"
+                             alt="<?= htmlspecialchars($presentation['member_name']) ?>"
+                             class="member-photo">
+                    <?php else: ?>
+                        <div class="member-photo"></div>
+                    <?php endif; ?>
 
-                <?php if ($presentation['category']): ?>
-                    <div class="member-category">
-                        <?= htmlspecialchars($presentation['category']) ?>
+                    <?php if ($presentation['category']): ?>
+                        <div class="member-category">
+                            <?= htmlspecialchars($presentation['category']) ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="member-name">
+                        <?= htmlspecialchars($presentation['member_name']) ?>
                     </div>
-                <?php endif; ?>
 
-                <div class="member-name">
-                    <?= htmlspecialchars($presentation['member_name']) ?>
+                    <?php if ($presentation['company_name']): ?>
+                        <div class="member-company">
+                            <?= htmlspecialchars($presentation['company_name']) ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
-
-                <?php if ($presentation['company_name']): ?>
-                    <div class="member-company">
-                        <?= htmlspecialchars($presentation['company_name']) ?>
-                    </div>
-                <?php endif; ?>
-            </div>
+            <?php endif; ?>
         <?php else: ?>
             <div class="no-data">
                 メインプレゼンデータが登録されていません
