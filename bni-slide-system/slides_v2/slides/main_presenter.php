@@ -39,31 +39,6 @@ if (!$presentation) {
     $hasData = false;
 } else {
     $hasData = true;
-
-    // 拡張版の場合、PDF画像を取得
-    if ($presentation['presentation_type'] === 'extended' && !empty($presentation['pdf_path'])) {
-        $pdfPath = __DIR__ . '/../' . $presentation['pdf_path'];
-
-        // pdf_pathがディレクトリかファイルか判定
-        if (is_dir($pdfPath)) {
-            // ディレクトリの場合（ブラウザ側で変換された画像）
-            $imageDir = $pdfPath;
-        } else {
-            // ファイルの場合（サーバー側で変換された画像）
-            $imageDir = dirname($pdfPath) . '/images_' . basename($pdfPath, '.pdf');
-        }
-
-        if (is_dir($imageDir)) {
-            $pdfImages = glob($imageDir . '/page-*.png');
-            sort($pdfImages);
-            // 相対パスに変換
-            $presentation['pdf_images'] = array_map(function($path) {
-                return str_replace(__DIR__ . '/../', '', $path);
-            }, $pdfImages);
-        } else {
-            $presentation['pdf_images'] = [];
-        }
-    }
 }
 
 ?>
@@ -180,55 +155,40 @@ if (!$presentation) {
     </style>
 </head>
 <body>
-    <?php if ($hasData): ?>
-        <?php if ($presentation['presentation_type'] === 'extended' && !empty($presentation['pdf_images'])): ?>
-            <!-- 拡張版: PDF画像表示（各画像を1ページずつ） -->
-            <?php foreach ($presentation['pdf_images'] as $index => $imagePath): ?>
-                <div class="slide-container">
-                    <img src="../<?= htmlspecialchars($imagePath) ?>"
-                         alt="PDF Page <?= $index + 1 ?>"
-                         style="max-width: 100%; max-height: 100vh; object-fit: contain;">
-                    <div class="page-number">p.<?= 204 + $index ?></div>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <!-- シンプル版: メンバー情報表示 -->
-            <div class="slide-container">
-                <div class="slide-content">
-                    <?php if ($presentation['photo_path']): ?>
-                        <img src="<?= htmlspecialchars($presentation['photo_path']) ?>"
-                             alt="<?= htmlspecialchars($presentation['member_name']) ?>"
-                             class="member-photo">
-                    <?php else: ?>
-                        <div class="member-photo"></div>
-                    <?php endif; ?>
+    <div class="slide-container">
+        <?php if ($hasData): ?>
+            <div class="slide-content">
+                <?php if ($presentation['photo_path']): ?>
+                    <img src="<?= htmlspecialchars($presentation['photo_path']) ?>"
+                         alt="<?= htmlspecialchars($presentation['member_name']) ?>"
+                         class="member-photo">
+                <?php else: ?>
+                    <div class="member-photo"></div>
+                <?php endif; ?>
 
-                    <?php if ($presentation['category']): ?>
-                        <div class="member-category">
-                            <?= htmlspecialchars($presentation['category']) ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <div class="member-name">
-                        <?= htmlspecialchars($presentation['member_name']) ?>
+                <?php if ($presentation['category']): ?>
+                    <div class="member-category">
+                        <?= htmlspecialchars($presentation['category']) ?>
                     </div>
+                <?php endif; ?>
 
-                    <?php if ($presentation['company_name']): ?>
-                        <div class="member-company">
-                            <?= htmlspecialchars($presentation['company_name']) ?>
-                        </div>
-                    <?php endif; ?>
+                <div class="member-name">
+                    <?= htmlspecialchars($presentation['member_name']) ?>
                 </div>
-                <div class="page-number">p.8</div>
+
+                <?php if ($presentation['company_name']): ?>
+                    <div class="member-company">
+                        <?= htmlspecialchars($presentation['company_name']) ?>
+                    </div>
+                <?php endif; ?>
             </div>
-        <?php endif; ?>
-    <?php else: ?>
-        <div class="slide-container">
+        <?php else: ?>
             <div class="no-data">
                 メインプレゼンデータが登録されていません
             </div>
-            <div class="page-number">p.8</div>
-        </div>
-    <?php endif; ?>
+        <?php endif; ?>
+    </div>
+
+    <div class="page-number">p.8</div>
 </body>
 </html>

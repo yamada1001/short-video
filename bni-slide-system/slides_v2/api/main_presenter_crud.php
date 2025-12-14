@@ -165,9 +165,17 @@ switch ($action) {
 
             $stmt->execute();
 
-            // 保存成功後、スライド画像を生成（p.8とp.204）
+            // 保存成功後、スライド画像を生成
+            // p.8: メインプレゼンアイキャッチ
             generateSlideImage('main_presenter.php', 8);
-            generateSlideImage('main_presenter.php', 204);
+
+            // 拡張版の場合、PDF各ページの画像を生成（p.204~）
+            if ($presentationType === 'extended' && $imageCount > 0) {
+                for ($i = 0; $i < $imageCount; $i++) {
+                    $pageNum = 204 + $i;
+                    generateSlideImage("main_presenter_extended.php?page=$pageNum", $pageNum);
+                }
+            }
 
             echo json_encode([
                 'success' => true,
@@ -270,11 +278,19 @@ switch ($action) {
 
         $stmt->execute();
 
-        // 保存成功後、スライド画像を生成（p.8とp.204）
+        // 保存成功後、スライド画像を生成
+        // p.8: メインプレゼンアイキャッチ
         generateSlideImage('main_presenter.php', 8);
-        generateSlideImage('main_presenter.php', 204);
 
-        echo json_encode(['success' => true]);
+        // 拡張版の場合、PDF各ページの画像を生成（p.204~）
+        if ($presentationType === 'extended' && $imageCount > 0) {
+            for ($i = 0; $i < $imageCount; $i++) {
+                $pageNum = 204 + $i;
+                generateSlideImage("main_presenter_extended.php?page=$pageNum", $pageNum);
+            }
+        }
+
+        echo json_encode(['success' => true, 'image_count' => $imageCount]);
         break;
 
     case 'delete':
