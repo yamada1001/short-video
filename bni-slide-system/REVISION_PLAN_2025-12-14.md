@@ -2220,5 +2220,49 @@ VALUES (:table_name, :member_id, :position, :week_date)
 
 ---
 
-**最終更新**: 2025-12-14 22:15
-**ステータス**: 🎉 **全46項目修正完了（seating NOT NULL制約解消含む）**
+---
+
+## 🔧 追加修正: メインプレゼン拡張版（PDF表示）実装
+
+**日時**: 2025-12-14 23:00
+**問題**: 拡張版でPDFアップロードしてもスライドに反映されない
+
+### 実施した対応
+
+#### 1. 全システムからdate依存性削除
+- `getTargetFriday()` 完全削除（26ファイル）
+- week_date パラメータ削除
+- シンプル化: 管理画面→保存 / スライド→最新表示
+
+#### 2. main_presenter.php 拡張版対応
+**実装**: PDF を iframe で表示
+
+```php
+<?php if ($presentation['presentation_type'] === 'extended' && !empty($presentation['pdf_path'])): ?>
+    <!-- 拡張版: PDF表示 -->
+    <iframe src="<?= htmlspecialchars($presentation['pdf_path']) ?>"
+            style="width: 100%; height: 100vh; border: none;"></iframe>
+<?php else: ?>
+    <!-- シンプル版: メンバー情報表示 -->
+<?php endif; ?>
+```
+
+#### 3. 課題: PDF画像変換が未実装
+**現状**:
+- PyMuPDF が本番サーバーに未インストール
+- PDF→画像変換が実行されていない
+
+**今後の対応**:
+- PyMuPDFインストール OR
+- Puppeteerを使ったPDF→画像変換 OR
+- PDF直接表示（iframe）で対応
+
+### コミット履歴
+- f43d340: generateSlideImage から week_date 削除
+- 882f22c: 拡張版PDF iframe表示機能追加
+- 348a11a: PyMuPDFインストールスクリプト追加
+
+---
+
+**最終更新**: 2025-12-14 23:05
+**ステータス**: ⏳ **PDF画像変換機能実装中**
