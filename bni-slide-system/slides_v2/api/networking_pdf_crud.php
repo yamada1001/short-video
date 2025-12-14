@@ -77,12 +77,7 @@ switch ($action) {
 
     case 'create':
         // 新規PDF追加
-        $weekDate = $_POST['week_date'] ?? '';
-
-        if (empty($weekDate)) {
-            echo json_encode(['success' => false, 'error' => '日付は必須です']);
-            exit;
-        }
+        $weekDate = $_POST['week_date'] ?? getTargetFriday();
 
         // PDFファイルアップロード処理
         if (!isset($_FILES['pdf_file']) || $_FILES['pdf_file']['error'] !== UPLOAD_ERR_OK) {

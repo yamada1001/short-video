@@ -260,10 +260,6 @@
             </div>
             <form id="addForm" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label>週の日付 *</label>
-                    <input type="date" id="weekDate" name="week_date" required>
-                </div>
-                <div class="form-group">
                     <label>PDFファイル *</label>
                     <input type="file" id="pdfFile" name="pdf_file" accept=".pdf" required>
                 </div>
@@ -285,10 +281,6 @@
         // ページ読み込み時にPDFリストを取得
         document.addEventListener('DOMContentLoaded', function() {
             loadPdfList();
-
-            // 今日の日付をデフォルト値に設定
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('weekDate').value = today;
         });
 
         // PDFリスト取得
