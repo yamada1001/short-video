@@ -19,6 +19,11 @@ data/bni_system.db
 data/bni_system.db-shm
 data/bni_system.db-wal
 
+# Slides V2 database files
+slides_v2/data/*.db
+slides_v2/data/*.db-shm
+slides_v2/data/*.db-wal
+
 # User configuration files (contains production passwords)
 data/members.json
 
