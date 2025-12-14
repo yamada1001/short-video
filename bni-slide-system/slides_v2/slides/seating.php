@@ -6,9 +6,6 @@
 
 require_once __DIR__ . '/../config.php';
 
-// 対象の金曜日を取得
-
-
 // データベース接続
 try {
     $db = new PDO('sqlite:' . $db_path);
@@ -26,7 +23,7 @@ $stmt = $db->query("
         m.category
     FROM seating_arrangement sa
     LEFT JOIN members m ON sa.member_id = m.id
-    WHERE sa.week_date = (SELECT MAX(week_date) FROM seating_arrangement)
+    WHERE sa.created_at = (SELECT MAX(created_at) FROM seating_arrangement)
     ORDER BY sa.table_name, sa.position
 ");
 $seating_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -194,7 +191,7 @@ if (empty($tables)) {
     <div class="slide-container">
         <div class="slide-header">
             <h1><i class="fas fa-chair"></i> 座席表</h1>
-            <div class="date"><?= date('Y年m月d日', strtotime($target_date)) ?></div>
+            <div class="date">最新の座席配置</div>
         </div>
 
         <div class="tables-grid">
