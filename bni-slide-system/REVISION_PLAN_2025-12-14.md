@@ -993,7 +993,78 @@ slides_v2/
 
 ---
 
-**最終更新**: 2025-12-14 03:35 - プロジェクト完了
+**最終更新**: 2025-12-14 15:30 - テストデータ投入完了
+
+---
+
+## 📊 テストデータ投入完了（2025-12-14 15:30）
+
+### テストデータサマリー
+- **対象日付**: 2025-12-20（次の金曜日）
+- **投入件数**: 約115件
+- **テストメンバー追加**: 2名（【TEST】新入会太郎、【TEST】新入会花子）
+- **命名規則**: すべて「【TEST】」または「【テスト】」プレフィックス付き
+
+### 投入データ詳細
+
+#### Phase 2: 基本管理
+1. **main_presenter** (2件) - メインプレゼン情報
+2. **speaker_rotation** - 既存データあり（6件）
+3. **start_dash_presenter** - 既存データあり（2件）
+
+#### Phase 3: ビジター・メンバー関連
+4. **substitutes** (6件) - 代理出席者 3名追加
+5. **new_members** (4件) - 新入会メンバー 2名追加
+6. **weekly_no1** (6件) - 週間No.1（referral, visitor, 1to1）
+7. **share_story** (2件) - シェアストーリー発表者
+8. **renewal_members** (6件) - 更新メンバー 3名
+9. **member_pitch_attendance** (96件) - 全48名×2週分の出席状況
+
+#### Phase 4: チャンピオン・統計
+10. **networking_learning** (2件) - ネットワーキング学習PDF
+11. **champions** (30件) - 5種類×3位×2週（リファーラル、バリュー、ビジター、1to1、CEU）
+12. **statistics** (8件) - 4種類×2週（ビジター、リファーラル、売上、週次）
+
+#### Phase 5: その他
+13. **recruiting_categories** (26件) - 募集カテゴリ（激しく募集中5件＋アンケート結果8件）×2週
+14. **referral_verification** (40件) - リファーラル真正度確認 20件×2週
+15. **qr_codes** (2件) - アンケートQRコード
+
+### テストデータ削除方法
+
+```sql
+-- 方法1: week_dateで一括削除
+DELETE FROM main_presenter WHERE week_date = '2025-12-20';
+DELETE FROM substitutes WHERE week_date = '2025-12-20';
+DELETE FROM new_members WHERE week_date = '2025-12-20';
+DELETE FROM weekly_no1 WHERE week_date = '2025-12-20';
+DELETE FROM share_story WHERE week_date = '2025-12-20';
+DELETE FROM renewal_members WHERE week_date = '2025-12-20';
+DELETE FROM member_pitch_attendance WHERE week_date = '2025-12-20';
+DELETE FROM networking_learning WHERE week_date = '2025-12-20';
+DELETE FROM champions WHERE week_date = '2025-12-20';
+DELETE FROM statistics WHERE week_date = '2025-12-20';
+DELETE FROM recruiting_categories WHERE week_date = '2025-12-20';
+DELETE FROM referral_verification WHERE week_date = '2025-12-20';
+DELETE FROM qr_codes WHERE week_date = '2025-12-20';
+
+-- 方法2: テストメンバーを削除
+DELETE FROM members WHERE name LIKE '%【TEST】%';
+
+-- 方法3: テストデータを含む行を削除
+DELETE FROM substitutes WHERE substitute_name LIKE '%【TEST】%';
+DELETE FROM recruiting_categories WHERE category_name LIKE '%【TEST】%';
+```
+
+### データベース最終状態
+- **members**: 50名（48名＋テスト2名）
+- **全テーブル**: 正常動作確認済み
+- **SQLファイル**: `database/test_data_insert.sql`
+
+---
+
+**プロジェクト完了日**: 2025-12-14 03:35
+**テストデータ投入**: 2025-12-14 15:30
 
 ---
 
