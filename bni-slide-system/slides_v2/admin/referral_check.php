@@ -27,7 +27,14 @@
 </head>
 <body>
     <div class="header">
-        <h1><i class="fas fa-check-circle"></i> リファーラル真正度</h1>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h1><i class="fas fa-check-circle"></i> リファーラル真正度</h1>
+            </div>
+            <a href="index.php" style="background: rgba(255,255,255,0.2); color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.3);" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                <i class="fas fa-home"></i> 管理画面トップへ
+            </a>
+        </div>
     </div>
 
     <div class="container">

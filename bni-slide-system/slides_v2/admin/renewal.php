@@ -350,8 +350,15 @@
 </head>
 <body>
     <div class="header">
-        <h1><i class="fas fa-sync-alt"></i> 更新メンバー管理</h1>
-        <div class="subtitle">BNI Slide System V2 - Renewal Members Management</div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h1><i class="fas fa-sync-alt"></i> 更新メンバー管理</h1>
+                <div class="subtitle">BNI Slide System V2 - Renewal Members Management</div>
+            </div>
+            <a href="index.php" style="background: rgba(255,255,255,0.2); color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.3);" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                <i class="fas fa-home"></i> 管理画面トップへ
+            </a>
+        </div>
     </div>
 
     <div class="container">
