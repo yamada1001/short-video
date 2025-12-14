@@ -2532,3 +2532,265 @@ $testData = [
 
 **最終更新**: 2025-12-14 22:45
 **ステータス**: ✅ **代理出席管理機能拡張完了（メンバー選択機能追加）**
+
+## 6. データベース管理とスライド総数計算の改善（2025-12-14 23:00〜）
+
+### 実装内容
+
+#### 6.1 スライド総数の動的計算
+
+**問題**:
+- ユーザーから「スライド総数が309枚から増えない」との指摘
+- ネットワーキング学習PDFや動的コンテンツが反映されていない
+
+**実装**: `index.php`
+
+```php
+// ネットワーキング学習PDFページを動的に追加（p.86~）
+if ($networkingPdfPages > 0) {
+    for ($i = 0; $i < $networkingPdfPages; $i++) {
+        $pageNum = 86 + $i;
+        $phpSlides[$pageNum] = "networking_slides.php?page=$pageNum";
+    }
+}
+
+// 総スライド数計算
+$totalSlides = 309;
+
+// ネットワーキングPDFの追加ページ数（1ページ以上で超過分を追加）
+if ($networkingPdfPages > 1) {
+    $networkingExtraPages = $networkingPdfPages - 1;
+    $totalSlides += $networkingExtraPages;
+}
+
+// メインプレゼンPDFの追加ページ数（8ページ以上で超過分を追加）
+if ($mainPresenterPdfPages > 8) {
+    $mainPresenterExtraPages = $mainPresenterPdfPages - 8;
+    $totalSlides += $mainPresenterExtraPages;
+}
+```
+
+**仕様**:
+- 基本スライド数: 309ページ
+- ネットワーキングPDF: p.86の1ページ置換 + 超過分追加
+- メインプレゼンPDF: p.205-212の8ページ置換 + 超過分追加
+
+#### 6.2 networking_slides.php の単一ページモード対応
+
+**実装**:
+
+```php
+// ページパラメータがある場合は単一ページモード（index.phpから呼ばれた場合）
+if ($pageParam !== null && $pageParam >= 86) {
+    $singlePageMode = true;
+    $currentPageIndex = $pageParam - 86;
+}
+```
+
+```html
+<?php if ($singlePageMode): ?>
+    <!-- 単一ページモード：index.phpから呼ばれた場合 -->
+    <img class="slide-image" src="../<?php echo htmlspecialchars($imagePaths[$currentPageIndex]); ?>">
+<?php else: ?>
+    <!-- マルチページモード：直接アクセスした場合 -->
+    <img id="slideImage" class="slide-image" src="">
+    <!-- ナビゲーションボタン -->
+<?php endif; ?>
+```
+
+---
+
+### 6.3 重大な障害: データベースファイル管理の問題
+
+#### 問題の発覚
+
+**症状**:
+- 本番環境で入力した座席配置、PDFデータが全て消失
+- メンバー管理画面が「データの読み込みに失敗しました」エラー
+
+**原因**:
+1. データベースファイル（`bni_slide_system.db`）がGitで管理されていた
+2. ローカルの空のDBファイルがpush時に本番環境を上書き
+3. `.gitignore`に`slides_v2/data/*.db`が含まれていなかった
+
+**影響**:
+- 座席配置データ: 削除
+- メインプレゼンPDF: 削除
+- ネットワーキング学習PDF: 削除
+- ビジターデータ（3名）: 削除
+- 代理出席データ（3名）: 削除
+- 新メンバーデータ（3名）: 削除
+- 週間No.1データ: 削除
+
+#### 緊急対策の実施
+
+**1. `.gitignore`の修正**:
+
+```gitignore
+# Slides V2 database files
+slides_v2/data/*.db
+slides_v2/data/*.db-shm
+slides_v2/data/*.db-wal
+```
+
+**2. Gitからデータベースファイルを除外**:
+
+```bash
+git rm --cached slides_v2/data/bni_slide_system.db
+git commit -m "Remove: データベースファイルをGit管理から除外（本番データ保護のため）"
+```
+
+**3. データベース復旧スクリプトの作成**:
+
+- `download_production_db.php`: 本番環境DBのバックアップダウンロード
+- `restore_database.php`: スキーマ復元スクリプト
+- `reset_database.php`: 完全リセットスクリプト
+- `schema.sql`: データベーススキーマ定義
+
+**4. データベース再構築**:
+
+```bash
+# スキーマをエクスポート
+sqlite3 backup.db ".schema" | grep -v "sqlite_sequence" > schema.sql
+
+# 本番環境でリセット実行
+curl https://yojitu.com/.../reset_database.php
+
+# 初期データ投入
+curl https://yojitu.com/.../setup_database.php
+```
+
+**5. テストデータの再投入**:
+
+スクリプト作成:
+- `insert_test_visitors.php`: ビジター3名
+- `insert_test_substitutes.php`: 代理出席3名  
+- `insert_test_new_members.php`: 新メンバー3名
+- `insert_test_weekly_no1.php`: 週間No.1データ
+
+復旧結果:
+- ✅ メンバーデータ（48名）: 復元成功
+- ✅ テーブル構造（20テーブル）: 復元成功
+- ✅ テストデータ: 新規投入完了
+
+---
+
+#### 6.4 その他の修正
+
+**weekly_no1保存エラー修正**:
+
+問題: CHECK constraint violation
+- 期待値: `'referral'`, `'visitor'`, `'1to1'`
+- 実際: `'external_referral'`, `'visitor_invitation'`, `'one_to_one'`
+
+修正: `api/weekly_no1_crud.php`
+
+```php
+// 修正前
+$stmt->bindValue(':category', 'external_referral', PDO::PARAM_STR);
+
+// 修正後
+$stmt->bindValue(':category', 'referral', PDO::PARAM_STR);
+```
+
+**share_story保存エラー修正**:
+
+問題: NOT NULL constraint failed: share_story.week_date
+
+修正: `api/share_story_crud.php`
+
+```php
+// week_dateを追加
+$weekDate = $_POST['week_date'] ?? date('Y-m-d');
+$stmt = $db->prepare('
+    INSERT INTO share_story (member_id, week_date)
+    VALUES (:member_id, :week_date)
+');
+```
+
+**本番スライドへの未登録スライド追加**:
+
+`index.php`の`$phpSlides`配列に追加:
+- p.22-24: `substitutes.php`
+- p.25-27: `new_members.php`
+- p.28: `weekly_no1.php`
+- p.31: `happy_birthday.php`
+- p.72: `share_story.php`
+
+---
+
+### 実装ファイル一覧
+
+**スライド総数計算**:
+1. `index.php`: 動的スライド総数計算ロジック
+2. `slides/networking_slides.php`: 単一ページモード対応
+3. `debug_slide_count.php`: デバッグ用スクリプト
+
+**データベース管理**:
+1. `.gitignore`: DB除外設定
+2. `schema.sql`: スキーマ定義
+3. `download_production_db.php`: バックアップダウンロード
+4. `restore_database.php`: 復元スクリプト
+5. `reset_database.php`: リセットスクリプト
+
+**テストデータ投入**:
+1. `insert_test_visitors.php`
+2. `insert_test_substitutes.php`
+3. `insert_test_new_members.php`
+4. `insert_test_weekly_no1.php`
+
+**バグ修正**:
+1. `api/weekly_no1_crud.php`: CHECK constraint修正
+2. `api/share_story_crud.php`: week_date追加
+
+### コミット履歴
+
+- 9445838: Fix: スライド総数計算を修正（ネットワーキングPDFの動的ページ数に対応）
+- db00616: Fix: weekly_no1のCHECK constraint違反を修正
+- 0ad9835: Remove: データベースファイルをGit管理から除外（本番データ保護のため）
+- a3fd096: Add: データベーススキーマファイル（復旧用）
+- 9bf824a: Add: データベース完全リセットスクリプト
+- 1b01d8c: Add: テストデータ投入スクリプト（visitors, new_members, weekly_no1）
+- a2d903b: Fix: share_story保存時のweek_date NOT NULL制約エラー修正
+
+---
+
+### 教訓と今後の対策
+
+#### 重大な問題の原因分析
+
+**なぜ防げなかったのか**:
+
+1. **プロジェクト開始時の`.gitignore`確認不足**
+   - 既存の`.gitignore`に`data/bni_system.db`はあったが、`slides_v2/data/*.db`がなかった
+   - 新しいディレクトリ構造を追加する際、除外設定も追加すべきだった
+
+2. **`git add -A`の危険性**
+   - データベースファイルが含まれていることに気づかなかった
+   - `git status`で確認すべきだった
+
+3. **本番環境データ保護の軽視**
+   - データベースファイルは絶対にGit管理すべきでない
+   - ベストプラクティスの基本を怠った
+
+#### 今後の対策
+
+**必須チェックリスト**:
+
+1. ✅ プロジェクト開始時に必ず`.gitignore`を確認・更新
+2. ✅ `git add -A`の前に必ず`git status`で確認
+3. ✅ データベースファイルとアップロードファイルは絶対にコミットしない
+4. ✅ 定期的なバックアップ取得（週次）
+5. ✅ 本番環境のDBファイルをローカルに同期しない
+
+**実装済み対策**:
+
+- データベースファイルを`.gitignore`に追加
+- バックアップ・復元スクリプトの整備
+- スキーマファイルの管理（Git管理対象）
+- テストデータ投入スクリプトの整備
+
+---
+
+**最終更新**: 2025-12-14 23:30
+**ステータス**: ✅ **データベース管理改善 + スライド総数計算修正完了**
