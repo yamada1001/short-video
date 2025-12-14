@@ -43,7 +43,15 @@ if (!$presentation) {
     // 拡張版の場合、PDF画像を取得
     if ($presentation['presentation_type'] === 'extended' && !empty($presentation['pdf_path'])) {
         $pdfPath = __DIR__ . '/../' . $presentation['pdf_path'];
-        $imageDir = dirname($pdfPath) . '/images_' . basename($pdfPath, '.pdf');
+
+        // pdf_pathがディレクトリかファイルか判定
+        if (is_dir($pdfPath)) {
+            // ディレクトリの場合（ブラウザ側で変換された画像）
+            $imageDir = $pdfPath;
+        } else {
+            // ファイルの場合（サーバー側で変換された画像）
+            $imageDir = dirname($pdfPath) . '/images_' . basename($pdfPath, '.pdf');
+        }
 
         if (is_dir($imageDir)) {
             $pdfImages = glob($imageDir . '/page-*.png');
