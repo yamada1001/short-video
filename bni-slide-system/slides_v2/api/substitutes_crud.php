@@ -4,12 +4,13 @@
  * 代理出席管理API（作成・読み取り・更新・削除）
  */
 
+require_once __DIR__ . '/../config.php';
+
 header('Content-Type: application/json');
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-
 try {
-    $db = new SQLite3($dbPath);
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'error' => 'データベース接続エラー']);
     exit;
@@ -25,10 +26,10 @@ switch ($action) {
             FROM substitutes
             ORDER BY week_date DESC, substitute_no ASC
         ";
-        $result = $db->query($query);
+        $stmt = $db->query($query);
 
         $substitutes = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $substitutes[] = $row;
         }
 
@@ -50,11 +51,11 @@ switch ($action) {
             WHERE week_date = :week_date
             ORDER BY substitute_no ASC
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
         $substitutes = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $substitutes[] = $row;
         }
 
@@ -71,10 +72,10 @@ switch ($action) {
         }
 
         $stmt = $db->prepare("SELECT * FROM substitutes WHERE id = :id");
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $result = $stmt->execute();
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
 
-        $substitute = $result->fetchArray(SQLITE3_ASSOC);
+        $substitute = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($substitute) {
             echo json_encode(['success' => true, 'substitute' => $substitute]);
@@ -97,9 +98,9 @@ switch ($action) {
 
         // 最大3名チェック
         $stmt = $db->prepare("SELECT COUNT(*) as count FROM substitutes WHERE week_date = :week_date");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
-        $row = $result->fetchArray(SQLITE3_ASSOC);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row['count'] >= 3) {
             echo json_encode(['success' => false, 'error' => '代理出席者は最大3名までです']);
@@ -111,21 +112,19 @@ switch ($action) {
             VALUES (:week_date, :substitute_no, :company_name, :name)
         ');
 
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':substitute_no', $substituteNo, SQLITE3_INTEGER);
-        $stmt->bindValue(':company_name', $companyName, SQLITE3_TEXT);
-        $stmt->bindValue(':name', $name, SQLITE3_TEXT);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':substitute_no', $substituteNo, PDO::PARAM_INT);
+        $stmt->bindValue(':company_name', $companyName, PDO::PARAM_STR);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
 
-        $result = $stmt->execute();
+        $stmt->execute();
 
         if ($result) {
             echo json_encode([
                 'success' => true,
-                'id' => $db->lastInsertRowID()
+                'id' => $db->lastInsertId()
             ]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'update':
@@ -149,18 +148,16 @@ switch ($action) {
             WHERE id = :id
         ');
 
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $stmt->bindValue(':substitute_no', $substituteNo, SQLITE3_INTEGER);
-        $stmt->bindValue(':company_name', $companyName, SQLITE3_TEXT);
-        $stmt->bindValue(':name', $name, SQLITE3_TEXT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':substitute_no', $substituteNo, PDO::PARAM_INT);
+        $stmt->bindValue(':company_name', $companyName, PDO::PARAM_STR);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
 
-        $result = $stmt->execute();
+        $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'delete':
@@ -174,14 +171,12 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('DELETE FROM substitutes WHERE id = :id');
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $result = $stmt->execute();
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'delete_by_date':
@@ -195,14 +190,12 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('DELETE FROM substitutes WHERE week_date = :week_date');
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'get_next_no':
@@ -219,10 +212,10 @@ switch ($action) {
             FROM substitutes
             WHERE week_date = :week_date
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
-        $row = $result->fetchArray(SQLITE3_ASSOC);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         echo json_encode(['success' => true, 'next_no' => $row['next_no']]);
         break;
@@ -231,5 +224,3 @@ switch ($action) {
         echo json_encode(['success' => false, 'error' => '不明なアクション']);
         break;
 }
-
-$db->close();

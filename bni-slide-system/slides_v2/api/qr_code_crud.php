@@ -1,7 +1,11 @@
 <?php
+require_once __DIR__ . '/../config.php';
+
 header('Content-Type: application/json');
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-try { $db = new SQLite3($dbPath); } catch (Exception $e) { echo json_encode(['success' => false, 'error' => 'データベース接続エラー']); exit; }
+try {
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (Exception $e) { echo json_encode(['success' => false, 'error' => 'データベース接続エラー']); exit; }
 $action = $_GET['action'] ?? $_POST['action'] ?? null;
 $postData = json_decode(file_get_contents('php://input'), true);
 if ($postData) { $action = $postData['action'] ?? $action; }
@@ -12,9 +16,9 @@ switch ($action) {
         if (!$weekDate) { echo json_encode(['success' => false, 'error' => '日付が必要です']); exit; }
         
         $stmt = $db->prepare("SELECT * FROM qr_codes WHERE week_date = :week_date ORDER BY id DESC LIMIT 1");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
-        $qr = $result->fetchArray(SQLITE3_ASSOC);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
+        $qr = $stmt->fetch(PDO::FETCH_ASSOC);
         
         if ($qr) {
             echo json_encode(['success' => true, 'qr' => $qr]);
@@ -49,9 +53,9 @@ switch ($action) {
 
         // 既存データを確認
         $stmt = $db->prepare("SELECT id FROM qr_codes WHERE week_date = :week_date");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
-        $existing = $result->fetchArray(SQLITE3_ASSOC);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
+        $existing = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($existing) {
             // 更新
@@ -61,9 +65,9 @@ switch ($action) {
             $stmt = $db->prepare("INSERT INTO qr_codes (week_date, url, qr_image_path) VALUES (:week_date, :url, :qr_image_path)");
         }
 
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':url', $url, SQLITE3_TEXT);
-        $stmt->bindValue(':qr_image_path', $relativeQrPath, SQLITE3_TEXT);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':url', $url, PDO::PARAM_STR);
+        $stmt->bindValue(':qr_image_path', $relativeQrPath, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             echo json_encode(['success' => true, 'qr_image_path' => $relativeQrPath]);
@@ -76,5 +80,3 @@ switch ($action) {
         echo json_encode(['success' => false, 'error' => '無効なアクションです']);
         break;
 }
-
-$db->close();

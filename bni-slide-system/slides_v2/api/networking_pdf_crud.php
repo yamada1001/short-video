@@ -4,12 +4,13 @@
  * ネットワーキング学習PDF管理API
  */
 
+require_once __DIR__ . '/../config.php';
+
 header('Content-Type: application/json');
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-
 try {
-    $db = new SQLite3($dbPath);
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'error' => 'データベース接続エラー']);
     exit;
@@ -21,10 +22,10 @@ switch ($action) {
     case 'list':
         // PDFリスト取得
         $query = "SELECT * FROM networking_learning ORDER BY week_date DESC";
-        $result = $db->query($query);
+        $stmt = $db->query($query);
 
         $pdfs = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $pdfs[] = $row;
         }
 
@@ -38,17 +39,17 @@ switch ($action) {
 
         if ($id) {
             $stmt = $db->prepare("SELECT * FROM networking_learning WHERE id = :id");
-            $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         } elseif ($weekDate) {
             $stmt = $db->prepare("SELECT * FROM networking_learning WHERE week_date = :week_date ORDER BY id DESC LIMIT 1");
-            $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
+            $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
         } else {
             echo json_encode(['success' => false, 'error' => 'IDまたは日付が必要です']);
             exit;
         }
 
-        $result = $stmt->execute();
-        $pdf = $result->fetchArray(SQLITE3_ASSOC);
+        $stmt->execute();
+        $pdf = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($pdf) {
             echo json_encode(['success' => true, 'pdf' => $pdf]);
@@ -135,14 +136,14 @@ switch ($action) {
             VALUES (:week_date, :pdf_path, :image_paths)
         ");
 
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':pdf_path', $relativePdfPath, SQLITE3_TEXT);
-        $stmt->bindValue(':image_paths', $imagePathsJson, SQLITE3_TEXT);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':pdf_path', $relativePdfPath, PDO::PARAM_STR);
+        $stmt->bindValue(':image_paths', $imagePathsJson, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             echo json_encode([
                 'success' => true,
-                'id' => $db->lastInsertRowID(),
+                'id' => $db->lastInsertId(),
                 'image_count' => count($relativeImagePaths)
             ]);
         } else {
@@ -161,9 +162,9 @@ switch ($action) {
 
         // 削除前にファイルパスを取得
         $stmt = $db->prepare("SELECT pdf_path, image_paths FROM networking_learning WHERE id = :id");
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $result = $stmt->execute();
-        $row = $result->fetchArray(SQLITE3_ASSOC);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$row) {
             echo json_encode(['success' => false, 'error' => 'データが見つかりません']);
@@ -195,7 +196,7 @@ switch ($action) {
 
         // データベースから削除
         $stmt = $db->prepare("DELETE FROM networking_learning WHERE id = :id");
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             echo json_encode(['success' => true]);
@@ -208,5 +209,3 @@ switch ($action) {
         echo json_encode(['success' => false, 'error' => '無効なアクションです']);
         break;
 }
-
-$db->close();

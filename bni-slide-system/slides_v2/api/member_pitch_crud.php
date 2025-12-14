@@ -4,12 +4,13 @@
  * メンバーピッチ管理API
  */
 
+require_once __DIR__ . '/../config.php';
+
 header('Content-Type: application/json');
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-
 try {
-    $db = new SQLite3($dbPath);
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'error' => 'データベース接続エラー']);
     exit;
@@ -39,11 +40,11 @@ switch ($action) {
             WHERE m.is_active = 1
             ORDER BY m.name ASC
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
         $members = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $members[] = $row;
         }
 
@@ -65,10 +66,10 @@ switch ($action) {
             SELECT id FROM member_pitch_attendance
             WHERE week_date = :week_date AND member_id = :member_id
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':member_id', $memberId, SQLITE3_INTEGER);
-        $result = $stmt->execute();
-        $existing = $result->fetchArray(SQLITE3_ASSOC);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
+        $stmt->execute();
+        $existing = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($existing) {
             // 更新
@@ -86,22 +87,18 @@ switch ($action) {
             ');
         }
 
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':member_id', $memberId, SQLITE3_INTEGER);
-        $stmt->bindValue(':is_absent', $isAbsent, SQLITE3_INTEGER);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
+        $stmt->bindValue(':is_absent', $isAbsent, PDO::PARAM_INT);
 
-        $result = $stmt->execute();
+        $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     default:
         echo json_encode(['success' => false, 'error' => '不明なアクション']);
         break;
 }
-
-$db->close();

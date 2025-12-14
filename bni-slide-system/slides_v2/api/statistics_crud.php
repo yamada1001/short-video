@@ -4,12 +4,13 @@
  * 統計情報管理API
  */
 
+require_once __DIR__ . '/../config.php';
+
 header('Content-Type: application/json');
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-
 try {
-    $db = new SQLite3($dbPath);
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'error' => 'データベース接続エラー']);
     exit;
@@ -32,11 +33,11 @@ switch ($action) {
         }
 
         $stmt = $db->prepare("SELECT * FROM statistics WHERE week_date = :week_date");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
         $statistics = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $statistics[] = $row;
         }
 
@@ -53,11 +54,11 @@ switch ($action) {
         }
 
         $stmt = $db->prepare("SELECT * FROM statistics WHERE week_date = :week_date AND stat_type = :stat_type LIMIT 1");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':stat_type', $statType, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':stat_type', $statType, PDO::PARAM_STR);
+        $stmt->execute();
 
-        $stat = $result->fetchArray(SQLITE3_ASSOC);
+        $stat = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($stat) {
             echo json_encode(['success' => true, 'statistic' => $stat]);
@@ -78,10 +79,10 @@ switch ($action) {
 
         // 既存データをチェック
         $stmt = $db->prepare("SELECT id FROM statistics WHERE week_date = :week_date AND stat_type = :stat_type");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':stat_type', $statType, SQLITE3_TEXT);
-        $result = $stmt->execute();
-        $existing = $result->fetchArray(SQLITE3_ASSOC);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':stat_type', $statType, PDO::PARAM_STR);
+        $stmt->execute();
+        $existing = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($existing) {
             // 更新
@@ -98,9 +99,9 @@ switch ($action) {
             ");
         }
 
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':stat_type', $statType, SQLITE3_TEXT);
-        $stmt->bindValue(':value', $value, SQLITE3_TEXT);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':stat_type', $statType, PDO::PARAM_STR);
+        $stmt->bindValue(':value', $value, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             echo json_encode(['success' => true]);
@@ -119,8 +120,8 @@ switch ($action) {
         }
 
         $stmt = $db->prepare("DELETE FROM statistics WHERE week_date = :week_date AND stat_type = :stat_type");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':stat_type', $statType, SQLITE3_TEXT);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':stat_type', $statType, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             echo json_encode(['success' => true]);
@@ -133,5 +134,3 @@ switch ($action) {
         echo json_encode(['success' => false, 'error' => '無効なアクションです']);
         break;
 }
-
-$db->close();

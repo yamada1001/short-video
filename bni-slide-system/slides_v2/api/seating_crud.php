@@ -4,12 +4,13 @@
  * 座席配置管理API（作成・読み取り・更新・削除）
  */
 
+require_once __DIR__ . '/../config.php';
+
 header('Content-Type: application/json');
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-
 try {
-    $db = new SQLite3($dbPath);
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'error' => 'データベース接続エラー']);
     exit;
@@ -45,11 +46,11 @@ switch ($action) {
         ";
 
         $stmt = $db->prepare($query);
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
         $seating = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $tableName = $row['table_name'];
             if (!isset($seating[$tableName])) {
                 $seating[$tableName] = [];
@@ -70,12 +71,12 @@ switch ($action) {
             exit;
         }
 
-        $db->exec('BEGIN TRANSACTION');
+        $db->beginTransaction();
 
         try {
             // 既存のデータを削除
             $deleteStmt = $db->prepare('DELETE FROM seating_arrangement WHERE week_date = :week_date');
-            $deleteStmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
+            $deleteStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
             $deleteStmt->execute();
 
             // 新しいデータを挿入
@@ -86,18 +87,18 @@ switch ($action) {
                 ');
 
                 foreach ($seatingData as $seat) {
-                    $insertStmt->bindValue(':table_name', $seat['table_name'], SQLITE3_TEXT);
-                    $insertStmt->bindValue(':member_id', $seat['member_id'], SQLITE3_INTEGER);
-                    $insertStmt->bindValue(':position', $seat['position'], SQLITE3_INTEGER);
-                    $insertStmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
+                    $insertStmt->bindValue(':table_name', $seat['table_name'], PDO::PARAM_STR);
+                    $insertStmt->bindValue(':member_id', $seat['member_id'], PDO::PARAM_INT);
+                    $insertStmt->bindValue(':position', $seat['position'], PDO::PARAM_INT);
+                    $insertStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
                     $insertStmt->execute();
                 }
             }
 
-            $db->exec('COMMIT');
+            $db->commit();
             echo json_encode(['success' => true]);
         } catch (Exception $e) {
-            $db->exec('ROLLBACK');
+            $db->rollBack();
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
         break;
@@ -110,10 +111,10 @@ switch ($action) {
             ORDER BY week_date DESC
         ";
 
-        $result = $db->query($query);
+        $stmt = $db->query($query);
 
         $dates = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $dates[] = $row['week_date'];
         }
 
@@ -130,14 +131,10 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('DELETE FROM seating_arrangement WHERE week_date = :week_date');
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
-        if ($result) {
-            echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        echo json_encode(['success' => true]);
         break;
 
     case 'get_for_slide':
@@ -165,11 +162,11 @@ switch ($action) {
         ";
 
         $stmt = $db->prepare($query);
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
         $seating = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $tableName = $row['table_name'];
             if (!isset($seating[$tableName])) {
                 $seating[$tableName] = [];
@@ -191,5 +188,3 @@ switch ($action) {
         echo json_encode(['success' => false, 'error' => '不明なアクション']);
         break;
 }
-
-$db->close();

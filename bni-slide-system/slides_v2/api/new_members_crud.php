@@ -4,12 +4,13 @@
  * 新入会メンバー管理API（作成・読み取り・更新・削除）
  */
 
+require_once __DIR__ . '/../config.php';
+
 header('Content-Type: application/json');
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-
 try {
-    $db = new SQLite3($dbPath);
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'error' => 'データベース接続エラー']);
     exit;
@@ -30,10 +31,10 @@ switch ($action) {
             LEFT JOIN members m ON nm.member_id = m.id
             ORDER BY nm.week_date DESC, nm.id ASC
         ";
-        $result = $db->query($query);
+        $stmt = $db->query($query);
 
         $newMembers = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $newMembers[] = $row;
         }
 
@@ -60,11 +61,11 @@ switch ($action) {
             WHERE nm.week_date = :week_date
             ORDER BY nm.id ASC
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
         $newMembers = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $newMembers[] = $row;
         }
 
@@ -83,9 +84,9 @@ switch ($action) {
 
         // 最大3名チェック
         $stmt = $db->prepare("SELECT COUNT(*) as count FROM new_members WHERE week_date = :week_date");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
-        $row = $result->fetchArray(SQLITE3_ASSOC);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row['count'] >= 3) {
             echo json_encode(['success' => false, 'error' => '新入会メンバーは最大3名までです']);
@@ -98,10 +99,10 @@ switch ($action) {
             FROM new_members
             WHERE week_date = :week_date AND member_id = :member_id
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':member_id', $memberId, SQLITE3_INTEGER);
-        $result = $stmt->execute();
-        $row = $result->fetchArray(SQLITE3_ASSOC);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row['count'] > 0) {
             echo json_encode(['success' => false, 'error' => 'このメンバーは既に登録されています']);
@@ -113,19 +114,17 @@ switch ($action) {
             VALUES (:week_date, :member_id)
         ');
 
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':member_id', $memberId, SQLITE3_INTEGER);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
 
-        $result = $stmt->execute();
+        $stmt->execute();
 
         if ($result) {
             echo json_encode([
                 'success' => true,
-                'id' => $db->lastInsertRowID()
+                'id' => $db->lastInsertId()
             ]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'delete':
@@ -139,14 +138,12 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('DELETE FROM new_members WHERE id = :id');
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $result = $stmt->execute();
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'delete_by_date':
@@ -160,19 +157,15 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('DELETE FROM new_members WHERE week_date = :week_date');
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     default:
         echo json_encode(['success' => false, 'error' => '不明なアクション']);
         break;
 }
-
-$db->close();

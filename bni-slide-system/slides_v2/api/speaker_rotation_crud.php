@@ -4,12 +4,13 @@
  * スピーカーローテーション管理API（作成・読み取り・更新・削除）
  */
 
+require_once __DIR__ . '/../config.php';
+
 header('Content-Type: application/json');
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-
 try {
-    $db = new SQLite3($dbPath);
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'error' => 'データベース接続エラー']);
     exit;
@@ -52,9 +53,9 @@ switch ($action) {
         foreach ($weeks as &$week) {
             if ($week['main_presenter_id']) {
                 $stmt = $db->prepare('SELECT name, company_name FROM members WHERE id = :id');
-                $stmt->bindValue(':id', $week['main_presenter_id'], SQLITE3_INTEGER);
-                $result = $stmt->execute();
-                $member = $result->fetchArray(SQLITE3_ASSOC);
+                $stmt->bindValue(':id', $week['main_presenter_id'], PDO::PARAM_INT);
+                $stmt->execute();
+                $member = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if ($member) {
                     $week['member_name'] = $member['name'];
@@ -70,8 +71,6 @@ switch ($action) {
         echo json_encode(['success' => false, 'error' => '不明なアクション']);
         break;
 }
-
-$db->close();
 
 /**
  * 6週分のデータ取得（過去3週 + 今週 + 未来2週）
@@ -90,9 +89,9 @@ function getSixWeeks($db) {
             ORDER BY id DESC
             LIMIT 1
         ');
-        $stmt->bindValue(':rotation_date', $friday, SQLITE3_TEXT);
-        $result = $stmt->execute();
-        $row = $result->fetchArray(SQLITE3_ASSOC);
+        $stmt->bindValue(':rotation_date', $friday, PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
             $weeks[] = $row;
@@ -115,7 +114,7 @@ function getSixWeeks($db) {
  */
 function saveSixWeeks($db, $weeks) {
     try {
-        $db->exec('BEGIN TRANSACTION');
+        $db->beginTransaction();
 
         foreach ($weeks as $week) {
             $rotationDate = $week['rotation_date'] ?? null;
@@ -128,9 +127,9 @@ function saveSixWeeks($db, $weeks) {
 
             // 既存データチェック
             $checkStmt = $db->prepare('SELECT id FROM speaker_rotation WHERE rotation_date = :rotation_date');
-            $checkStmt->bindValue(':rotation_date', $rotationDate, SQLITE3_TEXT);
-            $checkResult = $checkStmt->execute();
-            $existing = $checkResult->fetchArray(SQLITE3_ASSOC);
+            $checkStmt->bindValue(':rotation_date', $rotationDate, PDO::PARAM_STR);
+            $checkStmt->execute();
+            $existing = $checkStmt->fetch(PDO::FETCH_ASSOC);
 
             if ($existing) {
                 // 更新
@@ -149,16 +148,16 @@ function saveSixWeeks($db, $weeks) {
                 ');
             }
 
-            $stmt->bindValue(':rotation_date', $rotationDate, SQLITE3_TEXT);
-            $stmt->bindValue(':main_presenter_id', $mainPresenterId, SQLITE3_INTEGER);
-            $stmt->bindValue(':referral_target', $referralTarget, SQLITE3_TEXT);
+            $stmt->bindValue(':rotation_date', $rotationDate, PDO::PARAM_STR);
+            $stmt->bindValue(':main_presenter_id', $mainPresenterId, PDO::PARAM_INT);
+            $stmt->bindValue(':referral_target', $referralTarget, PDO::PARAM_STR);
             $stmt->execute();
         }
 
-        $db->exec('COMMIT');
+        $db->commit();
         return ['success' => true];
     } catch (Exception $e) {
-        $db->exec('ROLLBACK');
+        $db->rollBack();
         return ['success' => false, 'error' => $e->getMessage()];
     }
 }

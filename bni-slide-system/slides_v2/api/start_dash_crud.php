@@ -4,12 +4,13 @@
  * スタートダッシュプレゼン管理API（作成・読み取り・更新・削除）
  */
 
+require_once __DIR__ . '/../config.php';
+
 header('Content-Type: application/json');
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-
 try {
-    $db = new SQLite3($dbPath);
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'error' => 'データベース接続エラー']);
     exit;
@@ -30,10 +31,10 @@ switch ($action) {
             LEFT JOIN members m ON sd.member_id = m.id
             ORDER BY sd.week_date DESC, sd.page_number ASC
         ";
-        $result = $db->query($query);
+        $stmt = $db->query($query);
 
         $presentations = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $presentations[] = $row;
         }
 
@@ -60,11 +61,11 @@ switch ($action) {
             WHERE sd.week_date = :week_date
             ORDER BY sd.page_number ASC
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
         $presenters = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $presenters[] = $row;
         }
 
@@ -95,11 +96,11 @@ switch ($action) {
             LEFT JOIN members m ON sd.member_id = m.id
             WHERE sd.week_date = :week_date AND sd.page_number = :page_number
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':page_number', $pageNumber, SQLITE3_INTEGER);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':page_number', $pageNumber, PDO::PARAM_INT);
+        $stmt->execute();
 
-        $presenter = $result->fetchArray(SQLITE3_ASSOC);
+        $presenter = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($presenter) {
             echo json_encode(['success' => true, 'presenter' => $presenter]);
@@ -120,12 +121,12 @@ switch ($action) {
         }
 
         // トランザクション開始
-        $db->exec('BEGIN TRANSACTION');
+        $db->beginTransaction();
 
         try {
             // 既存データ削除（同じ日付のデータがあれば）
             $deleteStmt = $db->prepare('DELETE FROM start_dash_presenter WHERE week_date = :week_date');
-            $deleteStmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
+            $deleteStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
             $deleteStmt->execute();
 
             // p.15のデータを登録
@@ -133,9 +134,9 @@ switch ($action) {
                 INSERT INTO start_dash_presenter (week_date, member_id, page_number)
                 VALUES (:week_date, :member_id, :page_number)
             ');
-            $stmt15->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-            $stmt15->bindValue(':member_id', $memberId15, SQLITE3_INTEGER);
-            $stmt15->bindValue(':page_number', 15, SQLITE3_INTEGER);
+            $stmt15->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+            $stmt15->bindValue(':member_id', $memberId15, PDO::PARAM_INT);
+            $stmt15->bindValue(':page_number', 15, PDO::PARAM_INT);
             $result15 = $stmt15->execute();
 
             // p.107のデータを登録
@@ -143,24 +144,24 @@ switch ($action) {
                 INSERT INTO start_dash_presenter (week_date, member_id, page_number)
                 VALUES (:week_date, :member_id, :page_number)
             ');
-            $stmt107->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-            $stmt107->bindValue(':member_id', $memberId107, SQLITE3_INTEGER);
-            $stmt107->bindValue(':page_number', 107, SQLITE3_INTEGER);
+            $stmt107->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+            $stmt107->bindValue(':member_id', $memberId107, PDO::PARAM_INT);
+            $stmt107->bindValue(':page_number', 107, PDO::PARAM_INT);
             $result107 = $stmt107->execute();
 
             if ($result15 && $result107) {
-                $db->exec('COMMIT');
+                $db->commit();
                 echo json_encode([
                     'success' => true,
-                    'id_15' => $db->lastInsertRowID() - 1,
-                    'id_107' => $db->lastInsertRowID()
+                    'id_15' => $db->lastInsertId() - 1,
+                    'id_107' => $db->lastInsertId()
                 ]);
             } else {
-                $db->exec('ROLLBACK');
+                $db->rollBack();
                 echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
             }
         } catch (Exception $e) {
-            $db->exec('ROLLBACK');
+            $db->rollBack();
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
         break;
@@ -186,18 +187,16 @@ switch ($action) {
             WHERE id = :id
         ');
 
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $stmt->bindValue(':member_id', $memberId, SQLITE3_INTEGER);
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':page_number', $pageNumber, SQLITE3_INTEGER);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':page_number', $pageNumber, PDO::PARAM_INT);
 
-        $result = $stmt->execute();
+        $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'delete':
@@ -211,14 +210,12 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('DELETE FROM start_dash_presenter WHERE id = :id');
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $result = $stmt->execute();
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'delete_by_date':
@@ -232,14 +229,12 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('DELETE FROM start_dash_presenter WHERE week_date = :week_date');
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'get_slide_data':
@@ -262,11 +257,11 @@ switch ($action) {
             LEFT JOIN members m ON sd.member_id = m.id
             WHERE sd.week_date = :week_date AND sd.page_number = :page_number
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':page_number', $pageNumber, SQLITE3_INTEGER);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':page_number', $pageNumber, PDO::PARAM_INT);
+        $stmt->execute();
 
-        $presenter = $result->fetchArray(SQLITE3_ASSOC);
+        $presenter = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($presenter) {
             echo json_encode(['success' => true, 'presenter' => $presenter]);
@@ -279,5 +274,3 @@ switch ($action) {
         echo json_encode(['success' => false, 'error' => '不明なアクション']);
         break;
 }
-
-$db->close();

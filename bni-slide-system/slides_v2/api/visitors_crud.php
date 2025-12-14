@@ -4,12 +4,13 @@
  * ビジター管理API（作成・読み取り・更新・削除）
  */
 
+require_once __DIR__ . '/../config.php';
+
 header('Content-Type: application/json');
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-
 try {
-    $db = new SQLite3($dbPath);
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'error' => 'データベース接続エラー']);
     exit;
@@ -28,10 +29,10 @@ switch ($action) {
             LEFT JOIN members m ON v.attend_member_id = m.id
             ORDER BY v.week_date DESC, v.visitor_no ASC
         ";
-        $result = $db->query($query);
+        $stmt = $db->query($query);
 
         $visitors = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $visitors[] = $row;
         }
 
@@ -56,11 +57,11 @@ switch ($action) {
             WHERE v.week_date = :week_date
             ORDER BY v.visitor_no ASC
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
         $visitors = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $visitors[] = $row;
         }
 
@@ -84,10 +85,10 @@ switch ($action) {
             LEFT JOIN members m ON v.attend_member_id = m.id
             WHERE v.id = :id
         ");
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $result = $stmt->execute();
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
 
-        $visitor = $result->fetchArray(SQLITE3_ASSOC);
+        $visitor = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($visitor) {
             echo json_encode(['success' => true, 'visitor' => $visitor]);
@@ -124,26 +125,24 @@ switch ($action) {
             )
         ');
 
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':visitor_no', $visitorNo, SQLITE3_INTEGER);
-        $stmt->bindValue(':name', $name, SQLITE3_TEXT);
-        $stmt->bindValue(':company_name', $companyName, SQLITE3_TEXT);
-        $stmt->bindValue(':specialty', $specialty, SQLITE3_TEXT);
-        $stmt->bindValue(':sponsor', $sponsor, SQLITE3_TEXT);
-        $stmt->bindValue(':attend_member_id', $attendMemberId ?: null, SQLITE3_INTEGER);
-        $stmt->bindValue(':job_description', $jobDescription, SQLITE3_TEXT);
-        $stmt->bindValue(':referral_request', $referralRequest, SQLITE3_TEXT);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':visitor_no', $visitorNo, PDO::PARAM_INT);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':company_name', $companyName, PDO::PARAM_STR);
+        $stmt->bindValue(':specialty', $specialty, PDO::PARAM_STR);
+        $stmt->bindValue(':sponsor', $sponsor, PDO::PARAM_STR);
+        $stmt->bindValue(':attend_member_id', $attendMemberId ?: null, PDO::PARAM_INT);
+        $stmt->bindValue(':job_description', $jobDescription, PDO::PARAM_STR);
+        $stmt->bindValue(':referral_request', $referralRequest, PDO::PARAM_STR);
 
-        $result = $stmt->execute();
+        $stmt->execute();
 
         if ($result) {
             echo json_encode([
                 'success' => true,
-                'id' => $db->lastInsertRowID()
+                'id' => $db->lastInsertId()
             ]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'update':
@@ -177,23 +176,21 @@ switch ($action) {
             WHERE id = :id
         ');
 
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $stmt->bindValue(':visitor_no', $visitorNo, SQLITE3_INTEGER);
-        $stmt->bindValue(':name', $name, SQLITE3_TEXT);
-        $stmt->bindValue(':company_name', $companyName, SQLITE3_TEXT);
-        $stmt->bindValue(':specialty', $specialty, SQLITE3_TEXT);
-        $stmt->bindValue(':sponsor', $sponsor, SQLITE3_TEXT);
-        $stmt->bindValue(':attend_member_id', $attendMemberId ?: null, SQLITE3_INTEGER);
-        $stmt->bindValue(':job_description', $jobDescription, SQLITE3_TEXT);
-        $stmt->bindValue(':referral_request', $referralRequest, SQLITE3_TEXT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':visitor_no', $visitorNo, PDO::PARAM_INT);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':company_name', $companyName, PDO::PARAM_STR);
+        $stmt->bindValue(':specialty', $specialty, PDO::PARAM_STR);
+        $stmt->bindValue(':sponsor', $sponsor, PDO::PARAM_STR);
+        $stmt->bindValue(':attend_member_id', $attendMemberId ?: null, PDO::PARAM_INT);
+        $stmt->bindValue(':job_description', $jobDescription, PDO::PARAM_STR);
+        $stmt->bindValue(':referral_request', $referralRequest, PDO::PARAM_STR);
 
-        $result = $stmt->execute();
+        $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'delete':
@@ -207,14 +204,12 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('DELETE FROM visitors WHERE id = :id');
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $result = $stmt->execute();
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'delete_by_date':
@@ -228,14 +223,12 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('DELETE FROM visitors WHERE week_date = :week_date');
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
         if ($result) {
             echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        
         break;
 
     case 'get_next_visitor_no':
@@ -252,10 +245,10 @@ switch ($action) {
             FROM visitors
             WHERE week_date = :week_date
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
-        $row = $result->fetchArray(SQLITE3_ASSOC);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         echo json_encode(['success' => true, 'next_no' => $row['next_no']]);
         break;
@@ -264,5 +257,3 @@ switch ($action) {
         echo json_encode(['success' => false, 'error' => '不明なアクション']);
         break;
 }
-
-$db->close();

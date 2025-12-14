@@ -4,12 +4,13 @@
  * メンバー管理API（作成・読み取り・更新・削除）
  */
 
+require_once __DIR__ . '/../config.php';
+
 header('Content-Type: application/json');
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
-
 try {
-    $db = new SQLite3($dbPath);
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'error' => 'データベース接続エラー']);
     exit;
@@ -21,10 +22,10 @@ switch ($action) {
     case 'list':
         // メンバー一覧取得
         $query = "SELECT * FROM members ORDER BY is_active DESC, name ASC";
-        $result = $db->query($query);
+        $stmt = $db->query($query);
 
         $members = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $members[] = $row;
         }
 
@@ -66,20 +67,16 @@ switch ($action) {
             VALUES (:name, :company_name, :category, :photo_path, :birthday, :is_active)
         ');
 
-        $stmt->bindValue(':name', $name, SQLITE3_TEXT);
-        $stmt->bindValue(':company_name', $companyName, SQLITE3_TEXT);
-        $stmt->bindValue(':category', $category, SQLITE3_TEXT);
-        $stmt->bindValue(':photo_path', $photoPath, SQLITE3_TEXT);
-        $stmt->bindValue(':birthday', $birthday, SQLITE3_TEXT);
-        $stmt->bindValue(':is_active', $isActive, SQLITE3_INTEGER);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':company_name', $companyName, PDO::PARAM_STR);
+        $stmt->bindValue(':category', $category, PDO::PARAM_STR);
+        $stmt->bindValue(':photo_path', $photoPath, PDO::PARAM_STR);
+        $stmt->bindValue(':birthday', $birthday, PDO::PARAM_STR);
+        $stmt->bindValue(':is_active', $isActive, PDO::PARAM_INT);
 
-        $result = $stmt->execute();
+        $stmt->execute();
 
-        if ($result) {
-            echo json_encode(['success' => true, 'id' => $db->lastInsertRowID()]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        echo json_encode(['success' => true, 'id' => $db->lastInsertId()]);
         break;
 
     case 'update':
@@ -125,7 +122,7 @@ switch ($action) {
                     updated_at = CURRENT_TIMESTAMP
                 WHERE id = :id
             ');
-            $stmt->bindValue(':photo_path', $photoPath, SQLITE3_TEXT);
+            $stmt->bindValue(':photo_path', $photoPath, PDO::PARAM_STR);
         } else {
             $stmt = $db->prepare('
                 UPDATE members
@@ -139,20 +136,16 @@ switch ($action) {
             ');
         }
 
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $stmt->bindValue(':name', $name, SQLITE3_TEXT);
-        $stmt->bindValue(':company_name', $companyName, SQLITE3_TEXT);
-        $stmt->bindValue(':category', $category, SQLITE3_TEXT);
-        $stmt->bindValue(':birthday', $birthday, SQLITE3_TEXT);
-        $stmt->bindValue(':is_active', $isActive, SQLITE3_INTEGER);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':company_name', $companyName, PDO::PARAM_STR);
+        $stmt->bindValue(':category', $category, PDO::PARAM_STR);
+        $stmt->bindValue(':birthday', $birthday, PDO::PARAM_STR);
+        $stmt->bindValue(':is_active', $isActive, PDO::PARAM_INT);
 
-        $result = $stmt->execute();
+        $stmt->execute();
 
-        if ($result) {
-            echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        echo json_encode(['success' => true]);
         break;
 
     case 'delete':
@@ -166,19 +159,13 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('DELETE FROM members WHERE id = :id');
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $result = $stmt->execute();
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
 
-        if ($result) {
-            echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        echo json_encode(['success' => true]);
         break;
 
     default:
         echo json_encode(['success' => false, 'error' => '不明なアクション']);
         break;
 }
-
-$db->close();

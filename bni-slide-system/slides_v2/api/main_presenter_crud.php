@@ -4,9 +4,10 @@
  * メインプレゼン管理API（作成・読み取り・更新・削除）
  */
 
+require_once __DIR__ . '/../config.php';
+
 header('Content-Type: application/json');
 
-$dbPath = __DIR__ . '/../../database/bni_slide_v2.db';
 $uploadsDir = __DIR__ . '/../data/uploads/presentations/';
 
 // アップロードディレクトリ作成
@@ -15,7 +16,8 @@ if (!is_dir($uploadsDir)) {
 }
 
 try {
-    $db = new SQLite3($dbPath);
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'error' => 'データベース接続エラー']);
     exit;
@@ -37,10 +39,10 @@ switch ($action) {
             LEFT JOIN members m ON mp.member_id = m.id
             ORDER BY mp.week_date DESC
         ";
-        $result = $db->query($query);
+        $stmt = $db->query($query);
 
         $presentations = [];
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $presentations[] = $row;
         }
 
@@ -67,10 +69,10 @@ switch ($action) {
             LEFT JOIN members m ON mp.member_id = m.id
             WHERE mp.week_date = :week_date
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
-        $presentation = $result->fetchArray(SQLITE3_ASSOC);
+        $presentation = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($presentation) {
             echo json_encode(['success' => true, 'presentation' => $presentation]);
@@ -93,9 +95,9 @@ switch ($action) {
 
         // 既存データチェック
         $checkStmt = $db->prepare('SELECT id FROM main_presenter WHERE week_date = :week_date');
-        $checkStmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $checkResult = $checkStmt->execute();
-        $existing = $checkResult->fetchArray(SQLITE3_ASSOC);
+        $checkStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $checkStmt->execute();
+        $existing = $checkStmt->fetch(PDO::FETCH_ASSOC);
 
         if ($existing) {
             echo json_encode(['success' => false, 'error' => 'この日付は既に登録されています']);
@@ -125,22 +127,18 @@ switch ($action) {
             VALUES (:member_id, :week_date, :pdf_path, :youtube_url)
         ');
 
-        $stmt->bindValue(':member_id', $memberId, SQLITE3_INTEGER);
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':pdf_path', $pdfPath, SQLITE3_TEXT);
-        $stmt->bindValue(':youtube_url', $youtubeUrl, SQLITE3_TEXT);
+        $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':pdf_path', $pdfPath, PDO::PARAM_STR);
+        $stmt->bindValue(':youtube_url', $youtubeUrl, PDO::PARAM_STR);
 
-        $result = $stmt->execute();
+        $stmt->execute();
 
-        if ($result) {
-            echo json_encode([
-                'success' => true,
-                'id' => $db->lastInsertRowID(),
-                'pdf_converted' => isset($convertResult) ? $convertResult['success'] : false
-            ]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        echo json_encode([
+            'success' => true,
+            'id' => $db->lastInsertId(),
+            'pdf_converted' => isset($convertResult) ? $convertResult['success'] : false
+        ]);
         break;
 
     case 'update':
@@ -179,7 +177,7 @@ switch ($action) {
                     updated_at = CURRENT_TIMESTAMP
                 WHERE id = :id
             ');
-            $stmt->bindValue(':pdf_path', $pdfPath, SQLITE3_TEXT);
+            $stmt->bindValue(':pdf_path', $pdfPath, PDO::PARAM_STR);
         } else {
             $stmt = $db->prepare('
                 UPDATE main_presenter
@@ -191,18 +189,14 @@ switch ($action) {
             ');
         }
 
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $stmt->bindValue(':member_id', $memberId, SQLITE3_INTEGER);
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $stmt->bindValue(':youtube_url', $youtubeUrl, SQLITE3_TEXT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':youtube_url', $youtubeUrl, PDO::PARAM_STR);
 
-        $result = $stmt->execute();
+        $stmt->execute();
 
-        if ($result) {
-            echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        echo json_encode(['success' => true]);
         break;
 
     case 'delete':
@@ -217,9 +211,9 @@ switch ($action) {
 
         // 関連ファイルも削除
         $stmt = $db->prepare('SELECT pdf_path FROM main_presenter WHERE id = :id');
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $result = $stmt->execute();
-        $row = $result->fetchArray(SQLITE3_ASSOC);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row && $row['pdf_path']) {
             $filePath = __DIR__ . '/../' . $row['pdf_path'];
@@ -235,14 +229,10 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('DELETE FROM main_presenter WHERE id = :id');
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-        $result = $stmt->execute();
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
 
-        if ($result) {
-            echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => $db->lastErrorMsg()]);
-        }
+        echo json_encode(['success' => true]);
         break;
 
     case 'get_slide_data':
@@ -265,10 +255,10 @@ switch ($action) {
             LEFT JOIN members m ON mp.member_id = m.id
             WHERE mp.week_date = :week_date
         ");
-        $stmt->bindValue(':week_date', $weekDate, SQLITE3_TEXT);
-        $result = $stmt->execute();
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
 
-        $presentation = $result->fetchArray(SQLITE3_ASSOC);
+        $presentation = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($presentation) {
             // PDF画像パスを取得
@@ -297,8 +287,6 @@ switch ($action) {
         echo json_encode(['success' => false, 'error' => '不明なアクション']);
         break;
 }
-
-$db->close();
 
 /**
  * PDF→画像変換
