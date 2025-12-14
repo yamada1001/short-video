@@ -150,6 +150,33 @@ switch ($action) {
         }
         break;
 
+    case 'get_latest':
+        // 最新の新入会メンバー一覧取得
+        $stmt = $db->query("
+            SELECT
+                nm.*,
+                m.name as member_name,
+                m.company_name,
+                m.photo_path
+            FROM new_members nm
+            LEFT JOIN members m ON nm.member_id = m.id
+            ORDER BY nm.created_at DESC
+        ");
+
+        $new_members = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $new_members[] = $row;
+        }
+
+        echo json_encode(['success' => true, 'new_members' => $new_members]);
+        break;
+
+    case 'delete_all':
+        // 全新入会メンバー削除
+        $db->exec('DELETE FROM new_members');
+        echo json_encode(['success' => true]);
+        break;
+
     case 'delete_by_date':
         // 特定日付の新入会メンバー全削除
         $input = json_decode(file_get_contents('php://input'), true);

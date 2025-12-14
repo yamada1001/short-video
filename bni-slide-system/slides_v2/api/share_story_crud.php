@@ -20,14 +20,9 @@ $action = $_GET['action'] ?? $_POST['action'] ?? null;
 
 switch ($action) {
     case 'get_by_date':
-        $weekDate = $_GET['week_date'] ?? null;
-
-        if (!$weekDate) {
-            echo json_encode(['success' => false, 'error' => '日付が指定されていません']);
-            exit;
-        }
-
-        $stmt = $db->prepare("
+    case 'get_latest':
+        // 最新のシェアストーリーデータ取得
+        $stmt = $db->query("
             SELECT
                 ss.*,
                 m.name as member_name,
@@ -35,10 +30,9 @@ switch ($action) {
                 m.photo_path
             FROM share_story ss
             LEFT JOIN members m ON ss.member_id = m.id
-            WHERE ss.week_date = :week_date
+            ORDER BY ss.created_at DESC
+            LIMIT 1
         ");
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->execute();
 
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -46,37 +40,22 @@ switch ($action) {
         break;
 
     case 'save':
-        $weekDate = $_POST['week_date'] ?? null;
         $memberId = $_POST['member_id'] ?? null;
 
-        if (!$weekDate || !$memberId) {
-            echo json_encode(['success' => false, 'error' => '全項目は必須です']);
+        if (!$memberId) {
+            echo json_encode(['success' => false, 'error' => 'メンバーIDは必須です']);
             exit;
         }
 
-        // 既存データ確認
-        $stmt = $db->prepare("SELECT id FROM share_story WHERE week_date = :week_date");
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->execute();
-        $existing = $stmt->fetch(PDO::FETCH_ASSOC);
+        // 既存データを全削除
+        $db->exec('DELETE FROM share_story');
 
-        if ($existing) {
-            // 更新
-            $stmt = $db->prepare('
-                UPDATE share_story
-                SET member_id = :member_id,
-                    updated_at = CURRENT_TIMESTAMP
-                WHERE week_date = :week_date
-            ');
-        } else {
-            // 新規
-            $stmt = $db->prepare('
-                INSERT INTO share_story (week_date, member_id)
-                VALUES (:week_date, :member_id)
-            ');
-        }
+        // 新規データを挿入
+        $stmt = $db->prepare('
+            INSERT INTO share_story (member_id)
+            VALUES (:member_id)
+        ');
 
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
         $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
 
         $result = $stmt->execute();
@@ -89,23 +68,9 @@ switch ($action) {
         break;
 
     case 'delete':
-        $input = json_decode(file_get_contents('php://input'), true);
-        $weekDate = $input['week_date'] ?? null;
-
-        if (!$weekDate) {
-            echo json_encode(['success' => false, 'error' => '日付は必須です']);
-            exit;
-        }
-
-        $stmt = $db->prepare('DELETE FROM share_story WHERE week_date = :week_date');
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $result = $stmt->execute();
-
-        if ($result) {
-            echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => '削除に失敗しました']);
-        }
+        // シェアストーリーデータ削除（全削除）
+        $db->exec('DELETE FROM share_story');
+        echo json_encode(['success' => true]);
         break;
 
     default:

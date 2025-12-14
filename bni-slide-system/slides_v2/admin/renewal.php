@@ -371,9 +371,7 @@
             </div>
 
             <div class="actions-bar">
-                <div class="date-selector">
-                    <label><i class="fas fa-calendar"></i> 開催日:</label>
-                    <input type="date" id="weekDate">
+                <div>
                     <span class="count-badge">更新メンバー: <span id="memberCount">0</span>名</span>
                 </div>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
@@ -430,7 +428,6 @@
 
         // ページ読み込み時
         document.addEventListener('DOMContentLoaded', () => {
-            setDefaultDate();
             setupEventListeners();
             loadMembers();
             loadRenewalMembers();
@@ -438,20 +435,7 @@
 
         // イベントリスナー設定
         function setupEventListeners() {
-            document.getElementById('weekDate').addEventListener('change', loadRenewalMembers);
             document.getElementById('memberForm').addEventListener('submit', handleSubmit);
-        }
-
-        // デフォルト日付設定（次の金曜日）
-        function setDefaultDate() {
-            const today = new Date();
-            const dayOfWeek = today.getDay();
-            const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
-            const nextFriday = new Date(today);
-            nextFriday.setDate(today.getDate() + daysUntilFriday);
-
-            const formatted = nextFriday.toISOString().split('T')[0];
-            document.getElementById('weekDate').value = formatted;
         }
 
         // 全メンバー一覧取得
@@ -481,11 +465,8 @@
 
         // 更新メンバー一覧取得
         async function loadRenewalMembers() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) return;
-
             try {
-                const response = await fetch(`${API_BASE}?action=get_by_date&week_date=${weekDate}`);
+                const response = await fetch(`${API_BASE}?action=get_latest`);
                 const data = await response.json();
 
                 if (data.success) {
@@ -533,12 +514,6 @@
 
         // モーダル開く
         function openAddModal() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('先に開催日を選択してください');
-                return;
-            }
-
             document.getElementById('memberForm').reset();
             document.getElementById('memberModal').classList.add('active');
         }
@@ -553,10 +528,8 @@
             e.preventDefault();
 
             const formData = new FormData();
-            const weekDate = document.getElementById('weekDate').value;
 
             formData.append('action', 'create');
-            formData.append('week_date', weekDate);
             formData.append('member_id', document.getElementById('memberId').value);
 
             try {
@@ -605,24 +578,18 @@
 
         // 全メンバー削除
         async function deleteAllMembers() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('開催日を選択してください');
-                return;
-            }
-
             if (renewalMembers.length === 0) {
                 alert('削除するメンバーがありません');
                 return;
             }
 
-            if (!confirm(`${weekDate}の更新メンバー全${renewalMembers.length}名を削除してもよろしいですか？\nこの操作は取り消せません。`)) return;
+            if (!confirm(`更新メンバー全${renewalMembers.length}名を削除してもよろしいですか？\nこの操作は取り消せません。`)) return;
 
             try {
                 const response = await fetch(API_BASE, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'delete_by_date', week_date: weekDate })
+                    body: JSON.stringify({ action: 'delete_all' })
                 });
                 const data = await response.json();
 
@@ -640,18 +607,12 @@
 
         // スライド表示
         function openSlide(page) {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('開催日を選択してください');
-                return;
-            }
-
             if (renewalMembers.length === 0) {
                 alert('更新メンバーが登録されていません');
                 return;
             }
 
-            const url = `../slides/renewal.php?date=${weekDate}&page=${page}`;
+            const url = `../slides/renewal.php?page=${page}`;
             window.open(url, '_blank');
         }
     </script>

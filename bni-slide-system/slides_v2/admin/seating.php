@@ -344,10 +344,6 @@
 
     <div class="container">
         <div class="actions-bar">
-            <div class="date-selector">
-                <label><i class="fas fa-calendar"></i> 対象日:</label>
-                <input type="date" id="targetDate">
-            </div>
             <div style="display: flex; gap: 10px;">
                 <button class="btn btn-clear" onclick="clearAllSeats()">
                     <i class="fas fa-eraser"></i> すべてクリア
@@ -416,16 +412,9 @@
 
         // ページ読み込み時
         document.addEventListener('DOMContentLoaded', () => {
-            // 今日の日付を設定
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('targetDate').value = today;
-
             // データ読み込み
             loadMembers();
             loadSeating();
-
-            // 日付変更時
-            document.getElementById('targetDate').addEventListener('change', loadSeating);
         });
 
         // メンバー一覧取得
@@ -445,13 +434,10 @@
             }
         }
 
-        // 座席配置取得
+        // 座席配置取得（最新データを取得）
         async function loadSeating() {
-            const targetDate = document.getElementById('targetDate').value;
-            if (!targetDate) return;
-
             try {
-                const response = await fetch(`${API_BASE}?action=get&week_date=${targetDate}`);
+                const response = await fetch(`${API_BASE}?action=get_latest`);
                 const data = await response.json();
 
                 if (data.success) {
@@ -616,12 +602,6 @@
 
         // 座席配置を保存
         async function saveSeating() {
-            const targetDate = document.getElementById('targetDate').value;
-            if (!targetDate) {
-                alert('対象日を選択してください');
-                return;
-            }
-
             // 現在の配置を取得
             const seatingData = [];
             const tables = document.querySelectorAll('.table-members');
@@ -645,7 +625,6 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         action: 'save',
-                        week_date: targetDate,
                         seating: seatingData
                     })
                 });
@@ -676,14 +655,8 @@
 
         // スライドを確認
         function viewSlide() {
-            const targetDate = document.getElementById('targetDate').value;
-            if (!targetDate) {
-                alert('対象日を選択してください');
-                return;
-            }
-
             const pageNumber = 7;
-            const url = `../index.php?date=${targetDate}#${pageNumber}`;
+            const url = `../index.php#${pageNumber}`;
             window.open(url, '_blank', 'width=1920,height=1080');
         }
     </script>

@@ -256,23 +256,37 @@ switch ($action) {
         }
         break;
 
-    case 'get_next_visitor_no':
-        // 次のビジターNo取得（自動ナンバリング用）
-        $weekDate = $_GET['week_date'] ?? null;
+    case 'get_latest':
+        // 最新のビジター一覧取得
+        $stmt = $db->query("
+            SELECT
+                v.*,
+                m.name as attend_member_name
+            FROM visitors v
+            LEFT JOIN members m ON v.attend_member_id = m.id
+            ORDER BY v.created_at DESC, v.visitor_no ASC
+        ");
 
-        if (!$weekDate) {
-            echo json_encode(['success' => false, 'error' => '日付が指定されていません']);
-            exit;
+        $visitors = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $visitors[] = $row;
         }
 
-        $stmt = $db->prepare("
+        echo json_encode(['success' => true, 'visitors' => $visitors]);
+        break;
+
+    case 'delete_all':
+        // 全ビジター削除
+        $db->exec('DELETE FROM visitors');
+        echo json_encode(['success' => true]);
+        break;
+
+    case 'get_next_visitor_no':
+        // 次のビジターNo取得（自動ナンバリング用）
+        $stmt = $db->query("
             SELECT COALESCE(MAX(visitor_no), 0) + 1 as next_no
             FROM visitors
-            WHERE week_date = :week_date
         ");
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->execute();
-
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         echo json_encode(['success' => true, 'next_no' => $row['next_no']]);

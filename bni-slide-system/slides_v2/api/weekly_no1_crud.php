@@ -20,15 +20,9 @@ $action = $_GET['action'] ?? $_POST['action'] ?? null;
 
 switch ($action) {
     case 'get':
-        // 特定日付のNo.1データ取得
-        $weekDate = $_GET['week_date'] ?? null;
-
-        if (!$weekDate) {
-            echo json_encode(['success' => false, 'error' => '日付が指定されていません']);
-            exit;
-        }
-
-        $stmt = $db->prepare("
+    case 'get_latest':
+        // 最新のNo.1データ取得
+        $stmt = $db->query("
             SELECT
                 wn.*,
                 m1.name as external_referral_member_name,
@@ -41,10 +35,9 @@ switch ($action) {
             LEFT JOIN members m1 ON wn.external_referral_member_id = m1.id
             LEFT JOIN members m2 ON wn.visitor_invitation_member_id = m2.id
             LEFT JOIN members m3 ON wn.one_to_one_member_id = m3.id
-            WHERE wn.week_date = :week_date
+            ORDER BY wn.created_at DESC
+            LIMIT 1
         ");
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->execute();
 
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -52,8 +45,7 @@ switch ($action) {
         break;
 
     case 'save':
-        // 週間No.1データ保存（新規/更新）
-        $weekDate = $_POST['week_date'] ?? null;
+        // 週間No.1データ保存（全削除→新規挿入）
         $externalReferralMemberId = $_POST['external_referral_member_id'] ?? null;
         $externalReferralCount = $_POST['external_referral_count'] ?? 0;
         $visitorInvitationMemberId = $_POST['visitor_invitation_member_id'] ?? null;
@@ -61,49 +53,23 @@ switch ($action) {
         $oneToOneMemberId = $_POST['one_to_one_member_id'] ?? null;
         $oneToOneCount = $_POST['one_to_one_count'] ?? 0;
 
-        if (!$weekDate) {
-            echo json_encode(['success' => false, 'error' => '日付は必須です']);
-            exit;
-        }
+        // 既存データを全削除
+        $db->exec('DELETE FROM weekly_no1');
 
-        // 既存データ確認
-        $stmt = $db->prepare("SELECT id FROM weekly_no1 WHERE week_date = :week_date");
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->execute();
-        $existing = $stmt->fetch(PDO::FETCH_ASSOC);
+        // 新規データを挿入
+        $stmt = $db->prepare('
+            INSERT INTO weekly_no1 (
+                external_referral_member_id, external_referral_count,
+                visitor_invitation_member_id, visitor_invitation_count,
+                one_to_one_member_id, one_to_one_count
+            )
+            VALUES (
+                :external_referral_member_id, :external_referral_count,
+                :visitor_invitation_member_id, :visitor_invitation_count,
+                :one_to_one_member_id, :one_to_one_count
+            )
+        ');
 
-        if ($existing) {
-            // 更新
-            $stmt = $db->prepare('
-                UPDATE weekly_no1
-                SET external_referral_member_id = :external_referral_member_id,
-                    external_referral_count = :external_referral_count,
-                    visitor_invitation_member_id = :visitor_invitation_member_id,
-                    visitor_invitation_count = :visitor_invitation_count,
-                    one_to_one_member_id = :one_to_one_member_id,
-                    one_to_one_count = :one_to_one_count,
-                    updated_at = CURRENT_TIMESTAMP
-                WHERE week_date = :week_date
-            ');
-        } else {
-            // 新規
-            $stmt = $db->prepare('
-                INSERT INTO weekly_no1 (
-                    week_date,
-                    external_referral_member_id, external_referral_count,
-                    visitor_invitation_member_id, visitor_invitation_count,
-                    one_to_one_member_id, one_to_one_count
-                )
-                VALUES (
-                    :week_date,
-                    :external_referral_member_id, :external_referral_count,
-                    :visitor_invitation_member_id, :visitor_invitation_count,
-                    :one_to_one_member_id, :one_to_one_count
-                )
-            ');
-        }
-
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
         $stmt->bindValue(':external_referral_member_id', $externalReferralMemberId ?: null, PDO::PARAM_INT);
         $stmt->bindValue(':external_referral_count', $externalReferralCount, PDO::PARAM_INT);
         $stmt->bindValue(':visitor_invitation_member_id', $visitorInvitationMemberId ?: null, PDO::PARAM_INT);
@@ -121,24 +87,9 @@ switch ($action) {
         break;
 
     case 'delete':
-        // 週間No.1データ削除
-        $input = json_decode(file_get_contents('php://input'), true);
-        $weekDate = $input['week_date'] ?? null;
-
-        if (!$weekDate) {
-            echo json_encode(['success' => false, 'error' => '日付は必須です']);
-            exit;
-        }
-
-        $stmt = $db->prepare('DELETE FROM weekly_no1 WHERE week_date = :week_date');
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $result = $stmt->execute();
-
-        if ($result) {
-            echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => '削除に失敗しました']);
-        }
+        // 週間No.1データ削除（全削除）
+        $db->exec('DELETE FROM weekly_no1');
+        echo json_encode(['success' => true]);
         break;
 
     default:

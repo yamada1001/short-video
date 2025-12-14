@@ -111,6 +111,33 @@ switch ($action) {
         }
         break;
 
+    case 'get_latest':
+        // 最新の更新メンバー一覧取得
+        $stmt = $db->query("
+            SELECT
+                rm.*,
+                m.name as member_name,
+                m.company_name,
+                m.photo_path
+            FROM renewal_members rm
+            LEFT JOIN members m ON rm.member_id = m.id
+            ORDER BY rm.created_at DESC
+        ");
+
+        $renewal_members = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $renewal_members[] = $row;
+        }
+
+        echo json_encode(['success' => true, 'renewal_members' => $renewal_members]);
+        break;
+
+    case 'delete_all':
+        // 全更新メンバー削除
+        $db->exec('DELETE FROM renewal_members');
+        echo json_encode(['success' => true]);
+        break;
+
     case 'delete_by_date':
         $input = json_decode(file_get_contents('php://input'), true);
         $weekDate = $input['week_date'] ?? null;

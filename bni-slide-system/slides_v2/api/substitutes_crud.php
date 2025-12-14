@@ -206,23 +206,33 @@ switch ($action) {
         }
         break;
 
-    case 'get_next_no':
-        // 次のNo取得（自動ナンバリング用）
-        $weekDate = $_GET['week_date'] ?? null;
+    case 'get_latest':
+        // 最新の代理出席者一覧取得
+        $stmt = $db->query("
+            SELECT * FROM substitutes
+            ORDER BY created_at DESC, substitute_no ASC
+        ");
 
-        if (!$weekDate) {
-            echo json_encode(['success' => false, 'error' => '日付が指定されていません']);
-            exit;
+        $substitutes = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $substitutes[] = $row;
         }
 
-        $stmt = $db->prepare("
+        echo json_encode(['success' => true, 'substitutes' => $substitutes]);
+        break;
+
+    case 'delete_all':
+        // 全代理出席者削除
+        $db->exec('DELETE FROM substitutes');
+        echo json_encode(['success' => true]);
+        break;
+
+    case 'get_next_no':
+        // 次のNo取得（自動ナンバリング用）
+        $stmt = $db->query("
             SELECT COALESCE(MAX(substitute_no), 0) + 1 as next_no
             FROM substitutes
-            WHERE week_date = :week_date
         ");
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->execute();
-
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         echo json_encode(['success' => true, 'next_no' => $row['next_no']]);

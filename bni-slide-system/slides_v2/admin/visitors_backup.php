@@ -83,13 +83,22 @@ require_once __DIR__ . '/../config.php';
             gap: 15px;
         }
 
-        .count-badge {
-            background: #C8102E;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 13px;
+        .date-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .date-selector label {
             font-weight: 500;
+            font-size: 14px;
+        }
+
+        .date-selector input[type="date"] {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
         }
 
         /* Buttons */
@@ -236,6 +245,15 @@ require_once __DIR__ . '/../config.php';
             gap: 8px;
         }
 
+        .count-badge {
+            background: #C8102E;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
         .empty-state {
             text-align: center;
             padding: 60px 20px;
@@ -366,7 +384,7 @@ require_once __DIR__ . '/../config.php';
 <body>
     <div class="header">
         <h1><i class="fas fa-user-friends"></i> ビジター管理</h1>
-        <div class="subtitle">BNI Slide System V2 - Visitor Management (最新データ表示)</div>
+        <div class="subtitle">BNI Slide System V2 - Visitor Management</div>
     </div>
 
     <div class="container">
@@ -378,17 +396,19 @@ require_once __DIR__ . '/../config.php';
             <div class="info-box">
                 <h4><i class="fas fa-info-circle"></i> ビジター管理について</h4>
                 <ul>
-                    <li>最新の保存データが自動的にスライドに表示されます</li>
                     <li>同じビジター情報から4つのスライドを自動生成（p.19, p.169-180, p.213-224, p.235）</li>
                     <li>p.19: ビジター紹介テーブル（6名ごとにページ分割）</li>
                     <li>p.169-180: ビジター自己紹介（1人につき1ページ、23秒カウントダウン）</li>
                     <li>p.213-224: ビジター感想（1人につき1ページ、23秒カウントダウン）</li>
                     <li>p.235: ビジターへの感謝（全員をテーブル表示）</li>
+                    <li>ビジターは毎週変わるため、削除機能も活用してください</li>
                 </ul>
             </div>
 
             <div class="actions-bar">
-                <div>
+                <div class="date-selector">
+                    <label><i class="fas fa-calendar"></i> 開催日:</label>
+                    <input type="date" id="weekDate">
                     <span class="count-badge">ビジター数: <span id="visitorCount">0</span>名</span>
                 </div>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
@@ -508,8 +528,31 @@ require_once __DIR__ . '/../config.php';
         // ページ読み込み時
         document.addEventListener('DOMContentLoaded', () => {
             loadMembers();
+            setDefaultDate();
+            setupEventListeners();
             loadVisitors();
         });
+
+        // イベントリスナー設定
+        function setupEventListeners() {
+            // 日付変更時
+            document.getElementById('weekDate').addEventListener('change', loadVisitors);
+
+            // フォーム送信
+            document.getElementById('visitorForm').addEventListener('submit', handleSubmit);
+        }
+
+        // デフォルト日付設定（次の金曜日）
+        function setDefaultDate() {
+            const today = new Date();
+            const dayOfWeek = today.getDay();
+            const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
+            const nextFriday = new Date(today);
+            nextFriday.setDate(today.getDate() + daysUntilFriday);
+
+            const formatted = nextFriday.toISOString().split('T')[0];
+            document.getElementById('weekDate').value = formatted;
+        }
 
         // メンバー一覧取得
         async function loadMembers() {
@@ -536,10 +579,13 @@ require_once __DIR__ . '/../config.php';
             select.innerHTML = optionHTML;
         }
 
-        // ビジター一覧取得（最新データ）
+        // ビジター一覧取得
         async function loadVisitors() {
+            const weekDate = document.getElementById('weekDate').value;
+            if (!weekDate) return;
+
             try {
-                const response = await fetch(`${API_BASE}?action=get_latest`);
+                const response = await fetch(`${API_BASE}?action=get_by_date&week_date=${weekDate}`);
                 const data = await response.json();
 
                 if (data.success) {
@@ -563,7 +609,7 @@ require_once __DIR__ . '/../config.php';
                     <tr>
                         <td colspan="7" class="empty-state">
                             <i class="fas fa-inbox"></i>
-                            <p>ビジターはまだ登録されていません</p>
+                            <p>この日付のビジターはまだ登録されていません</p>
                         </td>
                     </tr>
                 `;
@@ -596,13 +642,19 @@ require_once __DIR__ . '/../config.php';
 
         // モーダル開く（追加）
         async function openAddModal() {
+            const weekDate = document.getElementById('weekDate').value;
+            if (!weekDate) {
+                alert('先に開催日を選択してください');
+                return;
+            }
+
             document.getElementById('modalTitle').textContent = 'ビジター追加';
             document.getElementById('visitorForm').reset();
             document.getElementById('visitorId').value = '';
 
             // 次のNo自動取得
             try {
-                const response = await fetch(`${API_BASE}?action=get_next_visitor_no`);
+                const response = await fetch(`${API_BASE}?action=get_next_visitor_no&week_date=${weekDate}`);
                 const data = await response.json();
                 if (data.success) {
                     document.getElementById('visitorNo').value = data.next_no;
@@ -644,9 +696,11 @@ require_once __DIR__ . '/../config.php';
 
             const formData = new FormData();
             const visitorId = document.getElementById('visitorId').value;
+            const weekDate = document.getElementById('weekDate').value;
 
             formData.append('action', visitorId ? 'update' : 'create');
             if (visitorId) formData.append('id', visitorId);
+            formData.append('week_date', weekDate);
             formData.append('visitor_no', document.getElementById('visitorNo').value);
             formData.append('name', document.getElementById('visitorName').value);
             formData.append('company_name', document.getElementById('companyName').value);
@@ -676,9 +730,6 @@ require_once __DIR__ . '/../config.php';
             }
         }
 
-        // フォーム送信イベント
-        document.getElementById('visitorForm').addEventListener('submit', handleSubmit);
-
         // ビジター削除
         async function deleteVisitor(id, name) {
             if (!confirm(`「${name}」を削除してもよろしいですか？`)) return;
@@ -705,18 +756,24 @@ require_once __DIR__ . '/../config.php';
 
         // 全ビジター削除
         async function deleteAllVisitors() {
+            const weekDate = document.getElementById('weekDate').value;
+            if (!weekDate) {
+                alert('開催日を選択してください');
+                return;
+            }
+
             if (visitors.length === 0) {
                 alert('削除するビジターがありません');
                 return;
             }
 
-            if (!confirm(`全${visitors.length}名のビジターを削除してもよろしいですか？\nこの操作は取り消せません。`)) return;
+            if (!confirm(`${weekDate}のビジター全${visitors.length}名を削除してもよろしいですか？\nこの操作は取り消せません。`)) return;
 
             try {
                 const response = await fetch(API_BASE, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'delete_all' })
+                    body: JSON.stringify({ action: 'delete_by_date', week_date: weekDate })
                 });
                 const data = await response.json();
 
@@ -734,12 +791,18 @@ require_once __DIR__ . '/../config.php';
 
         // スライドを確認
         function viewSlide(pageNumber) {
+            const weekDate = document.getElementById('weekDate').value;
+            if (!weekDate) {
+                alert('開催日を選択してください');
+                return;
+            }
+
             if (visitors.length === 0) {
                 alert('ビジターが登録されていません');
                 return;
             }
 
-            const url = `../index.php#${pageNumber}`;
+            const url = `../index.php?date=${weekDate}#${pageNumber}`;
             window.open(url, '_blank', 'width=1920,height=1080');
         }
     </script>

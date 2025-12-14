@@ -29,8 +29,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 switch ($action) {
+    case 'get_latest':
+        // 座席配置取得（最新のデータ）
+        $query = "
+            SELECT table_name, member_id, position
+            FROM seating_arrangement
+            WHERE created_at = (SELECT MAX(created_at) FROM seating_arrangement)
+            ORDER BY table_name, position
+        ";
+
+        $stmt = $db->query($query);
+
+        $seating = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $tableName = $row['table_name'];
+            if (!isset($seating[$tableName])) {
+                $seating[$tableName] = [];
+            }
+            $seating[$tableName][] = $row['member_id'];
+        }
+
+        echo json_encode(['success' => true, 'seating' => $seating]);
+        break;
+
     case 'get':
-        // 座席配置取得（特定の週の日付）
+        // 座席配置取得（特定の週の日付）- 後方互換性のため残す
         $weekDate = $_GET['week_date'] ?? null;
 
         if (empty($weekDate)) {
@@ -62,35 +85,26 @@ switch ($action) {
         break;
 
     case 'save':
-        // 座席配置保存（既存のデータを削除して新規保存）
-        $weekDate = $postData['week_date'] ?? null;
+        // 座席配置保存（全データを削除して新規保存）
         $seatingData = $postData['seating'] ?? [];
-
-        if (empty($weekDate)) {
-            echo json_encode(['success' => false, 'error' => '日付は必須です']);
-            exit;
-        }
 
         $db->beginTransaction();
 
         try {
-            // 既存のデータを削除
-            $deleteStmt = $db->prepare('DELETE FROM seating_arrangement WHERE week_date = :week_date');
-            $deleteStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-            $deleteStmt->execute();
+            // 既存の全データを削除
+            $db->exec('DELETE FROM seating_arrangement');
 
             // 新しいデータを挿入
             if (!empty($seatingData)) {
                 $insertStmt = $db->prepare('
-                    INSERT INTO seating_arrangement (table_name, member_id, position, week_date)
-                    VALUES (:table_name, :member_id, :position, :week_date)
+                    INSERT INTO seating_arrangement (table_name, member_id, position)
+                    VALUES (:table_name, :member_id, :position)
                 ');
 
                 foreach ($seatingData as $seat) {
                     $insertStmt->bindValue(':table_name', $seat['table_name'], PDO::PARAM_STR);
                     $insertStmt->bindValue(':member_id', $seat['member_id'], PDO::PARAM_INT);
                     $insertStmt->bindValue(':position', $seat['position'], PDO::PARAM_INT);
-                    $insertStmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
                     $insertStmt->execute();
                 }
             }
@@ -98,7 +112,7 @@ switch ($action) {
             $db->commit();
 
             // 保存成功後、スライド画像を生成（p.7）
-            generateSlideImage('seating.php', 7, $weekDate);
+            generateSlideImage('seating.php', 7);
 
             echo json_encode(['success' => true]);
         } catch (Exception $e) {
@@ -142,14 +156,7 @@ switch ($action) {
         break;
 
     case 'get_for_slide':
-        // スライド表示用データ取得（メンバー情報も含む）
-        $weekDate = $_GET['week_date'] ?? null;
-
-        if (empty($weekDate)) {
-            echo json_encode(['success' => false, 'error' => '日付は必須です']);
-            exit;
-        }
-
+        // スライド表示用データ取得（メンバー情報も含む）- 最新データを取得
         $query = "
             SELECT
                 sa.table_name,
@@ -161,13 +168,11 @@ switch ($action) {
                 m.photo_path
             FROM seating_arrangement sa
             LEFT JOIN members m ON sa.member_id = m.id
-            WHERE sa.week_date = :week_date
+            WHERE sa.created_at = (SELECT MAX(created_at) FROM seating_arrangement)
             ORDER BY sa.table_name, sa.position
         ";
 
-        $stmt = $db->prepare($query);
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->execute();
+        $stmt = $db->query($query);
 
         $seating = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

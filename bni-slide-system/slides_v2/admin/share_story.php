@@ -16,10 +16,7 @@ require_once __DIR__ . '/../config.php';
     <div class="container">
         <div class="card">
             <div class="actions-bar">
-                <div class="date-selector">
-                    <label>開催日:</label>
-                    <input type="date" id="weekDate">
-                </div>
+                <div></div>
                 <button class="btn btn-success" onclick="openSlide()"><i class="fas fa-play"></i> スライド表示</button>
             </div>
             <form id="storyForm">
@@ -38,26 +35,17 @@ require_once __DIR__ . '/../config.php';
         const API = '../api/share_story_crud.php';
         const MEMBERS_API = '../api/members_crud.php';
         document.addEventListener('DOMContentLoaded', () => {
-            setDefaultDate();
             loadMembers();
-            document.getElementById('weekDate').addEventListener('change', loadData);
             document.getElementById('storyForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const formData = new FormData();
                 formData.append('action', 'save');
-                formData.append('week_date', document.getElementById('weekDate').value);
                 formData.append('member_id', document.getElementById('memberId').value);
                 const res = await fetch(API, { method: 'POST', body: formData });
                 const data = await res.json();
                 alert(data.success ? '保存しました' : 'エラー: ' + (data.error || '不明'));
             });
         });
-        function setDefaultDate() {
-            const today = new Date(), dayOfWeek = today.getDay();
-            const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7, nextFriday = new Date(today);
-            nextFriday.setDate(today.getDate() + daysUntilFriday);
-            document.getElementById('weekDate').value = nextFriday.toISOString().split('T')[0];
-        }
         async function loadMembers() {
             const res = await fetch(MEMBERS_API + '?action=list');
             const data = await res.json();
@@ -68,9 +56,7 @@ require_once __DIR__ . '/../config.php';
             }
         }
         async function loadData() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) return;
-            const res = await fetch(`${API}?action=get_by_date&week_date=${weekDate}`);
+            const res = await fetch(`${API}?action=get_latest`);
             const data = await res.json();
             if (data.success && data.data) document.getElementById('memberId').value = data.data.member_id || '';
         }
@@ -78,18 +64,17 @@ require_once __DIR__ . '/../config.php';
             if (!confirm('削除しますか？')) return;
             const res = await fetch(API, {
                 method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'delete', week_date: document.getElementById('weekDate').value })
+                body: JSON.stringify({ action: 'delete' })
             });
             const data = await res.json();
             if (data.success) { alert('削除しました'); loadData(); }
         }
         function openSlide() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate || !document.getElementById('memberId').value) {
-                alert('開催日とメンバーを選択してください');
+            if (!document.getElementById('memberId').value) {
+                alert('メンバーを選択してください');
                 return;
             }
-            window.open(`../slides/share_story.php?date=${weekDate}`, '_blank');
+            window.open(`../slides/share_story.php`, '_blank');
         }
     </script>
     <style>

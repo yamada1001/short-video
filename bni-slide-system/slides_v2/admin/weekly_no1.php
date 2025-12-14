@@ -32,10 +32,7 @@ require_once __DIR__ . '/../config.php';
             </div>
 
             <div class="actions-bar">
-                <div class="date-selector">
-                    <label><i class="fas fa-calendar"></i> 開催日:</label>
-                    <input type="date" id="weekDate">
-                </div>
+                <div></div>
                 <button class="btn btn-success" onclick="openSlide()">
                     <i class="fas fa-play"></i> スライド表示
                 </button>
@@ -99,20 +96,9 @@ require_once __DIR__ . '/../config.php';
         let members = [];
 
         document.addEventListener('DOMContentLoaded', () => {
-            setDefaultDate();
             loadMembers();
-            document.getElementById('weekDate').addEventListener('change', loadData);
             document.getElementById('no1Form').addEventListener('submit', handleSubmit);
         });
-
-        function setDefaultDate() {
-            const today = new Date();
-            const dayOfWeek = today.getDay();
-            const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
-            const nextFriday = new Date(today);
-            nextFriday.setDate(today.getDate() + daysUntilFriday);
-            document.getElementById('weekDate').value = nextFriday.toISOString().split('T')[0];
-        }
 
         async function loadMembers() {
             const response = await fetch(MEMBERS_API + '?action=list');
@@ -132,10 +118,7 @@ require_once __DIR__ . '/../config.php';
         }
 
         async function loadData() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) return;
-
-            const response = await fetch(`${API_BASE}?action=get&week_date=${weekDate}`);
+            const response = await fetch(`${API_BASE}?action=get_latest`);
             const data = await response.json();
             if (data.success && data.data) {
                 document.getElementById('externalReferralMemberId').value = data.data.external_referral_member_id || '';
@@ -151,7 +134,6 @@ require_once __DIR__ . '/../config.php';
             e.preventDefault();
             const formData = new FormData();
             formData.append('action', 'save');
-            formData.append('week_date', document.getElementById('weekDate').value);
             formData.append('external_referral_member_id', document.getElementById('externalReferralMemberId').value);
             formData.append('external_referral_count', document.getElementById('externalReferralCount').value);
             formData.append('visitor_invitation_member_id', document.getElementById('visitorInvitationMemberId').value);
@@ -173,7 +155,7 @@ require_once __DIR__ . '/../config.php';
             const response = await fetch(API_BASE, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'delete', week_date: document.getElementById('weekDate').value })
+                body: JSON.stringify({ action: 'delete' })
             });
             const data = await response.json();
             if (data.success) {
@@ -183,12 +165,7 @@ require_once __DIR__ . '/../config.php';
         }
 
         function openSlide() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('開催日を選択してください');
-                return;
-            }
-            window.open(`../slides/weekly_no1.php?date=${weekDate}`, '_blank');
+            window.open(`../slides/weekly_no1.php`, '_blank');
         }
     </script>
     <style>

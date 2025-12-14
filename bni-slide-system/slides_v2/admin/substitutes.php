@@ -374,9 +374,7 @@
             </div>
 
             <div class="actions-bar">
-                <div class="date-selector">
-                    <label><i class="fas fa-calendar"></i> 開催日:</label>
-                    <input type="date" id="weekDate">
+                <div>
                     <span class="count-badge">代理出席者: <span id="substituteCount">0</span>名 / 最大3名</span>
                 </div>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
@@ -450,36 +448,19 @@
 
         // ページ読み込み時
         document.addEventListener('DOMContentLoaded', () => {
-            setDefaultDate();
             setupEventListeners();
             loadSubstitutes();
         });
 
         // イベントリスナー設定
         function setupEventListeners() {
-            document.getElementById('weekDate').addEventListener('change', loadSubstitutes);
             document.getElementById('substituteForm').addEventListener('submit', handleSubmit);
-        }
-
-        // デフォルト日付設定（次の金曜日）
-        function setDefaultDate() {
-            const today = new Date();
-            const dayOfWeek = today.getDay();
-            const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
-            const nextFriday = new Date(today);
-            nextFriday.setDate(today.getDate() + daysUntilFriday);
-
-            const formatted = nextFriday.toISOString().split('T')[0];
-            document.getElementById('weekDate').value = formatted;
         }
 
         // 代理出席者一覧取得
         async function loadSubstitutes() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) return;
-
             try {
-                const response = await fetch(`${API_BASE}?action=get_by_date&week_date=${weekDate}`);
+                const response = await fetch(`${API_BASE}?action=get_latest`);
                 const data = await response.json();
 
                 if (data.success) {
@@ -533,12 +514,6 @@
 
         // モーダル開く（追加）
         async function openAddModal() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('先に開催日を選択してください');
-                return;
-            }
-
             if (substitutes.length >= 3) {
                 alert('代理出席者は最大3名までです');
                 return;
@@ -550,7 +525,7 @@
 
             // 次のNo自動取得
             try {
-                const response = await fetch(`${API_BASE}?action=get_next_no&week_date=${weekDate}`);
+                const response = await fetch(`${API_BASE}?action=get_next_no`);
                 const data = await response.json();
                 if (data.success) {
                     document.getElementById('substituteNo').value = data.next_no;
@@ -587,11 +562,9 @@
 
             const formData = new FormData();
             const substituteId = document.getElementById('substituteId').value;
-            const weekDate = document.getElementById('weekDate').value;
 
             formData.append('action', substituteId ? 'update' : 'create');
             if (substituteId) formData.append('id', substituteId);
-            formData.append('week_date', weekDate);
             formData.append('substitute_no', document.getElementById('substituteNo').value);
             formData.append('company_name', document.getElementById('companyName').value);
             formData.append('name', document.getElementById('substituteName').value);
@@ -642,24 +615,18 @@
 
         // 全代理出席者削除
         async function deleteAllSubstitutes() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('開催日を選択してください');
-                return;
-            }
-
             if (substitutes.length === 0) {
                 alert('削除する代理出席者がありません');
                 return;
             }
 
-            if (!confirm(`${weekDate}の代理出席者全${substitutes.length}名を削除してもよろしいですか？\nこの操作は取り消せません。`)) return;
+            if (!confirm(`代理出席者全${substitutes.length}名を削除してもよろしいですか？\nこの操作は取り消せません。`)) return;
 
             try {
                 const response = await fetch(API_BASE, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'delete_by_date', week_date: weekDate })
+                    body: JSON.stringify({ action: 'delete_all' })
                 });
                 const data = await response.json();
 
@@ -677,18 +644,12 @@
 
         // スライド表示
         function openSlide() {
-            const weekDate = document.getElementById('weekDate').value;
-            if (!weekDate) {
-                alert('開催日を選択してください');
-                return;
-            }
-
             if (substitutes.length === 0) {
                 alert('代理出席者が登録されていません');
                 return;
             }
 
-            const url = `../slides/substitutes.php?date=${weekDate}`;
+            const url = `../slides/substitutes.php`;
             window.open(url, '_blank');
         }
     </script>
