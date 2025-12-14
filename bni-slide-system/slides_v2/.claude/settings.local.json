@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(for:*)",
-      "Bash(do grep -q \"require_once __DIR__ . ''/../config.php''\" \"$f\")"
+      "Bash(do grep -q \"require_once __DIR__ . ''/../config.php''\" \"$f\")",
+      "Bash(do echo \"=== $file ===\" php -l \"$file\")",
+      "Bash(then echo \"✓ HTML生成成功\" else echo \"⚠ 要確認\" fi done)",
+      "Bash(DATE=2025-12-20 php -r \"$_ET[''''date''''] = ''''2025-12-20''''; include ''''slides/visitor_intro.php'''';\")"
     ],
     "deny": [],
     "ask": []

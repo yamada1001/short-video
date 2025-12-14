@@ -15,7 +15,7 @@ $stmt = $db->prepare("
     FROM champions c
     LEFT JOIN members m ON c.member_id = m.id
     WHERE c.week_date = :week_date AND c.rank = 1
-    ORDER BY CASE c.type
+    ORDER BY CASE c.category
         WHEN 'referral' THEN 1
         WHEN 'value' THEN 2
         WHEN 'visitor' THEN 3

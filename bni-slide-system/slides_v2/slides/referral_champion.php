@@ -14,7 +14,7 @@ $stmt = $db->prepare("
     SELECT c.*, m.name as member_name, m.photo_path
     FROM champions c
     LEFT JOIN members m ON c.member_id = m.id
-    WHERE c.week_date = :week_date AND c.type = 'referral'
+    WHERE c.week_date = :week_date AND c.category = 'referral'
     ORDER BY c.rank, c.count DESC, c.id
 ");
 $stmt->bindValue(':week_date', $targetFriday, PDO::PARAM_STR);

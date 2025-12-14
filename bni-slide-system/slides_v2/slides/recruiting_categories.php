@@ -8,7 +8,7 @@ require_once __DIR__ . '/../config.php';
 $db = new PDO('sqlite:' . $db_path);
 $targetFriday = getTargetFriday();
 
-$stmt = $db->prepare("SELECT * FROM recruiting_categories WHERE week_date = :week_date AND category_type = 'open' ORDER BY id");
+$stmt = $db->prepare("SELECT * FROM recruiting_categories WHERE week_date = :week_date AND type = 'open' ORDER BY id");
 $stmt->bindValue(':week_date', $targetFriday, PDO::PARAM_STR);
 $stmt->execute();
 $categories = [];
