@@ -17,17 +17,20 @@
             background: linear-gradient(135deg, #C8102E 0%, #a00a24 100%);
             color: white;
             overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .slide-container {
+            width: 100vw;
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-        }
-
-        .slide-container {
-            width: 100%;
-            max-width: 1200px;
-            padding: 60px;
+            padding: 80px;
             text-align: center;
         }
 

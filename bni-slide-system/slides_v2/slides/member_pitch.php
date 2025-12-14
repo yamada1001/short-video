@@ -18,6 +18,8 @@
             background: linear-gradient(135deg, #C8102E 0%, #a00a24 100%);
             color: white;
             overflow: hidden;
+            width: 100vw;
+            height: 100vh;
         }
 
         body::before {
