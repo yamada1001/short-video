@@ -34,7 +34,7 @@ $qr = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="title"><i class="fas fa-qrcode"></i> QRコード</div>
         <?php if ($qr): ?>
             <div class="qr-display">
-                <img src="../<?php echo htmlspecialchars($qr['qr_image_path']); ?>" alt="QR Code">
+                <img src="../<?php echo htmlspecialchars($qr['qr_code_path']); ?>" alt="QR Code">
             </div>
             <div class="url-display"><?php echo htmlspecialchars($qr['url']); ?></div>
         <?php else: ?>

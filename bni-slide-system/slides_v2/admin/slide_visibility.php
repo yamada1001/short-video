@@ -27,6 +27,10 @@
         .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
         input:checked + .slider { background-color: #C8102E; }
         input:checked + .slider:before { transform: translateX(26px); }
+        .filter-bar { background: white; padding: 15px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .filter-bar input { width: 100%; padding: 10px 15px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
+        .page-info { background: #f8f9fa; padding: 15px 20px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-size: 14px; color: #666; }
+        .page-info strong { color: #333; font-size: 18px; }
     </style>
 </head>
 <body>
@@ -40,31 +44,61 @@
             <button class="btn btn-primary" onclick="saveAll()"><i class="fas fa-save"></i> すべて保存</button>
         </div>
 
+        <div class="page-info">
+            全 <strong id="totalPages">0</strong> ページ | 表示中: <strong id="visibleCount">0</strong> ページ | 非表示: <strong id="hiddenCount">0</strong> ページ
+        </div>
+
+        <div class="filter-bar">
+            <input type="text" id="filterInput" placeholder="ページ番号または名前で検索..." onkeyup="filterSlides()">
+        </div>
+
         <div class="slide-list" id="slideList"></div>
     </div>
 
     <script>
-        const slides = [
-            {page: 1, name: 'タイトル'},
-            {page: 74, name: 'ネットワーキング学習'},
-            {page: 91, name: 'リファーラルチャンピオン'},
-            {page: 92, name: 'バリューチャンピオン'},
-            {page: 93, name: 'ビジターチャンピオン'},
-            {page: 94, name: '1to1チャンピオン'},
-            {page: 95, name: 'CEUチャンピオン'},
-            {page: 96, name: '全チャンピオン'},
-            {page: 184, name: 'ビジネスブレイクアウト'},
-            {page: 185, name: '募集カテゴリ'},
-            {page: 188, name: 'ビジター統計'},
-            {page: 189, name: 'リファーラル統計'},
-            {page: 190, name: '売上統計'},
-            {page: 194, name: 'カテゴリアンケート'},
-            {page: 227, name: 'リファーラル真正度'},
-            {page: 242, name: 'QRコード'},
-            {page: 302, name: '週次統計'}
-        ];
+        // 全309ページを生成
+        const TOTAL_PAGES = 309;
+        const slides = [];
+
+        // ページ名のマッピング（特定のページにのみ名前を付ける）
+        const pageNames = {
+            1: 'タイトル',
+            7: '座席表',
+            8: 'メインプレゼン(1)',
+            15: 'スタートダッシュ(1)',
+            19: 'ビジター紹介',
+            74: 'ネットワーキング学習',
+            86: 'ネットワーキングスライド',
+            91: 'リファーラルチャンピオン',
+            92: 'バリューチャンピオン',
+            93: 'ビジターチャンピオン',
+            94: '1to1チャンピオン',
+            95: 'CEUチャンピオン',
+            96: '全チャンピオン',
+            107: 'スタートダッシュ(2)',
+            184: 'ビジネスブレイクアウト',
+            185: '募集カテゴリ',
+            188: 'ビジター統計',
+            189: 'リファーラル統計',
+            190: '売上統計',
+            194: 'カテゴリアンケート',
+            204: 'メインプレゼン(2)',
+            227: 'リファーラル真正度',
+            235: 'ビジター感謝',
+            242: 'QRコード',
+            302: '週次統計'
+        };
+
+        // 全ページをリストに追加
+        for (let i = 1; i <= TOTAL_PAGES; i++) {
+            slides.push({
+                page: i,
+                name: pageNames[i] || `ページ ${i}`
+            });
+        }
 
         let visibilityData = {};
+        let weekDate = '';
 
         document.addEventListener('DOMContentLoaded', function() {
             loadVisibility();
@@ -76,9 +110,10 @@
                 const data = await response.json();
 
                 if (data.success) {
+                    weekDate = data.week_date || '';
                     visibilityData = {};
                     data.visibility.forEach(v => {
-                        visibilityData[v.slide_page] = v.is_visible == 1;
+                        visibilityData[v.slide_number] = v.is_visible == 1;
                     });
                 }
 
@@ -94,7 +129,7 @@
             container.innerHTML = slides.map(slide => {
                 const isVisible = visibilityData[slide.page] !== undefined ? visibilityData[slide.page] : true;
                 return `
-                    <div class="slide-item">
+                    <div class="slide-item" data-page="${slide.page}" data-name="${slide.name.toLowerCase()}">
                         <div class="slide-info">
                             <div class="slide-name">${slide.name}</div>
                             <div class="slide-page">ページ ${slide.page}</div>
@@ -106,16 +141,51 @@
                     </div>
                 `;
             }).join('');
+            updateStats();
         }
 
         function toggleVisibility(page, isVisible) {
             visibilityData[page] = isVisible;
+            updateStats();
+        }
+
+        function filterSlides() {
+            const filterValue = document.getElementById('filterInput').value.toLowerCase();
+            const items = document.querySelectorAll('.slide-item');
+
+            items.forEach(item => {
+                const page = item.getAttribute('data-page');
+                const name = item.getAttribute('data-name');
+
+                if (page.includes(filterValue) || name.includes(filterValue)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function updateStats() {
+            let visibleCount = 0;
+            let hiddenCount = 0;
+
+            slides.forEach(slide => {
+                const isVisible = visibilityData[slide.page] !== undefined ? visibilityData[slide.page] : true;
+                if (isVisible) {
+                    visibleCount++;
+                } else {
+                    hiddenCount++;
+                }
+            });
+
+            document.getElementById('totalPages').textContent = TOTAL_PAGES;
+            document.getElementById('visibleCount').textContent = visibleCount;
+            document.getElementById('hiddenCount').textContent = hiddenCount;
         }
 
         async function saveAll() {
             const visibilityArray = slides.map(slide => ({
-                slide_page: slide.page,
-                slide_name: slide.name,
+                slide_number: slide.page,
                 is_visible: visibilityData[slide.page] !== undefined ? (visibilityData[slide.page] ? 1 : 0) : 1
             }));
 
@@ -125,6 +195,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         action: 'save_all',
+                        week_date: weekDate,
                         visibility: visibilityArray
                     })
                 });
@@ -132,11 +203,12 @@
                 const data = await response.json();
                 if (data.success) {
                     alert('保存しました！');
+                    loadVisibility(); // リロードして最新の状態を取得
                 } else {
-                    alert('エラー: ' + data.error);
+                    alert('エラー: ' + (data.error || '不明なエラー'));
                 }
             } catch (error) {
-                alert('通信エラー: ' + error);
+                alert('通信エラー: ' + error.message);
             }
         }
     </script>

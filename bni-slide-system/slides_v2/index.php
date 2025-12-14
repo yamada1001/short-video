@@ -70,9 +70,35 @@ $phpSlides = [
 // 総スライド数
 $totalSlides = 309;
 
-// スライド一覧を生成
+// スライドの表示/非表示設定を取得
+$visibilityMap = [];
+try {
+    $db_path = __DIR__ . '/data/bni_slide_system.db';
+    $db = new PDO('sqlite:' . $db_path);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $db->prepare("SELECT slide_number, is_visible FROM slide_visibility WHERE week_date = :week_date");
+    $stmt->bindValue(':week_date', $targetDate, PDO::PARAM_STR);
+    $stmt->execute();
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $visibilityMap[$row['slide_number']] = $row['is_visible'] == 1;
+    }
+} catch (Exception $e) {
+    // エラーの場合は全て表示
+    error_log("Visibility check error: " . $e->getMessage());
+}
+
+// スライド一覧を生成（非表示のスライドは除外）
 $slides = [];
 for ($i = 1; $i <= $totalSlides; $i++) {
+    // 表示/非表示チェック（デフォルトは表示）
+    $isVisible = isset($visibilityMap[$i]) ? $visibilityMap[$i] : true;
+
+    if (!$isVisible) {
+        continue; // 非表示スライドはスキップ
+    }
+
     if (isset($phpSlides[$i])) {
         // PHPスライド
         $slides[$i] = [

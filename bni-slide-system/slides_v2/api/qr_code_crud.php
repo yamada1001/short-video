@@ -32,7 +32,9 @@ switch ($action) {
         $url = $postData['url'] ?? null;
         if (!$weekDate || !$url) { echo json_encode(['success' => false, 'error' => '必要なデータが不足しています']); exit; }
 
-        // QRコード生成（Google Charts APIを使用）
+        // QRコード生成（phpqrcodeライブラリを使用）
+        require_once __DIR__ . '/../lib/phpqrcode/phpqrcode.php';
+
         $qrImageDir = __DIR__ . '/../data/uploads/qr_codes/';
         if (!is_dir($qrImageDir)) { mkdir($qrImageDir, 0755, true); }
 
@@ -40,16 +42,20 @@ switch ($action) {
         $qrImagePath = $qrImageDir . $fileName;
         $relativeQrPath = 'data/uploads/qr_codes/' . $fileName;
 
-        // Google Charts API経由でQRコード画像を生成
-        $qrUrl = 'https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=' . urlencode($url);
-        $imageData = file_get_contents($qrUrl);
-        
-        if ($imageData === false) {
-            echo json_encode(['success' => false, 'error' => 'QRコード生成に失敗しました']);
+        // phpqrcodeライブラリでQRコード画像を生成
+        // パラメータ: (データ, 出力ファイル, エラー訂正レベル, サイズ, マージン)
+        // エラー訂正レベル: L=7%, M=15%, Q=25%, H=30%
+        try {
+            QRcode::png($url, $qrImagePath, QR_ECLEVEL_M, 10, 2);
+        } catch (Exception $e) {
+            echo json_encode(['success' => false, 'error' => 'QRコード生成に失敗しました: ' . $e->getMessage()]);
             exit;
         }
 
-        file_put_contents($qrImagePath, $imageData);
+        if (!file_exists($qrImagePath)) {
+            echo json_encode(['success' => false, 'error' => 'QRコード画像の保存に失敗しました']);
+            exit;
+        }
 
         // 既存データを確認
         $stmt = $db->prepare("SELECT id FROM qr_codes WHERE week_date = :week_date");
@@ -59,21 +65,21 @@ switch ($action) {
 
         if ($existing) {
             // 更新
-            $stmt = $db->prepare("UPDATE qr_codes SET url = :url, qr_image_path = :qr_image_path, updated_at = CURRENT_TIMESTAMP WHERE week_date = :week_date");
+            $stmt = $db->prepare("UPDATE qr_codes SET url = :url, qr_code_path = :qr_code_path, updated_at = CURRENT_TIMESTAMP WHERE week_date = :week_date");
         } else {
             // 新規作成
-            $stmt = $db->prepare("INSERT INTO qr_codes (week_date, url, qr_image_path) VALUES (:week_date, :url, :qr_image_path)");
+            $stmt = $db->prepare("INSERT INTO qr_codes (week_date, url, qr_code_path) VALUES (:week_date, :url, :qr_code_path)");
         }
 
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
         $stmt->bindValue(':url', $url, PDO::PARAM_STR);
-        $stmt->bindValue(':qr_image_path', $relativeQrPath, PDO::PARAM_STR);
+        $stmt->bindValue(':qr_code_path', $relativeQrPath, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             // 保存成功後、スライド画像を生成
             generateSlideImage('qr_code.php', 242, $weekDate);
 
-            echo json_encode(['success' => true, 'qr_image_path' => $relativeQrPath]);
+            echo json_encode(['success' => true, 'qr_code_path' => $relativeQrPath]);
         } else {
             echo json_encode(['success' => false, 'error' => 'データベースエラー']);
         }

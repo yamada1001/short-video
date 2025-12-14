@@ -101,7 +101,7 @@
                 
                 if (data.success && data.qr) {
                     document.getElementById('url').value = data.qr.url;
-                    document.getElementById('qrImage').src = '../' + data.qr.qr_image_path;
+                    document.getElementById('qrImage').src = '../' + data.qr.qr_code_path;
                     document.getElementById('preview').style.display = 'block';
                 } else {
                     document.getElementById('preview').style.display = 'none';

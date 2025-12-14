@@ -93,7 +93,7 @@ switch ($action) {
         }
 
         // PDFを画像に変換
-        $pythonScript = __DIR__ . '/../../pdf_to_images.py';
+        $pythonScript = __DIR__ . '/../../scripts/pdf_to_images.py';
         $outputDir = $imageDir . pathinfo($fileName, PATHINFO_FILENAME) . '/';
 
         if (!is_dir($outputDir)) {

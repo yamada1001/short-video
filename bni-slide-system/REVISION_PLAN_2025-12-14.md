@@ -1465,3 +1465,272 @@ https://yojitu.com/bni-slide-system/slides_v2/index.php#7
 **最終更新**: 2025-12-14 19:15 - API重大バグ修正完了（反映待ち）
 
 ---
+
+---
+
+## 🔧 2025-12-14 緊急修正実施記録
+
+### 修正日時
+2025-12-14 18:00 - 19:00
+
+### クライアント緊急要求対応
+クライアントから損害賠償の可能性が示され、今日中の納品が必須となった。
+以下の問題を緊急修正。
+
+---
+
+### 1. ✅ API 500エラー修正
+
+**問題**: 
+- .htaccessの`php_flag`/`php_value`がCGI版PHPで動作せず500エラー
+
+**修正**:
+- `slides_v2/api/.htaccess`から問題の2行を削除
+- XserverのCGI版PHPに対応
+
+---
+
+### 2. ✅ API構文エラー修正（8ファイル）
+
+**問題**: 
+- visitors_crud.php, new_members_crud.php等で構文エラー
+- `$stmt->execute()`の戻り値未代入
+- ifブロックの閉じ括弧欠落
+
+**修正ファイル**:
+- visitors_crud.php (2箇所)
+- new_members_crud.php (3箇所)
+- member_pitch_crud.php (1箇所)
+- renewal_crud.php (3箇所)
+- share_story_crud.php (2箇所)
+- start_dash_crud.php (2箇所)
+- substitutes_crud.php (4箇所)
+- weekly_no1_crud.php (2箇所)
+
+**修正内容**:
+```php
+// Before
+$stmt->execute();
+if ($result) { ... }
+break;
+
+// After
+$result = $stmt->execute();
+if ($result) { ... } else { ... }
+break;
+```
+
+---
+
+### 3. ✅ main_presenter.php ファイルアップロード修正
+
+**問題**:
+- ファイルアップロードが完全に失敗
+
+**修正内容**:
+1. フォームに`enctype="multipart/form-data"`追加
+2. APIに`read`アクション追加（`get`と`read`両対応）
+3. 更新時のID自動検出（week_dateから取得）
+4. `presentation_type`カラム追加
+5. SQL文修正
+
+---
+
+### 4. ✅ speaker_rotation.php 保存機能修正
+
+**問題**:
+- 編集内容が保存されず消える
+
+**修正内容**:
+1. `main_presenter_id`をNULL許可に変更
+2. PDOのNULLバインディング修正
+3. 非同期データリロード対応
+
+---
+
+### 5. ✅ 開催日機能削除（11ファイル）
+
+**ユーザー要求**:
+「対象週というのいりません。基本入力して保存されたものが最新の状態で、それをスライドに適用させてくれれば問題ありません」
+
+**修正内容**:
+- 全管理画面から開催日選択UI削除
+- 最新データ自動表示に変更
+- API に`get_latest`, `delete_all`アクション追加
+
+**修正ファイル**:
+
+Admin画面 (8ファイル):
+- seating.php
+- visitors.php
+- substitutes.php
+- new_members.php
+- renewal.php
+- weekly_no1.php
+- share_story.php
+- main_presenter.php（一部）
+
+API (6ファイル):
+- seating_crud.php
+- visitors_crud.php
+- substitutes_crud.php
+- new_members_crud.php
+- renewal_crud.php
+- weekly_no1_crud.php
+- share_story_crud.php
+
+---
+
+### 6. ✅ データベーススキーマ修正
+
+**問題**:
+- week_dateがNOT NULL制約で新仕様と不整合
+
+**修正内容**:
+- 全テーブルのweek_dateをNULL許可に変更
+- substitutes.substitute_noカラム追加
+- migration_fix_week_date.sql作成
+
+**修正テーブル**:
+- visitors
+- substitutes
+- new_members
+- renewal_members
+- share_story
+- main_presenter
+- weekly_no1
+
+---
+
+### 7. ✅ テストデータ追加
+
+**作成ファイル**:
+- `test_data_insertion_fixed.sql`
+
+**追加データ**:
+- visitors: 3件（山田太郎、鈴木花子、佐々木健一）
+- substitutes: 3件（伊藤孝、渡辺美咲、中村大輔）
+- new_members: 3件（鷲山佳子、河野理枝、鷲山修一）
+- renewal_members: 3件（吉岡彩耶加、橋本、花本）
+- weekly_no1: 1件
+- share_story: 1件
+- main_presenter: 1件
+
+---
+
+### 8. ✅ networking_pdf.php PDF変換修正
+
+**問題**:
+- PDFの変換に失敗
+
+**修正内容**:
+- Pythonスクリプトパス修正
+- `__DIR__ . '/../../pdf_to_images.py'` → `__DIR__ . '/../../scripts/pdf_to_images.py'`
+
+---
+
+### 9. ✅ qr_code.php QRコード生成修正
+
+**問題**:
+- Google Charts API（廃止済み）使用で通信エラー
+
+**修正内容**:
+- phpqrcodeライブラリ導入
+- 完全ローカル生成に変更（外部API不要）
+- `slides_v2/lib/phpqrcode/`追加
+
+**改善点**:
+- オフライン動作可能
+- 即座に生成（HTTPレイテンシなし）
+- レート制限なし
+- 将来的に安定
+
+---
+
+### 10. ✅ slide_visibility.php 全ページ表示修正
+
+**問題**:
+1. 16ページしか表示されず（全309ページ必要）
+2. 保存時にデータベースエラー
+
+**修正内容**:
+1. 全309ページを動的生成
+2. データベースカラム名修正（`slide_page`→`slide_number`）
+3. 検索・フィルター機能追加
+4. リアルタイム統計表示
+5. index.phpに非表示スライドスキップ機能統合
+
+**修正ファイル**:
+- admin/slide_visibility.php
+- api/slide_visibility_crud.php
+- index.php
+
+---
+
+### 11. ✅ 重複メンバーデータクリーンアップ
+
+**問題**:
+- 各メンバーが4回重複（192名→本来48名）
+
+**作成ファイル**:
+- cleanup_duplicate_members.php
+- CLEANUP_DUPLICATES_README.md
+- test_cleanup_script.php
+
+**機能**:
+- 名前ごとに最古のID（MIN）を保持
+- 重複を自動削除
+- トランザクション対応
+
+---
+
+## 📊 修正統計
+
+### ファイル修正数
+- **Admin画面**: 8ファイル
+- **API**: 14ファイル
+- **データベース**: 7テーブル
+- **新規作成**: 15ファイル（ライブラリ除く）
+
+### 修正行数
+- **追加**: 約2,600行
+- **削除**: 約470行
+- **修正**: 約800行
+
+### コミット数
+- 本日実施: 6コミット
+- 主要修正完了
+
+---
+
+## ⚠️ 残作業
+
+### サーバーデプロイ確認
+- GitHub Actions完了待ち
+- サーバー上で重複メンバークリーンアップ実行
+
+### 動作確認必要
+1. 全管理画面の動作確認
+2. スライド表示確認
+3. ファイルアップロード確認
+4. QRコード生成確認
+5. PDF変換確認
+
+---
+
+## 📝 次回対応事項
+
+### 優先度：高
+- [ ] サーバー上での動作確認
+- [ ] クライアント最終確認
+- [ ] 本番データ投入
+
+### 優先度：中
+- [ ] パフォーマンス最適化
+- [ ] エラーハンドリング強化
+
+---
+
+**最終更新**: 2025-12-14 19:00
+**ステータス**: 緊急修正完了、デプロイ待ち
+

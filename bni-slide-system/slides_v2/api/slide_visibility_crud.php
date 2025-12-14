@@ -10,24 +10,30 @@ $action = $_GET['action'] ?? $_POST['action'] ?? null;
 $postData = json_decode(file_get_contents('php://input'), true);
 if ($postData) { $action = $postData['action'] ?? $action; }
 
+// 対象週を取得
+$weekDate = $_GET['week_date'] ?? $postData['week_date'] ?? getTargetFriday();
+
 switch ($action) {
     case 'list':
-        $query = "SELECT * FROM slide_visibility ORDER BY slide_page";
-        $stmt = $db->query($query);
+        $query = "SELECT * FROM slide_visibility WHERE week_date = :week_date ORDER BY slide_number";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->execute();
         $visibility = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { $visibility[] = $row; }
-        echo json_encode(['success' => true, 'visibility' => $visibility]);
+        echo json_encode(['success' => true, 'visibility' => $visibility, 'week_date' => $weekDate]);
         break;
 
     case 'get':
-        $slidePage = $_GET['slide_page'] ?? null;
-        if (!$slidePage) { echo json_encode(['success' => false, 'error' => 'ページ番号が必要です']); exit; }
-        
-        $stmt = $db->prepare("SELECT * FROM slide_visibility WHERE slide_page = :slide_page");
-        $stmt->bindValue(':slide_page', $slidePage, PDO::PARAM_INT);
+        $slideNumber = $_GET['slide_number'] ?? null;
+        if (!$slideNumber) { echo json_encode(['success' => false, 'error' => 'ページ番号が必要です']); exit; }
+
+        $stmt = $db->prepare("SELECT * FROM slide_visibility WHERE week_date = :week_date AND slide_number = :slide_number");
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':slide_number', $slideNumber, PDO::PARAM_INT);
         $stmt->execute();
         $slide = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
         if ($slide) {
             echo json_encode(['success' => true, 'slide' => $slide]);
         } else {
@@ -43,25 +49,29 @@ switch ($action) {
         $db->beginTransaction();
         try {
             foreach ($visibilityArray as $item) {
-                $stmt = $db->prepare("SELECT id FROM slide_visibility WHERE slide_page = :slide_page");
-                $stmt->bindValue(':slide_page', $item['slide_page'], PDO::PARAM_INT);
+                $stmt = $db->prepare("SELECT id FROM slide_visibility WHERE week_date = :week_date AND slide_number = :slide_number");
+                $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+                $stmt->bindValue(':slide_number', $item['slide_number'], PDO::PARAM_INT);
                 $stmt->execute();
                 $existing = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if ($existing) {
-                    $stmt = $db->prepare("UPDATE slide_visibility SET slide_name = :slide_name, is_visible = :is_visible, updated_at = CURRENT_TIMESTAMP WHERE slide_page = :slide_page");
+                    $stmt = $db->prepare("UPDATE slide_visibility SET is_visible = :is_visible, updated_at = CURRENT_TIMESTAMP WHERE week_date = :week_date AND slide_number = :slide_number");
+                    $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+                    $stmt->bindValue(':slide_number', $item['slide_number'], PDO::PARAM_INT);
+                    $stmt->bindValue(':is_visible', $item['is_visible'], PDO::PARAM_INT);
                 } else {
-                    $stmt = $db->prepare("INSERT INTO slide_visibility (slide_page, slide_name, is_visible) VALUES (:slide_page, :slide_name, :is_visible)");
+                    $stmt = $db->prepare("INSERT INTO slide_visibility (week_date, slide_number, is_visible) VALUES (:week_date, :slide_number, :is_visible)");
+                    $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+                    $stmt->bindValue(':slide_number', $item['slide_number'], PDO::PARAM_INT);
+                    $stmt->bindValue(':is_visible', $item['is_visible'], PDO::PARAM_INT);
                 }
 
-                $stmt->bindValue(':slide_page', $item['slide_page'], PDO::PARAM_INT);
-                $stmt->bindValue(':slide_name', $item['slide_name'], PDO::PARAM_STR);
-                $stmt->bindValue(':is_visible', $item['is_visible'], PDO::PARAM_INT);
                 $stmt->execute();
             }
 
             $db->commit();
-            echo json_encode(['success' => true]);
+            echo json_encode(['success' => true, 'message' => '保存しました']);
         } catch (Exception $e) {
             $db->rollBack();
             echo json_encode(['success' => false, 'error' => 'データベースエラー: ' . $e->getMessage()]);
