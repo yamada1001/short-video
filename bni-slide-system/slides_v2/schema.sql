@@ -9,7 +9,6 @@ CREATE TABLE members (
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE TABLE sqlite_sequence(name,seq);
 CREATE INDEX idx_members_name ON members(name);
 CREATE INDEX idx_members_is_active ON members(is_active);
 CREATE TABLE main_presenter (
