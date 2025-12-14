@@ -31,10 +31,29 @@ if (!$presentation) {
         'company_name' => '',
         'category' => '',
         'photo_path' => '',
+        'youtube_url' => '',
     ];
     $hasData = false;
 } else {
     $hasData = true;
+}
+
+// YouTube URLを埋め込み用URLに変換
+$youtubeEmbedUrl = null;
+if (!empty($presentation['youtube_url'])) {
+    $url = $presentation['youtube_url'];
+
+    // 様々な形式のYouTube URLに対応
+    // https://www.youtube.com/watch?v=VIDEO_ID
+    // https://youtu.be/VIDEO_ID
+    // https://www.youtube.com/embed/VIDEO_ID
+
+    preg_match('/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/', $url, $matches);
+
+    if (!empty($matches[1])) {
+        $videoId = $matches[1];
+        $youtubeEmbedUrl = "https://www.youtube.com/embed/{$videoId}";
+    }
 }
 
 ?>
@@ -129,6 +148,21 @@ if (!$presentation) {
             font-weight: 400;
             opacity: 0.95;
             line-height: 1.4;
+            margin-bottom: 40px;
+        }
+
+        /* YouTube Video */
+        .youtube-video {
+            margin-top: 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .youtube-video iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
         }
 
         /* No Data */
@@ -175,6 +209,14 @@ if (!$presentation) {
                 <?php if ($presentation['company_name']): ?>
                     <div class="member-company">
                         <?= htmlspecialchars($presentation['company_name']) ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($youtubeEmbedUrl): ?>
+                    <div class="youtube-video">
+                        <iframe src="<?= htmlspecialchars($youtubeEmbedUrl) ?>"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
                     </div>
                 <?php endif; ?>
             </div>
