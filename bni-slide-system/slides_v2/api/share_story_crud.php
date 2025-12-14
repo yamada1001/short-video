@@ -41,6 +41,7 @@ switch ($action) {
 
     case 'save':
         $memberId = $_POST['member_id'] ?? null;
+        $weekDate = $_POST['week_date'] ?? date('Y-m-d');
 
         if (!$memberId) {
             echo json_encode(['success' => false, 'error' => 'メンバーIDは必須です']);
@@ -52,11 +53,12 @@ switch ($action) {
 
         // 新規データを挿入
         $stmt = $db->prepare('
-            INSERT INTO share_story (member_id)
-            VALUES (:member_id)
+            INSERT INTO share_story (member_id, week_date)
+            VALUES (:member_id, :week_date)
         ');
 
         $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
+        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
 
         $result = $stmt->execute();
 

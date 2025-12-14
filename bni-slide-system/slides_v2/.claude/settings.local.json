@@ -7,7 +7,13 @@
       "Bash(unzip:*)",
       "Bash(git checkout:*)",
       "WebFetch(domain:yojitu.com)",
-      "Bash(scp:*)"
+      "Bash(scp:*)",
+      "Bash(/tmp/db_from_git.db)",
+      "Bash(git log:*)",
+      "Bash(/tmp/test_$commit.db)",
+      "Bash(if [ -f /tmp/test_$commit.db ])",
+      "Bash(git rm:*)",
+      "Bash(/Users/yamadaren/Movies/claude-code-projects/yojitu.com/bni-slide-system/slides_v2/schema.sql)"
     ],
     "deny": [],
     "ask": []
