@@ -21,22 +21,23 @@ try {
     $db->exec('DELETE FROM substitutes');
     echo "  ✓ 削除完了\n\n";
 
-    // テストデータ
+    // テストデータ (member_idは実在するメンバーIDを使用)
+    // member_id 1: 高橋, 2: 高野, 3: 渡辺美由紀
     $testData = [
         [
-            'member_id' => 1,
+            'member_id' => 1,  // 高橋の代理
             'substitute_company' => 'テスト株式会社',
             'substitute_name' => '山田太郎',
             'substitute_no' => 1
         ],
         [
-            'member_id' => 2,
+            'member_id' => 2,  // 高野の代理
             'substitute_company' => 'サンプル商事',
             'substitute_name' => '佐藤花子',
             'substitute_no' => 2
         ],
         [
-            'member_id' => 3,
+            'member_id' => 3,  // 渡辺美由紀の代理
             'substitute_company' => 'デモ企画',
             'substitute_name' => '鈴木一郎',
             'substitute_no' => 3

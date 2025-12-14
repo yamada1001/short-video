@@ -87,18 +87,25 @@ switch ($action) {
     case 'create':
         // 新規代理出席者追加
         $weekDate = $_POST['week_date'] ?? null;
+        $memberId = $_POST['member_id'] ?? null;
         $substituteNo = $_POST['substitute_no'] ?? null;
         $companyName = $_POST['company_name'] ?? '';
         $name = $_POST['name'] ?? '';
 
-        if (!$weekDate || !$substituteNo || !$companyName || !$name) {
+        if (!$memberId || !$substituteNo || !$companyName || !$name) {
             echo json_encode(['success' => false, 'error' => '全項目は必須です']);
             exit;
         }
 
-        // 最大3名チェック
-        $stmt = $db->prepare("SELECT COUNT(*) as count FROM substitutes WHERE week_date = :week_date");
-        $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        // 最大3名チェック（week_dateがnullの場合は全体でチェック）
+        $checkQuery = $weekDate
+            ? "SELECT COUNT(*) as count FROM substitutes WHERE week_date = :week_date"
+            : "SELECT COUNT(*) as count FROM substitutes WHERE week_date IS NULL";
+
+        $stmt = $db->prepare($checkQuery);
+        if ($weekDate) {
+            $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        }
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -108,11 +115,12 @@ switch ($action) {
         }
 
         $stmt = $db->prepare('
-            INSERT INTO substitutes (week_date, substitute_no, company_name, name)
-            VALUES (:week_date, :substitute_no, :company_name, :name)
+            INSERT INTO substitutes (week_date, member_id, substitute_no, substitute_company, substitute_name)
+            VALUES (:week_date, :member_id, :substitute_no, :company_name, :name)
         ');
 
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
+        $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
         $stmt->bindValue(':substitute_no', $substituteNo, PDO::PARAM_INT);
         $stmt->bindValue(':company_name', $companyName, PDO::PARAM_STR);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
@@ -132,25 +140,28 @@ switch ($action) {
     case 'update':
         // 代理出席者情報更新
         $id = $_POST['id'] ?? null;
+        $memberId = $_POST['member_id'] ?? null;
         $substituteNo = $_POST['substitute_no'] ?? null;
         $companyName = $_POST['company_name'] ?? '';
         $name = $_POST['name'] ?? '';
 
-        if (!$id || !$substituteNo || !$companyName || !$name) {
+        if (!$id || !$memberId || !$substituteNo || !$companyName || !$name) {
             echo json_encode(['success' => false, 'error' => '全項目は必須です']);
             exit;
         }
 
         $stmt = $db->prepare('
             UPDATE substitutes
-            SET substitute_no = :substitute_no,
-                company_name = :company_name,
-                name = :name,
+            SET member_id = :member_id,
+                substitute_no = :substitute_no,
+                substitute_company = :company_name,
+                substitute_name = :name,
                 updated_at = CURRENT_TIMESTAMP
             WHERE id = :id
         ');
 
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':member_id', $memberId, PDO::PARAM_INT);
         $stmt->bindValue(':substitute_no', $substituteNo, PDO::PARAM_INT);
         $stmt->bindValue(':company_name', $companyName, PDO::PARAM_STR);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
@@ -207,15 +218,28 @@ switch ($action) {
         break;
 
     case 'get_latest':
-        // 最新の代理出席者一覧取得
+        // 最新の代理出席者一覧取得（メンバー情報も結合）
         $stmt = $db->query("
-            SELECT * FROM substitutes
-            ORDER BY created_at DESC, substitute_no ASC
+            SELECT
+                s.*,
+                m.name as member_name
+            FROM substitutes s
+            LEFT JOIN members m ON s.member_id = m.id
+            ORDER BY s.created_at DESC, s.substitute_no ASC
         ");
 
         $substitutes = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $substitutes[] = $row;
+            $substitutes[] = [
+                'id' => $row['id'],
+                'member_id' => $row['member_id'],
+                'member_name' => $row['member_name'] ?? 'undefined',
+                'company_name' => $row['substitute_company'],
+                'name' => $row['substitute_name'],
+                'substitute_no' => $row['substitute_no'],
+                'week_date' => $row['week_date'],
+                'created_at' => $row['created_at']
+            ];
         }
 
         echo json_encode(['success' => true, 'substitutes' => $substitutes]);

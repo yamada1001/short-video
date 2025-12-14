@@ -402,6 +402,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>誰の代理</th>
                             <th>会社名</th>
                             <th>代理出席者</th>
                             <th>操作</th>
@@ -430,6 +431,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label>誰の代理 <span class="required">*</span></label>
+                    <select id="memberId" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+                        <option value="">メンバーを選択してください</option>
+                        <!-- メンバー一覧はJavaScriptで読み込み -->
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label>会社名 <span class="required">*</span></label>
                     <input type="text" id="companyName" placeholder="例: 株式会社BNI" required>
                 </div>
@@ -451,17 +460,49 @@
 
     <script>
         const API_BASE = '../api/substitutes_crud.php';
+        const MEMBERS_API = '../api/members_crud.php';
         let substitutes = [];
+        let members = [];
 
         // ページ読み込み時
         document.addEventListener('DOMContentLoaded', () => {
             setupEventListeners();
+            loadMembers();
             loadSubstitutes();
         });
 
         // イベントリスナー設定
         function setupEventListeners() {
             document.getElementById('substituteForm').addEventListener('submit', handleSubmit);
+        }
+
+        // メンバー一覧取得
+        async function loadMembers() {
+            try {
+                const response = await fetch(`${MEMBERS_API}?action=list`);
+                const data = await response.json();
+
+                if (data.success) {
+                    members = data.members;
+                    populateMemberSelect();
+                }
+            } catch (error) {
+                console.error('メンバー読み込みエラー:', error);
+            }
+        }
+
+        // メンバーselect要素を設定
+        function populateMemberSelect() {
+            const select = document.getElementById('memberId');
+            const currentOptions = select.querySelectorAll('option:not([value=""])');
+            currentOptions.forEach(opt => opt.remove());
+
+            members.forEach(member => {
+                const option = document.createElement('option');
+                option.value = member.id;
+                option.textContent = member.name;
+                select.appendChild(option);
+            });
         }
 
         // 代理出席者一覧取得
@@ -489,7 +530,7 @@
             if (substitutes.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="4" class="empty-state">
+                        <td colspan="5" class="empty-state">
                             <i class="fas fa-inbox"></i>
                             <p>この日付の代理出席者はまだ登録されていません</p>
                         </td>
@@ -502,6 +543,7 @@
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td><strong>${substitute.substitute_no}</strong></td>
+                    <td>${substitute.member_name || 'undefined'}</td>
                     <td>${substitute.company_name}</td>
                     <td><strong>${substitute.name}</strong></td>
                     <td>
@@ -551,6 +593,7 @@
 
             document.getElementById('modalTitle').textContent = '代理出席者編集';
             document.getElementById('substituteId').value = substitute.id;
+            document.getElementById('memberId').value = substitute.member_id || '';
             document.getElementById('substituteNo').value = substitute.substitute_no;
             document.getElementById('companyName').value = substitute.company_name;
             document.getElementById('substituteName').value = substitute.name;
@@ -572,6 +615,7 @@
 
             formData.append('action', substituteId ? 'update' : 'create');
             if (substituteId) formData.append('id', substituteId);
+            formData.append('member_id', document.getElementById('memberId').value);
             formData.append('substitute_no', document.getElementById('substituteNo').value);
             formData.append('company_name', document.getElementById('companyName').value);
             formData.append('name', document.getElementById('substituteName').value);
