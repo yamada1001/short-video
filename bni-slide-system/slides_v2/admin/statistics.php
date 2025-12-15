@@ -165,10 +165,10 @@
             loadStatistics();
 
             // フォーム送信
-            document.getElementById('visitorStatsForm').addEventListener('submit', (e) => saveStats(e, 'visitor_stats'));
-            document.getElementById('referralStatsForm').addEventListener('submit', (e) => saveStats(e, 'referral_stats'));
-            document.getElementById('salesStatsForm').addEventListener('submit', (e) => saveStats(e, 'sales_stats'));
-            document.getElementById('weeklyStatsForm').addEventListener('submit', (e) => saveStats(e, 'weekly_stats'));
+            document.getElementById('visitorStatsForm').addEventListener('submit', (e) => saveStats(e, 'visitor_total'));
+            document.getElementById('referralStatsForm').addEventListener('submit', (e) => saveStats(e, 'referral'));
+            document.getElementById('salesStatsForm').addEventListener('submit', (e) => saveStats(e, 'sales'));
+            document.getElementById('weeklyStatsForm').addEventListener('submit', (e) => saveStats(e, 'weekly_goal'));
         });
 
         async function loadStatistics() {
