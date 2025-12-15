@@ -98,54 +98,88 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
 </head>
 <body>
     <header class="header">
-        <div class="header__container">
-            <!-- ロゴ -->
-            <a href="<?php echo url(); ?>" class="header__logo">
-                <img src="<?php echo asset('assets/images/logo.jpg'); ?>" alt="<?php echo SITE_NAME; ?>" class="header__logo-image">
-            </a>
+        <!-- トップバー -->
+        <div class="header__topbar">
+            <div class="header__topbar-container">
+                <div class="header__topbar-left">
+                    <div class="header__topbar-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <a href="tel:<?php echo PHONE_LINK; ?>"><?php echo PHONE; ?></a>
+                    </div>
+                    <div class="header__topbar-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <span><?php echo BUSINESS_HOURS; ?></span>
+                    </div>
+                    <div class="header__topbar-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span><?php echo ADDRESS_CITY . ADDRESS_DETAIL; ?></span>
+                    </div>
+                </div>
+                <div class="header__topbar-right">
+                    <a href="<?php echo url('news'); ?>" class="header__topbar-link">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        お知らせ
+                    </a>
+                </div>
+            </div>
+        </div>
 
-            <!-- ナビゲーション（PC） -->
-            <nav class="header__nav">
-                <ul class="header__nav-list">
-                    <li class="header__nav-item">
-                        <a href="<?php echo url('kaitori'); ?>" class="header__nav-link <?php echo is_current_page('kaitori'); ?>">
-                            <i class="fa-solid fa-hand-holding-dollar"></i>
-                            買取サービス
-                        </a>
-                    </li>
-                    <li class="header__nav-item">
-                        <a href="<?php echo url('lease'); ?>" class="header__nav-link <?php echo is_current_page('lease'); ?>">
-                            <i class="fa-solid fa-file-contract"></i>
-                            新車リース
-                        </a>
-                    </li>
-                    <li class="header__nav-item">
-                        <a href="<?php echo url('about'); ?>" class="header__nav-link <?php echo is_current_page('about'); ?>">
-                            <i class="fa-solid fa-building"></i>
-                            会社概要
-                        </a>
-                    </li>
-                    <li class="header__nav-item">
-                        <a href="<?php echo url('news'); ?>" class="header__nav-link <?php echo is_current_page('news'); ?>">
-                            <i class="fa-solid fa-bullhorn"></i>
-                            お知らせ
-                        </a>
-                    </li>
-                    <li class="header__nav-item">
-                        <a href="<?php echo url('contact'); ?>" class="header__nav-link <?php echo is_current_page('contact'); ?>">
-                            <i class="fa-solid fa-envelope"></i>
-                            お問い合わせ
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+        <!-- メインヘッダー -->
+        <div class="header__main">
+            <div class="header__container">
+                <!-- ロゴ -->
+                <a href="<?php echo url(); ?>" class="header__logo">
+                    <img src="<?php echo asset('assets/images/logo.jpg'); ?>" alt="<?php echo SITE_NAME; ?>" class="header__logo-image">
+                </a>
 
-            <!-- ハンバーガーメニュー（SP） -->
-            <button class="header__hamburger" id="hamburger" aria-label="メニュー">
-                <span class="header__hamburger-line"></span>
-                <span class="header__hamburger-line"></span>
-                <span class="header__hamburger-line"></span>
-            </button>
+                <!-- ナビゲーション（PC） -->
+                <nav class="header__nav">
+                    <ul class="header__nav-list">
+                        <li class="header__nav-item">
+                            <a href="<?php echo url('kaitori'); ?>" class="header__nav-link <?php echo is_current_page('kaitori'); ?>">
+                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                                <span>買取サービス</span>
+                            </a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a href="<?php echo url('lease'); ?>" class="header__nav-link <?php echo is_current_page('lease'); ?>">
+                                <i class="fa-solid fa-file-contract"></i>
+                                <span>新車リース</span>
+                            </a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a href="<?php echo url('about'); ?>" class="header__nav-link <?php echo is_current_page('about'); ?>">
+                                <i class="fa-solid fa-building"></i>
+                                <span>会社概要</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- CTA（PC） -->
+                <div class="header__cta">
+                    <a href="tel:<?php echo PHONE_LINK; ?>" class="header__cta-phone">
+                        <div class="header__cta-phone-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="header__cta-phone-text">
+                            <span class="header__cta-phone-label">お電話</span>
+                            <span class="header__cta-phone-number"><?php echo PHONE; ?></span>
+                        </div>
+                    </a>
+                    <a href="<?php echo url('contact'); ?>" class="btn btn--primary">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                        <span>無料査定</span>
+                    </a>
+                </div>
+
+                <!-- ハンバーガーメニュー（SP） -->
+                <button class="header__hamburger" id="hamburger" aria-label="メニュー">
+                    <span class="header__hamburger-line"></span>
+                    <span class="header__hamburger-line"></span>
+                    <span class="header__hamburger-line"></span>
+                </button>
+            </div>
         </div>
 
         <!-- モバイルメニュー（SP） -->

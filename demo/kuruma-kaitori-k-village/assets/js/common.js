@@ -8,6 +8,29 @@
   'use strict';
 
   /* ========================================
+     ヘッダースクロール処理
+     ======================================== */
+
+  const header = document.querySelector('.header');
+
+  if (header) {
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      // スクロール位置が100px以上の場合、.scrolled クラスを追加
+      if (scrollTop > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      lastScrollTop = scrollTop;
+    });
+  }
+
+  /* ========================================
      ハンバーガーメニュー
      ======================================== */
 
@@ -15,24 +38,39 @@
   const mobileMenu = document.getElementById('mobile-menu');
 
   if (hamburger && mobileMenu) {
+    // オーバーレイを作成
+    const overlay = document.createElement('div');
+    overlay.className = 'header__mobile-overlay';
+    document.body.appendChild(overlay);
+
     hamburger.addEventListener('click', function() {
-      this.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
+      this.classList.toggle('is-active');
+      mobileMenu.classList.toggle('is-open');
+      overlay.classList.toggle('is-visible');
 
       // body スクロール制御
-      if (mobileMenu.classList.contains('active')) {
+      if (mobileMenu.classList.contains('is-open')) {
         document.body.style.overflow = 'hidden';
       } else {
         document.body.style.overflow = '';
       }
     });
 
+    // オーバーレイをクリックしたらメニューを閉じる
+    overlay.addEventListener('click', function() {
+      hamburger.classList.remove('is-active');
+      mobileMenu.classList.remove('is-open');
+      overlay.classList.remove('is-visible');
+      document.body.style.overflow = '';
+    });
+
     // モバイルメニュー内のリンクをクリックしたらメニューを閉じる
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
       link.addEventListener('click', function() {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('is-active');
+        mobileMenu.classList.remove('is-open');
+        overlay.classList.remove('is-visible');
         document.body.style.overflow = '';
       });
     });
