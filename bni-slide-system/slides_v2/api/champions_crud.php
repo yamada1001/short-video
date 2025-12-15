@@ -39,7 +39,7 @@ switch ($action) {
             FROM champions c
             LEFT JOIN members m ON c.member_id = m.id
             WHERE c.week_date = :week_date
-            ORDER BY c.type, c.rank, c.id
+            ORDER BY c.category, c.rank, c.id
         ");
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
         $stmt->execute();
@@ -90,7 +90,7 @@ switch ($action) {
             WHERE c.week_date = (
                 SELECT MAX(week_date) FROM champions
             )
-            ORDER BY c.type, c.rank, c.id
+            ORDER BY c.category, c.rank, c.id
         ");
 
         $champions = [];
