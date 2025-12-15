@@ -33,8 +33,8 @@ $totalAmount = $stats['total_amount'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理者ダッシュボード - BNI Payment System</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/admin/assets/css/admin.css">
+    <link rel="stylesheet" href="/bni-payment-system/public/assets/css/style.css">
+    <link rel="stylesheet" href="/bni-payment-system/public/admin/assets/css/admin.css">
 </head>
 <body class="admin-body">
     <div class="admin-container">
