@@ -57,32 +57,33 @@ switch ($action) {
         $latestWeekRow = $latestWeekStmt->fetch(PDO::FETCH_ASSOC);
         $latestWeek = $latestWeekRow['latest_week'];
 
-        if ($latestWeek) {
-            $stmt = $db->prepare("
-                SELECT
-                    m.id,
-                    m.name,
-                    m.company_name,
-                    m.photo_path,
-                    COALESCE(mpa.is_absent, 0) as is_absent
-                FROM members m
-                LEFT JOIN member_pitch_attendance mpa
-                    ON m.id = mpa.member_id AND mpa.week_date = :week_date
-                WHERE m.is_active = 1
-                ORDER BY m.name ASC
-            ");
-            $stmt->bindValue(':week_date', $latestWeek, PDO::PARAM_STR);
-            $stmt->execute();
-
-            $members = [];
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $members[] = $row;
-            }
-
-            echo json_encode(['success' => true, 'members' => $members, 'week_date' => $latestWeek]);
-        } else {
-            echo json_encode(['success' => true, 'members' => [], 'week_date' => null]);
+        // member_pitch_attendanceにデータがない場合は、今日の金曜日を使用
+        if (!$latestWeek) {
+            $latestWeek = getTargetFriday();
         }
+
+        $stmt = $db->prepare("
+            SELECT
+                m.id,
+                m.name,
+                m.company_name,
+                m.photo_path,
+                COALESCE(mpa.is_absent, 0) as is_absent
+            FROM members m
+            LEFT JOIN member_pitch_attendance mpa
+                ON m.id = mpa.member_id AND mpa.week_date = :week_date
+            WHERE m.is_active = 1
+            ORDER BY m.name ASC
+        ");
+        $stmt->bindValue(':week_date', $latestWeek, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $members = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $members[] = $row;
+        }
+
+        echo json_encode(['success' => true, 'members' => $members, 'week_date' => $latestWeek]);
         break;
 
     case 'toggle_absence':

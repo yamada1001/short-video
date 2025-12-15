@@ -23,10 +23,11 @@ if (!$targetDate) {
     }
 }
 
-// メインプレゼンのPDF枚数とビジター数を取得
+// メインプレゼンのPDF枚数、ビジター数、メンバー数を取得
 $mainPresenterPdfPages = 0;
 $networkingPdfPages = 0;
 $visitorCount = 0;
+$memberCount = 0;
 
 try {
     $db_path = __DIR__ . '/data/bni_slide_system.db';
@@ -73,6 +74,11 @@ try {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $visitorCount = $row ? (int)$row['count'] : 0;
 
+    // アクティブメンバー数を取得
+    $stmt = $db->query("SELECT COUNT(*) as count FROM members WHERE is_active = 1");
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $memberCount = $row ? (int)$row['count'] : 0;
+
 } catch (Exception $e) {
     error_log("PDF page count error: " . $e->getMessage());
 }
@@ -106,7 +112,7 @@ $phpSlides = [
     95 => 'all_champions.php',
     97 => 'business_breakout.php',
     107 => 'start_dash.php?page=107',
-    112 => 'member_pitch.php',
+    // 112~ メンバーピッチ（動的に追加される）
     169 => 'visitor_self_intro.php',
     185 => 'recruiting_categories.php',
     188 => 'visitor_stats.php',
@@ -131,6 +137,14 @@ $phpSlides = [
     301 => 'speaker_rotation.php?page=301',
     302 => 'weekly_stats.php'
 ];
+
+// メンバーピッチスライドを動的に追加（p.112~）
+if ($memberCount > 0) {
+    for ($i = 0; $i < $memberCount; $i++) {
+        $pageNum = 112 + $i;
+        $phpSlides[$pageNum] = "member_pitch.php?index=$i";
+    }
+}
 
 // ビジター感想スライドを動的に追加（p.213~）
 if ($visitorCount > 0) {
@@ -157,12 +171,20 @@ if ($mainPresenterPdfPages > 0) {
     }
 }
 
-// 総スライド数（PDFページ数とビジター数を考慮）
+// 総スライド数（PDFページ数、ビジター数、メンバー数を考慮）
 // 基本: 309ページ
+// メンバーピッチスライドが追加される場合: p.112から人数分追加される（元々1ページ想定なので、超過分を追加）
 // ネットワーキングPDFが追加される場合: p.86の1ページ分が置き換えられ、それ以降が追加される
 // メインプレゼンPDFが追加される場合: p.205~p.212 の8ページ分が置き換えられ、それ以降が追加される
 // ビジター感想スライドが追加される場合: p.213から人数分追加される（元々1ページ想定なので、超過分を追加）
 $totalSlides = 309;
+
+// メンバーピッチスライドの追加ページ数（1人以上で超過分を追加）
+// p.112は元々1ページ想定なので、2人目以降が追加される
+if ($memberCount > 1) {
+    $memberExtraPages = $memberCount - 1;
+    $totalSlides += $memberExtraPages;
+}
 
 // ネットワーキング学習PDFの追加ページ数（1ページ以上で超過分を追加）
 if ($networkingPdfPages > 1) {

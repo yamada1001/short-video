@@ -378,8 +378,9 @@ $currentVisitor = $visitors[$currentIndex];
             }
         });
 
-        // 初期表示
+        // 初期表示とタイマー自動スタート
         updateTimerDisplay();
+        startTimer();
 
         // 自動フルスクリーン（ユーザーインタラクション後）
         document.addEventListener('click', () => {

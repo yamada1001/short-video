@@ -1,3 +1,34 @@
+<?php
+/**
+ * BNI Slide System V2 - Member Pitch Slide
+ * メンバーピッチスライド（個別メンバー表示）
+ */
+
+require_once __DIR__ . '/../config.php';
+
+// URLパラメータからindexを取得
+$currentIndex = isset($_GET['index']) ? (int)$_GET['index'] : 0;
+
+$db = new PDO('sqlite:' . $db_path);
+
+// 全アクティブメンバーを取得
+$stmt = $db->prepare("
+    SELECT id, name, company_name, photo_path
+    FROM members
+    WHERE is_active = 1
+    ORDER BY name ASC
+");
+$stmt->execute();
+
+$members = [];
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $members[] = $row;
+}
+
+// 指定されたindexのメンバー情報を取得
+$currentMember = $members[$currentIndex] ?? null;
+$totalMembers = count($members);
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -191,78 +222,41 @@
             </button>
         </div>
 
-        <div class="slide-progress" id="slideProgress">1 / 1</div>
+        <div class="slide-progress"><?php echo $currentIndex + 1; ?> / <?php echo $totalMembers; ?></div>
 
-        <div id="memberPhoto" class="member-photo"></div>
-        <div id="memberName" class="member-name"></div>
-        <div id="memberCompany" class="member-company"></div>
+        <?php if ($currentMember): ?>
+            <?php if ($currentMember['photo_path']): ?>
+                <img src="../<?php echo htmlspecialchars($currentMember['photo_path']); ?>" class="member-photo" alt="<?php echo htmlspecialchars($currentMember['name']); ?>">
+            <?php else: ?>
+                <div class="member-photo"></div>
+            <?php endif; ?>
+
+            <div class="member-name"><?php echo htmlspecialchars($currentMember['name']); ?></div>
+            <div class="member-company"><?php echo htmlspecialchars($currentMember['company_name'] ?? ''); ?></div>
+        <?php else: ?>
+            <div class="member-photo"></div>
+            <div class="member-name">メンバーが見つかりません</div>
+            <div class="member-company"></div>
+        <?php endif; ?>
+
         <div id="timer" class="timer">0:33</div>
 
         <div class="navigation-hint">
-            <i class="fas fa-keyboard"></i> F: フルスクリーン | ←→: ナビゲーション | Space: スタート/停止
+            <i class="fas fa-keyboard"></i> F: フルスクリーン | Space: スタート/停止
         </div>
 
-        <div class="page-number" id="pageNumber">p.112-166</div>
+        <div class="page-number">p.<?php echo 112 + $currentIndex; ?></div>
     </div>
 
     <script>
-        const API_BASE = '../api/member_pitch_crud.php';
-        let members = [];
-        let currentIndex = 0;
         let timerInterval = null;
         let remainingTime = 33; // 33秒
 
         document.addEventListener('DOMContentLoaded', () => {
-            loadMembers();
             setupKeyboardShortcuts();
+            // タイマー自動スタート
+            startTimer();
         });
-
-        async function loadMembers() {
-            try {
-                const response = await fetch(`${API_BASE}?action=get_latest`);
-                const data = await response.json();
-
-                if (data.success) {
-                    // 不参加メンバーを除外
-                    members = data.members.filter(m => m.is_absent == 0);
-                    if (members.length > 0) {
-                        showMember(0);
-                    } else {
-                        alert('表示するメンバーがいません');
-                    }
-                } else {
-                    alert('データの読み込みに失敗しました');
-                }
-            } catch (error) {
-                console.error('エラー:', error);
-                alert('データの読み込み中にエラーが発生しました');
-            }
-        }
-
-        function showMember(index) {
-            if (index < 0 || index >= members.length) return;
-
-            currentIndex = index;
-            const member = members[index];
-
-            // メンバー情報表示
-            const photoEl = document.getElementById('memberPhoto');
-            if (member.photo_path) {
-                photoEl.style.backgroundImage = `url(${member.photo_path})`;
-                photoEl.style.backgroundSize = 'cover';
-                photoEl.style.backgroundPosition = 'center';
-            } else {
-                photoEl.style.backgroundImage = 'none';
-            }
-
-            document.getElementById('memberName').textContent = member.name;
-            document.getElementById('memberCompany').textContent = member.company_name || '';
-            document.getElementById('slideProgress').textContent = `${index + 1} / ${members.length}`;
-            document.getElementById('pageNumber').textContent = `p.${112 + index}`;
-
-            // タイマーリセット
-            resetTimer();
-        }
 
         function startTimer() {
             if (timerInterval) return; // 既に実行中
@@ -273,10 +267,6 @@
 
                 if (remainingTime <= 0) {
                     pauseTimer();
-                    // 自動的に次のメンバーへ
-                    if (currentIndex < members.length - 1) {
-                        setTimeout(() => nextMember(), 1000);
-                    }
                 }
             }, 1000);
         }
@@ -309,31 +299,11 @@
             }
         }
 
-        function nextMember() {
-            if (currentIndex < members.length - 1) {
-                showMember(currentIndex + 1);
-            }
-        }
-
-        function prevMember() {
-            if (currentIndex > 0) {
-                showMember(currentIndex - 1);
-            }
-        }
-
         function setupKeyboardShortcuts() {
             document.addEventListener('keydown', (e) => {
                 switch(e.key.toLowerCase()) {
                     case 'f':
                         toggleFullscreen();
-                        break;
-                    case 'arrowright':
-                        pauseTimer();
-                        nextMember();
-                        break;
-                    case 'arrowleft':
-                        pauseTimer();
-                        prevMember();
                         break;
                     case ' ':
                         e.preventDefault();

@@ -14,7 +14,8 @@
       "Bash(if [ -f /tmp/test_$commit.db ])",
       "Bash(git rm:*)",
       "Bash(/Users/yamadaren/Movies/claude-code-projects/yojitu.com/bni-slide-system/slides_v2/schema.sql)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(do echo -n \"slide_0$i.png: \")"
     ],
     "deny": [],
     "ask": []
