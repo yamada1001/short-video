@@ -65,6 +65,25 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            prefix: 'tw-',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B35',
+                        secondary: '#004E89',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo asset('assets/css/reset.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/variables.css'); ?>">
