@@ -8,16 +8,13 @@ require_once __DIR__ . '/../config.php';
 
 $db = new PDO('sqlite:' . $db_path);
 
-$targetFriday = getTargetFriday();
-
 $stmt = $db->prepare("
     SELECT c.*, m.name as member_name, m.photo_path
     FROM champions c
     LEFT JOIN members m ON c.member_id = m.id
-    WHERE c.week_date = :week_date AND c.category = 'referral'
+    WHERE c.category = 'referral' AND c.week_date = (SELECT MAX(week_date) FROM champions WHERE category = 'referral')
     ORDER BY c.rank, c.count DESC, c.id
 ");
-$stmt->bindValue(':week_date', $targetFriday, PDO::PARAM_STR);
 $stmt->execute();
 
 $champions = [];
