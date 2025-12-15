@@ -86,6 +86,7 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             action: 'create',
+                            week_date: new Date().toISOString().split('T')[0],
                             from_member_id: fromMemberId,
                             to_member_id: toMemberId
                         })
