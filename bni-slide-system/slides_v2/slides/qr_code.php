@@ -6,10 +6,8 @@
 require_once __DIR__ . '/../config.php';
 
 $db = new PDO('sqlite:' . $db_path);
-$targetFriday = getTargetFriday();
 
-$stmt = $db->prepare("SELECT * FROM qr_codes WHERE week_date = :week_date ORDER BY id DESC LIMIT 1");
-$stmt->bindValue(':week_date', $targetFriday, PDO::PARAM_STR);
+$stmt = $db->prepare("SELECT * FROM qr_codes ORDER BY created_at DESC LIMIT 1");
 $stmt->execute();
 $qr = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
