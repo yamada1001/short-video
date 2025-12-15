@@ -8,11 +8,11 @@ require_once __DIR__ . '/../config.php';
 $db = new PDO('sqlite:' . $db_path);
 $targetFriday = getTargetFriday();
 
-$stmt = $db->prepare("SELECT * FROM statistics WHERE week_date = :week_date AND type = 'sales_stats'");
+$stmt = $db->prepare("SELECT * FROM statistics WHERE week_date = :week_date AND type = 'sales'");
 $stmt->bindValue(':week_date', $targetFriday, PDO::PARAM_STR);
 $stmt->execute();
 $stat = $stmt->fetch(PDO::FETCH_ASSOC);
-$data = $stat ? json_decode($stat['value'], true) : [];
+$data = $stat ? json_decode($stat['data_json'], true) : [];
 $growthRate = floatval($data['sales_growth_rate'] ?? 0);
 $isPositive = $growthRate >= 0;
 ?>
