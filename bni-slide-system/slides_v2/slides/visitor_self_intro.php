@@ -32,19 +32,23 @@ try {
     die('データベースエラー: ' . $e->getMessage());
 }
 
-if (count($visitors) === 0) {
-    die('この日付のビジターは登録されていません');
-}
-
 // 現在のビジターインデックス
 $currentIndex = isset($_GET['index']) ? (int)$_GET['index'] : 0;
 $totalVisitors = count($visitors);
 
-if ($currentIndex >= $totalVisitors) {
-    $currentIndex = 0;
+if ($totalVisitors === 0) {
+    $currentVisitor = [
+        'name' => 'ビジターなし',
+        'company_name' => '',
+        'job_description' => '',
+        'referral_request' => ''
+    ];
+} else {
+    if ($currentIndex >= $totalVisitors) {
+        $currentIndex = 0;
+    }
+    $currentVisitor = $visitors[$currentIndex];
 }
-
-$currentVisitor = $visitors[$currentIndex];
 ?>
 <!DOCTYPE html>
 <html lang="ja">

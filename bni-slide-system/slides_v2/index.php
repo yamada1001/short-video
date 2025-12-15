@@ -113,7 +113,7 @@ $phpSlides = [
     97 => 'business_breakout.php',
     107 => 'start_dash.php?page=107',
     // 112~ メンバーピッチ（動的に追加される）
-    169 => 'visitor_self_intro.php',
+    // 169~ ビジター自己紹介（動的に追加される）
     185 => 'recruiting_categories.php',
     188 => 'visitor_stats.php',
     189 => 'referral_stats.php',
@@ -146,6 +146,14 @@ if ($memberCount > 0) {
     }
 }
 
+// ビジター自己紹介スライドを動的に追加（p.169~）
+if ($visitorCount > 0) {
+    for ($i = 0; $i < $visitorCount; $i++) {
+        $pageNum = 169 + $i;
+        $phpSlides[$pageNum] = "visitor_self_intro.php?index=$i";
+    }
+}
+
 // ビジター感想スライドを動的に追加（p.213~）
 if ($visitorCount > 0) {
     for ($i = 0; $i < $visitorCount; $i++) {
@@ -174,6 +182,7 @@ if ($mainPresenterPdfPages > 0) {
 // 総スライド数（PDFページ数、ビジター数、メンバー数を考慮）
 // 基本: 309ページ
 // メンバーピッチスライドが追加される場合: p.112から人数分追加される（元々1ページ想定なので、超過分を追加）
+// ビジター自己紹介スライドが追加される場合: p.169から人数分追加される（元々1ページ想定なので、超過分を追加）
 // ネットワーキングPDFが追加される場合: p.86の1ページ分が置き換えられ、それ以降が追加される
 // メインプレゼンPDFが追加される場合: p.205~p.212 の8ページ分が置き換えられ、それ以降が追加される
 // ビジター感想スライドが追加される場合: p.213から人数分追加される（元々1ページ想定なので、超過分を追加）
@@ -184,6 +193,13 @@ $totalSlides = 309;
 if ($memberCount > 1) {
     $memberExtraPages = $memberCount - 1;
     $totalSlides += $memberExtraPages;
+}
+
+// ビジター自己紹介スライドの追加ページ数（1人以上で超過分を追加）
+// p.169は元々1ページ想定なので、2人目以降が追加される
+if ($visitorCount > 1) {
+    $visitorSelfIntroExtraPages = $visitorCount - 1;
+    $totalSlides += $visitorSelfIntroExtraPages;
 }
 
 // ネットワーキング学習PDFの追加ページ数（1ページ以上で超過分を追加）
@@ -201,8 +217,8 @@ if ($mainPresenterPdfPages > 8) {
 // ビジター感想スライドの追加ページ数（1人以上で超過分を追加）
 // p.213は元々1ページ想定なので、2人目以降が追加される
 if ($visitorCount > 1) {
-    $visitorExtraPages = $visitorCount - 1;
-    $totalSlides += $visitorExtraPages;
+    $visitorFeedbackExtraPages = $visitorCount - 1;
+    $totalSlides += $visitorFeedbackExtraPages;
 }
 
 // スライドの表示/非表示設定を取得
