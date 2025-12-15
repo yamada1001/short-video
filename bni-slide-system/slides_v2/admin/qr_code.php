@@ -74,6 +74,7 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             action: 'create',
+                            week_date: new Date().toISOString().split('T')[0],
                             url: url
                         })
                     });
