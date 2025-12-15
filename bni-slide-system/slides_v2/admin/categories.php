@@ -88,6 +88,7 @@
     <script>
         let openCategories = [];
         let surveyCategories = [];
+        let currentWeekDate = null; // 現在読み込まれているデータのweek_date
 
         document.addEventListener('DOMContentLoaded', function() {
             initializeSurveyCategories();
@@ -135,10 +136,14 @@
                 const response = await fetch('../api/categories_crud.php?action=get_latest');
                 const data = await response.json();
 
-                if (data.success && data.categories) {
+                if (data.success && data.categories && data.categories.length > 0) {
+                    // 最初のカテゴリからweek_dateを取得
+                    currentWeekDate = data.categories[0].week_date;
+                    console.log('Loaded week_date:', currentWeekDate);
                     populateCategories(data.categories);
                 } else {
-                    // データがない場合は初期化
+                    // データがない場合は今日の日付を使用
+                    currentWeekDate = new Date().toISOString().split('T')[0];
                     document.getElementById('openCategoriesList').innerHTML = '';
                     initializeSurveyCategories();
                 }
@@ -209,9 +214,12 @@
                 // typeの変換: 'open' -> 'urgent'
                 const dbType = type === 'open' ? 'urgent' : type;
 
+                // 既存データのweek_dateを使用（なければ今日の日付）
+                const saveWeekDate = currentWeekDate || new Date().toISOString().split('T')[0];
+
                 const requestData = {
                     action: 'save',
-                    week_date: new Date().toISOString().split('T')[0],
+                    week_date: saveWeekDate,
                     type: dbType,
                     categories: categoriesData
                 };
