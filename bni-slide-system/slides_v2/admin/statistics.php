@@ -68,19 +68,19 @@
                 <form id="visitorStatsForm">
                     <div class="form-group">
                         <label>これまでのビジター数</label>
-                        <input type="number" id="visitor_total" min="0" required>
+                        <input type="text" class="number-input" id="visitor_total" required>
                     </div>
                     <div class="form-group">
                         <label>先週の定例会の数</label>
-                        <input type="number" id="visitor_last_week_meetings" min="0" required>
+                        <input type="text" class="number-input" id="visitor_last_week_meetings" required>
                     </div>
                     <div class="form-group">
                         <label>本日の定例会の数</label>
-                        <input type="number" id="visitor_today_meetings" min="0" required>
+                        <input type="text" class="number-input" id="visitor_today_meetings" required>
                     </div>
                     <div class="form-group">
                         <label>現在のメンバー数</label>
-                        <input type="number" id="visitor_current_members" min="0" required>
+                        <input type="text" class="number-input" id="visitor_current_members" required>
                     </div>
                     <button type="submit" class="save-btn"><i class="fas fa-save"></i> 保存</button>
                 </form>
@@ -96,15 +96,15 @@
                     </div>
                     <div class="form-group">
                         <label>これまでのリファーラル件数</label>
-                        <input type="number" id="referral_total" min="0" required>
+                        <input type="text" class="number-input" id="referral_total" required>
                     </div>
                     <div class="form-group">
                         <label>先週のリファーラル件数</label>
-                        <input type="number" id="referral_last_week" min="0" required>
+                        <input type="text" class="number-input" id="referral_last_week" required>
                     </div>
                     <div class="form-group">
                         <label>先週平均のリファーラル数</label>
-                        <input type="number" id="referral_last_week_avg" min="0" step="0.1" required>
+                        <input type="text" class="decimal-input" id="referral_last_week_avg" required>
                     </div>
                     <button type="submit" class="save-btn"><i class="fas fa-save"></i> 保存</button>
                 </form>
@@ -120,11 +120,11 @@
                     </div>
                     <div class="form-group">
                         <label>期間までの売上</label>
-                        <input type="number" id="sales_total" min="0" required>
+                        <input type="text" class="number-input" id="sales_total" required>
                     </div>
                     <div class="form-group">
                         <label>前期間との伸び率 (%)</label>
-                        <input type="number" id="sales_growth_rate" step="0.1" required>
+                        <input type="text" class="decimal-input" id="sales_growth_rate" required>
                     </div>
                     <button type="submit" class="save-btn"><i class="fas fa-save"></i> 保存</button>
                 </form>
@@ -136,19 +136,19 @@
                 <form id="weeklyStatsForm">
                     <div class="form-group">
                         <label>先週のビジター数</label>
-                        <input type="number" id="weekly_last_week_visitors" min="0" required>
+                        <input type="text" class="number-input" id="weekly_last_week_visitors" required>
                     </div>
                     <div class="form-group">
                         <label>今週のビジター数</label>
-                        <input type="number" id="weekly_this_week_visitors" min="0" required>
+                        <input type="text" class="number-input" id="weekly_this_week_visitors" required>
                     </div>
                     <div class="form-group">
                         <label>150名までのカウントダウン</label>
-                        <input type="number" id="weekly_countdown_150" min="0" required>
+                        <input type="text" class="number-input" id="weekly_countdown_150" required>
                     </div>
                     <div class="form-group">
                         <label>毎週の目標数</label>
-                        <input type="number" id="weekly_target" min="0" required>
+                        <input type="text" class="number-input" id="weekly_target" required>
                     </div>
                     <button type="submit" class="save-btn"><i class="fas fa-save"></i> 保存</button>
                 </form>
@@ -192,7 +192,14 @@
                 Object.keys(values).forEach(key => {
                     const element = document.getElementById(key);
                     if (element) {
-                        element.value = values[key];
+                        // 数値フィールドの場合はカンマ区切りで表示
+                        if (element.classList.contains('number-input')) {
+                            element.value = formatNumber(values[key].toString());
+                        } else if (element.classList.contains('decimal-input')) {
+                            element.value = formatDecimal(values[key].toString());
+                        } else {
+                            element.value = values[key];
+                        }
                     }
                 });
             });
@@ -206,7 +213,12 @@
             const form = e.target;
             const inputs = form.querySelectorAll('input');
             inputs.forEach(input => {
-                formData[input.id] = input.value;
+                // カンマを削除して数値として保存
+                if (input.classList.contains('number-input') || input.classList.contains('decimal-input')) {
+                    formData[input.id] = input.value.replace(/,/g, '');
+                } else {
+                    formData[input.id] = input.value;
+                }
             });
 
             // week_dateを取得（フォーム内のdate inputから、なければ今日の日付）
@@ -247,6 +259,40 @@
         function viewSlide(pageNumber) {
             window.open(`../index.php#${pageNumber}`, '_blank', 'width=1920,height=1080');
         }
+
+        // 数字フォーマット（カンマ区切り）
+        function formatNumber(value) {
+            const num = value.replace(/,/g, '');
+            if (isNaN(num) || num === '') return '';
+            return parseInt(num).toLocaleString();
+        }
+
+        function formatDecimal(value) {
+            const num = value.replace(/,/g, '');
+            if (isNaN(num) || num === '') return '';
+            return parseFloat(num).toLocaleString('ja-JP', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+        }
+
+        // 整数入力フィールドにカンマ区切りを適用
+        document.querySelectorAll('.number-input').forEach(input => {
+            input.addEventListener('input', (e) => {
+                const cursorPos = e.target.selectionStart;
+                const oldValue = e.target.value;
+                const newValue = formatNumber(oldValue);
+                e.target.value = newValue;
+
+                // カーソル位置を調整
+                const diff = newValue.length - oldValue.length;
+                e.target.setSelectionRange(cursorPos + diff, cursorPos + diff);
+            });
+        });
+
+        // 小数入力フィールドにカンマ区切りを適用
+        document.querySelectorAll('.decimal-input').forEach(input => {
+            input.addEventListener('blur', (e) => {
+                e.target.value = formatDecimal(e.target.value);
+            });
+        });
     </script>
 </body>
 </html>
