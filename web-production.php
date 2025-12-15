@@ -134,7 +134,7 @@ $faq_structured_data = '
                 <i class="fas fa-laptop-code"></i> Webサイト制作
             </h1>
             <p class="page-header__description">
-                10万円から始める、プロフェッショナルなWeb制作。<br>
+                プロフェッショナルなWeb制作。<br>
                 個人事業主から中小企業まで、目的に応じた最適なプランをご提供します。
             </p>
         </div>
@@ -153,20 +153,20 @@ $faq_structured_data = '
 
             <!-- モバイル用タブ -->
             <div class="plan-tabs">
-                <button class="plan-tab active" data-plan="plan-10" onclick="switchPlan('plan-10')">10万円</button>
-                <button class="plan-tab" data-plan="plan-30" onclick="switchPlan('plan-30')">30万円</button>
+                <button class="plan-tab active" data-plan="plan-10" onclick="switchPlan('plan-10')">スタンダード</button>
+                <button class="plan-tab" data-plan="plan-30" onclick="switchPlan('plan-30')">プレミアム</button>
                 <button class="plan-tab" data-plan="plan-custom" onclick="switchPlan('plan-custom')">カスタム</button>
             </div>
 
             <div class="pricing-grid has-tabs">
-                <!-- 10万円プラン -->
+                <!-- スタンダードプラン -->
                 <div class="pricing-card active" data-plan="plan-10">
                     <div class="pricing-card__icon">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h3 class="pricing-card__name">10万円プラン</h3>
+                    <h3 class="pricing-card__name">スタンダードプラン</h3>
                     <div class="pricing-card__price">
-                        ¥100,000<span class="pricing-card__price-unit">〜</span>
+                        お見積り
                     </div>
                     <div class="pricing-card__target">
                         <i class="fas fa-user"></i> 個人事業主の方や安く早く作りたい方向け
@@ -187,21 +187,21 @@ $faq_structured_data = '
                     </div>
                 </div>
 
-                <!-- 30万円プラン -->
+                <!-- プレミアムプラン -->
                 <div class="pricing-card pricing-card--featured" data-plan="plan-30">
                     <div class="pricing-card__badge">おすすめ</div>
                     <div class="pricing-card__icon">
                         <i class="fas fa-star"></i>
                     </div>
-                    <h3 class="pricing-card__name">30万円プラン</h3>
+                    <h3 class="pricing-card__name">プレミアムプラン</h3>
                     <div class="pricing-card__price">
-                        ¥300,000<span class="pricing-card__price-unit">〜</span>
+                        お見積り
                     </div>
                     <div class="pricing-card__target">
                         <i class="fas fa-users"></i> ブログ更新やWebからの集客を目指す方向け
                     </div>
                     <ul class="pricing-card__features">
-                        <li><i class="fas fa-check-circle"></i> <span>10万円プランの全機能</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>スタンダードプランの全機能</span></li>
                         <li><i class="fas fa-check-circle"></i> <span>ブログ・お知らせ機能</span></li>
                         <li><i class="fas fa-check-circle"></i> <span>軽量CMS or 静的サイト生成</span></li>
                         <li><i class="fas fa-check-circle"></i> <span>Google Analytics設定・解説</span></li>
@@ -319,7 +319,7 @@ $faq_structured_data = '
                             ワイヤー・デザイン・コーディングを同時進行で進められるため、工程が大幅に短縮されます。
                         </p>
                         <ul class="speed-benefits">
-                            <li><i class="fas fa-check"></i> <strong>30万円プランでも約1週間で初稿提出</strong></li>
+                            <li><i class="fas fa-check"></i> <strong>約1週間で初稿提出</strong></li>
                             <li><i class="fas fa-check"></i> 修正後、問題なければ即デプロイ（公開）</li>
                             <li><i class="fas fa-check"></i> <strong>繁忙期を除き、ほとんどの案件が1ヶ月以内に納品可能</strong></li>
                         </ul>
@@ -375,7 +375,7 @@ $faq_structured_data = '
                 <i class="fas fa-users"></i> 一般的にWeb制作に関わる職種
             </h2>
             <p class="team-section__subtitle">
-                通常、これだけの専門家がプロジェクトに関わります。当社の10万円・30万円プランでは、これらの役割を代表がワンストップで担当することでコストを削減しています。
+                通常、これだけの専門家がプロジェクトに関わります。当社のプランでは、これらの役割を代表がワンストップで担当することでコストを削減しています。
             </p>
 
             <div class="team-roles">

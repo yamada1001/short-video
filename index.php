@@ -50,8 +50,8 @@ $additional_css = [
 ];
 
 $ogp_tags = <<<'EOD'
-    <meta property="og:title" content="【10万円〜】大分のホームページ制作・Web制作｜余日（Yojitsu）">
-    <meta property="og:description" content="大分県のホームページ制作なら余日へ。10万円からの格安料金、AI活用で1週間で初稿提出、月額5,800円で更新し放題。大分市・別府市など県内全域対応。">
+    <meta property="og:title" content="大分のホームページ制作・Web制作｜余日（Yojitsu）">
+    <meta property="og:description" content="大分県のホームページ制作なら余日へ。AI活用で1週間で初稿提出、充実のサポート体制。大分市・別府市など県内全域対応。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yojitu.com/">
     <meta property="og:image" content="https://yojitu.com/assets/images/ogp.jpg">
@@ -71,7 +71,7 @@ $structured_data = '
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "余日（Yojitsu）",
-      "description": "大分県のホームページ制作・Web制作会社。10万円からの格安料金、AI活用で1週間で初稿提出、月額5,800円で更新し放題。大分市・別府市など県内全域対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作。",
+      "description": "大分県のホームページ制作・Web制作会社。AI活用で1週間で初稿提出、充実のサポート体制。大分市・別府市など県内全域対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作。",
       "url": "https://yojitu.com/",
       "telephone": "' . CONTACT_TEL . '",
       "email": "' . CONTACT_EMAIL . '",
@@ -99,7 +99,7 @@ $structured_data = '
         }
       ],
       "serviceType": ["ホームページ制作", "Webサイト制作", "ショート動画制作"],
-      "keywords": ["大分", "ホームページ制作", "Web制作", "格安", "10万円", "AI", "中小企業", "個人事業主"]
+      "keywords": ["大分", "ホームページ制作", "Web制作", "AI", "中小企業", "個人事業主"]
     }
 ';
 
@@ -113,7 +113,7 @@ $faq_structured_data = '
           "name": "余日（Yojitsu）はどんなサービスを提供していますか？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "大分県を拠点に、Web制作（ホームページ制作）とショート動画制作を提供しています。Web制作は10万円から、ショート動画は1本2万円から対応可能です。"
+            "text": "大分県を拠点に、Web制作（ホームページ制作）とショート動画制作を提供しています。お客様のご要望に応じて最適なプランをご提案いたします。"
           }
         },
         {
@@ -496,7 +496,7 @@ $faq_structured_data = '
                     </button>
                     <div class="faq-answer">
                         <span class="faq-a-icon">A.</span>
-                        <p>大分県を拠点に、Web制作（ホームページ制作）とショート動画制作を提供しています。Web制作は10万円から、ショート動画は1本2万円から対応可能です。</p>
+                        <p>大分県を拠点に、Web制作（ホームページ制作）とショート動画制作を提供しています。お客様のご要望に応じて最適なプランをご提案いたします。</p>
                     </div>
                 </div>
 
@@ -520,7 +520,7 @@ $faq_structured_data = '
                     </button>
                     <div class="faq-answer">
                         <span class="faq-a-icon">A.</span>
-                        <p>Web制作は10万円プラン・30万円プラン・カスタムプランの3種類、ショート動画は1本2万円または10本セット15万円です。いずれも月額5,800円の保守は別途必要です。</p>
+                        <p>お客様のご予算・ご要望に応じて最適なプランをご提案いたします。お見積りは無料ですので、お気軽にお問い合わせください。</p>
                     </div>
                 </div>
 
@@ -544,7 +544,7 @@ $faq_structured_data = '
                     </button>
                     <div class="faq-answer">
                         <span class="faq-a-icon">A.</span>
-                        <p>30万円プランでも約1週間で初稿を提出できます。繁忙期を除き、ほとんどの案件が1ヶ月以内に納品可能です。AI活用により、従来より大幅にスピードアップしています。</p>
+                        <p>プランや規模により異なりますが、約1週間で初稿を提出できます。繁忙期を除き、ほとんどの案件が1ヶ月以内に納品可能です。AI活用により、従来より大幅にスピードアップしています。</p>
                     </div>
                 </div>
 
