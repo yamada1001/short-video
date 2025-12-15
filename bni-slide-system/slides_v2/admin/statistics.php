@@ -186,8 +186,8 @@
 
         function populateStatistics(stats) {
             stats.forEach(stat => {
-                const values = JSON.parse(stat.value);
-                const type = stat.stat_type;
+                const values = JSON.parse(stat.data_json);
+                const type = stat.type;
 
                 Object.keys(values).forEach(key => {
                     const element = document.getElementById(key);

@@ -53,9 +53,9 @@ switch ($action) {
             exit;
         }
 
-        $stmt = $db->prepare("SELECT * FROM statistics WHERE week_date = :week_date AND stat_type = :stat_type LIMIT 1");
+        $stmt = $db->prepare("SELECT * FROM statistics WHERE week_date = :week_date AND type = :type LIMIT 1");
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->bindValue(':stat_type', $statType, PDO::PARAM_STR);
+        $stmt->bindValue(':type', $statType, PDO::PARAM_STR);
         $stmt->execute();
 
         $stat = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -96,9 +96,9 @@ switch ($action) {
         }
 
         // 既存データをチェック
-        $stmt = $db->prepare("SELECT id FROM statistics WHERE week_date = :week_date AND stat_type = :stat_type");
+        $stmt = $db->prepare("SELECT id FROM statistics WHERE week_date = :week_date AND type = :type");
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->bindValue(':stat_type', $statType, PDO::PARAM_STR);
+        $stmt->bindValue(':type', $statType, PDO::PARAM_STR);
         $stmt->execute();
         $existing = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -106,20 +106,20 @@ switch ($action) {
             // 更新
             $stmt = $db->prepare("
                 UPDATE statistics
-                SET value = :value, updated_at = CURRENT_TIMESTAMP
-                WHERE week_date = :week_date AND stat_type = :stat_type
+                SET data_json = :data_json, updated_at = CURRENT_TIMESTAMP
+                WHERE week_date = :week_date AND type = :type
             ");
         } else {
             // 新規作成
             $stmt = $db->prepare("
-                INSERT INTO statistics (week_date, stat_type, value)
-                VALUES (:week_date, :stat_type, :value)
+                INSERT INTO statistics (week_date, type, data_json)
+                VALUES (:week_date, :type, :data_json)
             ");
         }
 
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->bindValue(':stat_type', $statType, PDO::PARAM_STR);
-        $stmt->bindValue(':value', $value, PDO::PARAM_STR);
+        $stmt->bindValue(':type', $statType, PDO::PARAM_STR);
+        $stmt->bindValue(':data_json', $value, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             // 保存成功後、スライド画像を生成
@@ -153,9 +153,9 @@ switch ($action) {
             exit;
         }
 
-        $stmt = $db->prepare("DELETE FROM statistics WHERE week_date = :week_date AND stat_type = :stat_type");
+        $stmt = $db->prepare("DELETE FROM statistics WHERE week_date = :week_date AND type = :type");
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->bindValue(':stat_type', $statType, PDO::PARAM_STR);
+        $stmt->bindValue(':type', $statType, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             echo json_encode(['success' => true]);
