@@ -209,12 +209,23 @@
                 formData[input.id] = input.value;
             });
 
+            // week_dateを取得（フォーム内のdate inputから、なければ今日の日付）
+            let weekDate = null;
+            if (type === 'referral' && formData.referral_date) {
+                weekDate = formData.referral_date;
+            } else if (type === 'sales' && formData.sales_date) {
+                weekDate = formData.sales_date;
+            } else {
+                weekDate = new Date().toISOString().split('T')[0];
+            }
+
             try {
                 const response = await fetch('../api/statistics_crud.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         action: 'save',
+                        week_date: weekDate,
                         stat_type: type,
                         value: JSON.stringify(formData)
                     })
