@@ -84,31 +84,63 @@
                 </div>
             </div>
 
-            <!-- Right Column - YouTube Video (Compact) -->
+            <!-- Right Column - YouTube Video (Premium Design) -->
             <div class="tw-hidden lg:tw-block tw-relative"
-                 x-data="{ show: false }"
+                 x-data="{ show: false, isHovered: false }"
                  x-init="setTimeout(() => show = true, 400)"
                  :class="show ? 'tw-opacity-100 tw-translate-x-0' : 'tw-opacity-0 tw-translate-x-8'"
-                 class="tw-transition-all tw-duration-1000 tw-ease-out">
+                 class="tw-transition-all tw-duration-1000 tw-ease-out"
+                 @mouseenter="isHovered = true"
+                 @mouseleave="isHovered = false">
 
-                <!-- Video Wrapper -->
-                <div class="tw-relative tw-aspect-video tw-rounded-2xl tw-overflow-hidden tw-shadow-2xl tw-border-3 tw-border-white/30 tw-transition-all tw-duration-300 hover:tw-scale-105 hover:tw-shadow-primary/50">
-                    <iframe
-                        src="https://www.youtube.com/embed/kCmPeHw6xAU?si=VIlE1_Mqx6KsR817"
-                        title="くるま買取ケイヴィレッジ 店舗紹介"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen
-                        loading="lazy"
-                        class="tw-absolute tw-inset-0 tw-w-full tw-h-full">
-                    </iframe>
-                </div>
+                <!-- Decorative Glow Background -->
+                <div class="tw-absolute tw--inset-4 tw-bg-gradient-to-br tw-from-primary/30 tw-via-secondary/20 tw-to-primary/30 tw-blur-2xl tw-rounded-3xl tw-opacity-60"></div>
 
-                <!-- Video Badge -->
-                <div class="tw-absolute tw-bottom-3 tw-left-3 tw-inline-flex tw-items-center tw-gap-2 tw-px-3 tw-py-1.5 tw-bg-black/80 tw-backdrop-blur-md tw-rounded-full tw-border tw-border-white/20">
-                    <i class="fa-solid fa-play-circle tw-text-red-600"></i>
-                    <span class="tw-text-xs tw-font-bold tw-text-white">店舗紹介</span>
+                <!-- Video Container -->
+                <div class="tw-relative">
+                    <!-- Glass Frame -->
+                    <div class="tw-absolute tw--inset-3 tw-bg-gradient-to-br tw-from-white/20 tw-to-white/5 tw-rounded-3xl tw-backdrop-blur-sm tw-border tw-border-white/40"
+                         :class="isHovered ? 'tw-scale-105' : 'tw-scale-100'"
+                         style="transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);"></div>
+
+                    <!-- Video Wrapper -->
+                    <div class="tw-relative tw-aspect-video tw-rounded-2xl tw-overflow-hidden tw-shadow-2xl tw-ring-2 tw-ring-white/50 tw-ring-offset-2 tw-ring-offset-transparent">
+                        <!-- Video Badge (Top) -->
+                        <div class="tw-absolute tw-top-4 tw-left-4 tw-z-10 tw-inline-flex tw-items-center tw-gap-2 tw-px-4 tw-py-2 tw-bg-gradient-to-r tw-from-red-600 tw-to-red-500 tw-rounded-full tw-shadow-lg">
+                            <div class="tw-w-2 tw-h-2 tw-bg-white tw-rounded-full tw-animate-pulse"></div>
+                            <span class="tw-text-xs tw-font-black tw-text-white tw-tracking-wider">LIVE TOUR</span>
+                        </div>
+
+                        <!-- Play Button Overlay (Hover Effect) -->
+                        <div class="tw-absolute tw-inset-0 tw-z-10 tw-flex tw-items-center tw-justify-center tw-pointer-events-none"
+                             :class="isHovered ? 'tw-opacity-0' : 'tw-opacity-100'"
+                             style="transition: opacity 0.3s ease;">
+                            <div class="tw-w-20 tw-h-20 tw-bg-white/90 tw-rounded-full tw-flex tw-items-center tw-justify-center tw-shadow-2xl tw-backdrop-blur-sm">
+                                <i class="fa-solid fa-play tw-text-primary tw-text-3xl tw-ml-1"></i>
+                            </div>
+                        </div>
+
+                        <!-- YouTube Iframe -->
+                        <iframe
+                            src="https://www.youtube.com/embed/kCmPeHw6xAU?si=VIlE1_Mqx6KsR817&rel=0&modestbranding=1"
+                            title="くるま買取ケイヴィレッジ 店舗紹介"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            loading="lazy"
+                            class="tw-absolute tw-inset-0 tw-w-full tw-h-full">
+                        </iframe>
+                    </div>
+
+                    <!-- Bottom Info Bar -->
+                    <div class="tw-absolute tw--bottom-3 tw-left-1/2 tw--translate-x-1/2 tw-w-4/5 tw-px-4 tw-py-2.5 tw-bg-white/95 tw-backdrop-blur-lg tw-rounded-2xl tw-shadow-xl tw-border tw-border-white/60">
+                        <div class="tw-flex tw-items-center tw-justify-center tw-gap-3">
+                            <i class="fa-solid fa-video tw-text-primary tw-text-lg"></i>
+                            <span class="tw-text-sm tw-font-bold tw-text-gray-800">店舗の雰囲気をチェック</span>
+                            <i class="fa-solid fa-arrow-right tw-text-primary tw-text-sm"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
