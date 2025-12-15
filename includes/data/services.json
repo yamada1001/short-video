@@ -22,12 +22,12 @@
       "pricing": [
         {
           "name": "LP制作",
-          "price": "50,000円～",
+          "price": "お見積り",
           "description": "シンプルな1ページ構成"
         },
         {
           "name": "コーポレートサイト",
-          "price": "300,000円～",
+          "price": "お見積り",
           "description": "5～10ページ程度"
         }
       ],
@@ -53,17 +53,17 @@
       "pricing": [
         {
           "name": "基本プラン",
-          "price": "20,000円/1本",
+          "price": "お見積り",
           "description": "15～60秒の動画1本"
         },
         {
-          "name": "10本セット",
-          "price": "150,000円",
-          "description": "15～60秒の動画10本（25%OFF）"
+          "name": "複数本セット",
+          "price": "お見積り",
+          "description": "15～60秒の動画複数本"
         },
         {
           "name": "企画案作成のみ",
-          "price": "5,000円",
+          "price": "お見積り",
           "description": "動画コンセプト・構成案の提案"
         }
       ],

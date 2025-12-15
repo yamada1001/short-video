@@ -3,8 +3,8 @@ $current_page = 'services';
 require_once __DIR__ . '/includes/functions.php';
 
 // Head用の変数設定
-$page_title = '【1本2万円〜】大分のショート動画制作｜TikTok・Instagram・YouTube対応｜余日';
-$page_description = '大分県のショート動画制作なら余日へ。TikTok、Instagram Reels、YouTube Shortsに最適化。1本2万円から、企画・撮影・編集まで一貫対応。10本セット15万円（25%OFF）。大分県内出張費無料。個人事業主・中小企業のSNSマーケティングをサポート。';
+$page_title = '大分のショート動画制作｜TikTok・Instagram・YouTube対応｜余日';
+$page_description = '大分県のショート動画制作なら余日へ。TikTok、Instagram Reels、YouTube Shortsに最適化。企画・撮影・編集まで一貫対応。大分県内出張費無料。個人事業主・中小企業のSNSマーケティングをサポート。';
 $page_keywords = 'ショート動画,動画制作,TikTok,Instagram Reels,YouTube Shorts,大分,大分市,別府市,SNSマーケティング,余日';
 $additional_css = ['assets/css/cookie-consent.css'];
 
@@ -49,16 +49,12 @@ $structured_data = '
         {
           "@type": "Offer",
           "name": "基本プラン",
-          "price": "20000",
-          "priceCurrency": "JPY",
-          "description": "15〜60秒の動画1本"
+          "description": "15〜60秒の動画1本。お見積りはお問い合わせください"
         },
         {
           "@type": "Offer",
           "name": "10本セット",
-          "price": "150000",
-          "priceCurrency": "JPY",
-          "description": "15〜60秒の動画10本（25%OFF）"
+          "description": "15〜60秒の動画10本。お見積りはお問い合わせください"
         }
       ]
     }
@@ -74,7 +70,7 @@ $faq_structured_data = '
           "name": "ショート動画制作の料金はいくらですか？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "1本2万円から制作可能です。撮影・編集込みの料金です。10本セットなら15万円（25%OFF）でさらにお得です。大分県内への出張費は無料です。"
+            "text": "お客様のご要望や動画の内容により異なります。撮影・編集込みのお見積りを無料でご提案いたします。大分県内への出張費は無料です。お気軽にお問い合わせください。"
           }
         },
         {
@@ -542,7 +538,7 @@ EOD;
             </h2>
 
             <div class="highlight-box">
-                <p><i class="fas fa-info-circle"></i> 継続的な発信には10本セットがおすすめです。1本投稿するだけでは効果測定・改善が難しいため、複数本での運用を推奨しています。</p>
+                <p><i class="fas fa-info-circle"></i> 継続的な発信には複数本セットがおすすめです。1本投稿するだけでは効果測定・改善が難しいため、複数本での運用を推奨しています。</p>
             </div>
 
             <div class="pricing-grid">
@@ -553,7 +549,7 @@ EOD;
                     </div>
                     <h3 class="pricing-card__name">基本プラン</h3>
                     <div class="pricing-card__price">
-                        ¥20,000<span class="pricing-card__price-unit">/1本</span>
+                        お見積り<span class="pricing-card__price-unit">/1本</span>
                     </div>
                     <div class="pricing-card__description">
                         15〜60秒の動画1本
@@ -573,18 +569,18 @@ EOD;
                     </div>
                 </div>
 
-                <!-- 10本セット -->
+                <!-- 複数本セット -->
                 <div class="pricing-card pricing-card--featured">
-                    <div class="pricing-card__badge">25% OFF</div>
+                    <div class="pricing-card__badge">おすすめ</div>
                     <div class="pricing-card__icon">
                         <i class="fas fa-film"></i>
                     </div>
-                    <h3 class="pricing-card__name">10本セット</h3>
+                    <h3 class="pricing-card__name">複数本セット</h3>
                     <div class="pricing-card__price">
-                        ¥150,000<span class="pricing-card__price-unit">/10本</span>
+                        お見積り<span class="pricing-card__price-unit">/複数本</span>
                     </div>
                     <div class="pricing-card__description">
-                        15〜60秒の動画10本（1本あたり15,000円）
+                        15〜60秒の動画を複数本
                     </div>
                     <ul class="pricing-card__features">
                         <li><i class="fas fa-check-circle"></i> <span>基本プランの全機能</span></li>

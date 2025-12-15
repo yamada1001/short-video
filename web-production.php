@@ -3,9 +3,9 @@ $current_page = 'services';
 require_once __DIR__ . '/includes/functions.php';
 
 // Head用の変数設定
-$page_title = 'ホームページ制作の料金プラン・制作の流れ｜10万円〜30万円｜余日（Yojitsu）';
-$page_description = 'ホームページ制作の料金プラン（10万円・30万円・カスタム）、制作の流れ、AI活用による短納期を詳しく解説。月額5,800円で更新し放題。レスポンシブデザイン、SEO最適化、WordPress対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作サービスの詳細はこちら。';
-$page_keywords = 'ホームページ制作,料金,プラン,制作の流れ,10万円,30万円,AI,月額,更新,レスポンシブ,SEO,WordPress,余日';
+$page_title = 'ホームページ制作・制作の流れ｜余日（Yojitsu）';
+$page_description = 'ホームページ制作、制作の流れ、AI活用による短納期を詳しく解説。レスポンシブデザイン、SEO最適化、WordPress対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作サービスの詳細はこちら。お見積りは無料です。';
+$page_keywords = 'ホームページ制作,制作の流れ,AI,レスポンシブ,SEO,WordPress,余日';
 $additional_css = ['assets/css/pages/web-production.css', 'assets/css/cookie-consent.css'];
 
 $structured_data = '
@@ -48,24 +48,18 @@ $structured_data = '
       "offers": [
         {
           "@type": "Offer",
-          "name": "10万円プラン",
-          "price": "100000",
-          "priceCurrency": "JPY",
-          "description": "個人事業主の方や安く早く作りたい方向け"
+          "name": "スタンダードプラン",
+          "description": "個人事業主の方や安く早く作りたい方向け。お見積りはお問い合わせください。"
         },
         {
           "@type": "Offer",
-          "name": "30万円プラン",
-          "price": "300000",
-          "priceCurrency": "JPY",
-          "description": "ブログ機能やWebからの集客を目指す方向け"
+          "name": "プレミアムプラン",
+          "description": "ブログ機能やWebからの集客を目指す方向け。お見積りはお問い合わせください。"
         },
         {
           "@type": "Offer",
           "name": "カスタムプラン",
-          "priceRange": "500万円〜1200万円",
-          "priceCurrency": "JPY",
-          "description": "オリジナルデザイン・CMS開発など本格的なWeb制作"
+          "description": "オリジナルデザイン・CMS開発など本格的なWeb制作。お見積りはお問い合わせください。"
         }
       ]
     }
@@ -81,7 +75,7 @@ $faq_structured_data = '
           "name": "ホームページ制作の料金はいくらですか？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "10万円プラン、30万円プラン、カスタムプランの3種類をご用意しています。10万円プランは個人事業主向けのシンプルなサイト、30万円プランはブログ機能やSEO対策込み、カスタムプランは本格的なシステム開発向けです。"
+            "text": "お客様のご予算・ご要望に応じて最適なプランをご提案いたします。スタンダードプラン、プレミアムプラン、カスタムプランの3種類をご用意しております。お見積りは無料ですので、お気軽にお問い合わせください。"
           }
         },
         {
@@ -89,7 +83,7 @@ $faq_structured_data = '
           "name": "制作期間はどれくらいですか？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "10万円プランで約2〜3週間、30万円プランで約1〜2ヶ月が目安です。カスタムプランは規模により異なります。お急ぎの場合はご相談ください。"
+            "text": "プランや規模により異なりますが、通常2週間〜2ヶ月が目安です。お急ぎの場合はご相談ください。"
           }
         },
         {
@@ -97,7 +91,7 @@ $faq_structured_data = '
           "name": "保守・運用は必須ですか？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "はい、月額5,800円の保守契約は必須です。テキスト・画像の変更し放題、サーバー・ドメイン管理、セキュリティ対策、電話・メールサポートが含まれます。"
+            "text": "はい、保守契約を推奨しております。テキスト・画像の変更、サーバー・ドメイン管理、セキュリティ対策、電話・メールサポートが含まれます。詳細はお問い合わせください。"
           }
         },
         {

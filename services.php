@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/functions.php';
 
 // Head用の変数設定
 $page_title = '大分のデジタルマーケティングサービス｜Web制作・動画制作・SEO・広告運用｜余日';
-$page_description = '大分県を拠点にデジタルマーケティングをトータルサポート。ホームページ制作（10万円〜）、ショート動画制作（1本2万円〜）、SEO対策、Google広告・SNS広告運用。大分市・別府市など県内全域対応。個人事業主・中小企業向けのプロフェッショナルなサービス。';
+$page_description = '大分県を拠点にデジタルマーケティングをトータルサポート。ホームページ制作、ショート動画制作、SEO対策、Google広告・SNS広告運用。大分市・別府市など県内全域対応。個人事業主・中小企業向けのプロフェッショナルなサービス。';
 $page_keywords = 'デジタルマーケティング,Web制作,ホームページ制作,ショート動画,動画制作,SEO,広告運用,大分,大分市,別府市,余日';
 $additional_css = ['assets/css/cookie-consent.css'];
 
@@ -331,16 +331,16 @@ EOD;
                     </div>
                     <div class="service-card__content">
                         <p class="service-card__description">
-                            10万円から始める、プロフェッショナルなWeb制作。個人事業主から中小企業まで、目的に応じた最適なプランをご提供します。
+                            プロフェッショナルなWeb制作。個人事業主から中小企業まで、目的に応じた最適なプランをご提供します。
                         </p>
                         <ul class="service-card__features">
                             <li>
                                 <i class="fas fa-check-circle"></i>
-                                <span>10万円プラン - シンプルで早い</span>
+                                <span>スタンダードプラン - シンプルで早い</span>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
-                                <span>30万円プラン - ブログ機能付き</span>
+                                <span>プレミアムプラン - ブログ機能付き</span>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
@@ -380,15 +380,15 @@ EOD;
                         <ul class="service-card__features">
                             <li>
                                 <i class="fas fa-check-circle"></i>
-                                <span>基本プラン - 2万円/1本</span>
+                                <span>基本プラン - お見積り</span>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
-                                <span>10本セット - 15万円（25%OFF）</span>
+                                <span>複数本セット - お見積り</span>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
-                                <span>企画案作成のみ - 5千円</span>
+                                <span>企画案作成のみ - お見積り</span>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>

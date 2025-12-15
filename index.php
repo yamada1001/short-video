@@ -40,9 +40,9 @@ $all_categories = array_filter($all_categories); // 空の値を除外
 sort($all_categories);
 
 // Head用の変数設定
-$page_title = '【10万円〜】大分のホームページ制作・Web制作｜余日（Yojitsu）';
-$page_description = '大分県のホームページ制作・Web制作なら余日へ。10万円からの格安料金、AI活用で1週間で初稿提出、月額5,800円で更新し放題。大分市・別府市など県内全域対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作。';
-$page_keywords = '大分,ホームページ制作,Web制作,格安,10万円,AI,大分市,別府市,中小企業,個人事業主,余日,Yojitsu';
+$page_title = '大分のホームページ制作・Web制作｜余日（Yojitsu）';
+$page_description = '大分県のホームページ制作・Web制作なら余日へ。AI活用で1週間で初稿提出、充実のサポート体制。大分市・別府市など県内全域対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作。';
+$page_keywords = '大分,ホームページ制作,Web制作,AI,大分市,別府市,中小企業,個人事業主,余日,Yojitsu';
 $additional_css = [
     'assets/css/loading.css',
     'assets/css/pages/top.css',
@@ -98,7 +98,6 @@ $structured_data = '
           "name": "大分県"
         }
       ],
-      "priceRange": "¥100,000〜",
       "serviceType": ["ホームページ制作", "Webサイト制作", "ショート動画制作"],
       "keywords": ["大分", "ホームページ制作", "Web制作", "格安", "10万円", "AI", "中小企業", "個人事業主"]
     }
@@ -130,7 +129,7 @@ $faq_structured_data = '
           "name": "料金体系を教えてください",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Web制作は10万円プラン・30万円プラン・カスタムプランの3種類、ショート動画は1本2万円または10本セット15万円です。いずれも月額5,800円の保守は別途必要です。"
+            "text": "お客様のご予算・ご要望に応じて最適なプランをご提案いたします。お見積りは無料ですので、お気軽にお問い合わせください。"
           }
         },
         {
@@ -318,7 +317,6 @@ $faq_structured_data = '
                         コーポレートサイト・LP・採用サイトの制作。レスポンシブ対応、SEO最適化を標準実装。
                     </p>
                     <div class="service-card__footer">
-                        <p class="service-card__price">300,000円〜</p>
                         <a href="web-production.php" class="service-card__link">
                             詳しく見る
                             <i class="fas fa-arrow-right"></i>
@@ -335,7 +333,6 @@ $faq_structured_data = '
                         TikTok・Instagram・YouTubeショート向け。企画から編集まで、SNS映えする動画を制作。
                     </p>
                     <div class="service-card__footer">
-                        <p class="service-card__price">1本 20,000円〜</p>
                         <a href="video-production.php" class="service-card__link">
                             詳しく見る
                             <i class="fas fa-arrow-right"></i>
