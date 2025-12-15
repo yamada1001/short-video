@@ -150,12 +150,14 @@
                 return;
             }
 
-            container.innerHTML = verifications.map(v => `
+            // 最新の1件のみ表示
+            const latest = verifications[0];
+            container.innerHTML = `
                 <div class="list-item">
-                    <span><strong>${v.from_name}</strong> → <strong>${v.to_name}</strong></span>
-                    <button class="btn btn-danger" onclick="deleteVerification(${v.id})"><i class="fas fa-trash"></i> 削除</button>
+                    <span><strong>${latest.from_name}</strong> → <strong>${latest.to_name}</strong></span>
+                    <button class="btn btn-danger" onclick="deleteVerification(${latest.id})"><i class="fas fa-trash"></i> 削除</button>
                 </div>
-            `).join('');
+            `;
         }
 
         async function deleteVerification(id) {
