@@ -56,7 +56,7 @@
                     <label>リファーラルを受け取った人</label>
                     <select id="toMember" required></select>
                 </div>
-                <button type="submit" class="save-btn"><i class="fas fa-plus"></i> 追加</button>
+                <button type="submit" class="save-btn"><i class="fas fa-save"></i> 保存</button>
             </form>
         </div>
 
@@ -126,7 +126,7 @@
 
         async function loadVerifications() {
             try {
-                const response = await fetch('../api/referral_check_crud.php?action=list_latest');
+                const response = await fetch('../api/referral_check_crud.php?action=get_latest');
                 const data = await response.json();
                 if (data.success) {
                     displayVerifications(data.verifications);
