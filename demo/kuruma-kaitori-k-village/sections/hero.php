@@ -33,10 +33,9 @@
                 <div>
                     <p class="tw-text-xl md:tw-text-2xl tw-font-medium tw-mb-3 tw-tracking-wide">愛車を高く売るなら</p>
                     <img
-                        src="<?php echo asset('assets/images/logo-alt.jpg'); ?>"
+                        src="<?php echo asset('assets/images/logo-alt.png'); ?>"
                         alt="くるま買取ケイヴィレッジ"
-                        class="tw-w-full tw-max-w-md tw-h-auto tw-transition-transform tw-duration-300 hover:tw-scale-105"
-                        style="mix-blend-mode: multiply; filter: brightness(1.1) contrast(1.1);"
+                        class="tw-w-full tw-max-w-md tw-h-auto tw-transition-transform tw-duration-300 hover:tw-scale-105 tw-drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                     >
                 </div>
 
