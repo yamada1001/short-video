@@ -30,10 +30,10 @@
                         <span class="btn--hero__sub">90秒で完了</span>
                     </span>
                 </a>
-                <a href="tel:<?php echo PHONE_NUMBER; ?>" class="btn btn--secondary btn--large btn--hero">
+                <a href="tel:<?php echo PHONE_LINK; ?>" class="btn btn--secondary btn--large btn--hero">
                     <i class="fa-solid fa-phone"></i>
                     <span>
-                        <span class="btn--hero__label"><?php echo format_phone(PHONE_NUMBER); ?></span>
+                        <span class="btn--hero__label"><?php echo PHONE; ?></span>
                         <span class="btn--hero__sub">受付時間: <?php echo BUSINESS_HOURS; ?></span>
                     </span>
                 </a>

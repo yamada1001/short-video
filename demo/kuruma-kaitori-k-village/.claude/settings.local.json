@@ -12,7 +12,8 @@
       "Bash(git push:*)",
       "WebFetch(domain:ucarpac.com)",
       "WebFetch(domain:kaitori.carsensor.net)",
-      "WebFetch(domain:221616.com)"
+      "WebFetch(domain:221616.com)",
+      "WebFetch(domain:yojitu.com)"
     ],
     "deny": [],
     "ask": []

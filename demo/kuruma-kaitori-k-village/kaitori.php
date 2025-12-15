@@ -54,9 +54,9 @@ require_once __DIR__ . '/includes/header.php';
                     <i class="fa-solid fa-clipboard-check"></i>
                     <span>35秒で無料査定を申し込む</span>
                 </a>
-                <a href="tel:<?php echo PHONE_NUMBER; ?>" class="btn btn--outline-white btn--large">
+                <a href="tel:<?php echo PHONE_LINK; ?>" class="btn btn--outline-white btn--large">
                     <i class="fa-solid fa-phone"></i>
-                    <span><?php echo format_phone(PHONE_NUMBER); ?></span>
+                    <span><?php echo PHONE; ?></span>
                 </a>
             </div>
 
