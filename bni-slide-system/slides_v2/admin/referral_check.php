@@ -130,6 +130,13 @@
                 const data = await response.json();
                 if (data.success) {
                     displayVerifications(data.verifications);
+
+                    // 最新データをフォームに反映
+                    if (data.verifications && data.verifications.length > 0) {
+                        const latest = data.verifications[0];
+                        document.getElementById('fromMember').value = latest.from_member_id;
+                        document.getElementById('toMember').value = latest.to_member_id;
+                    }
                 }
             } catch (error) {
                 console.error('データ取得エラー:', error);
