@@ -228,18 +228,18 @@ $currentVisitor = $visitors[$currentIndex];
         <h1 class="slide-title">ビジター 簡単自己紹介</h1>
 
         <div class="visitor-name"><?= htmlspecialchars($currentVisitor['name']) ?> 様</div>
-        <?php if ($currentVisitor['company_name']): ?>
+        <?php if (!empty($currentVisitor['company_name'])): ?>
         <div class="visitor-company"><?= htmlspecialchars($currentVisitor['company_name']) ?></div>
         <?php endif; ?>
 
-        <?php if ($currentVisitor['job_description']): ?>
+        <?php if (!empty($currentVisitor['job_description'])): ?>
         <div class="content-section">
             <div class="content-label">お仕事内容</div>
             <div class="content-text"><?= htmlspecialchars($currentVisitor['job_description']) ?></div>
         </div>
         <?php endif; ?>
 
-        <?php if ($currentVisitor['referral_request']): ?>
+        <?php if (!empty($currentVisitor['referral_request'])): ?>
         <div class="content-section">
             <div class="content-label">ご紹介してほしい方・職業</div>
             <div class="content-text"><?= htmlspecialchars($currentVisitor['referral_request']) ?></div>
