@@ -55,8 +55,19 @@
 }
 
 .hero__content {
-  max-width: 800px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3xl);
+  align-items: center;
   color: var(--text-white);
+}
+
+.hero__left {
+  max-width: 600px;
+}
+
+.hero__right {
+  position: relative;
 }
 
 .hero__badge {
@@ -147,6 +158,113 @@
   font-weight: var(--font-weight-medium);
   opacity: 0.9;
   display: block;
+}
+
+/* 実績数値カード */
+.hero__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+.hero__stat-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius-xl);
+  padding: var(--spacing-lg);
+  text-align: center;
+  transition: all var(--transition-base);
+  animation: scaleIn 0.5s ease-out backwards;
+}
+
+.hero__stat-card:nth-child(1) {
+  animation-delay: 1s;
+}
+
+.hero__stat-card:nth-child(2) {
+  animation-delay: 1.2s;
+}
+
+.hero__stat-card:nth-child(3) {
+  animation-delay: 1.4s;
+}
+
+.hero__stat-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hero__stat-number {
+  font-size: clamp(36px, 4vw, 48px);
+  font-weight: var(--font-weight-black);
+  color: #FFD700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-xs);
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.hero__stat-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-white);
+  opacity: 0.95;
+}
+
+/* YouTube動画 */
+.hero__video {
+  position: relative;
+  animation: fadeInRight 0.8s ease-out 0.6s both;
+}
+
+.hero__video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  border-radius: var(--border-radius-2xl);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  transition: all var(--transition-base);
+}
+
+.hero__video-wrapper:hover {
+  transform: scale(1.03);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero__video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__video-badge {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  left: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius-full);
+  color: var(--text-white);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero__video-badge i {
+  color: #FF0000;
+  font-size: 18px;
 }
 
 .hero__features {
@@ -957,6 +1075,44 @@
    Responsive
    ======================================== */
 
+/* アニメーション */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero__content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+  }
+
+  .hero__right {
+    order: -1;
+  }
+
+  .hero__left {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .hero {
     min-height: 100vh;
@@ -976,9 +1132,14 @@
     text-align: center;
   }
 
+  .hero__stats {
+    grid-template-columns: 1fr;
+  }
+
   .hero__features {
     grid-template-columns: 1fr;
   }
+}
 
   .services__grid {
     grid-template-columns: 1fr;
