@@ -36,8 +36,272 @@ $totalAmount = $stats['total_amount'];
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/bni-payment-system/public/assets/css/style.css">
-    <link rel="stylesheet" href="/bni-payment-system/public/admin/assets/css/admin.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.8;
+            color: #333;
+            background: #fafafa;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .admin-header {
+            margin-bottom: 60px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .admin-header h1 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        .admin-subtitle {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .admin-nav {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .admin-nav a {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+        }
+
+        .admin-nav a:hover {
+            color: #333;
+        }
+
+        .admin-nav a.active {
+            color: #DC143C;
+            border-bottom-color: #DC143C;
+        }
+
+        .week-selector {
+            margin-bottom: 40px;
+        }
+
+        .week-selector label {
+            display: block;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .week-select {
+            width: 100%;
+            max-width: 400px;
+            padding: 14px 16px;
+            font-size: 15px;
+            color: #333;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .week-select:focus {
+            outline: none;
+            border-color: #DC143C;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .stat-card {
+            background: #fff;
+            padding: 32px 24px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            letter-spacing: 0.1em;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 300;
+            color: #333;
+            letter-spacing: -0.02em;
+        }
+
+        .actions {
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            background: #DC143C;
+            border: none;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: background 0.2s;
+            cursor: pointer;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .btn:hover {
+            background: #A01225;
+        }
+
+        .btn-export {
+            background: #333;
+        }
+
+        .btn-export:hover {
+            background: #000;
+        }
+
+        .table-card {
+            background: #fff;
+            padding: 48px 32px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 32px;
+        }
+
+        .table-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 32px;
+            letter-spacing: 0.05em;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            padding: 16px 12px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 500;
+            color: #999;
+            border-bottom: 1px solid #e0e0e0;
+            letter-spacing: 0.1em;
+        }
+
+        .data-table td {
+            padding: 16px 12px;
+            font-size: 15px;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .data-table tbody tr:hover {
+            background: #fafafa;
+        }
+
+        .member-name {
+            font-weight: 400;
+            color: #333;
+        }
+
+        .member-email {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .payment-date,
+        .payment-amount {
+            color: #666;
+        }
+
+        .text-muted {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 400;
+            border-radius: 0;
+        }
+
+        .badge-success {
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .badge-warning {
+            background: #fff;
+            color: #999;
+            border: 1px solid #e0e0e0;
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+        }
+
+        @media (max-width: 640px) {
+            .admin-container {
+                padding: 40px 16px;
+            }
+
+            .table-card {
+                padding: 32px 24px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-value {
+                font-size: 28px;
+            }
+
+            .data-table {
+                font-size: 13px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 12px 8px;
+            }
+        }
+    </style>
 </head>
 <body class="admin-body">
     <div class="admin-container">
