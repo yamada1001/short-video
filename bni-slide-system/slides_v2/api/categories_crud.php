@@ -58,7 +58,14 @@ switch ($action) {
         $weekDate = $postData['week_date'] ?? null;
         $categoryType = $postData['type'] ?? null;
         $categoriesData = $postData['categories'] ?? [];
-        if (!$weekDate || !$categoryType) { echo json_encode(['success' => false, 'error' => '必要なデータが不足しています']); exit; }
+
+        // デバッグ用ログ
+        error_log("Categories save - week_date: $weekDate, type: $categoryType, count: " . count($categoriesData));
+
+        if (!$weekDate || !$categoryType) {
+            echo json_encode(['success' => false, 'error' => '必要なデータが不足しています', 'debug' => ['week_date' => $weekDate, 'type' => $categoryType]]);
+            exit;
+        }
 
         $db->beginTransaction();
         try {
@@ -71,7 +78,12 @@ switch ($action) {
                 $stmt = $db->prepare("INSERT INTO recruiting_categories (week_date, type, rank, category_name, vote_count) VALUES (:week_date, :type, :rank, :category_name, :vote_count)");
                 $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
                 $stmt->bindValue(':type', $categoryType, PDO::PARAM_STR);
-                $stmt->bindValue(':rank', $category['rank'], PDO::PARAM_INT);
+                // rank が null の場合は PDO::PARAM_NULL を使う
+                if ($category['rank'] === null) {
+                    $stmt->bindValue(':rank', null, PDO::PARAM_NULL);
+                } else {
+                    $stmt->bindValue(':rank', $category['rank'], PDO::PARAM_INT);
+                }
                 $stmt->bindValue(':category_name', $category['category_name'], PDO::PARAM_STR);
                 $stmt->bindValue(':vote_count', $category['vote_count'], PDO::PARAM_INT);
                 $stmt->execute();
@@ -86,7 +98,7 @@ switch ($action) {
                 generateSlideImage('category_survey.php', 194, $weekDate);
             }
 
-            echo json_encode(['success' => true]);
+            echo json_encode(['success' => true, 'saved_count' => count($categoriesData)]);
         } catch (Exception $e) {
             $db->rollBack();
             echo json_encode(['success' => false, 'error' => 'データベースエラー: ' . $e->getMessage()]);

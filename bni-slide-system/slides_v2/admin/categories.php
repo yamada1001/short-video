@@ -209,26 +209,32 @@
                 // typeの変換: 'open' -> 'urgent'
                 const dbType = type === 'open' ? 'urgent' : type;
 
+                const requestData = {
+                    action: 'save',
+                    week_date: new Date().toISOString().split('T')[0],
+                    type: dbType,
+                    categories: categoriesData
+                };
+                console.log('Saving categories:', requestData);
+
                 const response = await fetch('../api/categories_crud.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        action: 'save',
-                        week_date: new Date().toISOString().split('T')[0],
-                        type: dbType,
-                        categories: categoriesData
-                    })
+                    body: JSON.stringify(requestData)
                 });
 
                 const data = await response.json();
+                console.log('Save response:', data);
 
                 if (data.success) {
-                    alert('保存しました！');
+                    alert(`保存しました！(${data.saved_count || 0}件)`);
                     loadCategories(); // 保存後に最新データを再読み込み
                 } else {
-                    alert('エラー: ' + data.error);
+                    console.error('Save error:', data);
+                    alert('エラー: ' + data.error + (data.debug ? '\n' + JSON.stringify(data.debug) : ''));
                 }
             } catch (error) {
+                console.error('Exception:', error);
                 alert('通信エラーが発生しました: ' + error);
             }
         }
