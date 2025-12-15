@@ -95,6 +95,7 @@
                     const data = await response.json();
                     if (data.success) {
                         alert('追加しました！');
+                        document.getElementById('addForm').reset();
                         loadVerifications();
                     } else {
                         alert('エラー: ' + data.error);
