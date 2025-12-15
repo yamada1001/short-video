@@ -15,10 +15,9 @@ $stmt = $db->prepare("
     WHERE c.week_date = (SELECT MAX(week_date) FROM champions) AND c.rank = 1
     ORDER BY CASE c.category
         WHEN 'referral' THEN 1
-        WHEN 'value' THEN 2
-        WHEN 'visitor' THEN 3
-        WHEN '1to1' THEN 4
-        WHEN 'ceu' THEN 5
+        WHEN 'visitor' THEN 2
+        WHEN '1to1' THEN 3
+        WHEN 'ceu' THEN 4
     END
 ");
 $stmt->execute();

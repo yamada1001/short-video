@@ -13,7 +13,8 @@
       "Bash(/tmp/test_$commit.db)",
       "Bash(if [ -f /tmp/test_$commit.db ])",
       "Bash(git rm:*)",
-      "Bash(/Users/yamadaren/Movies/claude-code-projects/yojitu.com/bni-slide-system/slides_v2/schema.sql)"
+      "Bash(/Users/yamadaren/Movies/claude-code-projects/yojitu.com/bni-slide-system/slides_v2/schema.sql)",
+      "Bash(git restore:*)"
     ],
     "deny": [],
     "ask": []

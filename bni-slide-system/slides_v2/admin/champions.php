@@ -229,9 +229,6 @@
             <button class="btn btn-secondary" onclick="viewSlide(95)">
                 <i class="fas fa-external-link-alt"></i> p.95を確認
             </button>
-            <button class="btn btn-secondary" onclick="viewSlide(96)">
-                <i class="fas fa-external-link-alt"></i> p.96を確認
-            </button>
         </div>
 
         <div class="champion-types">
@@ -240,15 +237,6 @@
                 <h2><i class="fas fa-handshake"></i> リファーラルチャンピオン</h2>
                 <div id="referral-champions"></div>
                 <button class="save-btn" onclick="saveChampions('referral')">
-                    <i class="fas fa-save"></i> 保存
-                </button>
-            </div>
-
-            <!-- Value Champion -->
-            <div class="champion-card">
-                <h2><i class="fas fa-dollar-sign"></i> バリューチャンピオン</h2>
-                <div id="value-champions"></div>
-                <button class="save-btn" onclick="saveChampions('value')">
                     <i class="fas fa-save"></i> 保存
                 </button>
             </div>
@@ -284,7 +272,7 @@
 
     <script>
         let members = [];
-        const championTypes = ['referral', 'value', 'visitor', '1to1', 'ceu'];
+        const championTypes = ['referral', 'visitor', '1to1', 'ceu'];
 
         document.addEventListener('DOMContentLoaded', function() {
             loadMembers();
