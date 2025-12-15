@@ -117,29 +117,29 @@ if (!empty($presentation['youtube_url'])) {
         /* Decorative Icons */
         .icon-decoration {
             position: absolute;
-            opacity: 0.1;
-            font-size: 120px;
+            opacity: 0.08;
+            font-size: 180px;
             color: white;
         }
 
         .icon-top-left {
-            top: 40px;
-            left: 40px;
+            top: 120px;
+            left: 80px;
         }
 
         .icon-top-right {
-            top: 40px;
-            right: 40px;
+            top: 120px;
+            right: 80px;
         }
 
         .icon-bottom-left {
-            bottom: 40px;
-            left: 40px;
+            bottom: 80px;
+            left: 80px;
         }
 
         .icon-bottom-right {
-            bottom: 40px;
-            right: 40px;
+            bottom: 80px;
+            right: 80px;
         }
 
         /* Photo */
