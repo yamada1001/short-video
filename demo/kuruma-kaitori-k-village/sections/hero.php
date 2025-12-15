@@ -29,14 +29,14 @@
                     <span class="tw-text-sm tw-font-bold">大分市で30年以上の実績</span>
                 </div>
 
-                <!-- Title -->
+                <!-- Logo + Catchphrase -->
                 <div>
-                    <h1 class="tw-text-3xl md:tw-text-5xl lg:tw-text-6xl tw-font-black tw-leading-tight">
-                        <span class="tw-block tw-text-xl md:tw-text-2xl tw-font-medium tw-mb-2 tw-tracking-wide">愛車を高く売るなら</span>
-                        <span class="tw-block tw-bg-gradient-to-r tw-from-white tw-to-white/90 tw-bg-clip-text tw-text-transparent tw-drop-shadow-2xl">
-                            ケイヴィレッジ
-                        </span>
-                    </h1>
+                    <p class="tw-text-xl md:tw-text-2xl tw-font-medium tw-mb-3 tw-tracking-wide">愛車を高く売るなら</p>
+                    <img
+                        src="<?php echo asset('assets/images/logo-alt.jpg'); ?>"
+                        alt="くるま買取ケイヴィレッジ"
+                        class="tw-w-full tw-max-w-md tw-h-auto tw-drop-shadow-2xl tw-transition-transform tw-duration-300 hover:tw-scale-105"
+                    >
                 </div>
 
                 <!-- Lead Text -->
