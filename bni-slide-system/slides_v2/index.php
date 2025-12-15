@@ -23,9 +23,10 @@ if (!$targetDate) {
     }
 }
 
-// メインプレゼンのPDF枚数を取得
+// メインプレゼンのPDF枚数とビジター数を取得
 $mainPresenterPdfPages = 0;
 $networkingPdfPages = 0;
+$visitorCount = 0;
 
 try {
     $db_path = __DIR__ . '/data/bni_slide_system.db';
@@ -66,6 +67,12 @@ try {
             $networkingPdfPages = count($pdfImages);
         }
     }
+
+    // ビジター数を取得
+    $stmt = $db->query("SELECT COUNT(*) as count FROM visitors WHERE week_date = (SELECT MAX(week_date) FROM visitors)");
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $visitorCount = $row ? (int)$row['count'] : 0;
+
 } catch (Exception $e) {
     error_log("PDF page count error: " . $e->getMessage());
 }
@@ -113,7 +120,7 @@ $phpSlides = [
     202 => 'speaker_rotation.php?page=202',
     203 => 'speaker_rotation.php?page=203',
     204 => 'main_presenter_204.php',
-    213 => 'visitor_feedback.php',
+    // 213~はビジター感想スライド（動的に追加される）
     227 => 'referral_verification.php',
     229 => 'renewal.php',
     235 => 'visitor_thanks.php',
@@ -125,6 +132,14 @@ $phpSlides = [
     301 => 'speaker_rotation.php?page=301',
     302 => 'weekly_stats.php'
 ];
+
+// ビジター感想スライドを動的に追加（p.213~）
+if ($visitorCount > 0) {
+    for ($i = 0; $i < $visitorCount; $i++) {
+        $pageNum = 213 + $i;
+        $phpSlides[$pageNum] = "visitor_feedback.php?index=$i";
+    }
+}
 
 // ネットワーキング学習PDFページを動的に追加（p.86~）
 // p.86に1ページ分の静的スライドがあるため、それを置き換えてから追加する
