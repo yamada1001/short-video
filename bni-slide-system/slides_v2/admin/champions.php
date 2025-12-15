@@ -371,15 +371,21 @@
             button.parentElement.remove();
         }
 
+        let currentWeekDate = null; // 現在読み込まれているデータのweek_date
+
         async function loadChampions() {
             try {
                 const response = await fetch('../api/champions_crud.php?action=get_latest');
                 const data = await response.json();
 
-                if (data.success && data.champions) {
+                if (data.success && data.champions && data.champions.length > 0) {
+                    // 最初のチャンピオンからweek_dateを取得
+                    currentWeekDate = data.champions[0].week_date;
+                    console.log('Loaded week_date:', currentWeekDate);
                     populateChampions(data.champions);
                 } else {
-                    // データがない場合はフォームをリセット
+                    // データがない場合は今日の日付を使用
+                    currentWeekDate = new Date().toISOString().split('T')[0];
                     initializeChampionForms();
                 }
             } catch (error) {
@@ -394,7 +400,7 @@
             // 各タイプ・ランクごとにデータを配置
             championTypes.forEach(type => {
                 for (let rank = 1; rank <= 3; rank++) {
-                    const rankChampions = champions.filter(c => c.type === type && c.rank === rank);
+                    const rankChampions = champions.filter(c => c.category === type && c.rank === rank);
 
                     if (rankChampions.length > 0) {
                         const container = document.getElementById(`${type}-rank-${rank}-members`);
@@ -438,6 +444,9 @@
             }
 
             try {
+                // 既存データのweek_dateを使用（なければ今日の日付）
+                const saveWeekDate = currentWeekDate || new Date().toISOString().split('T')[0];
+
                 const response = await fetch('../api/champions_crud.php', {
                     method: 'POST',
                     headers: {
@@ -445,7 +454,8 @@
                     },
                     body: JSON.stringify({
                         action: 'save',
-                        type: type,
+                        week_date: saveWeekDate,
+                        category: type,
                         champions: championsData
                     })
                 });
@@ -454,6 +464,7 @@
 
                 if (data.success) {
                     alert('保存しました！');
+                    loadChampions(); // 保存後に最新データを再読み込み
                 } else {
                     alert('エラー: ' + data.error);
                 }

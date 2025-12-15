@@ -55,10 +55,10 @@ switch ($action) {
     case 'get_by_type':
         // 特定タイプのチャンピオン取得（スライド表示用）
         $weekDate = $_GET['week_date'] ?? null;
-        $type = $_GET['type'] ?? null;
+        $category = $_GET['category'] ?? null;
 
-        if (!$weekDate || !$type) {
-            echo json_encode(['success' => false, 'error' => '日付とタイプが必要です']);
+        if (!$weekDate || !$category) {
+            echo json_encode(['success' => false, 'error' => '日付とカテゴリが必要です']);
             exit;
         }
 
@@ -66,11 +66,11 @@ switch ($action) {
             SELECT c.*, m.name as member_name, m.photo_path
             FROM champions c
             LEFT JOIN members m ON c.member_id = m.id
-            WHERE c.week_date = :week_date AND c.type = :type
+            WHERE c.week_date = :week_date AND c.category = :category
             ORDER BY c.rank, c.count DESC, c.id
         ");
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->bindValue(':type', $type, PDO::PARAM_STR);
+        $stmt->bindValue(':category', $category, PDO::PARAM_STR);
         $stmt->execute();
 
         $champions = [];
@@ -104,11 +104,11 @@ switch ($action) {
     case 'save':
         // チャンピオンデータ保存
         $weekDate = $postData['week_date'] ?? null;
-        $type = $postData['type'] ?? null;
+        $category = $postData['category'] ?? null;
         $championsData = $postData['champions'] ?? [];
 
-        if (!$weekDate || !$type) {
-            echo json_encode(['success' => false, 'error' => '日付とタイプが必要です']);
+        if (!$weekDate || !$category) {
+            echo json_encode(['success' => false, 'error' => '日付とカテゴリが必要です']);
             exit;
         }
 
@@ -117,20 +117,20 @@ switch ($action) {
 
         try {
             // 既存データを削除
-            $stmt = $db->prepare("DELETE FROM champions WHERE week_date = :week_date AND type = :type");
+            $stmt = $db->prepare("DELETE FROM champions WHERE week_date = :week_date AND category = :category");
             $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-            $stmt->bindValue(':type', $type, PDO::PARAM_STR);
+            $stmt->bindValue(':category', $category, PDO::PARAM_STR);
             $stmt->execute();
 
             // 新しいデータを挿入
             foreach ($championsData as $champion) {
                 $stmt = $db->prepare("
-                    INSERT INTO champions (week_date, type, rank, member_id, count)
-                    VALUES (:week_date, :type, :rank, :member_id, :count)
+                    INSERT INTO champions (week_date, category, rank, member_id, count)
+                    VALUES (:week_date, :category, :rank, :member_id, :count)
                 ");
 
                 $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-                $stmt->bindValue(':type', $type, PDO::PARAM_STR);
+                $stmt->bindValue(':category', $category, PDO::PARAM_STR);
                 $stmt->bindValue(':rank', $champion['rank'], PDO::PARAM_INT);
                 $stmt->bindValue(':member_id', $champion['member_id'], PDO::PARAM_INT);
                 $stmt->bindValue(':count', $champion['count'], PDO::PARAM_INT);
@@ -140,7 +140,7 @@ switch ($action) {
             $db->commit();
 
             // 保存成功後、スライド画像を生成
-            switch ($type) {
+            switch ($category) {
                 case 'referral':
                     generateSlideImage('referral_champion.php', 91, $weekDate);
                     break;
@@ -170,16 +170,16 @@ switch ($action) {
     case 'delete':
         // チャンピオンデータ削除
         $weekDate = $postData['week_date'] ?? $_POST['week_date'] ?? null;
-        $type = $postData['type'] ?? $_POST['type'] ?? null;
+        $category = $postData['category'] ?? $_POST['category'] ?? null;
 
-        if (!$weekDate || !$type) {
-            echo json_encode(['success' => false, 'error' => '日付とタイプが必要です']);
+        if (!$weekDate || !$category) {
+            echo json_encode(['success' => false, 'error' => '日付とカテゴリが必要です']);
             exit;
         }
 
-        $stmt = $db->prepare("DELETE FROM champions WHERE week_date = :week_date AND type = :type");
+        $stmt = $db->prepare("DELETE FROM champions WHERE week_date = :week_date AND category = :category");
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->bindValue(':type', $type, PDO::PARAM_STR);
+        $stmt->bindValue(':category', $category, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             echo json_encode(['success' => true]);
