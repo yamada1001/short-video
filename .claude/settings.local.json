@@ -232,7 +232,14 @@
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com log --oneline -5)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add travel-guide/kyoto/index.php travel-guide/kyoto/days/day1.php travel-guide/kyoto/days/day2.php travel-guide/kyoto/days/day3.php)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff --cached --stat)",
-      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add travel-guide/kyoto/days/day1.php travel-guide/kyoto/days/day2.php travel-guide/kyoto/days/day3.php)"
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add travel-guide/kyoto/days/day1.php travel-guide/kyoto/days/day2.php travel-guide/kyoto/days/day3.php)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add index.php web-production.php)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add OITA_REMOVAL_AND_SYSTEM_DEV_PLAN.md OITA_REMOVAL_DETAILED_LIST.md)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add index.php web-production.php video-production.php services.php about.php)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add index.php services.php)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com rm:*)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add index.php includes/footer.php AREA_CLEANUP_PLAN.md)",
+      "Bash(git init:*)"
     ],
     "deny": [],
     "ask": []
