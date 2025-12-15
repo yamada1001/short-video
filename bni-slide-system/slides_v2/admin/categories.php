@@ -152,7 +152,7 @@
             const openContainer = document.getElementById('openCategoriesList');
             openContainer.innerHTML = '';
 
-            const openCats = categories.filter(c => c.category_type === 'open');
+            const openCats = categories.filter(c => c.type === 'urgent');
             openCats.forEach(cat => {
                 const div = document.createElement('div');
                 div.className = 'category-item';
@@ -166,7 +166,7 @@
             });
 
             // アンケートカテゴリ
-            const surveyCats = categories.filter(c => c.category_type === 'survey');
+            const surveyCats = categories.filter(c => c.type === 'survey');
             surveyCats.forEach(cat => {
                 const categoryInput = document.querySelector(`.survey-category[data-rank="${cat.rank}"]`);
                 const votesInput = document.querySelector(`.survey-votes[data-rank="${cat.rank}"]`);
@@ -206,12 +206,16 @@
             }
 
             try {
+                // typeの変換: 'open' -> 'urgent'
+                const dbType = type === 'open' ? 'urgent' : type;
+
                 const response = await fetch('../api/categories_crud.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         action: 'save',
-                        category_type: type,
+                        week_date: new Date().toISOString().split('T')[0],
+                        type: dbType,
                         categories: categoriesData
                     })
                 });

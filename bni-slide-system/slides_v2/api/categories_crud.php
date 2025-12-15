@@ -14,7 +14,7 @@ switch ($action) {
     case 'get':
         $weekDate = $_GET['week_date'] ?? null;
         if (!$weekDate) { echo json_encode(['success' => false, 'error' => '日付が必要です']); exit; }
-        $stmt = $db->prepare("SELECT * FROM recruiting_categories WHERE week_date = :week_date ORDER BY category_type, rank");
+        $stmt = $db->prepare("SELECT * FROM recruiting_categories WHERE week_date = :week_date ORDER BY type, rank");
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
         $stmt->execute();
         $categories = [];
@@ -24,11 +24,11 @@ switch ($action) {
 
     case 'get_by_type':
         $weekDate = $_GET['week_date'] ?? null;
-        $categoryType = $_GET['category_type'] ?? null;
+        $categoryType = $_GET['type'] ?? null;
         if (!$weekDate || !$categoryType) { echo json_encode(['success' => false, 'error' => '日付とタイプが必要です']); exit; }
-        $stmt = $db->prepare("SELECT * FROM recruiting_categories WHERE week_date = :week_date AND category_type = :category_type ORDER BY rank");
+        $stmt = $db->prepare("SELECT * FROM recruiting_categories WHERE week_date = :week_date AND type = :type ORDER BY rank");
         $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-        $stmt->bindValue(':category_type', $categoryType, PDO::PARAM_STR);
+        $stmt->bindValue(':type', $categoryType, PDO::PARAM_STR);
         $stmt->execute();
         $categories = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { $categories[] = $row; }
@@ -43,7 +43,7 @@ switch ($action) {
             WHERE week_date = (
                 SELECT MAX(week_date) FROM recruiting_categories
             )
-            ORDER BY category_type, rank
+            ORDER BY type, rank
         ");
 
         $categories = [];
@@ -56,21 +56,21 @@ switch ($action) {
 
     case 'save':
         $weekDate = $postData['week_date'] ?? null;
-        $categoryType = $postData['category_type'] ?? null;
+        $categoryType = $postData['type'] ?? null;
         $categoriesData = $postData['categories'] ?? [];
         if (!$weekDate || !$categoryType) { echo json_encode(['success' => false, 'error' => '必要なデータが不足しています']); exit; }
 
         $db->beginTransaction();
         try {
-            $stmt = $db->prepare("DELETE FROM recruiting_categories WHERE week_date = :week_date AND category_type = :category_type");
+            $stmt = $db->prepare("DELETE FROM recruiting_categories WHERE week_date = :week_date AND type = :type");
             $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-            $stmt->bindValue(':category_type', $categoryType, PDO::PARAM_STR);
+            $stmt->bindValue(':type', $categoryType, PDO::PARAM_STR);
             $stmt->execute();
 
             foreach ($categoriesData as $category) {
-                $stmt = $db->prepare("INSERT INTO recruiting_categories (week_date, category_type, rank, category_name, vote_count) VALUES (:week_date, :category_type, :rank, :category_name, :vote_count)");
+                $stmt = $db->prepare("INSERT INTO recruiting_categories (week_date, type, rank, category_name, vote_count) VALUES (:week_date, :type, :rank, :category_name, :vote_count)");
                 $stmt->bindValue(':week_date', $weekDate, PDO::PARAM_STR);
-                $stmt->bindValue(':category_type', $categoryType, PDO::PARAM_STR);
+                $stmt->bindValue(':type', $categoryType, PDO::PARAM_STR);
                 $stmt->bindValue(':rank', $category['rank'], PDO::PARAM_INT);
                 $stmt->bindValue(':category_name', $category['category_name'], PDO::PARAM_STR);
                 $stmt->bindValue(':vote_count', $category['vote_count'], PDO::PARAM_INT);
@@ -80,7 +80,7 @@ switch ($action) {
             $db->commit();
 
             // 保存成功後、スライド画像を生成
-            if ($categoryType === 'recruiting') {
+            if ($categoryType === 'urgent') {
                 generateSlideImage('recruiting_categories.php', 185, $weekDate);
             } elseif ($categoryType === 'survey') {
                 generateSlideImage('category_survey.php', 194, $weekDate);
