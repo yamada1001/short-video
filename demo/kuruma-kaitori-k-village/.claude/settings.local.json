@@ -9,7 +9,10 @@
       "WebFetch(domain:templatesjungle.com)",
       "WebFetch(domain:flowbite.com)",
       "Bash(git checkout:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "WebFetch(domain:ucarpac.com)",
+      "WebFetch(domain:kaitori.carsensor.net)",
+      "WebFetch(domain:221616.com)"
     ],
     "deny": [],
     "ask": []

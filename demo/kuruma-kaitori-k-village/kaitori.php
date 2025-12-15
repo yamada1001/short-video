@@ -16,42 +16,95 @@ require_once __DIR__ . '/includes/header.php';
 
 <!-- Kaitori Hero Section -->
 <section class="kaitori-hero">
+    <div class="kaitori-hero__background-pattern"></div>
     <div class="container kaitori-hero__container">
-        <h1 class="kaitori-hero__title">車買取サービス</h1>
-        <p class="kaitori-hero__lead">
-            大切なお車を高価買取いたします。<br>
-            無料査定・出張査定対応・即日現金買取可能
-        </p>
+        <div class="kaitori-hero__content">
+            <div class="kaitori-hero__badge">
+                <i class="fa-solid fa-fire"></i>
+                高価買取実施中
+            </div>
 
-        <div class="kaitori-hero__features">
-            <div class="kaitori-hero__feature">
-                <i class="fa-solid fa-hand-holding-dollar"></i>
-                <div class="kaitori-hero__feature-title">他社より高価買取</div>
+            <h1 class="kaitori-hero__title">
+                <span class="kaitori-hero__title-main">愛車を最高額で売却</span>
+                <span class="kaitori-hero__title-sub">車買取サービス</span>
+            </h1>
+
+            <p class="kaitori-hero__lead">
+                <strong class="kaitori-hero__lead-strong">35秒</strong>でカンタン入力<br>
+                無料査定・出張査定対応・即日現金買取可能
+            </p>
+
+            <div class="kaitori-hero__stats">
+                <div class="kaitori-hero__stat">
+                    <div class="kaitori-hero__stat-number">30年+</div>
+                    <div class="kaitori-hero__stat-label">買取実績</div>
+                </div>
+                <div class="kaitori-hero__stat">
+                    <div class="kaitori-hero__stat-number">98%</div>
+                    <div class="kaitori-hero__stat-label">顧客満足度</div>
+                </div>
+                <div class="kaitori-hero__stat">
+                    <div class="kaitori-hero__stat-number">即日</div>
+                    <div class="kaitori-hero__stat-label">現金買取</div>
+                </div>
             </div>
-            <div class="kaitori-hero__feature">
-                <i class="fa-solid fa-truck"></i>
-                <div class="kaitori-hero__feature-title">出張査定無料</div>
+
+            <div class="kaitori-hero__cta">
+                <a href="<?php echo url('contact'); ?>" class="btn btn--primary btn--large">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                    <span>35秒で無料査定を申し込む</span>
+                </a>
+                <a href="tel:<?php echo PHONE_NUMBER; ?>" class="btn btn--outline-white btn--large">
+                    <i class="fa-solid fa-phone"></i>
+                    <span><?php echo format_phone(PHONE_NUMBER); ?></span>
+                </a>
             </div>
-            <div class="kaitori-hero__feature">
-                <i class="fa-solid fa-money-bill-wave"></i>
-                <div class="kaitori-hero__feature-title">即日現金買取</div>
-            </div>
-            <div class="kaitori-hero__feature">
-                <i class="fa-solid fa-check-circle"></i>
-                <div class="kaitori-hero__feature-title">手続き簡単</div>
+
+            <div class="kaitori-hero__features">
+                <div class="kaitori-hero__feature">
+                    <div class="kaitori-hero__feature-icon">
+                        <i class="fa-solid fa-yen-sign"></i>
+                    </div>
+                    <div class="kaitori-hero__feature-text">
+                        <strong>他社より高価買取</strong>
+                        <span>最高額をご提示</span>
+                    </div>
+                </div>
+                <div class="kaitori-hero__feature">
+                    <div class="kaitori-hero__feature-icon">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    <div class="kaitori-hero__feature-text">
+                        <strong>出張査定無料</strong>
+                        <span>ご自宅まで伺います</span>
+                    </div>
+                </div>
+                <div class="kaitori-hero__feature">
+                    <div class="kaitori-hero__feature-icon">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                    </div>
+                    <div class="kaitori-hero__feature-text">
+                        <strong>即日現金買取</strong>
+                        <span>最短当日お支払い</span>
+                    </div>
+                </div>
+                <div class="kaitori-hero__feature">
+                    <div class="kaitori-hero__feature-icon">
+                        <i class="fa-solid fa-file-contract"></i>
+                    </div>
+                    <div class="kaitori-hero__feature-text">
+                        <strong>手続き簡単</strong>
+                        <span>面倒な書類もサポート</span>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div style="display: flex; gap: var(--spacing-md); flex-wrap: wrap;">
-            <a href="<?php echo url('contact'); ?>" class="btn btn--secondary btn--lg">
-                <i class="fa-solid fa-clipboard-check"></i>
-                無料査定を申し込む
-            </a>
-            <a href="tel:<?php echo format_phone(PHONE, 'tel'); ?>" class="btn btn--outline btn--lg" style="color: white; border-color: white;">
-                <i class="fa-solid fa-phone"></i>
-                <?php echo format_phone(PHONE); ?>
-            </a>
-        </div>
+    <div class="kaitori-hero__wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path d="M0,64 C240,96 480,96 720,64 C960,32 1200,32 1440,64 L1440,120 L0,120 Z" fill="#f3f4f6"/>
+        </svg>
     </div>
 </section>
 
