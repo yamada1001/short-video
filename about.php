@@ -37,7 +37,7 @@ $additional_css = ['assets/css/pages/about.css', 'assets/css/cookie-consent.css'
                         余日（Yojitsu）は、大分県を拠点としたデジタルマーケティング・Web制作会社です。「余日」という名前には、日々の業務の中で生まれる余白の時間を大切にし、その時間でクリエイティブな発想を生み出すという想いが込められています。
                     </p>
                     <p class="company-info__description">
-                        SEO対策、広告運用、Web制作、ショート動画制作など、デジタルマーケティング全般にわたるサービスを提供。特に大分県内の企業様を中心に、地域に根ざしたマーケティング支援を行っています。
+                        SEO対策、広告運用、Web制作、ショート動画制作など、デジタルマーケティング全般にわたるサービスを提供。全国の企業様にマーケティング支援を行っています。
                     </p>
                     <p class="company-info__description">
                         Web制作会社での3年間の経験を活かし、マーケティング視点を持ったWebサイト制作と、データに基づいた広告運用で、お客様のビジネス成長をサポートします。
@@ -127,9 +127,9 @@ $additional_css = ['assets/css/pages/about.css', 'assets/css/cookie-consent.css'
                     <div class="value-item__icon">
                         <i class="fas fa-map-marked-alt"></i>
                     </div>
-                    <h3 class="value-item__title">地域貢献</h3>
+                    <h3 class="value-item__title">共に成長</h3>
                     <p class="value-item__description">
-                        大分県の企業様と共に成長し、地域経済の発展に寄与します。
+                        全国の企業様と共に成長し、事業発展に寄与します。
                     </p>
                 </div>
             </div>

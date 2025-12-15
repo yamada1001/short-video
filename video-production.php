@@ -3,9 +3,9 @@ $current_page = 'services';
 require_once __DIR__ . '/includes/functions.php';
 
 // Head用の変数設定
-$page_title = '大分のショート動画制作｜TikTok・Instagram・YouTube対応｜余日';
-$page_description = '大分県のショート動画制作なら余日へ。TikTok、Instagram Reels、YouTube Shortsに最適化。企画・撮影・編集まで一貫対応。大分県内出張費無料。個人事業主・中小企業のSNSマーケティングをサポート。';
-$page_keywords = 'ショート動画,動画制作,TikTok,Instagram Reels,YouTube Shorts,大分,大分市,別府市,SNSマーケティング,余日';
+$page_title = 'ショート動画制作｜TikTok・Instagram・YouTube対応｜余日';
+$page_description = 'ショート動画制作なら余日へ。TikTok、Instagram Reels、YouTube Shortsに最適化。企画・撮影・編集まで一貫対応。全国対応。個人事業主・中小企業のSNSマーケティングをサポート。';
+$page_keywords = 'ショート動画,動画制作,TikTok,Instagram Reels,YouTube Shorts,SNSマーケティング,余日';
 $additional_css = ['assets/css/cookie-consent.css'];
 
 $structured_data = '
@@ -24,27 +24,6 @@ $structured_data = '
           "addressCountry": "JP"
         }
       },
-      "areaServed": [
-        { "@type": "City", "name": "大分市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "別府市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "中津市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "日田市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "佐伯市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "臼杵市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "津久見市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "竹田市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "豊後高田市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "杵築市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "宇佐市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "豊後大野市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "由布市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "国東市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "AdministrativeArea", "name": "日出町", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "AdministrativeArea", "name": "九重町", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "AdministrativeArea", "name": "玖珠町", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "AdministrativeArea", "name": "姫島村", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "State", "name": "大分県", "addressCountry": "JP" }
-      ],
       "offers": [
         {
           "@type": "Offer",
@@ -70,7 +49,7 @@ $faq_structured_data = '
           "name": "ショート動画制作の料金はいくらですか？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "お客様のご要望や動画の内容により異なります。撮影・編集込みのお見積りを無料でご提案いたします。大分県内への出張費は無料です。お気軽にお問い合わせください。"
+            "text": "お客様のご要望や動画の内容により異なります。撮影・編集込みのお見積りを無料でご提案いたします。お気軽にお問い合わせください。"
           }
         },
         {
@@ -87,14 +66,6 @@ $faq_structured_data = '
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "通常、撮影後1週間程度で初稿をお渡しします。修正対応を含めて2週間程度での納品が目安です。お急ぎの場合はご相談ください。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "大分県外でも対応可能ですか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "はい、対応可能です。ただし大分県外の場合は別途出張費が発生します。詳細はお問い合わせください。"
           }
         },
         {
@@ -749,34 +720,6 @@ EOD;
                 </a>
                 <a href="services.php" class="btn btn-secondary">
                     <i class="fas fa-list"></i> 全サービス一覧
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 対応エリアセクション -->
-    <section class="area-links-section" style="padding: var(--spacing-xxl) 0; background: var(--color-bg-gray);">
-        <div class="container">
-            <h2 class="section__subtitle">
-                <i class="fas fa-map-marker-alt"></i> 大分県内の対応エリア
-            </h2>
-            <p style="text-align: center; margin-bottom: var(--spacing-lg); color: var(--color-text-light);">
-                大分県全18市町村に対応。県内出張費は<strong>無料</strong>です。
-            </p>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 800px; margin: 0 auto;">
-                <?php
-                $areas_json = file_get_contents(__DIR__ . '/area/data/areas.json');
-                $areas_data = json_decode($areas_json, true);
-                foreach ($areas_data['areas'] as $area):
-                ?>
-                <a href="/area/video/?area=<?php echo urlencode($area['slug']); ?>" style="display: inline-block; padding: 8px 16px; background: #fff; border-radius: 4px; text-decoration: none; color: var(--color-text); font-size: 14px; transition: all 0.2s; border: 1px solid var(--color-light-gray);" onmouseover="this.style.background='var(--color-natural-brown)'; this.style.color='#fff';" onmouseout="this.style.background='#fff'; this.style.color='var(--color-text)';">
-                    <?php echo h($area['name']); ?>
-                </a>
-                <?php endforeach; ?>
-            </div>
-            <div style="text-align: center; margin-top: var(--spacing-lg);">
-                <a href="/area/video/" class="btn btn-secondary">
-                    <i class="fas fa-list"></i> エリア一覧を見る
                 </a>
             </div>
         </div>

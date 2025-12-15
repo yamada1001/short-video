@@ -3,9 +3,9 @@ $current_page = 'services';
 require_once __DIR__ . '/includes/functions.php';
 
 // Head用の変数設定
-$page_title = '大分のデジタルマーケティングサービス｜Web制作・動画制作・SEO・広告運用｜余日';
-$page_description = '大分県を拠点にデジタルマーケティングをトータルサポート。ホームページ制作、ショート動画制作、SEO対策、Google広告・SNS広告運用。大分市・別府市など県内全域対応。個人事業主・中小企業向けのプロフェッショナルなサービス。';
-$page_keywords = 'デジタルマーケティング,Web制作,ホームページ制作,ショート動画,動画制作,SEO,広告運用,大分,大分市,別府市,余日';
+$page_title = 'デジタルマーケティングサービス｜Web制作・動画制作・システム開発｜余日';
+$page_description = 'デジタルマーケティングをトータルサポート。ホームページ制作、ショート動画制作、システム開発、SEO対策、Google広告・SNS広告運用。全国対応。個人事業主・中小企業向けのプロフェッショナルなサービス。';
+$page_keywords = 'デジタルマーケティング,Web制作,ホームページ制作,ショート動画,動画制作,システム開発,SEO,広告運用,余日';
 $additional_css = ['assets/css/cookie-consent.css'];
 
 $inline_styles = <<<'EOD'

@@ -24,27 +24,6 @@ $structured_data = '
           "addressCountry": "JP"
         }
       },
-      "areaServed": [
-        { "@type": "City", "name": "大分市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "別府市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "中津市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "日田市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "佐伯市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "臼杵市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "津久見市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "竹田市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "豊後高田市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "杵築市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "宇佐市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "豊後大野市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "由布市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "City", "name": "国東市", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "AdministrativeArea", "name": "日出町", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "AdministrativeArea", "name": "九重町", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "AdministrativeArea", "name": "玖珠町", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "AdministrativeArea", "name": "姫島村", "addressRegion": "大分県", "addressCountry": "JP" },
-        { "@type": "State", "name": "大分県", "addressCountry": "JP" }
-      ],
       "offers": [
         {
           "@type": "Offer",
@@ -92,14 +71,6 @@ $faq_structured_data = '
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "はい、保守契約を推奨しております。テキスト・画像の変更、サーバー・ドメイン管理、セキュリティ対策、電話・メールサポートが含まれます。詳細はお問い合わせください。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "大分県以外でも対応可能ですか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "はい、全国対応可能です。オンラインでのヒアリング・打ち合わせで制作を進められます。"
           }
         },
         {
@@ -269,7 +240,7 @@ $faq_structured_data = '
                 <h3><i class="fas fa-question-circle"></i> ただ、それにしては高すぎません？</h3>
                 <p>
                     制作現場にいる私でもそう思います。<br>
-                    特に、私が現在個人事業主なので特に感じます。<strong>えっ、そんなかかんの？</strong>
+                    特に、私が現在個人事業主なので特に感じます。<strong>えっ、そんなにかかるの？</strong>
                 </p>
                 <p>
                     もちろん、今は無料で制作できるツール（ドラッグアンドドロップ型）も存在しますが、意外に面倒で時間もかかりますし、
@@ -348,10 +319,10 @@ $faq_structured_data = '
                     それ以外であれば、ぜひ一度ご相談ください。
                 </p>
 
-                <h3><i class="fas fa-map-marked-alt"></i> 大分県全域に対応しています</h3>
+                <h3><i class="fas fa-globe"></i> 全国対応しています</h3>
                 <p>
-                    大分市、別府市、中津市、日田市など、大分県全18市町村に対応しています。<br>
-                    各エリアの詳細情報は <a href="/area/" style="color: var(--color-natural-brown); text-decoration: underline;">対応エリアページ</a> をご覧ください。
+                    オンラインで全国どこからでもご依頼いただけます。<br>
+                    対面でのお打ち合わせも可能です。お気軽にご相談ください。
                 </p>
 
                 <h3><i class="fas fa-comments"></i> まずは相談だけでも大歓迎です</h3>

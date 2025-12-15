@@ -40,9 +40,9 @@ $all_categories = array_filter($all_categories); // 空の値を除外
 sort($all_categories);
 
 // Head用の変数設定
-$page_title = '大分のホームページ制作・Web制作｜余日（Yojitsu）';
-$page_description = '大分県のホームページ制作・Web制作なら余日へ。AI活用で1週間で初稿提出、充実のサポート体制。大分市・別府市など県内全域対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作。';
-$page_keywords = '大分,ホームページ制作,Web制作,AI,大分市,別府市,中小企業,個人事業主,余日,Yojitsu';
+$page_title = 'ホームページ制作・Web制作｜余日（Yojitsu）';
+$page_description = 'ホームページ制作・Web制作なら余日へ。AI活用で1週間で初稿提出、充実のサポート体制。個人事業主・中小企業向けのプロフェッショナルなWeb制作。全国対応。';
+$page_keywords = 'ホームページ制作,Web制作,AI,システム開発,中小企業,個人事業主,余日,Yojitsu';
 $additional_css = [
     'assets/css/loading.css',
     'assets/css/pages/top.css',
@@ -50,8 +50,8 @@ $additional_css = [
 ];
 
 $ogp_tags = <<<'EOD'
-    <meta property="og:title" content="大分のホームページ制作・Web制作｜余日（Yojitsu）">
-    <meta property="og:description" content="大分県のホームページ制作なら余日へ。AI活用で1週間で初稿提出、充実のサポート体制。大分市・別府市など県内全域対応。">
+    <meta property="og:title" content="ホームページ制作・Web制作｜余日（Yojitsu）">
+    <meta property="og:description" content="ホームページ制作なら余日へ。AI活用で1週間で初稿提出、充実のサポート体制。全国対応。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yojitu.com/">
     <meta property="og:image" content="https://yojitu.com/assets/images/ogp.jpg">
@@ -71,7 +71,7 @@ $structured_data = '
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "余日（Yojitsu）",
-      "description": "大分県のホームページ制作・Web制作会社。AI活用で1週間で初稿提出、充実のサポート体制。大分市・別府市など県内全域対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作。",
+      "description": "ホームページ制作・Web制作会社。AI活用で1週間で初稿提出、充実のサポート体制。全国対応。個人事業主・中小企業向けのプロフェッショナルなWeb制作。",
       "url": "https://yojitu.com/",
       "telephone": "' . CONTACT_TEL . '",
       "email": "' . CONTACT_EMAIL . '",
@@ -79,27 +79,11 @@ $structured_data = '
       "taxID": "T9810094141774",
       "address": {
         "@type": "PostalAddress",
-        "addressRegion": "大分県",
+        "addressRegion": "日本",
         "addressCountry": "JP"
       },
-      "areaServed": [
-        {
-          "@type": "City",
-          "name": "大分市",
-          "addressRegion": "大分県"
-        },
-        {
-          "@type": "City",
-          "name": "別府市",
-          "addressRegion": "大分県"
-        },
-        {
-          "@type": "State",
-          "name": "大分県"
-        }
-      ],
       "serviceType": ["ホームページ制作", "Webサイト制作", "ショート動画制作"],
-      "keywords": ["大分", "ホームページ制作", "Web制作", "AI", "中小企業", "個人事業主"]
+      "keywords": ["ホームページ制作", "Web制作", "AI", "システム開発", "中小企業", "個人事業主"]
     }
 ';
 
@@ -113,15 +97,15 @@ $faq_structured_data = '
           "name": "余日（Yojitsu）はどんなサービスを提供していますか？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "大分県を拠点に、Web制作（ホームページ制作）とショート動画制作を提供しています。お客様のご要望に応じて最適なプランをご提案いたします。"
+            "text": "全国対応で、Web制作（ホームページ制作）、ショート動画制作、システム開発を提供しています。お客様のご要望に応じて最適なプランをご提案いたします。"
           }
         },
         {
           "@type": "Question",
-          "name": "大分県以外でも対応可能ですか？",
+          "name": "全国対応していますか？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "はい、全国対応可能です。Web制作はオンラインで完結でき、ショート動画は大分県内は出張費無料、県外は別途ご相談となります。"
+            "text": "はい、全国対応可能です。Web制作・システム開発はオンラインで完結でき、ショート動画制作も全国対応しております。"
           }
         },
         {
@@ -250,7 +234,7 @@ $faq_structured_data = '
                 </h1>
 
                 <p class="hero-v2__text" data-hero-text>
-                    大分から始まる、新しいビジネスの形
+                    ここから始まる、新しいビジネスの形
                 </p>
 
                 <div class="hero-v2__buttons" data-hero-buttons>
@@ -496,19 +480,19 @@ $faq_structured_data = '
                     </button>
                     <div class="faq-answer">
                         <span class="faq-a-icon">A.</span>
-                        <p>大分県を拠点に、Web制作（ホームページ制作）とショート動画制作を提供しています。お客様のご要望に応じて最適なプランをご提案いたします。</p>
+                        <p>全国対応で、Web制作（ホームページ制作）、ショート動画制作、システム開発を提供しています。お客様のご要望に応じて最適なプランをご提案いたします。</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)">
                         <span class="faq-q-icon">Q.</span>
-                        <span class="faq-q-text">大分県以外でも対応可能ですか？</span>
+                        <span class="faq-q-text">全国対応していますか？</span>
                         <i class="fas fa-chevron-down faq-arrow"></i>
                     </button>
                     <div class="faq-answer">
                         <span class="faq-a-icon">A.</span>
-                        <p>はい、全国対応可能です。Web制作はオンラインで完結でき、ショート動画は大分県内は出張費無料、県外は別途ご相談となります。</p>
+                        <p>はい、全国対応可能です。Web制作・システム開発はオンラインで完結でき、ショート動画制作も全国対応しております。</p>
                     </div>
                 </div>
 
