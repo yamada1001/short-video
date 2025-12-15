@@ -103,12 +103,12 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
             <div class="header__topbar-container">
                 <div class="header__topbar-left">
                     <div class="header__topbar-item">
-                        <i class="fa-solid fa-phone"></i>
-                        <a href="tel:<?php echo PHONE_LINK; ?>"><?php echo PHONE; ?></a>
-                    </div>
-                    <div class="header__topbar-item">
                         <i class="fa-solid fa-clock"></i>
                         <span><?php echo BUSINESS_HOURS; ?></span>
+                    </div>
+                    <div class="header__topbar-item">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span><?php echo BUSINESS_DAYS; ?></span>
                     </div>
                     <div class="header__topbar-item">
                         <i class="fa-solid fa-location-dot"></i>

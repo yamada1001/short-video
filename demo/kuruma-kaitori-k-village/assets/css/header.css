@@ -109,9 +109,14 @@
    ======================================== */
 
 .header__main {
-  background: var(--bg-white);
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 247, 245, 1) 50%,
+    rgba(240, 248, 255, 1) 100%
+  );
   padding: 16px 0;
   transition: padding var(--transition-base);
+  border-bottom: 1px solid rgba(255, 107, 53, 0.1);
 }
 
 .header__container {
@@ -441,6 +446,10 @@
     gap: var(--spacing-md);
   }
 
+  .header__topbar-item:nth-child(2) {
+    display: none;
+  }
+
   .header__topbar-item:nth-child(3) {
     display: none;
   }
@@ -474,7 +483,11 @@
 }
 
 @media (max-width: 480px) {
-  .header__topbar-item:nth-child(2) {
+  .header__topbar-left {
     display: none;
+  }
+
+  .header__topbar-right {
+    margin: 0 auto;
   }
 }
