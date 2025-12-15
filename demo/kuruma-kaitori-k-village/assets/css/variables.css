@@ -54,7 +54,7 @@
      ======================================== */
 
   /* フォントファミリー */
-  --font-base: 'LINE Seed JP', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', Meiryo, sans-serif;
+  --font-base: 'LINE Seed JP_OTF', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', Meiryo, sans-serif;
 
   /* フォントサイズ */
   --font-size-xs: 12px;
