@@ -445,7 +445,7 @@ $visibleSlideCount = count($slides);
 
             // ページ番号更新（元のページ番号も表示）
             const originalPage = slidePageMap[index] || index;
-            document.getElementById('slideNumber').textContent = `${currentSlide} / ${totalSlides} (p.${originalPage})`;
+            document.getElementById('slideNumber').textContent = `スライド ${currentSlide} / ${totalSlides} (p.${originalPage})`;
 
             // ボタン状態更新
             document.getElementById('prevBtn').disabled = (currentSlide === 1);
