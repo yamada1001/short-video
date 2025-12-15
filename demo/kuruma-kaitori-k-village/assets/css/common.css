@@ -8,8 +8,12 @@
    基本設定
    ======================================== */
 
+* {
+  font-family: 'LINE Seed JP_OTF', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', Meiryo, sans-serif !important;
+}
+
 body {
-  font-family: var(--font-base);
+  font-family: 'LINE Seed JP_OTF', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', Meiryo, sans-serif;
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-base);
