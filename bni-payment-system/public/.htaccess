@@ -1,0 +1,89 @@
+# BNI Payment System - .htaccess
+# セキュリティ・リライトルール
+
+# ==================== PHP設定 ====================
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_value upload_max_filesize 5M
+    php_value post_max_size 5M
+    php_value max_execution_time 30
+</IfModule>
+
+# ==================== セキュリティヘッダー ====================
+<IfModule mod_headers.c>
+    # XSS対策
+    Header set X-XSS-Protection "1; mode=block"
+
+    # クリックジャッキング対策
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # MIMEタイプスニッフィング対策
+    Header set X-Content-Type-Options "nosniff"
+
+    # リファラポリシー
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Content Security Policy（適宜調整）
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://connect.squareup.com https://web.squarecdn.com;"
+
+    # HTTPS強制（本番環境のみ有効化）
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ==================== リライトルール ====================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # HTTPS強制（本番環境のみ有効化）
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # www統一（必要に応じて有効化）
+    # RewriteCond %{HTTP_HOST} !^www\. [NC]
+    # RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [L,R=301]
+
+    # ディレクトリインデックス無効化
+    Options -Indexes
+</IfModule>
+
+# ==================== ファイルアクセス制限 ====================
+# .envファイルへのアクセス禁止
+<FilesMatch "^\.env">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# 設定ファイルへのアクセス禁止
+<FilesMatch "^(composer\.(json|lock)|package\.json|\.gitignore)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ==================== エラーページ ====================
+# ErrorDocument 404 /404.php
+# ErrorDocument 500 /500.php
+
+# ==================== キャッシュ設定 ====================
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # 画像
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+
+    # CSS/JS
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+
+    # フォント
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# ==================== 圧縮 ====================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE application/javascript application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>

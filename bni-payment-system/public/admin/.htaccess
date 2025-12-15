@@ -1,0 +1,31 @@
+# BNI Payment System - Admin Area .htaccess
+# Basic認証によるアクセス制限
+
+# ==================== Basic認証 ====================
+AuthType Basic
+AuthName "BNI Payment System - Admin Area"
+AuthUserFile /Users/yamadaren/Movies/claude-code-projects/yojitu.com/bni-payment-system/public/admin/.htpasswd
+Require valid-user
+
+# ==================== セキュリティヘッダー ====================
+<IfModule mod_headers.c>
+    # 管理画面はフレーム内表示禁止
+    Header always set X-Frame-Options "DENY"
+
+    # キャッシュ無効化（管理画面）
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+</IfModule>
+
+# ==================== ディレクトリリスティング禁止 ====================
+Options -Indexes
+
+# ==================== ファイルアクセス制限 ====================
+# .htpasswdへのアクセス禁止
+<FilesMatch "^\.htpasswd$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ==================== エラーページ ====================
+ErrorDocument 401 "Unauthorized Access - 認証が必要です"
