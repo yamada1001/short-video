@@ -98,35 +98,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
 </head>
 <body>
     <header class="header">
-        <!-- トップバー -->
-        <div class="header__topbar">
-            <div class="header__topbar-container">
-                <div class="header__topbar-left">
-                    <div class="header__topbar-item">
-                        <i class="fa-solid fa-clock"></i>
-                        <span><?php echo BUSINESS_HOURS; ?></span>
-                    </div>
-                    <div class="header__topbar-item">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <span><?php echo BUSINESS_DAYS; ?></span>
-                    </div>
-                    <div class="header__topbar-item">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span><?php echo ADDRESS_CITY . ADDRESS_DETAIL; ?></span>
-                    </div>
-                </div>
-                <div class="header__topbar-right">
-                    <a href="<?php echo url('news'); ?>" class="header__topbar-link">
-                        <i class="fa-solid fa-bullhorn"></i>
-                        お知らせ
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- メインヘッダー -->
-        <div class="header__main">
-            <div class="header__container">
+        <div class="header__container">
                 <!-- ロゴ -->
                 <a href="<?php echo url(); ?>" class="header__logo">
                     <img src="<?php echo asset('assets/images/logo.jpg'); ?>" alt="<?php echo SITE_NAME; ?>" class="header__logo-image">
@@ -179,7 +151,6 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
                     <span class="header__hamburger-line"></span>
                     <span class="header__hamburger-line"></span>
                 </button>
-            </div>
         </div>
 
         <!-- モバイルメニュー（SP） -->
