@@ -35,7 +35,8 @@
                     <img
                         src="<?php echo asset('assets/images/logo-alt.jpg'); ?>"
                         alt="くるま買取ケイヴィレッジ"
-                        class="tw-w-full tw-max-w-md tw-h-auto tw-drop-shadow-2xl tw-transition-transform tw-duration-300 hover:tw-scale-105"
+                        class="tw-w-full tw-max-w-md tw-h-auto tw-transition-transform tw-duration-300 hover:tw-scale-105"
+                        style="mix-blend-mode: multiply; filter: brightness(1.1) contrast(1.1);"
                     >
                 </div>
 
