@@ -204,7 +204,11 @@ try {
 }
 
 // スライド一覧を生成（非表示のスライドは除外）
+// $slides配列は連番（1始まり）、元のページ番号も保持
 $slides = [];
+$slidePageMap = []; // 表示インデックス => 元のページ番号のマッピング
+$displayIndex = 1;
+
 for ($i = 1; $i <= $totalSlides; $i++) {
     // 表示/非表示チェック（デフォルトは表示）
     $isVisible = isset($visibilityMap[$i]) ? $visibilityMap[$i] : true;
@@ -215,19 +219,27 @@ for ($i = 1; $i <= $totalSlides; $i++) {
 
     if (isset($phpSlides[$i])) {
         // PHPスライド
-        $slides[$i] = [
+        $slides[$displayIndex] = [
             'type' => 'php',
-            'source' => 'slides/' . $phpSlides[$i] . (strpos($phpSlides[$i], '?') !== false ? '&' : '?') . 'date=' . $targetDate
+            'source' => 'slides/' . $phpSlides[$i] . (strpos($phpSlides[$i], '?') !== false ? '&' : '?') . 'date=' . $targetDate,
+            'original_page' => $i
         ];
     } else {
         // 画像スライド
         $slideNumber = str_pad($i, 3, '0', STR_PAD_LEFT);
-        $slides[$i] = [
+        $slides[$displayIndex] = [
             'type' => 'image',
-            'source' => '../assets/images/slides/production/slide_' . $slideNumber . '.png'
+            'source' => '../assets/images/slides/production/slide_' . $slideNumber . '.png',
+            'original_page' => $i
         ];
     }
+
+    $slidePageMap[$displayIndex] = $i;
+    $displayIndex++;
 }
+
+// 実際に表示されるスライドの総数
+$visibleSlideCount = count($slides);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -355,7 +367,7 @@ for ($i = 1; $i <= $totalSlides; $i++) {
     </div>
 
     <!-- ページ番号表示 -->
-    <div class="slide-number-display" id="slideNumber">1 / <?php echo $totalSlides; ?></div>
+    <div class="slide-number-display" id="slideNumber">1 / <?php echo $visibleSlideCount; ?></div>
 
     <!-- ナビゲーション -->
     <div class="navigation">
@@ -366,7 +378,15 @@ for ($i = 1; $i <= $totalSlides; $i++) {
     <script>
         // スライド管理
         const slides = document.querySelectorAll('.slide');
-        const totalSlides = <?php echo $totalSlides; ?>;
+        const totalSlides = <?php echo $visibleSlideCount; ?>;
+        const slidePageMap = <?php echo json_encode($slidePageMap); ?>; // 表示インデックス => 元のページ番号
+
+        // 逆マップ: 元のページ番号 => 表示インデックス
+        const pageToIndexMap = {};
+        Object.keys(slidePageMap).forEach(index => {
+            pageToIndexMap[slidePageMap[index]] = parseInt(index);
+        });
+
         let currentSlide = 1;
 
         // スライド表示
@@ -386,15 +406,16 @@ for ($i = 1; $i <= $totalSlides; $i++) {
                 targetSlide.classList.add('active');
             }
 
-            // ページ番号更新
-            document.getElementById('slideNumber').textContent = `${currentSlide} / ${totalSlides}`;
+            // ページ番号更新（元のページ番号も表示）
+            const originalPage = slidePageMap[index] || index;
+            document.getElementById('slideNumber').textContent = `${currentSlide} / ${totalSlides} (p.${originalPage})`;
 
             // ボタン状態更新
             document.getElementById('prevBtn').disabled = (currentSlide === 1);
             document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
 
-            // URLハッシュ更新
-            window.location.hash = currentSlide;
+            // URLハッシュ更新（元のページ番号を使用）
+            window.location.hash = originalPage;
         }
 
         // 前へボタン
@@ -429,7 +450,17 @@ for ($i = 1; $i <= $totalSlides; $i++) {
         });
 
         // 初期表示（URLハッシュから取得、なければ1ページ目）
-        const initialSlide = parseInt(window.location.hash.substring(1)) || 1;
+        const hashPage = parseInt(window.location.hash.substring(1));
+        let initialSlide = 1;
+
+        if (hashPage && pageToIndexMap[hashPage]) {
+            // URLハッシュが元のページ番号の場合、表示インデックスに変換
+            initialSlide = pageToIndexMap[hashPage];
+        } else if (hashPage && hashPage <= totalSlides) {
+            // 数値として表示インデックスを指定した場合
+            initialSlide = hashPage;
+        }
+
         showSlide(initialSlide);
 
         // ページ読み込み完了後にフルスクリーン推奨メッセージ
