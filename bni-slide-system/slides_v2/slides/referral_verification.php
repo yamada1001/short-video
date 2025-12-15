@@ -6,10 +6,8 @@
 require_once __DIR__ . '/../config.php';
 
 $db = new PDO('sqlite:' . $db_path);
-$targetFriday = getTargetFriday();
 
-$stmt = $db->prepare("SELECT r.*, m1.name as from_name, m2.name as to_name FROM referral_verification r LEFT JOIN members m1 ON r.from_member_id = m1.id LEFT JOIN members m2 ON r.to_member_id = m2.id WHERE r.week_date = :week_date LIMIT 1");
-$stmt->bindValue(':week_date', $targetFriday, PDO::PARAM_STR);
+$stmt = $db->prepare("SELECT r.*, m1.name as from_name, m2.name as to_name FROM referral_verification r LEFT JOIN members m1 ON r.from_member_id = m1.id LEFT JOIN members m2 ON r.to_member_id = m2.id ORDER BY r.created_at DESC LIMIT 1");
 $stmt->execute();
 $verification = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
