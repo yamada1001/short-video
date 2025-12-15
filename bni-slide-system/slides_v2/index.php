@@ -158,10 +158,11 @@ if ($mainPresenterPdfPages > 0) {
     }
 }
 
-// 総スライド数（PDFページ数を考慮）
+// 総スライド数（PDFページ数とビジター数を考慮）
 // 基本: 309ページ
 // ネットワーキングPDFが追加される場合: p.86の1ページ分が置き換えられ、それ以降が追加される
 // メインプレゼンPDFが追加される場合: p.205~p.212 の8ページ分が置き換えられ、それ以降が追加される
+// ビジター感想スライドが追加される場合: p.213から人数分追加される（元々1ページ想定なので、超過分を追加）
 $totalSlides = 309;
 
 // ネットワーキング学習PDFの追加ページ数（1ページ以上で超過分を追加）
@@ -174,6 +175,13 @@ if ($networkingPdfPages > 1) {
 if ($mainPresenterPdfPages > 8) {
     $mainPresenterExtraPages = $mainPresenterPdfPages - 8;
     $totalSlides += $mainPresenterExtraPages;
+}
+
+// ビジター感想スライドの追加ページ数（1人以上で超過分を追加）
+// p.213は元々1ページ想定なので、2人目以降が追加される
+if ($visitorCount > 1) {
+    $visitorExtraPages = $visitorCount - 1;
+    $totalSlides += $visitorExtraPages;
 }
 
 // スライドの表示/非表示設定を取得
