@@ -224,6 +224,7 @@
 
                 if (data.success) {
                     alert('保存しました！');
+                    loadCategories(); // 保存後に最新データを再読み込み
                 } else {
                     alert('エラー: ' + data.error);
                 }
