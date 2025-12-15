@@ -1,482 +1,265 @@
 /**
- * BNI Payment System - 管理者パネル用CSS
- * ダッシュボード・テーブル・レイアウト
+ * BNI Payment System - 管理画面CSS（無印良品スタイル）
  */
 
-/* ==================== 管理画面レイアウト ==================== */
+/* ==================== レイアウト ==================== */
 .admin-body {
-    background: var(--gray-100);
+    background: #fafafa;
+    margin: 0;
     padding: 0;
 }
 
 .admin-container {
-    display: flex;
-    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 24px;
 }
 
-/* ==================== サイドバー ==================== */
-.sidebar {
-    width: 250px;
-    background: white;
-    box-shadow: var(--shadow-md);
-    display: flex;
-    flex-direction: column;
-}
-
-.sidebar-header {
-    padding: var(--spacing-xl);
-    border-bottom: 1px solid var(--gray-200);
-}
-
-.sidebar-header h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary);
-}
-
-.sidebar-nav {
-    flex: 1;
-    padding: var(--spacing-lg);
-}
-
-.nav-link {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
-    text-decoration: none;
-    color: var(--gray-700);
-    border-radius: var(--radius-md);
-    transition: all 0.15s ease;
-}
-
-.nav-link:hover {
-    background: var(--gray-50);
-    color: var(--primary);
-}
-
-.nav-link.active {
-    background: var(--primary);
-    color: white;
-}
-
-.nav-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-}
-
-/* ==================== メインコンテンツ ==================== */
-.admin-main {
-    flex: 1;
-    padding: var(--spacing-xl);
-    overflow-y: auto;
-}
-
+/* ==================== ヘッダー ==================== */
 .admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing-xl);
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
+    margin-bottom: 60px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .admin-header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--gray-900);
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+}
+
+.admin-subtitle {
+    font-size: 13px;
+    color: #999;
 }
 
 /* ==================== 週選択 ==================== */
 .week-selector {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    background: white;
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+    margin-bottom: 40px;
 }
 
 .week-selector label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--gray-700);
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 12px;
 }
 
 .week-select {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    border: 1px solid var(--gray-300);
-    border-radius: var(--radius-sm);
-    background: white;
-    color: var(--gray-900);
-    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: #333;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 .week-select:focus {
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    border-color: #DC143C;
 }
 
-/* ==================== 統計グリッド ==================== */
+/* ==================== 統計カード ==================== */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
+    gap: 24px;
+    margin-bottom: 60px;
 }
 
 .stat-card {
-    background: white;
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    gap: var(--spacing-lg);
-    align-items: center;
-}
-
-.stat-icon {
-    width: 3rem;
-    height: 3rem;
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.stat-icon svg {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-
-.stat-icon-total {
-    background: #dbeafe;
-    color: var(--primary);
-}
-
-.stat-icon-paid {
-    background: #d1fae5;
-    color: var(--success);
-}
-
-.stat-icon-unpaid {
-    background: #fed7aa;
-    color: var(--warning);
-}
-
-.stat-icon-amount {
-    background: #e9d5ff;
-    color: #9333ea;
-}
-
-.stat-content {
-    flex: 1;
+    background: #fff;
+    padding: 32px 24px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
 }
 
 .stat-label {
-    font-size: 0.875rem;
-    color: var(--gray-500);
-    font-weight: 500;
-    margin-bottom: var(--spacing-xs);
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 8px;
+    letter-spacing: 0.1em;
 }
 
 .stat-value {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: var(--gray-900);
+    font-size: 32px;
+    font-weight: 300;
+    color: #333;
+    letter-spacing: -0.02em;
 }
 
-/* ==================== アクション ==================== */
-.actions {
-    margin-bottom: var(--spacing-lg);
-}
-
-.btn-export {
-    background: var(--success);
-    color: white;
-    width: auto;
-}
-
-.btn-export:hover {
-    background: #059669;
-}
-
-/* ==================== テーブルカード ==================== */
+/* ==================== テーブル ==================== */
 .table-card {
-    background: white;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
+    background: #fff;
+    padding: 48px 32px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 32px;
 }
 
 .table-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--gray-900);
-    padding: var(--spacing-lg);
-    border-bottom: 1px solid var(--gray-200);
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 32px;
+    letter-spacing: 0.05em;
 }
 
-.table-wrapper {
-    overflow-x: auto;
-}
-
-/* ==================== データテーブル ==================== */
 .data-table {
     width: 100%;
     border-collapse: collapse;
 }
 
 .data-table th {
-    background: var(--gray-50);
-    padding: var(--spacing-md);
+    padding: 16px 12px;
     text-align: left;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--gray-700);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 1px solid var(--gray-200);
+    font-size: 12px;
+    font-weight: 500;
+    color: #999;
+    border-bottom: 1px solid #e0e0e0;
+    letter-spacing: 0.1em;
 }
 
 .data-table td {
-    padding: var(--spacing-md);
-    border-bottom: 1px solid var(--gray-200);
-    font-size: 0.875rem;
+    padding: 16px 12px;
+    font-size: 15px;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .data-table tbody tr:hover {
-    background: var(--gray-50);
-}
-
-.paid-row {
-    background: rgba(16, 185, 129, 0.02);
-}
-
-.unpaid-row {
-    background: rgba(245, 158, 11, 0.02);
+    background: #fafafa;
 }
 
 .member-name {
-    font-weight: 600;
-    color: var(--gray-900);
+    font-weight: 400;
+    color: #333;
 }
 
 .member-email {
-    color: var(--gray-500);
+    font-size: 13px;
+    color: #999;
 }
 
 .payment-date,
 .payment-amount {
-    color: var(--gray-700);
+    color: #666;
 }
 
 .text-muted {
-    color: var(--gray-400);
+    color: #ccc;
+    font-size: 14px;
 }
 
 /* ==================== バッジ ==================== */
 .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 600;
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 400;
+    border-radius: 0;
 }
 
 .badge-success {
-    background: #d1fae5;
-    color: #065f46;
+    background: #f5f5f5;
+    color: #333;
+    border: 1px solid #e0e0e0;
 }
 
 .badge-warning {
-    background: #fed7aa;
-    color: #92400e;
+    background: #fff;
+    color: #999;
+    border: 1px solid #e0e0e0;
 }
 
-.badge-icon {
-    width: 1rem;
-    height: 1rem;
-}
-
-/* ==================== フォーム（メンバー管理用） ==================== */
-.form-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
-}
-
-.form-input {
-    width: 100%;
-    padding: 0.625rem 0.75rem;
-    font-size: 1rem;
-    border: 1px solid var(--gray-300);
-    border-radius: var(--radius-md);
-    transition: all 0.15s ease;
-}
-
-.form-input:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-.form-checkbox {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-}
-
-.form-checkbox input[type="checkbox"] {
-    width: 1.25rem;
-    height: 1.25rem;
-    cursor: pointer;
-}
-
-/* ==================== モーダル ==================== */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 50;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    align-items: center;
-    justify-content: center;
-}
-
-.modal.active {
-    display: flex;
-}
-
-.modal-content {
-    background: white;
-    padding: var(--spacing-xl);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    max-width: 500px;
-    width: 90%;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing-lg);
-}
-
-.modal-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--gray-900);
-}
-
-.modal-close {
-    background: none;
+/* ==================== ボタン ==================== */
+.btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background: #DC143C;
     border: none;
-    font-size: 1.5rem;
-    color: var(--gray-500);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: background 0.2s;
     cursor: pointer;
-    padding: 0;
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius-sm);
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
-.modal-close:hover {
-    background: var(--gray-100);
-    color: var(--gray-900);
+.btn:hover {
+    background: #A01225;
 }
 
-.modal-body {
-    margin-bottom: var(--spacing-lg);
+.btn-export {
+    background: #333;
 }
 
-.modal-footer {
-    display: flex;
-    gap: var(--spacing-md);
-    justify-content: flex-end;
+.btn-export:hover {
+    background: #000;
 }
 
-/* ==================== ボタングループ ==================== */
-.btn-group {
-    display: flex;
-    gap: var(--spacing-sm);
+.actions {
+    margin-bottom: 32px;
 }
 
-.btn-sm {
-    padding: 0.375rem 0.75rem;
-    font-size: 0.875rem;
-    width: auto;
+/* ==================== ナビゲーション（シンプル版） ==================== */
+.sidebar {
+    display: none; /* 無印スタイルにはサイドバー不要 */
 }
 
-.btn-danger {
-    background: var(--error);
-    color: white;
+.admin-nav {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-.btn-danger:hover {
-    background: #dc2626;
+.admin-nav a {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+
+.admin-nav a:hover {
+    color: #333;
+}
+
+.admin-nav a.active {
+    color: #DC143C;
+    border-bottom-color: #DC143C;
 }
 
 /* ==================== レスポンシブ ==================== */
-@media (max-width: 768px) {
+@media (max-width: 640px) {
     .admin-container {
-        flex-direction: column;
+        padding: 40px 16px;
     }
 
-    .sidebar {
-        width: 100%;
-    }
-
-    .sidebar-nav {
-        display: flex;
-        overflow-x: auto;
-        padding: var(--spacing-md);
-    }
-
-    .nav-link {
-        white-space: nowrap;
-        margin-bottom: 0;
-        margin-right: var(--spacing-sm);
-    }
-
-    .admin-main {
-        padding: var(--spacing-md);
-    }
-
-    .admin-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .admin-header h1 {
-        font-size: 1.5rem;
+    .table-card {
+        padding: 32px 24px;
     }
 
     .stats-grid {
         grid-template-columns: 1fr;
     }
 
+    .stat-value {
+        font-size: 28px;
+    }
+
     .data-table {
-        font-size: 0.75rem;
+        font-size: 13px;
     }
 
     .data-table th,
     .data-table td {
-        padding: var(--spacing-sm);
+        padding: 12px 8px;
     }
 }
