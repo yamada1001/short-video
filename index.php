@@ -423,9 +423,6 @@ $faq_structured_data = '
         </div>
     </section>
 
-    <!-- エリアセクション -->
-    <?php include __DIR__ . '/includes/area-section.php'; ?>
-
     <script>
     // ブログカテゴリフィルタ（Ajax）
     document.addEventListener('DOMContentLoaded', function() {
