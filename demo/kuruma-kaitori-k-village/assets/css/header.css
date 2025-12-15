@@ -41,6 +41,13 @@
   opacity: 0.85;
 }
 
+.header__logo-image {
+  height: 50px;
+  width: auto;
+  max-width: 300px;
+  object-fit: contain;
+}
+
 .header__logo-icon {
   font-size: 32px;
   color: var(--primary-color);

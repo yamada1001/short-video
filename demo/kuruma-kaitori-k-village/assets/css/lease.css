@@ -1,0 +1,537 @@
+/*
+ * Lease Page Styles
+ * くるま買取ケイヴィレッジ
+ * 新車リースページ専用スタイル
+ */
+
+/* ========================================
+   Lease Hero Section
+   ======================================== */
+
+.lease-hero {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+  padding: var(--spacing-3xl) 0;
+  color: var(--text-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.lease-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="800" cy="200" r="300" fill="rgba(255,255,255,0.05)"/><circle cx="900" cy="500" r="200" fill="rgba(255,255,255,0.03)"/></svg>');
+  background-size: cover;
+  opacity: 0.3;
+}
+
+.lease-hero__container {
+  position: relative;
+  z-index: 1;
+}
+
+.lease-hero__title {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-black);
+  margin-bottom: var(--spacing-md);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.lease-hero__lead {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-xl);
+  opacity: 0.95;
+}
+
+.lease-hero__features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.lease-hero__feature {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lease-hero__feature i {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-sm);
+  display: block;
+}
+
+.lease-hero__feature-title {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+}
+
+@media (max-width: 768px) {
+  .lease-hero {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .lease-hero__title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .lease-hero__lead {
+    font-size: var(--font-size-base);
+  }
+
+  .lease-hero__features {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Benefits Section (リースのメリット)
+   ======================================== */
+
+.lease-benefits {
+  padding: var(--spacing-3xl) 0;
+}
+
+.lease-benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.lease-benefits__item {
+  background: var(--bg-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  border: 2px solid var(--border-color);
+  transition: all var(--transition-base);
+  text-align: center;
+}
+
+.lease-benefits__item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: #8b5cf6;
+}
+
+.lease-benefits__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-4xl);
+  color: var(--text-white);
+  margin: 0 auto var(--spacing-md);
+}
+
+.lease-benefits__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-sm);
+}
+
+.lease-benefits__description {
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+@media (max-width: 768px) {
+  .lease-benefits {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .lease-benefits__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Plans Section (リースプラン)
+   ======================================== */
+
+.lease-plans {
+  padding: var(--spacing-3xl) 0;
+  background: var(--bg-gray);
+}
+
+.lease-plans__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.lease-plans__item {
+  background: var(--bg-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  border: 2px solid var(--border-color);
+  transition: all var(--transition-base);
+}
+
+.lease-plans__item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.lease-plans__item--popular {
+  border-color: #8b5cf6;
+  box-shadow: var(--shadow-lg);
+}
+
+.lease-plans__badge {
+  position: absolute;
+  top: -12px;
+  right: var(--spacing-lg);
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: var(--text-white);
+  padding: 4px var(--spacing-md);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+.lease-plans__name {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-black);
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-primary);
+}
+
+.lease-plans__period {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.lease-plans__price {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-black);
+  color: #8b5cf6;
+  margin-bottom: var(--spacing-xs);
+}
+
+.lease-plans__recommend {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.lease-plans__features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.lease-plans__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  color: var(--text-secondary);
+}
+
+.lease-plans__feature::before {
+  content: "✓";
+  color: #8b5cf6;
+  font-weight: var(--font-weight-bold);
+  flex-shrink: 0;
+}
+
+.lease-plans__cta {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .lease-plans {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .lease-plans__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Vehicles Section (対象車種)
+   ======================================== */
+
+.lease-vehicles {
+  padding: var(--spacing-3xl) 0;
+}
+
+.lease-vehicles__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.lease-vehicles__category {
+  background: var(--bg-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.lease-vehicles__category-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-md);
+  color: #8b5cf6;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.lease-vehicles__category-title i {
+  font-size: var(--font-size-2xl);
+}
+
+.lease-vehicles__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.lease-vehicles__item {
+  padding: var(--spacing-xs) 0;
+  color: var(--text-secondary);
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.lease-vehicles__item:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .lease-vehicles {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .lease-vehicles__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Process Section (リースの流れ)
+   ======================================== */
+
+.lease-process {
+  padding: var(--spacing-3xl) 0;
+  background: var(--bg-gray);
+}
+
+.lease-process__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+  position: relative;
+}
+
+.lease-process__step {
+  background: var(--bg-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.lease-process__step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: var(--text-white);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--border-radius-full);
+  margin-bottom: var(--spacing-md);
+}
+
+.lease-process__step-icon {
+  font-size: var(--font-size-4xl);
+  color: #8b5cf6;
+  margin-bottom: var(--spacing-md);
+}
+
+.lease-process__step-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-sm);
+}
+
+.lease-process__step-description {
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+@media (max-width: 768px) {
+  .lease-process {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .lease-process__steps {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+}
+
+/* ========================================
+   FAQ Section
+   ======================================== */
+
+.lease-faq {
+  padding: var(--spacing-3xl) 0;
+}
+
+.lease-faq__list {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.lease-faq__item {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.lease-faq__question {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.lease-faq__question:hover {
+  background: var(--bg-gray);
+}
+
+.lease-faq__q-icon {
+  width: 32px;
+  height: 32px;
+  background: #8b5cf6;
+  color: var(--text-white);
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: var(--font-weight-black);
+}
+
+.lease-faq__answer {
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-md);
+  margin: 0 var(--spacing-lg) var(--spacing-md);
+}
+
+.lease-faq__a-icon {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  background: var(--success-color);
+  color: var(--text-white);
+  border-radius: var(--border-radius-full);
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-black);
+  margin-right: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+@media (max-width: 768px) {
+  .lease-faq {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .lease-faq__question {
+    font-size: var(--font-size-base);
+    padding: var(--spacing-md);
+  }
+
+  .lease-faq__answer {
+    font-size: var(--font-size-sm);
+    padding: 0 var(--spacing-md) var(--spacing-md);
+    margin: 0 var(--spacing-md) var(--spacing-sm);
+  }
+}
+
+/* ========================================
+   CTA Section
+   ======================================== */
+
+.lease-cta {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+  padding: var(--spacing-3xl) 0;
+  color: var(--text-white);
+  text-align: center;
+}
+
+.lease-cta__title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-black);
+  margin-bottom: var(--spacing-md);
+}
+
+.lease-cta__description {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-xl);
+  opacity: 0.95;
+}
+
+.lease-cta__buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .lease-cta {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .lease-cta__title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .lease-cta__description {
+    font-size: var(--font-size-base);
+  }
+
+  .lease-cta__buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .lease-cta__buttons .btn {
+    width: 100%;
+  }
+}

@@ -53,6 +53,10 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <?php if ($current_page === 'index'): ?>
     <link rel="stylesheet" href="<?php echo asset('assets/css/index.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/inventory.css'); ?>">
+    <?php elseif ($current_page === 'kaitori'): ?>
+    <link rel="stylesheet" href="<?php echo asset('assets/css/kaitori.css'); ?>">
+    <?php elseif ($current_page === 'lease'): ?>
+    <link rel="stylesheet" href="<?php echo asset('assets/css/lease.css'); ?>">
     <?php elseif ($current_page === 'about'): ?>
     <link rel="stylesheet" href="<?php echo asset('assets/css/about.css'); ?>">
     <?php elseif ($current_page === 'contact'): ?>
@@ -71,16 +75,24 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
         <div class="header__container">
             <!-- ロゴ -->
             <a href="<?php echo url(); ?>" class="header__logo">
-                <i class="fa-solid fa-car header__logo-icon"></i>
-                <div class="header__logo-text">
-                    <span class="header__logo-main"><?php echo SITE_NAME; ?></span>
-                    <span class="header__logo-sub">大分市中判田の車買取・販売・車検</span>
-                </div>
+                <img src="<?php echo asset('assets/images/logo.jpg'); ?>" alt="<?php echo SITE_NAME; ?>" class="header__logo-image">
             </a>
 
             <!-- ナビゲーション（PC） -->
             <nav class="header__nav">
                 <ul class="header__nav-list">
+                    <li class="header__nav-item">
+                        <a href="<?php echo url('kaitori'); ?>" class="header__nav-link <?php echo is_current_page('kaitori'); ?>">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                            買取サービス
+                        </a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a href="<?php echo url('lease'); ?>" class="header__nav-link <?php echo is_current_page('lease'); ?>">
+                            <i class="fa-solid fa-file-contract"></i>
+                            新車リース
+                        </a>
+                    </li>
                     <li class="header__nav-item">
                         <a href="<?php echo url('about'); ?>" class="header__nav-link <?php echo is_current_page('about'); ?>">
                             <i class="fa-solid fa-building"></i>
@@ -113,6 +125,18 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
         <!-- モバイルメニュー（SP） -->
         <div class="header__mobile-menu" id="mobile-menu">
             <ul class="header__mobile-nav-list">
+                <li class="header__mobile-nav-item">
+                    <a href="<?php echo url('kaitori'); ?>" class="header__mobile-nav-link <?php echo is_current_page('kaitori'); ?>">
+                        <span><i class="fa-solid fa-hand-holding-dollar"></i> 買取サービス</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </li>
+                <li class="header__mobile-nav-item">
+                    <a href="<?php echo url('lease'); ?>" class="header__mobile-nav-link <?php echo is_current_page('lease'); ?>">
+                        <span><i class="fa-solid fa-file-contract"></i> 新車リース</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </li>
                 <li class="header__mobile-nav-item">
                     <a href="<?php echo url('about'); ?>" class="header__mobile-nav-link <?php echo is_current_page('about'); ?>">
                         <span><i class="fa-solid fa-building"></i> 会社概要</span>

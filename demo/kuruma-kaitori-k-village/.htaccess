@@ -1,11 +1,5 @@
 # くるま買取ケイヴィレッジ - .htaccess
 
-# Basic認証（デモサイト保護）
-AuthType Basic
-AuthName "Demo Site - Access Restricted"
-AuthUserFile /home/xs545151/yojitu.com/public_html/demo/kuruma-kaitori-k-village/.htpasswd
-Require valid-user
-
 # DirectoryIndex
 DirectoryIndex index.php
 
