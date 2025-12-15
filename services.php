@@ -67,6 +67,10 @@ $inline_styles = <<<'EOD'
             border-color: var(--color-natural-brown);
         }
 
+        .service-card--system:hover {
+            border-color: var(--color-natural-brown);
+        }
+
         .service-card__header {
             padding: var(--spacing-xxl);
             text-align: center;
@@ -78,6 +82,10 @@ $inline_styles = <<<'EOD'
         }
 
         .service-card--video .service-card__header {
+            background: var(--color-charcoal);
+        }
+
+        .service-card--system .service-card__header {
             background: var(--color-charcoal);
         }
 
@@ -138,6 +146,10 @@ $inline_styles = <<<'EOD'
             color: var(--color-natural-brown);
         }
 
+        .service-card--system .service-card__features li i {
+            color: var(--color-natural-brown);
+        }
+
         .service-card__cta {
             text-align: center;
         }
@@ -169,6 +181,16 @@ $inline_styles = <<<'EOD'
         }
 
         .service-card--video .service-card__link:hover {
+            background: var(--color-natural-brown);
+            gap: var(--spacing-md);
+        }
+
+        .service-card--system .service-card__link {
+            background: var(--color-charcoal);
+            color: var(--color-bg-white);
+        }
+
+        .service-card--system .service-card__link:hover {
             background: var(--color-natural-brown);
             gap: var(--spacing-md);
         }
@@ -317,6 +339,7 @@ EOD;
             <div class="service-tabs">
                 <button class="service-tab active" data-service="web" onclick="switchService('web')">Web制作</button>
                 <button class="service-tab" data-service="video" onclick="switchService('video')">ショート動画</button>
+                <button class="service-tab" data-service="system" onclick="switchService('system')">システム開発</button>
             </div>
 
             <div class="services-grid has-tabs">
@@ -402,6 +425,50 @@ EOD;
                         <div class="service-card__cta">
                             <a href="video-production.php" class="service-card__link">
                                 <span>詳しく見る</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- システム開発 -->
+                <div class="service-card service-card--system" data-service="system">
+                    <div class="service-card__header">
+                        <div class="service-card__icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h2 class="service-card__title">システム開発</h2>
+                        <p class="service-card__subtitle">SYSTEM DEVELOPMENT</p>
+                    </div>
+                    <div class="service-card__content">
+                        <p class="service-card__description">
+                            業務効率化システムからWebアプリケーション開発まで。お客様のビジネス課題を解決するカスタムシステムを開発します。
+                        </p>
+                        <ul class="service-card__features">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>業務管理システム - お見積り</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Webアプリケーション - お見積り</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>API開発・外部連携 - お見積り</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>PHP/JavaScript/Python対応</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>データベース設計・構築</span>
+                            </li>
+                        </ul>
+                        <div class="service-card__cta">
+                            <a href="contact.php" class="service-card__link">
+                                <span>お問い合わせ</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>

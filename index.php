@@ -82,7 +82,7 @@ $structured_data = '
         "addressRegion": "日本",
         "addressCountry": "JP"
       },
-      "serviceType": ["ホームページ制作", "Webサイト制作", "ショート動画制作"],
+      "serviceType": ["ホームページ制作", "Webサイト制作", "ショート動画制作", "システム開発"],
       "keywords": ["ホームページ制作", "Web制作", "AI", "システム開発", "中小企業", "個人事業主"]
     }
 ';
@@ -266,7 +266,7 @@ $faq_structured_data = '
                 </div>
                 <div class="hero-v2__meta-item" data-hero-meta-3>
                     <span class="hero-v2__meta-num">03</span>
-                    <span class="hero-v2__meta-text">マーケティング</span>
+                    <span class="hero-v2__meta-text">システム開発</span>
                     <div class="hero-v2__meta-line"></div>
                 </div>
             </div>
@@ -318,6 +318,22 @@ $faq_structured_data = '
                     </p>
                     <div class="service-card__footer">
                         <a href="video-production.php" class="service-card__link">
+                            詳しく見る
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="service-card animate">
+                    <div class="service-card__number">03</div>
+                    <div class="service-card__icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="service-card__title">システム開発</h3>
+                    <p class="service-card__description">
+                        業務効率化システムからWebアプリケーション開発まで。カスタムシステムで課題を解決。
+                    </p>
+                    <div class="service-card__footer">
+                        <a href="services.php" class="service-card__link">
                             詳しく見る
                             <i class="fas fa-arrow-right"></i>
                         </a>
