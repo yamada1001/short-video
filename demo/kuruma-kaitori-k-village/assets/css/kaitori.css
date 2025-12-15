@@ -28,6 +28,18 @@
   opacity: 0.3;
 }
 
+.kaitori-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,10 600,50 T1200,50 L1200,120 L0,120 Z" fill="rgb(243,244,246)"/></svg>');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .kaitori-hero__container {
   position: relative;
   z-index: 1;
@@ -178,12 +190,30 @@
   border-radius: var(--border-radius-lg);
   border: 2px solid var(--border-color);
   transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.kaitori-strengths__item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transform: scaleX(0);
+  transition: transform var(--transition-base);
 }
 
 .kaitori-strengths__item:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
   border-color: var(--primary-color);
+}
+
+.kaitori-strengths__item:hover::before {
+  transform: scaleX(1);
 }
 
 .kaitori-strengths__icon {

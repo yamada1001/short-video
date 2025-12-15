@@ -34,6 +34,32 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 
+    <!-- LINE Seed JP Font -->
+    <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedJP_A_OTF_Rg.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <style>
+    @font-face {
+        font-family: 'LINE Seed JP';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedJP_A_OTF_Rg.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'LINE Seed JP';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedJP_A_OTF_Bd.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'LINE Seed JP';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedJP_A_OTF_Eb.woff2') format('woff2');
+        font-weight: 800;
+        font-style: normal;
+        font-display: swap;
+    }
+    </style>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -45,6 +71,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <link rel="stylesheet" href="<?php echo asset('assets/css/variables.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/common.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/components.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('assets/css/decorations.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/header.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/footer.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('assets/css/breadcrumb.css'); ?>">
