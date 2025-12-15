@@ -29,7 +29,6 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 $championTypes = [
     'referral' => ['name' => 'Referral', 'jp' => 'リファーラル', 'icon' => 'handshake'],
-    'value' => ['name' => 'Value', 'jp' => 'バリュー', 'icon' => 'dollar-sign'],
     'visitor' => ['name' => 'Visitor', 'jp' => 'ビジター', 'icon' => 'users'],
     '1to1' => ['name' => '1to1', 'jp' => '1to1', 'icon' => 'comments'],
     'ceu' => ['name' => 'CEU', 'jp' => 'CEU', 'icon' => 'graduation-cap']
@@ -95,8 +94,8 @@ $championTypes = [
 
         .champions-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
             margin-top: 40px;
         }
 
@@ -192,7 +191,7 @@ $championTypes = [
         <?php else: ?>
             <div class="champions-grid">
                 <?php foreach ($allChampions as $champion): ?>
-                    <?php $typeInfo = $championTypes[$champion['type']] ?? ['name' => 'Unknown', 'jp' => '不明', 'icon' => 'trophy']; ?>
+                    <?php $typeInfo = $championTypes[$champion['category']] ?? ['name' => 'Unknown', 'jp' => '不明', 'icon' => 'trophy']; ?>
                     <div class="champion-card">
                         <div class="medal">🥇</div>
 
