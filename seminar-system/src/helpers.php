@@ -201,3 +201,11 @@ function isEmpty($value): bool {
     }
     return $value === null || $value === '';
 }
+
+/**
+ * 文字列がJSONかチェック
+ */
+function isJson(string $string): bool {
+    json_decode($string);
+    return json_last_error() === JSON_ERROR_NONE;
+}
