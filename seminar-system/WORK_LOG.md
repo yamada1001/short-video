@@ -1,16 +1,16 @@
 # セミナー管理システム - 作業進捗ログ
 
 ## 📅 最終更新日時
-**2025-12-16 23:55**
+**2025-12-17 00:30**
 
 ---
 
 ## 🎯 現在の状況
 
 ### プロジェクトステータス
-- **フェーズ**: フェーズ1（基盤構築）完了
-- **進捗率**: 20%（基盤構築完了）
-- **次のステップ**: フェーズ2（セミナー・参加者管理）
+- **フェーズ**: フェーズ2（セミナー・参加者管理）実装中
+- **進捗率**: 50%（ユーザーフロー完了）
+- **次のステップ**: 管理画面実装
 
 ### 完了済みタスク
 - ✅ 要件定義（AskUserQuestion形式で実施）
@@ -23,16 +23,25 @@
   - ✅ 基本クラス実装（Database, Logger, helpers）
   - ✅ データベースSQL作成（schema.sql, seeds.sql）
   - ✅ Square APIクライアント実装
+- ✅ **フェーズ2: 基本クラス実装 完了**
+  - ✅ Seminar.phpクラス作成（CRUD + 統計メソッド）
+  - ✅ Attendee.phpクラス作成（CRUD + ステータス管理 + クレジット管理）
+  - ✅ Survey.phpクラス作成（質問・回答管理 + 統計）
+- ✅ **フェーズ2: ユーザーフロー実装 完了**
+  - ✅ 申込フォーム（public/index.php）
+  - ✅ 申込完了ページ（public/thank-you.php）
+  - ✅ 支払いページ（public/payment.php）
+  - ✅ Webhook（public/webhook.php）
 
 ### 進行中タスク
 - なし
 
 ### 次に実施すること
-1. Seminar.phpクラス作成
-2. Attendee.phpクラス作成
-3. 申込フォーム実装（public/index.php）
-4. セミナー管理画面実装（public/admin/seminars.php）
-5. 参加者管理画面実装（public/admin/attendees.php）
+1. セミナー管理画面実装（public/admin/seminars.php）
+2. 参加者管理画面実装（public/admin/attendees.php）
+3. 欠席フォーム実装（public/cancel.php）
+4. QRコードチェックイン実装（public/checkin.php）
+5. メール送信機能実装
 
 ---
 
@@ -300,6 +309,59 @@
 ---
 
 ## 🔄 変更履歴
+
+### 2025-12-17 00:30 - ユーザーフロー実装完了
+- **申込フォーム（public/index.php）**（500行）
+  - セミナー一覧表示（申込受付中のみ）
+  - セミナーカード選択UI
+  - 個人情報入力（名前、メール、電話）
+  - 申込時アンケート（text/radio/checkbox対応）
+  - CSRF対策、バリデーション
+  - 無印良品スタイルデザイン（インラインCSS）
+- **申込完了ページ（public/thank-you.php）**（340行）
+  - セミナー情報表示
+  - 次のステップ案内（番号付きリスト）
+  - 支払いページへのリンク
+  - 欠席リンク表示（トークン付きURL）
+  - QRコードチェックイン用URL表示
+- **支払いページ（public/payment.php）**（420行）
+  - メールアドレスで参加者検索
+  - 未払いセミナー一覧表示
+  - 繰越クレジット表示
+  - クレジット適用チェックボックス
+  - Square Payment Link作成
+  - 決済ページへリダイレクト
+- **Webhook（public/webhook.php）**（150行）
+  - Square署名検証
+  - payment.created/updated イベント処理
+  - payment_noteからattendee_id抽出
+  - ステータスを'paid'に更新
+  - square_payment_id保存
+  - 詳細ログ記録
+- 進捗率: 30% → 50%
+
+### 2025-12-17 00:10 - 基本クラス実装完了
+- **Seminar.phpクラス実装**（260行）
+  - CRUD操作（getAll, getById, create, update, delete）
+  - 取得メソッド（getUpcoming, getOpenForRegistration）
+  - 統計メソッド（getAttendeeCount, getPaidCount, getAttendedCount）
+  - 申込受付チェック（isRegistrationOpen）
+  - PDFパス更新（updatePdfPath）
+- **Attendee.phpクラス実装**（350行）
+  - CRUD操作（getAll, getById, create, delete）
+  - トークン検索（getByCancelToken, getByQrToken）
+  - メール検索（getByEmail, hasRegistered）
+  - ステータス管理（updateStatus, markAsAbsent）
+  - クレジット管理（getTotalCredit, useCredit）
+  - 統計（getStatusCounts）
+- **Survey.phpクラス実装**（250行）
+  - 質問管理（getQuestions, createQuestion, updateQuestion, deleteQuestion）
+  - 回答管理（saveAnswer, saveAnswers）
+  - 取得メソッド（getAnswersByAttendee, getAnswersByQuestion）
+  - 統計（getStatistics, hasAnswered）
+- **helpers.php更新**
+  - isJson() 関数追加
+- 進捗率: 20% → 30%
 
 ### 2025-12-16 23:55 - フェーズ1完了
 - **フェーズ1: 基盤構築** を完了
