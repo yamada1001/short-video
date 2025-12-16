@@ -1,0 +1,60 @@
+# PHP 8.1を使用
+AddHandler application/x-httpd-php81 .php
+
+# エラーページ
+ErrorDocument 404 /seminar-system/public/404.php
+ErrorDocument 500 /seminar-system/public/500.php
+
+# セキュリティ設定
+<Files ".env">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "composer.json">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "composer.lock">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# uploads/へのダイレクトアクセス制限（PDF以外）
+<Directory "uploads/">
+    Options -Indexes
+    <FilesMatch "\.pdf$">
+        Order allow,deny
+        Allow from all
+    </FilesMatch>
+</Directory>
+
+# logs/へのアクセス禁止
+<Directory "logs/">
+    Order allow,deny
+    Deny from all
+</Directory>
+
+# src/へのアクセス禁止
+<Directory "src/">
+    Order allow,deny
+    Deny from all
+</Directory>
+
+# config/へのアクセス禁止
+<Directory "config/">
+    Order allow,deny
+    Deny from all
+</Directory>
+
+# vendor/へのアクセス禁止
+<Directory "vendor/">
+    Order allow,deny
+    Deny from all
+</Directory>
+
+# HTTPS強制（本番環境で有効化）
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
