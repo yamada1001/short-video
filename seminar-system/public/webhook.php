@@ -7,6 +7,7 @@ require_once __DIR__ . '/../config/config.php';
 
 use Seminar\Attendee;
 use Seminar\SquareClient;
+use Seminar\EmailSender;
 
 // ログ記録用ヘルパー
 function logWebhook(string $message, array $context = []) {
@@ -114,6 +115,14 @@ if (in_array($attendee['status'], ['paid', 'attended'])) {
 try {
     Attendee::updateStatus($attendeeId, 'paid');
     Attendee::updatePaymentId($attendeeId, $paymentId);
+
+    // 支払い完了メール送信
+    try {
+        $emailSender = new EmailSender();
+        $emailSender->sendPaymentConfirmation($attendeeId);
+    } catch (\Exception $e) {
+        logWebhook('支払い完了メール送信エラー: ' . $e->getMessage());
+    }
 
     logWebhook('Payment processed successfully', [
         'attendee_id' => $attendeeId,

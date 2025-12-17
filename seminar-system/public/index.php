@@ -7,6 +7,7 @@ require_once __DIR__ . '/../config/config.php';
 use Seminar\Seminar;
 use Seminar\Attendee;
 use Seminar\Survey;
+use Seminar\EmailSender;
 
 // フラッシュメッセージ取得
 $flash = getFlash();
@@ -88,6 +89,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (!empty($surveyAnswers)) {
                 Survey::saveAnswers($attendeeId, $surveyAnswers);
+            }
+
+            // 申込確認メール送信
+            try {
+                $emailSender = new EmailSender();
+                $emailSender->sendRegistrationConfirmation($attendeeId);
+            } catch (\Exception $e) {
+                Logger::error("申込確認メール送信エラー: {$e->getMessage()}");
             }
 
             // 成功メッセージ
