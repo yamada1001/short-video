@@ -467,8 +467,8 @@ EOD;
                             </li>
                         </ul>
                         <div class="service-card__cta">
-                            <a href="contact.php" class="service-card__link">
-                                <span>お問い合わせ</span>
+                            <a href="system-development.php" class="service-card__link">
+                                <span>詳しく見る</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
