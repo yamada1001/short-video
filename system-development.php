@@ -318,126 +318,8 @@ $inline_styles = <<<'EOD'
             }
         }
 
-        /* サイドバー見積もりフォーム（PC版） */
-        .sidebar-inquiry {
-            position: fixed;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 280px;
-            background: #fafaf8;
-            border-left: 2px solid var(--color-natural-brown);
-            box-shadow: -2px 0 16px rgba(0,0,0,0.08);
-            z-index: 9000;
-            display: block;
-        }
-
-        .sidebar-inquiry__inner {
-            padding: var(--spacing-lg);
-        }
-
-        .sidebar-inquiry__title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--color-natural-brown);
-            margin-bottom: var(--spacing-sm);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .sidebar-inquiry__lead {
-            font-size: 13px;
-            color: var(--color-text);
-            margin-bottom: var(--spacing-md);
-            line-height: 1.6;
-        }
-
-        .sidebar-inquiry__form .form-group {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .sidebar-inquiry__form label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--color-charcoal);
-            margin-bottom: 6px;
-        }
-
-        .sidebar-inquiry__form .required {
-            color: #d32f2f;
-            font-size: 12px;
-        }
-
-        .sidebar-inquiry__form input[type="email"],
-        .sidebar-inquiry__form textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 13px;
-            font-family: inherit;
-            transition: border-color 0.2s ease;
-            background: #fff;
-        }
-
-        .sidebar-inquiry__form input[type="email"]:focus,
-        .sidebar-inquiry__form textarea:focus {
-            outline: none;
-            border-color: var(--color-natural-brown);
-        }
-
-        .sidebar-inquiry__form textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .sidebar-inquiry__submit {
-            width: 100%;
-            padding: 12px;
-            background: var(--color-natural-brown);
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .sidebar-inquiry__submit:hover {
-            background: var(--color-charcoal);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .sidebar-inquiry__success,
-        .sidebar-inquiry__error {
-            margin-top: var(--spacing-sm);
-            padding: var(--spacing-sm);
-            border-radius: 4px;
-            font-size: 13px;
-            text-align: center;
-        }
-
-        .sidebar-inquiry__success {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .sidebar-inquiry__error {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        /* SP版: 右下固定ボタン */
-        .sp-inquiry-btn {
-            display: none;
+        /* 右下固定ボタン */
+        .inquiry-btn {
             position: fixed;
             right: 20px;
             bottom: 20px;
@@ -450,6 +332,7 @@ $inline_styles = <<<'EOD'
             box-shadow: 0 4px 16px rgba(0,0,0,0.2);
             cursor: pointer;
             z-index: 9000;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -457,25 +340,25 @@ $inline_styles = <<<'EOD'
             transition: all 0.3s ease;
         }
 
-        .sp-inquiry-btn i {
+        .inquiry-btn i {
             font-size: 24px;
         }
 
-        .sp-inquiry-btn span {
+        .inquiry-btn span {
             font-size: 10px;
             font-weight: 600;
         }
 
-        .sp-inquiry-btn:hover {
+        .inquiry-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
-        .sp-inquiry-btn:active {
+        .inquiry-btn:active {
             transform: scale(0.95);
         }
 
-        /* SP版: モーダル */
+        /* モーダル */
         .sp-inquiry-modal {
             display: none;
             position: fixed;
@@ -625,23 +508,6 @@ $inline_styles = <<<'EOD'
         .sp-inquiry-modal__error {
             background: #f8d7da;
             color: #721c24;
-        }
-
-        /* レスポンシブ */
-        @media (max-width: 768px) {
-            .sidebar-inquiry {
-                display: none;
-            }
-
-            .sp-inquiry-btn {
-                display: flex;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .sp-inquiry-btn {
-                display: none;
-            }
         }
 EOD;
 ?>
@@ -1197,49 +1063,19 @@ EOD;
         </div>
     </section>
 
-    <!-- サイドバー見積もりフォーム（PC版） -->
-    <aside id="sidebarInquiry" class="sidebar-inquiry">
-        <div class="sidebar-inquiry__inner">
-            <h3 class="sidebar-inquiry__title">
-                <i class="fas fa-envelope"></i>
-                見積依頼
-            </h3>
-            <p class="sidebar-inquiry__lead">作りたいシステムをお聞かせください</p>
-            <form id="sidebarForm" class="sidebar-inquiry__form">
-                <div class="form-group">
-                    <label for="sidebarEmail">メールアドレス <span class="required">*</span></label>
-                    <input type="email" id="sidebarEmail" name="email" required placeholder="example@example.com">
-                </div>
-                <div class="form-group">
-                    <label for="sidebarMessage">やりたいこと <span class="required">*</span></label>
-                    <textarea id="sidebarMessage" name="message" rows="5" required placeholder="例）会員管理システムを作りたい"></textarea>
-                </div>
-                <button type="submit" class="sidebar-inquiry__submit">
-                    <i class="fas fa-paper-plane"></i> 送信
-                </button>
-                <div class="sidebar-inquiry__success" style="display:none;">
-                    <i class="fas fa-check-circle"></i> 送信完了しました！
-                </div>
-                <div class="sidebar-inquiry__error" style="display:none;">
-                    エラーが発生しました。もう一度お試しください。
-                </div>
-            </form>
-        </div>
-    </aside>
-
-    <!-- SP版: 右下固定ボタン -->
-    <button id="spInquiryBtn" class="sp-inquiry-btn">
+    <!-- 右下固定ボタン -->
+    <button id="inquiryBtn" class="inquiry-btn">
         <i class="fas fa-envelope"></i>
-        <span>見積依頼</span>
+        <span>ご相談</span>
     </button>
 
-    <!-- SP版: モーダル -->
+    <!-- モーダル -->
     <div id="spInquiryModal" class="sp-inquiry-modal">
         <div class="sp-inquiry-modal__content">
             <button class="sp-inquiry-modal__close" aria-label="閉じる">
                 <i class="fas fa-times"></i>
             </button>
-            <h3 class="sp-inquiry-modal__title">見積依頼</h3>
+            <h3 class="sp-inquiry-modal__title">ご相談ください</h3>
             <p class="sp-inquiry-modal__lead">作りたいシステムをお聞かせください</p>
             <form id="spForm" class="sp-inquiry-modal__form">
                 <div class="form-group">
@@ -1548,95 +1384,36 @@ EOD;
 
         // ===== 見積もりフォーム処理 =====
 
-        // SP版: モーダル開閉処理
-        const spInquiryBtn = document.getElementById('spInquiryBtn');
-        const spInquiryModal = document.getElementById('spInquiryModal');
-        const spModalClose = document.querySelector('.sp-inquiry-modal__close');
+        // モーダル開閉処理
+        const inquiryBtn = document.getElementById('inquiryBtn');
+        const inquiryModal = document.getElementById('spInquiryModal');
+        const modalClose = document.querySelector('.sp-inquiry-modal__close');
 
-        if (spInquiryBtn) {
-            spInquiryBtn.addEventListener('click', function() {
-                spInquiryModal.classList.add('active');
+        if (inquiryBtn) {
+            inquiryBtn.addEventListener('click', function() {
+                inquiryModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             });
         }
 
-        if (spModalClose) {
-            spModalClose.addEventListener('click', function() {
-                spInquiryModal.classList.remove('active');
+        if (modalClose) {
+            modalClose.addEventListener('click', function() {
+                inquiryModal.classList.remove('active');
                 document.body.style.overflow = '';
             });
         }
 
         // 背景クリックで閉じる
-        if (spInquiryModal) {
-            spInquiryModal.addEventListener('click', function(e) {
-                if (e.target === spInquiryModal) {
-                    spInquiryModal.classList.remove('active');
+        if (inquiryModal) {
+            inquiryModal.addEventListener('click', function(e) {
+                if (e.target === inquiryModal) {
+                    inquiryModal.classList.remove('active');
                     document.body.style.overflow = '';
                 }
             });
         }
 
-        // PC版フォーム送信処理
-        const sidebarForm = document.getElementById('sidebarForm');
-        if (sidebarForm) {
-            sidebarForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-
-                const email = document.getElementById('sidebarEmail').value;
-                const message = document.getElementById('sidebarMessage').value;
-                const submitBtn = sidebarForm.querySelector('.sidebar-inquiry__submit');
-                const successMsg = sidebarForm.querySelector('.sidebar-inquiry__success');
-                const errorMsg = sidebarForm.querySelector('.sidebar-inquiry__error');
-
-                // 送信中
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
-
-                try {
-                    const response = await fetch('api_system_inquiry.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            email: email,
-                            message: message
-                        })
-                    });
-
-                    const data = await response.json();
-
-                    if (data.success) {
-                        // 成功
-                        successMsg.style.display = 'block';
-                        errorMsg.style.display = 'none';
-                        sidebarForm.reset();
-
-                        // 3秒後に成功メッセージを消す
-                        setTimeout(() => {
-                            successMsg.style.display = 'none';
-                        }, 3000);
-                    } else {
-                        // エラー
-                        errorMsg.style.display = 'block';
-                        successMsg.style.display = 'none';
-                        errorMsg.textContent = data.message || 'エラーが発生しました。';
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    errorMsg.style.display = 'block';
-                    successMsg.style.display = 'none';
-                    errorMsg.textContent = '通信エラーが発生しました。';
-                } finally {
-                    // ボタンを元に戻す
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> 送信';
-                }
-            });
-        }
-
-        // SP版フォーム送信処理
+        // フォーム送信処理
         const spForm = document.getElementById('spForm');
         if (spForm) {
             spForm.addEventListener('submit', async function(e) {
@@ -1675,7 +1452,7 @@ EOD;
                         // 3秒後にモーダルを閉じる
                         setTimeout(() => {
                             successMsg.style.display = 'none';
-                            spInquiryModal.classList.remove('active');
+                            inquiryModal.classList.remove('active');
                             document.body.style.overflow = '';
                         }, 3000);
                     } else {
