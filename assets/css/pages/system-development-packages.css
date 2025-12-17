@@ -1,0 +1,819 @@
+/* ========================================
+   システム開発パッケージ詳細ページ専用CSS
+   ======================================== */
+
+/* カラーパレット（system-development.cssと同じ） */
+:root {
+    --system-color-primary: #333333;
+    --system-color-secondary: #666666;
+    --system-color-accent: #B8860B;
+    --system-color-bg-light: #FAFAFA;
+    --system-color-bg-white: #FFFFFF;
+    --system-color-border: #E0E0E0;
+    --system-color-text: #333333;
+    --system-color-text-light: #666666;
+    --system-color-success: #4CAF50;
+}
+
+/* ========================================
+   パンくずリスト
+   ======================================== */
+.breadcrumb {
+    background: var(--system-color-bg-light);
+    padding: 16px 0;
+    border-bottom: 1px solid var(--system-color-border);
+}
+
+.breadcrumb-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    font-size: 14px;
+}
+
+.breadcrumb-list li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-list li:not(:last-child)::after {
+    content: '›';
+    margin-left: 8px;
+    color: var(--system-color-secondary);
+}
+
+.breadcrumb-list a {
+    color: var(--system-color-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-list a:hover {
+    color: var(--system-color-accent);
+}
+
+.breadcrumb-list li:last-child {
+    color: var(--system-color-text);
+    font-weight: 500;
+}
+
+/* ========================================
+   ページヘッダー
+   ======================================== */
+.packages-header {
+    background: linear-gradient(135deg, #F5F5F5 0%, #FFFFFF 100%);
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--system-color-border);
+}
+
+.packages-header__title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--system-color-primary);
+    margin-bottom: 16px;
+}
+
+.packages-header__subtitle {
+    font-size: clamp(14px, 2vw, 16px);
+    line-height: 1.8;
+    color: var(--system-color-secondary);
+}
+
+/* ========================================
+   パッケージ詳細
+   ======================================== */
+.package-detail {
+    padding: 80px 0;
+    background: var(--system-color-bg-white);
+}
+
+.package-detail--alt {
+    background: var(--system-color-bg-light);
+}
+
+.package-detail__header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 32px;
+    align-items: center;
+    padding: 40px;
+    background: var(--system-color-bg-light);
+    border: 2px solid var(--system-color-border);
+    margin-bottom: 48px;
+    position: relative;
+}
+
+.package-detail--alt .package-detail__header {
+    background: var(--system-color-bg-white);
+    border-color: var(--system-color-accent);
+}
+
+.package-detail__badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--system-color-accent);
+    color: #FFFFFF;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.package-detail__icon {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--system-color-primary);
+    color: #FFFFFF;
+    font-size: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.package-detail__icon--accent {
+    background: var(--system-color-accent);
+}
+
+.package-detail__title-area {
+    flex: 1;
+}
+
+.package-detail__name {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--system-color-primary);
+    margin-bottom: 8px;
+}
+
+.package-detail__tagline {
+    font-size: 16px;
+    color: var(--system-color-secondary);
+}
+
+.package-detail__price-area {
+    text-align: right;
+}
+
+.package-detail__price {
+    margin-bottom: 8px;
+}
+
+.package-detail__amount {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--system-color-accent);
+    line-height: 1;
+}
+
+.package-detail__unit {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--system-color-secondary);
+    margin-left: 4px;
+}
+
+.package-detail__period {
+    font-size: 14px;
+    color: var(--system-color-secondary);
+}
+
+.package-detail__content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.package-detail__section {
+    margin-bottom: 64px;
+}
+
+.package-detail__section:last-child {
+    margin-bottom: 0;
+}
+
+.package-detail__section--highlight {
+    background: rgba(184, 134, 11, 0.03);
+    border-left: 4px solid var(--system-color-accent);
+    padding: 32px;
+}
+
+.package-detail__section-title {
+    font-size: clamp(20px, 3vw, 24px);
+    font-weight: 600;
+    color: var(--system-color-primary);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.package-detail__section-title i {
+    color: var(--system-color-accent);
+}
+
+.package-detail__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.package-detail__list li {
+    padding: 16px 16px 16px 48px;
+    background: var(--system-color-bg-light);
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.package-detail--alt .package-detail__list li {
+    background: var(--system-color-bg-white);
+}
+
+.package-detail__list li::before {
+    content: '✓';
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    color: var(--system-color-accent);
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.package-detail__list li:last-child {
+    margin-bottom: 0;
+}
+
+/* 機能グリッド */
+.package-detail__features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.feature-item {
+    background: var(--system-color-bg-white);
+    border: 1px solid var(--system-color-border);
+    padding: 24px;
+    transition: all 0.3s ease;
+}
+
+.package-detail--alt .feature-item {
+    background: var(--system-color-bg-light);
+}
+
+.feature-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.feature-item__icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--system-color-accent);
+    color: #FFFFFF;
+    font-size: 28px;
+    border-radius: 50%;
+    margin-bottom: 16px;
+}
+
+.feature-item__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--system-color-primary);
+    margin-bottom: 12px;
+}
+
+.feature-item__text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--system-color-text);
+}
+
+/* ROIカード */
+.roi-card {
+    background: var(--system-color-bg-white);
+    border: 1px solid var(--system-color-border);
+    overflow: hidden;
+}
+
+.roi-card__main {
+    background: var(--system-color-accent);
+    color: #FFFFFF;
+    padding: 32px;
+    text-align: center;
+}
+
+.roi-card__label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.9;
+}
+
+.roi-card__value {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.roi-card__value--large {
+    font-size: 56px;
+}
+
+.roi-card__value--custom {
+    font-size: 36px;
+}
+
+.roi-card__note {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.roi-card__breakdown {
+    padding: 32px;
+}
+
+.roi-card__breakdown-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--system-color-primary);
+    margin-bottom: 16px;
+}
+
+.roi-card__breakdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+}
+
+.roi-card__breakdown li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--system-color-border);
+}
+
+.roi-card__breakdown li:last-child {
+    border-bottom: none;
+}
+
+.roi-card__item-label {
+    color: var(--system-color-secondary);
+    font-size: 15px;
+}
+
+.roi-card__item-value {
+    color: var(--system-color-text);
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.roi-card__total {
+    background: rgba(184, 134, 11, 0.05);
+    padding: 16px;
+    border-left: 3px solid var(--system-color-accent);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.roi-card__total strong {
+    color: var(--system-color-accent);
+    font-weight: 600;
+}
+
+/* メリットリスト */
+.package-detail__benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.package-detail__benefits li {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: var(--system-color-bg-light);
+    margin-bottom: 16px;
+    border-left: 3px solid var(--system-color-accent);
+    transition: all 0.3s ease;
+}
+
+.package-detail--alt .package-detail__benefits li {
+    background: var(--system-color-bg-white);
+}
+
+.package-detail__benefits li:hover {
+    transform: translateX(4px);
+    background: rgba(184, 134, 11, 0.05);
+}
+
+.package-detail__benefits li:last-child {
+    margin-bottom: 0;
+}
+
+.package-detail__benefits li i {
+    color: var(--system-color-accent);
+    font-size: 24px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.package-detail__benefits li strong {
+    color: var(--system-color-primary);
+    font-weight: 600;
+}
+
+.package-detail__benefits li div {
+    flex: 1;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--system-color-text);
+}
+
+/* 開発フロー */
+.development-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.flow-step {
+    display: flex;
+    gap: 24px;
+}
+
+.flow-step__number {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--system-color-primary);
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.flow-step__content {
+    flex: 1;
+    background: var(--system-color-bg-light);
+    padding: 24px;
+    border: 1px solid var(--system-color-border);
+}
+
+.package-detail--alt .flow-step__content {
+    background: var(--system-color-bg-white);
+}
+
+.flow-step__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--system-color-primary);
+    margin-bottom: 12px;
+}
+
+.flow-step__text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--system-color-text);
+}
+
+/* CTA */
+.package-detail__cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 64px;
+    flex-wrap: wrap;
+}
+
+/* ========================================
+   よくある質問
+   ======================================== */
+.packages-faq {
+    padding: 80px 0;
+    background: var(--system-color-bg-light);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.section-title__main {
+    display: block;
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 700;
+    color: var(--system-color-primary);
+}
+
+.faq-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--system-color-bg-white);
+    border: 1px solid var(--system-color-border);
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.faq-item:last-child {
+    margin-bottom: 0;
+}
+
+.faq-item__question {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--system-color-primary);
+    padding: 24px;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: background 0.3s ease;
+}
+
+.faq-item__question:hover {
+    background: var(--system-color-bg-light);
+}
+
+.faq-item__question i {
+    color: var(--system-color-accent);
+    font-size: 20px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.faq-item__answer {
+    padding: 0 24px 24px 56px;
+}
+
+.faq-item__answer p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--system-color-text);
+}
+
+/* ========================================
+   最終CTA
+   ======================================== */
+.packages-final-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--system-color-primary) 0%, #555555 100%);
+    color: #FFFFFF;
+}
+
+.packages-final-cta__content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.packages-final-cta__title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+.packages-final-cta__text {
+    font-size: clamp(14px, 2vw, 16px);
+    line-height: 1.8;
+    margin-bottom: 40px;
+    opacity: 0.95;
+}
+
+.packages-final-cta__buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ========================================
+   ボタン
+   ======================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.btn--large {
+    padding: 20px 40px;
+    font-size: 18px;
+}
+
+.btn-primary {
+    background: var(--system-color-accent);
+    color: #FFFFFF;
+    border-color: var(--system-color-accent);
+}
+
+.btn-primary:hover {
+    background: #9A6F09;
+    border-color: #9A6F09;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--system-color-primary);
+    border-color: var(--system-color-primary);
+}
+
+.btn-outline:hover {
+    background: var(--system-color-primary);
+    color: #FFFFFF;
+    transform: translateY(-2px);
+}
+
+.packages-final-cta .btn-outline {
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.packages-final-cta .btn-outline:hover {
+    background: #FFFFFF;
+    color: var(--system-color-primary);
+}
+
+/* ========================================
+   レスポンシブ対応
+   ======================================== */
+@media (max-width: 1024px) {
+    .package-detail__header {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+        justify-items: center;
+    }
+
+    .package-detail__price-area {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .packages-header {
+        padding: 40px 0;
+    }
+
+    .package-detail {
+        padding: 60px 0;
+    }
+
+    .package-detail__header {
+        padding: 24px;
+    }
+
+    .package-detail__icon {
+        width: 80px;
+        height: 80px;
+        font-size: 36px;
+    }
+
+    .package-detail__amount {
+        font-size: 40px;
+    }
+
+    .package-detail__section {
+        margin-bottom: 48px;
+    }
+
+    .package-detail__section--highlight {
+        padding: 24px 16px;
+    }
+
+    .package-detail__features-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .feature-item {
+        padding: 20px 16px;
+    }
+
+    .feature-item__icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .roi-card__main {
+        padding: 24px;
+    }
+
+    .roi-card__value {
+        font-size: 40px;
+    }
+
+    .roi-card__value--large {
+        font-size: 44px;
+    }
+
+    .roi-card__value--custom {
+        font-size: 28px;
+    }
+
+    .roi-card__breakdown {
+        padding: 24px 16px;
+    }
+
+    .roi-card__breakdown li {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .flow-step {
+        gap: 16px;
+    }
+
+    .flow-step__number {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .flow-step__content {
+        padding: 16px;
+    }
+
+    .package-detail__cta {
+        flex-direction: column;
+    }
+
+    .package-detail__cta .btn {
+        width: 100%;
+    }
+
+    .packages-faq {
+        padding: 60px 0;
+    }
+
+    .faq-item__question {
+        font-size: 16px;
+        padding: 20px 16px;
+    }
+
+    .faq-item__answer {
+        padding: 0 16px 20px 48px;
+    }
+
+    .packages-final-cta {
+        padding: 60px 0;
+    }
+
+    .packages-final-cta__buttons {
+        flex-direction: column;
+    }
+
+    .packages-final-cta__buttons .btn {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   印刷用スタイル
+   ======================================== */
+@media print {
+    .package-detail,
+    .packages-final-cta {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+    }
+
+    .btn {
+        border: 1px solid #000000 !important;
+    }
+
+    .breadcrumb,
+    .packages-final-cta {
+        display: none;
+    }
+}
