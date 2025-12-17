@@ -1,0 +1,81 @@
+name: Deploy Seminar System to Xserver
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'seminar-system/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.XSERVER_SSH_KEY }}
+
+      - name: Add Xserver to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.XSERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy files via rsync
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='vendor' \
+            --exclude='.env' \
+            --exclude='logs/*.log' \
+            --exclude='uploads/**/*.pdf' \
+            seminar-system/ \
+            ${{ secrets.XSERVER_USER }}@${{ secrets.XSERVER_HOST }}:${{ secrets.XSERVER_PATH }}/
+
+      - name: Run deployment commands on server
+        run: |
+          ssh ${{ secrets.XSERVER_USER }}@${{ secrets.XSERVER_HOST }} << 'EOF'
+            cd ${{ secrets.XSERVER_PATH }}
+
+            # Composer install
+            echo "Running composer install..."
+            composer install --no-dev --optimize-autoloader --no-interaction
+
+            # Set permissions
+            echo "Setting permissions..."
+            chmod 705 public public/admin public/api cron
+            chmod 707 logs uploads uploads/seminars
+            find public -name "*.php" -type f -exec chmod 604 {} \;
+            find src -name "*.php" -type f -exec chmod 604 {} \;
+            find config -name "*.php" -type f -exec chmod 604 {} \;
+            chmod 755 cron/send-reminders.php
+            chmod 755 cron/send-thanks.php
+            chmod 644 .htaccess
+
+            # Create .env if not exists (keep existing one)
+            if [ ! -f .env ]; then
+              echo ".env file does not exist. Please create it manually."
+            fi
+
+            # Create necessary directories
+            mkdir -p logs uploads/seminars
+            chmod 707 logs uploads/seminars
+
+            echo "Deployment completed successfully!"
+          EOF
+
+      - name: Send deployment notification
+        if: always()
+        run: |
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "✅ Deployment successful!"
+          else
+            echo "❌ Deployment failed!"
+          fi
