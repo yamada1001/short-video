@@ -191,6 +191,132 @@ $inline_styles = <<<'EOD'
                 font-size: 24px;
             }
         }
+
+        /* モーダル用スタイル */
+        .term {
+            color: var(--color-natural-brown);
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            cursor: help;
+            position: relative;
+        }
+
+        .term:hover {
+            color: var(--color-charcoal);
+            text-decoration-style: solid;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.2s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal__content {
+            background: var(--color-bg-white);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .modal__close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #999;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .modal__close:hover {
+            background: #f0f0f0;
+            color: var(--color-charcoal);
+        }
+
+        .modal__title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-natural-brown);
+            margin-bottom: var(--spacing-md);
+            padding-right: 40px;
+        }
+
+        .modal__body {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--color-text);
+        }
+
+        .modal__body p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .modal__body ul {
+            margin: var(--spacing-sm) 0 var(--spacing-md) var(--spacing-lg);
+        }
+
+        .modal__body ul li {
+            margin-bottom: 8px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .modal__content {
+                padding: var(--spacing-lg);
+                width: 95%;
+            }
+
+            .modal__title {
+                font-size: 20px;
+            }
+
+            .modal__body {
+                font-size: 14px;
+            }
+        }
 EOD;
 ?>
 <!DOCTYPE html>
@@ -225,10 +351,10 @@ EOD;
             <h2 class="section__title">基本方針</h2>
             <div class="info-box">
                 <p>
-                    <strong>高品質・高単価</strong> - 安売りはしません<br>
                     <strong>リスク管理を最優先</strong> - セキュリティリスクが高い案件は限定的に受けます<br>
                     <strong>前入金制</strong> - 作業開始前の入金必須<br>
-                    <strong>免責事項の明記</strong> - セキュリティインシデント時の責任範囲を明確化
+                    <strong><span class="term" data-term="disclaimer">免責事項</span>の明記</strong> - <span class="term" data-term="security">セキュリティインシデント</span>時の責任範囲を明確化<br>
+                    <strong>対応環境</strong> - <span class="term" data-term="xserver">Xserver</span>推奨、AWS/GCP/Azure等にも対応可能
                 </p>
             </div>
 
@@ -256,7 +382,7 @@ EOD;
                         <th>言語</th>
                         <th>基本時給</th>
                         <th>複雑度係数</th>
-                        <th>備考</th>
+                        <th>できること（具体例）</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -264,30 +390,48 @@ EOD;
                         <td><strong>PHP</strong></td>
                         <td>12,000円/h</td>
                         <td>1.0x</td>
-                        <td>標準的な開発</td>
+                        <td>会員サイト、予約システム、管理画面、お問い合わせフォーム（Xserver推奨）</td>
                     </tr>
                     <tr>
                         <td><strong>Python</strong></td>
                         <td>15,000円/h</td>
                         <td>1.2x</td>
-                        <td>データ処理・自動化に強い</td>
+                        <td>データ収集・自動化、Excel/CSV処理、レポート生成、機械学習（Xserver推奨）</td>
                     </tr>
                     <tr>
                         <td><strong>JavaScript (Node.js)</strong></td>
                         <td>13,000円/h</td>
                         <td>1.1x</td>
-                        <td>リアルタイム処理</td>
+                        <td>チャット、リアルタイム通知、WebSocket、REST API（Xserver推奨）</td>
                     </tr>
                     <tr>
                         <td><strong>GAS</strong></td>
                         <td>10,000円/h</td>
                         <td>0.8x</td>
-                        <td>Googleサービス連携</td>
+                        <td>Googleスプレッドシート自動化、Gmail自動送信、フォーム連携</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ruby</strong></td>
+                        <td>18,000円/h</td>
+                        <td>1.5x</td>
+                        <td>Ruby on Rails、高速なWebアプリ開発、スタートアップ向け（Xserver対応、外注の可能性あり）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Perl</strong></td>
+                        <td>16,000円/h</td>
+                        <td>1.3x</td>
+                        <td>CGI、テキスト処理、レガシーシステム改修（Xserver対応）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Go</strong></td>
+                        <td>20,000円/h</td>
+                        <td>1.6x</td>
+                        <td>高速API、大量データ処理、マイクロサービス（AWS/GCP等推奨、外注の可能性あり）</td>
                     </tr>
                 </tbody>
             </table>
 
-            <h3 style="margin: 32px 0 16px; font-size: 20px; color: var(--color-charcoal);">データベース</h3>
+            <h3 style="margin: 32px 0 16px; font-size: 20px; color: var(--color-charcoal);"><span class="term" data-term="database">データベース</span></h3>
             <table class="price-table">
                 <thead>
                     <tr>
@@ -323,7 +467,7 @@ EOD;
                 </tbody>
             </table>
 
-            <h3 style="margin: 32px 0 16px; font-size: 20px; color: var(--color-charcoal);">外部API連携</h3>
+            <h3 style="margin: 32px 0 16px; font-size: 20px; color: var(--color-charcoal);">外部<span class="term" data-term="api">API</span>連携</h3>
             <table class="price-table">
                 <thead>
                     <tr>
@@ -335,7 +479,7 @@ EOD;
                 </thead>
                 <tbody>
                     <tr class="price-table--limited">
-                        <td><strong>Stripe決済</strong></td>
+                        <td><strong><span class="term" data-term="stripe">Stripe</span>決済</strong></td>
                         <td>150,000円</td>
                         <td>1.5x</td>
                         <td><span class="badge badge--warning">小規模のみ</span> 100万円未満の案件のみ</td>
@@ -364,8 +508,49 @@ EOD;
                         <td>1.1x</td>
                         <td><span class="badge badge--success">全案件</span></td>
                     </tr>
+                    <tr>
+                        <td><strong>Twilio（SMS/電話）</strong></td>
+                        <td>100,000円</td>
+                        <td>1.3x</td>
+                        <td><span class="badge badge--success">全案件</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>SendGrid（メール配信）</strong></td>
+                        <td>90,000円</td>
+                        <td>1.2x</td>
+                        <td><span class="badge badge--success">全案件</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>LINE Messaging API</strong></td>
+                        <td>120,000円</td>
+                        <td>1.4x</td>
+                        <td><span class="badge badge--success">全案件</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>AWS S3（ファイル保存）</strong></td>
+                        <td>150,000円</td>
+                        <td>1.5x</td>
+                        <td><span class="badge badge--success">全案件</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Notion API</strong></td>
+                        <td>180,000円</td>
+                        <td>1.6x</td>
+                        <td><span class="badge badge--success">全案件</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Airtable API</strong></td>
+                        <td>180,000円</td>
+                        <td>1.6x</td>
+                        <td><span class="badge badge--success">全案件</span></td>
+                    </tr>
                 </tbody>
             </table>
+            <div class="info-box">
+                <p>
+                    ※上記はあくまで一部です。Shopify、WordPress REST API、Facebook/Instagram API、Twitter API、YouTube API等、その他のAPIについてもお問い合わせください。
+                </p>
+            </div>
         </div>
     </section>
 
@@ -404,13 +589,13 @@ EOD;
                         <td><span class="badge badge--success">全案件</span></td>
                     </tr>
                     <tr>
-                        <td>2段階認証（2FA）</td>
+                        <td><span class="term" data-term="2fa">2段階認証（2FA）</span></td>
                         <td>150,000円</td>
                         <td>12-15h</td>
                         <td><span class="badge badge--warning">案件次第</span></td>
                     </tr>
                     <tr>
-                        <td>権限管理（RBAC）</td>
+                        <td><span class="term" data-term="rbac">権限管理（RBAC）</span></td>
                         <td>180,000円</td>
                         <td>15-18h</td>
                         <td><span class="badge badge--success">全案件</span></td>
@@ -439,22 +624,17 @@ EOD;
                         <td>5-6h</td>
                     </tr>
                     <tr>
-                        <td>CSV出力</td>
+                        <td><span class="term" data-term="csv">CSV</span>出力</td>
                         <td>80,000円</td>
                         <td>6-8h</td>
                     </tr>
                     <tr>
-                        <td>CSV インポート</td>
+                        <td><span class="term" data-term="csv">CSV</span> インポート</td>
                         <td>100,000円</td>
                         <td>8-10h</td>
                     </tr>
                     <tr>
-                        <td>Excel出力</td>
-                        <td>120,000円</td>
-                        <td>10-12h</td>
-                    </tr>
-                    <tr>
-                        <td>PDF生成</td>
+                        <td><span class="term" data-term="pdf">PDF</span>生成</td>
                         <td>150,000円</td>
                         <td>12-15h</td>
                     </tr>
@@ -479,7 +659,7 @@ EOD;
                         <td><span class="badge badge--warning">小規模のみ</span> 100万円未満</td>
                     </tr>
                     <tr>
-                        <td>サブスクリプション</td>
+                        <td><span class="term" data-term="subscription">サブスクリプション</span></td>
                         <td>300,000円</td>
                         <td>25-30h</td>
                         <td><span class="badge badge--warning">小規模のみ</span> 100万円未満</td>
@@ -519,17 +699,17 @@ EOD;
                 </thead>
                 <tbody>
                     <tr>
-                        <td>GASスクリプト（基本）</td>
+                        <td><span class="term" data-term="gas">GAS</span>スクリプト（基本）</td>
                         <td>80,000円</td>
                         <td>8-10h</td>
                     </tr>
                     <tr>
-                        <td>データ収集（スクレイピング）</td>
+                        <td>データ収集（<span class="term" data-term="scraping">スクレイピング</span>）</td>
                         <td>150,000円</td>
                         <td>12-15h</td>
                     </tr>
                     <tr>
-                        <td>定期実行（cron）</td>
+                        <td>定期実行（<span class="term" data-term="cron">cron</span>）</td>
                         <td>60,000円</td>
                         <td>5-6h</td>
                     </tr>
@@ -694,7 +874,286 @@ EOD;
     <!-- フッター -->
     <?php include __DIR__ . '/includes/footer.php'; ?>
 
+    <!-- モーダル -->
+    <div id="termModal" class="modal">
+        <div class="modal__content">
+            <button class="modal__close" aria-label="閉じる">&times;</button>
+            <h3 class="modal__title" id="modalTitle"></h3>
+            <div class="modal__body" id="modalBody"></div>
+        </div>
+    </div>
+
     <script defer src="assets/js/app.js"></script>
+
+    <script>
+        // 専門用語の説明データ
+        const termDefinitions = {
+            'api': {
+                title: 'API（エーピーアイ）とは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「他のサービスとデータをやり取りするための仕組み」です。</p>
+                    <p><strong>例えば：</strong></p>
+                    <ul>
+                        <li>あなたのサイトに「Googleマップ」を表示する</li>
+                        <li>LINEで自動返信する</li>
+                        <li>クレジットカード決済をする</li>
+                    </ul>
+                    <p>これらは全て、他の会社が提供しているAPIを使って実現しています。</p>
+                    <p>APIを使うことで、自分で一から作らなくても、便利な機能を追加できます。</p>
+                `
+            },
+            'database': {
+                title: 'データベースとは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「情報を整理して保存する場所」です。</p>
+                    <p><strong>例えば：</strong></p>
+                    <ul>
+                        <li>会員の名前、メールアドレス、パスワード</li>
+                        <li>商品の名前、値段、在庫数</li>
+                        <li>予約の日時、お客様の情報</li>
+                    </ul>
+                    <p>これらの情報を、Excelのような表形式で保存し、必要な時にすぐに取り出せるようにします。</p>
+                    <p>データベースがあることで、たくさんの情報を素早く検索したり、更新したりできます。</p>
+                `
+            },
+            'crud': {
+                title: 'CRUDとは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「データの基本的な4つの操作」のことです。</p>
+                    <p><strong>4つの操作：</strong></p>
+                    <ul>
+                        <li><strong>C</strong>reate（作成）- 新しいデータを追加する</li>
+                        <li><strong>R</strong>ead（読取）- データを見る・検索する</li>
+                        <li><strong>U</strong>pdate（更新）- データを書き換える</li>
+                        <li><strong>D</strong>elete（削除）- データを消す</li>
+                    </ul>
+                    <p><strong>例えば、会員管理システムなら：</strong></p>
+                    <ul>
+                        <li>新しい会員を登録する（Create）</li>
+                        <li>会員情報を見る（Read）</li>
+                        <li>会員情報を変更する（Update）</li>
+                        <li>会員を削除する（Delete）</li>
+                    </ul>
+                `
+            },
+            'subscription': {
+                title: 'サブスクリプションとは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「毎月決まった金額を自動で支払ってもらう仕組み」です。</p>
+                    <p><strong>例えば：</strong></p>
+                    <ul>
+                        <li>Netflixの月額980円</li>
+                        <li>Spotifyの月額980円</li>
+                        <li>オンラインサロンの月額500円</li>
+                    </ul>
+                    <p>お客様が一度クレジットカードを登録すれば、毎月自動で課金されます。</p>
+                    <p>毎月お金をもらいに行かなくていいので、安定した収益が得られます。</p>
+                `
+            },
+            '2fa': {
+                title: '2段階認証（2FA）とは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「2回確認することで、セキュリティを強くする仕組み」です。</p>
+                    <p><strong>例えば：</strong></p>
+                    <ul>
+                        <li>1回目：メールアドレスとパスワードでログイン</li>
+                        <li>2回目：スマホに送られてくる6桁の番号を入力</li>
+                    </ul>
+                    <p>パスワードが盗まれても、スマホがないとログインできないので安全です。</p>
+                    <p>銀行のアプリやLINEなどでも使われている、セキュリティを高める方法です。</p>
+                `
+            },
+            'rbac': {
+                title: '権限管理（RBAC）とは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「誰が何をできるかを決める仕組み」です。</p>
+                    <p><strong>例えば：</strong></p>
+                    <ul>
+                        <li><strong>管理者：</strong>全ての機能が使える（データの追加・編集・削除）</li>
+                        <li><strong>スタッフ：</strong>データを見るだけ（編集・削除はできない）</li>
+                        <li><strong>お客様：</strong>自分のデータだけ見られる</li>
+                    </ul>
+                    <p>会社やお店で、役職によって使える機能を変えたい時に使います。</p>
+                    <p>間違って大事なデータを消されないように、権限を分けることができます。</p>
+                `
+            },
+            'csv': {
+                title: 'CSVとは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「ExcelやGoogleスプレッドシートで開けるファイル形式」です。</p>
+                    <p><strong>例えば：</strong></p>
+                    <ul>
+                        <li>会員リストをCSVファイルでダウンロード</li>
+                        <li>Excelで編集して、CSVファイルで一括登録</li>
+                        <li>売上データをCSVで出力して、Excelで集計</li>
+                    </ul>
+                    <p>システムとExcelの間でデータをやり取りする時によく使います。</p>
+                    <p>カンマ（,）で区切られたシンプルなテキストファイルなので、どのソフトでも開けます。</p>
+                `
+            },
+            'pdf': {
+                title: 'PDF生成とは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「システムから自動でPDFファイルを作ること」です。</p>
+                    <p><strong>例えば：</strong></p>
+                    <ul>
+                        <li>領収書をPDFで自動発行</li>
+                        <li>請求書をPDFでダウンロード</li>
+                        <li>レポートをPDFで出力</li>
+                    </ul>
+                    <p>PDFは誰でも開けて、印刷しても綺麗に見えるので、ビジネス書類によく使われます。</p>
+                    <p>自動でPDFを作れると、手作業で書類を作る時間が大幅に減ります。</p>
+                `
+            },
+            'stripe': {
+                title: 'Stripe（ストライプ）とは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「サイトでクレジットカード決済ができるサービス」です。</p>
+                    <p><strong>できること：</strong></p>
+                    <ul>
+                        <li>クレジットカード決済（Visa、Mastercard等）</li>
+                        <li>毎月自動で課金（サブスク）</li>
+                        <li>コンビニ払い</li>
+                    </ul>
+                    <p>世界中で使われている決済サービスで、使いやすく安全です。</p>
+                    <p>決済手数料は約3.6%です。</p>
+                `
+            },
+            'gas': {
+                title: 'GAS（Google Apps Script）とは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「Googleのサービスを自動化できるプログラム」です。</p>
+                    <p><strong>できること：</strong></p>
+                    <ul>
+                        <li>Googleスプレッドシートを自動で更新</li>
+                        <li>Gmailで自動返信</li>
+                        <li>Googleカレンダーに予定を自動追加</li>
+                        <li>Googleフォームの回答を自動処理</li>
+                    </ul>
+                    <p>無料で使えて、Googleのサービスと相性抜群です。</p>
+                    <p>プログラミング知識がなくても、単純作業を自動化できます。</p>
+                `
+            },
+            'scraping': {
+                title: 'スクレイピングとは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「Webサイトから自動でデータを集めること」です。</p>
+                    <p><strong>例えば：</strong></p>
+                    <ul>
+                        <li>競合他社の価格を自動で収集</li>
+                        <li>ニュースサイトから記事タイトルを集める</li>
+                        <li>不動産サイトから物件情報を取得</li>
+                    </ul>
+                    <p>手作業でコピペする代わりに、プログラムが自動でデータを集めてくれます。</p>
+                    <p><strong>注意：</strong>利用規約で禁止されている場合があるので、確認が必要です。</p>
+                `
+            },
+            'cron': {
+                title: 'cron（クーロン）とは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「決まった時間に自動で処理を実行する仕組み」です。</p>
+                    <p><strong>例えば：</strong></p>
+                    <ul>
+                        <li>毎日朝9時に、売上レポートをメール送信</li>
+                        <li>毎週月曜日に、データのバックアップを取る</li>
+                        <li>毎月1日に、請求書を自動発行</li>
+                    </ul>
+                    <p>人間が操作しなくても、決まった時間に自動で動くので便利です。</p>
+                    <p>夜中や休日でも、自動で作業が進みます。</p>
+                `
+            },
+            'security': {
+                title: 'セキュリティインシデントとは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「セキュリティの問題が起きること」です。</p>
+                    <p><strong>例えば：</strong></p>
+                    <ul>
+                        <li>個人情報が漏れる</li>
+                        <li>不正アクセスされる</li>
+                        <li>データが改ざんされる</li>
+                        <li>ウイルスに感染する</li>
+                    </ul>
+                    <p>100%防ぐことは難しいため、万が一起きた時の責任範囲を事前に決めておきます。</p>
+                    <p>セキュリティ対策は業界標準レベルで実装しますが、完全に防げる保証はありません。</p>
+                `
+            },
+            'disclaimer': {
+                title: '免責事項とは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「責任を負わない範囲を明確にすること」です。</p>
+                    <p><strong>なぜ必要？</strong></p>
+                    <ul>
+                        <li>どんなシステムでも、100%完璧にはできない</li>
+                        <li>予想外のトラブルが起きることがある</li>
+                        <li>第三者サービス（GoogleやStripe等）の障害もある</li>
+                    </ul>
+                    <p>例えば、地震でサーバーが壊れたり、ハッカーに攻撃されたりした時に、全ての損害を補償することは難しいです。</p>
+                    <p>そのため、事前に「どこまで責任を負うか」を明確にしておきます。</p>
+                `
+            },
+            'xserver': {
+                title: 'Xserverとは？',
+                body: `
+                    <p><strong>簡単に言うと：</strong>「Webサイトを公開するためのサーバー（場所）」です。</p>
+                    <p><strong>特徴：</strong></p>
+                    <ul>
+                        <li>日本の会社が運営していて、サポートが充実</li>
+                        <li>価格が安い（月額990円〜）</li>
+                        <li>速度が速く、安定している</li>
+                        <li>PHP、MySQL、WordPressに対応</li>
+                    </ul>
+                    <p>個人事業主や中小企業に人気のレンタルサーバーです。</p>
+                    <p>このサービスでは、Xserverを推奨していますが、AWS、GCP、Azure等の他のサーバーにも対応可能です。</p>
+                `
+            }
+        };
+
+        // モーダル開閉処理
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('termModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            const closeBtn = document.querySelector('.modal__close');
+
+            // 専門用語をクリックした時
+            document.querySelectorAll('.term').forEach(term => {
+                term.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const termId = this.getAttribute('data-term');
+                    const definition = termDefinitions[termId];
+
+                    if (definition) {
+                        modalTitle.textContent = definition.title;
+                        modalBody.innerHTML = definition.body;
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            // 閉じるボタン
+            closeBtn.addEventListener('click', function() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // 背景をクリックして閉じる
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // ESCキーで閉じる
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
 
     <?php include __DIR__ . '/includes/cookie-consent.php'; ?>
 
