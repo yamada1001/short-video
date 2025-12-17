@@ -323,6 +323,7 @@
             <a href="/seminar-system/public/admin/index.php" class="<?php echo ($currentPage ?? '') === 'dashboard' ? 'active' : ''; ?>">ダッシュボード</a>
             <a href="/seminar-system/public/admin/seminars.php" class="<?php echo ($currentPage ?? '') === 'seminars' ? 'active' : ''; ?>">セミナー管理</a>
             <a href="/seminar-system/public/admin/attendees.php" class="<?php echo ($currentPage ?? '') === 'attendees' ? 'active' : ''; ?>">参加者管理</a>
+            <a href="/seminar-system/public/admin/checkin-scan.php" class="<?php echo ($currentPage ?? '') === 'checkin' ? 'active' : ''; ?>">QRチェックイン</a>
             <a href="/seminar-system/public/index.php" target="_blank">申込ページ</a>
         </nav>
 
