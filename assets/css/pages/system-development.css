@@ -827,13 +827,14 @@
 }
 
 .system-cta .btn-outline {
-    color: #FFFFFF;
-    border-color: #FFFFFF;
+    color: var(--system-color-primary);
+    border-color: var(--system-color-primary);
+    border-width: 2px;
 }
 
 .system-cta .btn-outline:hover {
-    background: #FFFFFF;
-    color: var(--system-color-primary);
+    background: var(--system-color-primary);
+    color: #FFFFFF;
 }
 
 /* ========================================
