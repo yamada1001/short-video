@@ -384,10 +384,10 @@
                     <div class="timeline__content">
                         <h3 class="timeline__title">Week 1-2: 設計・デザイン</h3>
                         <ul class="timeline__list">
-                            <li>ヒアリング・要件定義</li>
-                            <li>ワイヤーフレーム作成</li>
-                            <li>デザインカンプ作成</li>
-                            <li>DB設計・ER図作成</li>
+                            <li>ヒアリング・要件確認</li>
+                            <li>デザイン方向性の決定</li>
+                            <li>データベース設計</li>
+                            <li>広告運用会社との打ち合わせ</li>
                         </ul>
                     </div>
                 </div>
