@@ -167,9 +167,9 @@
     <!-- Plans -->
     <section class="section plans" id="plans">
         <div class="container">
-            <h2 class="section__title">3つの料金プラン</h2>
+            <h2 class="section__title">2つの料金プラン</h2>
             <p class="section__lead">
-                ご予算・ご要望に合わせて選べる3つのプランをご用意しました
+                シンプルに2つのプランからお選びいただけます
             </p>
             <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 16px 24px; margin-bottom: 16px; border-radius: 8px;">
                 <p style="margin: 0; font-size: 15px; color: #856404;">
@@ -188,7 +188,7 @@
                 </p>
             </div>
 
-            <div class="plans__grid">
+            <div class="plans__grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); max-width: 800px; margin: 0 auto;">
                 <!-- ライトプラン -->
                 <div class="plan-card">
                     <div class="plan-card__header">
@@ -200,12 +200,10 @@
                         <p class="plan-card__desc">まずは基本から</p>
                     </div>
                     <ul class="plan-card__features">
-                        <li><i class="fa-solid fa-check"></i>シンプルなサイト</li>
-                        <li><i class="fa-solid fa-check"></i>用途別フォーム×4種（買取・販売・リース・相談）</li>
-                        <li><i class="fa-solid fa-check"></i>問い合わせ情報の保存</li>
-                        <li><i class="fa-solid fa-check"></i>自動返信メール</li>
-                        <li><i class="fa-solid fa-check"></i>アクセス解析（基本）</li>
-                        <li><i class="fa-solid fa-check"></i>スマホ対応</li>
+                        <li><i class="fa-solid fa-check"></i>ホームページ作成</li>
+                        <li><i class="fa-solid fa-check"></i>問い合わせフォーム×4種類（買取、販売、リース、相談）</li>
+                        <li><i class="fa-solid fa-check"></i>問い合わせ内容をメールで受信</li>
+                        <li><i class="fa-solid fa-check"></i>スマホ・タブレット対応</li>
                     </ul>
                     <div class="plan-card__note">
                         ＋ 運用費：月額5,000円
@@ -228,12 +226,10 @@
                     </div>
                     <ul class="plan-card__features">
                         <li><i class="fa-solid fa-check"></i><strong>ライトプランのすべて</strong></li>
-                        <li><i class="fa-solid fa-check"></i><strong>管理画面</strong>（車両情報を自分で追加・編集・削除）</li>
-                        <li><i class="fa-solid fa-check"></i>問い合わせ一覧画面（ステータス管理）</li>
-                        <li><i class="fa-solid fa-check"></i>Excelダウンロード機能</li>
-                        <li><i class="fa-solid fa-check"></i>詳しいアクセス解析</li>
-                        <li><i class="fa-solid fa-check"></i>月別グラフ表示</li>
-                        <li><i class="fa-solid fa-check"></i>問い合わせ自動フォローメール</li>
+                        <li><i class="fa-solid fa-check"></i><strong>自分で車の情報を追加・変更・削除できる</strong></li>
+                        <li><i class="fa-solid fa-check"></i>過去の問い合わせ一覧が見られる</li>
+                        <li><i class="fa-solid fa-check"></i>問い合わせをExcelでダウンロードできる</li>
+                        <li><i class="fa-solid fa-check"></i>月に何件問い合わせがあったかグラフで見られる</li>
                     </ul>
                     <div class="plan-card__note">
                         ＋ 運用費：月額5,000円
@@ -243,33 +239,6 @@
                     </div>
                 </div>
 
-                <!-- プレミアムプラン -->
-                <div class="plan-card">
-                    <div class="plan-card__header">
-                        <h3 class="plan-card__name">プレミアムプラン</h3>
-                        <div class="plan-card__price">
-                            <span class="plan-card__price-number">85</span>
-                            <span class="plan-card__price-unit">万円</span>
-                        </div>
-                        <p class="plan-card__desc">本気で改善したい方向け</p>
-                    </div>
-                    <ul class="plan-card__features">
-                        <li><i class="fa-solid fa-check"></i><strong>スタンダードプランのすべて</strong></li>
-                        <li><i class="fa-solid fa-check"></i><strong>2パターンを比較テスト</strong>（どっちが効果高いか検証）</li>
-                        <li><i class="fa-solid fa-check"></i>詳しい分析画面</li>
-                        <li><i class="fa-solid fa-check"></i>クリック箇所の可視化</li>
-                        <li><i class="fa-solid fa-check"></i>LINE公式アカウント連携</li>
-                        <li><i class="fa-solid fa-check"></i>顧客管理ツール連携</li>
-                        <li><i class="fa-solid fa-check"></i>Google検索対策</li>
-                        <li><i class="fa-solid fa-check"></i><strong>運用サポート3ヶ月付き</strong></li>
-                    </ul>
-                    <div class="plan-card__note">
-                        ＋ 運用費：月額5,000円
-                    </div>
-                    <div class="plan-card__cta">
-                        <a href="#contact" class="btn btn--outline-full">お問い合わせ</a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
