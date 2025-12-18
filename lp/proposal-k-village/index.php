@@ -63,52 +63,52 @@
         </div>
     </section>
 
-    <!-- Problems -->
-    <section class="section problems" id="proposal">
+    <!-- Benefits -->
+    <section class="section benefits" id="proposal">
         <div class="container">
-            <h2 class="section__title">現状の課題</h2>
+            <h2 class="section__title">このサイトで得られること</h2>
             <p class="section__lead">
-                YouTube広告を運用されている今、こんなお悩みはありませんか？
+                ただのホームページではなく、ビジネスに役立つサイトを作ります
             </p>
 
-            <div class="problems__grid">
-                <div class="problem-card">
-                    <div class="problem-card__icon">
-                        <i class="fa-solid fa-chart-line"></i>
+            <div class="benefits__grid">
+                <div class="benefit-card">
+                    <div class="benefit-card__icon">
+                        <i class="fa-solid fa-yen-sign"></i>
                     </div>
-                    <h3 class="problem-card__title">広告効果が見えない</h3>
-                    <p class="problem-card__text">
-                        どの訴求が効いているのか、データで確認できていない
+                    <h3 class="benefit-card__title">広告費の無駄がなくなる</h3>
+                    <p class="benefit-card__text">
+                        YouTube広告のどの訴求（高価買取・即日対応など）が効いているか分かるので、効果の低い広告を止めて、効果の高い広告に予算を集中できます。
                     </p>
                 </div>
 
-                <div class="problem-card">
-                    <div class="problem-card__icon">
-                        <i class="fa-solid fa-clipboard-question"></i>
+                <div class="benefit-card">
+                    <div class="benefit-card__icon">
+                        <i class="fa-solid fa-car"></i>
                     </div>
-                    <h3 class="problem-card__title">フォームが使いにくい</h3>
-                    <p class="problem-card__text">
-                        買取・販売・リースで必要な情報が違うのに、1つのフォームで全部やっている
+                    <h3 class="benefit-card__title">仕入れの判断ができる</h3>
+                    <p class="benefit-card__text">
+                        問い合わせが多い車種（軽自動車・SUVなど）が数字で分かるので、「どの車を仕入れるべきか」の判断材料になります。
                     </p>
                 </div>
 
-                <div class="problem-card">
-                    <div class="problem-card__icon">
-                        <i class="fa-solid fa-database"></i>
+                <div class="benefit-card">
+                    <div class="benefit-card__icon">
+                        <i class="fa-solid fa-map-location-dot"></i>
                     </div>
-                    <h3 class="problem-card__title">情報が貯まらない</h3>
-                    <p class="problem-card__text">
-                        問い合わせ内容がメールで流れていくだけ。後から見返せない
+                    <h3 class="benefit-card__title">チラシ配布エリアが決まる</h3>
+                    <p class="benefit-card__text">
+                        どのエリア（中判田周辺・大分市内など）からの問い合わせが多いか分かるので、チラシや看板をどこに出すべきか判断できます。
                     </p>
                 </div>
 
-                <div class="problem-card">
-                    <div class="problem-card__icon">
-                        <i class="fa-solid fa-pen-to-square"></i>
+                <div class="benefit-card">
+                    <div class="benefit-card__icon">
+                        <i class="fa-solid fa-clock"></i>
                     </div>
-                    <h3 class="problem-card__title">更新が大変</h3>
-                    <p class="problem-card__text">
-                        車両情報を変更するたびにコード編集が必要
+                    <h3 class="benefit-card__title">作業時間が減る</h3>
+                    <p class="benefit-card__text">
+                        車両情報の更新が管理画面から5分でできます。わざわざ業者に依頼する必要がなく、思い立ったらすぐ更新可能です。
                     </p>
                 </div>
             </div>
@@ -321,49 +321,49 @@
         </div>
     </section>
 
-    <!-- Features -->
+    <!-- Additional Benefits -->
     <section class="section features">
         <div class="container">
-            <h2 class="section__title">このサイトで得られること</h2>
+            <h2 class="section__title">余日だからできること</h2>
 
             <div class="features__grid">
                 <div class="feature-card">
                     <div class="feature-card__icon">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
-                    <h3 class="feature-card__title">広告の効果が数字で見える</h3>
-                    <p class="feature-card__text">
-                        YouTube広告から何人来て、何件問い合わせがあったか。どの訴求（高価買取・即日対応など）が効いているか、数字で分かります。
-                    </p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-card__icon">
                         <i class="fa-solid fa-users"></i>
                     </div>
-                    <h3 class="feature-card__title">広告運用会社との3者MTG</h3>
+                    <h3 class="feature-card__title">広告運用会社との3者打ち合わせ</h3>
                     <p class="feature-card__text">
-                        サイト制作と広告運用を連携。広告代理店さんも交えて打ち合わせを行い、サイトと広告の両面から成果を最大化します。
+                        サイトと広告を別々に作ると効果が半減します。広告代理店さんも交えて打ち合わせを行い、サイトと広告の両面から成果を出します。
                     </p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-card__icon">
-                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i class="fa-solid fa-headset"></i>
                     </div>
-                    <h3 class="feature-card__title">自分で更新できる</h3>
+                    <h3 class="feature-card__title">運用サポート付き</h3>
                     <p class="feature-card__text">
-                        車両情報の追加・変更が管理画面から簡単にできます。コード編集は一切不要。木村様ご自身で、いつでも更新可能です。
+                        作って終わりではありません。月に1回、アクセス数や問い合わせ数をレポートします（スタンダードプラン以上）。改善提案も行います。
                     </p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-card__icon">
-                        <i class="fa-solid fa-database"></i>
+                        <i class="fa-solid fa-mobile-screen"></i>
                     </div>
-                    <h3 class="feature-card__title">お客様情報が貯まる</h3>
+                    <h3 class="feature-card__title">スマホからの問い合わせを逃さない</h3>
                     <p class="feature-card__text">
-                        問い合わせ内容がデータベースに保存されます。「どんな車種が人気か」「どのエリアから問い合わせが多いか」が後から確認できます。
+                        車買取の問い合わせは8割がスマホから。電話ボタンを大きく表示し、入力項目を最小限にして、離脱を防ぎます。
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card__icon">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="feature-card__title">直接やり取りできる</h3>
+                    <p class="feature-card__text">
+                        大手制作会社だと担当者が何人も変わります。余日は1人で対応するので、最初から最後まで同じ人と話せます。
                     </p>
                 </div>
             </div>

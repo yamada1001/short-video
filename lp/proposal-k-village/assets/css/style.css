@@ -352,54 +352,53 @@ body {
 }
 
 /* ==========================================================================
-   Problems Section
+   Benefits Section
    ========================================================================== */
 
-.problems__grid {
+.benefits__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--spacing-md);
 }
 
-.problem-card {
+.benefit-card {
   background-color: white;
-  border: 1px solid var(--color-border-light);
+  border: 2px solid var(--color-border-light);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
-  text-align: center;
   transition: all 0.3s ease;
 }
 
-.problem-card:hover {
+.benefit-card:hover {
   border-color: var(--color-natural-brown);
   box-shadow: var(--shadow-md);
   transform: translateY(-4px);
 }
 
-.problem-card__icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto var(--spacing-md);
+.benefit-card__icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: var(--spacing-md);
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--color-brown-pale);
-  border-radius: 50%;
+  border-radius: var(--radius-md);
   color: var(--color-natural-brown);
-  font-size: 28px;
+  font-size: 24px;
 }
 
-.problem-card__title {
+.benefit-card__title {
   font-size: var(--font-size-h4);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
   margin-bottom: var(--spacing-sm);
 }
 
-.problem-card__text {
+.benefit-card__text {
   font-size: var(--font-size-base);
   color: var(--color-text-secondary);
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 /* ==========================================================================
