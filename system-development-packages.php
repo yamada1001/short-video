@@ -68,7 +68,7 @@ $additional_css = ['assets/css/pages/system-development-packages.css', 'assets/c
                 <div class="package-detail__section">
                     <h3 class="package-detail__section-title">
                         <i class="fas fa-lightbulb"></i>
-                        こんな課題を解決します
+                        こんな課題を解決します（例）
                     </h3>
                     <ul class="package-detail__list">
                         <li>事務員が一日中、エクセルへの転記作業をしている</li>
@@ -231,7 +231,7 @@ $additional_css = ['assets/css/pages/system-development-packages.css', 'assets/c
                 <div class="package-detail__section">
                     <h3 class="package-detail__section-title">
                         <i class="fas fa-lightbulb"></i>
-                        こんな課題を解決します
+                        こんな課題を解決します（例）
                     </h3>
                     <ul class="package-detail__list">
                         <li>電話でしか予約できないため、夜間や休日の問い合わせを取りこぼしている</li>
@@ -417,7 +417,7 @@ $additional_css = ['assets/css/pages/system-development-packages.css', 'assets/c
                 <div class="package-detail__section">
                     <h3 class="package-detail__section-title">
                         <i class="fas fa-lightbulb"></i>
-                        こんな課題を解決します
+                        こんな課題を解決します（例）
                     </h3>
                     <ul class="package-detail__list">
                         <li>10年前に作った古いシステムが、いつ壊れるか不安</li>

@@ -110,23 +110,12 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                 </div>
                 <div class="solution-item__content">
                     <div class="solution-item__insight">
-                        <p class="solution-item__label">
-                            <i class="fas fa-lightbulb"></i>
-                            Insight
-                        </p>
-                        <p>社員が汗水垂らして働いていると思ったら、実は一日中エクセルへの転記作業。その時間は1円の利益も生みません。</p>
-                    </div>
-                    <div class="solution-item__killer">
-                        <p class="solution-item__label killer">
-                            <i class="fas fa-bolt"></i>
-                            一言
-                        </p>
-                        <p class="solution-item__killer-text">「事務員さんの時給をドブに捨てるのは、今日で終わりにしましょう。」</p>
+                        <p>事務員が一日中、エクセルへの転記作業をしている。その時間を、より価値のある業務に使えます。</p>
                     </div>
                     <div class="solution-item__actions">
                         <p class="solution-item__label">
                             <i class="fas fa-wrench"></i>
-                            私たちがやること
+                            私たちがやること（例）（例）
                         </p>
                         <ul class="solution-item__list">
                             <li>
@@ -160,23 +149,12 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                 </div>
                 <div class="solution-item__content">
                     <div class="solution-item__insight">
-                        <p class="solution-item__label">
-                            <i class="fas fa-lightbulb"></i>
-                            Insight
-                        </p>
-                        <p>業務の手順や顧客情報が「特定個人の頭の中」にしかない恐怖。その社員のご機嫌を伺う経営は健全ではありません。</p>
-                    </div>
-                    <div class="solution-item__killer">
-                        <p class="solution-item__label killer">
-                            <i class="fas fa-bolt"></i>
-                            一言
-                        </p>
-                        <p class="solution-item__killer-text">「社員の人質になるのはもうやめです。誰が辞めてもビクともしない『最強の組織』を作りませんか？」</p>
+                        <p>業務の手順や顧客情報が「特定個人の頭の中」にしかない状態。誰でも対応できる体制を作ることができます。</p>
                     </div>
                     <div class="solution-item__actions">
                         <p class="solution-item__label">
                             <i class="fas fa-wrench"></i>
-                            私たちがやること
+                            私たちがやること（例）
                         </p>
                         <ul class="solution-item__list">
                             <li>
@@ -210,23 +188,12 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                 </div>
                 <div class="solution-item__content">
                     <div class="solution-item__insight">
-                        <p class="solution-item__label">
-                            <i class="fas fa-lightbulb"></i>
-                            Insight
-                        </p>
-                        <p>電話でしか予約できない不便さのせいで、黙って去っていく顧客が毎日どれだけいるか想像してみてください。</p>
-                    </div>
-                    <div class="solution-item__killer">
-                        <p class="solution-item__label killer">
-                            <i class="fas fa-bolt"></i>
-                            一言
-                        </p>
-                        <p class="solution-item__killer-text">「深夜2時の客を逃すのは、現金を拾わずに通り過ぎるのと同じです。」</p>
+                        <p>電話でしか予約できない不便さで、機会を逃している可能性があります。24時間いつでも予約できる仕組みを作れます。</p>
                     </div>
                     <div class="solution-item__actions">
                         <p class="solution-item__label">
                             <i class="fas fa-wrench"></i>
-                            私たちがやること
+                            私たちがやること（例）
                         </p>
                         <ul class="solution-item__list">
                             <li>
@@ -260,23 +227,12 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                 </div>
                 <div class="solution-item__content">
                     <div class="solution-item__insight">
-                        <p class="solution-item__label">
-                            <i class="fas fa-lightbulb"></i>
-                            Insight
-                        </p>
-                        <p>月末に税理士から試算表が来るまで、成績がわからない。怖くて投資もできないし、撤退も遅れる。</p>
-                    </div>
-                    <div class="solution-item__killer">
-                        <p class="solution-item__label killer">
-                            <i class="fas fa-bolt"></i>
-                            一言
-                        </p>
-                        <p class="solution-item__killer-text">「まだ『勘』で経営しますか？ スマホで今の利益が見えれば、その不安は一瞬で消えます。」</p>
+                        <p>月末に税理士から試算表が来るまで、成績がわからない状態。リアルタイムで数字を把握できる仕組みを作れます。</p>
                     </div>
                     <div class="solution-item__actions">
                         <p class="solution-item__label">
                             <i class="fas fa-wrench"></i>
-                            私たちがやること
+                            私たちがやること（例）
                         </p>
                         <ul class="solution-item__list">
                             <li>
@@ -310,23 +266,12 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                 </div>
                 <div class="solution-item__content">
                     <div class="solution-item__insight">
-                        <p class="solution-item__label">
-                            <i class="fas fa-lightbulb"></i>
-                            Insight
-                        </p>
-                        <p>たった一つの入力ミスで信用ガタ落ち。社長が頭を下げに行く屈辱と、後ろ向きなコスト。</p>
-                    </div>
-                    <div class="solution-item__killer">
-                        <p class="solution-item__label killer">
-                            <i class="fas fa-bolt"></i>
-                            一言
-                        </p>
-                        <p class="solution-item__killer-text">「人は必ずミスをします。でもシステムは絶対にミスりません。信用を『気合い』で守るのはやめましょう。」</p>
+                        <p>入力ミスによるトラブルが度々発生している状態。ミスを防ぐ仕組みを作ることができます。</p>
                     </div>
                     <div class="solution-item__actions">
                         <p class="solution-item__label">
                             <i class="fas fa-wrench"></i>
-                            私たちがやること
+                            私たちがやること（例）
                         </p>
                         <ul class="solution-item__list">
                             <li>
@@ -360,23 +305,12 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                 </div>
                 <div class="solution-item__content">
                     <div class="solution-item__insight">
-                        <p class="solution-item__label">
-                            <i class="fas fa-lightbulb"></i>
-                            Insight
-                        </p>
-                        <p>10年前に作ったシステム。作った人はもういない。動かなくなったら業務停止。毎日ビクビク使っている。</p>
-                    </div>
-                    <div class="solution-item__killer">
-                        <p class="solution-item__label killer">
-                            <i class="fas fa-bolt"></i>
-                            一言
-                        </p>
-                        <p class="solution-item__killer-text">「止まってからでは遅いんです。『あの日直しておけば』と後悔する前に、安全装置をつけませんか？」</p>
+                        <p>古いシステムで、いつ止まるか不安な状態。安全に長く使えるシステムに更新できます。</p>
                     </div>
                     <div class="solution-item__actions">
                         <p class="solution-item__label">
                             <i class="fas fa-wrench"></i>
-                            私たちがやること
+                            私たちがやること（例）
                         </p>
                         <ul class="solution-item__list">
                             <li>
@@ -410,23 +344,12 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                 </div>
                 <div class="solution-item__content">
                     <div class="solution-item__insight">
-                        <p class="solution-item__label">
-                            <i class="fas fa-lightbulb"></i>
-                            Insight
-                        </p>
-                        <p>新規客集めには必死なのに、一度買ってくれたお客様は放置。ザルで水をすくっている状態です。</p>
-                    </div>
-                    <div class="solution-item__killer">
-                        <p class="solution-item__label killer">
-                            <i class="fas fa-bolt"></i>
-                            一言
-                        </p>
-                        <p class="solution-item__killer-text">「一番儲かる『既存客』を、自動フォローでガッチリ囲い込みましょう。」</p>
+                        <p>一度購入してくれたお客様への継続的なフォローができていない状態。リピートを促す仕組みを作れます。</p>
                     </div>
                     <div class="solution-item__actions">
                         <p class="solution-item__label">
                             <i class="fas fa-wrench"></i>
-                            私たちがやること
+                            私たちがやること（例）
                         </p>
                         <ul class="solution-item__list">
                             <li>
@@ -454,23 +377,12 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                 </div>
                 <div class="solution-item__content">
                     <div class="solution-item__insight">
-                        <p class="solution-item__label">
-                            <i class="fas fa-lightbulb"></i>
-                            Insight
-                        </p>
-                        <p>ハンコを押すためだけに、メールを見るためだけに会社に戻る。社長が一番場所に縛られている現実。</p>
-                    </div>
-                    <div class="solution-item__killer">
-                        <p class="solution-item__label killer">
-                            <i class="fas fa-bolt"></i>
-                            一言
-                        </p>
-                        <p class="solution-item__killer-text">「どこでも仕事ができる自由を。社長がいなくても売上が上がる仕組みこそが『経営』です。」</p>
+                        <p>承認のためだけに会社に戻る必要がある状態。どこからでも業務を進められる仕組みを作れます。</p>
                     </div>
                     <div class="solution-item__actions">
                         <p class="solution-item__label">
                             <i class="fas fa-wrench"></i>
-                            私たちがやること
+                            私たちがやること（例）
                         </p>
                         <ul class="solution-item__list">
                             <li>
