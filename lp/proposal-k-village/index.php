@@ -254,26 +254,26 @@
     <!-- ROI -->
     <section class="section roi" id="roi">
         <div class="container">
-            <h2 class="section__title">投資対効果シミュレーション</h2>
+            <h2 class="section__title">投資対効果の試算例</h2>
             <p class="section__lead">
-                スタンダードプランなら、約4ヶ月で投資回収が可能です
+                問い合わせ数が2倍になれば、約7ヶ月で投資回収できます
             </p>
 
             <div class="roi__comparison">
                 <div class="roi__card">
-                    <h3 class="roi__card-title">現状（通常HP）</h3>
+                    <h3 class="roi__card-title">現状（例）</h3>
                     <div class="roi__metrics">
                         <div class="roi__metric">
                             <span class="roi__metric-label">月間問い合わせ数</span>
-                            <span class="roi__metric-value">20<small>件</small></span>
+                            <span class="roi__metric-value">8<small>件</small></span>
                         </div>
                         <div class="roi__metric">
                             <span class="roi__metric-label">成約数</span>
-                            <span class="roi__metric-value">4<small>件</small></span>
+                            <span class="roi__metric-value">1.6<small>件</small></span>
                         </div>
                         <div class="roi__metric">
                             <span class="roi__metric-label">月間粗利</span>
-                            <span class="roi__metric-value roi__metric-value--highlight">12<small>万円</small></span>
+                            <span class="roi__metric-value roi__metric-value--highlight">4.8<small>万円</small></span>
                         </div>
                     </div>
                 </div>
@@ -283,22 +283,22 @@
                 </div>
 
                 <div class="roi__card roi__card--improved">
-                    <h3 class="roi__card-title">導入後（スタンダードプラン）</h3>
+                    <h3 class="roi__card-title">導入後（想定）</h3>
                     <div class="roi__metrics">
                         <div class="roi__metric">
                             <span class="roi__metric-label">月間問い合わせ数</span>
-                            <span class="roi__metric-value">35<small>件</small></span>
-                            <span class="roi__metric-growth">+75%</span>
+                            <span class="roi__metric-value">16<small>件</small></span>
+                            <span class="roi__metric-growth">2倍</span>
                         </div>
                         <div class="roi__metric">
                             <span class="roi__metric-label">成約数</span>
-                            <span class="roi__metric-value">8.75<small>件</small></span>
-                            <span class="roi__metric-growth">+119%</span>
+                            <span class="roi__metric-value">4<small>件</small></span>
+                            <span class="roi__metric-growth">2.5倍</span>
                         </div>
                         <div class="roi__metric">
                             <span class="roi__metric-label">月間粗利</span>
-                            <span class="roi__metric-value roi__metric-value--highlight">26.25<small>万円</small></span>
-                            <span class="roi__metric-growth">+119%</span>
+                            <span class="roi__metric-value roi__metric-value--highlight">12<small>万円</small></span>
+                            <span class="roi__metric-growth">2.5倍</span>
                         </div>
                     </div>
                 </div>
@@ -307,17 +307,21 @@
             <div class="roi__summary">
                 <div class="roi__summary-item">
                     <span class="roi__summary-label">月間利益増加</span>
-                    <span class="roi__summary-value">+12.75万円</span>
+                    <span class="roi__summary-value">+7.2万円</span>
                 </div>
                 <div class="roi__summary-item">
                     <span class="roi__summary-label">年間利益増加</span>
-                    <span class="roi__summary-value">+153万円</span>
+                    <span class="roi__summary-value">+86.4万円</span>
                 </div>
                 <div class="roi__summary-item roi__summary-item--highlight">
                     <span class="roi__summary-label">投資回収期間</span>
-                    <span class="roi__summary-value">約4.3ヶ月</span>
+                    <span class="roi__summary-value">約7.6ヶ月</span>
                 </div>
             </div>
+
+            <p style="text-align: center; color: #999; font-size: 14px; margin-top: 24px;">
+                ※ あくまで試算例です。実際の効果は、広告費や商圏などにより異なります
+            </p>
         </div>
     </section>
 
