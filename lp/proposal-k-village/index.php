@@ -173,6 +173,12 @@
             <p class="section__lead">
                 ご予算・ご要望に合わせて選べる3つのプランをご用意しました
             </p>
+            <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 16px 24px; margin-bottom: 32px; border-radius: 8px;">
+                <p style="margin: 0; font-size: 15px; color: #856404;">
+                    <i class="fa-solid fa-circle-info" style="margin-right: 8px;"></i>
+                    <strong>お支払い条件：</strong>前払い制となります。ご契約後、着手前にお支払いをお願いしております。
+                </p>
+            </div>
 
             <div class="plans__grid">
                 <!-- ライトプラン -->
@@ -384,6 +390,18 @@
 
             <div class="timeline">
                 <div class="timeline__item">
+                    <div class="timeline__marker">契約</div>
+                    <div class="timeline__content">
+                        <h3 class="timeline__title">ご契約・お支払い</h3>
+                        <ul class="timeline__list">
+                            <li>契約書の締結</li>
+                            <li><strong>お支払い（前払い）</strong></li>
+                            <li>ご入金確認後、制作着手</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline__item">
                     <div class="timeline__marker">1</div>
                     <div class="timeline__content">
                         <h3 class="timeline__title">Week 1-2: 設計・デザイン</h3>
@@ -429,7 +447,7 @@
                         <ul class="timeline__list">
                             <li>動作テスト（全機能）</li>
                             <li>クロスブラウザテスト</li>
-                            <li>GA4動作確認</li>
+                            <li>アクセス解析動作確認</li>
                             <li>納品・操作説明</li>
                         </ul>
                     </div>
@@ -465,9 +483,9 @@
 
                 <div class="next-step-card">
                     <div class="next-step-card__number">3</div>
-                    <h3 class="next-step-card__title">お見積もり・ご契約</h3>
+                    <h3 class="next-step-card__title">ご契約・お支払い</h3>
                     <p class="next-step-card__text">
-                        内容にご納得いただけましたら、正式にご契約・着手となります
+                        内容にご納得いただけましたら、ご契約となります。<strong>お支払いは前払い制</strong>です。ご入金確認後、制作に着手いたします。
                     </p>
                 </div>
             </div>
