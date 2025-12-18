@@ -171,10 +171,20 @@
             <p class="section__lead">
                 ご予算・ご要望に合わせて選べる3つのプランをご用意しました
             </p>
-            <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 16px 24px; margin-bottom: 32px; border-radius: 8px;">
+            <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 16px 24px; margin-bottom: 16px; border-radius: 8px;">
                 <p style="margin: 0; font-size: 15px; color: #856404;">
                     <i class="fa-solid fa-circle-info" style="margin-right: 8px;"></i>
                     <strong>お支払い条件：</strong>前払い制となります。ご契約後、着手前にお支払いをお願いしております。
+                </p>
+            </div>
+
+            <div style="background-color: #e8f5e9; border-left: 4px solid #4caf50; padding: 16px 24px; margin-bottom: 32px; border-radius: 8px;">
+                <p style="margin: 0 0 8px 0; font-size: 15px; color: #2e7d32;">
+                    <i class="fa-solid fa-server" style="margin-right: 8px;"></i>
+                    <strong>運用費：</strong>月額5,000円（税別）
+                </p>
+                <p style="margin: 0; font-size: 14px; color: #558b2f; line-height: 1.6;">
+                    データベース管理、サーバー維持、セキュリティ対応、バックアップなどの継続的な管理費用です。
                 </p>
             </div>
 
@@ -197,6 +207,9 @@
                         <li><i class="fa-solid fa-check"></i>アクセス解析（基本）</li>
                         <li><i class="fa-solid fa-check"></i>スマホ対応</li>
                     </ul>
+                    <div class="plan-card__note">
+                        ＋ 運用費：月額5,000円
+                    </div>
                     <div class="plan-card__cta">
                         <a href="#contact" class="btn btn--outline-full">お問い合わせ</a>
                     </div>
@@ -222,6 +235,9 @@
                         <li><i class="fa-solid fa-check"></i>月別グラフ表示</li>
                         <li><i class="fa-solid fa-check"></i>問い合わせ自動フォローメール</li>
                     </ul>
+                    <div class="plan-card__note">
+                        ＋ 運用費：月額5,000円
+                    </div>
                     <div class="plan-card__cta">
                         <a href="#contact" class="btn btn--primary-full">お問い合わせ</a>
                     </div>
@@ -247,6 +263,9 @@
                         <li><i class="fa-solid fa-check"></i>Google検索対策</li>
                         <li><i class="fa-solid fa-check"></i><strong>運用サポート3ヶ月付き</strong></li>
                     </ul>
+                    <div class="plan-card__note">
+                        ＋ 運用費：月額5,000円
+                    </div>
                     <div class="plan-card__cta">
                         <a href="#contact" class="btn btn--outline-full">お問い合わせ</a>
                     </div>
