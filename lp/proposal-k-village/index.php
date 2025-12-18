@@ -30,7 +30,6 @@
                     <a href="#proposal" class="header__link">提案内容</a>
                     <a href="#plans" class="header__link">料金プラン</a>
                     <a href="#roi" class="header__link">効果試算</a>
-                    <a href="#contact" class="header__link">次のステップ</a>
                 </nav>
             </div>
         </div>
@@ -380,78 +379,17 @@
         </div>
     </section>
 
-    <!-- Schedule -->
-    <section class="section schedule">
-        <div class="container">
-            <h2 class="section__title">納品スケジュール</h2>
-            <p class="section__lead">
-                スタンダードプラン想定：約4週間で納品
-            </p>
-
-            <div class="timeline">
-                <div class="timeline__item">
-                    <div class="timeline__marker">契約</div>
-                    <div class="timeline__content">
-                        <h3 class="timeline__title">ご契約・お支払い</h3>
-                        <ul class="timeline__list">
-                            <li>契約書の締結</li>
-                            <li><strong>お支払い（前払い）</strong></li>
-                            <li>ご入金確認後、制作着手</li>
-                        </ul>
-                    </div>
+    <!-- Delivery -->
+    <section class="section delivery">
+        <div class="container" style="text-align: center;">
+            <h2 class="section__title">納品までの期間</h2>
+            <div style="background-color: white; border: 2px solid var(--color-natural-brown); border-radius: 12px; padding: 40px; max-width: 600px; margin: 0 auto;">
+                <div style="font-size: 48px; font-weight: bold; color: var(--color-natural-brown); margin-bottom: 16px;">
+                    約4週間
                 </div>
-
-                <div class="timeline__item">
-                    <div class="timeline__marker">1</div>
-                    <div class="timeline__content">
-                        <h3 class="timeline__title">Week 1-2: 設計・デザイン</h3>
-                        <ul class="timeline__list">
-                            <li>ヒアリング・要件確認</li>
-                            <li>デザイン方向性の決定</li>
-                            <li>データベース設計</li>
-                            <li>広告運用会社との打ち合わせ</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline__item">
-                    <div class="timeline__marker">2</div>
-                    <div class="timeline__content">
-                        <h3 class="timeline__title">Week 3: フロントエンド実装</h3>
-                        <ul class="timeline__list">
-                            <li>LP HTML/CSS構築</li>
-                            <li>レスポンシブ対応</li>
-                            <li>フォーム4種実装</li>
-                            <li>JavaScript実装</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline__item">
-                    <div class="timeline__marker">3</div>
-                    <div class="timeline__content">
-                        <h3 class="timeline__title">Week 4: バックエンド・管理画面実装</h3>
-                        <ul class="timeline__list">
-                            <li>DB構築</li>
-                            <li>フォーム送信処理</li>
-                            <li>管理画面実装</li>
-                            <li>ダッシュボード作成</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline__item">
-                    <div class="timeline__marker">4</div>
-                    <div class="timeline__content">
-                        <h3 class="timeline__title">Week 5: テスト・納品</h3>
-                        <ul class="timeline__list">
-                            <li>動作テスト（全機能）</li>
-                            <li>クロスブラウザテスト</li>
-                            <li>アクセス解析動作確認</li>
-                            <li>納品・操作説明</li>
-                        </ul>
-                    </div>
-                </div>
+                <p style="font-size: 18px; color: #666; margin: 0;">
+                    ご契約・ご入金確認後、約1ヶ月で納品いたします
+                </p>
             </div>
         </div>
     </section>
