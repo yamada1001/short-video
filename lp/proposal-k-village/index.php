@@ -82,16 +82,6 @@
 
                 <div class="benefit-card">
                     <div class="benefit-card__icon">
-                        <i class="fa-solid fa-car"></i>
-                    </div>
-                    <h3 class="benefit-card__title">在庫リスクが減ります</h3>
-                    <p class="benefit-card__text">
-                        どの車が人気か数字で分かるので、人気の車種を優先的に仕入れられます。例えば「軽自動車の問い合わせが多い」「SUVは少ない」など、はっきり分かります。
-                    </p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-card__icon">
                         <i class="fa-solid fa-map-location-dot"></i>
                     </div>
                     <h3 class="benefit-card__title">効率よく集客できます</h3>
