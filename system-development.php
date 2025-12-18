@@ -115,7 +115,7 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                     <div class="solution-item__actions">
                         <p class="solution-item__label">
                             <i class="fas fa-wrench"></i>
-                            私たちがやること（例）（例）
+                            私たちがやること（例）
                         </p>
                         <ul class="solution-item__list">
                             <li>
