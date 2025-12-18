@@ -576,8 +576,10 @@
    ======================================== */
 .packages-final-cta {
     padding: 80px 0;
-    background: linear-gradient(135deg, var(--system-color-primary) 0%, #555555 100%);
-    color: #FFFFFF;
+    background: linear-gradient(135deg, #F8F8F8 0%, #FFFFFF 100%);
+    color: var(--system-color-primary);
+    border-top: 1px solid var(--system-color-border);
+    border-bottom: 1px solid var(--system-color-border);
 }
 
 .packages-final-cta__content {
@@ -654,13 +656,14 @@
 }
 
 .packages-final-cta .btn-outline {
-    color: #FFFFFF;
-    border-color: #FFFFFF;
+    color: var(--system-color-primary);
+    border-color: var(--system-color-primary);
+    border-width: 2px;
 }
 
 .packages-final-cta .btn-outline:hover {
-    background: #FFFFFF;
-    color: var(--system-color-primary);
+    background: var(--system-color-primary);
+    color: #FFFFFF;
 }
 
 /* ========================================

@@ -81,7 +81,7 @@ $additional_css = ['assets/css/pages/system-development-packages.css', 'assets/c
                 <div class="package-detail__section">
                     <h3 class="package-detail__section-title">
                         <i class="fas fa-check-circle"></i>
-                        含まれる機能
+                        含まれる機能（例）
                     </h3>
                     <div class="package-detail__features-grid">
                         <div class="feature-item">
@@ -244,7 +244,7 @@ $additional_css = ['assets/css/pages/system-development-packages.css', 'assets/c
                 <div class="package-detail__section">
                     <h3 class="package-detail__section-title">
                         <i class="fas fa-check-circle"></i>
-                        含まれる機能
+                        含まれる機能（例）
                     </h3>
                     <div class="package-detail__features-grid">
                         <div class="feature-item">
