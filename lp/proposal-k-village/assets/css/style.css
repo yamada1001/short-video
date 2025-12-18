@@ -809,74 +809,58 @@ body {
 }
 
 /* ==========================================================================
-   Contact Form
+   Next Steps Section
    ========================================================================== */
 
-.contact-form {
-  max-width: 600px;
+.next-steps__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+  max-width: 900px;
   margin: 0 auto;
 }
 
-.form-group {
-  margin-bottom: var(--spacing-md);
-}
-
-.form-label {
-  display: block;
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-xs);
-}
-
-.form-required {
-  display: inline-block;
-  font-size: var(--font-size-small);
-  color: white;
-  background-color: var(--color-error);
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
-  margin-left: var(--spacing-xs);
-}
-
-.form-optional {
-  display: inline-block;
-  font-size: var(--font-size-small);
-  color: white;
-  background-color: var(--color-text-light);
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
-  margin-left: var(--spacing-xs);
-}
-
-.form-input,
-.form-select,
-.form-textarea {
-  width: 100%;
-  padding: var(--spacing-sm);
-  font-size: var(--font-size-base);
-  color: var(--color-text-primary);
+.next-step-card {
   background-color: white;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  transition: border-color 0.3s ease;
-}
-
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus {
-  outline: none;
-  border-color: var(--color-natural-brown);
-}
-
-.form-textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.form-submit {
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
   text-align: center;
-  margin-top: var(--spacing-lg);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.next-step-card:hover {
+  border-color: var(--color-natural-brown);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.next-step-card__number {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-natural-brown);
+  color: white;
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  border-radius: 50%;
+}
+
+.next-step-card__title {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.next-step-card__text {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
 }
 
 /* ==========================================================================

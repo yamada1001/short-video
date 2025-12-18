@@ -30,7 +30,7 @@
                     <a href="#proposal" class="header__link">提案内容</a>
                     <a href="#plans" class="header__link">料金プラン</a>
                     <a href="#roi" class="header__link">効果試算</a>
-                    <a href="#contact" class="header__link header__link--cta">お問い合わせ</a>
+                    <a href="#contact" class="header__link">次のステップ</a>
                 </nav>
             </div>
         </div>
@@ -55,8 +55,8 @@
                         料金プランを見る
                     </a>
                     <a href="#contact" class="btn btn--outline">
-                        <i class="fa-solid fa-envelope"></i>
-                        お問い合わせ
+                        <i class="fa-solid fa-arrow-down"></i>
+                        次のステップ
                     </a>
                 </div>
             </div>
@@ -435,53 +435,39 @@
         </div>
     </section>
 
-    <!-- Contact -->
-    <section class="section contact" id="contact">
+    <!-- Next Steps -->
+    <section class="section next-steps" id="contact">
         <div class="container">
-            <h2 class="section__title">お問い合わせ</h2>
+            <h2 class="section__title">次のステップ</h2>
             <p class="section__lead">
-                ご質問・ご相談はお気軽にどうぞ。無料でお見積もりいたします。
+                詳しくは、打ち合わせ時にご説明させていただきます
             </p>
 
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name" class="form-label">お名前<span class="form-required">必須</span></label>
-                    <input type="text" id="name" name="name" class="form-input" required>
+            <div class="next-steps__grid">
+                <div class="next-step-card">
+                    <div class="next-step-card__number">1</div>
+                    <h3 class="next-step-card__title">事前にこの資料をご確認</h3>
+                    <p class="next-step-card__text">
+                        3つのプランと、それぞれの内容・料金をご確認ください
+                    </p>
                 </div>
 
-                <div class="form-group">
-                    <label for="email" class="form-label">メールアドレス<span class="form-required">必須</span></label>
-                    <input type="email" id="email" name="email" class="form-input" required>
+                <div class="next-step-card">
+                    <div class="next-step-card__number">2</div>
+                    <h3 class="next-step-card__title">打ち合わせ当日</h3>
+                    <p class="next-step-card__text">
+                        ご要望やご予算をお伺いし、最適なプランをご提案します
+                    </p>
                 </div>
 
-                <div class="form-group">
-                    <label for="phone" class="form-label">電話番号<span class="form-optional">任意</span></label>
-                    <input type="tel" id="phone" name="phone" class="form-input">
+                <div class="next-step-card">
+                    <div class="next-step-card__number">3</div>
+                    <h3 class="next-step-card__title">お見積もり・ご契約</h3>
+                    <p class="next-step-card__text">
+                        内容にご納得いただけましたら、正式にご契約・着手となります
+                    </p>
                 </div>
-
-                <div class="form-group">
-                    <label for="plan" class="form-label">ご希望プラン<span class="form-optional">任意</span></label>
-                    <select id="plan" name="plan" class="form-select">
-                        <option value="">選択してください</option>
-                        <option value="light">ライトプラン（30万円）</option>
-                        <option value="standard">スタンダードプラン（55万円）</option>
-                        <option value="premium">プレミアムプラン（85万円）</option>
-                        <option value="other">その他・相談</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="message" class="form-label">お問い合わせ内容<span class="form-optional">任意</span></label>
-                    <textarea id="message" name="message" class="form-textarea" rows="5"></textarea>
-                </div>
-
-                <div class="form-submit">
-                    <button type="submit" class="btn btn--primary-large">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        送信する
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
     </section>
 
