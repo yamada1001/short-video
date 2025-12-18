@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>くるま買取ケイヴィレッジ様 サイト制作のご提案 | 余日</title>
-    <meta name="description" content="車買取サイト制作のご提案。YouTube広告の効果が数字で見える仕組みを作ります。">
+    <meta name="description" content="車買取サイト制作のご提案。広告費の無駄を減らし、問い合わせを増やすサイトを作ります。">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,12 +40,12 @@
             <div class="hero__content">
                 <p class="hero__label">くるま買取ケイヴィレッジ様</p>
                 <h1 class="hero__title">
-                    <span class="hero__title--accent">効果が数字で見える</span><br>
-                    車買取サイト制作のご提案
+                    <span class="hero__title--accent">広告費の無駄を減らし、</span><br>
+                    問い合わせを増やすサイトのご提案
                 </h1>
                 <p class="hero__lead">
-                    YouTube広告から何件問い合わせが来たか、どの訴求が効いているか。<br>
-                    数字で見えるサイトを作ります。
+                    どの広告が効いているか、どの車が人気か。<br>
+                    数字で見えるから、次の一手が分かります。
                 </p>
                 <div class="hero__cta">
                     <a href="#plans" class="btn btn--primary">
@@ -74,9 +74,9 @@
                     <div class="benefit-card__icon">
                         <i class="fa-solid fa-yen-sign"></i>
                     </div>
-                    <h3 class="benefit-card__title">どの広告が効いているか分かる</h3>
+                    <h3 class="benefit-card__title">広告費の無駄がなくなります</h3>
                     <p class="benefit-card__text">
-                        YouTube広告の「高価買取」「即日対応」など、どのパターンから問い合わせが来たか分かります。効果の低い広告を止めれば、広告費の無駄がなくなります。
+                        YouTube広告のどのパターンから問い合わせが来たか分かるので、効果の低い広告を止められます。例えば「高価買取」から5件、「即日対応」から2件など、数字で見えます。
                     </p>
                 </div>
 
@@ -84,9 +84,9 @@
                     <div class="benefit-card__icon">
                         <i class="fa-solid fa-car"></i>
                     </div>
-                    <h3 class="benefit-card__title">どの車が人気か分かる</h3>
+                    <h3 class="benefit-card__title">在庫リスクが減ります</h3>
                     <p class="benefit-card__text">
-                        「軽自動車の問い合わせが多い」「SUVは少ない」など、数字で分かります。人気の車種を優先的に仕入れれば、在庫リスクが減ります。
+                        どの車が人気か数字で分かるので、人気の車種を優先的に仕入れられます。例えば「軽自動車の問い合わせが多い」「SUVは少ない」など、はっきり分かります。
                     </p>
                 </div>
 
@@ -94,9 +94,9 @@
                     <div class="benefit-card__icon">
                         <i class="fa-solid fa-map-location-dot"></i>
                     </div>
-                    <h3 class="benefit-card__title">どこから問い合わせが来るか分かる</h3>
+                    <h3 class="benefit-card__title">効率よく集客できます</h3>
                     <p class="benefit-card__text">
-                        「中判田から5件」「大分市内から3件」など、エリアごとの数が分かります。問い合わせの多いエリアにチラシを配れば、効率よく集客できます。
+                        どこから問い合わせが来るか分かるので、問い合わせの多いエリアにチラシを配れます。例えば「中判田から5件」「大分市内から3件」など、エリアごとの数が見えます。
                     </p>
                 </div>
 
@@ -104,9 +104,9 @@
                     <div class="benefit-card__icon">
                         <i class="fa-solid fa-clock"></i>
                     </div>
-                    <h3 class="benefit-card__title">自分で車の情報を変更できる</h3>
+                    <h3 class="benefit-card__title">費用も時間もかかりません</h3>
                     <p class="benefit-card__text">
-                        「この車、売れたから削除したい」「新しい車を追加したい」。そんな時、業者に頼まず5分で自分で変更できます。費用も時間もかかりません。
+                        車の情報を自分で5分で変更できるので、業者に頼む手間がいりません。「この車、売れたから削除したい」「新しい車を追加したい」。そんな時、すぐ自分で変更できます。
                     </p>
                 </div>
             </div>
@@ -297,7 +297,7 @@
             <div class="footer__content">
                 <div class="footer__logo">
                     <span class="logo">YOJITU.COM</span>
-                    <p class="footer__tagline">効果が見えるWebサイト制作</p>
+                    <p class="footer__tagline">ビジネスに役立つWebサイト制作</p>
                 </div>
                 <div class="footer__info">
                     <p class="footer__company">余日（個人事業主）</p>
