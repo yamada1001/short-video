@@ -74,9 +74,9 @@
                     <div class="benefit-card__icon">
                         <i class="fa-solid fa-yen-sign"></i>
                     </div>
-                    <h3 class="benefit-card__title">広告費の無駄がなくなる</h3>
+                    <h3 class="benefit-card__title">どの広告が効いているか分かる</h3>
                     <p class="benefit-card__text">
-                        YouTube広告のどの訴求（高価買取・即日対応など）が効いているか分かるので、効果の低い広告を止めて、効果の高い広告に予算を集中できます。
+                        YouTube広告の「高価買取」「即日対応」など、どのパターンから問い合わせが来たか分かります。効果の低い広告を止めれば、広告費の無駄がなくなります。
                     </p>
                 </div>
 
@@ -84,9 +84,9 @@
                     <div class="benefit-card__icon">
                         <i class="fa-solid fa-car"></i>
                     </div>
-                    <h3 class="benefit-card__title">仕入れの判断ができる</h3>
+                    <h3 class="benefit-card__title">どの車が人気か分かる</h3>
                     <p class="benefit-card__text">
-                        問い合わせが多い車種（軽自動車・SUVなど）が数字で分かるので、「どの車を仕入れるべきか」の判断材料になります。
+                        「軽自動車の問い合わせが多い」「SUVは少ない」など、数字で分かります。人気の車種を優先的に仕入れれば、在庫リスクが減ります。
                     </p>
                 </div>
 
@@ -94,9 +94,9 @@
                     <div class="benefit-card__icon">
                         <i class="fa-solid fa-map-location-dot"></i>
                     </div>
-                    <h3 class="benefit-card__title">チラシ配布エリアが決まる</h3>
+                    <h3 class="benefit-card__title">どこから問い合わせが来るか分かる</h3>
                     <p class="benefit-card__text">
-                        どのエリア（中判田周辺・大分市内など）からの問い合わせが多いか分かるので、チラシや看板をどこに出すべきか判断できます。
+                        「中判田から5件」「大分市内から3件」など、エリアごとの数が分かります。問い合わせの多いエリアにチラシを配れば、効率よく集客できます。
                     </p>
                 </div>
 
@@ -104,9 +104,9 @@
                     <div class="benefit-card__icon">
                         <i class="fa-solid fa-clock"></i>
                     </div>
-                    <h3 class="benefit-card__title">作業時間が減る</h3>
+                    <h3 class="benefit-card__title">自分で車の情報を変更できる</h3>
                     <p class="benefit-card__text">
-                        車両情報の更新が管理画面から5分でできます。わざわざ業者に依頼する必要がなく、思い立ったらすぐ更新可能です。
+                        「この車、売れたから削除したい」「新しい車を追加したい」。そんな時、業者に頼まず5分で自分で変更できます。費用も時間もかかりません。
                     </p>
                 </div>
             </div>
@@ -138,24 +138,19 @@
                                 <td class="highlight"><strong>お問い合わせを増やす</strong></td>
                             </tr>
                             <tr>
-                                <td>フォーム</td>
-                                <td>1つの問い合わせフォーム</td>
-                                <td class="highlight"><strong>用途別に4種類</strong>（買取・販売・リース・相談）</td>
+                                <td>問い合わせフォーム</td>
+                                <td>1つだけ</td>
+                                <td class="highlight"><strong>4種類</strong>（買取・販売・リース・相談で分ける）</td>
                             </tr>
                             <tr>
-                                <td>問い合わせ管理</td>
+                                <td>問い合わせの管理</td>
                                 <td>メールで受信するだけ</td>
-                                <td class="highlight"><strong>一覧で確認・検索可能</strong></td>
+                                <td class="highlight"><strong>過去の問い合わせを一覧で見られる</strong></td>
                             </tr>
                             <tr>
-                                <td>広告連携</td>
-                                <td>なし</td>
-                                <td class="highlight"><strong>アクセス解析で効果測定</strong></td>
-                            </tr>
-                            <tr>
-                                <td>更新性</td>
-                                <td>コード編集必要</td>
-                                <td class="highlight"><strong>管理画面から簡単更新</strong></td>
+                                <td>車の情報変更</td>
+                                <td>業者に依頼が必要</td>
+                                <td class="highlight"><strong>自分で変更できる</strong>（スタンダードプラン）</td>
                             </tr>
                         </tbody>
                     </table>
