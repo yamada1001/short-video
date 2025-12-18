@@ -639,19 +639,6 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                     <div class="roadmap-step__number">2</div>
                     <div class="roadmap-step__content">
                         <h3 class="roadmap-step__title">
-                            <i class="fas fa-file-alt"></i>
-                            設計図の提出
-                        </h3>
-                        <p class="roadmap-step__text">
-                            「こんな画面になります」というイメージ図をお見せします。
-                        </p>
-                    </div>
-                </div>
-
-                <div class="roadmap-step">
-                    <div class="roadmap-step__number">3</div>
-                    <div class="roadmap-step__content">
-                        <h3 class="roadmap-step__title">
                             <i class="fas fa-code"></i>
                             開発&テスト
                         </h3>
@@ -662,7 +649,7 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                 </div>
 
                 <div class="roadmap-step">
-                    <div class="roadmap-step__number">4</div>
+                    <div class="roadmap-step__number">3</div>
                     <div class="roadmap-step__content">
                         <h3 class="roadmap-step__title">
                             <i class="fas fa-chalkboard-teacher"></i>
@@ -675,7 +662,7 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                 </div>
 
                 <div class="roadmap-step">
-                    <div class="roadmap-step__number">5</div>
+                    <div class="roadmap-step__number">4</div>
                     <div class="roadmap-step__content">
                         <h3 class="roadmap-step__title">
                             <i class="fas fa-rocket"></i>
