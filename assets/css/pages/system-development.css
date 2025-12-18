@@ -188,22 +188,25 @@
     align-items: center;
     gap: 24px;
     padding: 32px;
-    background: var(--system-color-primary);
-    color: #FFFFFF;
+    background: #F8F8F8;
+    color: var(--system-color-primary);
+    border-left: 6px solid var(--system-color-accent);
 }
 
 .solution-item__number {
     font-size: 48px;
     font-weight: 700;
     line-height: 1;
-    opacity: 0.3;
+    opacity: 0.2;
     min-width: 80px;
+    color: var(--system-color-accent);
 }
 
 .solution-item__title {
     font-size: clamp(20px, 3vw, 26px);
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.6;
+    color: var(--system-color-primary);
 }
 
 .solution-item__content {
