@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>くるま買取ケイヴィレッジ様 LP制作提案 | 余日</title>
-    <meta name="description" content="データドリブンで成果の出る車買取LP制作のご提案。YouTube広告効果を最大化し、問い合わせ数を増やします。">
+    <title>くるま買取ケイヴィレッジ様 サイト制作のご提案 | 余日</title>
+    <meta name="description" content="車買取サイト制作のご提案。YouTube広告の効果が数字で見える仕組みを作ります。">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,12 +42,12 @@
             <div class="hero__content">
                 <p class="hero__label">くるま買取ケイヴィレッジ様</p>
                 <h1 class="hero__title">
-                    データで改善する<br>
-                    <span class="hero__title--accent">成果の出る</span>車買取サイト制作
+                    <span class="hero__title--accent">効果が数字で見える</span><br>
+                    車買取サイト制作のご提案
                 </h1>
                 <p class="hero__lead">
-                    YouTube広告の効果を最大化し、お問い合わせ数を2倍に。<br>
-                    単なる「キレイなサイト」ではなく、「売上が上がるサイト」をご提案します。
+                    YouTube広告から何件問い合わせが来たか、どの訴求が効いているか。<br>
+                    数字で見えるサイトを作ります。
                 </p>
                 <div class="hero__cta">
                     <a href="#plans" class="btn btn--primary">
@@ -86,9 +86,9 @@
                     <div class="problem-card__icon">
                         <i class="fa-solid fa-clipboard-question"></i>
                     </div>
-                    <h3 class="problem-card__title">フォームが最適化されていない</h3>
+                    <h3 class="problem-card__title">フォームが使いにくい</h3>
                     <p class="problem-card__text">
-                        買取・販売・リースで必要な情報が異なるのに、統合フォームのまま
+                        買取・販売・リースで必要な情報が違うのに、1つのフォームで全部やっている
                     </p>
                 </div>
 
@@ -96,9 +96,9 @@
                     <div class="problem-card__icon">
                         <i class="fa-solid fa-database"></i>
                     </div>
-                    <h3 class="problem-card__title">データが蓄積されない</h3>
+                    <h3 class="problem-card__title">情報が貯まらない</h3>
                     <p class="problem-card__text">
-                        問い合わせ内容の傾向や顧客インサイトが見えない
+                        問い合わせ内容がメールで流れていくだけ。後から見返せない
                     </p>
                 </div>
 
@@ -118,9 +118,9 @@
     <!-- Solution -->
     <section class="section solution">
         <div class="container">
-            <h2 class="section__title">余日の提案：成果重視のサイト</h2>
+            <h2 class="section__title">通常のサイトとの違い</h2>
             <p class="section__lead">
-                通常のホームページ（20万円）ではなく、<strong>お問い合わせが増えるサイト</strong>をご提案します
+                ただのホームページではなく、<strong>YouTube広告の効果が測れるサイト</strong>を作ります
             </p>
 
             <div class="comparison">
@@ -130,7 +130,7 @@
                             <tr>
                                 <th>項目</th>
                                 <th>通常のHP</th>
-                                <th class="highlight">データドリブンLP</th>
+                                <th class="highlight">今回のご提案</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -141,13 +141,13 @@
                             </tr>
                             <tr>
                                 <td>フォーム</td>
-                                <td>汎用的な問い合わせフォーム</td>
-                                <td class="highlight"><strong>サービス別最適化×4</strong></td>
+                                <td>1つの問い合わせフォーム</td>
+                                <td class="highlight"><strong>用途別に4種類</strong>（買取・販売・リース・相談）</td>
                             </tr>
                             <tr>
-                                <td>データ管理</td>
-                                <td>メール送信のみ</td>
-                                <td class="highlight"><strong>DB保存 + 分析機能</strong></td>
+                                <td>問い合わせ管理</td>
+                                <td>メールで受信するだけ</td>
+                                <td class="highlight"><strong>一覧で確認・検索可能</strong></td>
                             </tr>
                             <tr>
                                 <td>広告連携</td>
@@ -183,15 +183,15 @@
                             <span class="plan-card__price-number">30</span>
                             <span class="plan-card__price-unit">万円</span>
                         </div>
-                        <p class="plan-card__desc">まずはデータ取得から</p>
+                        <p class="plan-card__desc">まずは基本から</p>
                     </div>
                     <ul class="plan-card__features">
-                        <li><i class="fa-solid fa-check"></i>シンプルなLP</li>
-                        <li><i class="fa-solid fa-check"></i>最適化フォーム×4種</li>
-                        <li><i class="fa-solid fa-check"></i>MySQL DB設計</li>
+                        <li><i class="fa-solid fa-check"></i>シンプルなサイト</li>
+                        <li><i class="fa-solid fa-check"></i>用途別フォーム×4種（買取・販売・リース・相談）</li>
+                        <li><i class="fa-solid fa-check"></i>問い合わせ情報の保存</li>
                         <li><i class="fa-solid fa-check"></i>自動返信メール</li>
-                        <li><i class="fa-solid fa-check"></i>基本GA4連携</li>
-                        <li><i class="fa-solid fa-check"></i>レスポンシブ対応</li>
+                        <li><i class="fa-solid fa-check"></i>アクセス解析（基本）</li>
+                        <li><i class="fa-solid fa-check"></i>スマホ対応</li>
                     </ul>
                     <div class="plan-card__cta">
                         <a href="#contact" class="btn btn--outline-full">お問い合わせ</a>
@@ -207,17 +207,16 @@
                             <span class="plan-card__price-number">55</span>
                             <span class="plan-card__price-unit">万円</span>
                         </div>
-                        <p class="plan-card__desc">データ活用 + 運用効率化</p>
+                        <p class="plan-card__desc">管理も楽に</p>
                     </div>
                     <ul class="plan-card__features">
                         <li><i class="fa-solid fa-check"></i><strong>ライトプランのすべて</strong></li>
-                        <li><i class="fa-solid fa-check"></i><strong>管理画面（簡易CMS）</strong></li>
-                        <li><i class="fa-solid fa-check"></i>車両情報CRUD機能</li>
-                        <li><i class="fa-solid fa-check"></i>問い合わせ管理画面</li>
-                        <li><i class="fa-solid fa-check"></i>CSV一括エクスポート</li>
-                        <li><i class="fa-solid fa-check"></i>詳細なアクセス解析設定</li>
-                        <li><i class="fa-solid fa-check"></i>簡易ダッシュボード</li>
-                        <li><i class="fa-solid fa-check"></i>自動フォローアップメール</li>
+                        <li><i class="fa-solid fa-check"></i><strong>管理画面</strong>（車両情報を自分で追加・編集・削除）</li>
+                        <li><i class="fa-solid fa-check"></i>問い合わせ一覧画面（ステータス管理）</li>
+                        <li><i class="fa-solid fa-check"></i>Excelダウンロード機能</li>
+                        <li><i class="fa-solid fa-check"></i>詳しいアクセス解析</li>
+                        <li><i class="fa-solid fa-check"></i>月別グラフ表示</li>
+                        <li><i class="fa-solid fa-check"></i>問い合わせ自動フォローメール</li>
                     </ul>
                     <div class="plan-card__cta">
                         <a href="#contact" class="btn btn--primary-full">お問い合わせ</a>
@@ -232,17 +231,17 @@
                             <span class="plan-card__price-number">85</span>
                             <span class="plan-card__price-unit">万円</span>
                         </div>
-                        <p class="plan-card__desc">完全データドリブン経営</p>
+                        <p class="plan-card__desc">本気で改善したい方向け</p>
                     </div>
                     <ul class="plan-card__features">
                         <li><i class="fa-solid fa-check"></i><strong>スタンダードプランのすべて</strong></li>
-                        <li><i class="fa-solid fa-check"></i><strong>A/Bテスト機能</strong></li>
-                        <li><i class="fa-solid fa-check"></i>高度な分析ダッシュボード</li>
-                        <li><i class="fa-solid fa-check"></i>ヒートマップ連携</li>
+                        <li><i class="fa-solid fa-check"></i><strong>2パターンを比較テスト</strong>（どっちが効果高いか検証）</li>
+                        <li><i class="fa-solid fa-check"></i>詳しい分析画面</li>
+                        <li><i class="fa-solid fa-check"></i>クリック箇所の可視化</li>
                         <li><i class="fa-solid fa-check"></i>LINE公式アカウント連携</li>
                         <li><i class="fa-solid fa-check"></i>顧客管理ツール連携</li>
-                        <li><i class="fa-solid fa-check"></i>SEO対策強化</li>
-                        <li><i class="fa-solid fa-check"></i><strong>初期運用サポート3ヶ月</strong></li>
+                        <li><i class="fa-solid fa-check"></i>Google検索対策</li>
+                        <li><i class="fa-solid fa-check"></i><strong>運用サポート3ヶ月付き</strong></li>
                     </ul>
                     <div class="plan-card__cta">
                         <a href="#contact" class="btn btn--outline-full">お問い合わせ</a>
@@ -325,46 +324,46 @@
     <!-- Features -->
     <section class="section features">
         <div class="container">
-            <h2 class="section__title">余日の強み</h2>
+            <h2 class="section__title">このサイトで得られること</h2>
 
             <div class="features__grid">
                 <div class="feature-card">
                     <div class="feature-card__icon">
-                        <i class="fa-solid fa-chart-simple"></i>
+                        <i class="fa-solid fa-chart-line"></i>
                     </div>
-                    <h3 class="feature-card__title">データで改善する設計</h3>
+                    <h3 class="feature-card__title">広告の効果が数字で見える</h3>
                     <p class="feature-card__text">
-                        単なる「見た目の良いサイト」ではなく、「成果の出るサイト」を設計。アクセス解析やヒートマップで、どこを改善すれば良いか分かります。
+                        YouTube広告から何人来て、何件問い合わせがあったか。どの訴求（高価買取・即日対応など）が効いているか、数字で分かります。
                     </p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-card__icon">
-                        <i class="fa-solid fa-palette"></i>
+                        <i class="fa-solid fa-users"></i>
                     </div>
-                    <h3 class="feature-card__title">無印良品的なミニマルデザイン</h3>
+                    <h3 class="feature-card__title">広告運用会社との3者MTG</h3>
                     <p class="feature-card__text">
-                        余白を活かした洗練されたUI、ナチュラルブラウン×ホワイトの温かみあるデザイン。「信頼感」と「親しみやすさ」を両立します。
+                        サイト制作と広告運用を連携。広告代理店さんも交えて打ち合わせを行い、サイトと広告の両面から成果を最大化します。
                     </p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-card__icon">
-                        <i class="fa-solid fa-handshake"></i>
+                        <i class="fa-solid fa-pen-to-square"></i>
                     </div>
-                    <h3 class="feature-card__title">小規模事業者への理解</h3>
+                    <h3 class="feature-card__title">自分で更新できる</h3>
                     <p class="feature-card__text">
-                        「自分で更新できる」管理画面、煩雑な操作を排除したシンプルな設計。小規模事業者に寄り添ったサポートを提供します。
+                        車両情報の追加・変更が管理画面から簡単にできます。コード編集は一切不要。木村様ご自身で、いつでも更新可能です。
                     </p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-card__icon">
-                        <i class="fa-solid fa-bullseye"></i>
+                        <i class="fa-solid fa-database"></i>
                     </div>
-                    <h3 class="feature-card__title">広告運用の知識</h3>
+                    <h3 class="feature-card__title">お客様情報が貯まる</h3>
                     <p class="feature-card__text">
-                        YouTube広告やリスティング広告の実績多数。サイトと広告を連携させて、広告費を無駄にせず、効果を最大化します。
+                        問い合わせ内容がデータベースに保存されます。「どんな車種が人気か」「どのエリアから問い合わせが多いか」が後から確認できます。
                     </p>
                 </div>
             </div>
@@ -477,7 +476,7 @@
             <div class="footer__content">
                 <div class="footer__logo">
                     <span class="logo">YOJITU.COM</span>
-                    <p class="footer__tagline">成果にこだわるWebサイト制作</p>
+                    <p class="footer__tagline">効果が見えるWebサイト制作</p>
                 </div>
                 <div class="footer__info">
                     <p class="footer__company">余日（個人事業主）</p>
