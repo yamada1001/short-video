@@ -330,54 +330,6 @@
         </div>
     </section>
 
-    <!-- Additional Benefits -->
-    <section class="section features">
-        <div class="container">
-            <h2 class="section__title">余日だからできること</h2>
-
-            <div class="features__grid">
-                <div class="feature-card">
-                    <div class="feature-card__icon">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <h3 class="feature-card__title">広告運用会社との3者打ち合わせ</h3>
-                    <p class="feature-card__text">
-                        サイトと広告を別々に作ると効果が半減します。広告代理店さんも交えて打ち合わせを行い、サイトと広告の両面から成果を出します。
-                    </p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-card__icon">
-                        <i class="fa-solid fa-headset"></i>
-                    </div>
-                    <h3 class="feature-card__title">運用サポート付き</h3>
-                    <p class="feature-card__text">
-                        作って終わりではありません。月に1回、アクセス数や問い合わせ数をレポートします（スタンダードプラン以上）。改善提案も行います。
-                    </p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-card__icon">
-                        <i class="fa-solid fa-mobile-screen"></i>
-                    </div>
-                    <h3 class="feature-card__title">スマホからの問い合わせを逃さない</h3>
-                    <p class="feature-card__text">
-                        車買取の問い合わせは8割がスマホから。電話ボタンを大きく表示し、入力項目を最小限にして、離脱を防ぎます。
-                    </p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-card__icon">
-                        <i class="fa-solid fa-comments"></i>
-                    </div>
-                    <h3 class="feature-card__title">直接やり取りできる</h3>
-                    <p class="feature-card__text">
-                        大手制作会社だと担当者が何人も変わります。余日は1人で対応するので、最初から最後まで同じ人と話せます。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Delivery -->
     <section class="section delivery">
