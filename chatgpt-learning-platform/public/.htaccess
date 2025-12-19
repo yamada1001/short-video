@@ -1,16 +1,14 @@
 # ディレクトリリスティング無効化
 Options -Indexes
 
+# 全てのファイルへのアクセスを許可
+<FilesMatch "\.(html|css|js|jpg|jpeg|png|gif|svg|ico)$">
+    Require all granted
+</FilesMatch>
+
 # デフォルトドキュメント（静的版を優先）
 DirectoryIndex index.html index.php
 
 # エラーページ
-ErrorDocument 403 /chatgpt-learning-platform/public/index.html
-ErrorDocument 404 /chatgpt-learning-platform/public/index.html
-
-# HTTPS強制（本番環境）
-# <IfModule mod_rewrite.c>
-#     RewriteEngine On
-#     RewriteCond %{HTTPS} off
-#     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-# </IfModule>
+ErrorDocument 403 index.html
+ErrorDocument 404 index.html
