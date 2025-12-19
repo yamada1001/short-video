@@ -3,8 +3,9 @@
 .env.local
 
 # Composerパッケージ
-/vendor/
+# /vendor/  ← 本番環境で確実にデプロイするため一時的にコミット
 vendor.zip
+vendor.tar.gz
 
 # ログファイル
 *.log
