@@ -4,6 +4,7 @@
 
 # Composerパッケージ
 /vendor/
+vendor.zip
 
 # ログファイル
 *.log
