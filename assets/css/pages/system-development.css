@@ -459,6 +459,18 @@
     color: var(--system-color-secondary);
 }
 
+.package-card__insight {
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFFBF0 100%);
+    border-left: 3px solid var(--system-color-accent);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--system-color-primary);
+    line-height: 1.6;
+}
+
 .packages-note {
     text-align: center;
     font-size: 15px;

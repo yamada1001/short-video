@@ -440,6 +440,9 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                             約10ヶ月で元が取れます<br>
                             <span class="package-card__roi-note">（月40時間の削減換算）</span>
                         </p>
+                        <p class="package-card__insight">
+                            💡 毎日1時間強のコピペ作業がゼロになります
+                        </p>
                     </div>
                     <a href="system-development-packages.php#pack-1" class="btn btn-outline btn--block">
                         詳しく見る
