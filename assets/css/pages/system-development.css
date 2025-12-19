@@ -995,6 +995,264 @@
 }
 
 /* ========================================
+   パッケージ比較表
+   ======================================== */
+.package-comparison {
+    padding: 80px 0;
+    background: #FFFFFF;
+}
+
+.comparison-table-wrapper {
+    overflow-x: auto;
+    margin: 48px 0;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.comparison-table__header {
+    background: var(--system-color-primary);
+    color: #FFFFFF;
+    padding: 20px 16px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 3px solid var(--system-color-accent);
+}
+
+.comparison-table__header--highlight {
+    background: var(--system-color-accent);
+    color: #FFFFFF;
+}
+
+.comparison-table__label {
+    background: #F8F8F8;
+    padding: 20px 16px;
+    font-weight: 700;
+    color: var(--system-color-primary);
+    border-right: 1px solid var(--system-color-border);
+    white-space: nowrap;
+}
+
+.comparison-table__cell {
+    padding: 20px 16px;
+    text-align: center;
+    border-bottom: 1px solid var(--system-color-border);
+    line-height: 1.8;
+    color: var(--system-color-text);
+}
+
+.comparison-table__cell--highlight {
+    background: #FFFBF0;
+}
+
+.comparison-table tbody tr:last-child .comparison-table__cell {
+    border-bottom: none;
+}
+
+.package-comparison__cta {
+    text-align: center;
+    margin-top: 48px;
+    padding: 32px;
+    background: linear-gradient(135deg, #F8F8F8 0%, #FFFFFF 100%);
+    border-radius: 8px;
+}
+
+.package-comparison__cta p {
+    font-size: 16px;
+    margin-bottom: 24px;
+    color: var(--system-color-text);
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .comparison-table {
+        font-size: 14px;
+    }
+
+    .comparison-table__header,
+    .comparison-table__label,
+    .comparison-table__cell {
+        padding: 12px 8px;
+    }
+}
+
+/* ========================================
+   導入事例セクション
+   ======================================== */
+.case-studies {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #F8F8F8 0%, #FFFFFF 100%);
+}
+
+.case-studies__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin: 48px 0;
+}
+
+.case-study-card {
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 32px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-top: 4px solid var(--system-color-accent);
+}
+
+.case-study-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+}
+
+.case-study-card__label {
+    display: inline-block;
+    padding: 6px 16px;
+    background: var(--system-color-accent);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.case-study-card__label--sales {
+    background: #1890ff;
+}
+
+.case-study-card__label--custom {
+    background: #52c41a;
+}
+
+.case-study-card__company {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #F0F0F0;
+}
+
+.case-study-card__company i {
+    font-size: 32px;
+    color: var(--system-color-accent);
+}
+
+.case-study-card__company h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--system-color-primary);
+    margin: 0 0 4px 0;
+}
+
+.case-study-card__industry {
+    font-size: 13px;
+    color: var(--system-color-text);
+    margin: 0;
+}
+
+.case-study-card__section {
+    margin-bottom: 20px;
+}
+
+.case-study-card__section h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--system-color-primary);
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.case-study-card__section h4 i {
+    font-size: 16px;
+}
+
+.case-study-card__section p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--system-color-text);
+    margin: 0;
+}
+
+.case-study-card__section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.case-study-card__section li {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--system-color-text);
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.case-study-card__section li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--system-color-accent);
+    font-weight: 700;
+}
+
+.case-study-card__result {
+    margin-top: 24px;
+    padding: 16px;
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFFBF0 100%);
+    border-radius: 4px;
+    text-align: center;
+}
+
+.case-study-card__result strong {
+    font-size: 16px;
+    color: var(--system-color-accent);
+    font-weight: 700;
+}
+
+.case-studies__note {
+    margin-top: 48px;
+    padding: 24px;
+    background: #E6F7FF;
+    border-left: 4px solid #1890ff;
+    border-radius: 4px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.case-studies__note i {
+    color: #1890ff;
+    font-size: 20px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.case-studies__note p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--system-color-text);
+    margin: 0;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .case-studies__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================
    印刷用スタイル
    ======================================== */
 @media print {

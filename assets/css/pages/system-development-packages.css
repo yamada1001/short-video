@@ -393,6 +393,75 @@
     font-weight: 600;
 }
 
+.roi-card__highlight {
+    display: block;
+    font-size: 18px;
+    color: var(--system-color-accent);
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+/* 現場感覚の補足ボックス（事務ゼロ化パック用） */
+.roi-insight {
+    margin-top: 24px;
+    padding: 20px;
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFFBF0 100%);
+    border-left: 4px solid var(--system-color-accent);
+    border-radius: 4px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.roi-insight i {
+    color: var(--system-color-accent);
+    font-size: 24px;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.roi-insight p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--system-color-primary);
+    margin: 0;
+}
+
+.roi-insight strong {
+    color: var(--system-color-accent);
+    font-weight: 700;
+}
+
+/* ROI強調ボックス（売上最大化パック用） */
+.roi-highlight {
+    margin-top: 24px;
+    padding: 20px;
+    background: linear-gradient(135deg, #E6F7FF 0%, #F0FAFF 100%);
+    border-left: 4px solid #1890ff;
+    border-radius: 4px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.roi-highlight i {
+    color: #1890ff;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.roi-highlight p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--system-color-primary);
+    margin: 0;
+}
+
+.roi-highlight strong {
+    color: #1890ff;
+    font-weight: 700;
+}
+
 /* メリットリスト */
 .package-detail__benefits {
     list-style: none;

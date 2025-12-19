@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/functions.php';
 
 // Head用の変数設定
 $page_title = 'システム開発パッケージ詳細｜余日（Yojitsu）';
-$page_description = '事務ゼロ化パック30万円〜、売上最大化パック80万円〜。各パッケージの詳細な機能、ROI、ベネフィットをご紹介。大分県の経営者様向けシステム開発サービス。';
+$page_description = '事務ゼロ化パック30万円〜、売上最大化パック60万円〜。各パッケージの詳細な機能、ROI、ベネフィットをご紹介。大分県の経営者様向けシステム開発サービス。';
 $page_keywords = 'システム開発,パッケージ,料金,ROI,業務効率化,大分県,余日';
 $additional_css = ['assets/css/pages/system-development-packages.css', 'assets/css/cookie-consent.css'];
 ?>
@@ -157,6 +157,13 @@ $additional_css = ['assets/css/pages/system-development-packages.css', 'assets/c
                             </div>
                         </div>
                     </div>
+
+                    <!-- 現場感覚の補足 -->
+                    <div class="roi-insight">
+                        <i class="fas fa-lightbulb"></i>
+                        <p><strong>これは毎日1時間強のコピペ作業がゼロになるのと同じです。</strong><br>
+                        事務員さんが本来やるべき業務に集中できるようになります。</p>
+                    </div>
                 </div>
 
                 <div class="package-detail__section">
@@ -220,7 +227,7 @@ $additional_css = ['assets/css/pages/system-development-packages.css', 'assets/c
                 </div>
                 <div class="package-detail__price-area">
                     <p class="package-detail__price">
-                        <span class="package-detail__amount">80万円</span>
+                        <span class="package-detail__amount">60万円</span>
                         <span class="package-detail__unit">〜</span>
                     </p>
                     <p class="package-detail__period">工期: 2ヶ月〜</p>
@@ -334,9 +341,13 @@ $additional_css = ['assets/css/pages/system-development-packages.css', 'assets/c
                             <div class="roi-card__total">
                                 <strong>月間増益:</strong> 約10.5万円<br>
                                 <strong>年間増益:</strong> 約126万円<br>
-                                <strong>8ヶ月で投資額を回収</strong>
+                                <strong class="roi-card__highlight">初年度から+40万円以上の利益</strong>
                             </div>
                         </div>
+                    </div>
+                    <div class="roi-highlight">
+                        <i class="fas fa-check-circle"></i>
+                        <p>投資額60万円に対して年間100万円以上の増益。<strong>初年度からしっかりプラスが出る、安心の投資対効果です。</strong></p>
                     </div>
                 </div>
 

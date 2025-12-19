@@ -457,7 +457,7 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                         <h3 class="package-card__name">売上最大化パック</h3>
                     </div>
                     <div class="package-card__price">
-                        <span class="package-card__amount">80万円</span>
+                        <span class="package-card__amount">60万円</span>
                         <span class="package-card__unit">〜</span>
                     </div>
                     <p class="package-card__period">工期: 2ヶ月〜</p>
@@ -522,6 +522,242 @@ $additional_css = ['assets/css/pages/system-development.css', 'assets/css/cookie
                 <i class="fas fa-info-circle"></i>
                 上記は目安です。ヒアリングの上、着手前に「確定金額」をご提示します。
             </p>
+        </div>
+    </section>
+
+    <!-- パッケージ比較表セクション -->
+    <section class="package-comparison">
+        <div class="container">
+            <h2 class="section-title center">
+                <i class="fas fa-table"></i>
+                パッケージ比較表
+            </h2>
+            <p class="section-lead center">
+                3つのパッケージを比較して、御社に最適なプランをお選びください。
+            </p>
+
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th class="comparison-table__header">項目</th>
+                            <th class="comparison-table__header comparison-table__header--highlight">
+                                事務ゼロ化パック
+                            </th>
+                            <th class="comparison-table__header">
+                                売上最大化パック
+                            </th>
+                            <th class="comparison-table__header">
+                                オーダーメイド開発
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="comparison-table__label">価格</td>
+                            <td class="comparison-table__cell comparison-table__cell--highlight">
+                                <strong>30万円〜</strong>
+                            </td>
+                            <td class="comparison-table__cell">
+                                <strong>60万円〜</strong>
+                            </td>
+                            <td class="comparison-table__cell">
+                                <strong>100万円〜</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="comparison-table__label">開発期間</td>
+                            <td class="comparison-table__cell comparison-table__cell--highlight">
+                                1〜2ヶ月
+                            </td>
+                            <td class="comparison-table__cell">
+                                2〜3ヶ月
+                            </td>
+                            <td class="comparison-table__cell">
+                                3〜6ヶ月
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="comparison-table__label">向いている会社</td>
+                            <td class="comparison-table__cell comparison-table__cell--highlight">
+                                手作業が多い<br>事務負担を減らしたい
+                            </td>
+                            <td class="comparison-table__cell">
+                                新規顧客を増やしたい<br>売上を伸ばしたい
+                            </td>
+                            <td class="comparison-table__cell">
+                                独自の業務フロー<br>既存システムを刷新
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="comparison-table__label">主な機能（例）</td>
+                            <td class="comparison-table__cell comparison-table__cell--highlight">
+                                ・自動データ取り込み<br>
+                                ・帳票自動生成<br>
+                                ・メール自動送信
+                            </td>
+                            <td class="comparison-table__cell">
+                                ・予約システム<br>
+                                ・ECサイト<br>
+                                ・顧客管理
+                            </td>
+                            <td class="comparison-table__cell">
+                                ・完全カスタム<br>
+                                ・既存連携<br>
+                                ・独自ルール対応
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="comparison-table__label">投資対効果</td>
+                            <td class="comparison-table__cell comparison-table__cell--highlight">
+                                10ヶ月で回収
+                            </td>
+                            <td class="comparison-table__cell">
+                                初年度+40万円
+                            </td>
+                            <td class="comparison-table__cell">
+                                リスク回避・効率化
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="package-comparison__cta">
+                <p>どのパッケージが合うか迷ったら、まずは無料診断をご利用ください。</p>
+                <a href="#contact" class="btn btn-primary btn--large">
+                    <i class="fas fa-comments"></i>
+                    無料診断を受ける
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 導入事例セクション -->
+    <section class="case-studies">
+        <div class="container">
+            <h2 class="section-title center">
+                <i class="fas fa-briefcase"></i>
+                導入事例（例）
+            </h2>
+            <p class="section-lead center">
+                実際に導入された企業様の課題と効果をご紹介します。
+            </p>
+
+            <div class="case-studies__grid">
+                <!-- 事例1: 事務ゼロ化パック -->
+                <div class="case-study-card">
+                    <div class="case-study-card__label">事務ゼロ化パック</div>
+                    <div class="case-study-card__company">
+                        <i class="fas fa-building"></i>
+                        <div>
+                            <h3>大分県の建設会社様</h3>
+                            <p class="case-study-card__industry">従業員15名 / 建設業</p>
+                        </div>
+                    </div>
+                    <div class="case-study-card__section">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 導入前の課題</h4>
+                        <p>見積書・請求書の作成に毎日2時間かかっており、事務員の負担が大きかった。手書き→エクセル転記→PDF化という二度手間も発生。</p>
+                    </div>
+                    <div class="case-study-card__section">
+                        <h4><i class="fas fa-check-circle"></i> 導入後の効果</h4>
+                        <ul>
+                            <li>見積書・請求書作成が<strong>自動化</strong>され、月60時間削減</li>
+                            <li>事務員が営業サポートに集中できるようになった</li>
+                            <li>ミスがなくなり、顧客からの信頼も向上</li>
+                        </ul>
+                    </div>
+                    <div class="case-study-card__result">
+                        <strong>投資回収期間: 8ヶ月</strong>
+                    </div>
+                </div>
+
+                <!-- 事例2: 売上最大化パック -->
+                <div class="case-study-card">
+                    <div class="case-study-card__label case-study-card__label--sales">売上最大化パック</div>
+                    <div class="case-study-card__company">
+                        <i class="fas fa-store"></i>
+                        <div>
+                            <h3>福岡県の美容院様</h3>
+                            <p class="case-study-card__industry">スタッフ8名 / 美容業</p>
+                        </div>
+                    </div>
+                    <div class="case-study-card__section">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 導入前の課題</h4>
+                        <p>電話予約のみで、営業時間外の予約を逃していた。新規顧客のリピート率も低く、売上が伸び悩んでいた。</p>
+                    </div>
+                    <div class="case-study-card__section">
+                        <h4><i class="fas fa-check-circle"></i> 導入後の効果</h4>
+                        <ul>
+                            <li>24時間Web予約で<strong>月15件の新規予約</strong>を獲得</li>
+                            <li>LINE連携で来店3日前にリマインド → キャンセル率30%減</li>
+                            <li>顧客管理で誕生日クーポン配信 → リピート率20%向上</li>
+                        </ul>
+                    </div>
+                    <div class="case-study-card__result">
+                        <strong>年間売上: +150万円</strong>
+                    </div>
+                </div>
+
+                <!-- 事例3: オーダーメイド開発 -->
+                <div class="case-study-card">
+                    <div class="case-study-card__label case-study-card__label--custom">オーダーメイド開発</div>
+                    <div class="case-study-card__company">
+                        <i class="fas fa-industry"></i>
+                        <div>
+                            <h3>熊本県の製造業様</h3>
+                            <p class="case-study-card__industry">従業員50名 / 製造業</p>
+                        </div>
+                    </div>
+                    <div class="case-study-card__section">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 導入前の課題</h4>
+                        <p>20年前の生産管理システムが老朽化し、サポート終了のリスクがあった。新しいパッケージソフトでは自社の複雑な工程に対応できない。</p>
+                    </div>
+                    <div class="case-study-card__section">
+                        <h4><i class="fas fa-check-circle"></i> 導入後の効果</h4>
+                        <ul>
+                            <li>独自の工程管理ルールに完全対応した<strong>専用システム</strong>を構築</li>
+                            <li>在庫管理の精度が向上し、過剰在庫を20%削減</li>
+                            <li>リアルタイムで生産状況を把握でき、納期遵守率が向上</li>
+                        </ul>
+                    </div>
+                    <div class="case-study-card__result">
+                        <strong>システムリスクの完全排除</strong>
+                    </div>
+                </div>
+
+                <!-- 事例4: 事務ゼロ化パック -->
+                <div class="case-study-card">
+                    <div class="case-study-card__label">事務ゼロ化パック</div>
+                    <div class="case-study-card__company">
+                        <i class="fas fa-hospital"></i>
+                        <div>
+                            <h3>宮崎県の整骨院様</h3>
+                            <p class="case-study-card__industry">スタッフ5名 / 医療・福祉</p>
+                        </div>
+                    </div>
+                    <div class="case-study-card__section">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 導入前の課題</h4>
+                        <p>保険請求の集計作業に毎月丸2日かかっており、その間は施術ができない状態。計算ミスも頻発していた。</p>
+                    </div>
+                    <div class="case-study-card__section">
+                        <h4><i class="fas fa-check-circle"></i> 導入後の効果</h4>
+                        <ul>
+                            <li>保険請求の<strong>自動集計</strong>で作業時間を2日→2時間に短縮</li>
+                            <li>計算ミスがゼロになり、返戻率が大幅に減少</li>
+                            <li>空いた時間で施術に専念でき、患者様の満足度も向上</li>
+                        </ul>
+                    </div>
+                    <div class="case-study-card__result">
+                        <strong>投資回収期間: 6ヶ月</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-studies__note">
+                <i class="fas fa-info-circle"></i>
+                <p>※ 上記は一例です。業種や規模、課題によって最適なプランは異なります。まずは無料診断でご相談ください。</p>
+            </div>
         </div>
     </section>
 
