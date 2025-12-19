@@ -53,6 +53,7 @@ Progate風のハンズオン形式でGemini AIを学べるWebアプリケーシ�
 - **バックエンド**: PHP 8.x
 - **データベース**: MySQL 8.0
 - **フロントエンド**: HTML5, CSS3, JavaScript
+- **デザインシステム**: Progate-style CSS（1825行の独自CSSフレームワーク）
 - **外部API**: **Google Gemini API**, Stripe API, Google OAuth 2.0
 - **ライブラリ**:
   - `google/generative-ai-php` - Gemini API（新規追加）
@@ -138,11 +139,14 @@ SOURCE /path/to/chatgpt-learning-platform-schema.sql;
 
 ### 5. Xserverへのデプロイ
 
-#### 方法1: FTPアップロード
+#### 方法1: FTPアップロード（FileZilla推奨）
 1. FileZillaなどのFTPクライアントでXserverに接続
 2. `public_html/chatgpt-learning/` ディレクトリを作成
 3. プロジェクトファイルをアップロード
 4. `.env`ファイルをアップロード（非公開ディレクトリに配置推奨）
+
+**注意**: FileZillaで手動アップロードする場合、vendor/フォルダは非常に大きいため、
+サーバー上で直接`composer install`を実行することを推奨します。
 
 #### 方法2: SSH経由
 ```bash
@@ -208,6 +212,15 @@ chatgpt-learning-platform/
 ### 無料枠の余裕度
 - 月間10,000リクエスト ÷ 30日 = 約333リクエスト/日
 - 無料枠1,500リクエスト/日 ÷ 333リクエスト/日 = **約4.5倍の余裕**
+
+## 📷 スクリーンショット
+
+（後日追加予定）
+
+- トップページ
+- ダッシュボード
+- レッスン画面（エディタタイプ）
+- 管理画面
 
 ## 📚 ドキュメント
 
