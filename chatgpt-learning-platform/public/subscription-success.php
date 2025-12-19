@@ -16,8 +16,11 @@ $user = getCurrentUser();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プレミアム会員登録完了 | ChatGPT学習プラットフォーム</title>
-    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/style.css">
+    <title>プレミアム会員登録完了 | Gemini AI学習プラットフォーム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/progate-style.css">
 </head>
 <body>
     <?php include __DIR__ . '/../includes/header.php'; ?>
@@ -35,7 +38,7 @@ $user = getCurrentUser();
                 <h3 style="font-size: 16px; margin-bottom: 12px;">これからできること</h3>
                 <ul style="padding-left: 20px;">
                     <li>すべてのプレミアムコースを受講</li>
-                    <li>ChatGPTを1日100回まで実行可能</li>
+                    <li>Gemini AIを1日100回まで実行可能</li>
                     <li>課題の詳細フィードバックを受け取る</li>
                 </ul>
             </div>

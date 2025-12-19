@@ -52,7 +52,7 @@ if ($filterCourseId) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>レッスン管理 | ChatGPT学習プラットフォーム</title>
+    <title>レッスン管理 | Gemini AI学習プラットフォーム</title>
     <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/style.css">
     <style>
         .admin-layout {

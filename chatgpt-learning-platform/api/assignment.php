@@ -49,7 +49,7 @@ if (!checkApiLimit()) {
     errorResponse("本日のAPI使用回数の上限（{$limit}回）に達しました", 429);
 }
 
-// ChatGPTを実行
+// Gemini AIを実行
 try {
     $ch = curl_init('https://api.openai.com/v1/chat/completions');
 
@@ -80,7 +80,7 @@ try {
     curl_close($ch);
 
     if ($httpCode !== 200) {
-        errorResponse('ChatGPTの実行に失敗しました', 500);
+        errorResponse('Gemini AIの実行に失敗しました', 500);
     }
 
     $result = json_decode($response, true);
@@ -106,7 +106,7 @@ try {
         updateProgress($lessonId, 'in_progress');
 
         // TODO: 自動採点機能を実装
-        // ChatGPTを使って自動採点することも可能
+        // Gemini AIを使って自動採点することも可能
         // 現在は管理者が手動で採点する想定
 
         successResponse([

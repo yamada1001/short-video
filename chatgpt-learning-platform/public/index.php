@@ -26,15 +26,18 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatGPT学習プラットフォーム | Progate風ハンズオン学習</title>
-    <meta name="description" content="Progate風のハンズオン形式でChatGPTを学べるプラットフォーム。実践的なプロンプトエンジニアリングを習得しましょう。">
-    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/style.css">
+    <title>Gemini AI学習プラットフォーム | Progate風ハンズオン学習</title>
+    <meta name="description" content="Progate風のハンズオン形式でGemini AIを学べるプラットフォーム。実践的なプロンプトエンジニアリングを習得しましょう。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/progate-style.css">
 </head>
 <body class="landing-page">
     <header class="landing-header">
         <div class="container">
             <div class="header-inner">
-                <div class="logo">ChatGPT Learning</div>
+                <div class="logo">Gemini AI Learning</div>
                 <nav class="header-nav">
                     <a href="<?= APP_URL ?>/login.php">ログイン</a>
                     <a href="<?= APP_URL ?>/register.php" class="btn btn-sm btn-primary">無料登録</a>
@@ -49,7 +52,7 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title">
-                        ChatGPTを<br>
+                        Gemini AIを<br>
                         実践的に学ぼう
                     </h1>
                     <p class="hero-subtitle">
@@ -86,12 +89,12 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                     <div class="feature-card">
                         <div class="feature-icon">💻</div>
                         <h3>Progate風UI</h3>
-                        <p>直感的で使いやすいインターフェース。プログラミング学習のように楽しくChatGPTを学べます。</p>
+                        <p>直感的で使いやすいインターフェース。プログラミング学習のように楽しくGemini AIを学べます。</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">✍️</div>
                         <h3>実践エディタ</h3>
-                        <p>実際にプロンプトを入力してChatGPTの反応を確認。リアルタイムで学習できます。</p>
+                        <p>実際にプロンプトを入力してGemini AIの反応を確認。リアルタイムで学習できます。</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">📊</div>
@@ -159,7 +162,7 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
         <!-- CTA -->
         <section class="cta">
             <div class="container">
-                <h2>今すぐChatGPTをマスターしよう</h2>
+                <h2>今すぐGemini AIをマスターしよう</h2>
                 <p>無料で始めて、プロンプトエンジニアリングのスキルを習得</p>
                 <a href="<?= APP_URL ?>/register.php" class="btn btn-lg btn-primary">無料で始める</a>
             </div>
@@ -168,7 +171,7 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; <?= date('Y') ?> ChatGPT Learning Platform. All rights reserved.</p>
+            <p>&copy; <?= date('Y') ?> Gemini AI Learning Platform. All rights reserved.</p>
         </div>
     </footer>
 </body>

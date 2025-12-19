@@ -99,8 +99,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プレミアム会員登録 | ChatGPT学習プラットフォーム</title>
-    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/style.css">
+    <title>プレミアム会員登録 | Gemini AI学習プラットフォーム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/progate-style.css">
 </head>
 <body>
     <?php include __DIR__ . '/../includes/header.php'; ?>
@@ -108,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container" style="max-width: 800px; margin: 60px auto; padding: 0 20px;">
         <div class="page-header" style="text-align: center; margin-bottom: 40px;">
             <h1>プレミアム会員登録</h1>
-            <p>すべてのコースにアクセスして、ChatGPTを使いこなそう</p>
+            <p>すべてのコースにアクセスして、Gemini AIを使いこなそう</p>
         </div>
 
         <?php if (isset($error)): ?>
@@ -135,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </li>
                 <li style="padding: 12px 0; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center;">
                     <span style="color: var(--success); margin-right: 12px; font-size: 20px;">✓</span>
-                    ChatGPT実行回数が1日100回に増加
+                    Gemini AI実行回数が1日100回に増加
                 </li>
                 <li style="padding: 12px 0; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center;">
                     <span style="color: var(--success); margin-right: 12px; font-size: 20px;">✓</span>

@@ -7,8 +7,8 @@
     <div class="container">
         <div class="footer-grid">
             <div class="footer-column">
-                <h3>ChatGPT Learning</h3>
-                <p>ChatGPTを実践的に学べるProgate風プラットフォーム</p>
+                <h3>Gemini AI Learning</h3>
+                <p>Gemini AIを実践的に学べるProgate風プラットフォーム</p>
             </div>
             <div class="footer-column">
                 <h4>学習</h4>
@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; <?= date('Y') ?> ChatGPT Learning Platform. All rights reserved.</p>
+            <p>&copy; <?= date('Y') ?> Gemini AI Learning Platform. All rights reserved.</p>
         </div>
     </div>
 </footer>

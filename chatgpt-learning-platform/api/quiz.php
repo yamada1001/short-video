@@ -61,8 +61,8 @@ foreach ($questions as $index => $question) {
         $isCorrect = $userAnswer == $correctAnswer;
 
     } elseif ($question['type'] === 'text') {
-        // 記述式: ChatGPTで採点
-        // TODO: ChatGPTによる記述式採点を実装
+        // 記述式: Gemini AIで採点
+        // TODO: Gemini AIによる記述式採点を実装
         // 現在は仮実装として、キーワード一致で判定
         if (isset($question['keywords'])) {
             $keywords = $question['keywords'];

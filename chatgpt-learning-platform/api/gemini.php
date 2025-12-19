@@ -62,7 +62,7 @@ if ($cachedResponse) {
 // Gemini API呼び出し
 try {
     // cURL経由で直接Gemini APIを呼び出し（シンプルな実装）
-    $apiUrl = 'https://generativelanguage.googleapis.com/v1/models/' . GEMINI_MODEL . ':generateContent';
+    $apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/' . GEMINI_MODEL . ':generateContent';
     $apiUrl .= '?key=' . GEMINI_API_KEY;
 
     $data = [

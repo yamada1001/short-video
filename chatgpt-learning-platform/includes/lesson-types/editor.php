@@ -2,7 +2,7 @@
 /**
  * エディタ形式レッスン（ChatGPT実行）
  */
-$instructions = $content['instructions'] ?? 'プロンプトを入力してChatGPTを実行してみましょう。';
+$instructions = $content['instructions'] ?? 'プロンプトを入力してGemini AIを実行してみましょう。';
 $hint = $content['hint'] ?? '';
 $examplePrompt = $content['example'] ?? '';
 ?>
@@ -50,7 +50,7 @@ $examplePrompt = $content['example'] ?? '';
 
         <div class="output-panel">
             <div class="panel-header">
-                <h3>🤖 ChatGPTの応答</h3>
+                <h3>🤖 Gemini AIの応答</h3>
                 <div class="panel-header-actions">
                     <button id="copyResponseBtn" class="btn btn-sm btn-outline copy-btn" style="display: none;">
                         <span class="btn-icon">📋</span>
@@ -63,7 +63,7 @@ $examplePrompt = $content['example'] ?? '';
             </div>
             <div id="outputArea" class="output-area">
                 <div class="output-placeholder">
-                    プロンプトを実行すると、ここにChatGPTの応答が表示されます。
+                    プロンプトを実行すると、ここにGemini AIの応答が表示されます。
                 </div>
             </div>
         </div>

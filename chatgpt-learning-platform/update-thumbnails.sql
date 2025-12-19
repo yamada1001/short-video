@@ -8,9 +8,9 @@
 -- 1. コースのサムネイル画像を更新
 UPDATE courses
 SET thumbnail_url = CASE id
-    WHEN 1 THEN 'https://placehold.co/400x225/667eea/white?text=ChatGPT+Basic+Course'
+    WHEN 1 THEN 'https://placehold.co/400x225/667eea/white?text=Gemini+AI+Basic+Course'
     WHEN 2 THEN 'https://placehold.co/400x225/764ba2/white?text=Prompt+Engineering'
-    WHEN 3 THEN 'https://placehold.co/400x225/5b7fff/white?text=Advanced+ChatGPT'
+    WHEN 3 THEN 'https://placehold.co/400x225/5b7fff/white?text=Advanced+Gemini+AI'
     WHEN 4 THEN 'https://placehold.co/400x225/4a66e6/white?text=Business+Applications'
     ELSE CONCAT('https://placehold.co/400x225/667eea/white?text=Course+', id)
 END

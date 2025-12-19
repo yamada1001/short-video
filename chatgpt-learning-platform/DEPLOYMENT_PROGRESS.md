@@ -1,13 +1,21 @@
-# ChatGPT学習プラットフォーム - デプロイ進捗状況
+# Gemini AI学習プラットフォーム - デプロイ進捗状況
 
-**最終更新**: 2025-12-21 01:30
+**最終更新**: 2025-12-20 (Rebranding Update)
+
+## 🔄 最新アップデート（2025-12-20）
+
+### ChatGPT → Gemini AI リブランディング完了
+- ✅ 全ファイルで "ChatGPT" → "Gemini AI" に置換完了
+- ✅ データベース移行SQLファイル作成 (`rebrand-to-gemini-migration.sql`)
+- ✅ UI/UX テキスト、タイトル、メタ情報すべて更新
+- ✅ API、管理画面、公開ページ、ドキュメント全て対応完了
 
 ## ✅ 完了したタスク
 
 ### 1. 環境構築
 - ✅ Composerパッケージ（vendor/）をXserverにアップロード（FileZilla経由、32,892ファイル）
 - ✅ .envファイル作成・修正（DB設定、Gemini API Key設定）
-- ✅ データベース作成（10テーブル、xs545151_chatgptlearning）
+- ✅ データベース作成（10テーブル、xs545151_chatgptlearning）※Gemini AIプラットフォーム用
 - ✅ サンプルデータ追加（1コース、1レッスン）
 
 ### 2. 機能テスト
@@ -131,7 +139,7 @@
 ### 次にやること
 1. phpMyAdminで `chatgpt-learning-platform/update-thumbnails.sql` を実行
 2. 明日0時（UTC）以降にGemini APIをテスト
-3. ダッシュボードで「ChatGPT基礎コース」→「初めてのプロンプト」にアクセス
+3. ダッシュボードで「Gemini AI基礎コース」→「初めてのプロンプト」にアクセス
 4. プロンプトを実行してGemini APIをテスト
 5. エラーが出た場合は api/gemini.php を確認
 

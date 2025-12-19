@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $isEdit ? 'コース編集' : 'コース新規作成' ?> | ChatGPT学習プラットフォーム</title>
+    <title><?= $isEdit ? 'コース編集' : 'コース新規作成' ?> | Gemini AI学習プラットフォーム</title>
     <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/style.css">
     <style>
         .admin-layout {
@@ -254,7 +254,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="form-group">
                         <label class="form-label" for="title">コース名 *</label>
                         <input type="text" id="title" name="title" class="form-input" value="<?= h($formData['title']) ?>" required>
-                        <div class="form-help">例: ChatGPT入門、プロンプトエンジニアリング基礎</div>
+                        <div class="form-help">例: Gemini AI入門、プロンプトエンジニアリング基礎</div>
                     </div>
 
                     <div class="form-group">

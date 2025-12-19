@@ -159,30 +159,30 @@ CREATE TABLE password_reset_tokens (
 
 -- サンプルコース
 INSERT INTO courses (title, description, difficulty, is_free, order_num, thumbnail_url) VALUES
-('ChatGPT基礎コース', 'ChatGPTの基本的な使い方を学びます', 'beginner', TRUE, 1, '/assets/images/course-basic.jpg'),
+('Gemini AI基礎コース', 'Gemini AIの基本的な使い方を学びます', 'beginner', TRUE, 1, '/assets/images/course-basic.jpg'),
 ('プロンプトエンジニアリング入門', '効果的なプロンプトの書き方をマスター', 'intermediate', FALSE, 2, '/assets/images/course-prompt.jpg'),
 ('実務活用コース', 'ビジネスでの実践的な使い方を学習', 'advanced', FALSE, 3, '/assets/images/course-business.jpg');
 
 -- サンプルレッスン（基礎コース）
 INSERT INTO lessons (course_id, title, description, order_num, lesson_type, content_json) VALUES
-(1, 'ChatGPTとは？', 'ChatGPTの概要を学びます', 1, 'slide',
-'{"slides": [{"title": "ChatGPTとは", "content": "ChatGPTは対話型のAIアシスタントです。"}, {"title": "何ができる？", "content": "文章作成、翻訳、質問応答など様々なタスクが可能です。"}]}'),
+(1, 'Gemini AIとは？', 'Gemini AIの概要を学びます', 1, 'slide',
+'{"slides": [{"title": "ChatGPTとは", "content": "Gemini AIは対話型のAIアシスタントです。"}, {"title": "何ができる？", "content": "文章作成、翻訳、質問応答など様々なタスクが可能です。"}]}'),
 
-(1, '初めてのプロンプト', '実際にChatGPTにプロンプトを送ってみましょう', 2, 'editor',
-'{"instructions": "以下のプロンプトを入力して実行してみましょう：「こんにちは！自己紹介してください。」", "hint": "丁寧に挨拶することで、ChatGPTも丁寧に返答してくれます。"}'),
+(1, '初めてのプロンプト', '実際にGemini AIにプロンプトを送ってみましょう', 2, 'editor',
+'{"instructions": "以下のプロンプトを入力して実行してみましょう：「こんにちは！自己紹介してください。」", "hint": "丁寧に挨拶することで、Gemini AIも丁寧に返答してくれます。"}'),
 
-(1, '基礎知識クイズ', 'ChatGPTの基礎知識を確認', 3, 'quiz',
-'{"questions": [{"question": "ChatGPTは何ができますか？", "type": "multiple", "options": ["文章作成", "画像生成", "音楽作成", "動画編集"], "correct": [0], "explanation": "ChatGPTは主に文章生成が得意です。"}]}'),
+(1, '基礎知識クイズ', 'Gemini AIの基礎知識を確認', 3, 'quiz',
+'{"questions": [{"question": "Gemini AIは何ができますか？", "type": "multiple", "options": ["文章作成", "画像生成", "音楽作成", "動画編集"], "correct": [0], "explanation": "Gemini AIは主に文章生成が得意です。"}]}'),
 
-(1, '課題：自己紹介文を作成', 'ChatGPTを使って自己紹介文を作成してください', 4, 'assignment',
-'{"task": "ChatGPTに自分の経歴や趣味を伝えて、魅力的な自己紹介文を作成してもらってください。", "criteria": "具体性、読みやすさ、魅力の3点で採点します。"}');
+(1, '課題：自己紹介文を作成', 'Gemini AIを使って自己紹介文を作成してください', 4, 'assignment',
+'{"task": "Gemini AIに自分の経歴や趣味を伝えて、魅力的な自己紹介文を作成してもらってください。", "criteria": "具体性、読みやすさ、魅力の3点で採点します。"}');
 
 -- サンプルレッスン（プロンプトエンジニアリングコース）
 INSERT INTO lessons (course_id, title, description, order_num, lesson_type, content_json) VALUES
 (2, 'プロンプトの基本構造', '効果的なプロンプトの構成要素を学びます', 1, 'slide',
 '{"slides": [{"title": "プロンプトの構成", "content": "役割、タスク、制約条件の3要素が重要です。"}]}'),
 
-(2, 'ロールプレイ実践', 'ChatGPTに役割を与えてみましょう', 2, 'editor',
+(2, 'ロールプレイ実践', 'Gemini AIに役割を与えてみましょう', 2, 'editor',
 '{"instructions": "「あなたはプロのマーケターです。新商品のキャッチコピーを考えてください。」のように役割を指定してプロンプトを作成してください。"}');
 
 -- 管理者ユーザー作成（パスワード: admin123）

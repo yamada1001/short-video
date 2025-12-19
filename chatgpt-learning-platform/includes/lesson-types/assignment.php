@@ -47,7 +47,7 @@ $submitted = db()->fetchOne($submittedSql, [$user['id'], $lessonId]);
                 <pre class="submitted-prompt"><?= h($submitted['submitted_prompt']) ?></pre>
 
                 <?php if ($submitted['chatgpt_response']): ?>
-                    <h4>ChatGPTの応答:</h4>
+                    <h4>Gemini AIの応答:</h4>
                     <div class="submitted-response"><?= nl2br(h($submitted['chatgpt_response'])) ?></div>
                 <?php endif; ?>
 
@@ -76,7 +76,7 @@ $submitted = db()->fetchOne($submittedSql, [$user['id'], $lessonId]);
     <!-- 課題提出フォーム -->
     <div id="assignmentForm" class="assignment-form" style="<?= $submitted ? 'display: none;' : '' ?>">
         <h3>課題の提出</h3>
-        <p>ChatGPTに送信するプロンプトを作成してください。実行結果と共に提出されます。</p>
+        <p>Gemini AIに送信するプロンプトを作成してください。実行結果と共に提出されます。</p>
 
         <div class="form-group">
             <label for="assignmentPrompt">プロンプト</label>
@@ -167,7 +167,7 @@ if (testPromptBtn) {
 
             testResult.innerHTML = `
                 <div class="test-success">
-                    <p><strong>ChatGPTの応答:</strong></p>
+                    <p><strong>Gemini AIの応答:</strong></p>
                     <div class="response-text">${escapeHtml(data.response)}</div>
                     <p class="text-muted">トークン数: ${data.tokens_used}</p>
                 </div>

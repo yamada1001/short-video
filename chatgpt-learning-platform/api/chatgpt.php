@@ -1,6 +1,6 @@
 <?php
 /**
- * ChatGPT実行API
+ * Gemini AI実行API
  *
  * プロンプトを受け取り、OpenAI APIを呼び出してレスポンスを返す
  * キャッシュ機能とAPI使用制限あり
@@ -85,7 +85,7 @@ try {
 
     if ($httpCode !== 200) {
         error_log('OpenAI API error: ' . $response);
-        errorResponse('ChatGPTの実行に失敗しました。しばらくしてからもう一度お試しください。', 500);
+        errorResponse('Gemini AIの実行に失敗しました。しばらくしてからもう一度お試しください。', 500);
     }
 
     $result = json_decode($response, true);
@@ -117,6 +117,6 @@ try {
     ]);
 
 } catch (Exception $e) {
-    error_log('ChatGPT API exception: ' . $e->getMessage());
+    error_log('Gemini AI API exception: ' . $e->getMessage());
     errorResponse('エラーが発生しました: ' . $e->getMessage(), 500);
 }
