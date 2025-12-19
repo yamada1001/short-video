@@ -122,8 +122,8 @@ runPromptBtn.addEventListener('click', async () => {
     outputArea.innerHTML = '<div class="output-placeholder">実行中...</div>';
 
     try {
-        // ChatGPT API呼び出し
-        const response = await fetch(`${appUrl}/api/chatgpt.php`, {
+        // Gemini API呼び出し（無料枠: 1,500リクエスト/日）
+        const response = await fetch(`${appUrl}/api/gemini.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -144,6 +144,7 @@ runPromptBtn.addEventListener('click', async () => {
         outputArea.innerHTML = `
             <div class="output-content">
                 <div class="output-meta">
+                    <span>モデル: ${data.model || 'gemini-1.5-flash'}</span>
                     <span>トークン数: ${data.tokens_used || 0}</span>
                     ${data.cached ? '<span class="badge badge-info">キャッシュ</span>' : ''}
                 </div>

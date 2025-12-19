@@ -8,7 +8,8 @@ Progate風のハンズオン形式でChatGPTを学べるWebアプリケーショ
 - **学習形式**: スライド、エディタ、クイズ、課題の4タイプ
 - **決済**: Stripeサブスクリプション（月額980円）
 - **認証**: メール + Google OAuth 2.0
-- **API**: OpenAI GPT-3.5-turbo（コスト削減施策あり）
+- **API**: **Google Gemini 1.5 Flash（完全無料 - 1,500リクエスト/日）**
+  - 旧: OpenAI GPT-3.5-turbo → 新: Gemini APIに移行（2025-12-19）
 
 ## 🚀 実装状況
 
@@ -52,8 +53,9 @@ Progate風のハンズオン形式でChatGPTを学べるWebアプリケーショ
 - **バックエンド**: PHP 8.x
 - **データベース**: MySQL 8.0
 - **フロントエンド**: HTML5, CSS3, JavaScript
-- **外部API**: OpenAI API, Stripe API, Google OAuth 2.0
+- **外部API**: **Google Gemini API**, Stripe API, Google OAuth 2.0
 - **ライブラリ**:
+  - `google/generative-ai-php` - Gemini API（新規追加）
   - `google/apiclient` - Google OAuth
   - `phpmailer/phpmailer` - メール送信
   - `stripe/stripe-php` - Stripe決済
@@ -89,7 +91,12 @@ DB_NAME=chatgpt_learning
 DB_USER=your_db_user
 DB_PASSWORD=your_db_password
 
-# OpenAI API設定
+# Gemini API設定（推奨 - 無料枠: 1,500リクエスト/日）
+# API Keyは https://aistudio.google.com/app/apikey から取得
+GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_MODEL=gemini-1.5-flash
+
+# OpenAI API設定（非推奨 - Geminiに移行済み）
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 OPENAI_MODEL=gpt-3.5-turbo
 
@@ -188,21 +195,26 @@ chatgpt-learning-platform/
 - 無料会員: 10回/日
 - 有料会員: 100回/日
 
-### コスト削減施策
-1. **プロンプトキャッシュ**: 同一プロンプトは`prompt_cache`テーブルから取得
-2. **安価なモデル**: GPT-3.5-turbo使用（GPT-4の約1/10）
+### コスト削減施策（Gemini API移行により完全無料化）
+1. **Gemini API使用**: Google Gemini 1.5 Flash（**無料枠: 1,500リクエスト/日**）
+2. **プロンプトキャッシュ**: 同一プロンプトは`prompt_cache`テーブルから取得
 3. **使用量追跡**: `api_usage`テーブルで記録
 
-### 月額コスト試算
-- 1ユーザー/月100回使用: 約20円（OpenAI API料金）
+### 月額コスト試算（2025-12-19更新）
+- **Gemini API料金**: **¥0**（無料枠内: 1日平均333リクエスト < 1,500リクエスト）
 - Stripe手数料: 35円（980円 × 3.6%）
-- **粗利**: 925円/月
+- **粗利**: **945円/月**（OpenAI APIから+20円改善）
+
+### 無料枠の余裕度
+- 月間10,000リクエスト ÷ 30日 = 約333リクエスト/日
+- 無料枠1,500リクエスト/日 ÷ 333リクエスト/日 = **約4.5倍の余裕**
 
 ## 📚 ドキュメント
 
 - **設計書**: `chatgpt-learning-platform-design.md`
 - **DBスキーマ**: `chatgpt-learning-platform-schema.sql`
 - **進捗管理**: `CHATGPT_LEARNING_PROJECT_STATUS.md`
+- **Gemini移行レポート**: `GEMINI_MIGRATION.md`（2025-12-19追加）
 
 ## 🐛 トラブルシューティング
 

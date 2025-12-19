@@ -37,9 +37,13 @@ define('DB_NAME', $_ENV['DB_NAME']);
 define('DB_USER', $_ENV['DB_USER']);
 define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
 
-// OpenAI API設定
-define('OPENAI_API_KEY', $_ENV['OPENAI_API_KEY']);
-define('OPENAI_MODEL', $_ENV['OPENAI_MODEL']);
+// OpenAI API設定（非推奨 - Geminiに移行）
+define('OPENAI_API_KEY', $_ENV['OPENAI_API_KEY'] ?? '');
+define('OPENAI_MODEL', $_ENV['OPENAI_MODEL'] ?? 'gpt-3.5-turbo');
+
+// Gemini API設定（無料枠: 1,500リクエスト/日）
+define('GEMINI_API_KEY', $_ENV['GEMINI_API_KEY']);
+define('GEMINI_MODEL', $_ENV['GEMINI_MODEL'] ?? 'gemini-1.5-flash');
 
 // Google OAuth設定
 define('GOOGLE_CLIENT_ID', $_ENV['GOOGLE_CLIENT_ID']);
