@@ -5,7 +5,6 @@
     "require": {
         "php": "^8.0",
         "google/apiclient": "^2.15",
-        "google/generative-ai-php": "^0.2",
         "phpmailer/phpmailer": "^6.8",
         "stripe/stripe-php": "^13.0",
         "vlucas/phpdotenv": "^5.5"
