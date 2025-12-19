@@ -254,7 +254,19 @@
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff --stat)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add assets/css/pages/system-development-packages.css assets/css/pages/system-development.css system-development-packages.php system-development.php SYSTEM_DEV_IMPROVEMENT_PLAN_2025-12-19.md)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add assets/css/pages/system-development.css system-development.php)",
-      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add CHATGPT_LEARNING_PROJECT_STATUS.md chatgpt-learning-platform-design.md chatgpt-learning-platform-schema.sql chatgpt-learning-platform/ .claude/settings.local.json)"
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add CHATGPT_LEARNING_PROJECT_STATUS.md chatgpt-learning-platform-design.md chatgpt-learning-platform-schema.sql chatgpt-learning-platform/ .claude/settings.local.json)",
+      "Bash(composer install:*)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add chatgpt-learning-platform/)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add chatgpt-learning-platform/index.html chatgpt-learning-platform/public/index.html chatgpt-learning-platform/public/assets/css/landing.css)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com status --short chatgpt-learning-platform/)",
+      "Bash(composer --version:*)",
+      "Bash(brew install:*)",
+      "Bash(mysql:*)",
+      "Bash(brew services:*)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add:*)",
+      "Bash(/Users/yamadaren/Movies/claude-code-projects/yojitu.com/chatgpt-learning-platform/schema-import-only.sql)",
+      "Bash(zip:*)",
+      "Bash(if grep -q \"assets/css/style.css\" \"$file\")"
     ],
     "deny": [],
     "ask": []
