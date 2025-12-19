@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>準備中 | ChatGPT学習プラットフォーム</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+        }
+        p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        .status {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        .status h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .progress-list {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+        }
+        .progress-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .progress-list li:last-child {
+            border-bottom: none;
+        }
+        .done {
+            color: #4ade80;
+        }
+        .pending {
+            opacity: 0.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🚧</div>
+        <h1>準備中です</h1>
+        <p>ChatGPT学習プラットフォームは現在構築中です。<br>もうすぐ公開予定です！</p>
+
+        <div class="status">
+            <h2>実装状況</h2>
+            <ul class="progress-list">
+                <li class="done">✅ フロントエンドデザイン完成</li>
+                <li class="done">✅ データベース設計完了</li>
+                <li class="pending">⏳ データベース構築中</li>
+                <li class="pending">⏳ 認証システム設定中</li>
+                <li class="pending">⏳ API連携設定中</li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="btn">トップページに戻る</a>
+    </div>
+</body>
+</html>
