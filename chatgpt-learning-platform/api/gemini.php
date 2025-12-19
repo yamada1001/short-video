@@ -102,6 +102,10 @@ try {
 
     if ($httpCode !== 200) {
         error_log('Gemini API error: HTTP ' . $httpCode . ' - ' . $response);
+        // デバッグモードの場合は詳細を表示
+        if (defined('APP_DEBUG') && APP_DEBUG) {
+            errorResponse('Gemini API Error (HTTP ' . $httpCode . '): ' . $response, 500);
+        }
         errorResponse('Geminiの実行に失敗しました。しばらくしてからもう一度お試しください。', 500);
     }
 

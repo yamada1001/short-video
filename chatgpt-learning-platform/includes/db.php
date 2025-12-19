@@ -26,6 +26,10 @@ class Database {
             $this->pdo = new PDO($dsn, DB_USER, DB_PASSWORD, $options);
         } catch (PDOException $e) {
             error_log('Database connection failed: ' . $e->getMessage());
+            // デバッグモードの場合は詳細なエラーを表示
+            if (defined('APP_DEBUG') && APP_DEBUG) {
+                die('データベース接続に失敗しました。<br>エラー: ' . $e->getMessage());
+            }
             die('データベース接続に失敗しました。');
         }
     }

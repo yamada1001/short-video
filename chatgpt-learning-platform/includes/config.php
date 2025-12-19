@@ -68,6 +68,7 @@ define('MAIL_FROM_NAME', $_ENV['MAIL_FROM_NAME']);
 // アプリケーション設定
 define('APP_URL', $_ENV['APP_URL']);
 define('APP_ENV', $_ENV['APP_ENV']);
+define('APP_DEBUG', $_ENV['APP_DEBUG'] === 'true');
 
 // API使用制限
 define('API_LIMIT_FREE', (int)$_ENV['API_LIMIT_FREE']);
