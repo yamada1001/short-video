@@ -1,0 +1,28 @@
+# 環境変数
+.env
+.env.local
+
+# Composerパッケージ
+/vendor/
+
+# ログファイル
+*.log
+
+# macOS
+.DS_Store
+
+# PHPStorm
+.idea/
+
+# VSCode
+.vscode/
+
+# 一時ファイル
+*.tmp
+*.bak
+
+# アップロード画像
+/public/assets/images/uploads/
+
+# データベースバックアップ
+/database/backups/

@@ -250,7 +250,11 @@
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add assets/css/pages/system-development.css system-development.php system-development-packages.php)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add assets/css/pages/system-development.css)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add system-development.php)",
-      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add system-development-packages.php assets/css/pages/system-development-packages.css)"
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add system-development-packages.php assets/css/pages/system-development-packages.css)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff --stat)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add assets/css/pages/system-development-packages.css assets/css/pages/system-development.css system-development-packages.php system-development.php SYSTEM_DEV_IMPROVEMENT_PLAN_2025-12-19.md)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add assets/css/pages/system-development.css system-development.php)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com add CHATGPT_LEARNING_PROJECT_STATUS.md chatgpt-learning-platform-design.md chatgpt-learning-platform-schema.sql chatgpt-learning-platform/ .claude/settings.local.json)"
     ],
     "deny": [],
     "ask": []
