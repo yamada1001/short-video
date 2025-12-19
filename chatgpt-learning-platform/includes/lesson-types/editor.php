@@ -51,8 +51,14 @@ $examplePrompt = $content['example'] ?? '';
         <div class="output-panel">
             <div class="panel-header">
                 <h3>🤖 ChatGPTの応答</h3>
-                <div id="loadingIndicator" class="loading-indicator" style="display: none;">
-                    <span class="spinner"></span> 実行中...
+                <div class="panel-header-actions">
+                    <button id="copyResponseBtn" class="btn btn-sm btn-outline copy-btn" style="display: none;">
+                        <span class="btn-icon">📋</span>
+                        コピー
+                    </button>
+                    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                        <span class="spinner"></span> 実行中...
+                    </div>
                 </div>
             </div>
             <div id="outputArea" class="output-area">
@@ -82,8 +88,10 @@ const useExampleBtn = document.getElementById('useExampleBtn');
 const outputArea = document.getElementById('outputArea');
 const loadingIndicator = document.getElementById('loadingIndicator');
 const historyList = document.getElementById('historyList');
+const copyResponseBtn = document.getElementById('copyResponseBtn');
 
 let executionHistory = [];
+let currentResponse = '';
 
 // 文字数カウント
 promptEditor.addEventListener('input', () => {
@@ -141,6 +149,7 @@ runPromptBtn.addEventListener('click', async () => {
         }
 
         // 応答を表示
+        currentResponse = data.response;
         outputArea.innerHTML = `
             <div class="output-content">
                 <div class="output-meta">
@@ -152,10 +161,15 @@ runPromptBtn.addEventListener('click', async () => {
             </div>
         `;
 
+        // コピーボタンを表示
+        copyResponseBtn.style.display = 'inline-block';
+
         // 履歴に追加
         addToHistory(prompt, data.response, data.tokens_used, data.cached);
 
     } catch (error) {
+        currentResponse = '';
+        copyResponseBtn.style.display = 'none';
         outputArea.innerHTML = `
             <div class="output-error">
                 <h4>エラーが発生しました</h4>
@@ -165,6 +179,30 @@ runPromptBtn.addEventListener('click', async () => {
     } finally {
         runPromptBtn.disabled = false;
         loadingIndicator.style.display = 'none';
+    }
+});
+
+// コピーボタンのイベント
+copyResponseBtn.addEventListener('click', async () => {
+    if (!currentResponse) {
+        alert('コピーする応答がありません');
+        return;
+    }
+
+    try {
+        await navigator.clipboard.writeText(currentResponse);
+
+        // ボタンのテキストを一時的に変更
+        const originalHTML = copyResponseBtn.innerHTML;
+        copyResponseBtn.innerHTML = '<span class="btn-icon">✅</span> コピーしました！';
+        copyResponseBtn.disabled = true;
+
+        setTimeout(() => {
+            copyResponseBtn.innerHTML = originalHTML;
+            copyResponseBtn.disabled = false;
+        }, 2000);
+    } catch (error) {
+        alert('クリップボードへのコピーに失敗しました: ' + error.message);
     }
 });
 
@@ -211,6 +249,7 @@ function restoreHistory(index) {
     const item = executionHistory[index];
     promptEditor.value = item.prompt;
     charCount.textContent = item.prompt.length;
+    currentResponse = item.response;
     outputArea.innerHTML = `
         <div class="output-content">
             <div class="output-meta">
@@ -220,6 +259,8 @@ function restoreHistory(index) {
             <div class="output-text">${escapeHtml(item.response)}</div>
         </div>
     `;
+    // コピーボタンを表示
+    copyResponseBtn.style.display = 'inline-block';
 }
 
 // ヘルパー関数

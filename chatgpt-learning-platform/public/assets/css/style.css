@@ -1788,21 +1788,108 @@ a:hover {
    10. レスポンシブデザイン
    ======================================== */
 
+/* タブレット以下（768px以下） */
 @media (max-width: 768px) {
+    /* ヘッダー */
+    .header-inner {
+        padding: 12px 0;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .main-nav {
+        gap: 12px;
+        font-size: 14px;
+    }
+
+    .main-nav a {
+        display: none;
+    }
+
+    .user-menu-toggle {
+        font-size: 13px;
+    }
+
+    /* ヒーローセクション */
+    .hero {
+        padding: 60px 0;
+    }
+
     .hero-title {
         font-size: 36px;
     }
 
+    .hero-subtitle {
+        font-size: 18px;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-cta .btn {
+        width: 100%;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    /* グリッドレイアウト */
     .features-grid,
     .pricing-grid,
     .course-grid {
         grid-template-columns: 1fr;
     }
 
+    /* ダッシュボード */
+    .dashboard {
+        padding: 20px 0;
+    }
+
+    .dashboard-header h1 {
+        font-size: 24px;
+    }
+
+    .upgrade-banner {
+        padding: 20px;
+    }
+
+    .upgrade-banner h3 {
+        font-size: 20px;
+    }
+
+    /* コース詳細 */
+    .course-header {
+        padding: 24px;
+    }
+
     .course-header-content {
         flex-direction: column;
     }
 
+    .course-header-left h1 {
+        font-size: 28px;
+    }
+
+    .course-description {
+        font-size: 16px;
+    }
+
+    .lessons-list {
+        padding: 20px;
+    }
+
+    .lesson-item {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    /* レッスンページ */
     .lesson-layout {
         flex-direction: column;
     }
@@ -1811,15 +1898,387 @@ a:hover {
         width: 100%;
         border-right: none;
         border-bottom: 1px solid var(--gray-200);
+        padding: 20px;
     }
 
+    .lesson-main {
+        padding: 20px;
+    }
+
+    /* スライド形式 */
+    .slide-container {
+        padding: 30px 20px;
+    }
+
+    .slide-title {
+        font-size: 28px;
+    }
+
+    .slide-body {
+        font-size: 16px;
+    }
+
+    /* エディタ形式 */
     .editor-workspace {
         grid-template-columns: 1fr;
     }
 
-    .main-nav {
-        gap: 12px;
+    .editor-instructions,
+    .editor-panel,
+    .output-panel {
+        padding: 20px;
+    }
+
+    .prompt-editor,
+    .output-area {
+        min-height: 200px;
+    }
+
+    .editor-actions {
+        flex-direction: column;
+    }
+
+    .editor-actions .btn {
+        width: 100%;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .panel-header-actions {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+    }
+
+    /* クイズ形式 */
+    .quiz-header,
+    .quiz-question {
+        padding: 20px;
+    }
+
+    .question-text {
+        font-size: 18px;
+    }
+
+    .quiz-result {
+        padding: 30px 20px;
+    }
+
+    .result-summary h2 {
+        font-size: 24px;
+    }
+
+    .result-actions {
+        flex-direction: column;
+    }
+
+    .result-actions .btn {
+        width: 100%;
+    }
+
+    /* 課題形式 */
+    .assignment-description,
+    .assignment-form {
+        padding: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    /* フッター */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* スマホ（480px以下） */
+@media (max-width: 480px) {
+    /* 基本設定 */
+    body {
         font-size: 14px;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    /* ヘッダー */
+    .header-inner {
+        padding: 10px 0;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .logo img {
+        height: 28px;
+    }
+
+    .user-menu-toggle {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    /* ボタン */
+    .btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .btn-lg {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .btn-sm {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    /* ヒーロー */
+    .hero {
+        padding: 40px 0;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    /* カード */
+    .card {
+        padding: 16px;
+    }
+
+    .course-card,
+    .pricing-card {
+        padding: 20px;
+    }
+
+    /* ダッシュボード */
+    .dashboard-header h1 {
+        font-size: 22px;
+    }
+
+    .upgrade-banner {
+        padding: 16px;
+    }
+
+    .upgrade-banner h3 {
+        font-size: 18px;
+    }
+
+    /* コース詳細 */
+    .course-header {
+        padding: 20px;
+    }
+
+    .course-header-left h1 {
+        font-size: 24px;
+    }
+
+    .course-description {
+        font-size: 14px;
+    }
+
+    .lessons-list {
+        padding: 16px;
+    }
+
+    .lessons-list h2 {
+        font-size: 20px;
+    }
+
+    .lesson-item {
+        padding: 16px;
+    }
+
+    .lesson-header h3 {
+        font-size: 16px;
+    }
+
+    .lesson-description {
+        font-size: 13px;
+    }
+
+    /* レッスンページ */
+    .lesson-sidebar {
+        padding: 16px;
+    }
+
+    .sidebar-lesson-info h2 {
+        font-size: 20px;
+    }
+
+    .lesson-main {
+        padding: 16px;
+    }
+
+    /* スライド */
+    .slide-container {
+        padding: 24px 16px;
+    }
+
+    .slide-title {
+        font-size: 24px;
+    }
+
+    .slide-body {
+        font-size: 15px;
+    }
+
+    /* エディタ */
+    .editor-instructions,
+    .editor-panel,
+    .output-panel,
+    .execution-history {
+        padding: 16px;
+    }
+
+    .editor-instructions h2,
+    .execution-history h3 {
+        font-size: 20px;
+    }
+
+    .panel-header h3 {
+        font-size: 16px;
+    }
+
+    .prompt-editor,
+    .output-area {
+        min-height: 150px;
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .hint-box,
+    .example-box {
+        padding: 16px;
+    }
+
+    /* クイズ */
+    .quiz-header,
+    .quiz-question {
+        padding: 16px;
+    }
+
+    .quiz-header h2 {
+        font-size: 20px;
+    }
+
+    .question-text {
+        font-size: 16px;
+    }
+
+    .option-label {
+        padding: 12px;
+    }
+
+    .option-text {
+        font-size: 14px;
+    }
+
+    .quiz-result {
+        padding: 24px 16px;
+    }
+
+    .result-summary h2 {
+        font-size: 22px;
+    }
+
+    .score-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .score-number {
+        font-size: 36px;
+    }
+
+    /* 課題 */
+    .assignment-description,
+    .assignment-form {
+        padding: 16px;
+    }
+
+    .assignment-description h2,
+    .assignment-form h3 {
+        font-size: 20px;
+    }
+
+    .assignment-textarea {
+        min-height: 200px;
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    /* フォーム */
+    .form-group input,
+    .form-group textarea {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    /* アラート */
+    .alert {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    /* バッジ */
+    .badge {
+        padding: 3px 6px;
+        font-size: 11px;
+    }
+
+    /* フッター */
+    .site-footer {
+        padding: 40px 0 20px;
+    }
+
+    .footer-grid {
+        gap: 24px;
+    }
+
+    .footer-column h3,
+    .footer-column h4 {
+        font-size: 16px;
+    }
+}
+
+/* 横向きスマホ対応（ランドスケープモード） */
+@media (max-width: 896px) and (orientation: landscape) {
+    .lesson-layout {
+        flex-direction: row;
+    }
+
+    .lesson-sidebar {
+        width: 280px;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+
+    .slide-container {
+        padding: 30px;
+        min-height: auto;
     }
 }
 
