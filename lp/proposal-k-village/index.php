@@ -56,70 +56,60 @@
         </div>
     </section>
 
-    <!-- スライド2: どんなサービスなのか？（広告費の無駄がなくなる） -->
+    <!-- スライド2: どんなサービスなのか？（3つの特徴） -->
     <section class="section">
         <div class="container">
-            <div class="issue-card">
-                <div class="issue-card__number">02</div>
+            <div class="section__header" style="text-align: center; margin-bottom: var(--spacing-xl);">
+                <div style="display: inline-block; background: var(--color-primary); color: white; font-size: 18px; font-weight: 700; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; margin-bottom: 16px;">02</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-lightbulb"></i> どんなサービスなのか？
                 </h2>
-                <h3 class="issue-card__title">
-                    <i class="fa-solid fa-chart-line"></i> 広告費の無駄がなくなります
-                </h3>
-                <p class="issue-card__text">
-                    効果の出ていない広告を止めて、効果の出ている広告にお金を集中できます。同じ広告費で、もっと多くの問い合わせが来るようになります。
-                </p>
-                <div class="roi__summary" style="margin-top: var(--spacing-lg);">
-                    <div class="roi__summary-item">
-                        <span class="roi__summary-label">現状の広告費用30万円での成果</span>
-                        <span class="roi__summary-value">5件</span>
-                    </div>
-                    <div class="roi__summary-item roi__summary-item--highlight">
-                        <span class="roi__summary-label">導入後</span>
-                        <span class="roi__summary-value">8〜10件</span>
-                    </div>
-                    <div class="roi__summary-item">
-                        <span class="roi__summary-label">60％売上アップで収益</span>
-                        <span class="roi__summary-value">30万円増</span>
+            </div>
+
+            <div class="issues__grid">
+                <!-- 広告費の無駄がなくなる -->
+                <div class="issue-card">
+                    <h3 class="issue-card__title">
+                        <i class="fa-solid fa-chart-line"></i> 広告費の無駄がなくなります
+                    </h3>
+                    <p class="issue-card__text">
+                        効果の出ていない広告を止めて、効果の出ている広告にお金を集中できます。同じ広告費で、もっと多くの問い合わせが来るようになります。
+                    </p>
+                    <div class="roi__summary" style="margin-top: var(--spacing-md);">
+                        <div class="roi__summary-item">
+                            <span class="roi__summary-label">現状の広告費用30万円での成果</span>
+                            <span class="roi__summary-value">5件</span>
+                        </div>
+                        <div class="roi__summary-item">
+                            <span class="roi__summary-label">導入後</span>
+                            <span class="roi__summary-value roi__summary-value--highlight">8〜10件</span>
+                        </div>
+                        <div class="roi__summary-item">
+                            <span class="roi__summary-label">効果</span>
+                            <span class="roi__summary-value roi__summary-value--highlight">60％売上アップで収益30万円増</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- スライド3: どんなサービスなのか？（効率よく集客） -->
-    <section class="section">
-        <div class="container">
-            <div class="issue-card">
-                <div class="issue-card__number">03</div>
-                <h2 class="section__title">
-                    <i class="fa-solid fa-lightbulb"></i> どんなサービスなのか？
-                </h2>
-                <h3 class="issue-card__title">
-                    <i class="fa-solid fa-map-location-dot"></i> 効率よく集客できます
-                </h3>
-                <p class="issue-card__text">
-                    問い合わせの多いエリアが分かるので、そこに集中してチラシを配れます。反応の悪いエリアにチラシを配る無駄がなくなります。
-                </p>
-            </div>
-        </div>
-    </section>
+                <!-- 効率よく集客できる -->
+                <div class="issue-card">
+                    <h3 class="issue-card__title">
+                        <i class="fa-solid fa-map-location-dot"></i> 効率よく集客できます
+                    </h3>
+                    <p class="issue-card__text">
+                        問い合わせの多いエリアが分かるので、そこに集中してチラシを配れます。反応の悪いエリアにチラシを配る無駄がなくなります。
+                    </p>
+                </div>
 
-    <!-- スライド4: どんなサービスなのか？（更新の手間がなくなる） -->
-    <section class="section">
-        <div class="container">
-            <div class="issue-card">
-                <div class="issue-card__number">04</div>
-                <h2 class="section__title">
-                    <i class="fa-solid fa-lightbulb"></i> どんなサービスなのか？
-                </h2>
-                <h3 class="issue-card__title">
-                    <i class="fa-solid fa-rotate"></i> 更新の手間がなくなります
-                </h3>
-                <p class="issue-card__text">
-                    車が売れたらすぐ削除、新しい車が入ったらすぐ掲載。業者に連絡して、返事を待って、費用を払う。その手間が全部なくなります。
-                </p>
+                <!-- 更新の手間がなくなる -->
+                <div class="issue-card">
+                    <h3 class="issue-card__title">
+                        <i class="fa-solid fa-rotate"></i> 更新の手間がなくなります
+                    </h3>
+                    <p class="issue-card__text">
+                        車が売れたらすぐ削除、新しい車が入ったらすぐ掲載。業者に連絡して、返事を待って、費用を払う。その手間が全部なくなります。
+                    </p>
+                </div>
             </div>
         </div>
     </section>
