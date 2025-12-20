@@ -59,7 +59,6 @@
     <section class="section">
         <div class="container">
             <div class="section__header" style="text-align: center; margin-bottom: var(--spacing-xl);">
-                <div style="display: inline-block; background: var(--color-primary); color: white; font-size: 18px; font-weight: 700; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; margin-bottom: 16px;">02</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-lightbulb"></i> どんなサービスなのか？
                 </h2>
@@ -114,7 +113,6 @@
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">03</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-star"></i> サービスを受けると、、
                 </h2>
@@ -133,7 +131,6 @@
     <section class="section section--highlight">
         <div class="container">
             <div class="section__header" style="text-align: center; margin-bottom: var(--spacing-xl);">
-                <div style="display: inline-block; background: var(--color-primary); color: white; font-size: 18px; font-weight: 700; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; margin-bottom: 16px;">04</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-rocket"></i> 今回受けていただくサービスは…
                 </h2>
@@ -162,7 +159,6 @@
     <section class="section" id="proposal">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">05</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-box-open"></i> サービスパッケージの紹介
                 </h2>
@@ -240,7 +236,6 @@
     <section class="section" id="plans">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">06</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-list-check"></i> 今回提供するサービスのまとめ
                 </h2>
@@ -295,7 +290,6 @@
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">07</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-code-compare"></i> 通常のサイトとの違い
                 </h2>
@@ -341,7 +335,6 @@
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">08</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-calculator"></i> 一つ一つ単発で受けた場合
                 </h2>
@@ -356,7 +349,6 @@
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">09</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-tags"></i> パッケージ価格
                 </h2>
@@ -391,7 +383,6 @@
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">10</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-hand-point-right"></i> 少しでも興味を持っていただけて<br>やってみたいという方は是非お申し込みください！
                 </h2>
@@ -403,7 +394,6 @@
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">11</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-gift"></i> そして、さらに！！
                 </h2>
@@ -418,7 +408,6 @@
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">12</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-bolt"></i> 本日参加をご決断して<br>一緒にやりたいといっていただく方限定にはなりますが、、、
                 </h2>
@@ -433,7 +422,6 @@
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">13</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-heart"></i> 今回の即決割引価格に込めた想い
                 </h2>
@@ -450,7 +438,6 @@
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">14</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-fire"></i> 即決限定価格！
                 </h2>
@@ -482,7 +469,6 @@
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">15</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-handshake-angle"></i> 大分の事業者さんにもっと稼いでもらいたい！
                 </h2>
