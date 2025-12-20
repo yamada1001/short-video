@@ -73,6 +73,20 @@ $streakDates = array_column($streakData, 'activity_date');
                 </p>
             </div>
 
+            <!-- アンケート未回答の場合のバナー -->
+            <?php if (!$user['survey_completed_at']): ?>
+                <div class="survey-banner">
+                    <div class="survey-banner-content">
+                        <div class="survey-banner-icon">📋</div>
+                        <div class="survey-banner-text">
+                            <h3>学習目的診断アンケート</h3>
+                            <p>あなたに最適なコースをおすすめするため、簡単なアンケートにご協力ください（約3分）</p>
+                        </div>
+                        <a href="<?= APP_URL ?>/survey.php" class="btn btn-primary">アンケートに答える</a>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <!-- ゲーミフィケーション統計 -->
             <section class="gamification-stats">
                 <div class="stats-grid">

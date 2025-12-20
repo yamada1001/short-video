@@ -4749,3 +4749,373 @@ p {
 .benefit-realworld {
   animation-delay: 0.2s;
 }
+
+/* ============================================
+   Survey Page & Survey Banner
+   Added: 2025-12-21
+   ============================================ */
+
+/* アンケートバナー（ダッシュボード） */
+.survey-banner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  padding: 24px 32px;
+  margin: 32px 0;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  animation: slideInFromTop 0.5s ease-out;
+}
+
+.survey-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #ffffff;
+}
+
+.survey-banner-icon {
+  font-size: 48px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.survey-banner-text {
+  flex: 1;
+}
+
+.survey-banner-text h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.survey-banner-text p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+.survey-banner .btn {
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* アンケートページ */
+.survey-page {
+  background: #f7fafc;
+  min-height: calc(100vh - 200px);
+  padding: 48px 0;
+}
+
+.survey-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.survey-header h1 {
+  margin: 0 0 16px 0;
+  font-size: 36px;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.survey-description {
+  font-size: 16px;
+  color: #718096;
+  line-height: 1.8;
+}
+
+/* アンケートフォーム */
+.survey-form {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 48px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 質問 */
+.survey-question {
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.survey-question:last-of-type {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.question-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.question-number {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.question-text {
+  flex: 1;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+  line-height: 1.6;
+}
+
+.optional-badge {
+  background: #e2e8f0;
+  color: #718096;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* 質問本体 */
+.question-body {
+  padding-left: 60px;
+}
+
+/* ラジオボタン */
+.radio-option {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.radio-option:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+.radio-option input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-label {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.radio-label {
+  font-size: 15px;
+  color: #4a5568;
+  cursor: pointer;
+}
+
+/* チェックボックス */
+.checkbox-option {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.checkbox-option:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+.checkbox-option input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+.checkbox-option input[type="checkbox"]:checked ~ .checkbox-label {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.checkbox-label {
+  font-size: 15px;
+  color: #4a5568;
+  cursor: pointer;
+}
+
+/* テキスト入力 */
+.text-input {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #2d3748;
+  resize: vertical;
+  transition: all 0.2s ease;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* アンケートフッター */
+.survey-footer {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.btn-large {
+  padding: 16px 48px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.survey-note {
+  margin-top: 24px;
+  font-size: 13px;
+  color: #718096;
+  line-height: 1.8;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .survey-banner {
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+
+  .survey-banner-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .survey-banner-icon {
+    font-size: 40px;
+  }
+
+  .survey-banner-text h3 {
+    font-size: 18px;
+  }
+
+  .survey-banner-text p {
+    font-size: 13px;
+  }
+
+  .survey-page {
+    padding: 32px 0;
+  }
+
+  .survey-header h1 {
+    font-size: 28px;
+  }
+
+  .survey-description {
+    font-size: 14px;
+  }
+
+  .survey-form {
+    padding: 32px 24px;
+  }
+
+  .question-body {
+    padding-left: 0;
+  }
+
+  .question-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .question-number {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .question-text {
+    font-size: 16px;
+  }
+
+  .radio-option, .checkbox-option {
+    padding: 14px 16px;
+  }
+
+  .radio-label, .checkbox-label {
+    font-size: 14px;
+  }
+
+  .btn-large {
+    width: 100%;
+    padding: 14px 32px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .survey-banner {
+    padding: 16px 20px;
+  }
+
+  .survey-banner-icon {
+    font-size: 36px;
+  }
+
+  .survey-form {
+    padding: 24px 16px;
+  }
+
+  .survey-question {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+  }
+
+  .question-text {
+    font-size: 15px;
+  }
+
+  .radio-option, .checkbox-option {
+    padding: 12px 14px;
+  }
+
+  .text-input {
+    font-size: 14px;
+  }
+}
+
+/* アニメーション */
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
