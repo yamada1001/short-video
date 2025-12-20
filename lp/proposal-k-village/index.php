@@ -379,32 +379,7 @@
         </div>
     </section>
 
-    <!-- スライド10: お申し込みください -->
-    <section class="section">
-        <div class="container">
-            <div class="issue-card">
-                <h2 class="section__title">
-                    <i class="fa-solid fa-hand-point-right"></i> 少しでも興味を持っていただけて<br>やってみたいという方は是非お申し込みください！
-                </h2>
-            </div>
-        </div>
-    </section>
-
-    <!-- スライド11: そして、さらに！！ -->
-    <section class="section">
-        <div class="container">
-            <div class="issue-card">
-                <h2 class="section__title">
-                    <i class="fa-solid fa-gift"></i> そして、さらに！！
-                </h2>
-                <p class="hero__lead">
-                    今回この場に来ていただいたあなたに特別なご提案を用意しました。
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- スライド12: 即決割引価格を用意 -->
+    <!-- スライド10: 即決限定価格 -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
@@ -414,15 +389,8 @@
                 <p class="hero__lead">
                     即決割引価格を用意してます
                 </p>
-            </div>
-        </div>
-    </section>
 
-    <!-- スライド13: 今回の即決割引価格に込めた想い -->
-    <section class="section">
-        <div class="container">
-            <div class="issue-card">
-                <h2 class="section__title">
+                <h2 class="section__title" style="margin-top: var(--spacing-xl);">
                     <i class="fa-solid fa-heart"></i> 今回の即決割引価格に込めた想い
                 </h2>
                 <p class="hero__lead">
@@ -430,15 +398,8 @@
                     だから私も全力でサポートしたいと思える！だから少しでもお得に受けてもらいたいんです！<br>
                     本音の部分で言うと、もっと実績として掲載させてもらえる事例を作りたい。。
                 </p>
-            </div>
-        </div>
-    </section>
 
-    <!-- スライド14: 即決限定価格！88万円 → 55万円 -->
-    <section class="section">
-        <div class="container">
-            <div class="issue-card">
-                <h2 class="section__title">
+                <h2 class="section__title" style="margin-top: var(--spacing-xl);">
                     <i class="fa-solid fa-fire"></i> 即決限定価格！
                 </h2>
                 <div class="price-stages">
@@ -465,7 +426,7 @@
         </div>
     </section>
 
-    <!-- スライド15: 大分の事業者さんにもっと稼いでもらいたい！ -->
+    <!-- スライド11: 大分の事業者さんにもっと稼いでもらいたい！ -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
