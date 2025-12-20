@@ -123,10 +123,12 @@ $prevLesson = db()->fetchOne($prevLessonSql, [$lesson['course_id'], $lesson['ord
     </div>
 
     <script>
-        // レッスンID
-        const lessonId = <?= $lessonId ?>;
-        const appUrl = '<?= APP_URL ?>';
-        const courseId = <?= $lesson['course_id'] ?>;
+        // レッスン設定をグローバルに設定
+        window.lessonConfig = {
+            lessonId: <?= $lessonId ?>,
+            appUrl: '<?= APP_URL ?>',
+            courseId: <?= $lesson['course_id'] ?>
+        };
     </script>
     <script src="<?= APP_URL ?>/assets/js/lesson.js"></script>
 </body>

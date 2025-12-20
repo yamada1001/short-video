@@ -85,7 +85,7 @@ $recentProgress = db()->fetchAll($recentProgressSql, [$user['id']]);
                                 </div>
                                 <?php if ($canAccess): ?>
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: <?= $progress ?>%"></div>
+                                        <div class="progress-fill" data-progress="<?= $progress ?>"></div>
                                     </div>
                                     <p class="progress-text"><?= $progress ?>% 完了</p>
                                     <a href="<?= APP_URL ?>/course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-outline">コースを見る</a>
@@ -123,5 +123,6 @@ $recentProgress = db()->fetchAll($recentProgressSql, [$user['id']]);
     </main>
 
     <?php include __DIR__ . '/../includes/footer.php'; ?>
+    <script src="<?= APP_URL ?>/assets/js/dashboard.js"></script>
 </body>
 </html>

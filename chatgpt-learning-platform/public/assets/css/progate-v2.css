@@ -2068,5 +2068,64 @@ p {
 }
 
 /* ============================================
+   Additional Icon Styles for Homepage
+   ============================================ */
+
+/* Course Icon Colors */
+.course-icon--prompt {
+    background-color: #FFF5F2;
+}
+
+.course-icon--prompt i {
+    color: #FF6B6B;
+    font-size: 24px;
+}
+
+.course-icon--writing {
+    background-color: #FFFBEB;
+}
+
+.course-icon--writing i {
+    color: #F59E0B;
+    font-size: 24px;
+}
+
+.course-icon--data {
+    background-color: #EFF6FF;
+}
+
+.course-icon--data i {
+    color: #3B82F6;
+    font-size: 24px;
+}
+
+.course-icon--research {
+    background-color: #FEF2F2;
+}
+
+.course-icon--research i {
+    color: #EF4444;
+    font-size: 24px;
+}
+
+.course-icon--idea {
+    background-color: #F5F3FF;
+}
+
+.course-icon--idea i {
+    color: #8B5CF6;
+    font-size: 24px;
+}
+
+.course-icon--code {
+    background-color: #ECFDF5;
+}
+
+.course-icon--code i {
+    color: #10B981;
+    font-size: 24px;
+}
+
+/* ============================================
    End of Progate Design System v2
    ============================================ */

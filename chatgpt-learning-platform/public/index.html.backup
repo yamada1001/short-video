@@ -1,27 +1,38 @@
-<?php
-/**
- * トップページ
- */
-require_once __DIR__ . '/../includes/config.php';
-require_once __DIR__ . '/../includes/db.php';
-require_once __DIR__ . '/../includes/functions.php';
-
-// ログイン済みならダッシュボードへ
-if (isset($_SESSION['user_id'])) {
-    redirect(APP_URL . '/dashboard.php');
-}
-
-// 無料コース数を取得
-$freeCourseSql = "SELECT COUNT(*) as count FROM courses WHERE is_free = 1";
-$freeCourseResult = db()->fetchOne($freeCourseSql);
-$freeCourseCount = $freeCourseResult['count'] ?? 0;
-
-// 全コース数を取得
-$totalCourseSql = "SELECT COUNT(*) as count FROM courses";
-$totalCourseResult = db()->fetchOne($totalCourseSql);
-$totalCourseCount = $totalCourseResult['count'] ?? 0;
-?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI活用スクール | 楽しく学べるAI使い方講座</title>
+    <meta name="description" content="楽しく体験しながらAIアシスタントの使い方を学べるスクール。AIへの話しかけ方をマスターしましょう。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/chatgpt-learning-platform/public/assets/css/progate-v2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header__container">
+            <a href="/" class="header__logo">
+                AI活用スクール
+            </a>
+            <nav class="header__nav">
+                <a href="login.php" class="header__link">ログイン</a>
+                <a href="register.php" class="btn-primary btn-small">無料会員登録</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ヒーローセクション -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero__title">AIへの話しかけ方を学んで、毎日の仕事をラクにしよう</h1>
+                <p class="hero__subtitle">
+                    実際に試しながら学べる、楽しいAI活用スクール。<br>
+                    初めてでも、ひとりでも、つまずかずに学べる環境をご用意しています。
                 </p>
                 <div class="hero__cta">
                     <a href="register.php" class="btn-primary">無料で始める</a>
@@ -115,8 +126,8 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                 </h2>
                 <div class="courses__grid">
                     <div class="course-card">
-                        <div class="course-card__icon course-icon--prompt">
-                            <i class="fas fa-comment-dots"></i>
+                        <div class="course-card__icon" style="background-color: #FFF5F2;">
+                            <i class="fas fa-comment-dots" style="color: #FF6B6B; font-size: 24px;"></i>
                         </div>
                         <div class="course-card__content">
                             <h3 class="course-card__title">基本の話しかけ方</h3>
@@ -127,8 +138,8 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                         </div>
                     </div>
                     <div class="course-card">
-                        <div class="course-card__icon course-icon--writing">
-                            <i class="fas fa-file-alt"></i>
+                        <div class="course-card__icon" style="background-color: #FFFBEB;">
+                            <i class="fas fa-file-alt" style="color: #F59E0B; font-size: 24px;"></i>
                         </div>
                         <div class="course-card__content">
                             <h3 class="course-card__title">文章作成</h3>
@@ -139,8 +150,8 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                         </div>
                     </div>
                     <div class="course-card">
-                        <div class="course-card__icon course-icon--data">
-                            <i class="fas fa-table"></i>
+                        <div class="course-card__icon" style="background-color: #EFF6FF;">
+                            <i class="fas fa-table" style="color: #3B82F6; font-size: 24px;"></i>
                         </div>
                         <div class="course-card__content">
                             <h3 class="course-card__title">データ整理</h3>
@@ -151,8 +162,8 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                         </div>
                     </div>
                     <div class="course-card">
-                        <div class="course-card__icon course-icon--research">
-                            <i class="fas fa-search"></i>
+                        <div class="course-card__icon" style="background-color: #FEF2F2;">
+                            <i class="fas fa-search" style="color: #EF4444; font-size: 24px;"></i>
                         </div>
                         <div class="course-card__content">
                             <h3 class="course-card__title">情報収集</h3>
@@ -163,8 +174,8 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                         </div>
                     </div>
                     <div class="course-card">
-                        <div class="course-card__icon course-icon--idea">
-                            <i class="fas fa-lightbulb"></i>
+                        <div class="course-card__icon" style="background-color: #F5F3FF;">
+                            <i class="fas fa-lightbulb" style="color: #8B5CF6; font-size: 24px;"></i>
                         </div>
                         <div class="course-card__content">
                             <h3 class="course-card__title">アイデア出し</h3>
@@ -175,8 +186,8 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                         </div>
                     </div>
                     <div class="course-card">
-                        <div class="course-card__icon course-icon--code">
-                            <i class="fas fa-code"></i>
+                        <div class="course-card__icon" style="background-color: #ECFDF5;">
+                            <i class="fas fa-code" style="color: #10B981; font-size: 24px;"></i>
                         </div>
                         <div class="course-card__content">
                             <h3 class="course-card__title">簡単なコード生成</h3>
