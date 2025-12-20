@@ -44,37 +44,10 @@
                     <span class="hero__title--accent">ご提案書</span>
                 </h1>
 
-                <!-- 価格の段階的提示 -->
-                <div class="price-stages">
-                    <div class="price-stage price-stage--crossed">
-                        <span class="price-stage__label">通常価格</span>
-                        <div class="price-stage__amount">
-                            <span class="price-stage__number">143</span>
-                            <span class="price-stage__unit">万円</span>
-                        </div>
-                    </div>
-
-                    <div class="price-stage__arrow">↓</div>
-
-                    <div class="price-stage price-stage--crossed">
-                        <span class="price-stage__label">特別価格</span>
-                        <div class="price-stage__amount">
-                            <span class="price-stage__number">88</span>
-                            <span class="price-stage__unit">万円</span>
-                        </div>
-                    </div>
-
-                    <div class="price-stage__arrow">↓</div>
-
-                    <div class="price-stage price-stage--final">
-                        <span class="price-stage__label">本日限定価格</span>
-                        <div class="price-stage__amount">
-                            <span class="price-stage__number">55</span>
-                            <span class="price-stage__unit">万円</span>
-                        </div>
-                        <div class="price-stage__note">（スタンダードプラン）</div>
-                    </div>
-                </div>
+                <p class="hero__lead">
+                    この度は、ホームページ制作のご相談をいただき、誠にありがとうございます。<br>
+                    貴社のビジネス課題を解決するための提案をさせていただきます。
+                </p>
 
                 <p class="hero__date">
                     提案日: <?php echo date('Y年m月d日'); ?>
@@ -218,28 +191,31 @@
                     <ul class="feature-item__sub-list">
                         <li><i class="fa-solid fa-check-circle"></i> 問い合わせ日時、お名前、連絡先、内容を一覧表示</li>
                         <li><i class="fa-solid fa-check-circle"></i> 問い合わせ種別（買取/販売/リース/相談）でフィルタリング</li>
-                        <li><i class="fa-solid fa-check-circle"></i> 月別の問い合わせ件数をグラフで表示</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Excelファイルとしてダウンロード可能</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 料金詳細 / Pricing Details -->
+    <!-- プラン概要 / Plan Overview -->
     <section class="section pricing-details" id="plans">
         <div class="container">
             <h2 class="section__title">
-                <i class="fa-solid fa-yen-sign"></i> 料金詳細
+                <i class="fa-solid fa-layer-group"></i> プラン概要
             </h2>
+            <p class="section__lead">
+                貴社のご要望に合わせて、2つのプランをご用意しております
+            </p>
 
-            <!-- 料金プラン比較表 -->
+            <!-- プラン比較表（金額なし） -->
             <div class="pricing-table">
                 <table>
                     <thead>
                         <tr>
                             <th>機能</th>
-                            <th>ライトプラン<br><span class="price-highlight">30万円</span></th>
-                            <th class="recommended-col">スタンダードプラン<br><span class="price-highlight-lg">55万円</span><br><span class="recommended-badge">おすすめ</span></th>
+                            <th>ライトプラン</th>
+                            <th class="recommended-col">スタンダードプラン<br><span class="recommended-badge">おすすめ</span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -281,28 +257,17 @@
                             <td><i class="fa-solid fa-circle-xmark text-muted"></i></td>
                             <td class="recommended-col"><i class="fa-solid fa-circle-check text-success"></i></td>
                         </tr>
-                        <tr>
-                            <td><i class="fa-solid fa-chart-line"></i> 月別問い合わせグラフ</td>
-                            <td><i class="fa-solid fa-circle-xmark text-muted"></i></td>
-                            <td class="recommended-col"><i class="fa-solid fa-circle-check text-success"></i></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- 運用費について -->
+            <!-- お見積もり案内 -->
             <div class="pricing-note">
-                <div class="pricing-note__item">
-                    <i class="fa-solid fa-circle-info"></i>
+                <div class="pricing-note__item pricing-note__item--highlight">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
                     <div>
-                        <strong>お支払い条件：</strong>前払い制となります。ご契約後、着手前にお支払いをお願いしております。
-                    </div>
-                </div>
-                <div class="pricing-note__item">
-                    <i class="fa-solid fa-server"></i>
-                    <div>
-                        <strong>運用費：</strong>月額5,000円（税別）<br>
-                        <span class="text-small">データベース管理、サーバー維持、セキュリティ対応、バックアップなどの継続的な管理費用です。</span>
+                        <strong>料金について</strong><br>
+                        <span class="text-small">詳細なお見積もりは、打ち合わせ時にご提示させていただきます。貴社のご予算に合わせた最適なプランをご提案いたします。</span>
                     </div>
                 </div>
             </div>
