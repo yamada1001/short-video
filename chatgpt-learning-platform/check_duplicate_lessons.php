@@ -18,7 +18,7 @@ echo "<h1>Lesson Duplicate Check</h1>";
 echo "<p>Checking course_id = 1...</p>";
 
 try {
-    $db = Database::getInstance()->getConnection();
+    $db = Database::getInstance()->getPdo();
 
     $stmt = $db->prepare("
         SELECT id, course_id, title, order_num, lesson_type
