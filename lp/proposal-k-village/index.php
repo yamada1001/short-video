@@ -245,7 +245,6 @@
                 <h2 class="section__title">
                     <i class="fa-solid fa-laptop-code"></i> ホームページ作成について
                 </h2>
-                <p class="section__lead">サービスの中身を詳しく解説して価値を伝える</p>
                 <ul class="feature-item__sub-list" style="margin-top: var(--spacing-lg);">
                     <li><i class="fa-solid fa-check-circle"></i> 目標設定ワークで目標設定を一緒に行います</li>
                     <li><i class="fa-solid fa-check-circle"></i> 商品設計シートにて、売れる商品に共通する型を知る</li>
