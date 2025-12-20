@@ -247,8 +247,24 @@ p {
   justify-content: space-between;
 }
 
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+.header__logo:hover {
+  color: var(--accent-coral);
+}
+
 .header__logo img {
-  height: 24px;
+  height: 32px;
+  display: none; /* 画像が無い場合は非表示 */
 }
 
 .header__nav {
@@ -281,14 +297,151 @@ p {
   color: var(--accent-coral);
 }
 
+/* User Menu */
+.user-menu {
+  position: relative;
+}
+
+.user-menu-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition-normal);
+}
+
+.user-menu-toggle:hover {
+  background-color: var(--bg-light-gray);
+}
+
+.user-name {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.user-icon {
+  font-size: 20px;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  min-width: 160px;
+  padding: 8px 0;
+  display: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.user-menu:hover .user-dropdown {
+  display: block;
+}
+
+.user-dropdown a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background-color var(--transition-normal);
+}
+
+.user-dropdown a:hover {
+  background-color: var(--bg-light-gray);
+}
+
 /* ============================================
    6. Footer
    ============================================ */
+
+/* Main Footer (for index.html) */
 
 .footer {
   background: var(--navy-dark);
   color: var(--bg-white);
   padding: 60px 0 30px;
+}
+
+/* Site Footer (for other pages) */
+.site-footer {
+  background: var(--navy-dark);
+  color: var(--bg-white);
+  padding: 60px 0 30px;
+  margin-top: 80px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-column h3 {
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 16px;
+  color: var(--bg-white);
+}
+
+.footer-column h4 {
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 16px;
+  color: var(--bg-white);
+  opacity: 0.9;
+}
+
+.footer-column p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--bg-white);
+  opacity: 0.7;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+  font-size: 14px;
+  color: var(--bg-white);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity var(--transition-normal);
+}
+
+.footer-column ul li a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 24px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 13px;
+  color: var(--bg-white);
+  opacity: 0.6;
+  margin: 0;
 }
 
 .footer__container {
@@ -2090,6 +2243,15 @@ p {
     width: 100%;
     justify-content: space-between;
   }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .footer__nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 480px) {
@@ -2127,6 +2289,15 @@ p {
 
   .course-header-right {
     text-align: left;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer__nav {
+    grid-template-columns: 1fr;
   }
 }
 
