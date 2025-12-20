@@ -1329,3 +1329,248 @@ API_LIMIT_PREMIUM=100
 - Webhook署名シークレット確認
 - Webhook URL登録確認
 - テストモード/本番モード切り替え確認
+
+---
+
+## 作業ログ（2025-12-20 23:50）
+
+### 📊 仕様変更の決定
+
+**プロジェクト名変更検討中:**
+- 旧: Gemini AI学習プラットフォーム
+- 新: AI Master Hub（仮称） - **総合AI学習プラットフォーム**
+
+**主要な変更内容:**
+1. **対応AIツールを大幅拡張**
+   - 会話型AI: ChatGPT, Claude, Gemini, Perplexity等
+   - コーディングAI: Cursor, GitHub Copilot, Codeium等
+   - 画像/動画生成AI: Midjourney, DALL-E, Runway等
+   - ビジネスAI: Notion AI, Grammarly, Jasper等
+   - **AIエージェント系: Manus等も追加予定**
+
+2. **ゲーミフィケーション要素を追加**
+   - ポイントシステム（レベル・経験値）
+   - バッジ（実績）システム
+   - ストリーク（連続学習日数）カレンダー
+   - ランキング機能
+
+3. **プロンプトコピー機能**
+   - ワンクリックでプロンプトをクリップボードにコピー
+   - 「〇〇で試す」ボタンで該当AIツールを新規タブで開く
+   - 実際のAIツールで学習できる実践的な設計
+
+4. **API統合について**
+   - 決定: 後で判断（まずゲーミフィケーション実装を優先）
+   - editor/assignmentレッスンタイプは保留
+
+---
+
+### ✅ 完了したTodos（本セッション）
+
+1. ✅ **MDファイルに現状と問題点を追記してプッシュ**
+   - 2025-12-20 23:40のセクションに本番環境テスト結果を追記
+   - 問題点3件（重複レッスン、appUrlエラー、管理画面404）を記録
+   - 仕様変更提案を記録
+   - コミット: bf289644 "Docs: 本番環境テスト結果と問題点を追記（作業復旧用）"
+
+---
+
+### 📝 残りのTodos（詳細）
+
+#### 🔴 優先度: 高（既存バグ修正）
+
+**1. course.php?id=1の「初めてのプロンプト」重複を削除**
+- 状況: https://yojitu.com/chatgpt-learning-platform/course.php?id=1 で「初めてのプロンプト」が2つ表示されている
+- 原因: lessonsテーブルに重複レコードが存在すると推測
+- 修正手順:
+  1. `SELECT id, course_id, title, lesson_order FROM lessons WHERE course_id = 1 ORDER BY lesson_order;` で重複を確認
+  2. 重複レコードのIDを特定
+  3. `DELETE FROM lessons WHERE id = X;` で重複を削除（Xは重複レコードID）
+  4. course.php?id=1にアクセスして表示確認
+  5. MDファイルに修正内容を追記・プッシュ
+
+**2. lesson.php?id=2の「appUrl is not defined」エラー修正**
+- 状況: https://yojitu.com/chatgpt-learning-platform/lesson.php?id=2 でJavaScriptエラー「appUrl is not defined」が発生
+- 原因: JavaScriptでappUrl変数が定義されていない
+- 修正手順:
+  1. `public/lesson.php`を読んで現在の実装を確認
+  2. `<script>`タグ内に `const appUrl = '<?php echo APP_URL; ?>';` を追加
+  3. 他のページ（dashboard.php等）で同様の定義があるか確認
+  4. lesson.php?id=2にアクセスしてエラーが消えたか確認
+  5. 他のlesson IDでもテスト
+  6. MDファイルに修正内容を追記・プッシュ
+
+#### 🟡 優先度: 中（ゲーミフィケーション実装）
+
+**3. データベーススキーマ設計（ゲーミフィケーション対応）**
+- 新規テーブル作成:
+  1. `ai_tools` - AIツールマスターテーブル
+     ```sql
+     CREATE TABLE ai_tools (
+       id INT PRIMARY KEY AUTO_INCREMENT,
+       name VARCHAR(100) NOT NULL,
+       category ENUM('chatbot', 'coding', 'image', 'video', 'business', 'agent') NOT NULL,
+       official_url VARCHAR(255),
+       pricing_type ENUM('free', 'freemium', 'paid'),
+       description TEXT,
+       logo_url VARCHAR(255),
+       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+     );
+     ```
+
+  2. `gamification_badges` - バッジマスターテーブル
+     ```sql
+     CREATE TABLE gamification_badges (
+       id INT PRIMARY KEY AUTO_INCREMENT,
+       badge_key VARCHAR(50) UNIQUE NOT NULL,
+       name VARCHAR(100) NOT NULL,
+       description TEXT,
+       icon_emoji VARCHAR(10),
+       required_condition JSON,
+       points_reward INT DEFAULT 0,
+       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+     );
+     ```
+
+  3. `user_badges` - ユーザーバッジ獲得履歴
+     ```sql
+     CREATE TABLE user_badges (
+       id INT PRIMARY KEY AUTO_INCREMENT,
+       user_id INT NOT NULL,
+       badge_id INT NOT NULL,
+       earned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+       FOREIGN KEY (badge_id) REFERENCES gamification_badges(id) ON DELETE CASCADE,
+       UNIQUE KEY (user_id, badge_id)
+     );
+     ```
+
+  4. `user_points` - ポイント履歴テーブル
+     ```sql
+     CREATE TABLE user_points (
+       id INT PRIMARY KEY AUTO_INCREMENT,
+       user_id INT NOT NULL,
+       points INT NOT NULL,
+       reason VARCHAR(255),
+       related_id INT,
+       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+     );
+     ```
+
+  5. `user_streaks` - ストリーク記録テーブル
+     ```sql
+     CREATE TABLE user_streaks (
+       id INT PRIMARY KEY AUTO_INCREMENT,
+       user_id INT NOT NULL,
+       activity_date DATE NOT NULL,
+       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+       UNIQUE KEY (user_id, activity_date)
+     );
+     ```
+
+- 既存テーブル変更:
+  ```sql
+  ALTER TABLE courses ADD COLUMN ai_tool_id INT AFTER difficulty;
+  ALTER TABLE courses ADD FOREIGN KEY (ai_tool_id) REFERENCES ai_tools(id) ON DELETE SET NULL;
+
+  ALTER TABLE users ADD COLUMN total_points INT DEFAULT 0 AFTER password;
+  ALTER TABLE users ADD COLUMN level INT DEFAULT 1 AFTER total_points;
+  ALTER TABLE users ADD COLUMN current_streak INT DEFAULT 0 AFTER level;
+  ALTER TABLE users ADD COLUMN longest_streak INT DEFAULT 0 AFTER current_streak;
+  ```
+
+**4. プロンプトコピー機能実装**
+- 修正対象: `includes/lesson-types/slide.php`
+- 実装内容:
+  1. プロンプトカードUI作成（コピーボタン付き）
+  2. クリップボードAPIを使ったコピー機能実装
+  3. コピー成功時のフィードバック表示
+  4. 「〇〇で試す」ボタン実装（該当AIツールを新規タブで開く）
+  5. レスポンシブ対応
+- テスト:
+  - Chrome, Safari, Firefoxでクリップボード動作確認
+  - スマホでの動作確認
+
+**5. AIツールマスターデータ投入**
+- 対応AIツール一覧（初期データ）:
+
+  **会話型AI:**
+  - ChatGPT (https://chat.openai.com)
+  - Claude (https://claude.ai)
+  - Gemini (https://gemini.google.com)
+  - Perplexity (https://www.perplexity.ai)
+  - Microsoft Copilot (https://copilot.microsoft.com)
+
+  **コーディングAI:**
+  - Cursor (https://cursor.sh)
+  - GitHub Copilot (https://github.com/features/copilot)
+  - Codeium (https://codeium.com)
+  - Tabnine (https://www.tabnine.com)
+
+  **画像生成AI:**
+  - Midjourney (https://www.midjourney.com)
+  - DALL-E 3 (https://openai.com/dall-e-3)
+  - Stable Diffusion (https://stability.ai)
+
+  **動画・音声AI:**
+  - Runway (https://runwayml.com)
+  - ElevenLabs (https://elevenlabs.io)
+
+  **ビジネスAI:**
+  - Notion AI (https://www.notion.so/product/ai)
+  - Grammarly (https://www.grammarly.com)
+
+  **AIエージェント:**
+  - Manus (追加予定)
+
+- INSERT文作成してai_toolsテーブルに投入
+
+**6. ゲーミフィケーション基礎機能実装**
+- ポイントシステム:
+  - レッスン完了時に+10pt
+  - クイズ正解時に+5pt/問
+  - コース完了時に+100pt
+  - ストリークボーナス: 7日連続+50pt
+- バッジシステム:
+  - 初期バッジ10種類作成
+  - バッジ獲得条件チェック処理
+  - バッジ表示UI
+- ストリークカレンダー:
+  - 学習日の自動記録
+  - カレンダーUI実装
+
+**7. ダッシュボードUI刷新**
+- 表示要素追加:
+  - レベル・経験値プログレスバー
+  - ストリークカレンダー
+  - 獲得バッジ一覧（最新5件）
+  - ランキング順位
+  - おすすめレッスン
+- デザイン改善
+
+#### 🟢 優先度: 低（後で判断）
+
+**8. API統合の扱いを決定**
+- 選択肢1: 完全削除（チュートリアル形式のみ）
+- 選択肢2: 残す（API + チュートリアル併用）
+- 選択肢3: 後で判断（まずゲーミフィケーション実装）
+- 現在の決定: 選択肢3（後で判断）
+
+---
+
+### 🎯 次回作業開始時の手順
+
+1. **このMDファイルの「残りのTodos」セクションを確認**
+2. **優先度: 高のバグ修正から着手**
+   - 重複レッスン削除
+   - appUrlエラー修正
+3. **各作業完了後、必ずMDファイルを更新・プッシュ**
+4. **ゲーミフィケーション実装は詳細なtodosを再確認してから開始**
+
+---
+
+### 💾 処理落ち対策
+
+このMDファイルは作業の区切りごとに更新・プッシュします。
+処理落ちした場合は、このファイルの「残りのTodos」セクションから復旧してください。
