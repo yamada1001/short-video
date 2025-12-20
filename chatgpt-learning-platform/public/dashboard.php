@@ -15,6 +15,16 @@ $user = getCurrentUser();
 $sql = "SELECT * FROM courses ORDER BY order_num";
 $courses = db()->fetchAll($sql);
 
+// 推薦コースを取得
+$recommendedCourseIds = getRecommendedCourses($user['id']);
+$recommendedCourses = [];
+if (!empty($recommendedCourseIds)) {
+    $placeholders = implode(',', array_fill(0, count($recommendedCourseIds), '?'));
+    $recommendedSql = "SELECT * FROM courses WHERE id IN ($placeholders) ORDER BY FIELD(id, $placeholders)";
+    $params = array_merge($recommendedCourseIds, $recommendedCourseIds);
+    $recommendedCourses = db()->fetchAll($recommendedSql, $params);
+}
+
 // 最近の進捗を取得
 $recentProgressSql = "SELECT l.*, c.title as course_title, up.status, up.updated_at
                      FROM user_progress up
@@ -173,6 +183,51 @@ $streakDates = array_column($streakData, 'activity_date');
                     <p>月額980円で全コース見放題 + API呼び出し100回/日</p>
                     <a href="<?= APP_URL ?>/subscribe.php" class="btn btn-primary">今すぐアップグレード</a>
                 </div>
+            <?php endif; ?>
+
+            <!-- あなたにおすすめのコース -->
+            <?php if (!empty($recommendedCourses) && $user['survey_completed_at']): ?>
+                <section class="dashboard-section recommended-courses">
+                    <div class="section-header">
+                        <h2>✨ あなたにおすすめのコース</h2>
+                        <p class="section-subtitle">学習目的に基づいて最適なコースをピックアップしました</p>
+                    </div>
+                    <div class="course-grid">
+                        <?php foreach ($recommendedCourses as $course): ?>
+                            <?php
+                            $canAccess = canAccessCourse($course['id']);
+                            $progress = getCourseProgress($course['id']);
+                            ?>
+                            <div class="course-card <?= !$canAccess ? 'locked' : '' ?> recommended">
+                                <div class="recommended-badge">おすすめ</div>
+                                <img src="<?= h($course['thumbnail_url']) ?>" alt="<?= h($course['title']) ?>" class="course-thumbnail">
+                                <div class="course-info">
+                                    <h3><?= h($course['title']) ?></h3>
+                                    <p><?= h($course['description']) ?></p>
+                                    <div class="course-meta">
+                                        <span class="difficulty difficulty-<?= h($course['difficulty']) ?>">
+                                            <?= $course['difficulty'] === 'beginner' ? '初級' : ($course['difficulty'] === 'intermediate' ? '中級' : '上級') ?>
+                                        </span>
+                                        <?php if ($course['is_free']): ?>
+                                            <span class="badge badge-free">無料</span>
+                                        <?php else: ?>
+                                            <span class="badge badge-premium">プレミアム</span>
+                                        <?php endif; ?>
+                                    </div>
+                                    <?php if ($canAccess): ?>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" data-progress="<?= $progress ?>"></div>
+                                        </div>
+                                        <p class="progress-text"><?= $progress ?>% 完了</p>
+                                        <a href="<?= APP_URL ?>/course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-outline">コースを見る</a>
+                                    <?php else: ?>
+                                        <p class="locked-message">🔒 プレミアム会員限定</p>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </section>
             <?php endif; ?>
 
             <section class="dashboard-section">

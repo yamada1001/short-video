@@ -5119,3 +5119,108 @@ p {
     transform: translateY(0);
   }
 }
+
+/* ============================================
+   Recommended Courses Section
+   Added: 2025-12-21
+   ============================================ */
+
+/* 推薦コースセクション */
+.recommended-courses {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  border-radius: 16px;
+  padding: 32px;
+  margin: 32px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.section-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.section-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #718096;
+}
+
+/* 推薦バッジ */
+.course-card.recommended {
+  position: relative;
+  border: 2px solid #667eea;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+}
+
+.course-card.recommended:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.25);
+}
+
+.recommended-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.6);
+  }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .recommended-courses {
+    padding: 24px 20px;
+    margin: 24px 0;
+  }
+
+  .section-header h2 {
+    font-size: 24px;
+  }
+
+  .section-subtitle {
+    font-size: 13px;
+  }
+
+  .recommended-badge {
+    top: 8px;
+    right: 8px;
+    padding: 4px 12px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .recommended-courses {
+    padding: 20px 16px;
+  }
+
+  .section-header h2 {
+    font-size: 20px;
+  }
+
+  .recommended-badge {
+    padding: 4px 10px;
+    font-size: 10px;
+  }
+}

@@ -581,3 +581,114 @@ function isBadgeConditionMet($userId, $condition) {
             return false;
     }
 }
+
+// ============================================
+// 目的別学習教材表示機能
+// ============================================
+
+/**
+ * アンケート結果に基づいてコースを推薦
+ * 
+ * @param int $userId ユーザーID
+ * @return array 推薦コースのID配列
+ */
+function getRecommendedCourses($userId) {
+    try {
+        // アンケート回答を取得
+        $sql = "SELECT sq.question_key, usr.answer_value
+               FROM user_survey_responses usr
+               JOIN survey_questions sq ON usr.question_id = sq.id
+               WHERE usr.user_id = ?";
+        
+        $responses = db()->fetchAll($sql, [$userId]);
+        
+        if (empty($responses)) {
+            // 未回答の場合は全コースを返す（順番順）
+            return getAllCourseIds();
+        }
+        
+        // 回答を連想配列に変換
+        $answers = [];
+        foreach ($responses as $response) {
+            $answers[$response['question_key']] = $response['answer_value'];
+        }
+        
+        // 推薦スコアを計算
+        $courseScores = calculateCourseScores($answers);
+        
+        // スコア順にソート
+        arsort($courseScores);
+        
+        // 上位3つのコースIDを返す
+        return array_slice(array_keys($courseScores), 0, 3);
+        
+    } catch (Exception $e) {
+        error_log("推薦コース取得エラー: " . $e->getMessage());
+        return getAllCourseIds();
+    }
+}
+
+/**
+ * 全コースIDを取得
+ * 
+ * @return array コースID配列
+ */
+function getAllCourseIds() {
+    $sql = "SELECT id FROM courses ORDER BY order_num";
+    $courses = db()->fetchAll($sql);
+    return array_column($courses, 'id');
+}
+
+/**
+ * コース推薦スコアを計算
+ * 
+ * @param array $answers アンケート回答
+ * @return array コースID => スコアの連想配列
+ */
+function calculateCourseScores($answers) {
+    // 簡易的な推薦ロジック
+    // 興味分野に基づいてコースをマッピング
+    
+    $courseMapping = [
+        1 => [ // 初めてのプロンプトエンジニアリング
+            'keywords' => ['対話型AI', 'ビジネスAI'],
+            'base_score' => 100
+        ],
+        // 将来的に他のコースも追加
+    ];
+    
+    $scores = [];
+    
+    // 全コースにベーススコアを設定
+    foreach ($courseMapping as $courseId => $config) {
+        $scores[$courseId] = $config['base_score'];
+    }
+    
+    // 興味分野に基づいてスコア加算
+    if (isset($answers['interest_areas'])) {
+        $interestAreas = json_decode($answers['interest_areas'], true) ?: [];
+        
+        foreach ($courseMapping as $courseId => $config) {
+            foreach ($config['keywords'] as $keyword) {
+                if (in_array($keyword, $interestAreas)) {
+                    $scores[$courseId] += 50;
+                }
+            }
+        }
+    }
+    
+    // 学習目的に基づいてスコア加算
+    if (isset($answers['learning_goal'])) {
+        $learningGoals = json_decode($answers['learning_goal'], true) ?: [];
+        
+        // 業務効率化・キャリアアップを選んだ人には全コースを推薦
+        if (in_array('業務効率化・生産性向上', $learningGoals) || 
+            in_array('キャリアアップ・スキルアップ', $learningGoals)) {
+            foreach ($scores as $courseId => $score) {
+                $scores[$courseId] += 30;
+            }
+        }
+    }
+    
+    return $scores;
+}

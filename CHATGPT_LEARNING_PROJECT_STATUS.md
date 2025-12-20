@@ -2149,3 +2149,159 @@ updateProgress('completed')
 1. ⏳ 目的別学習教材表示機能（アンケート結果に基づくコース推薦）
 2. ⬜ 開発者フィードバック機能実装（ユーザーからのFB入力）
 
+
+---
+
+## 作業ログ（2025-12-21 04:15）
+
+### ✅ 完了: 目的別学習教材表示機能（アンケート結果に基づくコース推薦）
+
+**実装内容:**
+
+1. **推薦ロジック実装（includes/functions.php）:**
+   ```php
+   // コース推薦関数
+   function getRecommendedCourses($userId) {
+       // アンケート回答取得
+       $sql = "SELECT sq.question_key, usr.answer_value
+              FROM user_survey_responses usr
+              JOIN survey_questions sq ON usr.question_id = sq.id
+              WHERE usr.user_id = ?";
+       
+       // スコア計算してトップ3を返す
+       $courseScores = calculateCourseScores($answers);
+       arsort($courseScores);
+       return array_slice(array_keys($courseScores), 0, 3);
+   }
+   
+   // コーススコア計算関数
+   function calculateCourseScores($answers) {
+       $courseMapping = [
+           1 => [
+               'keywords' => ['対話型AI', 'ビジネスAI'],
+               'base_score' => 100
+           ],
+           // ... 他のコースマッピング
+       ];
+       
+       // interest_areas（興味分野）マッチで +50pt
+       // learning_goal（学習目的）マッチで +30pt
+       // 合計スコアでランキング
+   }
+   ```
+
+2. **ダッシュボード表示（public/dashboard.php）:**
+   - 推薦コースセクション追加（survey_completed_atがある場合のみ表示）
+   - PHP部分:
+     ```php
+     $recommendedCourseIds = getRecommendedCourses($user['id']);
+     $recommendedCourses = db()->fetchAll(
+         "SELECT * FROM courses WHERE id IN ($placeholders) ORDER BY FIELD(id, $placeholders)",
+         array_merge($recommendedCourseIds, $recommendedCourseIds)
+     );
+     ```
+   - HTML部分:
+     - セクションヘッダー: "✨ あなたにおすすめのコース"
+     - サブタイトル: "学習目的に基づいて最適なコースをピックアップしました"
+     - おすすめバッジ付きコースカード（3枚）
+
+3. **CSS実装（progate-v2.css）:**
+   ```css
+   /* 推薦コースセクション */
+   .recommended-courses {
+     background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+     border-radius: 16px;
+     padding: 32px;
+   }
+   
+   /* 推薦コースカード */
+   .course-card.recommended {
+     position: relative;
+     border: 2px solid #667eea;
+     box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+   }
+   
+   /* おすすめバッジ */
+   .recommended-badge {
+     position: absolute;
+     top: 12px;
+     right: 12px;
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+     color: #ffffff;
+     padding: 6px 16px;
+     border-radius: 20px;
+     animation: badgePulse 2s ease-in-out infinite;
+   }
+   
+   @keyframes badgePulse {
+     0%, 100% { transform: scale(1); }
+     50% { transform: scale(1.05); }
+   }
+   ```
+
+**推薦アルゴリズム:**
+1. アンケート回答からユーザーの興味・目的を分析
+2. コースキーワードとマッチングしてスコアリング
+3. 上位3コースを推薦
+
+**表示条件:**
+- アンケート回答済み（survey_completed_at IS NOT NULL）
+- ダッシュボード上部（統計カードの下、コース一覧の上）に配置
+
+**コミット:** （次のコミットに含まれる予定）
+
+---
+
+### 🎯 完了したタスク数: 14/15
+
+**残りタスク（1つ）:**
+1. ⬜ 開発者フィードバック機能実装（ユーザーからのFB入力）
+
+---
+
+## 作業ログ（2025-12-21 04:20）
+
+### 🔄 次タスク: 開発者フィードバック機能実装
+
+**詳細仕様（ユーザー要求より）:**
+
+> 追加taskをお願い。各学習画面において、わからない場合に関してhelpなどの機能をつけておきたいです。これはメッセージを送っていただければ、私もしくは担当者からのFBが返ってくるようにしておきたいです。今後timerexなどと連携させても面白そうですね。
+
+**実装計画:**
+
+1. **DBスキーマ設計:**
+   - テーブル: user_feedback
+   - カラム:
+     * id (PRIMARY KEY)
+     * user_id (ユーザーID)
+     * lesson_id (どのレッスンからのFBか)
+     * feedback_type (質問/バグ報告/要望/その他)
+     * message (フィードバック内容)
+     * reply_message (運営からの返信)
+     * status (未対応/対応中/完了)
+     * created_at
+     * replied_at
+
+2. **フロントエンド:**
+   - 各レッスンページ（lesson.php）に「わからないことがあればクリック」ボタン追加
+   - モーダルウィンドウでフィードバック送信フォーム表示
+   - フィードバック履歴ページ（my-feedback.php）
+
+3. **バックエンド:**
+   - api/submit-feedback.php（フィードバック送信API）
+   - api/get-my-feedbacks.php（自分のFB履歴取得）
+   - admin/feedbacks.php（管理画面でFB一覧・返信）
+
+4. **通知機能（将来実装）:**
+   - 返信があった際のメール通知
+   - Timerex連携（Slack通知など）
+
+5. **デザイン:**
+   - フローティングヘルプボタン（🆘アイコン）
+   - モーダルウィンドウ（Progate Design System v2準拠）
+   - レスポンシブ対応
+
+**優先度: 高**
+- ユーザーサポート体制の基盤となる重要機能
+- 早期フィードバック収集でプロダクト改善
+
