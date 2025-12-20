@@ -1756,3 +1756,68 @@ MODIFY COLUMN lesson_type ENUM('slide', 'quiz') NOT NULL;
    - DB設計
    - ポイント・バッジ・ストリーク機能
    - ダッシュボードUI刷新
+
+---
+
+## 作業ログ（2025-12-21 01:30）
+
+### ✅ 完了: プロンプトコピー機能実装
+
+**実装内容:**
+
+1. **slide.phpにプロンプトカードUI追加:**
+   - プロンプト表示エリア（pre/code形式）
+   - コピーボタン（📋 アイコン + テキスト）
+   - 「🚀 ◯◯で試す」ボタン（AI tool外部リンク）
+   - ai_tool_name, ai_tool_url, prompt の3つのプロパティ対応
+
+2. **JavaScriptコピー機能:**
+   ```javascript
+   // Clipboard API（モダンブラウザ）
+   await navigator.clipboard.writeText(promptText);
+   
+   // フォールバック（古いブラウザ）
+   document.execCommand('copy');
+   ```
+   - コピー成功時: ✅アイコン + "コピーしました！" 表示（2秒間）
+   - ボタン無効化でダブルクリック防止
+
+3. **CSS追加（progate-v2.css）:**
+   - グラデーション背景（紫系: #667eea → #764ba2）
+   - ホバーエフェクト（translateY + shadow強化）
+   - レスポンシブ対応（768px, 480px）
+   - カスタムスクロールバー
+   - パルスアニメーション（コピー成功時）
+   - 既存のProgate Design System v2に統合
+
+**JSON構造（レッスンコンテンツ）:**
+```json
+{
+  "slides": [
+    {
+      "title": "プロンプトの基本",
+      "content": "...",
+      "prompt": "あなたはプロの翻訳者です。以下の文章を英語に翻訳してください。",
+      "ai_tool_name": "Gemini",
+      "ai_tool_url": "https://gemini.google.com"
+    }
+  ]
+}
+```
+
+**デザイン方針:**
+- モダンでプロフェッショナル
+- 視認性・操作性重視
+- 既存デザインシステムとの統一感
+
+**コミット:** 2d303e11
+
+---
+
+### 🔄 進行中: ポイントシステム実装
+
+**次のタスク:**
+1. レッスン完了時のポイント付与機能
+2. ポイント履歴記録
+3. レベルアップロジック
+
