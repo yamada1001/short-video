@@ -22,6 +22,34 @@ $slides = $content['slides'] ?? [];
                     <?php if (isset($slide['code'])): ?>
                         <pre class="slide-code"><code><?= h($slide['code']) ?></code></pre>
                     <?php endif; ?>
+
+                    <?php if (isset($slide['prompt'])): ?>
+                        <div class="prompt-card">
+                            <div class="prompt-header">
+                                <h3 class="prompt-title">
+                                    <span class="prompt-icon">💬</span>
+                                    <?= isset($slide['ai_tool_name']) ? h($slide['ai_tool_name']) : 'Gemini' ?>用プロンプト
+                                </h3>
+                                <button class="copy-prompt-btn" data-prompt="<?= h($slide['prompt']) ?>" title="コピー">
+                                    <span class="copy-icon">📋</span>
+                                    <span class="copy-text">コピー</span>
+                                </button>
+                            </div>
+                            <div class="prompt-body">
+                                <pre class="prompt-text"><?= h($slide['prompt']) ?></pre>
+                            </div>
+                            <div class="prompt-footer">
+                                <a href="<?= isset($slide['ai_tool_url']) ? h($slide['ai_tool_url']) : 'https://gemini.google.com' ?>"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="try-ai-btn">
+                                    <span class="try-icon">🚀</span>
+                                    <?= isset($slide['ai_tool_name']) ? h($slide['ai_tool_name']) : 'Gemini' ?>で試す
+                                    <span class="external-icon">↗</span>
+                                </a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="slide-footer">
@@ -97,5 +125,46 @@ document.addEventListener('keydown', (e) => {
             showSlide(currentSlide);
         }
     }
+});
+
+// プロンプトコピー機能
+document.querySelectorAll('.copy-prompt-btn').forEach(button => {
+    button.addEventListener('click', async function() {
+        const promptText = this.getAttribute('data-prompt');
+        try {
+            await navigator.clipboard.writeText(promptText);
+            // コピー成功のフィードバック
+            const originalHTML = this.innerHTML;
+            this.innerHTML = '<span class="copy-icon">✅</span><span class="copy-text">コピーしました！</span>';
+            this.disabled = true;
+
+            // 2秒後に元に戻す
+            setTimeout(() => {
+                this.innerHTML = originalHTML;
+                this.disabled = false;
+            }, 2000);
+        } catch (error) {
+            // フォールバック: 古いブラウザ対応
+            const textArea = document.createElement('textarea');
+            textArea.value = promptText;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                const originalHTML = this.innerHTML;
+                this.innerHTML = '<span class="copy-icon">✅</span><span class="copy-text">コピーしました！</span>';
+                this.disabled = true;
+                setTimeout(() => {
+                    this.innerHTML = originalHTML;
+                    this.disabled = false;
+                }, 2000);
+            } catch (err) {
+                alert('クリップボードへのコピーに失敗しました: ' + err.message);
+            }
+            document.body.removeChild(textArea);
+        }
+    });
 });
 </script>
