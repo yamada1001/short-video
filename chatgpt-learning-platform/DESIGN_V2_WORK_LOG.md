@@ -215,7 +215,58 @@
 - [x] 全21ファイルのCSSリンクをprogate-v2.cssに変更完了
   - public/: 16ファイル
   - admin/: 5ファイル
-- [ ] 次: Git commit & push
+- [x] Git commit & push
+
+### 2025-12-21 17:00
+- [x] CSSパスの404エラー修正
+  - 相対パス `assets/css/progate-v2.css` → 絶対パス `/chatgpt-learning-platform/public/assets/css/progate-v2.css`
+  - Commit: 51e61c0d
+
+### 2025-12-20 12:30
+- [x] BEMクラス名の修正完了
+  - 問題: index.htmlで誤ったクラス名を使用（`lp-header`, `hero-section`など）
+  - 修正: progate-v2.css仕様のBEMクラス名に全面変更
+    * `lp-header` → `header`
+    * `header-inner` → `header__container`
+    * `lp-logo` → `header__logo`
+    * `hero-section` → `hero`
+    * `lp-feature` → `feature-card`
+    * `course-item` → `course-card`
+  - Commit: 2e63bab6
+
+### 2025-12-20 12:35
+- [x] デプロイ完了確認
+  - FTP Deploy経由で本番環境にデプロイ完了
+  - URL: https://yojitu.com/chatgpt-learning-platform/public/index.html
+  - 検証結果:
+    * ✅ CSS読み込み成功（HTTP 200）
+    * ✅ BEMクラス名正しく適用
+    * ✅ コーラルピンクCTA (#FF6B6B)
+    * ✅ box-shadow: none（フラットデザイン）
+    * ✅ pill形状ボタン（border-radius: 50px）
+
+## ✅ デザイン仕様確認チェックリスト
+
+### カラー
+- [x] CTAボタン: コーラルピンク (#FF6B6B)
+- [x] 背景: 白基調 (#FFFFFF)
+- [x] ヘッダー/フッター: ネイビー (#1E3A5F)
+
+### スタイル
+- [x] box-shadow: none（borderのみ使用）
+- [x] ボタン形状: pill形状（border-radius: 50px）
+- [x] セクション余白: 80-100px
+
+### BEM クラス命名
+- [x] ヘッダー: `.header`, `.header__container`, `.header__logo`
+- [x] ヒーロー: `.hero`, `.hero__title`, `.hero__subtitle`
+- [x] ボタン: `.btn-primary`, `.btn-secondary`
+- [x] カード: `.feature-card`, `.course-card`, `.plan-card`
+
+### コンテンツ
+- [x] ターゲット: 仕事で困っている人向け
+- [x] トーン: わくわく・楽しく
+- [x] コピー: 小学生でもわかる言葉
 
 ---
 
