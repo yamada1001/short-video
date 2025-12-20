@@ -1,6 +1,6 @@
 /**
- * Progate Design System - ChatGPT Learning Platform
- * Based on Progate's approachable, clear, and achievement-oriented design philosophy
+ * Custom Design System - Gemini AI Learning Platform
+ * Modern, approachable learning platform design
  */
 
 /* ========================================
@@ -8,7 +8,7 @@
    ======================================== */
 
 :root {
-  /* Primary Colors - Progate Style */
+  /* Primary Colors - Custom Design */
   --primary-navy: #1a2a3a;        /* Dark Navy: Header, Footer, Trust */
   --primary-green: #2ecc71;       /* Emerald Green: CTA, Growth */
   --primary-white: #ffffff;       /* White: Background, Clean */
@@ -34,7 +34,7 @@
   --warning: #ff9800;
   --danger: #f44336;
 
-  /* Typography - Progate Style */
+  /* Typography - Custom Design */
   --font-primary-jp: 'Noto Sans JP', 'Yu Gothic', 'ヒラギノ角ゴ ProN', sans-serif;
   --font-primary-en: 'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-code: 'Source Code Pro', 'Consolas', 'Monaco', monospace;
@@ -207,7 +207,7 @@ p {
 }
 
 /* ========================================
-   5. Buttons - Progate Style
+   5. Buttons - Custom Design
    ======================================== */
 
 .btn {
@@ -287,7 +287,7 @@ p {
 }
 
 /* ========================================
-   6. Cards - Progate Style
+   6. Cards - Custom Design
    ======================================== */
 
 .card {
@@ -352,7 +352,7 @@ p {
 }
 
 /* ========================================
-   7. Forms - Progate Style
+   7. Forms - Custom Design
    ======================================== */
 
 .input,
@@ -395,7 +395,7 @@ textarea::placeholder {
 }
 
 /* ========================================
-   8. Header - Progate Style
+   8. Header - Custom Design
    ======================================== */
 
 .header {
@@ -455,7 +455,7 @@ textarea::placeholder {
 }
 
 /* ========================================
-   9. Footer - Progate Style
+   9. Footer - Custom Design
    ======================================== */
 
 .footer {
@@ -532,7 +532,7 @@ textarea::placeholder {
 }
 
 /* ========================================
-   10. Hero Section - Progate Style
+   10. Hero Section - Custom Design
    ======================================== */
 
 .hero {
@@ -690,7 +690,7 @@ textarea::placeholder {
 }
 
 /* ========================================
-   14. Progress Bar - Progate Style
+   14. Progress Bar - Custom Design
    ======================================== */
 
 .progress-bar {

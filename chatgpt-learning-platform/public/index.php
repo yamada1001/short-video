@@ -26,12 +26,12 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemini AI学習プラットフォーム | Progate風ハンズオン学習</title>
-    <meta name="description" content="Progate風のハンズオン形式でGemini AIを学べるプラットフォーム。実践的なプロンプトエンジニアリングを習得しましょう。">
+    <title>Gemini AI学習プラットフォーム | モダンでわかりやすいハンズオン学習</title>
+    <meta name="description" content="モダンでわかりやすいハンズオン形式でGemini AIを学べるプラットフォーム。実践的なプロンプトエンジニアリングを習得しましょう。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/progate-style.css">
+    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/custom-style.css">
 </head>
 <body class="landing-page">
     <header class="landing-header">
@@ -56,7 +56,7 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                         実践的に学ぼう
                     </h1>
                     <p class="hero-subtitle">
-                        Progate風のハンズオン形式で、プロンプトエンジニアリングを習得。<br>
+                        モダンでわかりやすいハンズオン形式で、プロンプトエンジニアリングを習得。<br>
                         今すぐ無料で始められます。
                     </p>
                     <div class="hero-cta">
@@ -88,7 +88,7 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">💻</div>
-                        <h3>Progate風UI</h3>
+                        <h3>モダンなUI</h3>
                         <p>直感的で使いやすいインターフェース。プログラミング学習のように楽しくGemini AIを学べます。</p>
                     </div>
                     <div class="feature-card">

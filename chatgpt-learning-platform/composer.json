@@ -1,6 +1,6 @@
 {
     "name": "chatgpt-learning-platform/app",
-    "description": "Progate-style Gemini AI learning platform",
+    "description": "Modern Gemini AI learning platform",
     "type": "project",
     "require": {
         "php": "^8.0",

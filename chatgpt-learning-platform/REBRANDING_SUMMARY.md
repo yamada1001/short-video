@@ -131,7 +131,7 @@ Gemini AI Learning
 - README タイトル: "# ChatGPT学習プラットフォーム" → "# Gemini AI学習プラットフォーム"
 - README 説明: "ChatGPTを学べる" → "Gemini AIを学べる"
 - .env.example: `MAIL_FROM_NAME=ChatGPT Learning Platform` → `MAIL_FROM_NAME=Gemini AI Learning Platform`
-- composer.json: `"description": "Progate-style ChatGPT learning platform"` → `"Progate-style Gemini AI learning platform"`
+- composer.json: `"description": "Modern Gemini AI learning platform"` へ更新
 
 ---
 

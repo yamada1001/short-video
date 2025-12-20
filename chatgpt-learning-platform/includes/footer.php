@@ -8,7 +8,7 @@
         <div class="footer-grid">
             <div class="footer-column">
                 <h3>Gemini AI Learning</h3>
-                <p>Gemini AIを実践的に学べるProgate風プラットフォーム</p>
+                <p>Gemini AIを実践的に学べるモダンなプラットフォーム</p>
             </div>
             <div class="footer-column">
                 <h4>学習</h4>

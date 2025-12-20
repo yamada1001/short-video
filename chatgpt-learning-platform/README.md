@@ -1,6 +1,6 @@
 # Gemini AI学習プラットフォーム
 
-Progate風のハンズオン形式でGemini AIを学べるWebアプリケーション
+モダンでわかりやすいハンズオン形式でGemini AIを学べるWebアプリケーション
 
 ## 📌 プロジェクト概要
 
@@ -26,7 +26,7 @@ Progate風のハンズオン形式でGemini AIを学べるWebアプリケーシ�
 - ✅ 4つのレッスンタイプ（スライド、エディタ、クイズ、課題）
 - ✅ Gemini AI実行API（キャッシュ・制限機能付き）
 - ✅ クイズ採点・課題提出機能
-- ✅ Progate風UIデザイン（1825行CSS）
+- ✅ 独自デザインシステム（1000+行CSS）
 
 **Phase 4: 管理画面**
 - ✅ コース管理（CRUD、難易度・公開範囲設定）
@@ -53,7 +53,7 @@ Progate風のハンズオン形式でGemini AIを学べるWebアプリケーシ�
 - **バックエンド**: PHP 8.x
 - **データベース**: MySQL 8.0
 - **フロントエンド**: HTML5, CSS3, JavaScript
-- **デザインシステム**: Progate-style CSS（1825行の独自CSSフレームワーク）
+- **デザインシステム**: カスタムCSS（1000+行の独自CSSフレームワーク）
 - **外部API**: **Google Gemini API**, Stripe API, Google OAuth 2.0
 - **ライブラリ**:
   - `google/generative-ai-php` - Gemini API（新規追加）

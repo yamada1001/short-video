@@ -1,8 +1,8 @@
-# Progate Design System Implementation Guide
+# Custom Design System Implementation Guide
 
 ## Overview
 
-This document details the implementation of the Progate design system for the ChatGPT Learning Platform. The design system follows Progate's philosophy of approachability, clarity, and achievement-oriented learning experiences.
+This document details the implementation of our custom design system for the Gemini AI Learning Platform. The design system follows a philosophy of approachability, clarity, and achievement-oriented learning experiences.
 
 ## Design Philosophy
 
@@ -23,7 +23,7 @@ This document details the implementation of the Progate design system for the Ch
 
 ### 1. New Files Created
 
-#### `/public/assets/css/progate-style.css`
+#### `/public/assets/css/custom-style.css`
 Complete design system CSS file (1000+ lines) including:
 - CSS custom properties for all design tokens
 - Typography system with Noto Sans JP
@@ -44,7 +44,7 @@ Complete design system CSS file (1000+ lines) including:
 **After:**
 ```html
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/progate-style.css">
+<link rel="stylesheet" href="assets/css/custom-style.css">
 ```
 
 **Content Changes:**
@@ -64,16 +64,16 @@ Complete design system CSS file (1000+ lines) including:
 
 #### `/public/login.php`
 - Added Google Fonts link for Noto Sans JP
-- Changed stylesheet from `style.css` to `progate-style.css`
+- Changed stylesheet from `style.css` to `custom-style.css`
 - Auth page classes remain compatible
 
 #### `/public/register.php`
 - Added Google Fonts link
-- Changed stylesheet to `progate-style.css`
+- Changed stylesheet to `custom-style.css`
 
 #### `/public/dashboard.php`
 - Updated stylesheet link
-- All component classes remain compatible with Progate design system
+- All component classes remain compatible with our custom design system
 
 #### Other PHP Files Updated:
 - `/public/course.php`
@@ -334,7 +334,7 @@ Based on 8px grid system:
 
 **After:**
 - Subtle blue-to-white gradient (#f8fbff to white)
-- Progate-inspired copy: "プロンプトエンジニアリングで人生の可能性を広げよう"
+- Inspiring copy: "プロンプトエンジニアリングで人生の可能性を広げよう"
 - Clear value proposition: "初心者でも独学で、挫折せずに学べる"
 - Prominent green CTAs with white secondary buttons
 
@@ -377,7 +377,7 @@ Based on 8px grid system:
 
 ## Copy & Messaging Changes
 
-Following Progate's friendly, encouraging tone:
+Following a friendly, encouraging tone:
 
 | Element | Before | After |
 |---------|--------|-------|
@@ -390,13 +390,13 @@ Following Progate's friendly, encouraging tone:
 ## Implementation Notes
 
 ### What Changed
-1. **Complete visual redesign** following Progate's design language
+1. **Complete visual redesign** following modern design principles
 2. **Color palette** switched from blue/purple to navy/green
 3. **Typography** changed to Noto Sans JP for better Japanese readability
 4. **Spacing** standardized to 8px grid system
 5. **Component library** rebuilt with BEM methodology
 6. **Animations** added for better UX (hover effects, transitions)
-7. **Copy** updated to match Progate's encouraging, beginner-friendly tone
+7. **Copy** updated to match an encouraging, beginner-friendly tone
 
 ### What Stayed the Same
 1. **Functionality**: All features work exactly as before
@@ -420,7 +420,7 @@ Following Progate's friendly, encouraging tone:
 ## Testing Checklist
 
 ### Visual Testing
-- [x] Landing page matches Progate aesthetic
+- [x] Landing page matches modern design aesthetic
 - [x] Auth pages (login/register) styled correctly
 - [x] Dashboard course cards display properly
 - [x] Headers/footers consistent across pages
@@ -495,8 +495,9 @@ Adjust font sizes in `:root` variables for consistent scaling:
 ## Resources
 
 ### Design References
-- [Progate Official Site](https://progate.com/)
-- Progate Design System Document (provided)
+- Modern UI/UX best practices
+- Accessibility guidelines (WCAG 2.1)
+- Mobile-first responsive design
 
 ### Tools Used
 - Google Fonts (Noto Sans JP)
@@ -511,8 +512,8 @@ Adjust font sizes in `:root` variables for consistent scaling:
 
 ## Credits
 
-Design system based on Progate's approachable, achievement-oriented learning philosophy.
-Implementation by: ChatGPT Learning Platform Development Team
+Design system based on modern, approachable learning platform principles.
+Implementation by: Gemini AI Learning Platform Development Team
 Date: December 2025
 
 ---
