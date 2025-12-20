@@ -1821,3 +1821,88 @@ MODIFY COLUMN lesson_type ENUM('slide', 'quiz') NOT NULL;
 2. ポイント履歴記録
 3. レベルアップロジック
 
+
+---
+
+## 作業ログ（2025-12-21 02:00）
+
+### ✅ 完了: ポイント・バッジ・ストリークシステム実装（バックエンド）
+
+**実装内容:**
+
+1. **ゲーミフィケーション関数（9個）:**
+   - `awardPoints()`: ポイント付与 + total_points更新 + レベル自動計算
+   - `calculateLevel()`: ポイント→レベル変換（Lv1-5は固定、Lv6以降は500pt毎）
+   - `calculateLessonPoints()`: レッスン完了時のポイント計算（10-20pt）
+   - `updateStreak()`: ストリーク記録 + current_streak/longest_streak更新
+   - `calculateCurrentStreak()`: 連続学習日数を計算
+   - `checkAndAwardBadges()`: バッジ獲得条件チェック + 自動付与
+   - `isBadgeConditionMet()`: バッジ獲得条件を判定（7種類の条件対応）
+
+2. **updateProgress()関数を拡張:**
+   ```php
+   if ($result && $status === 'completed') {
+       // ポイント付与
+       $points = calculateLessonPoints($lessonId, $user['id']);
+       awardPoints($user['id'], $points, "レッスン完了", 'lesson', $lessonId);
+       
+       // ストリーク更新
+       updateStreak($user['id']);
+       
+       // バッジチェック
+       checkAndAwardBadges($user['id']);
+   }
+   ```
+
+3. **ポイント計算ロジック:**
+   - 基本: 10pt
+   - クイズ形式: +5pt
+   - 初回完了: +5pt
+   - **最大: 20pt/レッスン**
+
+4. **レベル計算ロジック:**
+   - Lv1: 0-99pt
+   - Lv2: 100-299pt
+   - Lv3: 300-599pt
+   - Lv4: 600-999pt
+   - Lv5: 1000-1499pt
+   - **Lv6以降: 500pt毎に1レベルアップ**
+
+5. **バッジ自動獲得（7種類の条件対応）:**
+   - `lesson_complete`: レッスン完了数
+   - `course_complete`: コース完了数
+   - `quiz_perfect`: クイズ満点回数
+   - `streak`: 連続学習日数
+   - `user_register`: 新規登録
+   - `profile_complete`: プロフィール完成
+   - `all_complete`: 全条件達成
+
+6. **ストリーク計算:**
+   - user_streaksテーブルに日付記録
+   - 連続性チェック（今日→昨日→一昨日...）
+   - current_streak, longest_streakを自動更新
+
+**動作フロー:**
+```
+レッスン完了
+  ↓
+updateProgress('completed')
+  ↓
+├→ ポイント付与（10-20pt）
+├→ レベル計算・更新
+├→ ストリーク記録・更新
+└→ バッジチェック・自動付与
+    └→ バッジボーナスポイント付与
+```
+
+**コミット:** bfb5c257
+
+---
+
+### 🔄 進行中: ストリークカレンダーUI実装
+
+**次のタスク:**
+1. ダッシュボードにストリークカレンダー表示
+2. 30日分の学習履歴を視覚化
+3. 連続日数の強調表示
+
