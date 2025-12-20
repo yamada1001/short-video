@@ -31,7 +31,7 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/custom-style.css">
+    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/progate-v2.css">
 </head>
 <body class="landing-page">
     <header class="landing-header">
@@ -47,83 +47,124 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
     </header>
 
     <main>
-        <!-- ヒーローセクション -->
+        <!-- 1. ファーストビュー -->
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title">
-                        AIへの話しかけ方を学んで<br>
+                        AIへの話しかけ方を学んで、<br>
                         毎日の仕事をラクにしよう
                     </h1>
                     <p class="hero-subtitle">
-                        実際に試しながら学べる、楽しいAI活用スクール。<br>
-                        今すぐ無料で始められます。
+                        資料作りも、文章作成も、AIが手伝ってくれる時代。<br>
+                        使い方を知れば、あなたの仕事がもっと楽しくなる！
                     </p>
                     <div class="hero-cta">
                         <a href="<?= APP_URL ?>/register.php" class="btn btn-lg btn-primary">無料で始める</a>
-                        <a href="#features" class="btn btn-lg btn-outline">詳しく見る</a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number"><?= $freeCourseCount ?></div>
-                            <div class="stat-label">無料コース</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number"><?= $totalCourseCount ?></div>
-                            <div class="stat-label">総コース数</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">980円</div>
-                            <div class="stat-label">月額料金</div>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 特徴セクション -->
-        <section id="features" class="features">
+        <!-- 2. AIって何？どう役立つ？ -->
+        <section class="ai-intro">
             <div class="container">
-                <h2 class="section-title">このスクールの特徴</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">💻</div>
-                        <h3>見やすい画面</h3>
-                        <p>パッと見てわかる、使いやすい画面。ゲーム感覚で楽しくAIの使い方を学べます。</p>
+                <h2 class="section-title">AIって、実は身近な"賢いアシスタント"</h2>
+                <div class="ai-intro-grid">
+                    <div class="ai-intro-card">
+                        <div class="ai-intro-icon">💬</div>
+                        <h3>話しかけると答えてくれる</h3>
+                        <p>ChatGPTやGemini AIは、話しかけると答えてくれる賢いアシスタント。難しい操作は一切なし！</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">✍️</div>
-                        <h3>実際に体験できる</h3>
-                        <p>実際にAIへお願いを出して、反応を確認。その場でどんどん学べます。</p>
+                    <div class="ai-intro-card">
+                        <div class="ai-intro-icon">✨</div>
+                        <h3>お願いするだけでOK</h3>
+                        <p>「〇〇について教えて」「△△の文章を作って」とお願いするだけ。日本語で普通に話せばいいんです。</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3>がんばった記録が見える</h3>
-                        <p>どこまで進んだか一目でわかる。やる気を保ちながら、楽しく続けられます。</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h3>クイズとチャレンジ</h3>
-                        <p>わかったかな？を確認できるクイズと、やってみようチャレンジで、確実にレベルアップ。</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">💰</div>
-                        <h3>月額980円</h3>
-                        <p>プレミアムプランでも月額980円。全コースにアクセスして学び放題。</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🚀</div>
-                        <h3>すぐに始められる</h3>
-                        <p>メールアドレスまたはGoogleアカウントで即座に登録。今すぐ学習をスタート。</p>
+                    <div class="ai-intro-card">
+                        <div class="ai-intro-icon">⏰</div>
+                        <h3>24時間いつでも</h3>
+                        <p>24時間いつでも、何度でも、疲れずに手伝ってくれる。あなた専属のアシスタントです。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 料金プラン -->
+        <!-- 3. 具体的にできること -->
+        <section class="use-cases">
+            <div class="container">
+                <h2 class="section-title">こんなことが、サクッとできるようになります</h2>
+                <div class="use-cases-grid">
+                    <div class="use-case-card">
+                        <div class="use-case-icon">📝</div>
+                        <h3>会議の議事録作成</h3>
+                        <p>録音した内容を書き起こして、まとめてくれる。議事録作成の時間が10分の1に！</p>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">✉️</div>
+                        <h3>メールの文章作成</h3>
+                        <p>「〇〇さんにお礼のメールを書いて」で完成。もう文章で悩まない。</p>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">📊</div>
+                        <h3>プレゼン資料の構成案</h3>
+                        <p>「新商品発表のスライド構成を考えて」で骨組みができる。あとは肉付けするだけ。</p>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">💡</div>
+                        <h3>企画書のアイデア出し</h3>
+                        <p>「△△のイベント企画案を5つ出して」で選び放題。アイデアに困らない。</p>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">📈</div>
+                        <h3>データの分析</h3>
+                        <p>数字を見せれば、傾向を教えてくれる。データ分析が苦手でも大丈夫。</p>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">📱</div>
+                        <h3>SNS投稿文の作成</h3>
+                        <p>「〇〇の魅力を140字で」であっという間。毎日の投稿がラクラク。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. こんな人におすすめ -->
+        <section class="target-users">
+            <div class="container">
+                <h2 class="section-title">こんなお悩み、ありませんか？</h2>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <span class="checklist-icon">✓</span>
+                        <p>毎日の資料作りに時間がかかりすぎる...</p>
+                    </div>
+                    <div class="checklist-item">
+                        <span class="checklist-icon">✓</span>
+                        <p>メールや文章を書くのが苦手...</p>
+                    </div>
+                    <div class="checklist-item">
+                        <span class="checklist-icon">✓</span>
+                        <p>アイデアが浮かばなくて困っている...</p>
+                    </div>
+                    <div class="checklist-item">
+                        <span class="checklist-icon">✓</span>
+                        <p>仕事の効率を上げたい...</p>
+                    </div>
+                    <div class="checklist-item">
+                        <span class="checklist-icon">✓</span>
+                        <p>AIを使ってみたいけど、何から始めたらいいかわからない...</p>
+                    </div>
+                </div>
+                <p class="target-users-message">
+                    そんなあなたに、ぴったりのスクールです！
+                </p>
+            </div>
+        </section>
+
+        <!-- 5. 無料で始められます -->
         <section class="pricing">
             <div class="container">
-                <h2 class="section-title">料金プラン</h2>
+                <h2 class="section-title">まずは無料で試してみませんか？</h2>
                 <div class="pricing-grid">
                     <div class="pricing-card">
                         <h3>無料プラン</h3>
@@ -132,12 +173,12 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                             <span class="price-period">/月</span>
                         </div>
                         <ul class="pricing-features">
-                            <li>✓ 基礎コースへのアクセス</li>
-                            <li>✓ 毎日10回まで無料で使える</li>
-                            <li>✓ がんばり記録</li>
-                            <li>✓ クイズ機能</li>
+                            <li>毎日10回まで無料で使える</li>
+                            <li>基本的な使い方が学べる</li>
+                            <li>いつでも辞められる</li>
+                            <li>クレジットカード不要</li>
                         </ul>
-                        <a href="<?= APP_URL ?>/register.php" class="btn btn-outline btn-block">今すぐ始める</a>
+                        <a href="<?= APP_URL ?>/register.php" class="btn btn-outline btn-block">無料で始める</a>
                     </div>
                     <div class="pricing-card pricing-featured">
                         <div class="pricing-badge">おすすめ</div>
@@ -147,11 +188,10 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                             <span class="price-period">/月</span>
                         </div>
                         <ul class="pricing-features">
-                            <li>✓ 全コースへのアクセス</li>
-                            <li>✓ 毎日100回まで使える</li>
-                            <li>✓ がんばり記録</li>
-                            <li>✓ クイズ・チャレンジ</li>
-                            <li>✓ 優先サポート</li>
+                            <li>毎日100回まで使える</li>
+                            <li>全てのコースが学び放題</li>
+                            <li>優先サポート</li>
+                            <li>限定コンテンツへのアクセス</li>
                         </ul>
                         <a href="<?= APP_URL ?>/register.php" class="btn btn-primary btn-block">プレミアムで始める</a>
                     </div>
@@ -159,12 +199,46 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
             </div>
         </section>
 
-        <!-- CTA -->
+        <!-- 6. FAQ -->
+        <section class="faq">
+            <div class="container">
+                <h2 class="section-title">よくあるご質問</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3 class="faq-question">AIって難しくないですか？</h3>
+                        <p class="faq-answer">日本語で話しかけるだけ。小学生でも使えるくらい簡単です。このスクールでは、基礎の基礎から丁寧に教えます。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">仕事に使って大丈夫？</h3>
+                        <p class="faq-answer">はい。実際に多くの企業で使われています。ただし、機密情報の扱いには注意が必要です。このスクールでは、安全な使い方もしっかり学べます。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">パソコンが苦手でも使えますか？</h3>
+                        <p class="faq-answer">スマホでも使えるので、誰でもOKです。操作方法も一つひとつ丁寧に説明します。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">無料プランでどこまで学べますか？</h3>
+                        <p class="faq-answer">基本的な使い方は無料プランで全て学べます。毎日10回まで実際にAIを使って練習できます。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">途中で辞められますか？</h3>
+                        <p class="faq-answer">いつでも辞められます。無料プランならクレジットカードも不要。気軽に始めてください。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">どのくらいで使えるようになりますか？</h3>
+                        <p class="faq-answer">早い人なら1日で基本を習得。1週間続ければ、仕事で使えるレベルになります。自分のペースで学べます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 最終CTA -->
         <section class="cta">
             <div class="container">
-                <h2>今すぐAIを使いこなそう</h2>
-                <p>無料で始めて、AIへのお願い上手になろう</p>
-                <a href="<?= APP_URL ?>/register.php" class="btn btn-lg btn-primary">無料で始める</a>
+                <h2 class="cta-title">1分後、AIと一緒に仕事をする未来へ</h2>
+                <p class="cta-subtitle">今すぐ無料で始めて、毎日の仕事をラクにしましょう</p>
+                <a href="<?= APP_URL ?>/register.php" class="btn btn-lg btn-primary">今すぐ無料で始める</a>
+                <p class="cta-note">クレジットカード不要・いつでも辞められます</p>
             </div>
         </section>
     </main>

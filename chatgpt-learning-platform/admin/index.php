@@ -38,7 +38,7 @@ $recentUsers = db()->fetchAll($recentUsersSql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理画面 | Gemini AI学習プラットフォーム</title>
-    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/progate-v2.css">
     <style>
         .admin-layout {
             display: flex;
