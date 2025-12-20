@@ -105,6 +105,11 @@ $submitted = db()->fetchOne($submittedSql, [$user['id'], $lessonId]);
 </div>
 
 <script>
+// グローバル設定から変数を取得
+const config = window.lessonConfig || {};
+const appUrl = config.appUrl || '';
+const lessonId = config.lessonId;
+
 const assignmentPrompt = document.getElementById('assignmentPrompt');
 const assignmentCharCount = document.getElementById('assignmentCharCount');
 const testPromptBtn = document.getElementById('testPromptBtn');

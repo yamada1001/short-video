@@ -67,6 +67,11 @@ $passingScore = $content['passing_score'] ?? 80; // 合格ライン（%）
 </div>
 
 <script>
+// グローバル設定から変数を取得
+const config = window.lessonConfig || {};
+const appUrl = config.appUrl || '';
+const lessonId = config.lessonId;
+
 const quizData = <?= json_encode($questions) ?>;
 const passingScore = <?= $passingScore ?>;
 

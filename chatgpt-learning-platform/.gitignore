@@ -22,6 +22,8 @@ vendor.tar.gz
 # 一時ファイル
 *.tmp
 *.bak
+check_*.php
+delete_*.php
 
 # アップロード画像
 /public/assets/images/uploads/

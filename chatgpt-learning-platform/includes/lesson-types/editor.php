@@ -79,6 +79,11 @@ $examplePrompt = $content['example'] ?? '';
 </div>
 
 <script>
+// グローバル設定から変数を取得
+const config = window.lessonConfig || {};
+const appUrl = config.appUrl || '';
+const lessonId = config.lessonId;
+
 // エディタ機能
 const promptEditor = document.getElementById('promptEditor');
 const charCount = document.getElementById('charCount');
