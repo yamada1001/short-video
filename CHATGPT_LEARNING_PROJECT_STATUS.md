@@ -1574,3 +1574,185 @@ API_LIMIT_PREMIUM=100
 
 このMDファイルは作業の区切りごとに更新・プッシュします。
 処理落ちした場合は、このファイルの「残りのTodos」セクションから復旧してください。
+
+---
+
+## 作業ログ（2025-12-21 00:10）
+
+### ✅ 完了したバグ修正（2件）
+
+**1. course.php?id=1の重複レッスン削除 ✅**
+- 問題: 「初めてのプロンプト」が2つ表示（ID=2, ID=7）
+- 原因: lessonsテーブルに重複レコード（order_num=1が被っていた）
+- 解決: ID=7を削除（DELETE FROM lessons WHERE id = 7）
+- 確認: check_lessons_simple.phpで重複なしを確認
+- 削除後のレッスン: 4件（Gemini AIとは？ → 初めてのプロンプト → クイズ → 課題）
+
+**2. lesson.php?id=2のappUrlエラー修正 ✅**
+- 問題: JavaScriptエラー「appUrl is not defined」
+- 原因: editor.php/quiz.php/assignment.phpでappUrlとlessonIdが未定義
+- 解決: 3ファイルに以下のコードを追加
+  ```javascript
+  const config = window.lessonConfig || {};
+  const appUrl = config.appUrl || '';
+  const lessonId = config.lessonId;
+  ```
+- コミット: 60b8cda5 "Fix: appUrl/lessonId未定義エラーを修正"
+
+**注意**: この修正は後述の理由により無駄作業となった（削除予定のファイルを修正してしまった）
+
+---
+
+### 🎯 仕様変更の決定（API統合削除）
+
+**決定事項:**
+- ✅ **Gemini API統合を削除**（チュートリアル形式のみ）
+- ❌ エディタ形式（editor）を削除
+- ❌ 課題形式（assignment）を削除
+- ✅ スライド形式（slide）を維持
+- ✅ クイズ形式（quiz）を維持
+
+**削除理由:**
+- APIエラーのリスクを排除
+- API利用制限（1,500リクエスト/日）の問題を解消
+- **ユーザーが実際のAIツールを使う実践的な学習を実現**
+
+---
+
+### 💡 重要な設計思想：実際のAIツールを使う
+
+**ユーザーの意図（非常に重要）:**
+
+> 「実際のAIの画面を使ってみてほしい。管理画面の中ではなく、直接Geminiを使うイメージ。APIの実装をしたくない。」
+
+**学習の流れ（新しい設計）:**
+
+```
+1. プラットフォームでプロンプト例を表示
+   ↓
+2. 「📋 コピー」ボタンでクリップボードにコピー
+   ↓
+3. 「🚀 Geminiで試す」ボタンで https://gemini.google.com を新規タブで開く
+   ↓
+4. ユーザーが実際のGeminiにプロンプトを貼り付けて実行
+   ↓
+5. 実際のAIツールで学ぶ実践的な体験
+```
+
+**この設計のメリット:**
+- ✅ APIエラーゼロ
+- ✅ 利用制限なし
+- ✅ 実際のAIツールの使い方を学べる
+- ✅ ChatGPT, Claude, Cursor等、他のAIツールにも応用可能
+- ✅ ユーザーが自分のアカウントで実践できる
+
+**この設計のデメリット:**
+- ❌ プラットフォーム内で完結しない（外部サイトに遷移）
+- ❌ 実行結果を自動チェックできない
+- ❌ エディタ形式・課題形式の機能が失われる
+
+**結論:**
+デメリットよりメリットが圧倒的に大きいため、この設計を採用。
+
+---
+
+### 🗑️ 削除対象ファイル・機能
+
+#### ファイル削除（6ファイル）
+
+**1. レッスンタイプ:**
+- `includes/lesson-types/editor.php` - エディタ形式（API呼び出し）
+- `includes/lesson-types/assignment.php` - 課題形式（API呼び出し）
+
+**2. API:**
+- `api/gemini.php` - Gemini API呼び出し
+- `api/assignment.php` - 課題提出API
+
+**3. 一時デバッグスクリプト:**
+- `check_duplicate_lessons.php` - 重複チェック（使用済み）
+- `check_lessons_simple.php` - 重複チェック（使用済み）
+- `delete_duplicate_lesson.php` - 重複削除（使用済み）
+
+#### データベース削除
+
+**1. テーブル削除（3テーブル）:**
+```sql
+DROP TABLE IF EXISTS api_usage;        -- API使用量追跡
+DROP TABLE IF EXISTS prompt_cache;     -- プロンプトキャッシュ
+DROP TABLE IF EXISTS assignments;      -- 課題提出データ
+```
+
+**2. lessonsテーブルからeditor/assignmentレッスンを削除:**
+```sql
+DELETE FROM lessons WHERE lesson_type IN ('editor', 'assignment');
+```
+
+**3. lessonsテーブルのENUM変更:**
+```sql
+ALTER TABLE lessons
+MODIFY COLUMN lesson_type ENUM('slide', 'quiz') NOT NULL;
+```
+
+#### 保持するファイル・機能
+
+**✅ レッスンタイプ:**
+- `includes/lesson-types/slide.php` - スライド形式（チュートリアル）
+- `includes/lesson-types/quiz.php` - クイズ形式
+
+**✅ API:**
+- `api/quiz.php` - クイズ採点（内部処理のみ、外部API呼び出しなし）
+- `api/progress.php` - 進捗管理
+- `api/complete-lesson.php` - レッスン完了
+
+**✅ データベーステーブル:**
+- `courses`, `lessons`, `users`, `user_progress`, `quiz_results`, `subscriptions`, `password_reset_tokens`
+
+---
+
+### 📝 更新されたTodos（17タスク）
+
+**✅ 完了（2件）:**
+1. ✅ course.php?id=1の重複レッスンをデータベースから削除
+2. ✅ lesson.php?id=2のappUrlエラー修正（JS変数定義追加）
+
+**🔴 優先度: 高（API統合削除）:**
+3. ⏳ **API統合削除（editor/assignmentタイプ+APIファイル+DBテーブル）** ← 現在作業中
+4. ⬜ バグ修正完了後、MDファイル更新・プッシュ
+
+**🟡 優先度: 中（ゲーミフィケーション実装）:**
+5. ⬜ ゲーミフィケーション用DBスキーマ作成（5テーブル新規 + 2テーブル変更）
+6. ⬜ DBスキーマを本番環境に適用（migration実行）
+7. ⬜ AIツールマスターデータ投入（20+ツール）
+8. ⬜ バッジマスターデータ投入（10種類）
+9. ⬜ **プロンプトコピー機能実装（slide.php修正）** ← 重要！
+10. ⬜ ポイントシステム実装（レッスン完了時にポイント付与）
+11. ⬜ バッジ自動獲得システム実装
+12. ⬜ ストリークカレンダー実装
+13. ⬜ ダッシュボードUI刷新（レベル・バッジ・ストリーク追加）
+
+**🟢 優先度: 低（拡張機能）:**
+14. ⬜ コース詳細ページにベネフィットセクション追加（得られるスキル・実務活用例）
+15. ⬜ アンケート機能実装（学習目的診断）新規登録後+いつでも回答可能
+16. ⬜ 目的別学習教材表示機能（アンケート結果に基づくコース推薦）
+17. ⬜ 開発者フィードバック機能実装（ユーザーからのFB入力）
+
+---
+
+### 🎯 次のアクション
+
+1. **API統合削除作業を完了**
+   - ファイル削除（6ファイル）
+   - データベース削除（3テーブル + レッスン削除 + ENUM変更）
+   - Git commit & push
+
+2. **MDファイル更新・プッシュ**（この作業）
+
+3. **プロンプトコピー機能実装** ← 最優先
+   - slide.phpにプロンプトカードUI追加
+   - クリップボードAPIでコピー機能実装
+   - 「Geminiで試す」ボタン実装
+
+4. **ゲーミフィケーション実装**
+   - DB設計
+   - ポイント・バッジ・ストリーク機能
+   - ダッシュボードUI刷新
