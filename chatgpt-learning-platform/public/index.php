@@ -26,8 +26,8 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemini AI学習プラットフォーム | モダンでわかりやすいハンズオン学習</title>
-    <meta name="description" content="モダンでわかりやすいハンズオン形式でGemini AIを学べるプラットフォーム。実践的なプロンプトエンジニアリングを習得しましょう。">
+    <title>AI活用スクール | 楽しく学べるAI使い方講座</title>
+    <meta name="description" content="楽しく体験しながらAIアシスタントの使い方を学べるスクール。AIへの話しかけ方をマスターしましょう。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
     <header class="landing-header">
         <div class="container">
             <div class="header-inner">
-                <div class="logo">Gemini AI Learning</div>
+                <div class="logo">AI活用スクール</div>
                 <nav class="header-nav">
                     <a href="<?= APP_URL ?>/login.php">ログイン</a>
                     <a href="<?= APP_URL ?>/register.php" class="btn btn-sm btn-primary">無料登録</a>
@@ -52,11 +52,11 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title">
-                        Gemini AIを<br>
-                        実践的に学ぼう
+                        AIへの話しかけ方を学んで<br>
+                        毎日の仕事をラクにしよう
                     </h1>
                     <p class="hero-subtitle">
-                        モダンでわかりやすいハンズオン形式で、プロンプトエンジニアリングを習得。<br>
+                        実際に試しながら学べる、楽しいAI活用スクール。<br>
                         今すぐ無料で始められます。
                     </p>
                     <div class="hero-cta">
@@ -84,27 +84,27 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
         <!-- 特徴セクション -->
         <section id="features" class="features">
             <div class="container">
-                <h2 class="section-title">このプラットフォームの特徴</h2>
+                <h2 class="section-title">このスクールの特徴</h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">💻</div>
-                        <h3>モダンなUI</h3>
-                        <p>直感的で使いやすいインターフェース。プログラミング学習のように楽しくGemini AIを学べます。</p>
+                        <h3>見やすい画面</h3>
+                        <p>パッと見てわかる、使いやすい画面。ゲーム感覚で楽しくAIの使い方を学べます。</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">✍️</div>
-                        <h3>実践エディタ</h3>
-                        <p>実際にプロンプトを入力してGemini AIの反応を確認。リアルタイムで学習できます。</p>
+                        <h3>実際に体験できる</h3>
+                        <p>実際にAIへお願いを出して、反応を確認。その場でどんどん学べます。</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">📊</div>
-                        <h3>進捗管理</h3>
-                        <p>学習の進捗をビジュアルで確認。モチベーションを維持しながら学習を進められます。</p>
+                        <h3>がんばった記録が見える</h3>
+                        <p>どこまで進んだか一目でわかる。やる気を保ちながら、楽しく続けられます。</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🎯</div>
-                        <h3>クイズ・課題</h3>
-                        <p>理解度をチェックできるクイズと実践的な課題で、確実にスキルアップ。</p>
+                        <h3>クイズとチャレンジ</h3>
+                        <p>わかったかな？を確認できるクイズと、やってみようチャレンジで、確実にレベルアップ。</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">💰</div>
@@ -133,8 +133,8 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                         </div>
                         <ul class="pricing-features">
                             <li>✓ 基礎コースへのアクセス</li>
-                            <li>✓ 1日10回のAPI実行</li>
-                            <li>✓ 進捗管理機能</li>
+                            <li>✓ 毎日10回まで無料で使える</li>
+                            <li>✓ がんばり記録</li>
                             <li>✓ クイズ機能</li>
                         </ul>
                         <a href="<?= APP_URL ?>/register.php" class="btn btn-outline btn-block">今すぐ始める</a>
@@ -148,9 +148,9 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
                         </div>
                         <ul class="pricing-features">
                             <li>✓ 全コースへのアクセス</li>
-                            <li>✓ 1日100回のAPI実行</li>
-                            <li>✓ 進捗管理機能</li>
-                            <li>✓ クイズ・課題機能</li>
+                            <li>✓ 毎日100回まで使える</li>
+                            <li>✓ がんばり記録</li>
+                            <li>✓ クイズ・チャレンジ</li>
                             <li>✓ 優先サポート</li>
                         </ul>
                         <a href="<?= APP_URL ?>/register.php" class="btn btn-primary btn-block">プレミアムで始める</a>
@@ -162,8 +162,8 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
         <!-- CTA -->
         <section class="cta">
             <div class="container">
-                <h2>今すぐGemini AIをマスターしよう</h2>
-                <p>無料で始めて、プロンプトエンジニアリングのスキルを習得</p>
+                <h2>今すぐAIを使いこなそう</h2>
+                <p>無料で始めて、AIへのお願い上手になろう</p>
                 <a href="<?= APP_URL ?>/register.php" class="btn btn-lg btn-primary">無料で始める</a>
             </div>
         </section>
@@ -171,7 +171,7 @@ $totalCourseCount = $totalCourseResult['count'] ?? 0;
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; <?= date('Y') ?> Gemini AI Learning Platform. All rights reserved.</p>
+            <p>&copy; <?= date('Y') ?> AI活用スクール. All rights reserved.</p>
         </div>
     </footer>
 </body>
