@@ -66,9 +66,8 @@
                 </h2>
             </div>
 
-            <div class="issues__grid">
-                <!-- 広告費の無駄がなくなる -->
-                <div class="issue-card">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="issue-card" style="margin-bottom: var(--spacing-lg);">
                     <h3 class="issue-card__title">
                         <i class="fa-solid fa-chart-line"></i> 広告費の無駄がなくなります
                     </h3>
@@ -91,8 +90,7 @@
                     </div>
                 </div>
 
-                <!-- 効率よく集客できる -->
-                <div class="issue-card">
+                <div class="issue-card" style="margin-bottom: var(--spacing-lg);">
                     <h3 class="issue-card__title">
                         <i class="fa-solid fa-map-location-dot"></i> 効率よく集客できます
                     </h3>
@@ -101,7 +99,6 @@
                     </p>
                 </div>
 
-                <!-- 更新の手間がなくなる -->
                 <div class="issue-card">
                     <h3 class="issue-card__title">
                         <i class="fa-solid fa-rotate"></i> 更新の手間がなくなります
@@ -114,11 +111,11 @@
         </div>
     </section>
 
-    <!-- スライド5: サービスを受けると、、 -->
+    <!-- スライド3: サービスを受けると、、 -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">05</div>
+                <div class="issue-card__number">03</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-star"></i> サービスを受けると、、
                 </h2>
@@ -133,41 +130,40 @@
         </div>
     </section>
 
-    <!-- スライド6: 今回受けていただくサービスは…（集客装置） -->
-    <section class="section">
+    <!-- スライド4: 今回受けていただくサービスは… -->
+    <section class="section section--highlight">
         <div class="container">
-            <div class="issue-card">
-                <div class="issue-card__number">06</div>
+            <div class="section__header" style="text-align: center; margin-bottom: var(--spacing-xl);">
+                <div style="display: inline-block; background: var(--color-primary); color: white; font-size: 18px; font-weight: 700; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; margin-bottom: 16px;">04</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-rocket"></i> 今回受けていただくサービスは…
                 </h2>
-                <p class="hero__lead">
-                    あなたの会社の売り上げを底上げする集客装置として、上がった利益でより良い環境を作り出す大事なシステムを作る第一歩！
-                </p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="issue-card" style="margin-bottom: var(--spacing-lg);">
+                    <p class="issue-card__text" style="font-size: 18px; line-height: 1.8; text-align: center;">
+                        あなたの会社の売り上げを底上げする集客装置として、<br>
+                        上がった利益でより良い環境を作り出す<br>
+                        <strong style="color: var(--color-primary);">大事なシステムを作る第一歩！</strong>
+                    </p>
+                </div>
+
+                <div class="issue-card">
+                    <p class="issue-card__text" style="font-size: 18px; line-height: 1.8; text-align: center;">
+                        私たちはただネット上の看板になるだけのHPは作りません！<br>
+                        <strong style="color: var(--color-primary);">利益を産むことが私たちが目指しているHPの在り方です。</strong>
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- スライド7: 今回受けていただくサービスは…（HPの在り方） -->
-    <section class="section">
-        <div class="container">
-            <div class="issue-card">
-                <div class="issue-card__number">07</div>
-                <h2 class="section__title">
-                    <i class="fa-solid fa-rocket"></i> 今回受けていただくサービスは…
-                </h2>
-                <p class="hero__lead">
-                    私たちはただネット上の看板になるだけのHPは作りません！利益を産むことが私たちが目指しているHPの在り方です。
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- スライド8: パッケージ紹介 -->
+    <!-- スライド5: パッケージ紹介 -->
     <section class="section" id="proposal">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">08</div>
+                <div class="issue-card__number">05</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-box-open"></i> サービスパッケージの紹介
                 </h2>
@@ -241,11 +237,11 @@
         </div>
     </section>
 
-    <!-- スライド9: ホームページ作成について -->
+    <!-- スライド6: ホームページ作成について -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">09</div>
+                <div class="issue-card__number">06</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-laptop-code"></i> ホームページ作成について
                 </h2>
@@ -267,11 +263,11 @@
         </div>
     </section>
 
-    <!-- スライド10: 問い合わせフォーム×4種類 -->
+    <!-- スライド7: 問い合わせフォーム×4種類 -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">10</div>
+                <div class="issue-card__number">07</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-clipboard-list"></i> 問い合わせフォーム×4種類
                 </h2>
@@ -292,11 +288,11 @@
         </div>
     </section>
 
-    <!-- スライド11: 今回提供するサービスのまとめ -->
+    <!-- スライド8: 今回提供するサービスのまとめ -->
     <section class="section" id="plans">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">11</div>
+                <div class="issue-card__number">08</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-list-check"></i> 今回提供するサービスのまとめ
                 </h2>
@@ -347,11 +343,11 @@
         </div>
     </section>
 
-    <!-- スライド12: 通常のサイトとの違い -->
+    <!-- スライド9: 通常のサイトとの違い -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">12</div>
+                <div class="issue-card__number">09</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-code-compare"></i> 通常のサイトとの違い
                 </h2>
@@ -393,11 +389,11 @@
         </div>
     </section>
 
-    <!-- スライド13: 一つ一つ単発で受けた場合 -->
+    <!-- スライド10: 一つ一つ単発で受けた場合 -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">13</div>
+                <div class="issue-card__number">10</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-calculator"></i> 一つ一つ単発で受けた場合
                 </h2>
@@ -408,11 +404,11 @@
         </div>
     </section>
 
-    <!-- スライド14: 143万円 → 88万円 -->
+    <!-- スライド11: 143万円 → 88万円 -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">14</div>
+                <div class="issue-card__number">11</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-tags"></i> パッケージ価格
                 </h2>
@@ -443,11 +439,11 @@
         </div>
     </section>
 
-    <!-- スライド15: お申し込みください -->
+    <!-- スライド12: お申し込みください -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">15</div>
+                <div class="issue-card__number">12</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-hand-point-right"></i> 少しでも興味を持っていただけて<br>やってみたいという方は是非お申し込みください！
                 </h2>
@@ -455,11 +451,11 @@
         </div>
     </section>
 
-    <!-- スライド16: そして、さらに！！ -->
+    <!-- スライド13: そして、さらに！！ -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">16</div>
+                <div class="issue-card__number">13</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-gift"></i> そして、さらに！！
                 </h2>
@@ -470,11 +466,11 @@
         </div>
     </section>
 
-    <!-- スライド17: 即決割引価格を用意 -->
+    <!-- スライド14: 即決割引価格を用意 -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">17</div>
+                <div class="issue-card__number">14</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-bolt"></i> 本日参加をご決断して<br>一緒にやりたいといっていただく方限定にはなりますが、、、
                 </h2>
@@ -485,11 +481,11 @@
         </div>
     </section>
 
-    <!-- スライド18: 今回の即決割引価格に込めた想い -->
+    <!-- スライド15: 今回の即決割引価格に込めた想い -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">18</div>
+                <div class="issue-card__number">15</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-heart"></i> 今回の即決割引価格に込めた想い
                 </h2>
@@ -502,11 +498,11 @@
         </div>
     </section>
 
-    <!-- スライド19: 即決限定価格！88万円 → 55万円 -->
+    <!-- スライド16: 即決限定価格！88万円 → 55万円 -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">19</div>
+                <div class="issue-card__number">16</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-fire"></i> 即決限定価格！
                 </h2>
@@ -534,11 +530,11 @@
         </div>
     </section>
 
-    <!-- スライド20: 大分の事業者さんにもっと稼いでもらいたい！ -->
+    <!-- スライド17: 大分の事業者さんにもっと稼いでもらいたい！ -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">20</div>
+                <div class="issue-card__number">17</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-handshake-angle"></i> 大分の事業者さんにもっと稼いでもらいたい！
                 </h2>
