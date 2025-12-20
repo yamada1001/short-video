@@ -29,7 +29,6 @@
                 <nav class="header__nav">
                     <a href="#proposal" class="header__link">サービス内容</a>
                     <a href="#plans" class="header__link">料金</a>
-                    <a href="#contact" class="header__link">お問い合わせ</a>
                 </nav>
             </div>
         </div>
@@ -237,61 +236,11 @@
         </div>
     </section>
 
-    <!-- スライド6: ホームページ作成について -->
-    <section class="section">
-        <div class="container">
-            <div class="issue-card">
-                <div class="issue-card__number">06</div>
-                <h2 class="section__title">
-                    <i class="fa-solid fa-laptop-code"></i> ホームページ作成について
-                </h2>
-                <ul class="feature-item__sub-list" style="margin-top: var(--spacing-lg);">
-                    <li><i class="fa-solid fa-check-circle"></i> 目標設定ワークで目標設定を一緒に行います</li>
-                    <li><i class="fa-solid fa-check-circle"></i> 商品設計シートにて、売れる商品に共通する型を知る</li>
-                    <li><i class="fa-solid fa-check-circle"></i> あなたのサービスの洗い出し</li>
-                    <li><i class="fa-solid fa-check-circle"></i> お客さんが納得して買ってくれるか？確認ワークシート</li>
-                    <li><i class="fa-solid fa-check-circle"></i> みたいに受けた時のイメージをさせる</li>
-                </ul>
-                <div class="roi__summary" style="margin-top: var(--spacing-lg);">
-                    <div class="roi__summary-item roi__summary-item--highlight">
-                        <span class="roi__summary-label">単体販売価格</span>
-                        <span class="roi__summary-value">40万円</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- スライド7: 問い合わせフォーム×4種類 -->
-    <section class="section">
-        <div class="container">
-            <div class="issue-card">
-                <div class="issue-card__number">07</div>
-                <h2 class="section__title">
-                    <i class="fa-solid fa-clipboard-list"></i> 問い合わせフォーム×4種類
-                </h2>
-                <p class="section__lead">（買取、販売、リース、相談）</p>
-                <ul class="feature-item__sub-list" style="margin-top: var(--spacing-lg);">
-                    <li><i class="fa-solid fa-check-circle"></i> 年式、写真、走行距離などを入れた時に検索結果が反映される買取フォームを作ります。</li>
-                    <li><i class="fa-solid fa-check-circle"></i> 売れた事例をもとにあなたの商品作りをサポート</li>
-                    <li><i class="fa-solid fa-check-circle"></i> 事前ワークシートがあるので、時間が無駄にならない！</li>
-                    <li><i class="fa-solid fa-check-circle"></i> 集客に困ったら都度相談可能！</li>
-                </ul>
-                <div class="roi__summary" style="margin-top: var(--spacing-lg);">
-                    <div class="roi__summary-item roi__summary-item--highlight">
-                        <span class="roi__summary-label">単体販売価格</span>
-                        <span class="roi__summary-value">30万円</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- スライド8: 今回提供するサービスのまとめ -->
+    <!-- スライド6: 今回提供するサービスのまとめ -->
     <section class="section" id="plans">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">08</div>
+                <div class="issue-card__number">06</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-list-check"></i> 今回提供するサービスのまとめ
                 </h2>
@@ -306,47 +255,47 @@
                         <tbody>
                             <tr>
                                 <td><i class="fa-solid fa-laptop-code"></i> ホームページ作成</td>
-                                <td>40万円</td>
+                                <td data-price="400000">40万円</td>
                             </tr>
                             <tr>
                                 <td><i class="fa-solid fa-clipboard-list"></i> 問い合わせフォーム×4種類（買取、販売、リース、相談）</td>
-                                <td>30万円</td>
+                                <td data-price="300000">30万円</td>
                             </tr>
                             <tr>
                                 <td><i class="fa-solid fa-reply"></i> 問い合わせ内容を受信後の自動送信システム</td>
-                                <td>3万円</td>
+                                <td data-price="30000">3万円</td>
                             </tr>
                             <tr>
                                 <td><i class="fa-solid fa-mobile-screen"></i> スマホ・タブレット対応</td>
-                                <td>5万円</td>
+                                <td data-price="50000">5万円</td>
                             </tr>
                             <tr>
                                 <td><i class="fa-solid fa-car-side"></i> 車の情報を追加・変更・削除できるシステム導入</td>
-                                <td>50万円</td>
+                                <td data-price="500000">50万円</td>
                             </tr>
                             <tr>
                                 <td><i class="fa-solid fa-table"></i> 過去の問い合わせ一覧が見られる</td>
-                                <td>3万円</td>
+                                <td data-price="30000">3万円</td>
                             </tr>
                             <tr class="feature-divider">
                                 <td><strong>合計</strong></td>
-                                <td><strong>131万円</strong></td>
+                                <td><strong id="total-price">131万円</strong></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <p class="section__lead" style="margin-top: var(--spacing-md);">
-                    131万円相当のものを提供予定としています。
+                    <span id="total-price-text">131</span>万円相当のものを提供予定としています。
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- スライド9: 通常のサイトとの違い -->
+    <!-- スライド7: 通常のサイトとの違い -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">09</div>
+                <div class="issue-card__number">07</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-code-compare"></i> 通常のサイトとの違い
                 </h2>
@@ -388,11 +337,11 @@
         </div>
     </section>
 
-    <!-- スライド10: 一つ一つ単発で受けた場合 -->
+    <!-- スライド8: 一つ一つ単発で受けた場合 -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">10</div>
+                <div class="issue-card__number">08</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-calculator"></i> 一つ一つ単発で受けた場合
                 </h2>
@@ -403,11 +352,11 @@
         </div>
     </section>
 
-    <!-- スライド11: 143万円 → 88万円 -->
+    <!-- スライド9: 143万円 → 88万円 -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">11</div>
+                <div class="issue-card__number">09</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-tags"></i> パッケージ価格
                 </h2>
@@ -438,11 +387,11 @@
         </div>
     </section>
 
-    <!-- スライド12: お申し込みください -->
+    <!-- スライド10: お申し込みください -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">12</div>
+                <div class="issue-card__number">10</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-hand-point-right"></i> 少しでも興味を持っていただけて<br>やってみたいという方は是非お申し込みください！
                 </h2>
@@ -450,11 +399,11 @@
         </div>
     </section>
 
-    <!-- スライド13: そして、さらに！！ -->
+    <!-- スライド11: そして、さらに！！ -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">13</div>
+                <div class="issue-card__number">11</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-gift"></i> そして、さらに！！
                 </h2>
@@ -465,11 +414,11 @@
         </div>
     </section>
 
-    <!-- スライド14: 即決割引価格を用意 -->
+    <!-- スライド12: 即決割引価格を用意 -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">14</div>
+                <div class="issue-card__number">12</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-bolt"></i> 本日参加をご決断して<br>一緒にやりたいといっていただく方限定にはなりますが、、、
                 </h2>
@@ -480,11 +429,11 @@
         </div>
     </section>
 
-    <!-- スライド15: 今回の即決割引価格に込めた想い -->
+    <!-- スライド13: 今回の即決割引価格に込めた想い -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">15</div>
+                <div class="issue-card__number">13</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-heart"></i> 今回の即決割引価格に込めた想い
                 </h2>
@@ -497,11 +446,11 @@
         </div>
     </section>
 
-    <!-- スライド16: 即決限定価格！88万円 → 55万円 -->
+    <!-- スライド14: 即決限定価格！88万円 → 55万円 -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">16</div>
+                <div class="issue-card__number">14</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-fire"></i> 即決限定価格！
                 </h2>
@@ -529,47 +478,17 @@
         </div>
     </section>
 
-    <!-- スライド17: 大分の事業者さんにもっと稼いでもらいたい！ -->
+    <!-- スライド15: 大分の事業者さんにもっと稼いでもらいたい！ -->
     <section class="section">
         <div class="container">
             <div class="issue-card">
-                <div class="issue-card__number">17</div>
+                <div class="issue-card__number">15</div>
                 <h2 class="section__title">
                     <i class="fa-solid fa-handshake-angle"></i> 大分の事業者さんにもっと稼いでもらいたい！
                 </h2>
                 <p class="hero__lead">
                     東京と比べて格差を減らすために活動してます。木村さんにも東京の当たり前のHP水準を導入してもらいたいと思ってます！
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- お問い合わせCTA（最後に配置） -->
-    <section class="section" id="contact">
-        <div class="container">
-            <div class="contact-cta">
-                <div class="contact-cta__content">
-                    <h3 class="contact-cta__title">
-                        <i class="fa-solid fa-envelope"></i> お問い合わせ
-                    </h3>
-                    <p class="contact-cta__text">
-                        ご不明点やご質問がございましたら、お気軽にお問い合わせください。
-                    </p>
-                    <div class="contact-cta__info">
-                        <p>
-                            <i class="fa-solid fa-phone"></i>
-                            <strong>電話：</strong><a href="tel:08046929681">080-4692-9681</a>
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-envelope"></i>
-                            <strong>メール：</strong><a href="mailto:yamada@yojitu.com">yamada@yojitu.com</a>
-                        </p>
-                        <p>
-                            <i class="fa-brands fa-line"></i>
-                            <strong>LINE：</strong><a href="https://line.me/ti/p/CTOCx9YKjk" target="_blank">お問い合わせ</a>
-                        </p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

@@ -1188,8 +1188,10 @@ body {
   border-right: none;
 }
 
-.pricing-table .recommended-col {
+.pricing-table th.recommended-col {
   background: var(--color-brown-dark);
+  color: #FFD700;
+  font-weight: var(--font-weight-bold);
 }
 
 .price-highlight {
@@ -1242,8 +1244,10 @@ body {
   border-right: none;
 }
 
-.pricing-table .recommended-col {
+.pricing-table td.recommended-col {
   background: #fffdf5;
+  color: var(--color-brown-dark);
+  font-weight: var(--font-weight-medium);
 }
 
 .pricing-table td i {

@@ -111,4 +111,37 @@ planCards.forEach(card => {
   });
 });
 
+// ========================================
+// Auto-calculate Service Summary Total
+// ========================================
+function calculateServiceTotal() {
+  const priceCells = document.querySelectorAll('.pricing-table tbody td[data-price]');
+  let total = 0;
+
+  priceCells.forEach(cell => {
+    const price = parseInt(cell.getAttribute('data-price'));
+    if (!isNaN(price)) {
+      total += price;
+    }
+  });
+
+  // Convert to 万円 format
+  const totalInManYen = total / 10000;
+
+  // Update the total display
+  const totalPriceElement = document.getElementById('total-price');
+  const totalPriceTextElement = document.getElementById('total-price-text');
+
+  if (totalPriceElement) {
+    totalPriceElement.textContent = totalInManYen + '万円';
+  }
+
+  if (totalPriceTextElement) {
+    totalPriceTextElement.textContent = totalInManYen;
+  }
+}
+
+// Run calculation on page load
+document.addEventListener('DOMContentLoaded', calculateServiceTotal);
+
 console.log('Proposal LP - JavaScript loaded');
