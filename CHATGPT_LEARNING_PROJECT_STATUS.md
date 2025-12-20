@@ -2554,3 +2554,82 @@ updateProgress('completed')
 - admin/feedback-detail.php（詳細・返信）
 - api/reply-feedback.php（返信API）
 
+
+---
+
+## 作業ログ（2025-12-21 05:30）
+
+### ✅ デプロイ完了: 全ファイルをXserverにアップロード
+
+**アップロード方法:**
+- Xserverファイルマネージャーで手動アップロード
+- `/tmp/chatgpt-upload-files` に必要ファイルを集約してアップロード
+
+**アップロードしたファイル（8ファイル）:**
+1. ✅ api/submit-feedback.php（新規）
+2. ✅ api/get-my-feedbacks.php（新規）
+3. ✅ public/my-feedbacks.php（新規）
+4. ✅ includes/functions.php（上書き）
+5. ✅ includes/header.php（上書き）
+6. ✅ public/lesson.php（上書き）
+7. ✅ public/dashboard.php（上書き）
+8. ✅ public/assets/css/progate-v2.css（上書き）
+
+**特記事項:**
+- `public/assets/css` フォルダが存在しなかったため新規作成
+- 全ファイルのアップロードが正常に完了
+
+**次のステップ:**
+- 動作確認（フィードバック機能・推薦コース機能のテスト）
+
+
+---
+
+## 📝 今後のタスク
+
+### 🔜 次に実装すべき機能
+
+**1. Google Tag Manager（GTM）のインストール（優先度: 高）**
+- 全ページにGTMトラッキングコードを追加
+- イベントトラッキング設定:
+  - レッスン完了
+  - フィードバック送信
+  - コース開始
+  - バッジ獲得
+  - アンケート回答
+- Google Analyticsとの連携
+- コンバージョン測定
+
+**実装箇所:**
+- includes/header.php（<head>タグ直後）
+- includes/footer.php（<body>タグ直前）
+
+**実装時間:** 30分〜1時間
+
+---
+
+**2. 管理画面でフィードバック管理機能（優先度: 高）**
+- フィードバック一覧ページ（admin/feedbacks.php）
+- フィードバック詳細・返信ページ（admin/feedback-detail.php）
+- 返信保存API（api/reply-feedback.php）
+- ステータス変更機能
+
+**実装時間:** 1〜2時間
+
+---
+
+**3. メール通知機能（優先度: 中）**
+- フィードバック返信時のメール送信
+- PHPMailerの設定
+- メールテンプレート作成
+
+**実装時間:** 30分〜1時間
+
+---
+
+**4. Timerex連携（優先度: 低）**
+- フィードバック送信時のSlack通知
+- Webhook URL設定
+
+**実装時間:** 30分
+
