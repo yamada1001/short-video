@@ -1552,3 +1552,687 @@ body {
     font-size: var(--font-size-h3);
   }
 }
+
+/* ===========================
+   PRICING PAGE (pricing.php)
+   減額交渉ページ専用スタイル
+   =========================== */
+
+/* Hero - Pricing Page */
+.hero--pricing {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    padding: 80px 0;
+}
+
+/* 価格比較セクション */
+.price-comparison {
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+    padding: 80px 0;
+}
+
+.comparison-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.comparison-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comparison-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.comparison-card--competitor {
+    border: 2px solid #e0e0e0;
+}
+
+.comparison-card--yojitu {
+    border: 3px solid #ff6b35;
+    background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
+}
+
+.comparison-card__badge {
+    display: inline-block;
+    background: #95a5a6;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.comparison-card__badge--highlight {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    font-size: 16px;
+    padding: 10px 24px;
+}
+
+.comparison-card__price {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.comparison-card__amount {
+    font-size: 56px;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1;
+}
+
+.comparison-card__amount--large {
+    font-size: 72px;
+    color: #ff6b35;
+}
+
+.comparison-card__unit {
+    font-size: 24px;
+    color: #7f8c8d;
+    margin-left: 8px;
+}
+
+.comparison-card__plan-name {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ff6b35;
+    margin-bottom: 24px;
+}
+
+.comparison-card__features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 24px;
+}
+
+.comparison-card__features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.comparison-card__features li:last-child {
+    border-bottom: none;
+}
+
+.comparison-card__features i {
+    color: #95a5a6;
+    margin-top: 4px;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.comparison-card--yojitu .comparison-card__features i {
+    color: #ff6b35;
+}
+
+.comparison-card__note {
+    background: #f8f9fa;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #7f8c8d;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.comparison-card__note i {
+    color: #95a5a6;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.comparison-card__note--highlight {
+    background: linear-gradient(135deg, #fff5eb 0%, #ffe8d6 100%);
+    color: #d35400;
+    font-weight: 600;
+}
+
+.comparison-card__note--highlight i {
+    color: #ff6b35;
+}
+
+/* 価格差表示 */
+.price-difference {
+    margin-top: 48px;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    border-radius: 16px;
+    padding: 32px;
+    color: white;
+    text-align: center;
+}
+
+.price-difference__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.price-difference__content i {
+    font-size: 48px;
+    opacity: 0.9;
+}
+
+.price-difference__title {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.price-difference__amount {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.price-difference__text {
+    font-size: 16px;
+    opacity: 0.95;
+}
+
+/* なぜこの価格で提供できるのか */
+.why-affordable {
+    background: white;
+    padding: 80px 0;
+}
+
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 40px;
+}
+
+.reason-card {
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.reason-card:hover {
+    border-color: #ff6b35;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.15);
+}
+
+.reason-card__number {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.reason-card__icon {
+    font-size: 48px;
+    color: #ff6b35;
+    margin-bottom: 20px;
+}
+
+.reason-card__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 16px;
+}
+
+.reason-card__text {
+    font-size: 15px;
+    color: #7f8c8d;
+    line-height: 1.8;
+}
+
+/* 品質についての注記 */
+.quality-note {
+    margin-top: 48px;
+    background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f2 100%);
+    border-left: 4px solid #3498db;
+    padding: 24px;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.quality-note i {
+    font-size: 32px;
+    color: #3498db;
+    flex-shrink: 0;
+}
+
+.quality-note strong {
+    color: #2c3e50;
+}
+
+/* 最終提案セクション */
+.final-proposal {
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+    padding: 80px 0;
+}
+
+.final-price-box {
+    background: white;
+    border: 3px solid #ff6b35;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 40px;
+    box-shadow: 0 8px 32px rgba(255, 107, 53, 0.2);
+}
+
+.final-price-box__header {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    color: white;
+    padding: 24px;
+    text-align: center;
+}
+
+.final-price-box__header h3 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.final-price-box__price {
+    padding: 48px 24px;
+    text-align: center;
+    background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
+}
+
+.final-price-box__amount {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+}
+
+.final-price-box__number {
+    font-size: 80px;
+    font-weight: 700;
+    color: #ff6b35;
+    line-height: 1;
+}
+
+.final-price-box__unit {
+    font-size: 32px;
+    color: #2c3e50;
+}
+
+.final-price-box__tax {
+    font-size: 18px;
+    color: #7f8c8d;
+    margin-top: 12px;
+}
+
+.final-price-box__note {
+    padding: 20px 24px;
+    background: #f8f9fa;
+    text-align: center;
+    font-size: 16px;
+    color: #7f8c8d;
+}
+
+/* 含まれる機能 */
+.included-features {
+    margin-top: 48px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 40px;
+}
+
+.included-features__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.included-features__title i {
+    color: #ff6b35;
+}
+
+.included-features__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.included-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.included-feature:hover {
+    background: linear-gradient(135deg, #fff9f5 0%, #ffe8d6 100%);
+    transform: translateX(4px);
+}
+
+.included-feature i {
+    font-size: 24px;
+    color: #ff6b35;
+    flex-shrink: 0;
+}
+
+.included-feature span {
+    font-size: 15px;
+    color: #2c3e50;
+}
+
+/* 支払い条件 */
+.payment-terms {
+    margin-top: 48px;
+    background: linear-gradient(135deg, #e8f4f8 0%, #ffffff 100%);
+    border: 2px solid #3498db;
+    border-radius: 12px;
+    padding: 32px;
+}
+
+.payment-terms__title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.payment-terms__title i {
+    color: #3498db;
+}
+
+.payment-terms__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.payment-term {
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.payment-term strong {
+    color: #2c3e50;
+    display: inline-block;
+    min-width: 120px;
+}
+
+/* 今すぐご契約の特典 */
+.immediate-benefits {
+    background: white;
+    padding: 80px 0;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 40px;
+}
+
+.benefit-item {
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+    border-color: #27ae60;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(39, 174, 96, 0.15);
+}
+
+.benefit-item__icon {
+    font-size: 56px;
+    color: #27ae60;
+    margin-bottom: 20px;
+}
+
+.benefit-item__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 16px;
+}
+
+.benefit-item__text {
+    font-size: 15px;
+    color: #7f8c8d;
+    line-height: 1.8;
+}
+
+/* CTAセクション */
+.cta-section {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    padding: 80px 0;
+}
+
+.cta-box {
+    background: white;
+    border-radius: 16px;
+    padding: 48px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.cta-box__title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.cta-box__title i {
+    color: #ff6b35;
+}
+
+.cta-box__text {
+    font-size: 16px;
+    color: #7f8c8d;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.cta-box__contact {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 24px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    background: linear-gradient(135deg, #fff9f5 0%, #ffe8d6 100%);
+    transform: translateY(-4px);
+}
+
+.contact-item i {
+    font-size: 32px;
+    color: #ff6b35;
+}
+
+.contact-item strong {
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.contact-item a {
+    color: #ff6b35;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: #d35400;
+    text-decoration: underline;
+}
+
+/* ===========================
+   RESPONSIVE - PRICING PAGE
+   タブレット対応
+   =========================== */
+@media (max-width: 1024px) {
+    .comparison-cards {
+        gap: 32px;
+    }
+
+    .reasons-grid,
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .included-features__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-box__contact {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===========================
+   RESPONSIVE - PRICING PAGE
+   スマートフォン対応
+   =========================== */
+@media (max-width: 768px) {
+    .hero--pricing {
+        padding: 60px 0;
+    }
+
+    .price-comparison,
+    .why-affordable,
+    .final-proposal,
+    .immediate-benefits,
+    .cta-section {
+        padding: 60px 0;
+    }
+
+    .comparison-cards {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .comparison-card {
+        padding: 32px 24px;
+    }
+
+    .comparison-card__amount {
+        font-size: 48px;
+    }
+
+    .comparison-card__amount--large {
+        font-size: 56px;
+    }
+
+    .price-difference {
+        padding: 24px;
+    }
+
+    .price-difference__content {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .price-difference__content i {
+        font-size: 40px;
+    }
+
+    .price-difference__amount {
+        font-size: 28px;
+    }
+
+    .reasons-grid,
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .reason-card,
+    .benefit-item {
+        padding: 24px;
+    }
+
+    .final-price-box__number {
+        font-size: 64px;
+    }
+
+    .final-price-box__unit {
+        font-size: 24px;
+    }
+
+    .included-features,
+    .payment-terms {
+        padding: 32px 24px;
+    }
+
+    .included-features__grid {
+        gap: 16px;
+    }
+
+    .cta-box {
+        padding: 32px 24px;
+    }
+
+    .cta-box__title {
+        font-size: 24px;
+    }
+
+    .quality-note {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .quality-note i {
+        font-size: 28px;
+    }
+}
