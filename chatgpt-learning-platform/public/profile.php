@@ -1,0 +1,219 @@
+<?php
+/**
+ * プロフィールページ
+ */
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/functions.php';
+
+// ログインチェック
+requireLogin();
+
+$user = getCurrentUser();
+$success = '';
+$errors = [];
+
+// フォーム送信処理
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $currentPassword = $_POST['current_password'] ?? '';
+    $newPassword = $_POST['new_password'] ?? '';
+    $confirmPassword = $_POST['confirm_password'] ?? '';
+
+    // CSRF対策
+    if (!verifyCsrfToken($_POST['csrf_token'] ?? '')) {
+        $errors[] = '不正なリクエストです。';
+    }
+
+    // バリデーション
+    if (empty($name)) {
+        $errors[] = '名前を入力してください。';
+    }
+
+    if (empty($email)) {
+        $errors[] = 'メールアドレスを入力してください。';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = '有効なメールアドレスを入力してください。';
+    }
+
+    // メールアドレスが変更された場合、重複チェック
+    if ($email !== $user['email']) {
+        $checkEmailSql = "SELECT id FROM users WHERE email = ? AND id != ?";
+        $existingUser = db()->fetchOne($checkEmailSql, [$email, $user['id']]);
+        if ($existingUser) {
+            $errors[] = 'このメールアドレスは既に使用されています。';
+        }
+    }
+
+    // パスワード変更の処理
+    if (!empty($newPassword) || !empty($confirmPassword)) {
+        if (empty($currentPassword)) {
+            $errors[] = '現在のパスワードを入力してください。';
+        } elseif (!password_verify($currentPassword, $user['password_hash'])) {
+            $errors[] = '現在のパスワードが正しくありません。';
+        }
+
+        if (empty($newPassword)) {
+            $errors[] = '新しいパスワードを入力してください。';
+        } elseif (strlen($newPassword) < 8) {
+            $errors[] = '新しいパスワードは8文字以上にしてください。';
+        }
+
+        if ($newPassword !== $confirmPassword) {
+            $errors[] = '新しいパスワードと確認用パスワードが一致しません。';
+        }
+    }
+
+    // エラーがなければ更新
+    if (empty($errors)) {
+        try {
+            if (!empty($newPassword)) {
+                // パスワード変更あり
+                $passwordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+                $updateSql = "UPDATE users SET name = ?, email = ?, password_hash = ? WHERE id = ?";
+                db()->execute($updateSql, [$name, $email, $passwordHash, $user['id']]);
+            } else {
+                // パスワード変更なし
+                $updateSql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
+                db()->execute($updateSql, [$name, $email, $user['id']]);
+            }
+
+            $success = 'プロフィールを更新しました。';
+            // セッションのユーザー情報を更新
+            $_SESSION['user_name'] = $name;
+            $_SESSION['user_email'] = $email;
+
+            // ユーザー情報を再取得
+            $user = getCurrentUser();
+        } catch (Exception $e) {
+            $errors[] = '更新中にエラーが発生しました。';
+            error_log($e->getMessage());
+        }
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロフィール | Gemini AI学習プラットフォーム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?= APP_URL ?>/public/assets/css/progate-v2.css">
+</head>
+<body>
+    <?php include __DIR__ . '/../includes/header.php'; ?>
+
+    <main class="profile-page">
+        <div class="container">
+            <h1 class="page-title">プロフィール設定</h1>
+
+            <?php if ($success): ?>
+                <div class="alert alert-success">
+                    <?= h($success) ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (!empty($errors)): ?>
+                <div class="alert alert-error">
+                    <ul>
+                        <?php foreach ($errors as $error): ?>
+                            <li><?= h($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
+            <div class="profile-grid">
+                <!-- 基本情報 -->
+                <div class="profile-card">
+                    <h2 class="profile-card__title">基本情報</h2>
+                    <form method="POST" class="profile-form">
+                        <input type="hidden" name="csrf_token" value="<?= generateCsrfToken() ?>">
+
+                        <div class="form-group">
+                            <label for="name">名前</label>
+                            <input type="text" id="name" name="name" value="<?= h($user['name']) ?>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">メールアドレス</label>
+                            <input type="email" id="email" name="email" value="<?= h($user['email']) ?>" required>
+                        </div>
+
+                        <h3 class="form-section-title">パスワード変更（任意）</h3>
+
+                        <div class="form-group">
+                            <label for="current_password">現在のパスワード</label>
+                            <input type="password" id="current_password" name="current_password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new_password">新しいパスワード</label>
+                            <input type="password" id="new_password" name="new_password" minlength="8">
+                            <small class="form-hint">8文字以上</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm_password">新しいパスワード（確認）</label>
+                            <input type="password" id="confirm_password" name="confirm_password" minlength="8">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">更新する</button>
+                    </form>
+                </div>
+
+                <!-- アカウント情報 -->
+                <div class="profile-sidebar">
+                    <div class="info-card">
+                        <h3 class="info-card__title">アカウント情報</h3>
+                        <dl class="info-list">
+                            <dt>登録日</dt>
+                            <dd><?= date('Y年m月d日', strtotime($user['created_at'])) ?></dd>
+
+                            <dt>プラン</dt>
+                            <dd>
+                                <?php if (hasActiveSubscription()): ?>
+                                    <span class="badge badge-premium">プレミアム会員</span>
+                                <?php else: ?>
+                                    <span class="badge badge-free">無料会員</span>
+                                <?php endif; ?>
+                            </dd>
+
+                            <dt>認証方法</dt>
+                            <dd>
+                                <?php if ($user['oauth_provider'] === 'google'): ?>
+                                    Google
+                                <?php else: ?>
+                                    メールアドレス
+                                <?php endif; ?>
+                            </dd>
+                        </dl>
+
+                        <?php if (!hasActiveSubscription()): ?>
+                            <a href="<?= APP_URL ?>/subscribe.php" class="btn btn-primary btn-block">
+                                プレミアム会員になる
+                            </a>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="info-card info-card--danger">
+                        <h3 class="info-card__title">アカウント削除</h3>
+                        <p class="info-card__text">
+                            アカウントを削除すると、全ての学習データが失われます。この操作は取り消せません。
+                        </p>
+                        <button type="button" class="btn btn-outline btn-block" onclick="alert('この機能は現在開発中です。')">
+                            アカウントを削除
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <?php include __DIR__ . '/../includes/footer.php'; ?>
+</body>
+</html>
