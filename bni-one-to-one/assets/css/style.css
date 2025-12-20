@@ -476,12 +476,12 @@ body {
 
     /* タイムライン */
     .timeline::before {
-        left: 105px;
+        left: 120px;
     }
 
     .timeline-year {
-        width: 105px;
-        font-size: 12px;
+        width: 120px;
+        font-size: 14px;
         word-break: keep-all;
         white-space: nowrap;
     }
