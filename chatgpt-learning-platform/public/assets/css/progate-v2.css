@@ -2516,5 +2516,146 @@ p {
 }
 
 /* ============================================
+   Lesson - Slide Type
+   ============================================ */
+
+.lesson-slide {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide-container {
+  flex: 1;
+  position: relative;
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  padding: 48px;
+  margin-bottom: 24px;
+  min-height: 500px;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide-title {
+  font-size: 32px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.slide-body {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+
+.slide-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin: 24px 0;
+}
+
+.slide-code {
+  background: #f5f7fa;
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  margin: 24px 0;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #2c3e50;
+}
+
+.slide-footer {
+  position: absolute;
+  bottom: 24px;
+  right: 48px;
+}
+
+.slide-number {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+}
+
+.slide-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 20px;
+  background: var(--bg-light-gray);
+  border-radius: var(--radius-md);
+}
+
+.slide-btn {
+  padding: 10px 24px;
+  font-size: 15px;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.slide-btn:hover:not(:disabled) {
+  background: var(--accent-coral);
+  color: var(--bg-white);
+  border-color: var(--accent-coral);
+}
+
+.slide-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.slide-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-medium);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.dot.active {
+  background: var(--accent-coral);
+  transform: scale(1.2);
+}
+
+.dot:hover {
+  background: var(--accent-coral);
+}
+
+/* ============================================
    End of Progate Design System v2
    ============================================ */
