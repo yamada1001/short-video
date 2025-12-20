@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BNI ワントゥーワン プロフィールシート</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script>
+        // 年齢自動計算
+        window.addEventListener('DOMContentLoaded', function() {
+            const birthDate = new Date('1999-10-01');
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            document.getElementById('age').textContent = age + '歳';
+        });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -30,7 +45,7 @@
                 </tr>
                 <tr>
                     <th>年齢</th>
-                    <td>25歳</td>
+                    <td id="age">26歳</td>
                 </tr>
                 <tr>
                     <th>血液型</th>
