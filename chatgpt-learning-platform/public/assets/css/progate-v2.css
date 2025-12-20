@@ -2657,5 +2657,886 @@ p {
 }
 
 /* ============================================
+   Lesson Type Components (Editor, Quiz, Assignment)
+   Progate Design System v2 - Clean, White-based
+   ============================================ */
+
+/* Badge Component Extensions */
+.badge-info {
+  background-color: #EFF6FF;
+  color: #1E40AF;
+}
+
+/* EDITOR TYPE LESSON */
+.lesson-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.editor-instructions {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 32px;
+}
+
+.editor-instructions h2 {
+  font-size: var(--text-subsection);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.editor-instructions p {
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  line-height: var(--text-body-lh);
+  margin-bottom: 24px;
+}
+
+.hint-box {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.hint-box h4 {
+  font-size: var(--text-card-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.hint-box p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.example-box {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.example-box h4 {
+  font-size: var(--text-card-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.example-box pre {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin: 12px 0 16px;
+  overflow-x: auto;
+}
+
+.example-box code {
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.editor-workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.editor-panel,
+.output-panel {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.panel-header h3 {
+  font-size: var(--text-card-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.panel-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.editor-stats {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.prompt-editor {
+  flex: 1;
+  width: 100%;
+  padding: 20px;
+  font-size: 14px;
+  font-family: 'Courier New', Consolas, monospace;
+  color: var(--text-primary);
+  border: none;
+  resize: none;
+  outline: none;
+  line-height: 1.6;
+}
+
+.prompt-editor::placeholder {
+  color: var(--text-tertiary);
+}
+
+.editor-actions {
+  padding: 20px;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-lg {
+  padding: 14px 32px;
+  font-size: 15px;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border-light);
+  border-top-color: var(--accent-coral);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.output-area {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.output-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 14px;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+.output-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.output-meta {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-light);
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+}
+
+.output-text {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.output-error {
+  background: #FEF2F2;
+  border: 1px solid #FEE2E2;
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.output-error h4 {
+  font-size: var(--text-card-title);
+  font-weight: var(--font-weight-bold);
+  color: #DC2626;
+  margin-bottom: 8px;
+}
+
+.output-error p {
+  font-size: 14px;
+  color: #DC2626;
+  margin: 0;
+}
+
+.execution-history {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+.execution-history h3 {
+  font-size: var(--text-subsection);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.history-item {
+  background: var(--bg-light-gray);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  transition: border-color var(--transition-normal);
+}
+
+.history-item:hover {
+  border-color: var(--border-medium);
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+  gap: 12px;
+}
+
+.history-time {
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.history-tokens {
+  color: var(--text-tertiary);
+}
+
+.history-prompt {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.history-prompt strong {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* QUIZ TYPE LESSON */
+.lesson-quiz {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.quiz-header {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  text-align: center;
+}
+
+.quiz-header h2 {
+  font-size: var(--text-subsection);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.quiz-header p {
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.quiz-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.quiz-question {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 28px;
+}
+
+.question-header {
+  margin-bottom: 16px;
+}
+
+.question-number {
+  display: inline-block;
+  background: var(--accent-coral);
+  color: var(--bg-white);
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-bold);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+}
+
+.question-text {
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.question-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-light-gray);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.option-label:hover {
+  background: var(--bg-white);
+  border-color: var(--accent-coral);
+}
+
+.option-label input[type="checkbox"],
+.option-label input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--accent-coral);
+}
+
+.option-text {
+  font-size: 15px;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.question-textarea {
+  width: 100%;
+  padding: 16px;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color var(--transition-normal);
+}
+
+.question-textarea:focus {
+  outline: none;
+  border-color: var(--accent-coral);
+}
+
+.question-textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+.question-result {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+}
+
+.question-result.correct {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #15803D;
+}
+
+.question-result.incorrect {
+  background: #FEF2F2;
+  border: 1px solid #FEE2E2;
+  color: #DC2626;
+}
+
+.result-icon {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.explanation {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-secondary);
+}
+
+.quiz-actions {
+  text-align: center;
+  padding: 24px;
+}
+
+.quiz-result {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 40px;
+  text-align: center;
+}
+
+.quiz-result.passed {
+  border-color: #BBF7D0;
+  background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+}
+
+.quiz-result.failed {
+  border-color: #FEE2E2;
+  background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
+}
+
+.result-summary h2 {
+  font-size: var(--text-section-title);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 24px;
+}
+
+.quiz-result.passed h2 {
+  color: #15803D;
+}
+
+.quiz-result.failed h2 {
+  color: #DC2626;
+}
+
+.result-score {
+  margin-bottom: 32px;
+}
+
+.score-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--bg-white);
+  border: 4px solid var(--border-light);
+  margin-bottom: 16px;
+}
+
+.quiz-result.passed .score-circle {
+  border-color: #15803D;
+}
+
+.quiz-result.failed .score-circle {
+  border-color: #DC2626;
+}
+
+.score-number {
+  font-size: 36px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.result-score p {
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ASSIGNMENT TYPE LESSON */
+.lesson-assignment {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.assignment-description {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 32px;
+}
+
+.assignment-description h2 {
+  font-size: var(--text-subsection);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.assignment-description p {
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  line-height: var(--text-body-lh);
+  margin-bottom: 24px;
+}
+
+.criteria-box {
+  background: #EFF6FF;
+  border: 1px solid #DBEAFE;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.criteria-box h4 {
+  font-size: var(--text-card-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.criteria-box p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.hints-box {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.hints-box h4 {
+  font-size: var(--text-card-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.hints-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hints-box li {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.hints-box li::before {
+  content: '•';
+  position: absolute;
+  left: 8px;
+  color: var(--accent-coral);
+  font-weight: var(--font-weight-bold);
+}
+
+.submitted-assignment {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 32px;
+}
+
+.submitted-assignment h3 {
+  font-size: var(--text-subsection);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.submitted-date {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.submitted-content h4 {
+  font-size: var(--text-card-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  margin-top: 24px;
+}
+
+.submitted-content h4:first-child {
+  margin-top: 0;
+}
+
+.submitted-prompt {
+  background: var(--bg-light-gray);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.submitted-response {
+  background: var(--bg-light-gray);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.assignment-grade {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.assignment-grade.passed {
+  border-color: #BBF7D0;
+  background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+}
+
+.assignment-grade.failed {
+  border-color: #FEE2E2;
+  background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
+}
+
+.assignment-grade h4 {
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.grade-score {
+  font-size: 32px;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 20px;
+}
+
+.assignment-grade.passed .grade-score {
+  color: #15803D;
+}
+
+.assignment-grade.failed .grade-score {
+  color: #DC2626;
+}
+
+.grade-feedback h5 {
+  font-size: var(--text-card-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.grade-feedback p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.assignment-pending {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.assignment-pending p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.assignment-form {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 32px;
+}
+
+.assignment-form h3 {
+  font-size: var(--text-subsection);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.assignment-form > p {
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.assignment-form .form-group {
+  margin-bottom: 24px;
+}
+
+.assignment-form label {
+  display: block;
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.assignment-textarea {
+  width: 100%;
+  padding: 16px;
+  font-size: 14px;
+  font-family: 'Courier New', Consolas, monospace;
+  color: var(--text-primary);
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  resize: vertical;
+  min-height: 200px;
+  transition: border-color var(--transition-normal);
+}
+
+.assignment-textarea:focus {
+  outline: none;
+  border-color: var(--accent-coral);
+}
+
+.assignment-textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+.char-count {
+  text-align: right;
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.test-output {
+  background: var(--bg-light-gray);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.test-output h4 {
+  font-size: var(--text-card-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.test-result {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.test-success {
+  color: var(--text-secondary);
+}
+
+.test-success strong {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.response-text {
+  background: var(--bg-light-gray);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin: 12px 0;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.test-error {
+  color: #DC2626;
+}
+
+.test-error strong {
+  font-weight: var(--font-weight-bold);
+}
+
+/* ============================================
    End of Progate Design System v2
    ============================================ */
