@@ -1596,6 +1596,12 @@ p {
   font-size: var(--text-small);
   color: var(--text-secondary);
   margin-bottom: 12px;
+  display: block !important; /* Ensure visibility */
+}
+
+.course-info .progress-text {
+  margin-bottom: 12px;
+  margin-top: 8px;
 }
 
 /* Button Variants */
