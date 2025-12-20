@@ -1,0 +1,7 @@
+# BNI One-to-One Profile Sheet
+# Allow index.html as directory index
+
+DirectoryIndex index.html index.php
+
+# Allow access
+Options +Indexes
