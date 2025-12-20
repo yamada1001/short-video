@@ -1,0 +1,555 @@
+/* ===========================
+   BNI ワントゥーワン プロフィールシート
+   =========================== */
+
+/* リセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 基本設定 */
+:root {
+    --bni-red: #E31E24;
+    --bni-dark: #1a1a1a;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --border-color: #ddd;
+    --bg-light: #f8f8f8;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+/* コンテナ */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* ===========================
+   ヘッダー
+   =========================== */
+.header {
+    background: linear-gradient(135deg, var(--bni-red) 0%, #c51a1f 100%);
+    color: white;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-logo {
+    flex-shrink: 0;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.header-info {
+    flex: 1;
+}
+
+.name {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.company {
+    font-size: 18px;
+    margin-bottom: 4px;
+    opacity: 0.95;
+}
+
+.position {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* ===========================
+   セクション
+   =========================== */
+.section {
+    padding: 40px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section:last-of-type {
+    border-bottom: none;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--bni-red);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--bni-red);
+    display: inline-block;
+}
+
+/* ===========================
+   基本情報テーブル
+   =========================== */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.info-table th,
+.info-table td {
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.info-table th {
+    background-color: var(--bg-light);
+    font-weight: 600;
+    width: 160px;
+    color: var(--text-primary);
+}
+
+.info-table td {
+    background-color: white;
+}
+
+.info-table tr:hover td {
+    background-color: #fafafa;
+}
+
+/* ===========================
+   タイムライン（生い立ち）
+   =========================== */
+.timeline {
+    margin-top: 24px;
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 80px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--bni-red), #ff6b6b);
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.timeline-year {
+    width: 80px;
+    font-weight: 700;
+    color: var(--bni-red);
+    flex-shrink: 0;
+    position: relative;
+}
+
+.timeline-year::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--bni-red);
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--bni-red);
+}
+
+.timeline-content {
+    flex: 1;
+    padding-left: 30px;
+    color: var(--text-primary);
+}
+
+/* ===========================
+   GAINSセクション
+   =========================== */
+.gains-section {
+    background-color: #fafafa;
+}
+
+.gains-item {
+    margin-bottom: 32px;
+}
+
+.gains-item:last-child {
+    margin-bottom: 0;
+}
+
+.gains-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+.gains-letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--bni-red) 0%, #c51a1f 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.gains-label {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.gains-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.gains-table th,
+.gains-table td {
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.gains-table th {
+    background-color: #f0f0f0;
+    font-weight: 600;
+    width: 180px;
+    color: var(--text-primary);
+}
+
+.gains-table td {
+    background-color: white;
+}
+
+.gains-table ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.gains-table li {
+    margin-bottom: 8px;
+}
+
+.gains-table li:last-child {
+    margin-bottom: 0;
+}
+
+/* ===========================
+   フッター
+   =========================== */
+.footer {
+    background-color: var(--bni-dark);
+    color: white;
+    padding: 40px;
+}
+
+.contact-info h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: white;
+}
+
+.contact-info p {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.contact-info strong {
+    display: inline-block;
+    width: 80px;
+    color: #ffffff;
+}
+
+.footer-note {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    color: #aaa;
+}
+
+.footer-note p {
+    margin-bottom: 4px;
+}
+
+/* ===========================
+   レスポンシブ対応（タブレット）
+   =========================== */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .name {
+        font-size: 26px;
+    }
+
+    .company {
+        font-size: 16px;
+    }
+
+    .section {
+        padding: 30px 20px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .info-table th {
+        width: 120px;
+        font-size: 14px;
+    }
+
+    .info-table th,
+    .info-table td {
+        padding: 12px;
+    }
+
+    .gains-table th {
+        width: 140px;
+        font-size: 14px;
+    }
+
+    .timeline::before {
+        left: 70px;
+    }
+
+    .timeline-year {
+        width: 70px;
+        font-size: 14px;
+    }
+
+    .timeline-content {
+        font-size: 14px;
+    }
+
+    .footer {
+        padding: 30px 20px;
+    }
+}
+
+/* ===========================
+   レスポンシブ対応（スマートフォン）
+   =========================== */
+@media (max-width: 480px) {
+    .container {
+        border-radius: 0;
+    }
+
+    .header {
+        padding: 24px 16px;
+    }
+
+    .profile-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .name {
+        font-size: 22px;
+    }
+
+    .company {
+        font-size: 14px;
+    }
+
+    .position {
+        font-size: 13px;
+    }
+
+    .section {
+        padding: 24px 16px;
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    /* テーブルを縦並びに */
+    .info-table,
+    .gains-table {
+        display: block;
+    }
+
+    .info-table thead,
+    .gains-table thead {
+        display: none;
+    }
+
+    .info-table tr,
+    .gains-table tr {
+        display: block;
+        margin-bottom: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: white;
+    }
+
+    .info-table th,
+    .info-table td,
+    .gains-table th,
+    .gains-table td {
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .info-table th,
+    .gains-table th {
+        background-color: var(--bni-red);
+        color: white;
+        font-weight: 600;
+        padding: 10px 12px;
+    }
+
+    .info-table td,
+    .gains-table td {
+        padding: 12px;
+    }
+
+    .info-table tr td:last-child,
+    .gains-table tr td:last-child {
+        border-bottom: none;
+    }
+
+    /* GAINSタイトル */
+    .gains-title {
+        font-size: 18px;
+    }
+
+    .gains-letter {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+
+    /* タイムライン */
+    .timeline::before {
+        left: 60px;
+    }
+
+    .timeline-year {
+        width: 60px;
+        font-size: 13px;
+    }
+
+    .timeline-year::after {
+        right: -5px;
+        width: 8px;
+        height: 8px;
+    }
+
+    .timeline-content {
+        padding-left: 20px;
+        font-size: 13px;
+    }
+
+    /* フッター */
+    .footer {
+        padding: 24px 16px;
+    }
+
+    .contact-info h3 {
+        font-size: 18px;
+    }
+
+    .contact-info p {
+        font-size: 14px;
+    }
+
+    .contact-info strong {
+        display: block;
+        width: 100%;
+        margin-bottom: 4px;
+    }
+
+    .footer-note {
+        font-size: 12px;
+    }
+}
+
+/* ===========================
+   印刷用スタイル
+   =========================== */
+@media print {
+    body {
+        background-color: white;
+        padding: 0;
+    }
+
+    .container {
+        box-shadow: none;
+        max-width: 100%;
+    }
+
+    .section {
+        page-break-inside: avoid;
+    }
+
+    .gains-item {
+        page-break-inside: avoid;
+    }
+
+    .header {
+        background: var(--bni-red) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .gains-letter {
+        background: var(--bni-red) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
