@@ -148,6 +148,37 @@
 - **変更後**: 3つのカードを縦並び（max-width: 900px、中央揃え）で表示
 - **理由**: 横3列レイアウトはデザインが難しすぎるため、シンプルな縦並びに変更
 
+### 2025-12-20 17:30 - border-leftデザインを削除
+- **変更内容**: 複数のCSSクラスからborder-left装飾を削除
+- **削除箇所**（6箇所）:
+  - `.issue-card`: `border-left: 4px solid var(--color-natural-brown);`
+  - `.feature-item`: `border-left: 4px solid var(--color-accent-green);`
+  - `.pricing-note__item`: `border-left: 4px solid var(--color-accent-blue);`
+  - `.step-item`: `border-left: 4px solid var(--color-natural-brown);`
+  - `.step-item--final`: `border-left-color: var(--color-accent-green);`
+  - `.quality-note`: `border-left: 4px solid #3498db;`
+- **理由**: ユーザー指示によりborder-leftデザインを廃止
+
+### 2025-12-20 17:35 - デフォルトフォントをLINESeedJPStdに変更
+- **変更内容**: Noto Sans JPからLINESeedJPStdに変更、フォント設定を全面見直し
+- **CSS変数の変更**:
+  - `--font-family-base`: `'Noto Sans JP', -apple-system, ...` → `LINESeedJPStd, sans-serif`
+  - `--font-size-base`: `16px` → `20px`
+  - `--font-weight-regular`: `400` → `300`
+  - `--color-text-primary`: `#333333` → `#000000`
+- **bodyタグへの追加**:
+  - `letter-spacing: normal;`
+  - `word-break: break-all;`
+- **最終的なフォント設定**:
+  - font-family: LINESeedJPStd, sans-serif
+  - font-size: 20px
+  - line-height: 1.7
+  - letter-spacing: normal
+  - font-weight: 300
+  - color: #000
+  - word-break: break-all
+- **理由**: ユーザー指示により、より読みやすいフォント設定に変更
+
 ---
 
 ## PDFからの抽出内容
@@ -189,11 +220,11 @@
 
 - **HTML/CSS**: セマンティックHTML、レスポンシブデザイン
 - **Font Awesome 6.5.1**: アイコン表示（絵文字は使用しない）
-- **Google Fonts**: Noto Sans JP
+- **フォント**: LINESeedJPStd（Webフォント）
 - **PHP**: 動的ページ生成
 - **Git**: バージョン管理
 
 ---
 
 ## 最終更新
-2025年12月20日 17:25 - 冗長箇所の統合＋横3列レイアウトを縦並びに変更完了
+2025年12月20日 17:35 - デフォルトフォントをLINESeedJPStdに変更完了
