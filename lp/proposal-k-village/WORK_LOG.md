@@ -75,6 +75,18 @@
 - **目的**: 商談が進んだ段階で見せる下層ページ
 - **内容**: PDFの内容を一言一句反映（143万円 → 88万円 → 55万円）
 
+### 2025-12-20 16:30 - 視認性修正 + リンク削除
+- **修正**: テキスト色を #7f8c8d（薄いグレー）から #2c3e50（濃いグレー）に変更
+  - comparison-card__unit
+  - comparison-card__note
+  - reason-card__text
+  - final-price-box__tax
+  - final-price-box__note
+  - benefit-item__text
+  - cta-box__text
+- **削除**: index.phpからpricing.phpへのリンクを削除
+- **理由**: 最初から減額前提になってしまうため、リンクは商談時に直接URLを伝える方式に変更
+
 ---
 
 ## PDFからの抽出内容
@@ -123,4 +135,4 @@
 ---
 
 ## 最終更新
-2025年12月20日 16:00 - 全作業完了（pricing.php作成、CSS追加、リンク追加）
+2025年12月20日 16:30 - 視認性修正 + リンク削除（#7f8c8d → #2c3e50、index.phpからのリンク削除）

@@ -1636,7 +1636,7 @@ body {
 
 .comparison-card__unit {
     font-size: 24px;
-    color: #7f8c8d;
+    color: #2c3e50;
     margin-left: 8px;
 }
 
@@ -1682,7 +1682,7 @@ body {
     padding: 16px;
     border-radius: 8px;
     font-size: 14px;
-    color: #7f8c8d;
+    color: #2c3e50;
     display: flex;
     align-items: flex-start;
     gap: 12px;
@@ -1798,7 +1798,7 @@ body {
 
 .reason-card__text {
     font-size: 15px;
-    color: #7f8c8d;
+    color: #2c3e50;
     line-height: 1.8;
 }
 
@@ -1878,7 +1878,7 @@ body {
 
 .final-price-box__tax {
     font-size: 18px;
-    color: #7f8c8d;
+    color: #2c3e50;
     margin-top: 12px;
 }
 
@@ -1887,7 +1887,7 @@ body {
     background: #f8f9fa;
     text-align: center;
     font-size: 16px;
-    color: #7f8c8d;
+    color: #2c3e50;
 }
 
 /* 含まれる機能 */
@@ -2031,7 +2031,7 @@ body {
 
 .benefit-item__text {
     font-size: 15px;
-    color: #7f8c8d;
+    color: #2c3e50;
     line-height: 1.8;
 }
 
@@ -2066,7 +2066,7 @@ body {
 
 .cta-box__text {
     font-size: 16px;
-    color: #7f8c8d;
+    color: #2c3e50;
     line-height: 1.8;
     margin-bottom: 40px;
 }

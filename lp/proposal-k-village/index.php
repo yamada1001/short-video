@@ -367,27 +367,6 @@
                         <i class="fa-solid fa-2"></i>
                     </div>
                     <div class="step-item__content">
-                        <h3 class="step-item__title">お打ち合わせ・料金提示</h3>
-                        <p class="step-item__text">
-                            詳しい仕様や制作スケジュールについて打ち合わせさせていただきます。その際に、詳細なお見積もりをご提示いたします。
-                        </p>
-                        <p class="step-item__text" style="margin-top: 12px;">
-                            <a href="pricing.php" style="color: #ff6b35; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-file-invoice-dollar"></i> 料金詳細を確認する
-                            </a>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="step-arrow">
-                    <i class="fa-solid fa-arrow-down"></i>
-                </div>
-
-                <div class="step-item">
-                    <div class="step-item__number">
-                        <i class="fa-solid fa-3"></i>
-                    </div>
-                    <div class="step-item__content">
                         <h3 class="step-item__title">ご契約・お支払い</h3>
                         <p class="step-item__text">
                             内容にご納得いただけましたら、ご契約書を交わします。<strong>お支払いは前払い制</strong>となります（銀行振込）。
@@ -401,7 +380,7 @@
 
                 <div class="step-item">
                     <div class="step-item__number">
-                        <i class="fa-solid fa-4"></i>
+                        <i class="fa-solid fa-3"></i>
                     </div>
                     <div class="step-item__content">
                         <h3 class="step-item__title">制作開始</h3>
@@ -417,7 +396,7 @@
 
                 <div class="step-item step-item--final">
                     <div class="step-item__number">
-                        <i class="fa-solid fa-5"></i>
+                        <i class="fa-solid fa-4"></i>
                     </div>
                     <div class="step-item__content">
                         <h3 class="step-item__title">納品・公開</h3>
