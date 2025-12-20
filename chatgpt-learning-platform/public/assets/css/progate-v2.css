@@ -2372,5 +2372,149 @@ p {
 }
 
 /* ============================================
+   Auth Pages (Login/Register)
+   ============================================ */
+
+.auth-page {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  padding: 48px 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.auth-title {
+  font-size: 28px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-form .form-group {
+  margin-bottom: 24px;
+}
+
+.auth-form label {
+  display: block;
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="text"] {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-normal);
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--accent-coral);
+}
+
+.form-group-inline {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.link-sm {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+.link-sm:hover {
+  color: var(--accent-coral);
+}
+
+.auth-divider {
+  position: relative;
+  text-align: center;
+  margin: 32px 0;
+}
+
+.auth-divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--border-light);
+}
+
+.auth-divider span {
+  position: relative;
+  background: var(--bg-white);
+  padding: 0 16px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--bg-white);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  font-weight: var(--font-weight-medium);
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+}
+
+.btn-google:hover {
+  background: var(--bg-light-gray);
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+}
+
+.btn-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.auth-footer a {
+  color: var(--accent-coral);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-normal);
+}
+
+.auth-footer a:hover {
+  color: #ff5252;
+}
+
+/* ============================================
    End of Progate Design System v2
    ============================================ */
