@@ -24,6 +24,27 @@ $recentProgressSql = "SELECT l.*, c.title as course_title, up.status, up.updated
                      ORDER BY up.updated_at DESC
                      LIMIT 5";
 $recentProgress = db()->fetchAll($recentProgressSql, [$user['id']]);
+
+// ゲーミフィケーション統計を取得
+$userStats = [
+    'level' => $user['level'] ?? 1,
+    'total_points' => $user['total_points'] ?? 0,
+    'current_streak' => $user['current_streak'] ?? 0,
+    'longest_streak' => $user['longest_streak'] ?? 0,
+];
+
+// 獲得バッジ数を取得
+$badgeCountSql = "SELECT COUNT(*) as count FROM user_badges WHERE user_id = ?";
+$badgeCountResult = db()->fetchOne($badgeCountSql, [$user['id']]);
+$userStats['badge_count'] = $badgeCountResult['count'] ?? 0;
+
+// 過去30日分のストリークデータを取得
+$streakDataSql = "SELECT activity_date FROM user_streaks
+                 WHERE user_id = ?
+                 AND activity_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+                 ORDER BY activity_date DESC";
+$streakData = db()->fetchAll($streakDataSql, [$user['id']]);
+$streakDates = array_column($streakData, 'activity_date');
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -51,6 +72,86 @@ $recentProgress = db()->fetchAll($recentProgressSql, [$user['id']]);
                     <?php endif; ?>
                 </p>
             </div>
+
+            <!-- ゲーミフィケーション統計 -->
+            <section class="gamification-stats">
+                <div class="stats-grid">
+                    <!-- レベル -->
+                    <div class="stat-card stat-level">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-content">
+                            <div class="stat-label">レベル</div>
+                            <div class="stat-value">Lv.<?= $userStats['level'] ?></div>
+                        </div>
+                    </div>
+
+                    <!-- ポイント -->
+                    <div class="stat-card stat-points">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-content">
+                            <div class="stat-label">獲得ポイント</div>
+                            <div class="stat-value"><?= number_format($userStats['total_points']) ?></div>
+                        </div>
+                    </div>
+
+                    <!-- ストリーク -->
+                    <div class="stat-card stat-streak">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-content">
+                            <div class="stat-label">連続学習</div>
+                            <div class="stat-value"><?= $userStats['current_streak'] ?>日</div>
+                            <div class="stat-sub">最長: <?= $userStats['longest_streak'] ?>日</div>
+                        </div>
+                    </div>
+
+                    <!-- バッジ -->
+                    <div class="stat-card stat-badges">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-content">
+                            <div class="stat-label">獲得バッジ</div>
+                            <div class="stat-value"><?= $userStats['badge_count'] ?></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ストリークカレンダー -->
+                <div class="streak-calendar">
+                    <h3 class="streak-calendar-title">
+                        <span class="streak-icon">📅</span>
+                        学習カレンダー（過去30日）
+                    </h3>
+                    <div class="calendar-grid">
+                        <?php
+                        // 過去30日分のカレンダーを生成
+                        for ($i = 29; $i >= 0; $i--) {
+                            $date = date('Y-m-d', strtotime("-{$i} days"));
+                            $dayOfWeek = date('w', strtotime($date));
+                            $dayLabel = date('j', strtotime($date));
+                            $isActive = in_array($date, $streakDates);
+                            $isToday = $date === date('Y-m-d');
+
+                            $classes = ['calendar-day'];
+                            if ($isActive) $classes[] = 'active';
+                            if ($isToday) $classes[] = 'today';
+
+                            echo '<div class="' . implode(' ', $classes) . '" title="' . date('Y/m/d', strtotime($date)) . '">';
+                            echo '<span class="day-label">' . $dayLabel . '</span>';
+                            echo '</div>';
+                        }
+                        ?>
+                    </div>
+                    <div class="calendar-legend">
+                        <div class="legend-item">
+                            <div class="legend-dot legend-active"></div>
+                            <span>学習した日</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot legend-today"></div>
+                            <span>今日</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <?php if (!hasActiveSubscription()): ?>
                 <div class="upgrade-banner">
