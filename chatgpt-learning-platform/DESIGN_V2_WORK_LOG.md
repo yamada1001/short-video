@@ -295,6 +295,16 @@
 - [x] `max-width: 900px` → `700px` に変更（2カラム中央揃え）
 
 #### 2025-12-20 13:10 - progate-v2.css大幅拡張（727行追加）
+
+#### 2025-12-20 13:30 - サブスクリプションページBEM化完了
+- [x] subscribe.phpのインラインスタイルを全削除
+- [x] subscription-success.phpのインラインスタイルを全削除
+- [x] progate-v2.cssにサブスクリプション専用BEMクラス追加（120行）
+  * `.subscribe-container`, `.subscribe-card`, `.subscribe-card__title`
+  * `.subscribe-card__price`, `.subscribe-card__features`
+  * `.success-container`, `.success-card`, `.success-card__icon`
+
+#### 2025-12-20 13:10 - progate-v2.css大幅拡張（727行追加）
 - [x] ダッシュボードページ用BEMクラス追加（95コンポーネント）
   * `.dashboard`, `.dashboard-header`, `.dashboard-subtitle`
   * `.upgrade-banner`, `.course-grid`, `.course-card`
@@ -326,11 +336,15 @@
 ## 📋 残作業タスク（優先順位順）
 
 ### Phase 1: ページ検証と修正（重要）
-- [ ] dashboard.phpのデザイン検証（ブラウザで確認）
-- [ ] course.phpのデザイン検証（ブラウザで確認）
-- [ ] lesson.phpのデザイン検証（ブラウザで確認）
-- [ ] subscribe.phpをBEMクラスに書き換え（現在インラインスタイル）
-- [ ] subscription-success.phpをBEMクラスに書き換え（現在インラインスタイル）
+- [x] subscribe.phpをBEMクラスに書き換え（完了）
+- [x] subscription-success.phpをBEMクラスに書き換え（完了）
+- [ ] デプロイ後に全ページをブラウザで検証
+  * dashboard.php
+  * course.php
+  * lesson.php
+  * subscribe.php
+  * subscription-success.php
+  * index.html/index.php
 
 ### Phase 2: 管理画面対応
 - [ ] admin/index.phpのデザイン検証と修正

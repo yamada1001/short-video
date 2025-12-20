@@ -25,30 +25,30 @@ $user = getCurrentUser();
 <body>
     <?php include __DIR__ . '/../includes/header.php'; ?>
 
-    <div class="container" style="max-width: 600px; margin: 100px auto; text-align: center; padding: 0 20px;">
-        <div style="background: white; padding: 60px 40px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.07);">
-            <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
-            <h1 style="font-size: 28px; margin-bottom: 16px;">プレミアム会員登録完了！</h1>
-            <p style="color: var(--text-muted); margin-bottom: 30px;">
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-card__icon">🎉</div>
+            <h1 class="success-card__title">プレミアム会員登録完了！</h1>
+            <p class="success-card__message">
                 ご登録ありがとうございます。<br>
                 すべてのコースにアクセスできるようになりました。
             </p>
 
-            <div class="alert alert-success" style="text-align: left; margin-bottom: 30px;">
-                <h3 style="font-size: 16px; margin-bottom: 12px;">これからできること</h3>
-                <ul style="padding-left: 20px;">
+            <div class="alert alert-success">
+                <h3>これからできること</h3>
+                <ul>
                     <li>すべてのプレミアムコースを受講</li>
                     <li>Gemini AIを1日100回まで実行可能</li>
                     <li>課題の詳細フィードバックを受け取る</li>
                 </ul>
             </div>
 
-            <a href="<?= APP_URL ?>/dashboard.php" class="btn btn-primary btn-block" style="font-size: 18px; padding: 16px;">
+            <a href="<?= APP_URL ?>/dashboard.php" class="btn-primary btn-block">
                 ダッシュボードへ
             </a>
         </div>
 
-        <p style="margin-top: 30px; color: var(--text-muted); font-size: 14px;">
+        <p class="success-footer">
             サブスクリプションの管理は<a href="<?= APP_URL ?>/dashboard.php" class="text-link">ダッシュボード</a>から行えます。
         </p>
     </div>

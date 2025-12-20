@@ -108,8 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php include __DIR__ . '/../includes/header.php'; ?>
 
-    <div class="container" style="max-width: 800px; margin: 60px auto; padding: 0 20px;">
-        <div class="page-header" style="text-align: center; margin-bottom: 40px;">
+    <div class="subscribe-container">
+        <div class="page-header">
             <h1>プレミアム会員登録</h1>
             <p>すべてのコースにアクセスして、Gemini AIを使いこなそう</p>
         </div>
@@ -120,51 +120,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
 
-        <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); margin-bottom: 30px;">
-            <h2 style="font-size: 24px; margin-bottom: 20px; text-align: center;">
+        <div class="subscribe-card">
+            <h2 class="subscribe-card__title">
                 <?= h($selectedPlan['name']) ?>
             </h2>
-            <div style="text-align: center; margin-bottom: 30px;">
-                <span style="font-size: 36px; font-weight: 700; color: var(--primary);">
-                    <?= h($selectedPlan['price']) ?>
-                </span>
+            <div class="subscribe-card__price">
+                <span class="subscribe-card__price-amount"><?= h($selectedPlan['price']) ?></span>
             </div>
 
-            <h3 style="font-size: 18px; margin-bottom: 16px;">プレミアム会員の特典</h3>
-            <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
-                <li style="padding: 12px 0; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center;">
-                    <span style="color: var(--success); margin-right: 12px; font-size: 20px;">✓</span>
+            <h3 class="subscribe-card__features-title">プレミアム会員の特典</h3>
+            <ul class="subscribe-card__features">
+                <li class="subscribe-card__feature">
+                    <span class="subscribe-card__feature-icon">✓</span>
                     すべてのコースにアクセス可能
                 </li>
-                <li style="padding: 12px 0; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center;">
-                    <span style="color: var(--success); margin-right: 12px; font-size: 20px;">✓</span>
+                <li class="subscribe-card__feature">
+                    <span class="subscribe-card__feature-icon">✓</span>
                     Gemini AI実行回数が1日100回に増加
                 </li>
-                <li style="padding: 12px 0; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center;">
-                    <span style="color: var(--success); margin-right: 12px; font-size: 20px;">✓</span>
+                <li class="subscribe-card__feature">
+                    <span class="subscribe-card__feature-icon">✓</span>
                     新コースへの優先アクセス
                 </li>
-                <li style="padding: 12px 0; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center;">
-                    <span style="color: var(--success); margin-right: 12px; font-size: 20px;">✓</span>
+                <li class="subscribe-card__feature">
+                    <span class="subscribe-card__feature-icon">✓</span>
                     課題の詳細フィードバック
                 </li>
             </ul>
 
             <form method="POST">
                 <input type="hidden" name="csrf_token" value="<?= generateCsrfToken() ?>">
-                <button type="submit" class="btn btn-primary btn-block" style="font-size: 18px; padding: 16px;">
+                <button type="submit" class="btn-primary btn-block">
                     <?= h($selectedPlan['name']) ?>に申し込む
                 </button>
             </form>
 
-            <div style="text-align: center; margin-top: 20px;">
+            <div class="subscribe-card__switch">
                 <a href="<?= APP_URL ?>/subscribe.php?plan=<?= $plan === 'monthly' ? 'yearly' : 'monthly' ?>" class="text-link">
                     <?= $plan === 'monthly' ? '年額プラン' : '月額プラン' ?>を見る
                 </a>
             </div>
         </div>
 
-        <div style="text-align: center; color: var(--text-muted); font-size: 14px;">
+        <div class="subscribe-footer">
             <p>お支払いはStripeで安全に処理されます。<br>いつでもキャンセル可能です。</p>
         </div>
     </div>
