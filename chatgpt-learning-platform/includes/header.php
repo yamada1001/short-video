@@ -26,6 +26,7 @@ $user = getCurrentUser();
                     </button>
                     <div class="user-dropdown">
                         <a href="<?= APP_URL ?>/profile.php">プロフィール</a>
+                        <a href="<?= APP_URL ?>/my-feedbacks.php">📬 フィードバック履歴</a>
                         <a href="<?= APP_URL ?>/logout.php">ログアウト</a>
                     </div>
                 </div>

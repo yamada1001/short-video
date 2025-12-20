@@ -95,6 +95,11 @@ $prevLesson = db()->fetchOne($prevLessonSql, [$lesson['course_id'], $lesson['ord
                 <?php endif; ?>
             </div>
 
+            <!-- ヘルプボタン -->
+            <button id="helpBtn" class="btn btn-help btn-block">
+                🆘 わからないことがあれば質問
+            </button>
+
             <button id="completeBtn" class="btn btn-success btn-block">
                 ✓ 完了にする
             </button>
@@ -122,6 +127,58 @@ $prevLesson = db()->fetchOne($prevLessonSql, [$lesson['course_id'], $lesson['ord
         </main>
     </div>
 
+    <!-- フィードバックモーダル -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🆘 ヘルプ・フィードバック</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">
+                    わからないことがあれば、お気軽にご質問ください。<br>
+                    運営チームが確認次第、返信いたします（通常1〜3営業日）。
+                </p>
+
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label for="feedbackType">フィードバックの種類</label>
+                        <select id="feedbackType" name="feedback_type" class="form-control" required>
+                            <option value="question">質問（わからないことがある）</option>
+                            <option value="bug">バグ報告（エラーが発生した）</option>
+                            <option value="request">要望（こんな機能がほしい）</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feedbackMessage">メッセージ（5文字以上）</label>
+                        <textarea id="feedbackMessage"
+                                  name="message"
+                                  class="form-control"
+                                  rows="6"
+                                  placeholder="できるだけ具体的に記入してください。&#10;&#10;例:&#10;・◯◯の部分がわかりません&#10;・◯◯を実行したら「エラー」と表示されました&#10;・◯◯の機能があると便利だと思います"
+                                  required></textarea>
+                        <div class="char-count">
+                            <span id="charCount">0</span> / 5文字以上
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelBtn">キャンセル</button>
+                        <button type="submit" class="btn btn-primary" id="submitFeedbackBtn">
+                            送信する
+                        </button>
+                    </div>
+                </form>
+
+                <div class="feedback-link">
+                    <a href="<?= APP_URL ?>/my-feedbacks.php">📬 過去のフィードバックを見る</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // レッスン設定をグローバルに設定
         window.lessonConfig = {
@@ -130,6 +187,101 @@ $prevLesson = db()->fetchOne($prevLessonSql, [$lesson['course_id'], $lesson['ord
             courseId: <?= $lesson['course_id'] ?>
         };
     </script>
+
+    <!-- フィードバックモーダル制御 -->
+    <script>
+        // モーダル要素
+        const modal = document.getElementById('feedbackModal');
+        const helpBtn = document.getElementById('helpBtn');
+        const closeModal = document.getElementById('closeModal');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const feedbackForm = document.getElementById('feedbackForm');
+        const feedbackMessage = document.getElementById('feedbackMessage');
+        const charCount = document.getElementById('charCount');
+
+        // モーダルを開く
+        helpBtn.addEventListener('click', function() {
+            modal.style.display = 'flex';
+            feedbackMessage.focus();
+        });
+
+        // モーダルを閉じる
+        function closeModalFunc() {
+            modal.style.display = 'none';
+            feedbackForm.reset();
+            charCount.textContent = '0';
+        }
+
+        closeModal.addEventListener('click', closeModalFunc);
+        cancelBtn.addEventListener('click', closeModalFunc);
+
+        // モーダル外クリックで閉じる
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModalFunc();
+            }
+        });
+
+        // ESCキーで閉じる
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                closeModalFunc();
+            }
+        });
+
+        // 文字数カウント
+        feedbackMessage.addEventListener('input', function() {
+            charCount.textContent = this.value.length;
+        });
+
+        // フィードバック送信
+        feedbackForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const message = feedbackMessage.value.trim();
+            if (message.length < 5) {
+                alert('メッセージを5文字以上入力してください');
+                return;
+            }
+
+            const feedbackType = document.getElementById('feedbackType').value;
+            const submitBtn = document.getElementById('submitFeedbackBtn');
+
+            // ボタンを無効化
+            submitBtn.disabled = true;
+            submitBtn.textContent = '送信中...';
+
+            try {
+                const response = await fetch(window.lessonConfig.appUrl + '/api/submit-feedback.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        lesson_id: window.lessonConfig.lessonId,
+                        feedback_type: feedbackType,
+                        message: message
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(result.message || 'フィードバックを送信しました！');
+                    closeModalFunc();
+                } else {
+                    alert('エラー: ' + (result.message || 'フィードバックの送信に失敗しました'));
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '送信する';
+                }
+            } catch (error) {
+                alert('通信エラーが発生しました: ' + error.message);
+                submitBtn.disabled = false;
+                submitBtn.textContent = '送信する';
+            }
+        });
+    </script>
+
     <script src="<?= APP_URL ?>/assets/js/lesson.js"></script>
 </body>
 </html>
