@@ -27,27 +27,23 @@
                     <span class="logo">YOJITU.COM</span>
                 </div>
                 <nav class="header__nav">
-                    <a href="#proposal" class="header__link">提案内容</a>
-                    <a href="#plans" class="header__link">料金プラン</a>
+                    <a href="#proposal" class="header__link">サービス内容</a>
+                    <a href="#plans" class="header__link">料金</a>
+                    <a href="#contact" class="header__link">お問い合わせ</a>
                 </nav>
             </div>
         </div>
     </header>
 
-    <!-- Hero / Cover Page -->
+    <!-- スライド1: Hero / Cover Page -->
     <section class="hero">
         <div class="container">
             <div class="hero__content">
                 <p class="hero__label">くるま買取ケイヴィレッジ 木村様</p>
                 <h1 class="hero__title">
-                    ホームページ制作<br>
-                    <span class="hero__title--accent">ご提案書</span>
+                    商品広告費の無駄を減らしながら<br>
+                    <span class="hero__title--accent">問い合わせを増やすサイトのご提案</span>
                 </h1>
-
-                <p class="hero__lead">
-                    この度は、ホームページ制作のご相談をいただき、誠にありがとうございます。<br>
-                    貴社のビジネス課題を解決するための提案をさせていただきます。
-                </p>
 
                 <p class="hero__date">
                     提案日: <?php echo date('Y年m月d日'); ?>
@@ -60,274 +56,194 @@
         </div>
     </section>
 
-    <!-- 提案の背景 / Current Issues -->
-    <section class="section background">
+    <!-- スライド2: どんなサービスなのか？（広告費の無駄がなくなる） -->
+    <section class="section">
         <div class="container">
-            <h2 class="section__title">
-                <i class="fa-solid fa-lightbulb"></i> 提案の背景
-            </h2>
-            <p class="section__lead">
-                現在、以下のような課題を抱えておられるかと思います
-            </p>
-
-            <div class="issues__grid">
-                <div class="issue-card">
-                    <div class="issue-card__number">01</div>
-                    <h3 class="issue-card__title">
-                        <i class="fa-solid fa-chart-line"></i> 広告効果が見えない
-                    </h3>
-                    <p class="issue-card__text">
-                        YouTube広告やチラシを出しているが、どの広告から問い合わせが来たのか分からない。効果的な広告に予算を集中できていない。
-                    </p>
-                </div>
-
-                <div class="issue-card">
-                    <div class="issue-card__number">02</div>
-                    <h3 class="issue-card__title">
-                        <i class="fa-solid fa-envelope-open-text"></i> 問い合わせ管理が煩雑
-                    </h3>
-                    <p class="issue-card__text">
-                        メールで問い合わせを受けているが、過去のデータを見返すのが大変。どのお客様がどんな車を探していたか、すぐに確認できない。
-                    </p>
-                </div>
-
-                <div class="issue-card">
-                    <div class="issue-card__number">03</div>
-                    <h3 class="issue-card__title">
-                        <i class="fa-solid fa-car"></i> 在庫車両の更新が手間
-                    </h3>
-                    <p class="issue-card__text">
-                        車が売れたら業者に連絡して削除依頼、新しい車が入ったら写真を送って掲載依頼。この作業に時間とコストがかかっている。
-                    </p>
-                </div>
-
-                <div class="issue-card">
-                    <div class="issue-card__number">04</div>
-                    <h3 class="issue-card__title">
-                        <i class="fa-solid fa-database"></i> データが蓄積されない
-                    </h3>
-                    <p class="issue-card__text">
-                        問い合わせデータが散らばっていて、分析できない。どのエリアからの問い合わせが多いか、どんな車種が人気かが分からない。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 提案内容 / Proposal Details -->
-    <section class="section proposal-details" id="proposal">
-        <div class="container">
-            <h2 class="section__title">
-                <i class="fa-solid fa-bullseye"></i> 提案内容
-            </h2>
-            <p class="section__lead">
-                上記の課題を解決するため、以下の機能を実装したホームページを制作いたします
-            </p>
-
-            <div class="features__list">
-                <div class="feature-item">
-                    <div class="feature-item__header">
-                        <div class="feature-item__icon">
-                            <i class="fa-solid fa-laptop-code"></i>
-                        </div>
-                        <h3 class="feature-item__title">ホームページ作成</h3>
+            <div class="issue-card">
+                <div class="issue-card__number">02</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-lightbulb"></i> どんなサービスなのか？
+                </h2>
+                <h3 class="issue-card__title">
+                    <i class="fa-solid fa-chart-line"></i> 広告費の無駄がなくなります
+                </h3>
+                <p class="issue-card__text">
+                    効果の出ていない広告を止めて、効果の出ている広告にお金を集中できます。同じ広告費で、もっと多くの問い合わせが来るようになります。
+                </p>
+                <div class="roi__summary" style="margin-top: var(--spacing-lg);">
+                    <div class="roi__summary-item">
+                        <span class="roi__summary-label">現状の広告費用30万円での成果</span>
+                        <span class="roi__summary-value">5件</span>
                     </div>
-                    <p class="feature-item__text">
-                        スマートフォン・タブレット・PCに対応したレスポンシブデザインで、どのデバイスからでも快適に閲覧できます。
-                    </p>
-                </div>
-
-                <div class="feature-item">
-                    <div class="feature-item__header">
-                        <div class="feature-item__icon">
-                            <i class="fa-solid fa-clipboard-list"></i>
-                        </div>
-                        <h3 class="feature-item__title">問い合わせフォーム × 4種類</h3>
+                    <div class="roi__summary-item roi__summary-item--highlight">
+                        <span class="roi__summary-label">導入後</span>
+                        <span class="roi__summary-value">8〜10件</span>
                     </div>
-                    <p class="feature-item__text">
-                        <strong>買取</strong>・<strong>販売</strong>・<strong>リース</strong>・<strong>相談</strong> の4つの問い合わせフォームを設置。お客様の目的に合わせたフォームで、問い合わせのハードルを下げます。
-                    </p>
-                </div>
-
-                <div class="feature-item">
-                    <div class="feature-item__header">
-                        <div class="feature-item__icon">
-                            <i class="fa-solid fa-reply"></i>
-                        </div>
-                        <h3 class="feature-item__title">自動返信メール</h3>
-                    </div>
-                    <p class="feature-item__text">
-                        問い合わせがあった際、お客様に自動で確認メールを送信。「ちゃんと届いているか不安」という不安を解消します。
-                    </p>
-                </div>
-
-                <div class="feature-item">
-                    <div class="feature-item__header">
-                        <div class="feature-item__icon">
-                            <i class="fa-solid fa-car-side"></i>
-                        </div>
-                        <h3 class="feature-item__title">車両管理システム（スタンダードプランのみ）</h3>
-                    </div>
-                    <p class="feature-item__text">
-                        在庫車両の追加・変更・削除を、<strong>管理画面から自分で行えます</strong>。業者に依頼する手間とコストが削減できます。
-                    </p>
-                    <ul class="feature-item__sub-list">
-                        <li><i class="fa-solid fa-check-circle"></i> 車両情報（車種、年式、走行距離、価格など）を入力</li>
-                        <li><i class="fa-solid fa-check-circle"></i> 写真を最大10枚まで登録可能</li>
-                        <li><i class="fa-solid fa-check-circle"></i> 売却済みの車はワンクリックで非表示</li>
-                    </ul>
-                </div>
-
-                <div class="feature-item">
-                    <div class="feature-item__header">
-                        <div class="feature-item__icon">
-                            <i class="fa-solid fa-table"></i>
-                        </div>
-                        <h3 class="feature-item__title">問い合わせ管理機能（スタンダードプランのみ）</h3>
-                    </div>
-                    <p class="feature-item__text">
-                        過去の問い合わせを一覧で確認でき、<strong>Excelでダウンロード</strong>も可能。顧客データとして活用できます。
-                    </p>
-                    <ul class="feature-item__sub-list">
-                        <li><i class="fa-solid fa-check-circle"></i> 問い合わせ日時、お名前、連絡先、内容を一覧表示</li>
-                        <li><i class="fa-solid fa-check-circle"></i> 問い合わせ種別（買取/販売/リース/相談）でフィルタリング</li>
-                        <li><i class="fa-solid fa-check-circle"></i> Excelファイルとしてダウンロード可能</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- プラン概要 / Plan Overview -->
-    <section class="section pricing-details" id="plans">
-        <div class="container">
-            <h2 class="section__title">
-                <i class="fa-solid fa-layer-group"></i> プラン概要
-            </h2>
-            <p class="section__lead">
-                貴社のご要望に合わせて、2つのプランをご用意しております
-            </p>
-
-            <!-- プラン比較表（金額なし） -->
-            <div class="pricing-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>機能</th>
-                            <th>ライトプラン</th>
-                            <th class="recommended-col">スタンダードプラン<br><span class="recommended-badge">おすすめ</span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><i class="fa-solid fa-laptop-code"></i> ホームページ作成</td>
-                            <td><i class="fa-solid fa-circle-check text-success"></i></td>
-                            <td class="recommended-col"><i class="fa-solid fa-circle-check text-success"></i></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa-solid fa-clipboard-list"></i> 問い合わせフォーム × 4種類</td>
-                            <td><i class="fa-solid fa-circle-check text-success"></i></td>
-                            <td class="recommended-col"><i class="fa-solid fa-circle-check text-success"></i></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa-solid fa-reply"></i> 自動返信メール</td>
-                            <td><i class="fa-solid fa-circle-check text-success"></i></td>
-                            <td class="recommended-col"><i class="fa-solid fa-circle-check text-success"></i></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa-solid fa-mobile-screen"></i> スマホ・タブレット対応</td>
-                            <td><i class="fa-solid fa-circle-check text-success"></i></td>
-                            <td class="recommended-col"><i class="fa-solid fa-circle-check text-success"></i></td>
-                        </tr>
-                        <tr class="feature-divider">
-                            <td colspan="3"><strong>管理機能</strong></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa-solid fa-car-side"></i> 車両管理システム（自分で追加・変更・削除）</td>
-                            <td><i class="fa-solid fa-circle-xmark text-muted"></i></td>
-                            <td class="recommended-col"><i class="fa-solid fa-circle-check text-success"></i></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa-solid fa-table"></i> 問い合わせ一覧・管理</td>
-                            <td><i class="fa-solid fa-circle-xmark text-muted"></i></td>
-                            <td class="recommended-col"><i class="fa-solid fa-circle-check text-success"></i></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa-solid fa-file-excel"></i> Excelダウンロード</td>
-                            <td><i class="fa-solid fa-circle-xmark text-muted"></i></td>
-                            <td class="recommended-col"><i class="fa-solid fa-circle-check text-success"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- お見積もり案内 -->
-            <div class="pricing-note">
-                <div class="pricing-note__item pricing-note__item--highlight">
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
-                    <div>
-                        <strong>料金について</strong><br>
-                        <span class="text-small">詳細なお見積もりは、打ち合わせ時にご提示させていただきます。貴社のご予算に合わせた最適なプランをご提案いたします。</span>
+                    <div class="roi__summary-item">
+                        <span class="roi__summary-label">60％売上アップで収益</span>
+                        <span class="roi__summary-value">30万円増</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-
-    <!-- 納期 / Delivery Schedule -->
-    <section class="section delivery-schedule">
+    <!-- スライド3: どんなサービスなのか？（効率よく集客） -->
+    <section class="section">
         <div class="container">
-            <h2 class="section__title">
-                <i class="fa-solid fa-calendar-days"></i> 納期
-            </h2>
+            <div class="issue-card">
+                <div class="issue-card__number">03</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-lightbulb"></i> どんなサービスなのか？
+                </h2>
+                <h3 class="issue-card__title">
+                    <i class="fa-solid fa-map-location-dot"></i> 効率よく集客できます
+                </h3>
+                <p class="issue-card__text">
+                    問い合わせの多いエリアが分かるので、そこに集中してチラシを配れます。反応の悪いエリアにチラシを配る無駄がなくなります。
+                </p>
+            </div>
+        </div>
+    </section>
 
-            <div class="delivery-timeline">
-                <div class="delivery-period">
-                    <div class="delivery-period__duration">
-                        <i class="fa-solid fa-clock"></i>
-                        <span class="delivery-period__number">約4週間</span>
-                    </div>
-                    <p class="delivery-period__note">
-                        ご契約・ご入金確認後、約1ヶ月で納品いたします
-                    </p>
-                </div>
+    <!-- スライド4: どんなサービスなのか？（更新の手間がなくなる） -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">04</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-lightbulb"></i> どんなサービスなのか？
+                </h2>
+                <h3 class="issue-card__title">
+                    <i class="fa-solid fa-rotate"></i> 更新の手間がなくなります
+                </h3>
+                <p class="issue-card__text">
+                    車が売れたらすぐ削除、新しい車が入ったらすぐ掲載。業者に連絡して、返事を待って、費用を払う。その手間が全部なくなります。
+                </p>
+            </div>
+        </div>
+    </section>
 
-                <div class="delivery-steps">
-                    <div class="delivery-step">
-                        <div class="delivery-step__week">Week 1-2</div>
-                        <div class="delivery-step__content">
-                            <i class="fa-solid fa-pen-ruler"></i>
-                            <h4>設計・デザイン</h4>
-                            <p>ヒアリングを基に、サイト構成とデザインを作成します</p>
+    <!-- スライド5: サービスを受けると、、 -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">05</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-star"></i> サービスを受けると、、
+                </h2>
+                <ul class="feature-item__sub-list" style="margin-top: var(--spacing-lg);">
+                    <li><i class="fa-solid fa-check-circle"></i> 広告費用が今より10％、20％削減できるようになる！</li>
+                    <li><i class="fa-solid fa-check-circle"></i> 広告からの申し込みが主流の集客手段に変わる！</li>
+                    <li><i class="fa-solid fa-check-circle"></i> 基本、即日対応可能な環境でビジネスに集中できるようなる！</li>
+                    <li><i class="fa-solid fa-check-circle"></i> 更新作業の時間的なロスを無くし、無駄なストレスから解放！</li>
+                    <li><i class="fa-solid fa-check-circle"></i> 上がった収益を面倒な業務や、外部委託費用として再投資できるようになる！</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド6: 今回受けていただくサービスは…（集客装置） -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">06</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-rocket"></i> 今回受けていただくサービスは…
+                </h2>
+                <p class="hero__lead">
+                    あなたの会社の売り上げを底上げする集客装置として、上がった利益でより良い環境を作り出す大事なシステムを作る第一歩！
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド7: 今回受けていただくサービスは…（HPの在り方） -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">07</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-rocket"></i> 今回受けていただくサービスは…
+                </h2>
+                <p class="hero__lead">
+                    私たちはただネット上の看板になるだけのHPは作りません！利益を産むことが私たちが目指しているHPの在り方です。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド8: パッケージ紹介 -->
+    <section class="section" id="proposal">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">08</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-box-open"></i> サービスパッケージの紹介
+                </h2>
+                <div class="features__list" style="margin-top: var(--spacing-lg);">
+                    <div class="feature-item">
+                        <div class="feature-item__header">
+                            <div class="feature-item__icon">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <h3 class="feature-item__title">ホームページ作成</h3>
                         </div>
                     </div>
-
-                    <div class="delivery-step">
-                        <div class="delivery-step__week">Week 3</div>
-                        <div class="delivery-step__content">
-                            <i class="fa-solid fa-code"></i>
-                            <h4>フロントエンド実装</h4>
-                            <p>ホームページのデザインをコーディングします</p>
+                    <div class="feature-item">
+                        <div class="feature-item__header">
+                            <div class="feature-item__icon">
+                                <i class="fa-solid fa-clipboard-list"></i>
+                            </div>
+                            <h3 class="feature-item__title">問い合わせフォーム×4種類（買取、販売、リース、相談）</h3>
                         </div>
                     </div>
-
-                    <div class="delivery-step">
-                        <div class="delivery-step__week">Week 4</div>
-                        <div class="delivery-step__content">
-                            <i class="fa-solid fa-database"></i>
-                            <h4>バックエンド・管理画面</h4>
-                            <p>問い合わせフォーム、車両管理システムなどを実装します</p>
+                    <div class="feature-item">
+                        <div class="feature-item__header">
+                            <div class="feature-item__icon">
+                                <i class="fa-solid fa-reply"></i>
+                            </div>
+                            <h3 class="feature-item__title">問い合わせ内容を受信後の自動送信システム</h3>
                         </div>
                     </div>
-
-                    <div class="delivery-step">
-                        <div class="delivery-step__week">Week 5</div>
-                        <div class="delivery-step__content">
-                            <i class="fa-solid fa-check-double"></i>
-                            <h4>テスト・納品</h4>
-                            <p>動作確認、修正を行い、納品・公開いたします</p>
+                    <div class="feature-item">
+                        <div class="feature-item__header">
+                            <div class="feature-item__icon">
+                                <i class="fa-solid fa-mobile-screen"></i>
+                            </div>
+                            <h3 class="feature-item__title">スマホ・タブレット対応</h3>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-item__header">
+                            <div class="feature-item__icon">
+                                <i class="fa-solid fa-car-side"></i>
+                            </div>
+                            <h3 class="feature-item__title">車の情報を追加・変更・削除できるシステム導入</h3>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-item__header">
+                            <div class="feature-item__icon">
+                                <i class="fa-solid fa-table"></i>
+                            </div>
+                            <h3 class="feature-item__title">過去の問い合わせ一覧が見られる</h3>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-item__header">
+                            <div class="feature-item__icon">
+                                <i class="fa-solid fa-file-excel"></i>
+                            </div>
+                            <h3 class="feature-item__title">問い合わせをExcelでダウンロードできる</h3>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-item__header">
+                            <div class="feature-item__icon">
+                                <i class="fa-solid fa-chart-bar"></i>
+                            </div>
+                            <h3 class="feature-item__title">月に何件問い合わせがあったかグラフで見られる</h3>
                         </div>
                     </div>
                 </div>
@@ -335,79 +251,317 @@
         </div>
     </section>
 
-    <!-- 次のステップ / Next Steps -->
-    <section class="section next-steps" id="contact">
+    <!-- スライド9: ホームページ作成について -->
+    <section class="section">
         <div class="container">
-            <h2 class="section__title">
-                <i class="fa-solid fa-handshake"></i> 次のステップ
-            </h2>
-            <p class="section__lead">
-                この提案書をご確認いただき、ご納得いただけましたら、以下の流れで進めさせていただきます
-            </p>
-
-            <div class="steps-flow">
-                <div class="step-item">
-                    <div class="step-item__number">
-                        <i class="fa-solid fa-1"></i>
-                    </div>
-                    <div class="step-item__content">
-                        <h3 class="step-item__title">ご検討</h3>
-                        <p class="step-item__text">
-                            この提案書をご確認いただき、ご不明点やご質問がございましたら、お気軽にお問い合わせください。
-                        </p>
-                    </div>
-                </div>
-
-                <div class="step-arrow">
-                    <i class="fa-solid fa-arrow-down"></i>
-                </div>
-
-                <div class="step-item">
-                    <div class="step-item__number">
-                        <i class="fa-solid fa-2"></i>
-                    </div>
-                    <div class="step-item__content">
-                        <h3 class="step-item__title">ご契約・お支払い</h3>
-                        <p class="step-item__text">
-                            内容にご納得いただけましたら、ご契約書を交わします。<strong>お支払いは前払い制</strong>となります（銀行振込）。
-                        </p>
-                    </div>
-                </div>
-
-                <div class="step-arrow">
-                    <i class="fa-solid fa-arrow-down"></i>
-                </div>
-
-                <div class="step-item">
-                    <div class="step-item__number">
-                        <i class="fa-solid fa-3"></i>
-                    </div>
-                    <div class="step-item__content">
-                        <h3 class="step-item__title">制作開始</h3>
-                        <p class="step-item__text">
-                            ご入金確認後、すぐに制作に着手いたします。ヒアリングを行い、デザイン・開発を進めます。
-                        </p>
-                    </div>
-                </div>
-
-                <div class="step-arrow">
-                    <i class="fa-solid fa-arrow-down"></i>
-                </div>
-
-                <div class="step-item step-item--final">
-                    <div class="step-item__number">
-                        <i class="fa-solid fa-4"></i>
-                    </div>
-                    <div class="step-item__content">
-                        <h3 class="step-item__title">納品・公開</h3>
-                        <p class="step-item__text">
-                            約4週間後、サイトを納品いたします。動作確認後、公開となります。
-                        </p>
+            <div class="issue-card">
+                <div class="issue-card__number">09</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-laptop-code"></i> ホームページ作成について
+                </h2>
+                <p class="section__lead">サービスの中身を詳しく解説して価値を伝える</p>
+                <ul class="feature-item__sub-list" style="margin-top: var(--spacing-lg);">
+                    <li><i class="fa-solid fa-check-circle"></i> 目標設定ワークで目標設定を一緒に行います</li>
+                    <li><i class="fa-solid fa-check-circle"></i> 商品設計シートにて、売れる商品に共通する型を知る</li>
+                    <li><i class="fa-solid fa-check-circle"></i> あなたのサービスの洗い出し</li>
+                    <li><i class="fa-solid fa-check-circle"></i> お客さんが納得して買ってくれるか？確認ワークシート</li>
+                    <li><i class="fa-solid fa-check-circle"></i> みたいに受けた時のイメージをさせる</li>
+                </ul>
+                <div class="roi__summary" style="margin-top: var(--spacing-lg);">
+                    <div class="roi__summary-item roi__summary-item--highlight">
+                        <span class="roi__summary-label">単体販売価格</span>
+                        <span class="roi__summary-value">40万円</span>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- お問い合わせCTA -->
+    <!-- スライド10: 問い合わせフォーム×4種類 -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">10</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-clipboard-list"></i> 問い合わせフォーム×4種類
+                </h2>
+                <p class="section__lead">（買取、販売、リース、相談）</p>
+                <ul class="feature-item__sub-list" style="margin-top: var(--spacing-lg);">
+                    <li><i class="fa-solid fa-check-circle"></i> 年式、写真、走行距離などを入れた時に検索結果が反映される買取フォームを作ります。</li>
+                    <li><i class="fa-solid fa-check-circle"></i> 売れた事例をもとにあなたの商品作りをサポート</li>
+                    <li><i class="fa-solid fa-check-circle"></i> 事前ワークシートがあるので、時間が無駄にならない！</li>
+                    <li><i class="fa-solid fa-check-circle"></i> 集客に困ったら都度相談可能！</li>
+                </ul>
+                <div class="roi__summary" style="margin-top: var(--spacing-lg);">
+                    <div class="roi__summary-item roi__summary-item--highlight">
+                        <span class="roi__summary-label">単体販売価格</span>
+                        <span class="roi__summary-value">30万円</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド11: 今回提供するサービスのまとめ -->
+    <section class="section" id="plans">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">11</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-list-check"></i> 今回提供するサービスのまとめ
+                </h2>
+                <div class="pricing-table" style="margin-top: var(--spacing-lg);">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>サービス内容</th>
+                                <th>価格</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><i class="fa-solid fa-laptop-code"></i> ホームページ作成</td>
+                                <td>40万円</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-clipboard-list"></i> 問い合わせフォーム×4種類（買取、販売、リース、相談）</td>
+                                <td>30万円</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-reply"></i> 問い合わせ内容を受信後の自動送信システム</td>
+                                <td>3万円</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-mobile-screen"></i> スマホ・タブレット対応</td>
+                                <td>5万円</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-car-side"></i> 車の情報を追加・変更・削除できるシステム導入</td>
+                                <td>50万円</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-table"></i> 過去の問い合わせ一覧が見られる</td>
+                                <td>3万円</td>
+                            </tr>
+                            <tr class="feature-divider">
+                                <td><strong>合計</strong></td>
+                                <td><strong>131万円</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="section__lead" style="margin-top: var(--spacing-md);">
+                    131万円相当のものを提供予定としています。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド12: 通常のサイトとの違い -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">12</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-code-compare"></i> 通常のサイトとの違い
+                </h2>
+                <p class="section__lead">ただのホームページではなく、YouTube広告の効果が測れるサイトを作ります</p>
+                <div class="pricing-table" style="margin-top: var(--spacing-lg);">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>通常のHP</th>
+                                <th class="recommended-col">今回のご提案</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>目的</td>
+                                <td>会社情報の掲載</td>
+                                <td class="recommended-col">お問い合わせを増やす</td>
+                            </tr>
+                            <tr>
+                                <td>問い合わせフォーム</td>
+                                <td>1つだけ</td>
+                                <td class="recommended-col">4種類（買取・販売・リース・相談で分ける）</td>
+                            </tr>
+                            <tr>
+                                <td>問い合わせの管理</td>
+                                <td>メールで受信するだけ</td>
+                                <td class="recommended-col">過去の問い合わせを一覧で見られる</td>
+                            </tr>
+                            <tr>
+                                <td>車の情報変更</td>
+                                <td>業者に依頼が必要</td>
+                                <td class="recommended-col">自分で変更できる（スタンダードプラン）</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド13: 一つ一つ単発で受けた場合 -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">13</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-calculator"></i> 一つ一つ単発で受けた場合
+                </h2>
+                <p class="hero__lead">
+                    143万円かかるサービスをパッケージ化して購入してもらいやすい金額にてご提供します
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド14: 143万円 → 88万円 -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">14</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-tags"></i> パッケージ価格
+                </h2>
+                <div class="price-stages">
+                    <div class="price-stage price-stage--crossed">
+                        <span class="price-stage__label">単体購入の場合</span>
+                        <div class="price-stage__amount">
+                            <span class="price-stage__number">143</span>
+                            <span class="price-stage__unit">万円</span>
+                        </div>
+                    </div>
+                    <div class="price-stage__arrow">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
+                    <div class="price-stage price-stage--final">
+                        <span class="price-stage__label">パッケージ価格</span>
+                        <div class="price-stage__amount">
+                            <span class="price-stage__number">88</span>
+                            <span class="price-stage__unit">万円</span>
+                        </div>
+                        <p class="price-stage__note">にてパッケージ提供します</p>
+                    </div>
+                </div>
+                <p class="hero__lead">
+                    まとめて受けてもらえるとコスト的にも対応する顧客数が少なく楽だから優遇してます。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド15: お申し込みください -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">15</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-hand-point-right"></i> 少しでも興味を持っていただけて<br>やってみたいという方は是非お申し込みください！
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド16: そして、さらに！！ -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">16</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-gift"></i> そして、さらに！！
+                </h2>
+                <p class="hero__lead">
+                    今回この場に来ていただいたあなたに特別なご提案を用意しました。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド17: 即決割引価格を用意 -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">17</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-bolt"></i> 本日参加をご決断して<br>一緒にやりたいといっていただく方限定にはなりますが、、、
+                </h2>
+                <p class="hero__lead">
+                    即決割引価格を用意してます
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド18: 今回の即決割引価格に込めた想い -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">18</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-heart"></i> 今回の即決割引価格に込めた想い
+                </h2>
+                <p class="hero__lead">
+                    即決される方は成果を出すのが早いし、面倒なことを言わない笑<br>
+                    だから私も全力でサポートしたいと思える！だから少しでもお得に受けてもらいたいんです！<br>
+                    本音の部分で言うと、もっと実績として掲載させてもらえる事例を作りたい。。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド19: 即決限定価格！88万円 → 55万円 -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">19</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-fire"></i> 即決限定価格！
+                </h2>
+                <div class="price-stages">
+                    <div class="price-stage price-stage--crossed">
+                        <span class="price-stage__label">パッケージ価格</span>
+                        <div class="price-stage__amount">
+                            <span class="price-stage__number">88</span>
+                            <span class="price-stage__unit">万円</span>
+                        </div>
+                    </div>
+                    <div class="price-stage__arrow">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
+                    <div class="price-stage price-stage--final">
+                        <span class="price-stage__label">即決限定価格</span>
+                        <div class="price-stage__amount">
+                            <span class="price-stage__number">55</span>
+                            <span class="price-stage__unit">万円</span>
+                        </div>
+                        <p class="price-stage__note">にて提供します</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- スライド20: 大分の事業者さんにもっと稼いでもらいたい！ -->
+    <section class="section">
+        <div class="container">
+            <div class="issue-card">
+                <div class="issue-card__number">20</div>
+                <h2 class="section__title">
+                    <i class="fa-solid fa-handshake-angle"></i> 大分の事業者さんにもっと稼いでもらいたい！
+                </h2>
+                <p class="hero__lead">
+                    東京と比べて格差を減らすために活動してます。木村さんにも東京の当たり前のHP水準を導入してもらいたいと思ってます！
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせCTA（最後に配置） -->
+    <section class="section" id="contact">
+        <div class="container">
             <div class="contact-cta">
                 <div class="contact-cta__content">
                     <h3 class="contact-cta__title">
