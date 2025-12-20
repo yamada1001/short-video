@@ -48,6 +48,53 @@ foreach ($lessons as $lesson) {
     }
 }
 $progressPercent = $totalLessons > 0 ? round(($completedLessons / $totalLessons) * 100) : 0;
+
+// コースごとのベネフィット情報（将来的にはDBから取得）
+$courseBenefits = [
+    1 => [ // 初めてのプロンプトエンジニアリング
+        'skills' => [
+            '効果的なプロンプトの書き方',
+            'AI との対話の基本原則',
+            '具体的な指示の出し方',
+            'コンテキストの与え方',
+            '結果の改善方法'
+        ],
+        'realworld' => [
+            [
+                'title' => '業務メールの下書き作成',
+                'description' => '「顧客への謝罪メールを書いてください」といった具体的な指示で、適切なビジネスメールを自動生成'
+            ],
+            [
+                'title' => 'ブログ記事のアイデア出し',
+                'description' => 'テーマとターゲット読者を指定することで、魅力的な記事タイトルと構成案を取得'
+            ],
+            [
+                'title' => '翻訳・要約タスク',
+                'description' => '「この文章を英語に翻訳してください」「200文字で要約してください」など、日常業務で即活用'
+            ]
+        ]
+    ],
+    // 他のコースのベネフィットも追加可能
+];
+
+// 現在のコースのベネフィットを取得（デフォルト値を設定）
+$benefits = $courseBenefits[$courseId] ?? [
+    'skills' => [
+        'AIツールの基本的な使い方',
+        '効率的な業務の進め方',
+        'プロンプト作成の基礎知識'
+    ],
+    'realworld' => [
+        [
+            'title' => '業務効率化',
+            'description' => 'AIを活用して日々の業務を効率化できます'
+        ],
+        [
+            'title' => '生産性向上',
+            'description' => '繰り返し作業を自動化し、クリエイティブな仕事に集中できます'
+        ]
+    ]
+];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -120,6 +167,43 @@ $progressPercent = $totalLessons > 0 ? round(($completedLessons / $totalLessons)
                     <a href="<?= APP_URL ?>/subscribe.php" class="btn btn-sm btn-primary">プレミアムに登録</a>
                 </div>
             <?php endif; ?>
+
+            <!-- コースベネフィット -->
+            <section class="course-benefits">
+                <div class="benefits-grid">
+                    <!-- 得られるスキル -->
+                    <div class="benefit-card benefit-skills">
+                        <div class="benefit-header">
+                            <div class="benefit-icon">💡</div>
+                            <h3>このコースで得られるスキル</h3>
+                        </div>
+                        <ul class="skills-list">
+                            <?php foreach ($benefits['skills'] as $skill): ?>
+                                <li>
+                                    <span class="skill-check">✓</span>
+                                    <span><?= h($skill) ?></span>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+
+                    <!-- 実務活用例 -->
+                    <div class="benefit-card benefit-realworld">
+                        <div class="benefit-header">
+                            <div class="benefit-icon">🚀</div>
+                            <h3>実務での活用例</h3>
+                        </div>
+                        <div class="realworld-examples">
+                            <?php foreach ($benefits['realworld'] as $example): ?>
+                                <div class="example-item">
+                                    <h4 class="example-title"><?= h($example['title']) ?></h4>
+                                    <p class="example-description"><?= h($example['description']) ?></p>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- レッスン一覧 -->
             <div class="lessons-list">
