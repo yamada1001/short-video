@@ -148,7 +148,7 @@ body {
 .timeline::before {
     content: '';
     position: absolute;
-    left: 120px;
+    left: 140px;
     top: 0;
     bottom: 0;
     width: 2px;
@@ -162,7 +162,7 @@ body {
 }
 
 .timeline-year {
-    width: 120px;
+    width: 140px;
     font-weight: 700;
     color: var(--bni-red);
     flex-shrink: 0;
@@ -360,11 +360,11 @@ body {
     }
 
     .timeline::before {
-        left: 120px;
+        left: 140px;
     }
 
     .timeline-year {
-        width: 120px;
+        width: 140px;
         font-size: 14px;
         white-space: nowrap;
     }
@@ -478,11 +478,11 @@ body {
 
     /* タイムライン */
     .timeline::before {
-        left: 120px;
+        left: 140px;
     }
 
     .timeline-year {
-        width: 120px;
+        width: 140px;
         font-size: 14px;
         word-break: keep-all;
         white-space: nowrap;
