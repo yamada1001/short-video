@@ -54,15 +54,27 @@ $prevLesson = db()->fetchOne($prevLessonSql, [$lesson['course_id'], $lesson['ord
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= h($lesson['title']) ?> | Gemini AI学習プラットフォーム</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="<?= APP_URL ?>/public/assets/css/progate-v2.css">
 </head>
 <body class="lesson-page">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div class="lesson-layout">
         <!-- サイドバー -->
         <aside class="lesson-sidebar">
@@ -97,11 +109,11 @@ $prevLesson = db()->fetchOne($prevLessonSql, [$lesson['course_id'], $lesson['ord
 
             <!-- ヘルプボタン -->
             <button id="helpBtn" class="btn btn-help btn-block">
-                🆘 わからないことがあれば質問
+                <i class="fas fa-question-circle"></i> わからないことがあれば質問
             </button>
 
             <button id="completeBtn" class="btn btn-success btn-block">
-                ✓ 完了にする
+                <i class="fas fa-check"></i> 完了にする
             </button>
         </aside>
 
@@ -131,7 +143,7 @@ $prevLesson = db()->fetchOne($prevLessonSql, [$lesson['course_id'], $lesson['ord
     <div id="feedbackModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>🆘 ヘルプ・フィードバック</h2>
+                <h2><i class="fas fa-question-circle"></i> ヘルプ・フィードバック</h2>
                 <button class="modal-close" id="closeModal">&times;</button>
             </div>
             <div class="modal-body">
@@ -173,7 +185,7 @@ $prevLesson = db()->fetchOne($prevLessonSql, [$lesson['course_id'], $lesson['ord
                 </form>
 
                 <div class="feedback-link">
-                    <a href="<?= APP_URL ?>/my-feedbacks.php">📬 過去のフィードバックを見る</a>
+                    <a href="<?= APP_URL ?>/my-feedbacks.php"><i class="fas fa-inbox"></i> 過去のフィードバックを見る</a>
                 </div>
             </div>
         </div>

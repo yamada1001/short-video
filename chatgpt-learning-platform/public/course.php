@@ -24,11 +24,6 @@ if (!$course) {
     redirect(APP_URL . '/dashboard.php');
 }
 
-// アクセス権チェック
-if (!canAccessCourse($courseId)) {
-    $error = 'このコースはプレミアム会員限定です。';
-}
-
 // レッスン一覧を取得
 $lessonsSql = "SELECT l.*,
                COALESCE(up.status, 'not_started') as progress_status,
@@ -99,6 +94,13 @@ $benefits = $courseBenefits[$courseId] ?? [
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= h($course['title']) ?> | Gemini AI学習プラットフォーム</title>
@@ -108,6 +110,10 @@ $benefits = $courseBenefits[$courseId] ?? [
     <link rel="stylesheet" href="<?= APP_URL ?>/public/assets/css/progate-v2.css">
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <?php include __DIR__ . '/../includes/header.php'; ?>
 
     <main class="course-detail">
@@ -137,11 +143,7 @@ $benefits = $courseBenefits[$courseId] ?? [
                                 ?>
                             </span>
                             <span class="lesson-count"><?= $totalLessons ?> レッスン</span>
-                            <?php if ($course['is_free']): ?>
-                                <span class="badge badge-free">無料</span>
-                            <?php else: ?>
-                                <span class="badge badge-premium">プレミアム</span>
-                            <?php endif; ?>
+                            <span class="badge badge-free">無料</span>
                         </div>
                     </div>
 
@@ -160,13 +162,6 @@ $benefits = $courseBenefits[$courseId] ?? [
                     </div>
                 </div>
             </div>
-
-            <?php if (isset($error)): ?>
-                <div class="alert alert-error">
-                    <?= h($error) ?>
-                    <a href="<?= APP_URL ?>/subscribe.php" class="btn btn-sm btn-primary">プレミアムに登録</a>
-                </div>
-            <?php endif; ?>
 
             <!-- コースベネフィット -->
             <section class="course-benefits">
@@ -211,7 +206,7 @@ $benefits = $courseBenefits[$courseId] ?? [
 
                 <?php foreach ($lessons as $index => $lesson): ?>
                     <?php
-                    $isLocked = isset($error);
+                    $isLocked = false; // 全てのレッスンがアクセス可能
                     $isCompleted = $lesson['progress_status'] === 'completed';
                     $isInProgress = $lesson['progress_status'] === 'in_progress';
 

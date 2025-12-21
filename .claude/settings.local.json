@@ -267,7 +267,22 @@
       "Bash(/Users/yamadaren/Movies/claude-code-projects/yojitu.com/chatgpt-learning-platform/schema-import-only.sql)",
       "Bash(zip:*)",
       "Bash(if grep -q \"assets/css/style.css\" \"$file\")",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(__NEW_LINE__ head -23 /Users/yamadaren/Movies/claude-code-projects/yojitu.com/chatgpt-learning-platform/public/index.php)",
+      "Bash(/tmp/php_header.txt)",
+      "Bash(__NEW_LINE__ tail -n +36 /Users/yamadaren/Movies/claude-code-projects/yojitu.com/chatgpt-learning-platform/public/index.html)",
+      "Bash(/tmp/html_body.txt)",
+      "Bash(__NEW_LINE__ cat /tmp/php_header.txt)",
+      "Bash(/Users/yamadaren/Movies/claude-code-projects/yojitu.com/chatgpt-learning-platform/public/index.php.new)",
+      "Bash(__NEW_LINE__ echo '</head>')",
+      "Bash(__NEW_LINE__ cat /tmp/html_body.txt)",
+      "Bash(__NEW_LINE__ mv /Users/yamadaren/Movies/claude-code-projects/yojitu.com/chatgpt-learning-platform/public/index.php.new /Users/yamadaren/Movies/claude-code-projects/yojitu.com/chatgpt-learning-platform/public/index.php)",
+      "Bash(__NEW_LINE__ echo \"✓ index.php updated with correct HTML structure\")",
+      "Bash(gh run list:*)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff chatgpt-learning-platform/public/assets/css/progate-v2.css)",
+      "Bash(if grep -q \"^\\.$class\" /Users/yamadaren/Movies/claude-code-projects/yojitu.com/chatgpt-learning-platform/public/assets/css/progate-v2.css)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com status --short)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com log --oneline -5 -- chatgpt-learning-platform/admin/)"
     ],
     "deny": [],
     "ask": []

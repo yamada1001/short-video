@@ -14,27 +14,24 @@ $user = getCurrentUser();
 // 全体の進捗統計を取得
 $totalLessonsSql = "SELECT COUNT(DISTINCT l.id) as total
                     FROM lessons l
-                    JOIN courses c ON l.course_id = c.id
-                    WHERE c.is_free = 1 OR ? = 1";
-$totalLessonsResult = db()->fetchOne($totalLessonsSql, [hasActiveSubscription() ? 1 : 0]);
+                    JOIN courses c ON l.course_id = c.id";
+$totalLessonsResult = db()->fetchOne($totalLessonsSql);
 $totalLessons = $totalLessonsResult['total'] ?? 0;
 
 $completedLessonsSql = "SELECT COUNT(DISTINCT up.lesson_id) as completed
                         FROM user_progress up
                         JOIN lessons l ON up.lesson_id = l.id
                         JOIN courses c ON l.course_id = c.id
-                        WHERE up.user_id = ? AND up.status = 'completed'
-                        AND (c.is_free = 1 OR ? = 1)";
-$completedLessonsResult = db()->fetchOne($completedLessonsSql, [$user['id'], hasActiveSubscription() ? 1 : 0]);
+                        WHERE up.user_id = ? AND up.status = 'completed'";
+$completedLessonsResult = db()->fetchOne($completedLessonsSql, [$user['id']]);
 $completedLessons = $completedLessonsResult['completed'] ?? 0;
 
 $inProgressLessonsSql = "SELECT COUNT(DISTINCT up.lesson_id) as in_progress
                          FROM user_progress up
                          JOIN lessons l ON up.lesson_id = l.id
                          JOIN courses c ON l.course_id = c.id
-                         WHERE up.user_id = ? AND up.status = 'in_progress'
-                         AND (c.is_free = 1 OR ? = 1)";
-$inProgressLessonsResult = db()->fetchOne($inProgressLessonsSql, [$user['id'], hasActiveSubscription() ? 1 : 0]);
+                         WHERE up.user_id = ? AND up.status = 'in_progress'";
+$inProgressLessonsResult = db()->fetchOne($inProgressLessonsSql, [$user['id']]);
 $inProgressLessons = $inProgressLessonsResult['in_progress'] ?? 0;
 
 // 全体の進捗率を計算
@@ -70,15 +67,21 @@ $courseProgressSql = "SELECT
                       FROM courses c
                       LEFT JOIN lessons l ON c.id = l.course_id
                       LEFT JOIN user_progress up ON l.id = up.lesson_id AND up.user_id = ?
-                      WHERE c.is_free = 1 OR ? = 1
                       GROUP BY c.id
                       HAVING COUNT(DISTINCT CASE WHEN up.status = 'completed' OR up.status = 'in_progress' THEN up.lesson_id END) > 0
                       ORDER BY completed_lessons DESC, c.order_num";
-$courseProgress = db()->fetchAll($courseProgressSql, [$user['id'], hasActiveSubscription() ? 1 : 0]);
+$courseProgress = db()->fetchAll($courseProgressSql, [$user['id']]);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>学習進捗 | Gemini AI学習プラットフォーム</title>
@@ -88,6 +91,10 @@ $courseProgress = db()->fetchAll($courseProgressSql, [$user['id'], hasActiveSubs
     <link rel="stylesheet" href="<?= APP_URL ?>/public/assets/css/progate-v2.css">
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <?php include __DIR__ . '/../includes/header.php'; ?>
 
     <main class="progress-page">

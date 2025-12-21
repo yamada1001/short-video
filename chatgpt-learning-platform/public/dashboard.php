@@ -59,6 +59,13 @@ $streakDates = array_column($streakData, 'activity_date');
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T7NGQDC2');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ダッシュボード | Gemini AI学習プラットフォーム</title>
@@ -68,6 +75,10 @@ $streakDates = array_column($streakData, 'activity_date');
     <link rel="stylesheet" href="<?= APP_URL ?>/public/assets/css/progate-v2.css">
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7NGQDC2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <?php include __DIR__ . '/../includes/header.php'; ?>
 
     <main class="dashboard">
@@ -75,11 +86,7 @@ $streakDates = array_column($streakData, 'activity_date');
             <div class="dashboard-header">
                 <h1>こんにちは、<?= h($user['name']) ?>さん！</h1>
                 <p class="dashboard-subtitle">
-                    <?php if (hasActiveSubscription()): ?>
-                        プレミアム会員 | 今日のAPI残り: <?= API_LIMIT_PREMIUM - checkApiLimit() ?>回
-                    <?php else: ?>
-                        無料会員 | 今日のAPI残り: <?= API_LIMIT_FREE - checkApiLimit() ?>回
-                    <?php endif; ?>
+                    今日のAPI残り: <?= API_LIMIT_FREE - checkApiLimit() ?>回
                 </p>
             </div>
 
@@ -177,14 +184,6 @@ $streakDates = array_column($streakData, 'activity_date');
                 </div>
             </section>
 
-            <?php if (!hasActiveSubscription()): ?>
-                <div class="upgrade-banner">
-                    <h3>プレミアムプランで全コースにアクセス！</h3>
-                    <p>月額980円で全コース見放題 + API呼び出し100回/日</p>
-                    <a href="<?= APP_URL ?>/subscribe.php" class="btn btn-primary">今すぐアップグレード</a>
-                </div>
-            <?php endif; ?>
-
             <!-- あなたにおすすめのコース -->
             <?php if (!empty($recommendedCourses) && $user['survey_completed_at']): ?>
                 <section class="dashboard-section recommended-courses">
@@ -210,19 +209,13 @@ $streakDates = array_column($streakData, 'activity_date');
                                         </span>
                                         <?php if ($course['is_free']): ?>
                                             <span class="badge badge-free">無料</span>
-                                        <?php else: ?>
-                                            <span class="badge badge-premium">プレミアム</span>
                                         <?php endif; ?>
                                     </div>
-                                    <?php if ($canAccess): ?>
-                                        <div class="progress-bar">
-                                            <div class="progress-fill" data-progress="<?= $progress ?>"></div>
-                                        </div>
-                                        <p class="progress-text"><?= $progress ?>% 完了</p>
-                                        <a href="<?= APP_URL ?>/course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-outline">コースを見る</a>
-                                    <?php else: ?>
-                                        <p class="locked-message">🔒 プレミアム会員限定</p>
-                                    <?php endif; ?>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-progress="<?= $progress ?>"></div>
+                                    </div>
+                                    <p class="progress-text"><?= $progress ?>% 完了</p>
+                                    <a href="<?= APP_URL ?>/course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-outline">コースを見る</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -249,19 +242,13 @@ $streakDates = array_column($streakData, 'activity_date');
                                     </span>
                                     <?php if ($course['is_free']): ?>
                                         <span class="badge badge-free">無料</span>
-                                    <?php else: ?>
-                                        <span class="badge badge-premium">プレミアム</span>
                                     <?php endif; ?>
                                 </div>
-                                <?php if ($canAccess): ?>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-progress="<?= $progress ?>"></div>
-                                    </div>
-                                    <p class="progress-text"><?= $progress ?>% 完了</p>
-                                    <a href="<?= APP_URL ?>/course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-outline">コースを見る</a>
-                                <?php else: ?>
-                                    <p class="locked-message">🔒 プレミアム会員限定</p>
-                                <?php endif; ?>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-progress="<?= $progress ?>"></div>
+                                </div>
+                                <p class="progress-text"><?= $progress ?>% 完了</p>
+                                <a href="<?= APP_URL ?>/course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-outline">コースを見る</a>
                             </div>
                         </div>
                     <?php endforeach; ?>

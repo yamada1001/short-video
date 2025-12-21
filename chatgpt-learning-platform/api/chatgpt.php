@@ -34,12 +34,8 @@ if (strlen($prompt) > 2000) {
     errorResponse('プロンプトは2000文字以内で入力してください');
 }
 
-// API使用制限チェック
-if (!checkApiLimit()) {
-    $user = getCurrentUser();
-    $limit = hasActiveSubscription() ? API_LIMIT_PREMIUM : API_LIMIT_FREE;
-    errorResponse("本日のAPI使用回数の上限（{$limit}回）に達しました。明日またお試しください。", 429);
-}
+// API使用制限チェック（制限なし）
+// checkApiLimit() は常にtrueを返すため、このチェックは実質的に無効
 
 // キャッシュチェック
 $cachedResponse = getCachedPrompt($prompt, OPENAI_MODEL);

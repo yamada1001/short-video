@@ -3,7 +3,7 @@
         'name' => 'chatgpt-learning-platform/app',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '7e040af03c3a1d8e7249b71c304116d78b997958',
+        'reference' => 'd7b4923b839e5c527ab2913548fbdca9df8656bf',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'chatgpt-learning-platform/app' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '7e040af03c3a1d8e7249b71c304116d78b997958',
+            'reference' => 'd7b4923b839e5c527ab2913548fbdca9df8656bf',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

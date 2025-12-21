@@ -41,30 +41,11 @@ function requireAdmin() {
 }
 
 /**
- * サブスクリプションチェック
- */
-function hasActiveSubscription() {
-    $user = getCurrentUser();
-    if (!$user) return false;
-
-    return $user['subscription_status'] === 'active';
-}
-
-/**
  * コースアクセス権チェック
  */
 function canAccessCourse($courseId) {
-    // コース情報を取得
-    $sql = "SELECT is_free FROM courses WHERE id = ?";
-    $course = db()->fetchOne($sql, [$courseId]);
-
-    if (!$course) return false;
-
-    // 無料コースはログインユーザー全員アクセス可
-    if ($course['is_free']) return true;
-
-    // 有料コースは有料会員のみ
-    return hasActiveSubscription();
+    // 全てのコースにアクセス可能
+    return true;
 }
 
 /**
@@ -74,16 +55,8 @@ function checkApiLimit() {
     $user = getCurrentUser();
     if (!$user) return false;
 
-    // 今日の使用回数を取得
-    $sql = "SELECT COUNT(*) as count FROM api_usage
-            WHERE user_id = ? AND DATE(created_at) = CURDATE()";
-    $result = db()->fetchOne($sql, [$user['id']]);
-    $todayCount = $result['count'] ?? 0;
-
-    // 制限値を取得
-    $limit = hasActiveSubscription() ? API_LIMIT_PREMIUM : API_LIMIT_FREE;
-
-    return $todayCount < $limit;
+    // API制限なし（常にtrueを返す）
+    return true;
 }
 
 /**
