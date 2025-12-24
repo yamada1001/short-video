@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ハウスドゥ Instagram運用代行 作業要件書 | YOJITU</title>
+    <meta name="description" content="ハウスドゥ様のInstagram運用代行プロジェクトの作業要件書。運用計画、コンテンツカレンダー、KPI管理など、プロジェクトの全体像を可視化します。">
+
+    <!-- LINE Seed Font -->
+    <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- ローディングアニメーション -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo">HOUSEDO</div>
+            <div class="loader-spinner">
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+            </div>
+            <div class="loader-text">Loading...</div>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="header" id="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <i class="fas fa-home"></i>
+                <span>HOUSEDO</span>
+                <span class="header__logo-sub">Instagram運用代行</span>
+            </div>
+            <nav class="header__nav">
+                <a href="#overview" class="header__nav-link">概要</a>
+                <a href="#plan" class="header__nav-link">運用計画</a>
+                <a href="#calendar" class="header__nav-link">カレンダー</a>
+            </nav>
+            <button class="header__menu-btn" id="menuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="hero__bg">
+            <div class="hero__shape hero__shape--1"></div>
+            <div class="hero__shape hero__shape--2"></div>
+            <div class="hero__shape hero__shape--3"></div>
+        </div>
+        <div class="hero__container">
+            <div class="hero__content">
+                <div class="hero__label">
+                    <span class="hero__label-num">01</span>
+                    <span class="hero__label-text">Project Overview</span>
+                    <span class="hero__label-line"></span>
+                </div>
+                <h1 class="hero__title">
+                    <span class="hero__title-line">家を売る・買うなら</span>
+                    <span class="hero__title-line">ハウスドゥ</span>
+                </h1>
+                <p class="hero__text">
+                    Instagram運用代行プロジェクト 作業要件書
+                </p>
+                <div class="hero__meta">
+                    <div class="hero__meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>契約期間: 半年間推奨（3ヶ月単位）</span>
+                    </div>
+                    <div class="hero__meta-item">
+                        <i class="fas fa-bullseye"></i>
+                        <span>目標: CPA削減・ブランディング強化</span>
+                    </div>
+                    <div class="hero__meta-item">
+                        <i class="fas fa-video"></i>
+                        <span>投稿頻度: リール動画 月10本</span>
+                    </div>
+                </div>
+                <div class="hero__buttons">
+                    <a href="#plan" class="hero__btn hero__btn--primary">
+                        <span>運用計画を見る</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero__scroll">
+            <span>Scroll</span>
+            <div class="hero__scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- プロジェクト概要セクション -->
+    <section class="section overview-section" id="overview">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-header__label">Project Overview</span>
+                <h2 class="section__title">プロジェクト概要</h2>
+                <p class="section__description">
+                    ハウスドゥ様のInstagram運用代行プロジェクトの全体像
+                </p>
+            </div>
+
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <div class="overview-card__icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="overview-card__title">主要目標・KPI</h3>
+                    <ul class="overview-card__list">
+                        <li><i class="fas fa-check"></i> 全体的なCPAの削減</li>
+                        <li><i class="fas fa-check"></i> 入社後のギャップ解消</li>
+                        <li><i class="fas fa-check"></i> ブランド認知の確立</li>
+                    </ul>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-card__icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="overview-card__title">運用範囲</h3>
+                    <ul class="overview-card__list">
+                        <li><i class="fas fa-check"></i> リール動画制作（月10本）</li>
+                        <li><i class="fas fa-check"></i> 企画・撮影・編集</li>
+                        <li><i class="fas fa-check"></i> 他媒体展開（TikTok/YouTube）</li>
+                        <li><i class="fas fa-check"></i> 社員への伴走サポート</li>
+                    </ul>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-card__icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="overview-card__title">なぜInstagram運用？</h3>
+                    <ul class="overview-card__list">
+                        <li><i class="fas fa-check"></i> 7回接触でブランド認知</li>
+                        <li><i class="fas fa-check"></i> 広告以外の接点を増やす</li>
+                        <li><i class="fas fa-check"></i> 全体的なCPAを下げる戦略</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- プロジェクトの目的説明セクション -->
+    <section class="section section--gray purpose-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-header__label">Purpose</span>
+                <h2 class="section__title">このプロジェクトの目的</h2>
+                <p class="section__description">
+                    なぜInstagram運用が必要なのか、わかりやすく説明します
+                </p>
+            </div>
+
+            <div class="purpose-content">
+                <div class="purpose-box">
+                    <div class="purpose-box__header">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <h3>重要なお約束</h3>
+                    </div>
+                    <div class="purpose-box__body">
+                        <p class="purpose-box__lead">「1リード1万円で獲得」は確約できません</p>
+                        <p>Instagram運用は、すぐに結果が出るものではありません。広告のように「お金を払えば確実にリードが取れる」という性質のものではないため、具体的な数値をお約束することはできません。</p>
+                    </div>
+                </div>
+
+                <div class="purpose-steps">
+                    <div class="purpose-step">
+                        <div class="purpose-step__number">1</div>
+                        <div class="purpose-step__content">
+                            <h4 class="purpose-step__title">セブンヒッツ理論</h4>
+                            <p class="purpose-step__text">
+                                人は同じブランドに<strong>7回接触</strong>すると、ようやく「知っている」「覚えている」状態になります。<br>
+                                例えば、お店の看板を7回見ると「あ、あのお店だ」と思い出せるようになるのと同じです。
+                            </p>
+                            <div class="purpose-step__example">
+                                <strong>例：</strong> テレビCM、Instagram、Google広告、YouTube、街の看板、チラシ、知人の口コミ…<br>
+                                → これらを合わせて7回以上接触すると、ブランドが記憶に残る
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="purpose-step">
+                        <div class="purpose-step__number">2</div>
+                        <div class="purpose-step__content">
+                            <h4 class="purpose-step__title">メディアミックス戦略</h4>
+                            <p class="purpose-step__text">
+                                1つの広告だけに頼るのではなく、<strong>複数の媒体を組み合わせる</strong>ことで、より多くの人に、より効率的にアプローチできます。
+                            </p>
+                            <div class="purpose-step__example">
+                                <strong>現状：</strong> Google広告のみ → 接触機会が少ない → CPAが高い<br>
+                                <strong>改善後：</strong> Google広告 + Instagram + TikTok + YouTube → 接触機会が増える → 全体的なCPAが下がる
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="purpose-step">
+                        <div class="purpose-step__number">3</div>
+                        <div class="purpose-step__content">
+                            <h4 class="purpose-step__title">採用活動の一環</h4>
+                            <p class="purpose-step__text">
+                                社員紹介や社内の様子を発信することで、<strong>入社前後のギャップを減らし</strong>、ミスマッチを防ぎます。<br>
+                                求職者が「この会社で働きたい」と思えるような情報を提供します。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="purpose-step">
+                        <div class="purpose-step__number">4</div>
+                        <div class="purpose-step__content">
+                            <h4 class="purpose-step__title">長期的なCPA削減</h4>
+                            <p class="purpose-step__text">
+                                Instagram運用は「今すぐ効果が出る」ものではなく、<strong>3〜6ヶ月かけて徐々に効果が現れる</strong>施策です。<br>
+                                ブランド認知が高まることで、広告の効果も良くなり、結果として全体的なCPAが下がっていきます。
+                            </p>
+                            <div class="purpose-step__timeline">
+                                <div class="timeline-item">
+                                    <span class="timeline-month">1-2ヶ月目</span>
+                                    <span class="timeline-desc">投稿の定期化、フォロワー増加開始</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="timeline-month">3-4ヶ月目</span>
+                                    <span class="timeline-desc">エンゲージメント向上、認知拡大</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="timeline-month">5-6ヶ月目</span>
+                                    <span class="timeline-desc">ブランド認知確立、CPA改善</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="purpose-box purpose-box--success">
+                    <div class="purpose-box__header">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>つまり、こういうことです</h3>
+                    </div>
+                    <div class="purpose-box__body">
+                        <ul class="purpose-summary">
+                            <li><i class="fas fa-arrow-right"></i> Instagram運用は「リード獲得の手段」ではなく、<strong>「接触機会を増やす手段」</strong>です</li>
+                            <li><i class="fas fa-arrow-right"></i> Google広告と組み合わせることで、<strong>全体的なCPAを下げる</strong>ことが目標です</li>
+                            <li><i class="fas fa-arrow-right"></i> すぐに結果は出ませんが、<strong>3〜6ヶ月で徐々に効果が現れます</strong></li>
+                            <li><i class="fas fa-arrow-right"></i> 採用活動にも役立ち、<strong>入社後のミスマッチを防ぎます</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 投稿ペースについてのセクション -->
+    <section class="section section--gray posting-pace-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-header__label">Posting Schedule</span>
+                <h2 class="section__title">投稿ペースについて</h2>
+                <p class="section__description">
+                    月に何本投稿するの？初月はどうなるの？わかりやすく説明します
+                </p>
+            </div>
+
+            <div class="posting-pace-content">
+                <div class="posting-pace-main">
+                    <div class="posting-pace-main__icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="posting-pace-main__content">
+                        <h3 class="posting-pace-main__title">基本は月10本のリール動画</h3>
+                        <p class="posting-pace-main__text">
+                            毎月<strong>10本のリール動画</strong>（15〜90秒の縦型ショート動画）を投稿します。<br>
+                            これは週に約2〜3本のペースです。
+                        </p>
+                        <div class="posting-pace-main__calc">
+                            <div class="calc-item">
+                                <span class="calc-label">月間投稿数</span>
+                                <span class="calc-value">10本</span>
+                            </div>
+                            <div class="calc-arrow">→</div>
+                            <div class="calc-item">
+                                <span class="calc-label">週間ペース</span>
+                                <span class="calc-value">約2〜3本</span>
+                            </div>
+                            <div class="calc-arrow">→</div>
+                            <div class="calc-item">
+                                <span class="calc-label">投稿間隔</span>
+                                <span class="calc-value">2〜3日に1本</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="posting-pace-firstmonth">
+                    <div class="posting-pace-firstmonth__header">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <h3>初月は本数が前後します</h3>
+                    </div>
+                    <div class="posting-pace-firstmonth__body">
+                        <p class="posting-pace-firstmonth__lead">なぜ初月は本数が変わるの？</p>
+                        <p>
+                            初月は<strong>「アカウント設計」</strong>という準備作業が必要です。<br>
+                            これは、家を建てる前に「設計図を作る」のと同じで、とても大事な作業です。
+                        </p>
+
+                        <div class="account-design-steps">
+                            <div class="account-design-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>プロフィール設計</h4>
+                                    <p>アカウントの「顔」を作ります。どんな情報を載せるか、どんな写真を使うかを決めます。</p>
+                                </div>
+                            </div>
+                            <div class="account-design-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>投稿の方向性決め</h4>
+                                    <p>どんな内容を投稿するか、どんな雰囲気にするか、誰に向けて発信するかを決めます。</p>
+                                </div>
+                            </div>
+                            <div class="account-design-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>デザインの統一</h4>
+                                    <p>色、フォント、ロゴの使い方など、「見た目の統一感」を作ります。</p>
+                                </div>
+                            </div>
+                            <div class="account-design-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>ハッシュタグ戦略</h4>
+                                    <p>どんな言葉で検索されたいか、どんなハッシュタグを使うかを決めます。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="posting-pace-firstmonth__example">
+                            <strong>例えばこんなイメージです：</strong><br>
+                            <div class="example-timeline">
+                                <div class="example-item">
+                                    <span class="example-week">第1週</span>
+                                    <span class="example-desc">アカウント設計・打ち合わせ</span>
+                                    <span class="example-posts">投稿: 0〜1本</span>
+                                </div>
+                                <div class="example-item">
+                                    <span class="example-week">第2週</span>
+                                    <span class="example-desc">デザイン確定・素材撮影</span>
+                                    <span class="example-posts">投稿: 1〜2本</span>
+                                </div>
+                                <div class="example-item">
+                                    <span class="example-week">第3週</span>
+                                    <span class="example-desc">本格的に投稿開始</span>
+                                    <span class="example-posts">投稿: 2〜3本</span>
+                                </div>
+                                <div class="example-item">
+                                    <span class="example-week">第4週</span>
+                                    <span class="example-desc">ペースを掴む</span>
+                                    <span class="example-posts">投稿: 2〜3本</span>
+                                </div>
+                            </div>
+                            <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                                → 初月は合計で<strong>5〜9本くらい</strong>になることが多いです
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="posting-pace-summary">
+                    <div class="posting-pace-summary__header">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>つまり、こういうことです</h3>
+                    </div>
+                    <div class="posting-pace-summary__body">
+                        <ul class="posting-summary-list">
+                            <li><i class="fas fa-arrow-right"></i> <strong>基本は月10本</strong>のリール動画を投稿します</li>
+                            <li><i class="fas fa-arrow-right"></i> <strong>初月だけは準備期間</strong>があるので、5〜9本くらいになる可能性があります</li>
+                            <li><i class="fas fa-arrow-right"></i> 2ヶ月目以降は、安定して<strong>月10本ペース</strong>で投稿していきます</li>
+                            <li><i class="fas fa-arrow-right"></i> 急いで投稿するより、<strong>しっかり準備してから始める</strong>ほうが、長期的に良い結果につながります</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 社員教育についてのセクション -->
+    <section class="section education-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-header__label">Education Support</span>
+                <h2 class="section__title">社員教育・サポートについて</h2>
+                <p class="section__description">
+                    一緒に進めながら、自然とノウハウを吸収できる環境を作ります
+                </p>
+            </div>
+
+            <div class="education-content">
+                <div class="education-box education-box--primary">
+                    <div class="education-box__header">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3>伴走型サポートの方針</h3>
+                    </div>
+                    <div class="education-box__body">
+                        <p class="education-box__lead">「教育」ではなく「伴走」というスタイル</p>
+                        <p>当初、社員の教育についてのご要望もいただきましたが、「座学で教える」のではなく、<strong>一緒に仕事を進めていく中で、自然とノウハウを吸収していただく</strong>スタイルを推奨します。</p>
+                    </div>
+                </div>
+
+                <div class="education-reasons">
+                    <div class="education-reason">
+                        <div class="education-reason__icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="education-reason__content">
+                            <h4 class="education-reason__title">予算の問題</h4>
+                            <p class="education-reason__text">
+                                改めて「教育の時間」を設けると、<strong>追加の予算が必要</strong>になります。<br>
+                                座学研修や個別レクチャーは、通常業務とは別の工数が発生するため、現在の契約金額では対応できません。
+                            </p>
+                            <div class="education-reason__note">
+                                <i class="fas fa-info-circle"></i>
+                                <span>教育プログラムを別途ご希望の場合は、追加見積もりが必要です</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="education-reason">
+                        <div class="education-reason__icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="education-reason__content">
+                            <h4 class="education-reason__title">属人化のリスク</h4>
+                            <p class="education-reason__text">
+                                特定の社員だけがノウハウを持つ「属人化」は、大きなリスクです。<br>
+                                その社員が退職したり、働けなくなったりした場合、<strong>運用が完全にストップ</strong>してしまいます。
+                            </p>
+                            <div class="education-reason__example">
+                                <strong>よくある失敗例：</strong><br>
+                                ① 1名の担当者だけが Instagram 運用の全てを理解<br>
+                                ② その担当者が退職・異動・休職<br>
+                                ③ 誰も運用できず、アカウントが放置される<br>
+                                ④ フォロワーが離れ、ゼロからの再スタートに…
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="education-reason">
+                        <div class="education-reason__icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="education-reason__content">
+                            <h4 class="education-reason__title">推奨する方法</h4>
+                            <p class="education-reason__text">
+                                弊社が運用を<strong>継続的にサポート</strong>し、社員の方々は「一緒に進めながら」徐々に吸収していただく形が理想です。
+                            </p>
+                            <ul class="education-reason__steps">
+                                <li><i class="fas fa-check"></i> 弊社が企画・撮影・編集を担当</li>
+                                <li><i class="fas fa-check"></i> 社員の方は撮影協力・素材提供</li>
+                                <li><i class="fas fa-check"></i> 月次ミーティングで進め方を共有</li>
+                                <li><i class="fas fa-check"></i> 質問・相談はSlackなどで随時対応</li>
+                                <li><i class="fas fa-check"></i> 半年後には全体の流れが理解できる状態に</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="education-box education-box--success">
+                    <div class="education-box__header">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>つまり、こういうことです</h3>
+                    </div>
+                    <div class="education-box__body">
+                        <ul class="education-summary">
+                            <li><i class="fas fa-arrow-right"></i> 「座学で教える」のではなく、<strong>「一緒に進めながら吸収してもらう」</strong>スタイル</li>
+                            <li><i class="fas fa-arrow-right"></i> 別途教育プログラムを希望する場合は、<strong>追加の予算が必要</strong></li>
+                            <li><i class="fas fa-arrow-right"></i> 属人化を避けるため、<strong>弊社が継続的にサポート</strong>する体制が安全</li>
+                            <li><i class="fas fa-arrow-right"></i> 半年間の伴走で、自然とノウハウが蓄積される</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- タブセクション（運用計画・カレンダー・KPI・作業ログ） -->
+    <section class="section section--gray tabs-section" id="plan">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-header__label">Documents</span>
+                <h2 class="section__title">プロジェクトドキュメント</h2>
+            </div>
+
+            <!-- タブナビゲーション -->
+            <div class="tabs__nav">
+                <button class="tabs__nav-btn active" data-tab="plan">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>運用計画書</span>
+                </button>
+                <button class="tabs__nav-btn" data-tab="calendar">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>コンテンツカレンダー</span>
+                </button>
+            </div>
+
+            <!-- タブコンテンツ: 運用計画書 -->
+            <div class="tabs__content active" id="tab-plan">
+                <div class="doc-section">
+                    <h3 class="doc-section__title">
+                        <i class="fas fa-lightbulb"></i>
+                        運用方針
+                    </h3>
+                    <div class="doc-content">
+                        <p class="doc-content__lead">「家を売る・買うならハウスドゥ」</p>
+                        <p>地域密着型で信頼できる不動産会社として、物件情報だけでなく、社員の顔が見える親しみやすいアカウント運用を目指します。</p>
+                    </div>
+                </div>
+
+                <div class="doc-section">
+                    <h3 class="doc-section__title">
+                        <i class="fas fa-users"></i>
+                        ターゲット
+                    </h3>
+                    <div class="doc-content">
+                        <div style="background-color: #FFF3E0; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #FF9800;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                                <i class="fas fa-clock" style="font-size: 1.5rem; color: #FF9800;"></i>
+                                <h4 style="font-size: 1.25rem; font-weight: 700; color: #333; margin: 0;">これから決定します</h4>
+                            </div>
+                            <p style="color: #666; line-height: 1.8; margin-bottom: 0.5rem;">
+                                ターゲット設定は、初月のアカウント設計期間中に、クライアント様と一緒に決めていきます。
+                            </p>
+                            <p style="color: #666; line-height: 1.8; margin: 0; font-size: 0.9rem;">
+                                <strong style="color: #FF9800;">決めること：</strong> 年齢層、属性（住宅購入検討者、求職者など）、ニーズ、地域など
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-section">
+                    <h3 class="doc-section__title">
+                        <i class="fas fa-columns"></i>
+                        コンテンツの柱
+                    </h3>
+                    <div class="doc-content">
+                        <div style="background-color: #FFF3E0; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #FF9800;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                                <i class="fas fa-clock" style="font-size: 1.5rem; color: #FF9800;"></i>
+                                <h4 style="font-size: 1.25rem; font-weight: 700; color: #333; margin: 0;">これから決定します</h4>
+                            </div>
+                            <p style="color: #666; line-height: 1.8; margin-bottom: 1rem;">
+                                コンテンツの柱（投稿テーマ）は、初月のアカウント設計期間中に、クライアント様と一緒に決めていきます。
+                            </p>
+                            <div style="background-color: white; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <p style="color: #666; font-size: 0.9rem; line-height: 1.8; margin: 0;">
+                                    <strong style="color: #FF9800;">決める内容の例：</strong><br>
+                                    • どんなテーマで投稿するか（物件紹介、社員紹介、お役立ち情報など）<br>
+                                    • 各テーマの比率（例：物件30%、社員30%、お役立ち25%、ブランド15%）<br>
+                                    • 投稿のトンマナ（雰囲気・文体・デザイン）
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- タブコンテンツ: コンテンツカレンダー -->
+            <div class="tabs__content" id="tab-calendar">
+                <div class="doc-section">
+                    <h3 class="doc-section__title">
+                        <i class="fas fa-calendar-week"></i>
+                        週次投稿スケジュール
+                    </h3>
+                    <div class="doc-content">
+                        <p class="doc-content__lead">月10本のリール動画を投稿</p>
+                        <p>毎月<strong>10本のリール動画</strong>（15〜90秒の縦型ショート動画）を投稿します。週に約2〜3本のペースです。</p>
+                        <div style="background-color: #FFF3E0; padding: 1rem; border-radius: 8px; border-left: 3px solid #FF9800; margin: 1rem 0;">
+                            <strong style="color: #FF9800;">⚠️ 初月について</strong><br>
+                            <span style="color: #666; font-size: 0.9rem;">初月はアカウント設計（プロフィール作成、投稿方向性の決定、デザイン統一など）に時間がかかるため、投稿本数は5〜9本程度になる可能性があります。2ヶ月目以降は安定して月10本ペースで投稿します。</span>
+                        </div>
+                    </div>
+                    <div class="calendar-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>曜日</th>
+                                    <th>コンテンツタイプ</th>
+                                    <th>テーマ例</th>
+                                    <th>投稿時間</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>月曜</strong></td>
+                                    <td><span class="badge badge--reel">リール投稿</span></td>
+                                    <td>物件紹介・新着情報</td>
+                                    <td>12:00</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>水曜</strong></td>
+                                    <td><span class="badge badge--reel">リール投稿</span></td>
+                                    <td>お役立ち情報・Tips</td>
+                                    <td>18:00</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>金曜</strong></td>
+                                    <td><span class="badge badge--reel">リール投稿</span></td>
+                                    <td>社員紹介・企業文化</td>
+                                    <td>12:00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="doc-section">
+                    <h3 class="doc-section__title">
+                        <i class="fas fa-film"></i>
+                        他媒体展開
+                    </h3>
+                    <div class="platform-grid">
+                        <div class="platform-card">
+                            <i class="fab fa-tiktok"></i>
+                            <h4>TikTok</h4>
+                            <p>Instagram リールを最適化して転載。トレンド音源の活用で拡散を狙う。</p>
+                        </div>
+                        <div class="platform-card">
+                            <i class="fab fa-youtube"></i>
+                            <h4>YouTube ショート</h4>
+                            <p>リールをそのまま活用。将来的には本編動画も検討。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__brand">
+                <div class="footer__logo">
+                    <i class="fas fa-home"></i>
+                    <span>HOUSEDO × YOJITU</span>
+                </div>
+                <p class="footer__desc">
+                    Instagram運用代行で、<br>
+                    「家を売る・買うならハウスドゥ」の<br>
+                    ブランドイメージを確立します
+                </p>
+            </div>
+            <div class="footer__links">
+                <div class="footer__links-col">
+                    <h4>プロジェクト</h4>
+                    <ul>
+                        <li><a href="#overview">概要</a></li>
+                        <li><a href="#plan">運用計画</a></li>
+                        <li><a href="#calendar">カレンダー</a></li>
+                    </ul>
+                </div>
+                <div class="footer__links-col">
+                    <h4>サービス</h4>
+                    <ul>
+                        <li><a href="#">Instagram運用代行</a></li>
+                        <li><a href="#">コンテンツ制作</a></li>
+                        <li><a href="#">動画編集</a></li>
+                        <li><a href="#">分析レポート</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>&copy; 2025 YOJITU. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- トップへ戻るボタン -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
