@@ -1570,7 +1570,244 @@ button {
 }
 
 /* ===================================
-   18. 社員教育セクション
+   18. 契約金額セクション
+   =================================== */
+
+.pricing-content {
+  margin-top: var(--spacing-lg);
+}
+
+.pricing-main {
+  margin-bottom: var(--spacing-lg);
+}
+
+.pricing-breakdown {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.pricing-item {
+  background-color: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--color-shadow);
+  position: relative;
+}
+
+.pricing-item--main {
+  border-left: 4px solid var(--color-natural-brown);
+}
+
+.pricing-item--bonus {
+  border-left: 4px solid var(--color-green);
+  background: linear-gradient(135deg, rgba(66, 133, 112, 0.05) 0%, var(--color-white) 100%);
+}
+
+.pricing-bonus-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--color-green), #5CAA8C);
+  color: var(--color-white);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+}
+
+.pricing-item__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.pricing-item__header i {
+  font-size: 1.5rem;
+  color: var(--color-natural-brown);
+}
+
+.pricing-item--bonus .pricing-item__header i {
+  color: var(--color-green);
+}
+
+.pricing-item__header h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-charcoal);
+}
+
+.pricing-item__amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-natural-brown);
+  margin-bottom: var(--spacing-md);
+}
+
+.pricing-item__amount-original {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.pricing-item__amount-free {
+  color: var(--color-green);
+  font-size: 2.5rem;
+}
+
+.pricing-item__desc {
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+}
+
+.pricing-item__desc strong {
+  color: var(--color-green);
+  font-weight: 700;
+}
+
+.pricing-item__includes {
+  list-style: none;
+  padding: 0;
+}
+
+.pricing-item__includes li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  color: var(--color-text-primary);
+  font-size: 0.9375rem;
+}
+
+.pricing-item__includes i {
+  color: var(--color-green);
+  flex-shrink: 0;
+}
+
+.pricing-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background-color: rgba(66, 133, 112, 0.1);
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  margin-top: var(--spacing-md);
+}
+
+.pricing-note i {
+  color: var(--color-green);
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.pricing-note p {
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.pricing-note strong {
+  color: var(--color-green);
+  font-weight: 700;
+}
+
+.pricing-total {
+  background: linear-gradient(135deg, var(--color-natural-brown), var(--color-green));
+  color: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.pricing-total__label {
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.pricing-total__amount {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+}
+
+.pricing-total__breakdown {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.pricing-total__breakdown strong {
+  font-weight: 700;
+}
+
+.pricing-explanation {
+  background-color: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--color-shadow);
+}
+
+.pricing-explanation__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--color-off-white);
+}
+
+.pricing-explanation__header i {
+  font-size: 1.5rem;
+  color: var(--color-natural-brown);
+}
+
+.pricing-explanation__header h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-charcoal);
+}
+
+.pricing-qa {
+  margin-bottom: var(--spacing-lg);
+}
+
+.pricing-qa:last-child {
+  margin-bottom: 0;
+}
+
+.pricing-qa h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-charcoal);
+  margin-bottom: var(--spacing-sm);
+}
+
+.pricing-qa h4 i {
+  color: var(--color-natural-brown);
+}
+
+.pricing-qa p {
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.pricing-qa strong {
+  color: var(--color-natural-brown);
+  font-weight: 700;
+}
+
+/* ===================================
+   19. 社員教育セクション
    =================================== */
 
 .education-content {
@@ -2297,6 +2534,14 @@ button {
 
   .example-posts {
     text-align: center;
+  }
+
+  .pricing-breakdown {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-total__amount {
+    font-size: 2.5rem;
   }
 
   .education-reason {
