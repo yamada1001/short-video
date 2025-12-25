@@ -1084,71 +1084,126 @@
 
             <div class="card" id="recommended-structure">
               <h3 class="card-header">推奨サイト構造（案）</h3>
+              <p><strong>※名刺記載のサービス内容（9項目）を反映</strong></p>
               <pre><code>finance-brain.co.jp/
 │
-├── ホーム（リニューアル）
-│   ├── メインビジュアル
+├── <strong>ホーム（リニューアル）</strong> - URL: /
+│   ├── メインビジュアル（スライダー）
 │   ├── ファイナンスブレーンとは
-│   ├── サービス概要（3カラム）
+│   ├── サービス概要（個人向け5項目 + 法人向け4項目）
 │   ├── 選ばれる理由（新設）
 │   ├── お客様の声（新設）
-│   ├── 最新情報
+│   ├── 最新情報（お知らせ3件）
 │   └── お問い合わせCTA
 │
-├── ファイナンスブレーンとは
+├── <strong>ファイナンスブレーンとは</strong> - URL: /about/
 │   ├── 経営理念
 │   ├── 代表メッセージ
-│   └── 会社の強み
+│   ├── 会社の強み（3つの特徴）
+│   └── 外部専門家との連携
 │
-├── サービス
-│   ├── 保険のご相談
-│   │   ├── 生命保険
-│   │   ├── 損害保険
-│   │   └── 取扱保険会社一覧
-│   ├── 資産運用のご相談
-│   │   ├── 投資信託
-│   │   ├── NISA・iDeCo
-│   │   └── 資産形成プラン
-│   ├── ライフプランニング
+├── <strong>個人のお客様向けサービス</strong> - URL: /services/personal/
+│   │
+│   ├── 01. ライフプランニング - URL: /services/personal/life-planning/
+│   │   ├── ライフプラン設計
 │   │   ├── 住宅購入資金
 │   │   ├── 教育資金
 │   │   └── 老後資金
-│   └── 相続・事業承継
-│       ├── 相続対策
-│       └── 事業承継サポート
+│   │
+│   ├── 02. 保険の見直し・ご相談 - URL: /services/personal/insurance/
+│   │   ├── 生命保険
+│   │   ├── 損害保険
+│   │   ├── 保険の見直しポイント
+│   │   └── 取扱保険会社一覧
+│   │
+│   ├── 03. 住宅ローンのご相談 - URL: /services/personal/housing-loan/
+│   │   ├── 住宅ローン選び方
+│   │   ├── 借り換えシミュレーション
+│   │   ├── 金利タイプ比較
+│   │   └── よくある質問
+│   │
+│   ├── 04. 相続に関するご相談 - URL: /services/personal/inheritance/
+│   │   ├── 相続対策の基本
+│   │   ├── 相続税シミュレーション
+│   │   ├── 生前贈与
+│   │   └── 遺言書作成サポート
+│   │
+│   └── 05. 投資信託・資産運用 - URL: /services/personal/investment/
+│       ├── 投資信託
+│       ├── NISA・iDeCo
+│       ├── 資産形成プラン
+│       └── リスク管理
 │
-├── 選ばれる理由（新設）
-│   ├── 専門資格を持つアドバイザー
-│   ├── きめ細かなサービス
-│   ├── 中立的な立場からの提案
-│   └── アフターフォロー体制
+├── <strong>法人のお客様向けサービス</strong> - URL: /services/corporate/
+│   │
+│   ├── 06. 財務コンサルティング - URL: /services/corporate/financial-consulting/
+│   │   ├── 財務分析
+│   │   ├── 資金繰り改善
+│   │   ├── 事業計画策定
+│   │   └── 銀行交渉サポート
+│   │
+│   ├── 07. 退職金コンサルティング - URL: /services/corporate/retirement/
+│   │   ├── 退職金制度設計
+│   │   ├── 企業年金
+│   │   ├── 役員退職金
+│   │   └── 税制メリット
+│   │
+│   ├── 08. 事業承継対策 - URL: /services/corporate/succession/
+│   │   ├── 事業承継計画
+│   │   ├── 後継者育成
+│   │   ├── M&A支援
+│   │   └── 税務対策
+│   │
+│   └── 09. 自社株対策 - URL: /services/corporate/stock/
+│       ├── 自社株評価
+│       ├── 株価対策
+│       ├── 事業承継税制
+│       └── 持株会社活用
 │
-├── お客様の声（新設）
-│   ├── お客様インタビュー
+├── <strong>選ばれる理由</strong> - URL: /why-us/
+│   ├── 専門資格を持つアドバイザー（CFP®、1級FP、投資診断士®等）
+│   ├── きめ細かなサービス（ワンストップ対応）
+│   ├── 中立的な立場からの提案（複数社比較）
+│   ├── アフターフォロー体制（継続サポート）
+│   └── 地域密着19年の実績
+│
+├── <strong>お客様の声</strong> - URL: /voice/
+│   ├── お客様インタビュー（個人のお客様）
+│   ├── お客様インタビュー（法人のお客様）
 │   ├── 事例紹介
-│   └── よくあるご質問（FAQ）
+│   └── お客様満足度調査結果
 │
-├── スタッフ紹介（拡充）
-│   ├── 代表者プロフィール
-│   ├── アドバイザー紹介（顔写真付き）
-│   └── 保有資格一覧
+├── <strong>スタッフ紹介</strong> - URL: /staff/
+│   ├── 代表者プロフィール（高橋英一郎）
+│   ├── アドバイザー紹介（顔写真・資格・専門分野付き）
+│   ├── 保有資格一覧
+│   └── 所属団体
 │
-├── 会社情報
-│   ├── 会社概要
-│   ├── アクセス
-│   ├── 個人情報保護方針
-│   └── 勧誘方針
+├── <strong>会社情報</strong> - URL: /company/
+│   ├── 会社概要 - URL: /company/about/
+│   ├── アクセス - URL: /company/access/
+│   ├── 個人情報保護方針 - URL: /company/privacy/
+│   ├── 勧誘方針 - URL: /company/solicitation/
+│   └── お客様本位の業務運営方針 - URL: /company/customer-oriented/
 │
-├── お知らせ
-│   ├── 新着情報
-│   ├── セミナー・イベント情報（新設）
-│   └── ブログ・コラム（新設）
+├── <strong>お知らせ</strong> - URL: /news/
+│   ├── 新着情報 - URL: /news/
+│   ├── セミナー・イベント情報 - URL: /news/seminar/
+│   └── ブログ・コラム - URL: /news/blog/
 │
-└── お問い合わせ
-    ├── お問い合わせフォーム
-    ├── 無料相談予約（新設）
-    ├── LINE相談（新設）
-    └── よくあるご質問</code></pre>
+├── <strong>よくあるご質問（FAQ）</strong> - URL: /faq/
+│   ├── 保険について
+│   ├── 資産運用について
+│   ├── 住宅ローンについて
+│   ├── 相続について
+│   └── ご利用方法について
+│
+└── <strong>お問い合わせ</strong> - URL: /contact/
+    ├── お問い合わせフォーム - URL: /contact/
+    ├── 無料相談予約 - URL: /contact/reservation/
+    ├── LINE相談 - URL: /contact/line/
+    ├── 電話でのお問い合わせ（097-574-8212）
+    └── よくあるご質問（FAQ）へのリンク</code></pre>
             </div>
 
             <div class="card" id="additional-pages">
@@ -1557,6 +1612,153 @@
                 </div>
               </div>
             </div>
+
+            <div class="card" id="development-risk-management" style="border: 3px solid #ff8c42; background-color: #fff9f5;">
+              <h3 class="card-header" style="color: #ff8c42;">⚠️ 開発時のリスク管理事項（重要）</h3>
+              <p style="color: #d9534f; font-weight: bold;">※開発前に必ず双方で合意・契約書に明記すること</p>
+
+              <div class="grid-2">
+                <div class="info-box">
+                  <strong>1. デザイン修正回数</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>初回デザイン提出:</strong> トップページ + 下層ページサンプル1ページ</li>
+                    <li><strong>修正回数:</strong> 3回まで（大幅な変更は追加料金）</li>
+                    <li><strong>修正範囲:</strong> レイアウト・配色・フォント・画像配置の調整</li>
+                    <li><strong>大幅変更の定義:</strong> コンセプトの変更、全面的なレイアウト変更</li>
+                    <li><strong>承認:</strong> 各修正後、クライアント承認を書面（メール）で取得</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>2. コーディング修正回数</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>テストサーバー公開後:</strong> 2回まで無償修正</li>
+                    <li><strong>修正範囲:</strong> デザイン再現性、動作不良、表示崩れ</li>
+                    <li><strong>追加料金対象:</strong> 新規機能追加、大幅なレイアウト変更</li>
+                    <li><strong>ブラウザ対応:</strong> Chrome/Safari/Firefox/Edge最新版 + iOS Safari/Android Chrome</li>
+                    <li><strong>レスポンシブ:</strong> PC（1366px以上）、タブレット（768px〜1365px）、SP（〜767px）</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>3. プロジェクトスコープ</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>対象ページ数:</strong> 20ページ（トップ + サービス9ページ + その他10ページ）</li>
+                    <li><strong>カスタム投稿タイプ:</strong> 6種類（事例、セミナー、お客様の声、スタッフ、FAQ、サービス）</li>
+                    <li><strong>プラグイン:</strong> 必須4種 + 推奨8種（合計12種）</li>
+                    <li><strong>画像素材:</strong> クライアント提供（ストックフォト購入は別途）</li>
+                    <li><strong>テキスト原稿:</strong> クライアント提供（ライティング代行は別途）</li>
+                    <li><strong>SEO対策:</strong> 基本設定のみ（継続的なSEO対策は別途）</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>4. 追加料金が発生する作業</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>デザイン修正4回目以降</li>
+                    <li>ページ数の追加（21ページ以降）</li>
+                    <li>カスタム機能の追加（見積もり外の機能）</li>
+                    <li>画像素材の購入・加工</li>
+                    <li>テキスト原稿のライティング</li>
+                    <li>既存サイトからのデータ移行</li>
+                    <li>第三者プラグインとの連携開発</li>
+                    <li>サーバー移転作業</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>5. 納期・スケジュール</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>標準開発期間:</strong> 3〜4ヶ月（要件定義〜納品まで）</li>
+                    <li><strong>フェーズ1:</strong> 要件定義・設計（2週間）</li>
+                    <li><strong>フェーズ2:</strong> デザイン制作（3〜4週間）</li>
+                    <li><strong>フェーズ3:</strong> コーディング・実装（4〜5週間）</li>
+                    <li><strong>フェーズ4:</strong> テスト・修正（2週間）</li>
+                    <li><strong>フェーズ5:</strong> 納品・公開（1週間）</li>
+                    <li><strong>遅延の扱い:</strong> クライアント都合の遅延は納期延長（追加料金なし）</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>6. 著作権・所有権</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>最終納品後:</strong> 全著作権をクライアントに譲渡</li>
+                    <li><strong>納品前:</strong> 著作権は制作会社に帰属</li>
+                    <li><strong>ソースコード:</strong> 納品後は自由に改変可能</li>
+                    <li><strong>ポートフォリオ掲載:</strong> クライアント承認後に掲載可</li>
+                    <li><strong>第三者素材:</strong> ストックフォト等は各ライセンスに従う</li>
+                    <li><strong>オープンソース:</strong> WordPress、プラグインは各ライセンスに従う</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>7. 保守・運用</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>無償保証期間:</strong> 納品後1ヶ月間（不具合修正のみ）</li>
+                    <li><strong>保守契約:</strong> 月額制で別途契約（WordPress更新、プラグイン更新、バックアップ）</li>
+                    <li><strong>緊急対応:</strong> 保守契約外は都度見積もり</li>
+                    <li><strong>WordPress更新:</strong> クライアント自身で実施可能（マニュアル提供）</li>
+                    <li><strong>コンテンツ更新:</strong> クライアント自身で実施可能（操作レクチャー1回含む）</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>8. 支払い条件</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>着手金:</strong> 契約時に総額の50%</li>
+                    <li><strong>中間金:</strong> デザイン承認後に総額の30%</li>
+                    <li><strong>残金:</strong> 納品・検収完了後に総額の20%</li>
+                    <li><strong>振込手数料:</strong> クライアント負担</li>
+                    <li><strong>支払い期限:</strong> 請求書発行後30日以内</li>
+                    <li><strong>延滞:</strong> 支払い遅延時は年14.6%の遅延損害金</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>9. 契約解除・キャンセル</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>着手前:</strong> 着手金の返金（事務手数料10%控除）</li>
+                    <li><strong>デザイン段階:</strong> 着手金の返金なし + 制作済み分請求</li>
+                    <li><strong>コーディング段階:</strong> 着手金・中間金の返金なし + 制作済み分請求</li>
+                    <li><strong>クライアント都合:</strong> 上記条件適用</li>
+                    <li><strong>制作会社都合:</strong> 全額返金 + 損害賠償</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>10. 責任範囲・免責事項</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>納品物の範囲:</strong> Webサイト本体のみ（サーバー・ドメインは含まず）</li>
+                    <li><strong>動作保証:</strong> 納品時点の最新環境のみ保証</li>
+                    <li><strong>第三者サービス:</strong> Google Analytics、SNS連携等の不具合は責任範囲外</li>
+                    <li><strong>不可抗力:</strong> 天災、通信障害、サーバー障害は責任範囲外</li>
+                    <li><strong>損害賠償上限:</strong> 契約金額を上限とする</li>
+                    <li><strong>間接損害:</strong> 逸失利益、機会損失等の間接損害は賠償対象外</li>
+                  </ul>
+                </div>
+              </div>
+
+              <h4 class="subsection-subtitle" style="color: #d9534f; margin-top: 2rem;">必須確認事項チェックリスト</h4>
+              <div class="info-box" style="background-color: #fff3cd; border: 2px solid #ffc107;">
+                <ul class="checklist" style="margin-top: 0.5rem;">
+                  <li>□ デザイン修正回数（3回まで）を理解・合意した</li>
+                  <li>□ 対象ページ数（20ページ）を確認した</li>
+                  <li>□ 画像素材・テキスト原稿はクライアント提供であることを確認した</li>
+                  <li>□ 追加料金が発生する作業内容を確認した</li>
+                  <li>□ 開発期間（3〜4ヶ月）を確認した</li>
+                  <li>□ 支払い条件（着手金50% + 中間金30% + 残金20%）を確認した</li>
+                  <li>□ 無償保証期間（1ヶ月）を確認した</li>
+                  <li>□ キャンセルポリシーを理解・合意した</li>
+                  <li>□ 著作権譲渡のタイミング（最終納品後）を確認した</li>
+                  <li>□ 責任範囲・免責事項を理解・合意した</li>
+                </ul>
+              </div>
+
+              <p style="margin-top: 1.5rem; color: #d9534f; font-weight: bold;">
+                ⚠️ 上記内容を契約書に明記し、双方署名捺印の上でプロジェクト開始すること。<br>
+                口頭合意のみでのプロジェクト開始は、後々のトラブルの原因となるため絶対に避けること。
+              </p>
+            </div>
           </section>
         </section>
 
@@ -1700,6 +1902,7 @@
                   <ul class="toc-detail">
                     <li><a href="#current-issues" class="toc-link-detail">現在のサイトの課題</a></li>
                     <li><a href="#solutions" class="toc-link-detail">リニューアルで解決すべき課題</a></li>
+                    <li><a href="#development-risk-management" class="toc-link-detail">⚠️ 開発時のリスク管理事項（重要）</a></li>
                   </ul>
                 </li>
               </ul>
