@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ファイナンスブレーン様 現在のサイト構造とディレクトリマップ</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-content">
+      <h1>ファイナンスブレーン様 現在のサイト構造とディレクトリマップ</h1>
+      <div class="header-meta">
+        <div class="header-meta-item">
+          <strong>対象サイト:</strong> <a href="https://finance-brain.co.jp/" target="_blank" style="color: rgba(255,255,255,0.9);">https://finance-brain.co.jp/</a>
+        </div>
+        <div class="header-meta-item">
+          <strong>調査日:</strong> 2025年12月25日
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ナビゲーション -->
+  <nav class="nav">
+    <div class="nav-content">
+      <ul class="nav-links">
+        <li><a href="#current-structure">現在のサイト構造</a></li>
+        <li><a href="#tech-stack">技術スタック</a></li>
+        <li><a href="#content-details">コンテンツ詳細</a></li>
+        <li><a href="#design-details">デザイン詳細</a></li>
+        <li><a href="#renewal-proposal">リニューアル提案</a></li>
+        <li><a href="#improvement-points">改善ポイント</a></li>
+        <li><a href="research-report.html">← 調査報告書</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- メインコンテンツ -->
+  <main class="container">
+
+    <!-- 1. 現在のサイト構造 -->
+    <section id="current-structure" class="section">
+      <h2 class="section-title">1. 現在のサイト構造</h2>
+
+      <div class="card">
+        <h3 class="card-header">1.1 ページ構成</h3>
+        <pre><code>finance-brain.co.jp/
+│
+├── ホーム（トップページ）
+│   └── スライダー画像（Metaslider）
+│
+├── お知らせ
+│   └── 最新情報・ニュース
+│
+├── 経営理念
+│   └── 企業理念・ビジョン
+│
+├── 事業概要
+│   ├── 生命保険媒介業
+│   ├── 損害保険代理業
+│   └── ファイナンシャルプランニング
+│
+├── 役員紹介
+│   └── 代表者・役員情報
+│
+├── 取扱保険会社
+│   └── 提携保険会社一覧
+│
+├── 会社概要・アクセス
+│   ├── 会社情報
+│   │   ├── 商号
+│   │   ├── 所在地
+│   │   ├── 電話番号
+│   │   ├── 設立
+│   │   └── 代表者
+│   └── アクセスマップ
+│
+└── お問い合わせ
+    └── 問い合わせフォーム</code></pre>
+      </div>
+
+      <div class="card">
+        <h3 class="card-header">1.2 ナビゲーション構造</h3>
+
+        <h4 class="subsection-subtitle">グローバルナビゲーション（ヘッダー）</h4>
+        <div class="grid-3">
+          <span class="badge badge-primary">ホーム</span>
+          <span class="badge badge-primary">お知らせ</span>
+          <span class="badge badge-primary">経営理念</span>
+          <span class="badge badge-primary">事業概要</span>
+          <span class="badge badge-primary">役員紹介</span>
+          <span class="badge badge-primary">取扱保険会社</span>
+          <span class="badge badge-primary">会社概要</span>
+          <span class="badge badge-primary">お問い合わせ</span>
+        </div>
+
+        <h4 class="subsection-subtitle">補助ナビゲーション</h4>
+        <div class="grid-3">
+          <span class="badge badge-success">LINE公式アカウント</span>
+          <span class="badge badge-success">Instagram</span>
+          <span class="badge badge-success">Facebook</span>
+        </div>
+
+        <h4 class="subsection-subtitle">フッターリンク</h4>
+        <ul>
+          <li>個人情報保護方針</li>
+          <li>勧誘方針</li>
+          <li>各種規制機関へのリンク</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2. 技術スタック -->
+    <section id="tech-stack" class="section">
+      <h2 class="section-title">2. 技術スタック・使用ツール</h2>
+
+      <div class="card">
+        <h3 class="card-header">2.1 確認できた技術要素</h3>
+
+        <div class="grid-2">
+          <div class="info-box">
+            <strong>フロントエンド</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <strong>プラグイン・ライブラリ</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li><strong>Metaslider</strong>: スライダー画像表示</li>
+              <li><strong>FontAwesome</strong>: アイコンフォント</li>
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <strong>デザイン要素</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>レスポンシブデザイン（750px以下でモバイル切り替え）</li>
+              <li>テーブルレイアウト（border-collapse: collapse）</li>
+              <li>ホバーエフェクト</li>
+              <li>ページトップボタン（固定位置）</li>
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <strong>推測される構成</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li><strong>CMS</strong>: WordPress（Metasliderプラグイン使用から推測）</li>
+              <li><strong>ホスティング</strong>: 不明（要確認）</li>
+              <li><strong>SSL</strong>: 対応済み（https://）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. コンテンツ詳細 -->
+    <section id="content-details" class="section">
+      <h2 class="section-title">3. コンテンツ詳細</h2>
+
+      <div class="card">
+        <h3 class="card-header">3.1 トップページ構成要素</h3>
+
+        <ol>
+          <li>
+            <strong>ヘッダー</strong>
+            <ul>
+              <li>ロゴ（finance-brain SVGファイル）</li>
+              <li>グローバルナビゲーション</li>
+              <li>モバイルメニュー</li>
+            </ul>
+          </li>
+          <li>
+            <strong>メインビジュアル</strong>
+            <ul>
+              <li>スライダー画像（Metaslider）</li>
+            </ul>
+          </li>
+          <li>
+            <strong>コンテンツエリア</strong>
+            <ul>
+              <li>お知らせセクション</li>
+              <li>サービス概要</li>
+              <li>その他セクション</li>
+            </ul>
+          </li>
+          <li>
+            <strong>フッター</strong>
+            <ul>
+              <li>会社概要</li>
+              <li>SNSリンク</li>
+              <li>ポリシーページリンク</li>
+              <li>コピーライト</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3 class="card-header">3.2 サービス・事業内容</h3>
+
+        <div class="grid-3">
+          <div class="note-box">
+            <strong>1. 保険サービス</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>生命保険</li>
+              <li>損害保険</li>
+              <li>各種保険の取り扱い</li>
+            </ul>
+          </div>
+
+          <div class="note-box">
+            <strong>2. ファイナンシャルプランニング</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>ライフプランニング</li>
+              <li>資産運用相談</li>
+              <li>相続・事業承継相談（推測）</li>
+            </ul>
+          </div>
+
+          <div class="note-box">
+            <strong>3. 専門性</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>CFP®</li>
+              <li>AFP</li>
+              <li>1級FP技能士</li>
+              <li>宅地建物取引士</li>
+              <li>投資診断士</li>
+              <li>相続診断士</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-header">3.3 SNS・外部連携</h3>
+        <p><strong>公式アカウント:</strong></p>
+        <ul>
+          <li>LINE公式アカウント（認証なし）</li>
+          <li>Instagram</li>
+          <li>Facebook</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. デザイン詳細 -->
+    <section id="design-details" class="section">
+      <h2 class="section-title">4. デザイン詳細</h2>
+
+      <div class="card">
+        <h3 class="card-header">4.1 カラースキーム</h3>
+
+        <div class="color-palette">
+          <div class="color-sample">
+            <div class="color-swatch" style="background-color: #5767bf;">#5767bf</div>
+            <div class="color-info">
+              <div class="color-name">メインカラー</div>
+              <div class="color-code">濃いブルー（プライマリカラー）</div>
+            </div>
+          </div>
+          <div class="color-sample">
+            <div class="color-swatch" style="background-color: #ffffff; color: #333;">#ffffff</div>
+            <div class="color-info">
+              <div class="color-name">ベースカラー</div>
+              <div class="color-code">白（背景）</div>
+            </div>
+          </div>
+        </div>
+
+        <h4 class="subsection-subtitle">使用箇所</h4>
+        <ul>
+          <li>ボーダー要素</li>
+          <li>デコレーション要素</li>
+          <li>box1クラスの角括弧デザイン</li>
+          <li>リンクカラー（推測）</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="card-header">4.2 タイポグラフィ</h3>
+        <div class="info-box">
+          <p><strong>推測される構成:</strong></p>
+          <ul style="margin-top: 0.5rem;">
+            <li><strong>本文:</strong> ゴシック体（游ゴシック or メイリオ等）</li>
+            <li><strong>見出し:</strong> ゴシック体（太字）</li>
+          </ul>
+          <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">※具体的なフォント情報は調査結果に含まれていませんでした</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-header">4.3 レイアウト特徴</h3>
+
+        <div class="grid-2">
+          <div class="info-box">
+            <strong>デスクトップ（PC）</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>固定幅 or 最大幅設定</li>
+              <li>2カラム or 1カラムレイアウト</li>
+              <li>テーブルレイアウト使用</li>
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <strong>タブレット・モバイル</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>750px以下でモバイル表示切り替え</li>
+              <li>1カラムレイアウト</li>
+              <li>ハンバーガーメニュー</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-header">4.4 UI要素</h3>
+
+        <div class="grid-2">
+          <div class="note-box">
+            <strong>ボタン・CTA</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>ホバーエフェクト実装</li>
+              <li>スムーズな遷移</li>
+            </ul>
+          </div>
+
+          <div class="note-box">
+            <strong>アイコン</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>FontAwesome使用</li>
+              <li>SNSアイコン</li>
+              <li>その他装飾アイコン</li>
+            </ul>
+          </div>
+
+          <div class="note-box">
+            <strong>スライダー</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>Metaslider使用</li>
+              <li>画像スライド（枚数不明）</li>
+            </ul>
+          </div>
+
+          <div class="note-box">
+            <strong>ページトップボタン</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>固定位置配置</li>
+              <li>スムーズスクロール</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. リニューアル提案 -->
+    <section id="renewal-proposal" class="section">
+      <h2 class="section-title">5. リニューアル提案サイトマップ</h2>
+
+      <div class="card">
+        <h3 class="card-header">5.1 推奨サイト構造（案）</h3>
+        <pre><code>finance-brain.co.jp/
+│
+├── ホーム（リニューアル）
+│   ├── メインビジュアル
+│   ├── ファイナンスブレーンとは
+│   ├── サービス概要（3カラム）
+│   ├── 選ばれる理由（新設）
+│   ├── お客様の声（新設）
+│   ├── 最新情報
+│   └── お問い合わせCTA
+│
+├── ファイナンスブレーンとは
+│   ├── 経営理念
+│   ├── 代表メッセージ
+│   └── 会社の強み
+│
+├── サービス
+│   ├── 保険のご相談
+│   │   ├── 生命保険
+│   │   ├── 損害保険
+│   │   └── 取扱保険会社一覧
+│   ├── 資産運用のご相談
+│   │   ├── 投資信託
+│   │   ├── NISA・iDeCo
+│   │   └── 資産形成プラン
+│   ├── ライフプランニング
+│   │   ├── 住宅購入資金
+│   │   ├── 教育資金
+│   │   └── 老後資金
+│   └── 相続・事業承継
+│       ├── 相続対策
+│       └── 事業承継サポート
+│
+├── 選ばれる理由（新設）
+│   ├── 専門資格を持つアドバイザー
+│   ├── きめ細かなサービス
+│   ├── 中立的な立場からの提案
+│   └── アフターフォロー体制
+│
+├── お客様の声（新設）
+│   ├── お客様インタビュー
+│   ├── 事例紹介
+│   └── よくあるご質問（FAQ）
+│
+├── スタッフ紹介（拡充）
+│   ├── 代表者プロフィール
+│   ├── アドバイザー紹介（顔写真付き）
+│   └── 保有資格一覧
+│
+├── 会社情報
+│   ├── 会社概要
+│   ├── アクセス
+│   ├── 個人情報保護方針
+│   └── 勧誘方針
+│
+├── お知らせ
+│   ├── 新着情報
+│   ├── セミナー・イベント情報（新設）
+│   └── ブログ・コラム（新設）
+│
+└── お問い合わせ
+    ├── お問い合わせフォーム
+    ├── 無料相談予約（新設）
+    ├── LINE相談（新設）
+    └── よくあるご質問</code></pre>
+      </div>
+
+      <div class="card">
+        <h3 class="card-header">5.2 追加推奨ページ</h3>
+
+        <h4 class="subsection-subtitle">新設推奨</h4>
+        <ul class="checklist">
+          <li>選ばれる理由ページ</li>
+          <li>お客様の声ページ</li>
+          <li>よくあるご質問（FAQ）ページ</li>
+          <li>セミナー・イベント情報ページ</li>
+          <li>ブログ・コラムページ（SEO対策）</li>
+          <li>無料相談予約ページ</li>
+          <li>LINE相談ページ</li>
+          <li>プライバシーポリシー（個人情報保護方針の拡充）</li>
+          <li>サイトマップページ</li>
+        </ul>
+
+        <h4 class="subsection-subtitle">拡充推奨</h4>
+        <ul class="checklist">
+          <li>サービスページを4つの大カテゴリに分割</li>
+          <li>スタッフ紹介に顔写真・詳細プロフィール追加</li>
+          <li>会社情報の充実</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="card-header">5.3 推奨ディレクトリ構成（開発用）</h3>
+        <pre><code>finance-brain/
+│
+├── index.html （トップページ）
+│
+├── about/
+│   ├── index.html （ファイナンスブレーンとは）
+│   ├── philosophy.html （経営理念）
+│   └── message.html （代表メッセージ）
+│
+├── services/
+│   ├── index.html （サービス一覧）
+│   ├── insurance.html （保険のご相談）
+│   ├── investment.html （資産運用のご相談）
+│   ├── life-planning.html （ライフプランニング）
+│   └── inheritance.html （相続・事業承継）
+│
+├── why-us/
+│   └── index.html （選ばれる理由）
+│
+├── voice/
+│   ├── index.html （お客様の声）
+│   └── case-study/ （事例紹介）
+│
+├── staff/
+│   └── index.html （スタッフ紹介）
+│
+├── company/
+│   ├── index.html （会社概要）
+│   ├── access.html （アクセス）
+│   ├── privacy.html （個人情報保護方針）
+│   └── solicitation.html （勧誘方針）
+│
+├── news/
+│   ├── index.html （お知らせ一覧）
+│   ├── seminar/ （セミナー・イベント）
+│   └── blog/ （ブログ・コラム）
+│
+├── faq/
+│   └── index.html （よくあるご質問）
+│
+├── contact/
+│   ├── index.html （お問い合わせ）
+│   ├── reservation.html （無料相談予約）
+│   └── line.html （LINE相談）
+│
+├── assets/
+│   ├── css/
+│   │   ├── reset.css
+│   │   ├── common.css
+│   │   ├── style.css
+│   │   └── responsive.css
+│   ├── js/
+│   │   ├── common.js
+│   │   ├── slider.js
+│   │   └── form.js
+│   ├── images/
+│   │   ├── logo/
+│   │   ├── slider/
+│   │   ├── services/
+│   │   ├── staff/
+│   │   └── common/
+│   └── fonts/
+│
+├── sitemap.xml （サイトマップXML）
+└── robots.txt （robots.txt）</code></pre>
+      </div>
+
+      <div class="card">
+        <h3 class="card-header">5.4 WordPress構成案（CMS使用の場合）</h3>
+        <pre><code>wp-content/
+└── themes/
+    └── finance-brain/
+        ├── header.php
+        ├── footer.php
+        ├── index.php
+        ├── front-page.php （トップページ）
+        ├── page.php （固定ページ）
+        ├── single.php （投稿ページ）
+        ├── archive.php （アーカイブ）
+        ├── functions.php
+        ├── style.css
+        └── assets/
+            ├── css/
+            ├── js/
+            └── images/</code></pre>
+      </div>
+    </section>
+
+    <!-- 6. 改善ポイント -->
+    <section id="improvement-points" class="section">
+      <h2 class="section-title">6. 改善ポイント</h2>
+
+      <div class="card">
+        <h3 class="card-header">6.1 現在のサイトの課題</h3>
+
+        <h4 class="subsection-subtitle">構造面</h4>
+        <ul class="checklist">
+          <li>ページ数が少ない（SEO的に不利）</li>
+          <li>サービスの詳細が不足</li>
+          <li>お客様の声・事例が見当たらない</li>
+          <li>FAQ（よくある質問）がない</li>
+          <li>ブログ・コラムがない（コンテンツマーケティング不足）</li>
+        </ul>
+
+        <h4 class="subsection-subtitle">デザイン面</h4>
+        <ul class="checklist">
+          <li>モバイル最適化の余地あり</li>
+          <li>CTAの視認性向上の余地</li>
+          <li>画像・ビジュアルの充実</li>
+          <li>アニメーション・インタラクション要素が少ない</li>
+        </ul>
+
+        <h4 class="subsection-subtitle">機能面</h4>
+        <ul class="checklist">
+          <li>オンライン相談予約機能なし</li>
+          <li>チャットボット・LINE連携の強化</li>
+          <li>資料ダウンロード機能なし</li>
+          <li>セミナー・イベント申し込み機能なし</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="card-header">6.2 リニューアルで解決すべき課題</h3>
+
+        <div class="grid-2">
+          <div class="info-box">
+            <strong>1. 情報不足の解消</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>サービス詳細ページの拡充</li>
+              <li>お客様の声・事例紹介の追加</li>
+              <li>FAQ充実</li>
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <strong>2. SEO対策</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>ブログ・コラム機能追加</li>
+              <li>構造化データマークアップ</li>
+              <li>サイトマップXML生成</li>
+              <li>OGP設定</li>
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <strong>3. ユーザビリティ向上</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>モバイルファースト設計</li>
+              <li>オンライン予約機能</li>
+              <li>LINE相談の強化</li>
+              <li>資料ダウンロード機能</li>
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <strong>4. 信頼性向上</strong>
+            <ul style="margin-top: 0.5rem;">
+              <li>スタッフ顔写真・詳細プロフィール</li>
+              <li>実績数値の可視化</li>
+              <li>お客様の声</li>
+              <li>資格・許認可の明示</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p><strong>作成日:</strong> 2025年12月25日 | <strong>作成者:</strong> Claude Code | <strong>バージョン:</strong> 1.0</p>
+      <p style="margin-top: 0.5rem;"><a href="research-report.html">← 調査報告書に戻る</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
