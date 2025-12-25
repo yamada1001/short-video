@@ -2591,3 +2591,277 @@ button {
     padding: 0.75rem 0.5rem;
   }
 }
+
+/* ===================================
+   今後の具体的な流れ セクション
+   =================================== */
+
+.flow-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.flow-step {
+  display: flex;
+  gap: var(--spacing-lg);
+  position: relative;
+}
+
+.flow-step::after {
+  content: '';
+  position: absolute;
+  left: 32px;
+  top: 70px;
+  bottom: -40px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-natural-brown), transparent);
+}
+
+.flow-step:last-child::after {
+  display: none;
+}
+
+.flow-step__number {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-natural-brown), var(--color-green));
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+  box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.flow-step__number i {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.flow-step__content {
+  flex: 1;
+  background: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid var(--color-natural-brown);
+}
+
+.flow-step__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-natural-brown);
+  margin-bottom: var(--spacing-sm);
+}
+
+.flow-step__desc {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+}
+
+/* 話し合いボックス */
+.flow-meeting-box {
+  background: #FAFAFA;
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  margin-bottom: var(--spacing-md);
+}
+
+.flow-meeting-box:last-child {
+  margin-bottom: 0;
+}
+
+.flow-meeting-box h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-natural-brown);
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flow-meeting-box h4 i {
+  color: var(--color-green);
+}
+
+.flow-meeting-box p {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: var(--spacing-sm);
+}
+
+.flow-meeting-list {
+  list-style: none;
+  padding-left: 0;
+  margin: var(--spacing-sm) 0;
+}
+
+.flow-meeting-list li {
+  padding-left: 1.5rem;
+  position: relative;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+}
+
+.flow-meeting-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0.5rem;
+  color: var(--color-green);
+  font-weight: 700;
+}
+
+/* ノート */
+.flow-note {
+  background: #E3F2FD;
+  border-left: 3px solid #2196F3;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 6px;
+  margin-top: var(--spacing-sm);
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.flow-note i {
+  color: #2196F3;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.flow-note p {
+  color: #1565C0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.flow-note--success {
+  background: #E8F5E9;
+  border-left-color: var(--color-green);
+}
+
+.flow-note--success i {
+  color: var(--color-green);
+}
+
+.flow-note--success p {
+  color: #2E7D32;
+}
+
+/* 重要なボックス */
+.flow-important-box {
+  background: linear-gradient(135deg, #FFF3E0, #FFFBF5);
+  border: 2px solid #FF9800;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: var(--spacing-xl);
+}
+
+.flow-important-box__header {
+  background: linear-gradient(135deg, #FF9800, #FFB74D);
+  color: var(--color-white);
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.flow-important-box__header i {
+  font-size: 1.5rem;
+}
+
+.flow-important-box__header h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.flow-important-box__body {
+  padding: var(--spacing-lg);
+}
+
+.flow-important-list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.flow-important-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: #333;
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+.flow-important-list i {
+  color: var(--color-green);
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .flow-step {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .flow-step::after {
+    left: 31px;
+    top: 80px;
+  }
+
+  .flow-step__number {
+    width: 56px;
+    height: 56px;
+    font-size: 0.7rem;
+  }
+
+  .flow-step__number i {
+    font-size: 1.125rem;
+  }
+
+  .flow-step__title {
+    font-size: 1.25rem;
+  }
+
+  .flow-step__content {
+    padding: var(--spacing-md);
+  }
+
+  .flow-meeting-box {
+    padding: var(--spacing-sm);
+  }
+
+  .flow-meeting-box h4 {
+    font-size: 1rem;
+  }
+
+  .flow-important-box__header {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .flow-important-box__header h3 {
+    font-size: 1.125rem;
+  }
+
+  .flow-important-box__body {
+    padding: var(--spacing-md);
+  }
+}
