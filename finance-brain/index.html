@@ -1180,8 +1180,7 @@
 │   └── 所属団体
 │
 ├── <strong>会社情報</strong> - URL: /company/
-│   ├── 会社概要 - URL: /company/about/
-│   ├── アクセス - URL: /company/access/
+│   ├── 会社概要（アクセス・地図含む） - URL: /company/
 │   ├── 個人情報保護方針 - URL: /company/privacy/
 │   ├── 勧誘方針 - URL: /company/solicitation/
 │   └── お客様本位の業務運営方針 - URL: /company/customer-oriented/
@@ -1208,7 +1207,7 @@
 │
 └── <strong>お問い合わせ</strong> - URL: /contact/
     ├── お問い合わせフォーム - URL: /contact/
-    ├── 無料相談予約 - URL: /contact/reservation/
+    │   └── 問い合わせ種別: 一般問い合わせ、無料相談予約、資料請求、その他
     ├── 電話でのお問い合わせ（097-574-8212）
     ├── LINE相談（外部リンク: https://lin.ee/149antcn）
     └── よくあるご質問（FAQ）へのリンク</code></pre>
@@ -1225,11 +1224,11 @@
                 <li>セミナー・イベント情報ページ</li>
                 <li>公式コラム・お役立ち情報ページ（SEO対策）</li>
                 <li><strong>スタッフブログページ（必須）</strong></li>
-                <li>無料相談予約ページ</li>
                 <li>プライバシーポリシー（個人情報保護方針の拡充）</li>
                 <li>サイトマップページ</li>
               </ul>
               <p class="note">※LINE相談はボタンからの外部リンクで実装（専用ページ不要）</p>
+              <p class="note">※無料相談予約は問い合わせフォーム内の「種別選択」で対応（専用ページ不要）</p>
 
               <h4 class="subsection-subtitle">拡充推奨</h4>
               <ul class="checklist">
@@ -1336,8 +1335,7 @@
 │   └── index.html
 │
 ├── <strong>company/</strong> （会社情報）
-│   ├── index.html （会社概要）
-│   ├── access.html （アクセス）
+│   ├── index.html （会社概要 ※アクセス・地図含む）
 │   ├── privacy.html （個人情報保護方針）
 │   ├── solicitation.html （勧誘方針）
 │   └── customer-oriented.html （お客様本位の業務運営方針）
@@ -1369,8 +1367,7 @@
 │   └── usage.html （ご利用方法について）
 │
 ├── <strong>contact/</strong> （お問い合わせ）
-│   ├── index.html （お問い合わせフォーム ※LINE相談ボタンも含む）
-│   ├── reservation.html （無料相談予約）
+│   ├── index.html （お問い合わせフォーム ※種別選択で無料相談予約も対応、LINE相談ボタンも含む）
 │   └── thanks.html （送信完了ページ）
 │
 ├── <strong>assets/</strong> （静的ファイル）
