@@ -5,24 +5,26 @@
 ======================================== */
 .layout-wrapper {
   display: flex;
+  flex-direction: row;
   max-width: 1600px;
   margin: 0 auto;
   position: relative;
 }
 
 /* ========================================
-   サイドバー
+   サイドバー（右側）
 ======================================== */
 .sidebar {
-  width: 280px;
+  width: 300px;
   flex-shrink: 0;
   position: sticky;
   top: 0;
   height: 100vh;
   overflow-y: auto;
   background-color: #fafbfc;
-  border-right: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
   padding: 2rem 0;
+  order: 2;
 }
 
 .sidebar-inner {

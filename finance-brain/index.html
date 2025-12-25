@@ -28,42 +28,6 @@
 
   <!-- サイドバー + メインコンテンツ -->
   <div class="layout-wrapper">
-    <!-- サイドバー（目次） -->
-    <aside class="sidebar">
-      <div class="sidebar-inner">
-        <h2 class="sidebar-title">目次</h2>
-        <nav class="toc">
-          <ul class="toc-list">
-            <li class="toc-section">
-              <a href="#section-1" class="toc-link">1. 調査報告書</a>
-              <ul class="toc-subsection">
-                <li><a href="#current-site" class="toc-link">1-1. 現在のサイト分析</a></li>
-                <li><a href="#competitors" class="toc-link">1-2. 競合サイト調査</a></li>
-                <li><a href="#design-trends" class="toc-link">1-3. デザイントレンド</a></li>
-                <li><a href="#references" class="toc-link">1-4. 参考事例</a></li>
-                <li><a href="#proposals" class="toc-link">1-5. 提案方向性</a></li>
-                <li><a href="#next-steps" class="toc-link">1-6. 次のステップ</a></li>
-              </ul>
-            </li>
-            <li class="toc-section">
-              <a href="#section-2" class="toc-link">2. サイト構造</a>
-              <ul class="toc-subsection">
-                <li><a href="#current-structure" class="toc-link">2-1. 現在のサイト構造</a></li>
-                <li><a href="#tech-stack" class="toc-link">2-2. 技術スタック</a></li>
-                <li><a href="#content-details" class="toc-link">2-3. コンテンツ詳細</a></li>
-                <li><a href="#design-details" class="toc-link">2-4. デザイン詳細</a></li>
-                <li><a href="#renewal-proposal" class="toc-link">2-5. リニューアル提案</a></li>
-                <li><a href="#improvement-points" class="toc-link">2-6. 改善ポイント</a></li>
-              </ul>
-            </li>
-            <li class="toc-section">
-              <a href="#appendix" class="toc-link">付録: 参考URL一覧</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </aside>
-
     <!-- メインコンテンツ -->
     <main class="main-content">
       <div class="container">
@@ -76,7 +40,7 @@
           <section id="current-site" class="section">
             <h2 class="section-title">1-1. 現在のサイト分析</h2>
 
-            <div class="card">
+            <div class="card" id="site-structure">
               <h3 class="card-header">サイト構造</h3>
               <pre><code>ホーム
 ├─ お知らせ
@@ -88,7 +52,7 @@
 └─ お問い合わせ</code></pre>
             </div>
 
-            <div class="card">
+            <div class="card" id="color-scheme">
               <h3 class="card-header">現在のカラースキーム</h3>
               <div class="color-palette">
                 <div class="color-sample">
@@ -109,7 +73,7 @@
               <p><strong>使用箇所:</strong> ボーダー、デコレーション要素、box1クラスの角括弧デザイン</p>
             </div>
 
-            <div class="card">
+            <div class="card" id="design-features">
               <h3 class="card-header">デザインの特徴</h3>
               <ul>
                 <li>レスポンシブ対応（750px以下でモバイル切り替え）</li>
@@ -121,7 +85,7 @@
               </ul>
             </div>
 
-            <div class="card">
+            <div class="card" id="service-content">
               <h3 class="card-header">サービス内容</h3>
 
               <h4 class="subsection-subtitle">事業内容</h4>
@@ -152,7 +116,7 @@
           <section id="competitors" class="section">
             <h2 class="section-title">1-2. 競合サイト調査</h2>
 
-            <div class="card">
+            <div class="card" id="gaia">
               <h3 class="card-header">IFA法人GAIA</h3>
               <p><a href="https://www.gaiainc.jp/" target="_blank" class="link-external">https://www.gaiainc.jp/</a></p>
 
@@ -194,7 +158,7 @@
               </div>
             </div>
 
-            <div class="card">
+            <div class="card" id="sharetive">
               <h3 class="card-header">株式会社シェアティブ</h3>
               <p><a href="https://www.sharetive.co.jp/" target="_blank" class="link-external">https://www.sharetive.co.jp/</a></p>
 
@@ -215,7 +179,7 @@
               </ul>
             </div>
 
-            <div class="card">
+            <div class="card" id="theo">
               <h3 class="card-header">THEO by お金のデザイン</h3>
               <p><a href="https://theo.blue" target="_blank" class="link-external">https://theo.blue</a></p>
 
@@ -245,7 +209,7 @@
           <section id="design-trends" class="section">
             <h2 class="section-title">1-3. ブルーカラーを使った金融系デザイントレンド（2024-2025）</h2>
 
-            <div class="card">
+            <div class="card" id="color-trends">
               <h3 class="card-header">カラートレンド</h3>
 
               <h4 class="subsection-subtitle">基本配色</h4>
@@ -272,7 +236,7 @@
               </div>
             </div>
 
-            <div class="card">
+            <div class="card" id="style-trends">
               <h3 class="card-header">デザインスタイルトレンド</h3>
 
               <h4 class="subsection-subtitle">2024-2025年の金融業界Webデザイントレンド</h4>
@@ -293,7 +257,7 @@
               </ul>
             </div>
 
-            <div class="card">
+            <div class="card" id="blue-psychology">
               <h3 class="card-header">青色が持つ心理効果</h3>
               <div class="grid-2">
                 <div class="note-box">
@@ -320,7 +284,7 @@
           <section id="references" class="section">
             <h2 class="section-title">1-4. 参考デザインサイト事例</h2>
 
-            <div class="card">
+            <div class="card" id="insurance-examples">
               <h3 class="card-header">保険代理店の青系デザイン事例</h3>
               <ul class="link-list">
                 <li>
@@ -338,7 +302,7 @@
               </ul>
             </div>
 
-            <div class="card">
+            <div class="card" id="ifa-examples">
               <h3 class="card-header">資産運用・IFAのデザイン事例</h3>
               <ul class="link-list">
                 <li>
@@ -352,7 +316,7 @@
               </ul>
             </div>
 
-            <div class="card">
+            <div class="card" id="design-galleries">
               <h3 class="card-header">デザインギャラリー・参考サイト集</h3>
               <p>以下のサイトで金融・保険・青系デザインの事例を探せます：</p>
               <ul class="link-list">
@@ -370,7 +334,7 @@
           <section id="proposals" class="section">
             <h2 class="section-title">1-5. リニューアルに向けた提案方向性</h2>
 
-            <div class="card">
+            <div class="card" id="color-proposals">
               <h3 class="card-header">カラースキーム案</h3>
               <p>現在の <code>#5767bf</code> をベースに、以下の配色を検討：</p>
 
@@ -471,7 +435,7 @@
               </div>
             </div>
 
-            <div class="card">
+            <div class="card" id="design-direction">
               <h3 class="card-header">デザイン方向性</h3>
 
               <h4 class="subsection-subtitle">推奨スタイル</h4>
@@ -507,7 +471,7 @@
               </div>
             </div>
 
-            <div class="card">
+            <div class="card" id="site-structure-proposal">
               <h3 class="card-header">サイト構造案</h3>
               <pre><code>ホーム（リニューアル）
 ├─ ファイナンスブレーンとは（経営理念統合）
@@ -527,7 +491,7 @@
 └─ お問い合わせ</code></pre>
             </div>
 
-            <div class="card">
+            <div class="card" id="implementation-requirements">
               <h3 class="card-header">必須実装要素</h3>
 
               <h4 class="subsection-subtitle">UI/UXの改善</h4>
@@ -558,7 +522,7 @@
             <h2 class="section-title">1-6. 次のステップ</h2>
 
             <div class="grid-2">
-              <div class="card">
+              <div class="card" id="step-design">
                 <h3 class="card-header">1. デザインモックアップ作成</h3>
                 <ul>
                   <li>トップページのデザイン案3パターン作成</li>
@@ -567,7 +531,7 @@
                 </ul>
               </div>
 
-              <div class="card">
+              <div class="card" id="step-content">
                 <h3 class="card-header">2. コンテンツ整理</h3>
                 <ul>
                   <li>既存コンテンツの整理・リライト</li>
@@ -576,7 +540,7 @@
                 </ul>
               </div>
 
-              <div class="card">
+              <div class="card" id="step-tech">
                 <h3 class="card-header">3. 技術要件定義</h3>
                 <ul>
                   <li>使用するCMS/フレームワークの決定</li>
@@ -585,7 +549,7 @@
                 </ul>
               </div>
 
-              <div class="card">
+              <div class="card" id="step-schedule">
                 <h3 class="card-header">4. スケジュール策定</h3>
                 <ul>
                   <li>デザイン期間</li>
@@ -606,7 +570,7 @@
           <section id="current-structure" class="section">
             <h2 class="section-title">2-1. 現在のサイト構造</h2>
 
-            <div class="card">
+            <div class="card" id="page-structure">
               <h3 class="card-header">ページ構成</h3>
               <pre><code>finance-brain.co.jp/
 │
@@ -643,7 +607,7 @@
     └── 問い合わせフォーム</code></pre>
             </div>
 
-            <div class="card">
+            <div class="card" id="navigation-structure">
               <h3 class="card-header">ナビゲーション構造</h3>
 
               <h4 class="subsection-subtitle">グローバルナビゲーション（ヘッダー）</h4>
@@ -678,7 +642,7 @@
           <section id="tech-stack" class="section">
             <h2 class="section-title">2-2. 技術スタック・使用ツール</h2>
 
-            <div class="card">
+            <div class="card" id="tech-elements">
               <h3 class="card-header">確認できた技術要素</h3>
 
               <div class="grid-2">
@@ -725,7 +689,7 @@
           <section id="content-details" class="section">
             <h2 class="section-title">2-3. コンテンツ詳細</h2>
 
-            <div class="card">
+            <div class="card" id="toppage-components">
               <h3 class="card-header">トップページ構成要素</h3>
 
               <ol>
@@ -763,7 +727,7 @@
               </ol>
             </div>
 
-            <div class="card">
+            <div class="card" id="service-details">
               <h3 class="card-header">サービス・事業内容</h3>
 
               <div class="grid-3">
@@ -799,7 +763,7 @@
               </div>
             </div>
 
-            <div class="card">
+            <div class="card" id="sns-integration">
               <h3 class="card-header">SNS・外部連携</h3>
               <p><strong>公式アカウント:</strong></p>
               <ul>
@@ -814,7 +778,7 @@
           <section id="design-details" class="section">
             <h2 class="section-title">2-4. デザイン詳細</h2>
 
-            <div class="card">
+            <div class="card" id="current-colors">
               <h3 class="card-header">カラースキーム</h3>
 
               <div class="color-palette">
@@ -843,7 +807,7 @@
               </ul>
             </div>
 
-            <div class="card">
+            <div class="card" id="typography">
               <h3 class="card-header">タイポグラフィ</h3>
               <div class="info-box">
                 <p><strong>推測される構成:</strong></p>
@@ -855,7 +819,7 @@
               </div>
             </div>
 
-            <div class="card">
+            <div class="card" id="layout-features">
               <h3 class="card-header">レイアウト特徴</h3>
 
               <div class="grid-2">
@@ -879,7 +843,7 @@
               </div>
             </div>
 
-            <div class="card">
+            <div class="card" id="ui-elements">
               <h3 class="card-header">UI要素</h3>
 
               <div class="grid-2">
@@ -923,7 +887,7 @@
           <section id="renewal-proposal" class="section">
             <h2 class="section-title">2-5. リニューアル提案サイトマップ</h2>
 
-            <div class="card">
+            <div class="card" id="recommended-structure">
               <h3 class="card-header">推奨サイト構造（案）</h3>
               <pre><code>finance-brain.co.jp/
 │
@@ -992,7 +956,7 @@
     └── よくあるご質問</code></pre>
             </div>
 
-            <div class="card">
+            <div class="card" id="additional-pages">
               <h3 class="card-header">追加推奨ページ</h3>
 
               <h4 class="subsection-subtitle">新設推奨</h4>
@@ -1016,7 +980,7 @@
               </ul>
             </div>
 
-            <div class="card">
+            <div class="card" id="directory-structure">
               <h3 class="card-header">推奨ディレクトリ構成（開発用）</h3>
               <pre><code>finance-brain/
 │
@@ -1085,7 +1049,7 @@
 └── robots.txt （robots.txt）</code></pre>
             </div>
 
-            <div class="card">
+            <div class="card" id="wordpress-structure">
               <h3 class="card-header">WordPress構成案（CMS使用の場合）</h3>
               <pre><code>wp-content/
 └── themes/
@@ -1110,7 +1074,7 @@
           <section id="improvement-points" class="section">
             <h2 class="section-title">2-6. 改善ポイント</h2>
 
-            <div class="card">
+            <div class="card" id="current-issues">
               <h3 class="card-header">現在のサイトの課題</h3>
 
               <h4 class="subsection-subtitle">構造面</h4>
@@ -1139,7 +1103,7 @@
               </ul>
             </div>
 
-            <div class="card">
+            <div class="card" id="solutions">
               <h3 class="card-header">リニューアルで解決すべき課題</h3>
 
               <div class="grid-2">
@@ -1190,7 +1154,7 @@
         <section id="appendix" class="section">
           <h2 class="section-title">付録: 参考URL一覧</h2>
 
-          <div class="card">
+          <div class="card" id="competitor-urls">
             <h3 class="card-header">競合サイト</h3>
             <ul class="link-list">
               <li><a href="https://www.gaiainc.jp/" target="_blank" class="link-external">IFA法人GAIA</a></li>
@@ -1199,7 +1163,7 @@
             </ul>
           </div>
 
-          <div class="card">
+          <div class="card" id="gallery-urls">
             <h3 class="card-header">デザインギャラリー</h3>
             <ul class="link-list">
               <li><a href="https://sankoudesign.com/category/bank-insurance-finance-law/" target="_blank" class="link-external">SANKOU!（金融・投資・保険・士業）</a></li>
@@ -1213,7 +1177,7 @@
             </ul>
           </div>
 
-          <div class="card">
+          <div class="card" id="article-urls">
             <h3 class="card-header">参考記事</h3>
             <ul class="link-list">
               <li><a href="https://leapy.jp/blog/web-design/job/ifa/" target="_blank" class="link-external">「信頼・パートナー感」を伝える！金融業界のホームページデザイン11選</a></li>
@@ -1226,6 +1190,123 @@
 
       </div>
     </main>
+
+    <!-- サイドバー（目次） - 右側 -->
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <h2 class="sidebar-title">目次</h2>
+        <nav class="toc">
+          <ul class="toc-list">
+            <!-- 1. 調査報告書 -->
+            <li class="toc-section">
+              <a href="#section-1" class="toc-link">1. 調査報告書</a>
+              <ul class="toc-subsection">
+                <li><a href="#current-site" class="toc-link">1-1. 現在のサイト分析</a>
+                  <ul class="toc-detail">
+                    <li><a href="#site-structure" class="toc-link-detail">サイト構造</a></li>
+                    <li><a href="#color-scheme" class="toc-link-detail">現在のカラースキーム</a></li>
+                    <li><a href="#design-features" class="toc-link-detail">デザインの特徴</a></li>
+                    <li><a href="#service-content" class="toc-link-detail">サービス内容</a></li>
+                  </ul>
+                </li>
+                <li><a href="#competitors" class="toc-link">1-2. 競合サイト調査</a>
+                  <ul class="toc-detail">
+                    <li><a href="#gaia" class="toc-link-detail">IFA法人GAIA</a></li>
+                    <li><a href="#sharetive" class="toc-link-detail">株式会社シェアティブ</a></li>
+                    <li><a href="#theo" class="toc-link-detail">THEO by お金のデザイン</a></li>
+                  </ul>
+                </li>
+                <li><a href="#design-trends" class="toc-link">1-3. デザイントレンド</a>
+                  <ul class="toc-detail">
+                    <li><a href="#color-trends" class="toc-link-detail">カラートレンド</a></li>
+                    <li><a href="#style-trends" class="toc-link-detail">デザインスタイルトレンド</a></li>
+                    <li><a href="#blue-psychology" class="toc-link-detail">青色が持つ心理効果</a></li>
+                  </ul>
+                </li>
+                <li><a href="#references" class="toc-link">1-4. 参考事例</a>
+                  <ul class="toc-detail">
+                    <li><a href="#insurance-examples" class="toc-link-detail">保険代理店の青系デザイン事例</a></li>
+                    <li><a href="#ifa-examples" class="toc-link-detail">資産運用・IFAのデザイン事例</a></li>
+                    <li><a href="#design-galleries" class="toc-link-detail">デザインギャラリー</a></li>
+                  </ul>
+                </li>
+                <li><a href="#proposals" class="toc-link">1-5. 提案方向性</a>
+                  <ul class="toc-detail">
+                    <li><a href="#color-proposals" class="toc-link-detail">カラースキーム案</a></li>
+                    <li><a href="#design-direction" class="toc-link-detail">デザイン方向性</a></li>
+                    <li><a href="#site-structure-proposal" class="toc-link-detail">サイト構造案</a></li>
+                    <li><a href="#implementation-requirements" class="toc-link-detail">必須実装要素</a></li>
+                  </ul>
+                </li>
+                <li><a href="#next-steps" class="toc-link">1-6. 次のステップ</a>
+                  <ul class="toc-detail">
+                    <li><a href="#step-design" class="toc-link-detail">デザインモックアップ作成</a></li>
+                    <li><a href="#step-content" class="toc-link-detail">コンテンツ整理</a></li>
+                    <li><a href="#step-tech" class="toc-link-detail">技術要件定義</a></li>
+                    <li><a href="#step-schedule" class="toc-link-detail">スケジュール策定</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <!-- 2. サイト構造 -->
+            <li class="toc-section">
+              <a href="#section-2" class="toc-link">2. サイト構造</a>
+              <ul class="toc-subsection">
+                <li><a href="#current-structure" class="toc-link">2-1. 現在のサイト構造</a>
+                  <ul class="toc-detail">
+                    <li><a href="#page-structure" class="toc-link-detail">ページ構成</a></li>
+                    <li><a href="#navigation-structure" class="toc-link-detail">ナビゲーション構造</a></li>
+                  </ul>
+                </li>
+                <li><a href="#tech-stack" class="toc-link">2-2. 技術スタック</a>
+                  <ul class="toc-detail">
+                    <li><a href="#tech-elements" class="toc-link-detail">確認できた技術要素</a></li>
+                  </ul>
+                </li>
+                <li><a href="#content-details" class="toc-link">2-3. コンテンツ詳細</a>
+                  <ul class="toc-detail">
+                    <li><a href="#toppage-components" class="toc-link-detail">トップページ構成要素</a></li>
+                    <li><a href="#service-details" class="toc-link-detail">サービス・事業内容</a></li>
+                    <li><a href="#sns-integration" class="toc-link-detail">SNS・外部連携</a></li>
+                  </ul>
+                </li>
+                <li><a href="#design-details" class="toc-link">2-4. デザイン詳細</a>
+                  <ul class="toc-detail">
+                    <li><a href="#current-colors" class="toc-link-detail">カラースキーム</a></li>
+                    <li><a href="#typography" class="toc-link-detail">タイポグラフィ</a></li>
+                    <li><a href="#layout-features" class="toc-link-detail">レイアウト特徴</a></li>
+                    <li><a href="#ui-elements" class="toc-link-detail">UI要素</a></li>
+                  </ul>
+                </li>
+                <li><a href="#renewal-proposal" class="toc-link">2-5. リニューアル提案</a>
+                  <ul class="toc-detail">
+                    <li><a href="#recommended-structure" class="toc-link-detail">推奨サイト構造（案）</a></li>
+                    <li><a href="#additional-pages" class="toc-link-detail">追加推奨ページ</a></li>
+                    <li><a href="#directory-structure" class="toc-link-detail">推奨ディレクトリ構成</a></li>
+                    <li><a href="#wordpress-structure" class="toc-link-detail">WordPress構成案</a></li>
+                  </ul>
+                </li>
+                <li><a href="#improvement-points" class="toc-link">2-6. 改善ポイント</a>
+                  <ul class="toc-detail">
+                    <li><a href="#current-issues" class="toc-link-detail">現在のサイトの課題</a></li>
+                    <li><a href="#solutions" class="toc-link-detail">リニューアルで解決すべき課題</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <!-- 付録 -->
+            <li class="toc-section">
+              <a href="#appendix" class="toc-link">付録: 参考URL一覧</a>
+              <ul class="toc-subsection">
+                <li><a href="#competitor-urls" class="toc-link">競合サイト</a></li>
+                <li><a href="#gallery-urls" class="toc-link">デザインギャラリー</a></li>
+                <li><a href="#article-urls" class="toc-link">参考記事</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
   </div>
 
   <!-- フッター -->
