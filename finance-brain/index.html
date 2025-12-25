@@ -1232,71 +1232,191 @@
 
             <div class="card" id="directory-structure">
               <h3 class="card-header">推奨ディレクトリ構成（開発用）</h3>
+              <p><strong>※名刺記載のサービス内容（9項目）を反映した構成</strong></p>
               <pre><code>finance-brain/
 │
-├── index.html （トップページ）
+├── <strong>index.html</strong> （トップページ）
 │
-├── about/
+├── <strong>about/</strong> （会社紹介）
 │   ├── index.html （ファイナンスブレーンとは）
 │   ├── philosophy.html （経営理念）
-│   └── message.html （代表メッセージ）
+│   ├── message.html （代表メッセージ）
+│   └── strength.html （会社の強み）
 │
-├── services/
-│   ├── index.html （サービス一覧）
-│   ├── insurance.html （保険のご相談）
-│   ├── investment.html （資産運用のご相談）
-│   ├── life-planning.html （ライフプランニング）
-│   └── inheritance.html （相続・事業承継）
+├── <strong>services/</strong> （サービス）
+│   ├── index.html （サービス一覧トップ）
+│   │
+│   ├── <strong>personal/</strong> （個人のお客様向けサービス）
+│   │   ├── index.html （個人向けサービス一覧）
+│   │   │
+│   │   ├── <strong>life-planning/</strong> （01. ライフプランニング）
+│   │   │   ├── index.html
+│   │   │   ├── housing.html （住宅購入資金）
+│   │   │   ├── education.html （教育資金）
+│   │   │   └── retirement.html （老後資金）
+│   │   │
+│   │   ├── <strong>insurance/</strong> （02. 保険の見直し・ご相談）
+│   │   │   ├── index.html
+│   │   │   ├── life-insurance.html （生命保険）
+│   │   │   ├── general-insurance.html （損害保険）
+│   │   │   ├── review.html （保険見直しポイント）
+│   │   │   └── companies.html （取扱保険会社一覧）
+│   │   │
+│   │   ├── <strong>housing-loan/</strong> （03. 住宅ローンのご相談）
+│   │   │   ├── index.html
+│   │   │   ├── selection.html （住宅ローン選び方）
+│   │   │   ├── refinancing.html （借り換えシミュレーション）
+│   │   │   ├── interest-rate.html （金利タイプ比較）
+│   │   │   └── faq.html （よくある質問）
+│   │   │
+│   │   ├── <strong>inheritance/</strong> （04. 相続に関するご相談）
+│   │   │   ├── index.html
+│   │   │   ├── basics.html （相続対策の基本）
+│   │   │   ├── tax.html （相続税シミュレーション）
+│   │   │   ├── gift.html （生前贈与）
+│   │   │   └── will.html （遺言書作成サポート）
+│   │   │
+│   │   └── <strong>investment/</strong> （05. 投資信託・資産運用）
+│   │       ├── index.html
+│   │       ├── funds.html （投資信託）
+│   │       ├── nisa-ideco.html （NISA・iDeCo）
+│   │       ├── plan.html （資産形成プラン）
+│   │       └── risk.html （リスク管理）
+│   │
+│   └── <strong>corporate/</strong> （法人のお客様向けサービス）
+│       ├── index.html （法人向けサービス一覧）
+│       │
+│       ├── <strong>financial-consulting/</strong> （06. 財務コンサルティング）
+│       │   ├── index.html
+│       │   ├── analysis.html （財務分析）
+│       │   ├── cashflow.html （資金繰り改善）
+│       │   ├── business-plan.html （事業計画策定）
+│       │   └── bank-negotiation.html （銀行交渉サポート）
+│       │
+│       ├── <strong>retirement/</strong> （07. 退職金コンサルティング）
+│       │   ├── index.html
+│       │   ├── design.html （退職金制度設計）
+│       │   ├── pension.html （企業年金）
+│       │   ├── executive.html （役員退職金）
+│       │   └── tax.html （税制メリット）
+│       │
+│       ├── <strong>succession/</strong> （08. 事業承継対策）
+│       │   ├── index.html
+│       │   ├── planning.html （事業承継計画）
+│       │   ├── successor.html （後継者育成）
+│       │   ├── ma.html （M&A支援）
+│       │   └── tax.html （税務対策）
+│       │
+│       └── <strong>stock/</strong> （09. 自社株対策）
+│           ├── index.html
+│           ├── valuation.html （自社株評価）
+│           ├── measures.html （株価対策）
+│           ├── tax-system.html （事業承継税制）
+│           └── holding-company.html （持株会社活用）
 │
-├── why-us/
-│   └── index.html （選ばれる理由）
+├── <strong>why-us/</strong> （選ばれる理由）
+│   └── index.html
 │
-├── voice/
-│   ├── index.html （お客様の声）
+├── <strong>voice/</strong> （お客様の声）
+│   ├── index.html
+│   ├── personal/ （個人のお客様）
+│   ├── corporate/ （法人のお客様）
 │   └── case-study/ （事例紹介）
 │
-├── staff/
-│   └── index.html （スタッフ紹介）
+├── <strong>staff/</strong> （スタッフ紹介）
+│   └── index.html
 │
-├── company/
+├── <strong>company/</strong> （会社情報）
 │   ├── index.html （会社概要）
 │   ├── access.html （アクセス）
 │   ├── privacy.html （個人情報保護方針）
-│   └── solicitation.html （勧誘方針）
+│   ├── solicitation.html （勧誘方針）
+│   └── customer-oriented.html （お客様本位の業務運営方針）
 │
-├── news/
-│   ├── index.html （お知らせ一覧）
+├── <strong>news/</strong> （お知らせ）
+│   ├── index.html （新着情報一覧）
 │   ├── seminar/ （セミナー・イベント）
+│   │   └── index.html
 │   └── blog/ （ブログ・コラム）
+│       └── index.html
 │
-├── faq/
-│   └── index.html （よくあるご質問）
+├── <strong>faq/</strong> （よくあるご質問）
+│   ├── index.html （FAQ一覧）
+│   ├── insurance.html （保険について）
+│   ├── investment.html （資産運用について）
+│   ├── housing-loan.html （住宅ローンについて）
+│   ├── inheritance.html （相続について）
+│   └── usage.html （ご利用方法について）
 │
-├── contact/
-│   ├── index.html （お問い合わせ）
+├── <strong>contact/</strong> （お問い合わせ）
+│   ├── index.html （お問い合わせフォーム）
 │   ├── reservation.html （無料相談予約）
-│   └── line.html （LINE相談）
+│   ├── line.html （LINE相談）
+│   └── thanks.html （送信完了ページ）
 │
-├── assets/
+├── <strong>assets/</strong> （静的ファイル）
 │   ├── css/
-│   │   ├── reset.css
-│   │   ├── common.css
-│   │   ├── style.css
-│   │   └── responsive.css
+│   │   ├── reset.css （リセットCSS）
+│   │   ├── variables.css （CSS変数）
+│   │   ├── common.css （共通スタイル）
+│   │   ├── layout.css （レイアウト）
+│   │   ├── components.css （コンポーネント）
+│   │   ├── pages/
+│   │   │   ├── front-page.css
+│   │   │   ├── services.css
+│   │   │   ├── contact.css
+│   │   │   └── news.css
+│   │   └── responsive.css （レスポンシブ）
+│   │
 │   ├── js/
-│   │   ├── common.js
-│   │   ├── slider.js
-│   │   └── form.js
+│   │   ├── common.js （共通JS）
+│   │   ├── navigation.js （ナビゲーション）
+│   │   ├── slider.js （スライダー）
+│   │   ├── form-validation.js （フォームバリデーション）
+│   │   ├── smooth-scroll.js （スムーズスクロール）
+│   │   ├── accordion.js （アコーディオン）
+│   │   └── modal.js （モーダル）
+│   │
 │   ├── images/
 │   │   ├── logo/
+│   │   │   ├── logo.svg
+│   │   │   └── logo-white.svg
 │   │   ├── slider/
+│   │   │   ├── slide-01.jpg
+│   │   │   ├── slide-02.jpg
+│   │   │   └── slide-03.jpg
 │   │   ├── services/
+│   │   │   ├── personal/
+│   │   │   │   ├── life-planning.jpg
+│   │   │   │   ├── insurance.jpg
+│   │   │   │   ├── housing-loan.jpg
+│   │   │   │   ├── inheritance.jpg
+│   │   │   │   └── investment.jpg
+│   │   │   └── corporate/
+│   │   │       ├── financial-consulting.jpg
+│   │   │       ├── retirement.jpg
+│   │   │       ├── succession.jpg
+│   │   │       └── stock.jpg
 │   │   ├── staff/
-│   │   └── common/
-│   └── fonts/
+│   │   │   ├── staff-01.jpg
+│   │   │   └── staff-02.jpg
+│   │   ├── voice/
+│   │   │   ├── case-01.jpg
+│   │   │   └── case-02.jpg
+│   │   ├── common/
+│   │   │   ├── bg-pattern.svg
+│   │   │   ├── icon-check.svg
+│   │   │   └── icon-arrow.svg
+│   │   └── favicons/
+│   │       ├── favicon.ico
+│   │       ├── apple-touch-icon.png
+│   │       └── favicon-32x32.png
+│   │
+│   └── fonts/ （カスタムフォント）
 │
-├── sitemap.xml （サイトマップXML）
-└── robots.txt （robots.txt）</code></pre>
+├── <strong>sitemap.xml</strong> （サイトマップXML）
+├── <strong>robots.txt</strong> （robots.txt）
+└── <strong>.htaccess</strong> （Apache設定ファイル）</code></pre>
             </div>
 
             <div class="card" id="wordpress-structure">
