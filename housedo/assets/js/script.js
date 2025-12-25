@@ -211,3 +211,41 @@ console.log('%c🏠 HOUSEDO Instagram運用代行 作業要件書', 'font-size: 
 console.log('%c制作: YOJITU (https://yojitu.com)', 'font-size: 12px; color: #666;');
 console.log('%cフォント: LINE Seed JP', 'font-size: 12px; color: #666;');
 console.log('%cすべての機能が正常に動作しています ✓', 'font-size: 12px; color: #428570;');
+
+// ===================================
+// 11. コンテンツ案モーダル
+// ===================================
+
+const contentModal = document.getElementById('contentModal');
+const showContentModalBtn = document.getElementById('showContentModal');
+const closeContentModalBtn = document.getElementById('closeContentModal');
+const contentModalOverlay = document.getElementById('contentModalOverlay');
+
+// モーダルを開く
+if (showContentModalBtn) {
+    showContentModalBtn.addEventListener('click', function() {
+        contentModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+// モーダルを閉じる
+function closeContentModal() {
+    contentModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+if (closeContentModalBtn) {
+    closeContentModalBtn.addEventListener('click', closeContentModal);
+}
+
+if (contentModalOverlay) {
+    contentModalOverlay.addEventListener('click', closeContentModal);
+}
+
+// ESCキーでモーダルを閉じる
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && contentModal.classList.contains('active')) {
+        closeContentModal();
+    }
+});

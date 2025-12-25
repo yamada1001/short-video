@@ -541,7 +541,16 @@
                                     <i class="fas fa-info-circle"></i>
                                     <p><strong>役割分担：</strong><br>
                                     <strong>見せ方</strong>（デザイン・演出・編集）→ 我々が考えます<br>
-                                    <strong>内容</strong>（何を伝えるか・どう伝えるか）→ 不動産業界に詳しい仲道さんの知識をお借りします</p>
+                                    <strong>内容</strong>（何を伝えるか・どう伝えるか）→ 仲道さんと一緒に決めていきます</p>
+                                </div>
+                                <div class="flow-content-example">
+                                    <p style="margin-bottom: 0.75rem; color: #666;">
+                                        <strong>例えば、こういったコンテンツ案を考えております：</strong>
+                                    </p>
+                                    <button class="btn-show-content-modal" id="showContentModal">
+                                        <i class="fas fa-lightbulb"></i>
+                                        具体的なコンテンツ案を見る
+                                    </button>
                                 </div>
                             </div>
 
@@ -908,6 +917,185 @@
     <button class="scroll-to-top" id="scrollToTop">
         <i class="fas fa-chevron-up"></i>
     </button>
+
+    <!-- コンテンツ案モーダル -->
+    <div class="modal" id="contentModal">
+        <div class="modal__overlay" id="contentModalOverlay"></div>
+        <div class="modal__container">
+            <div class="modal__header">
+                <h3 class="modal__title">
+                    <i class="fas fa-lightbulb"></i>
+                    具体的なコンテンツ案
+                </h3>
+                <button class="modal__close" id="closeContentModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal__body">
+                <div class="modal-intro">
+                    <p class="modal-intro__text">
+                        <strong>コンセプト：</strong>「大分で家を売る・買うならハウスドゥ」<br>
+                        信頼感を醸成しながら、人間味があふれるコンテンツで親しみやすさも大切にします。
+                    </p>
+                </div>
+
+                <div class="content-category">
+                    <div class="content-category__header">
+                        <div class="content-category__icon" style="background: linear-gradient(135deg, #FF6B6B, #FF8E8E);">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4 class="content-category__title">信頼感・人間味（属人化OK）</h4>
+                    </div>
+                    <div class="content-category__desc">
+                        <p>スタッフの顔が見える、親しみやすいコンテンツ。「この人から買いたい」と思ってもらえることが大切です。</p>
+                    </div>
+                    <ul class="content-idea-list">
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-user-tie"></i></div>
+                            <div class="content-idea-text">
+                                <strong>スタッフ紹介・1日密着</strong><br>
+                                <span>「仲道さんの1日」「新人スタッフの成長記録」など、人となりが分かる内容</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-smile"></i></div>
+                            <div class="content-idea-text">
+                                <strong>お客様の喜びの瞬間</strong><br>
+                                <span>成約の瞬間、鍵の引き渡しシーン、お客様の笑顔（許可取得済み）</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-comments"></i></div>
+                            <div class="content-idea-text">
+                                <strong>失敗談・成長ストーリー</strong><br>
+                                <span>「こんなミスをしたけど、こう乗り越えた」など、人間らしさが出る話</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-users"></i></div>
+                            <div class="content-idea-text">
+                                <strong>社内の雰囲気・イベント</strong><br>
+                                <span>ミーティング風景、社内イベント、スタッフの日常</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="content-category">
+                    <div class="content-category__header">
+                        <div class="content-category__icon" style="background: linear-gradient(135deg, #4A90E2, #63A4E8);">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h4 class="content-category__title">物件紹介・地域情報</h4>
+                    </div>
+                    <div class="content-category__desc">
+                        <p>「大分で家を買うなら」の専門家として、地域に詳しい情報を発信。</p>
+                    </div>
+                    <ul class="content-idea-list">
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-building"></i></div>
+                            <div class="content-idea-text">
+                                <strong>新着物件の紹介</strong><br>
+                                <span>「今週のおすすめ物件」「〇〇エリアの新着」など</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-map-marked-alt"></i></div>
+                            <div class="content-idea-text">
+                                <strong>大分の地域紹介</strong><br>
+                                <span>「〇〇地区の魅力」「子育てにおすすめのエリア」「駅近エリア比較」</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-magic"></i></div>
+                            <div class="content-idea-text">
+                                <strong>ビフォーアフター事例</strong><br>
+                                <span>リフォーム・リノベーション事例、物件の変化を紹介</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="content-category">
+                    <div class="content-category__header">
+                        <div class="content-category__icon" style="background: linear-gradient(135deg, #F39C12, #F5B041);">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="content-category__title">お役立ち情報</h4>
+                    </div>
+                    <div class="content-category__desc">
+                        <p>不動産のプロとして、知識を提供。「この人に聞けば安心」と思ってもらえる内容。</p>
+                    </div>
+                    <ul class="content-idea-list">
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-question-circle"></i></div>
+                            <div class="content-idea-text">
+                                <strong>よくある質問Q&A</strong><br>
+                                <span>「住宅ローンの基礎」「初めての不動産購入」「よくある失敗」</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-route"></i></div>
+                            <div class="content-idea-text">
+                                <strong>不動産購入の流れ</strong><br>
+                                <span>「家を買うまでの7ステップ」「売却の流れ」など、初心者向け解説</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-lightbulb"></i></div>
+                            <div class="content-idea-text">
+                                <strong>豆知識・ちょっとしたコツ</strong><br>
+                                <span>「内見で見るべきポイント」「交渉のコツ」「引っ越しのタイミング」</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="content-category">
+                    <div class="content-category__header">
+                        <div class="content-category__icon" style="background: linear-gradient(135deg, #27AE60, #52BE80);">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4 class="content-category__title">実績・お客様の声</h4>
+                    </div>
+                    <div class="content-category__desc">
+                        <p>信頼感の醸成。「この会社に任せて良かった」という声を届ける。</p>
+                    </div>
+                    <ul class="content-idea-list">
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-quote-left"></i></div>
+                            <div class="content-idea-text">
+                                <strong>お客様の声</strong><br>
+                                <span>成約後のインタビュー、喜びの声、感想（許可取得済み）</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-trophy"></i></div>
+                            <div class="content-idea-text">
+                                <strong>実績紹介</strong><br>
+                                <span>「今月の成約件数」「お客様満足度」「地域貢献活動」</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-idea-icon"><i class="fas fa-handshake"></i></div>
+                            <div class="content-idea-text">
+                                <strong>成約ストーリー</strong><br>
+                                <span>「こんなお客様の希望を叶えました」という具体的なエピソード</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="modal-note">
+                    <i class="fas fa-info-circle"></i>
+                    <p>
+                        <strong>これらはあくまで案です。</strong><br>
+                        初回の話し合いで、仲道さんの意見をお聞きしながら、「ハウスドゥらしさ」が出る内容を一緒に決めていきましょう。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- JavaScript -->
     <script src="assets/js/script.js"></script>
