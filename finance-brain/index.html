@@ -1245,23 +1245,238 @@
             </div>
 
             <div class="card" id="wordpress-structure">
-              <h3 class="card-header">WordPress構成案（CMS使用の場合）</h3>
-              <pre><code>wp-content/
-└── themes/
-    └── finance-brain/
-        ├── header.php
-        ├── footer.php
-        ├── index.php
-        ├── front-page.php （トップページ）
-        ├── page.php （固定ページ）
-        ├── single.php （投稿ページ）
-        ├── archive.php （アーカイブ）
-        ├── functions.php
-        ├── style.css
-        └── assets/
-            ├── css/
-            ├── js/
-            └── images/</code></pre>
+              <h3 class="card-header">WordPress開発用ディレクトリマップ（確定版）</h3>
+              <p><strong>CMSはWordPress確定</strong> - 以下は実際の開発用の詳細なディレクトリ構成です。</p>
+              <pre><code>finance-brain-renewal/
+│
+├── <strong>wp-config.php</strong> （WordPress設定ファイル）
+├── <strong>wp-content/</strong>
+│   │
+│   ├── <strong>themes/</strong>
+│   │   └── <strong>finance-brain-v2/</strong> （カスタムテーマ）
+│   │       │
+│   │       ├── <strong>style.css</strong> （テーマ情報・メインスタイルシート）
+│   │       ├── <strong>functions.php</strong> （テーマ機能定義）
+│   │       ├── <strong>screenshot.png</strong> （テーマサムネイル）
+│   │       │
+│   │       ├── <strong>テンプレートファイル/</strong>
+│   │       ├── header.php （ヘッダー共通パーツ）
+│   │       ├── footer.php （フッター共通パーツ）
+│   │       ├── sidebar.php （サイドバー）
+│   │       ├── front-page.php （トップページ）
+│   │       ├── page.php （固定ページ基本テンプレート）
+│   │       ├── single.php （投稿ページ）
+│   │       ├── archive.php （アーカイブページ）
+│   │       ├── category.php （カテゴリーアーカイブ）
+│   │       ├── taxonomy.php （カスタムタクソノミーアーカイブ）
+│   │       ├── search.php （検索結果ページ）
+│   │       ├── 404.php （404エラーページ）
+│   │       │
+│   │       ├── <strong>固定ページテンプレート/</strong>
+│   │       ├── page-about.php （会社概要ページ）
+│   │       ├── page-services.php （サービス一覧ページ）
+│   │       ├── page-contact.php （お問い合わせページ）
+│   │       ├── page-faq.php （よくある質問ページ）
+│   │       ├── page-privacy.php （プライバシーポリシー）
+│   │       ├── page-staff.php （スタッフ紹介ページ）
+│   │       │
+│   │       ├── <strong>カスタム投稿タイプテンプレート/</strong>
+│   │       ├── single-case.php （事例紹介個別ページ）
+│   │       ├── archive-case.php （事例一覧ページ）
+│   │       ├── single-seminar.php （セミナー個別ページ）
+│   │       ├── archive-seminar.php （セミナー一覧ページ）
+│   │       ├── single-voice.php （お客様の声個別ページ）
+│   │       ├── archive-voice.php （お客様の声一覧ページ）
+│   │       │
+│   │       ├── <strong>template-parts/</strong> （パーツファイル）
+│   │       │   ├── content/
+│   │       │   │   ├── content-none.php （コンテンツなし表示）
+│   │       │   │   ├── content-excerpt.php （抜粋表示）
+│   │       │   │   └── content-single.php （個別記事表示）
+│   │       │   ├── section/
+│   │       │   │   ├── section-mv.php （MVセクション）
+│   │       │   │   ├── section-about.php （会社紹介セクション）
+│   │       │   │   ├── section-services.php （サービス紹介セクション）
+│   │       │   │   ├── section-news.php （お知らせセクション）
+│   │       │   │   ├── section-cta.php （CTAセクション）
+│   │       │   │   └── section-faq.php （FAQセクション）
+│   │       │   └── components/
+│   │       │       ├── breadcrumb.php （パンくずリスト）
+│   │       │       ├── pagination.php （ページネーション）
+│   │       │       ├── social-share.php （SNSシェアボタン）
+│   │       │       └── contact-cta.php （お問い合わせCTA）
+│   │       │
+│   │       ├── <strong>inc/</strong> （機能ファイル）
+│   │       │   ├── custom-post-types.php （カスタム投稿タイプ定義）
+│   │       │   ├── custom-taxonomies.php （カスタムタクソノミー定義）
+│   │       │   ├── custom-fields.php （カスタムフィールド定義）
+│   │       │   ├── admin-customization.php （管理画面カスタマイズ）
+│   │       │   ├── shortcodes.php （ショートコード定義）
+│   │       │   ├── widgets.php （ウィジェット定義）
+│   │       │   ├── menus.php （メニュー登録）
+│   │       │   ├── enqueue-scripts.php （CSS/JS読み込み）
+│   │       │   └── theme-support.php （テーマサポート機能）
+│   │       │
+│   │       └── <strong>assets/</strong> （静的ファイル）
+│   │           ├── css/
+│   │           │   ├── reset.css （リセットCSS）
+│   │           │   ├── variables.css （CSS変数定義）
+│   │           │   ├── common.css （共通スタイル）
+│   │           │   ├── layout.css （レイアウト）
+│   │           │   ├── components.css （コンポーネント）
+│   │           │   ├── pages/
+│   │           │   │   ├── front-page.css
+│   │           │   │   ├── about.css
+│   │           │   │   ├── services.css
+│   │           │   │   └── contact.css
+│   │           │   └── responsive.css （レスポンシブ）
+│   │           │
+│   │           ├── js/
+│   │           │   ├── common.js （共通JS）
+│   │           │   ├── navigation.js （ナビゲーション）
+│   │           │   ├── slider.js （スライダー）
+│   │           │   ├── form-validation.js （フォームバリデーション）
+│   │           │   ├── smooth-scroll.js （スムーズスクロール）
+│   │           │   ├── accordion.js （アコーディオン）
+│   │           │   ├── modal.js （モーダル）
+│   │           │   └── ajax-load.js （Ajax読み込み）
+│   │           │
+│   │           ├── images/
+│   │           │   ├── logo/
+│   │           │   │   ├── logo.svg （メインロゴ）
+│   │           │   │   └── logo-white.svg （白ロゴ）
+│   │           │   ├── slider/
+│   │           │   │   ├── slide-01.jpg
+│   │           │   │   ├── slide-02.jpg
+│   │           │   │   └── slide-03.jpg
+│   │           │   ├── services/
+│   │           │   │   ├── insurance.jpg
+│   │           │   │   ├── investment.jpg
+│   │           │   │   └── life-planning.jpg
+│   │           │   ├── staff/
+│   │           │   │   ├── staff-01.jpg
+│   │           │   │   └── staff-02.jpg
+│   │           │   ├── common/
+│   │           │   │   ├── bg-pattern.svg
+│   │           │   │   ├── icon-check.svg
+│   │           │   │   └── icon-arrow.svg
+│   │           │   └── favicons/
+│   │           │       ├── favicon.ico
+│   │           │       ├── apple-touch-icon.png
+│   │           │       └── favicon-32x32.png
+│   │           │
+│   │           └── fonts/ （カスタムフォント）
+│   │
+│   ├── <strong>plugins/</strong> （プラグイン）
+│   │   ├── <strong>必須プラグイン/</strong>
+│   │   ├── contact-form-7/ （お問い合わせフォーム）
+│   │   ├── mw-wp-form/ （高機能フォーム・代替案）
+│   │   ├── advanced-custom-fields/ （カスタムフィールド）
+│   │   ├── yoast-seo/ （SEO対策）
+│   │   │
+│   │   ├── <strong>推奨プラグイン/</strong>
+│   │   ├── wp-mail-smtp/ （メール送信）
+│   │   ├── ewww-image-optimizer/ （画像最適化）
+│   │   ├── autoptimize/ （CSS/JS最適化）
+│   │   ├── wordfence/ （セキュリティ）
+│   │   ├── updraftplus/ （バックアップ）
+│   │   ├── redirection/ （リダイレクト管理）
+│   │   ├── wp-fastest-cache/ （キャッシュ）
+│   │   └── show-current-template/ （開発用）
+│   │
+│   └── <strong>uploads/</strong> （アップロードファイル）
+│       ├── 2025/
+│       │   ├── 01/
+│       │   ├── 02/
+│       │   └── 03/
+│       └── acf-json/ （ACF JSONエクスポート）
+│
+├── <strong>wp-admin/</strong> （WordPress管理画面）
+├── <strong>wp-includes/</strong> （WordPressコアファイル）
+│
+├── <strong>開発用ファイル/</strong>
+├── package.json （npm設定）
+├── gulpfile.js or webpack.config.js （ビルド設定）
+├── .gitignore （Git除外設定）
+├── .editorconfig （エディタ設定）
+├── README.md （プロジェクト説明）
+│
+└── <strong>ドキュメント/</strong>
+    ├── SETUP.md （セットアップ手順）
+    ├── DEPLOYMENT.md （デプロイ手順）
+    ├── CUSTOMIZATION.md （カスタマイズガイド）
+    └── MAINTENANCE.md （保守運用ガイド）</code></pre>
+
+              <h4 class="subsection-subtitle">カスタム投稿タイプ定義（予定）</h4>
+              <div class="grid-3">
+                <div class="note-box">
+                  <strong>1. 事例紹介（case）</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>スラッグ: case</li>
+                    <li>タクソノミー: case_category</li>
+                    <li>カスタムフィールド: 企業名、業種、課題、解決策</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <strong>2. セミナー（seminar）</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>スラッグ: seminar</li>
+                    <li>タクソノミー: seminar_category</li>
+                    <li>カスタムフィールド: 開催日時、場所、定員、申込URL</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <strong>3. お客様の声（voice）</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>スラッグ: voice</li>
+                    <li>タクソノミー: voice_category</li>
+                    <li>カスタムフィールド: 氏名、年齢、職業、満足度</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <strong>4. スタッフ（staff）</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>スラッグ: staff</li>
+                    <li>タクソノミー: staff_position</li>
+                    <li>カスタムフィールド: 役職、資格、専門分野、SNS</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <strong>5. FAQ（faq）</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>スラッグ: faq</li>
+                    <li>タクソノミー: faq_category</li>
+                    <li>カスタムフィールド: 質問、回答、表示順</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <strong>6. サービス（service）</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>スラッグ: service</li>
+                    <li>タクソノミー: service_category</li>
+                    <li>カスタムフィールド: 概要、特徴、料金、対象者</li>
+                  </ul>
+                </div>
+              </div>
+
+              <h4 class="subsection-subtitle">主要機能実装（functions.php）</h4>
+              <div class="info-box">
+                <ul>
+                  <li><strong>テーマサポート</strong>: タイトルタグ、カスタムロゴ、アイキャッチ画像、HTML5、カスタムヘッダー</li>
+                  <li><strong>画像サイズ</strong>: サムネイル(300x200)、ミディアム(600x400)、ラージ(1200x800)</li>
+                  <li><strong>ナビゲーションメニュー</strong>: ヘッダー、フッター、モバイル</li>
+                  <li><strong>ウィジェットエリア</strong>: サイドバー、フッター3カラム、お問い合わせCTA</li>
+                  <li><strong>カスタムフィールド</strong>: Advanced Custom Fields連携</li>
+                  <li><strong>ショートコード</strong>: [button], [cta], [service-list], [faq], [contact-form]</li>
+                  <li><strong>Ajax機能</strong>: 記事の無限スクロール、フィルター機能</li>
+                  <li><strong>セキュリティ</strong>: nonce検証、エスケープ処理、サニタイゼーション</li>
+                </ul>
+              </div>
             </div>
           </section>
 
