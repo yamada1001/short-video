@@ -1189,7 +1189,15 @@
 ├── <strong>お知らせ</strong> - URL: /news/
 │   ├── 新着情報 - URL: /news/
 │   ├── セミナー・イベント情報 - URL: /news/seminar/
-│   └── ブログ・コラム - URL: /news/blog/
+│   ├── 公式コラム・お役立ち情報 - URL: /news/column/
+│   │   ├── 保険コラム - URL: /news/column/insurance/
+│   │   ├── 資産運用コラム - URL: /news/column/asset-management/
+│   │   ├── 相続・事業承継コラム - URL: /news/column/inheritance/
+│   │   ├── 税金・節税コラム - URL: /news/column/tax/
+│   │   └── ライフプランニングコラム - URL: /news/column/life-planning/
+│   └── スタッフブログ - URL: /news/staff-blog/
+│       ├── スタッフ別 - URL: /news/staff-blog/by-staff/
+│       └── カテゴリ別 - URL: /news/staff-blog/by-category/
 │
 ├── <strong>よくあるご質問（FAQ）</strong> - URL: /faq/
 │   ├── 保険について
@@ -1215,7 +1223,8 @@
                 <li>お客様の声ページ</li>
                 <li>よくあるご質問（FAQ）ページ</li>
                 <li>セミナー・イベント情報ページ</li>
-                <li>ブログ・コラムページ（SEO対策）</li>
+                <li>公式コラム・お役立ち情報ページ（SEO対策）</li>
+                <li><strong>スタッフブログページ（必須）</strong></li>
                 <li>無料相談予約ページ</li>
                 <li>プライバシーポリシー（個人情報保護方針の拡充）</li>
                 <li>サイトマップページ</li>
@@ -1336,9 +1345,20 @@
 ├── <strong>news/</strong> （お知らせ）
 │   ├── index.html （新着情報一覧）
 │   ├── seminar/ （セミナー・イベント）
-│   │   └── index.html
-│   └── blog/ （ブログ・コラム）
-│       └── index.html
+│   │   ├── index.html （セミナー一覧）
+│   │   └── detail.html （セミナー詳細テンプレート）
+│   ├── column/ （公式コラム・お役立ち情報）
+│   │   ├── index.html （コラム一覧）
+│   │   ├── insurance/ （保険コラム）
+│   │   ├── asset-management/ （資産運用コラム）
+│   │   ├── inheritance/ （相続・事業承継コラム）
+│   │   ├── tax/ （税金・節税コラム）
+│   │   └── life-planning/ （ライフプランニングコラム）
+│   └── staff-blog/ （スタッフブログ）
+│       ├── index.html （スタッフブログ一覧）
+│       ├── by-staff/ （スタッフ別アーカイブ）
+│       ├── by-category/ （カテゴリ別アーカイブ）
+│       └── detail.html （ブログ記事テンプレート）
 │
 ├── <strong>faq/</strong> （よくあるご質問）
 │   ├── index.html （FAQ一覧）
@@ -1461,6 +1481,11 @@
 │   │       ├── archive-seminar.php （セミナー一覧ページ）
 │   │       ├── single-voice.php （お客様の声個別ページ）
 │   │       ├── archive-voice.php （お客様の声一覧ページ）
+│   │       ├── <strong>single-column.php （公式コラム個別ページ）</strong>
+│   │       ├── <strong>archive-column.php （公式コラム一覧ページ）</strong>
+│   │       ├── <strong>single-staff_blog.php （スタッフブログ個別ページ）【必須】</strong>
+│   │       ├── <strong>archive-staff_blog.php （スタッフブログ一覧ページ）【必須】</strong>
+│   │       ├── <strong>taxonomy-blog_category.php （ブログカテゴリ別ページ）</strong>
 │   │       │
 │   │       ├── <strong>template-parts/</strong> （パーツファイル）
 │   │       │   ├── content/
@@ -1636,7 +1661,27 @@
                     <li>カスタムフィールド: 概要、特徴、料金、対象者</li>
                   </ul>
                 </div>
+
+                <div class="note-box" style="border: 2px solid #5767bf;">
+                  <strong>7. 公式コラム（column）</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>スラッグ: column</li>
+                    <li>タクソノミー: column_category</li>
+                    <li>カスタムフィールド: 執筆者、カテゴリ、タグ、公開日</li>
+                  </ul>
+                </div>
+
+                <div class="note-box" style="border: 2px solid #5767bf;">
+                  <strong>8. スタッフブログ（staff_blog）【必須】</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>スラッグ: staff_blog</li>
+                    <li>タクソノミー: blog_category</li>
+                    <li>カスタムフィールド: 執筆者（スタッフID）、カテゴリ、タグ</li>
+                    <li><strong>機能:</strong> スタッフ別アーカイブ、カテゴリ別アーカイブ</li>
+                  </ul>
+                </div>
               </div>
+              <p class="note"><strong>※代替案:</strong> デフォルトの「投稿（post）」でコラムとスタッフブログをカテゴリ分けして管理することも可能。この場合、SEO対策やプラグイン互換性が高まる。</p>
 
               <h4 class="subsection-subtitle">主要機能実装（functions.php）</h4>
               <div class="info-box">
@@ -1762,8 +1807,8 @@
                 <div class="info-box">
                   <strong>3. プロジェクトスコープ</strong>
                   <ul style="margin-top: 0.5rem;">
-                    <li><strong>対象ページ数:</strong> 20ページ（トップ + サービス9ページ + その他10ページ）</li>
-                    <li><strong>カスタム投稿タイプ:</strong> 6種類（事例、セミナー、お客様の声、スタッフ、FAQ、サービス）</li>
+                    <li><strong>対象ページ数:</strong> 約30ページ（トップ + サービス9ページ + コラム・ブログ + その他）</li>
+                    <li><strong>カスタム投稿タイプ:</strong> 8種類（事例、セミナー、お客様の声、スタッフ、FAQ、サービス、<strong>公式コラム、スタッフブログ</strong>）</li>
                     <li><strong>プラグイン:</strong> 必須4種 + 推奨8種（合計12種）</li>
                     <li><strong>画像素材:</strong> クライアント提供（ストックフォト購入は別途）</li>
                     <li><strong>テキスト原稿:</strong> クライアント提供（ライティング代行は別途）</li>
