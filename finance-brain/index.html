@@ -572,68 +572,71 @@
 
             <div class="card" id="page-structure">
               <h3 class="card-header">ページ構成</h3>
+              <p><strong>現在のサイトは1ページ構成（シングルページレイアウト）</strong></p>
+              <p>全てのコンテンツがindex.html内にあり、ページ内リンク（アンカーリンク）で各セクションへ遷移する仕組みです。</p>
               <pre><code>finance-brain.co.jp/
 │
-├── ホーム（トップページ）
-│   └── スライダー画像（Metaslider）
+├── <strong>index.html</strong> （メインページ - 全セクション統合）
+│   ├── #top-s01: お知らせ
+│   ├── #top-s02: 経営理念
+│   ├── （事業の概要 - セクション番号なし）
+│   ├── #top-s03: 主な業務内容
+│   ├── #top-s04: 代表者紹介
+│   ├── #top-s05: 取扱保険会社
+│   ├── #top-s06: 会社概要・アクセス
+│   ├── #top-s07: お問い合わせ
+│   └── #faq: よくあるご質問
 │
-├── お知らせ
-│   └── 最新情報・ニュース
+├── <strong>info.html</strong> （お知らせ一覧ページ）
+│   └── info/YYYYMMDD-2.html （個別記事ページ）
 │
-├── 経営理念
-│   └── 企業理念・ビジョン
+├── <strong>contact.html</strong> （お問い合わせフォーム）
 │
-├── 事業概要
-│   ├── 生命保険媒介業
-│   ├── 損害保険代理業
-│   └── ファイナンシャルプランニング
+├── <strong>privacy-policy.html</strong> （個人情報取扱保護方針）
 │
-├── 役員紹介
-│   └── 代表者・役員情報
+├── <strong>recruitment-policy.html</strong> （当社勧誘方針）
 │
-├── 取扱保険会社
-│   └── 提携保険会社一覧
+├── <strong>seiho_seikyu.html</strong> （生保給付金請求ページ）
 │
-├── 会社概要・アクセス
-│   ├── 会社情報
-│   │   ├── 商号
-│   │   ├── 所在地
-│   │   ├── 電話番号
-│   │   ├── 設立
-│   │   └── 代表者
-│   └── アクセスマップ
+├── <strong>sonpo_seikyu.html</strong> （損保事故報告・保険金請求ページ）
 │
-└── お問い合わせ
-    └── 問い合わせフォーム</code></pre>
+├── <strong>covid19-info.html</strong> （新型コロナ関連情報）
+│
+└── <strong>wp-content/</strong> （WordPress関連アセット）
+    ├── themes/finance-brain/ （カスタムテーマ）
+    ├── plugins/ （プラグイン）
+    └── uploads/ （アップロードファイル）</code></pre>
             </div>
 
             <div class="card" id="navigation-structure">
               <h3 class="card-header">ナビゲーション構造</h3>
 
               <h4 class="subsection-subtitle">グローバルナビゲーション（ヘッダー）</h4>
+              <p>全てページ内アンカーリンク（#top-s01〜#top-s07）で遷移</p>
               <div class="grid-3">
-                <span class="badge badge-primary">ホーム</span>
-                <span class="badge badge-primary">お知らせ</span>
-                <span class="badge badge-primary">経営理念</span>
-                <span class="badge badge-primary">事業概要</span>
-                <span class="badge badge-primary">役員紹介</span>
-                <span class="badge badge-primary">取扱保険会社</span>
-                <span class="badge badge-primary">会社概要</span>
-                <span class="badge badge-primary">お問い合わせ</span>
+                <span class="badge badge-primary">お知らせ (#top-s01)</span>
+                <span class="badge badge-primary">経営理念 (#top-s02)</span>
+                <span class="badge badge-primary">事業の概要</span>
+                <span class="badge badge-primary">主な業務内容 (#top-s03)</span>
+                <span class="badge badge-primary">代表者紹介 (#top-s04)</span>
+                <span class="badge badge-primary">取扱保険会社 (#top-s05)</span>
+                <span class="badge badge-primary">会社概要・アクセス (#top-s06)</span>
+                <span class="badge badge-primary">お問い合わせ (#top-s07)</span>
               </div>
 
-              <h4 class="subsection-subtitle">補助ナビゲーション</h4>
+              <h4 class="subsection-subtitle">SNS・外部リンク（フッター固定ボタン）</h4>
               <div class="grid-3">
-                <span class="badge badge-success">LINE公式アカウント</span>
-                <span class="badge badge-success">Instagram</span>
-                <span class="badge badge-success">Facebook</span>
+                <span class="badge badge-success">LINE公式アカウント (@149antcn)</span>
+                <span class="badge badge-success">Instagram (@oita_financebrain.official)</span>
+                <span class="badge badge-success">Facebook (financebrain1611)</span>
               </div>
 
               <h4 class="subsection-subtitle">フッターリンク</h4>
               <ul>
-                <li>個人情報保護方針</li>
-                <li>勧誘方針</li>
-                <li>各種規制機関へのリンク</li>
+                <li>トップ (index.html)</li>
+                <li>個人情報取扱保護方針 (privacy-policy.html)</li>
+                <li>当社勧誘方針 (recruitment-policy.html)</li>
+                <li>お客様本位の業務運営方針およびKPI (PDF)</li>
               </ul>
             </div>
           </section>
@@ -647,38 +650,63 @@
 
               <div class="grid-2">
                 <div class="info-box">
-                  <strong>フロントエンド</strong>
+                  <strong>CMS・サーバー</strong>
                   <ul style="margin-top: 0.5rem;">
-                    <li>HTML5</li>
-                    <li>CSS3</li>
-                    <li>JavaScript</li>
-                  </ul>
-                </div>
-
-                <div class="info-box">
-                  <strong>プラグイン・ライブラリ</strong>
-                  <ul style="margin-top: 0.5rem;">
-                    <li><strong>Metaslider</strong>: スライダー画像表示</li>
-                    <li><strong>FontAwesome</strong>: アイコンフォント</li>
-                  </ul>
-                </div>
-
-                <div class="info-box">
-                  <strong>デザイン要素</strong>
-                  <ul style="margin-top: 0.5rem;">
-                    <li>レスポンシブデザイン（750px以下でモバイル切り替え）</li>
-                    <li>テーブルレイアウト（border-collapse: collapse）</li>
-                    <li>ホバーエフェクト</li>
-                    <li>ページトップボタン（固定位置）</li>
-                  </ul>
-                </div>
-
-                <div class="info-box">
-                  <strong>確認済みの構成</strong>
-                  <ul style="margin-top: 0.5rem;">
-                    <li><strong>CMS</strong>: WordPress</li>
-                    <li><strong>ホスティング</strong>: さくらサーバー</li>
+                    <li><strong>WordPress 6.8.3</strong></li>
+                    <li><strong>さくらサーバー</strong></li>
                     <li><strong>SSL</strong>: 対応済み（https://）</li>
+                    <li><strong>カスタムテーマ</strong>: finance-brain</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>WordPressプラグイン</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>Yoast SEO</strong> v26.5: SEO最適化</li>
+                    <li><strong>VK All in One Expansion Unit</strong> v9.112.4.0: 多機能拡張</li>
+                    <li><strong>MetaSlider</strong> v3.103.0: 画像スライダー</li>
+                    <li><strong>Whats New Generator</strong> v2.0.2: お知らせ機能</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>フロントエンド技術</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>Bootstrap 4.0.0</strong></li>
+                    <li><strong>jQuery 3.3.1</strong></li>
+                    <li><strong>Popper.js 1.12.9</strong></li>
+                    <li><strong>FontAwesome 5.0.6</strong></li>
+                    <li><strong>Ionicons 4.3.0</strong></li>
+                    <li><strong>AjaxZip3</strong>: 郵便番号自動入力</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>デザイン・UI</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>レスポンシブデザイン（750px以下でSP切り替え）</li>
+                    <li>.pc / .sp クラスで表示切り替え</li>
+                    <li>.box1 クラス: 角括弧デザイン（#5767bf）</li>
+                    <li>ホバーエフェクト（transition: 0.1s）</li>
+                    <li>固定SNSボタン（PC: 右下 / SP: 下部中央）</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>トラッキング</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>Google Analytics</strong>: UA-123801660-1</li>
+                    <li><strong>Facebook Pixel</strong>: 1585688501520492</li>
+                  </ul>
+                </div>
+
+                <div class="info-box">
+                  <strong>カスタムスクリプト</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li><strong>common.js</strong>: テーマ共通JS</li>
+                    <li>ローディング画面アニメーション</li>
+                    <li>アコーディオンFAQ</li>
+                    <li>スムーズスクロール</li>
                   </ul>
                 </div>
               </div>
@@ -694,34 +722,109 @@
 
               <ol>
                 <li>
+                  <strong>ローディング画面</strong>
+                  <ul>
+                    <li>#loader-bg: ローディングアニメーション</li>
+                  </ul>
+                </li>
+                <li>
                   <strong>ヘッダー</strong>
                   <ul>
-                    <li>ロゴ（finance-brain SVGファイル）</li>
-                    <li>グローバルナビゲーション</li>
-                    <li>モバイルメニュー</li>
+                    <li>ロゴ（logo.svg）+ サイト説明文</li>
+                    <li>グローバルナビゲーション（7項目）</li>
+                    <li>ハンバーガーメニュー（SP版）</li>
                   </ul>
                 </li>
                 <li>
-                  <strong>メインビジュアル</strong>
+                  <strong>メインビジュアル（MV）</strong>
                   <ul>
-                    <li>スライダー画像（Metaslider）</li>
+                    <li>PC: 2000x800px スライダー（MetaSlider）</li>
+                    <li>SP: 600x750px スライダー（MetaSlider）</li>
                   </ul>
                 </li>
                 <li>
-                  <strong>コンテンツエリア</strong>
+                  <strong>#top-s01: お知らせセクション</strong>
                   <ul>
-                    <li>お知らせセクション</li>
-                    <li>サービス概要</li>
-                    <li>その他セクション</li>
+                    <li>最新記事3件表示（WordPress投稿）</li>
+                    <li>投稿日・タイトル・抜粋表示</li>
+                    <li>個別記事へのリンク</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>#top-s02: 経営理念セクション</strong>
+                  <ul>
+                    <li>背景画像: finance-brain_logo.jpg</li>
+                    <li>角括弧デザイン（box1クラス）</li>
+                    <li>メッセージ: 「財務のスペシャリストを多数集め、金融分野でお客様への総合的な貢献を目指します」</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>事業の概要セクション（IDなし）</strong>
+                  <ul>
+                    <li>01: 地元企業・お客様との密接な関係構築</li>
+                    <li>02: 各分野の資格を取得した精鋭集団</li>
+                    <li>03: 外部専門家や各種士業の方と連携</li>
+                    <li>画像 + テキストの交互レイアウト</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>#top-s03: 主な業務内容セクション</strong>
+                  <ul>
+                    <li>企業向けサービス（11項目）</li>
+                    <li>個人向けサービス（8項目）</li>
+                    <li>2カラムレイアウト</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>#top-s04: 代表者紹介セクション</strong>
+                  <ul>
+                    <li>代表取締役: 高橋英一郎</li>
+                    <li>資格: MDRT、CFP®、1級FP技能士、宅建、投資診断士®</li>
+                    <li>経歴: 信用金庫→生命保険会社→当社</li>
+                    <li>写真 + プロフィール</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>#top-s05: 取扱保険会社セクション</strong>
+                  <ul>
+                    <li>生命保険会社: 11社（ロゴ画像グリッド）</li>
+                    <li>損害保険会社: 5社（ロゴ画像グリッド）</li>
+                    <li>給付金請求ページへのリンク</li>
+                    <li>事故報告ページへのリンク</li>
+                    <li>コロナ情報ページへのリンク</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>#top-s06: 会社概要・アクセスセクション</strong>
+                  <ul>
+                    <li>会社情報テーブル（11項目）</li>
+                    <li>Google Maps埋め込み</li>
+                    <li>社屋写真</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>#top-s07: お問い合わせセクション</strong>
+                  <ul>
+                    <li>LINEお問い合わせボタン</li>
+                    <li>お問い合わせフォームボタン</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>#faq: よくあるご質問セクション</strong>
+                  <ul>
+                    <li>アコーディオン形式（4項目）</li>
+                    <li>Q1: 他の代理店との違い</li>
+                    <li>Q2: ネット保険会社との違い</li>
+                    <li>Q3: 大手保険会社の取扱</li>
+                    <li>Q4: 共済との違い</li>
                   </ul>
                 </li>
                 <li>
                   <strong>フッター</strong>
                   <ul>
-                    <li>会社概要</li>
-                    <li>SNSリンク</li>
-                    <li>ポリシーページリンク</li>
-                    <li>コピーライト</li>
+                    <li>SNS固定ボタン（LINE/Instagram/Facebook）</li>
+                    <li>フッターリンク（4項目）</li>
+                    <li>コピーライト: © finance brain</li>
                   </ul>
                 </li>
               </ol>
@@ -730,34 +833,88 @@
             <div class="card" id="service-details">
               <h3 class="card-header">サービス・事業内容</h3>
 
-              <div class="grid-3">
+              <div class="grid-2">
                 <div class="note-box">
-                  <strong>1. 保険サービス</strong>
+                  <strong>1. 企業向けサービス</strong>
                   <ul style="margin-top: 0.5rem;">
-                    <li>生命保険</li>
-                    <li>損害保険</li>
-                    <li>各種保険の取り扱い</li>
+                    <li>財務コンサルティング</li>
+                    <li>役員報酬コンサルティング</li>
+                    <li>退職金コンサルティング</li>
+                    <li>企業防衛対策</li>
+                    <li>事業承継対策</li>
+                    <li>自社株対策</li>
+                    <li>相続に関する相談</li>
+                    <li>生命保険・損害保険見直し</li>
+                    <li>資産運用</li>
+                    <li>産業カウンセリング</li>
                   </ul>
                 </div>
 
                 <div class="note-box">
-                  <strong>2. ファイナンシャルプランニング</strong>
+                  <strong>2. 個人向けサービス</strong>
                   <ul style="margin-top: 0.5rem;">
                     <li>ライフプランニング</li>
-                    <li>資産運用相談</li>
-                    <li>相続・事業承継相談（推測）</li>
+                    <li>生命保険・損害保険見直し</li>
+                    <li>資産運用</li>
+                    <li>相続に関する相談</li>
+                    <li>保険無料相談会の開催</li>
+                    <li>住宅ローン</li>
+                    <li>働き方コンサルティング</li>
                   </ul>
                 </div>
 
                 <div class="note-box">
-                  <strong>3. 専門性</strong>
+                  <strong>3. 在籍資格者（スタッフ）</strong>
                   <ul style="margin-top: 0.5rem;">
-                    <li>CFP®</li>
+                    <li>CFP® (日本FP協会認定)</li>
                     <li>AFP</li>
-                    <li>1級FP技能士</li>
+                    <li>1級ファイナンシャル・プランニング技能士</li>
+                    <li>2級ファイナンシャル・プランニング技能士</li>
                     <li>宅地建物取引士</li>
-                    <li>投資診断士</li>
+                    <li>投資診断士®</li>
                     <li>相続診断士</li>
+                    <li>心理カウンセラー</li>
+                    <li>MDRT成績資格会員</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <strong>4. 外部専門家連携</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>公認会計士</li>
+                    <li>税理士</li>
+                    <li>中小企業診断士</li>
+                    <li>弁護士</li>
+                    <li>社会保険労務士</li>
+                    <li>提携: 栗林公認会計士事務所</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <strong>5. 取扱保険会社（生命保険）</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>東京海上日動あんしん生命</li>
+                    <li>メットライフ生命</li>
+                    <li>オリックス生命</li>
+                    <li>アフラック</li>
+                    <li>エヌエヌ生命</li>
+                    <li>ジブラルタ生命</li>
+                    <li>ソニー生命</li>
+                    <li>SOMPOひまわり生命</li>
+                    <li>ネオファースト生命</li>
+                    <li>マニュライフ生命</li>
+                    <li>三井住友海上あいおい生命</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <strong>6. 取扱保険会社（損害保険）</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>東京海上日動火災</li>
+                    <li>セコム損保</li>
+                    <li>損保ジャパン</li>
+                    <li>三井住友海上火災</li>
+                    <li>ソニー損保</li>
                   </ul>
                 </div>
               </div>
@@ -765,12 +922,50 @@
 
             <div class="card" id="sns-integration">
               <h3 class="card-header">SNS・外部連携</h3>
-              <p><strong>公式アカウント:</strong></p>
-              <ul>
-                <li>LINE公式アカウント（認証なし）</li>
-                <li>Instagram</li>
-                <li>Facebook</li>
-              </ul>
+              <p><strong>公式SNSアカウント:</strong></p>
+              <div class="grid-3">
+                <div class="note-box">
+                  <strong>LINE公式アカウント</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>ID: @149antcn</li>
+                    <li>URL: https://line.me/R/ti/p/@149antcn</li>
+                    <li>QRコードあり</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <strong>Instagram</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>アカウント: @oita_financebrain.official</li>
+                    <li>URL: https://www.instagram.com/oita_financebrain.official</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <strong>Facebook</strong>
+                  <ul style="margin-top: 0.5rem;">
+                    <li>ページID: financebrain1611</li>
+                    <li>URL: https://www.facebook.com/financebrain1611</li>
+                  </ul>
+                </div>
+              </div>
+
+              <p style="margin-top: 1rem;"><strong>会社情報:</strong></p>
+              <div class="info-box">
+                <ul>
+                  <li><strong>会社名</strong>: 株式会社ファイナンスブレーン</li>
+                  <li><strong>創業者</strong>: 松島勝成</li>
+                  <li><strong>代表者</strong>: 代表取締役社長 髙橋英一郎 / 代表取締役会長 松島恵子</li>
+                  <li><strong>所在地</strong>: 〒870-0934 大分県大分市東津留1-6-11 大分ハイデンス1F</li>
+                  <li><strong>TEL</strong>: 097-574-8212</li>
+                  <li><strong>FAX</strong>: 097-574-8213</li>
+                  <li><strong>創業</strong>: 2006年4月</li>
+                  <li><strong>設立</strong>: 2006年9月</li>
+                  <li><strong>資本金</strong>: 8,000,000円</li>
+                  <li><strong>決算</strong>: 3月31日</li>
+                  <li><strong>取引銀行</strong>: 大分銀行 津留支店</li>
+                </ul>
+              </div>
             </div>
           </section>
 
