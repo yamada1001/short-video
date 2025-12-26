@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ | ファイナンスブレーン</title>
+  <meta name="description" content="ファイナンスブレーンへのお問い合わせ・ご相談はこちらから。初回相談は無料です。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="header-logo">
+          <a href="../index.html">
+            <h1 class="logo-text">ファイナンスブレーン</h1>
+            <p class="logo-tagline">Finance Brain</p>
+          </a>
+        </div>
+        <nav class="header-nav">
+          <ul class="nav-list">
+            <li><a href="../index.html#about">ファイナンスブレーンとは</a></li>
+            <li><a href="../index.html#services">サービス</a></li>
+            <li><a href="../index.html#why-us">選ばれる理由</a></li>
+            <li><a href="../index.html#voice">お客様の声</a></li>
+            <li><a href="../company/index.html">会社概要</a></li>
+            <li><a href="index.html" class="btn-primary">お問い合わせ</a></li>
+          </ul>
+        </nav>
+        <button class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- パンくずリスト -->
+  <nav class="breadcrumb" style="background-color: #f5f7fa; padding: 16px 0; margin-bottom: 0;">
+    <div class="container">
+      <ul style="display: flex; gap: 8px; font-size: 0.875rem; color: #666;">
+        <li><a href="../index.html" style="color: #5767bf;">ホーム</a></li>
+        <li>›</li>
+        <li>お問い合わせ</li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ページタイトル -->
+  <section class="page-header" style="background: linear-gradient(135deg, #5767bf 0%, #7a8bd3 100%); color: white; padding: 80px 0;">
+    <div class="container">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <div style="font-size: 3rem; margin-bottom: 16px;">✉️</div>
+        <h1 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 24px;">お問い合わせ</h1>
+        <p style="font-size: 1.125rem; line-height: 1.8; opacity: 0.95;">
+          お気軽にご相談ください。初回相談は無料です。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ方法 -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-methods">
+        <div class="contact-method">
+          <div class="contact-icon">📞</div>
+          <h3 class="contact-method-title">お電話でのご相談</h3>
+          <p class="contact-method-tel"><a href="tel:097-574-8212">097-574-8212</a></p>
+          <p class="contact-method-time">平日 9:00〜18:00</p>
+          <p style="color: #666; font-size: 0.875rem; margin-top: 16px;">
+            ※土日祝日は予約制となります。<br>
+            お電話にてご希望の日時をお伝えください。
+          </p>
+        </div>
+        <div class="contact-method">
+          <div class="contact-icon">💬</div>
+          <h3 class="contact-method-title">LINEで気軽に相談</h3>
+          <p class="contact-method-description">LINEアプリから簡単にご相談いただけます</p>
+          <a href="https://lin.ee/149antcn" class="btn btn-line" target="_blank" rel="noopener">
+            LINE友だち追加
+          </a>
+          <p style="color: #666; font-size: 0.875rem; margin-top: 16px;">
+            LINE ID: @149antcn<br>
+            ※24時間受付、回答は営業時間内
+          </p>
+        </div>
+      </div>
+
+      <!-- お問い合わせフォーム -->
+      <div class="contact-form-area">
+        <h3 class="form-title">お問い合わせフォーム</h3>
+        <p style="text-align: center; color: #666; margin-bottom: 40px;">
+          以下のフォームに必要事項をご入力の上、送信してください。<br>
+          2営業日以内にご返信いたします。
+        </p>
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="inquiry-type" class="form-label">お問い合わせ種別<span class="required">必須</span></label>
+            <select id="inquiry-type" name="inquiry-type" class="form-control" required>
+              <option value="">選択してください</option>
+              <option value="consultation">無料相談予約</option>
+              <option value="inquiry">一般問い合わせ</option>
+              <option value="materials">資料請求</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name" class="form-label">お名前<span class="required">必須</span></label>
+              <input type="text" id="name" name="name" class="form-control" placeholder="山田 太郎" required>
+            </div>
+            <div class="form-group">
+              <label for="name-kana" class="form-label">フリガナ<span class="required">必須</span></label>
+              <input type="text" id="name-kana" name="name-kana" class="form-control" placeholder="ヤマダ タロウ" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email" class="form-label">メールアドレス<span class="required">必須</span></label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="example@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="tel" class="form-label">電話番号<span class="required">必須</span></label>
+              <input type="tel" id="tel" name="tel" class="form-control" placeholder="090-1234-5678" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="age" class="form-label">年代<span style="background-color: #666; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-left: 8px; font-weight: 500;">任意</span></label>
+            <select id="age" name="age" class="form-control">
+              <option value="">選択してください</option>
+              <option value="20s">20代</option>
+              <option value="30s">30代</option>
+              <option value="40s">40代</option>
+              <option value="50s">50代</option>
+              <option value="60s">60代</option>
+              <option value="70s">70代以上</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="service" class="form-label">ご関心のあるサービス<span style="background-color: #666; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-left: 8px; font-weight: 500;">任意</span></label>
+            <select id="service" name="service" class="form-control">
+              <option value="">選択してください</option>
+              <optgroup label="個人のお客様">
+                <option value="life-planning">ライフプランニング</option>
+                <option value="insurance">保険の見直し・ご相談</option>
+                <option value="housing-loan">住宅ローンのご相談</option>
+                <option value="inheritance">相続に関するご相談</option>
+                <option value="investment">投資信託・資産運用</option>
+              </optgroup>
+              <optgroup label="法人のお客様">
+                <option value="financial">財務コンサルティング</option>
+                <option value="retirement">退職金コンサルティング</option>
+                <option value="succession">事業承継対策</option>
+                <option value="stock">自社株対策</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">お問い合わせ内容<span class="required">必須</span></label>
+            <textarea id="message" name="message" class="form-control" rows="8" placeholder="ご相談内容やご質問など、できるだけ詳しくお書きください。" required></textarea>
+          </div>
+
+          <div class="form-privacy">
+            <label class="checkbox-label">
+              <input type="checkbox" name="privacy" required>
+              <span><a href="#" target="_blank" style="color: #5767bf; font-weight: 700;">個人情報保護方針</a>に同意する</span>
+            </label>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn btn-large btn-primary">送信する</button>
+          </div>
+
+          <p style="text-align: center; color: #666; font-size: 0.875rem; margin-top: 24px;">
+            ※送信後、自動返信メールが届きます。届かない場合はメールアドレスをご確認ください。
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- よくあるご質問 -->
+  <section class="section" style="background-color: #f5f7fa;">
+    <div class="container" style="max-width: 900px;">
+      <div class="section-header">
+        <h2 class="section-title">よくあるご質問</h2>
+        <p class="section-lead">お問い合わせの前にご確認ください</p>
+      </div>
+
+      <div style="display: grid; gap: 16px;">
+        <details style="background: white; padding: 24px 32px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer;">
+          <summary style="font-weight: 700; color: #333; font-size: 1.125rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>Q. 相談は本当に無料ですか？</span>
+            <span style="color: #5767bf; font-size: 1.5rem;">+</span>
+          </summary>
+          <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e0e0e0; color: #666; line-height: 1.8;">
+            A. はい、初回相談は無料です。お客様の状況をヒアリングし、最適なプランをご提案させていただきます。具体的な商品のご契約や継続的なコンサルティングをご希望の場合は、別途費用が発生する場合がございます。
+          </p>
+        </details>
+
+        <details style="background: white; padding: 24px 32px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer;">
+          <summary style="font-weight: 700; color: #333; font-size: 1.125rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>Q. 土日祝日も相談できますか？</span>
+            <span style="color: #5767bf; font-size: 1.5rem;">+</span>
+          </summary>
+          <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e0e0e0; color: #666; line-height: 1.8;">
+            A. 土日祝日は予約制となっております。平日お仕事で忙しい方も、ご都合の良い日時をお知らせいただければ対応可能です。お電話またはお問い合わせフォームにてご相談ください。
+          </p>
+        </details>
+
+        <details style="background: white; padding: 24px 32px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer;">
+          <summary style="font-weight: 700; color: #333; font-size: 1.125rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>Q. 訪問での相談も可能ですか？</span>
+            <span style="color: #5767bf; font-size: 1.5rem;">+</span>
+          </summary>
+          <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e0e0e0; color: #666; line-height: 1.8;">
+            A. はい、可能です。大分市内および近郊エリアであれば、ご自宅やご指定の場所へお伺いいたします。お気軽にご相談ください。
+          </p>
+        </details>
+
+        <details style="background: white; padding: 24px 32px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer;">
+          <summary style="font-weight: 700; color: #333; font-size: 1.125rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>Q. 契約を強制されることはありませんか？</span>
+            <span style="color: #5767bf; font-size: 1.5rem;">+</span>
+          </summary>
+          <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e0e0e0; color: #666; line-height: 1.8;">
+            A. ご安心ください。当社では無理な営業や契約の強制は一切行っておりません。お客様にとって最適なプランをご提案し、ご納得いただいた上でのご契約をお願いしております。
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3 class="footer-logo">ファイナンスブレーン</h3>
+          <p class="footer-tagline">大分の【保険・投資信託・資産運用】のコンサルタント</p>
+          <p class="footer-address">
+            〒870-0934<br>
+            大分県大分市東津留1-6-11 大分ハイデンス1F<br>
+            TEL: <a href="tel:097-574-8212">097-574-8212</a>
+          </p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>サービス</h4>
+            <ul>
+              <li><a href="../services/personal/life-planning/index.html">ライフプランニング</a></li>
+              <li><a href="../services/personal/insurance/index.html">保険の見直し・ご相談</a></li>
+              <li><a href="../services/personal/housing-loan/index.html">住宅ローンのご相談</a></li>
+              <li><a href="../services/personal/inheritance/index.html">相続に関するご相談</a></li>
+              <li><a href="../services/personal/investment/index.html">投資信託・資産運用</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>企業情報</h4>
+            <ul>
+              <li><a href="../company/index.html">会社概要</a></li>
+              <li><a href="../index.html#voice">お客様の声</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>その他</h4>
+            <ul>
+              <li><a href="#">個人情報保護方針</a></li>
+              <li><a href="#">勧誘方針</a></li>
+              <li><a href="#">サイトマップ</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2006-2025 株式会社ファイナンスブレーン All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
