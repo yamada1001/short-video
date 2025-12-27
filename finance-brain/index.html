@@ -1162,25 +1162,11 @@
 │   │   ├── 一覧ページ - URL: /news/seminar/
 │   │   └── 詳細ページ - URL: /news/seminar/detail.html
 │   │
-│   ├── 公式コラム・お役立ち情報 - URL: /news/column/
-│   │   ├── 一覧ページ - URL: /news/column/
-│   │   ├── 詳細ページ - URL: /news/column/detail.html
-│   │   ├── 保険コラム - URL: /news/column/insurance/
-│   │   │   └── 詳細ページ - URL: /news/column/insurance/detail.html
-│   │   ├── 資産運用コラム - URL: /news/column/asset-management/
-│   │   │   └── 詳細ページ - URL: /news/column/asset-management/detail.html
-│   │   ├── 相続・事業承継コラム - URL: /news/column/inheritance/
-│   │   │   └── 詳細ページ - URL: /news/column/inheritance/detail.html
-│   │   ├── 税金・節税コラム - URL: /news/column/tax/
-│   │   │   └── 詳細ページ - URL: /news/column/tax/detail.html
-│   │   └── ライフプランニングコラム - URL: /news/column/life-planning/
-│   │       └── 詳細ページ - URL: /news/column/life-planning/detail.html
-│   │
-│   └── スタッフブログ - URL: /news/staff-blog/
+│   └── スタッフブログ（メインコンテンツ） - URL: /news/staff-blog/
 │       ├── 一覧ページ - URL: /news/staff-blog/
 │       ├── 詳細ページ - URL: /news/staff-blog/detail.html
-│       ├── スタッフ別 - URL: /news/staff-blog/by-staff/
-│       └── カテゴリ別 - URL: /news/staff-blog/by-category/
+│       ├── スタッフ別アーカイブ - URL: /news/staff-blog/by-staff/
+│       └── カテゴリ別アーカイブ - URL: /news/staff-blog/by-category/
 │
 ├── <strong>よくあるご質問（FAQ）</strong> - URL: /faq/
 │   ├── 保険について
@@ -1231,21 +1217,19 @@
                 <li style="text-decoration: line-through; color: #888;">✓ 個人向けサービス5ページ（ライフプランニング・保険・住宅ローン・相続・投資）をLP形式に統一</li>
                 <li style="text-decoration: line-through; color: #888;">✓ サイドバー形式から脱却、ヘッダー+ブレッドクラム+メインコンテンツ形式に変更</li>
                 <li style="text-decoration: line-through; color: #888;">✓ お知らせ・ニュース詳細ページ（/news/detail.html）を作成</li>
-                <li style="text-decoration: line-through; color: #888;">✓ 公式コラム詳細ページテンプレート（/news/column/detail.html）を作成</li>
-                <li style="text-decoration: line-through; color: #888;">✓ 各コラムカテゴリ（insurance/asset-management/inheritance/tax/life-planning）に詳細ページ追加</li>
                 <li style="text-decoration: line-through; color: #888;">✓ スタッフブログ詳細ページ（/news/staff-blog/detail.html）を充実化（著者プロフィール・関連記事・タグ追加）</li>
                 <li style="text-decoration: line-through; color: #888;">✓ お問い合わせ完了ページ（/contact/thanks.html）から不要セクション削除</li>
                 <li style="text-decoration: line-through; color: #888;">✓ 推奨サイト構造の更新（個人向けサービスをLP形式に表記変更）</li>
                 <li style="text-decoration: line-through; color: #888;">✓ news/index.htmlに「詳細を見る」ボタンを各項目に追加</li>
+                <li style="text-decoration: line-through; color: #888;">✓ セミナー一覧ページのボタンを「詳細を見る」に変更</li>
+                <li style="text-decoration: line-through; color: #888;">✓ 公式コラムディレクトリを完全削除（スタッフブログをメインコンテンツに）</li>
+                <li style="text-decoration: line-through; color: #888;">✓ スタッフブログ・スタッフ別アーカイブに「詳細を見る」ボタン追加</li>
+                <li style="text-decoration: line-through; color: #888;">✓ ディレクトリマップ・推奨サイト構造からcolumn関連を削除</li>
               </ul>
 
               <h4 class="subsection-subtitle">進行中・残りタスク</h4>
               <ul class="checklist">
-                <li>□ ディレクトリマップの最終確認と必要に応じて更新</li>
-                <li>□ WordPress開発用ディレクトリマップ（確定版）の確認と更新</li>
-                <li>□ #recommended-structureセクション全体の書き換え確認</li>
-                <li>□ 変更をコミット&プッシュ</li>
-                <li>□ モックアップからFigmaへの移行方法を調査・提示</li>
+                <li style="text-decoration: line-through; color: #888;">✓ Figma移行方法の調査完了（後回し）</li>
               </ul>
 
               <h4 class="subsection-subtitle">変更・追加ページ一覧（目視確認用）</h4>
@@ -1258,17 +1242,19 @@
                 <li><a href="mockup/services/personal/investment/index.html" target="_blank">投資信託・資産運用</a></li>
               </ul>
 
-              <p><strong>ニュース・コラム関連（新規作成・変更）:</strong></p>
+              <p><strong>ニュース・スタッフブログ関連（新規作成・変更）:</strong></p>
               <ul>
                 <li><a href="mockup/news/index.html" target="_blank">お知らせ一覧ページ</a>（「詳細を見る」ボタン追加）</li>
                 <li><a href="mockup/news/detail.html" target="_blank">お知らせ詳細ページ</a>（新規）</li>
-                <li><a href="mockup/news/column/detail.html" target="_blank">コラム詳細ページ（メイン）</a>（新規）</li>
-                <li><a href="mockup/news/column/insurance/detail.html" target="_blank">保険コラム詳細</a>（新規）</li>
-                <li><a href="mockup/news/column/asset-management/detail.html" target="_blank">資産運用コラム詳細</a>（新規）</li>
-                <li><a href="mockup/news/column/inheritance/detail.html" target="_blank">相続コラム詳細</a>（新規）</li>
-                <li><a href="mockup/news/column/tax/detail.html" target="_blank">税金コラム詳細</a>（新規）</li>
-                <li><a href="mockup/news/column/life-planning/detail.html" target="_blank">ライフプランニングコラム詳細</a>（新規）</li>
+                <li><a href="mockup/news/seminar/index.html" target="_blank">セミナー一覧ページ</a>（「詳細を見る」ボタンに変更）</li>
+                <li><a href="mockup/news/seminar/detail.html" target="_blank">セミナー詳細ページ</a>（テンプレート）</li>
                 <li><a href="mockup/news/staff-blog/detail.html" target="_blank">スタッフブログ詳細ページ</a>（拡充）</li>
+                <li><a href="mockup/news/staff-blog/by-staff/index.html" target="_blank">スタッフ別アーカイブ</a>（「詳細を見る」ボタン追加）</li>
+              </ul>
+
+              <p><strong>削除:</strong></p>
+              <ul>
+                <li style="text-decoration: line-through; color: #888;">公式コラムディレクトリ（/news/column/）を完全削除</li>
               </ul>
 
               <p><strong>その他修正:</strong></p>
@@ -1339,31 +1325,7 @@
 │   │   ├── index.html （セミナー一覧） - <a href="mockup/news/seminar/index.html" target="_blank">モックアップ</a>
 │   │   └── detail.html （セミナー詳細テンプレート） - <a href="mockup/news/seminar/detail.html" target="_blank">モックアップ</a>
 │   │
-│   ├── column/ （公式コラム・お役立ち情報）
-│   │   ├── index.html （コラム一覧） - <a href="mockup/news/column/index.html" target="_blank">モックアップ</a>
-│   │   ├── detail.html （コラム詳細テンプレート） - <a href="mockup/news/column/detail.html" target="_blank">モックアップ</a>
-│   │   │
-│   │   ├── insurance/ （保険コラム）
-│   │   │   ├── index.html - <a href="mockup/news/column/insurance/index.html" target="_blank">モックアップ</a>
-│   │   │   └── detail.html - <a href="mockup/news/column/insurance/detail.html" target="_blank">モックアップ</a>
-│   │   │
-│   │   ├── asset-management/ （資産運用コラム）
-│   │   │   ├── index.html - <a href="mockup/news/column/asset-management/index.html" target="_blank">モックアップ</a>
-│   │   │   └── detail.html - <a href="mockup/news/column/asset-management/detail.html" target="_blank">モックアップ</a>
-│   │   │
-│   │   ├── inheritance/ （相続・事業承継コラム）
-│   │   │   ├── index.html - <a href="mockup/news/column/inheritance/index.html" target="_blank">モックアップ</a>
-│   │   │   └── detail.html - <a href="mockup/news/column/inheritance/detail.html" target="_blank">モックアップ</a>
-│   │   │
-│   │   ├── tax/ （税金・節税コラム）
-│   │   │   ├── index.html - <a href="mockup/news/column/tax/index.html" target="_blank">モックアップ</a>
-│   │   │   └── detail.html - <a href="mockup/news/column/tax/detail.html" target="_blank">モックアップ</a>
-│   │   │
-│   │   └── life-planning/ （ライフプランニングコラム）
-│   │       ├── index.html - <a href="mockup/news/column/life-planning/index.html" target="_blank">モックアップ</a>
-│   │       └── detail.html - <a href="mockup/news/column/life-planning/detail.html" target="_blank">モックアップ</a>
-│   │
-│   └── staff-blog/ （スタッフブログ）
+│   └── staff-blog/ （スタッフブログ ※メインコンテンツ）
 │       ├── index.html （スタッフブログ一覧） - <a href="mockup/news/staff-blog/index.html" target="_blank">モックアップ</a>
 │       ├── detail.html （ブログ記事テンプレート） - <a href="mockup/news/staff-blog/detail.html" target="_blank">モックアップ</a>
 │       ├── by-staff/ （スタッフ別アーカイブ） - <a href="mockup/news/staff-blog/by-staff/index.html" target="_blank">モックアップ</a>

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(find:*)",
+      "Bash(tree:*)",
+      "Bash(for dir in insurance asset-management inheritance tax life-planning)",
+      "Bash(do)",
+      "Bash(done)",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
