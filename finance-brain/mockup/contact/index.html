@@ -41,10 +41,10 @@
   </header>
 
   <!-- パンくずリスト -->
-  <nav class="breadcrumb" style="background-color: #f5f7fa; padding: 16px 0; margin-bottom: 0;">
+  <nav class="breadcrumb">
     <div class="container">
-      <ul style="display: flex; gap: 8px; font-size: 0.875rem; color: #666;">
-        <li><a href="../index.html" style="color: #5767bf;">ホーム</a></li>
+      <ul>
+        <li><a href="../index.html">ホーム</a></li>
         <li>›</li>
         <li>お問い合わせ</li>
       </ul>
@@ -52,14 +52,12 @@
   </nav>
 
   <!-- ページタイトル -->
-  <section class="page-header" style="background: linear-gradient(135deg, #5767bf 0%, #7a8bd3 100%); color: white; padding: 80px 0;">
+  <section class="page-header">
     <div class="container">
-      <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-        <div style="font-size: 3rem; margin-bottom: 16px;">✉️</div>
-        <h1 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 24px;">お問い合わせ</h1>
-        <p style="font-size: 1.125rem; line-height: 1.8; opacity: 0.95;">
-          お気軽にご相談ください。初回相談は無料です。
-        </p>
+      <div class="text-center">
+        <div>✉️</div>
+        <h1>お問い合わせ</h1>
+        <p>お気軽にご相談ください。初回相談は無料です。</p>
       </div>
     </div>
   </section>
@@ -73,7 +71,7 @@
           <h3 class="contact-method-title">お電話でのご相談</h3>
           <p class="contact-method-tel"><a href="tel:097-574-8212">097-574-8212</a></p>
           <p class="contact-method-time">平日 9:00〜18:00</p>
-          <p style="color: #666; font-size: 0.875rem; margin-top: 16px;">
+          <p>
             ※土日祝日は予約制となります。<br>
             お電話にてご希望の日時をお伝えください。
           </p>
@@ -85,7 +83,7 @@
           <a href="https://lin.ee/149antcn" class="btn btn-line" target="_blank" rel="noopener">
             LINE友だち追加
           </a>
-          <p style="color: #666; font-size: 0.875rem; margin-top: 16px;">
+          <p>
             LINE ID: @149antcn<br>
             ※24時間受付、回答は営業時間内
           </p>
@@ -95,7 +93,7 @@
       <!-- お問い合わせフォーム -->
       <div class="contact-form-area">
         <h3 class="form-title">お問い合わせフォーム</h3>
-        <p style="text-align: center; color: #666; margin-bottom: 40px;">
+        <p class="text-center mb-32">
           以下のフォームに必要事項をご入力の上、送信してください。<br>
           2営業日以内にご返信いたします。
         </p>
@@ -134,7 +132,7 @@
           </div>
 
           <div class="form-group">
-            <label for="age" class="form-label">年代<span style="background-color: #666; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-left: 8px; font-weight: 500;">任意</span></label>
+            <label for="age" class="form-label">年代</label>
             <select id="age" name="age" class="form-control">
               <option value="">選択してください</option>
               <option value="20s">20代</option>
@@ -147,7 +145,7 @@
           </div>
 
           <div class="form-group">
-            <label for="service" class="form-label">ご関心のあるサービス<span style="background-color: #666; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-left: 8px; font-weight: 500;">任意</span></label>
+            <label for="service" class="form-label">ご関心のあるサービス</label>
             <select id="service" name="service" class="form-control">
               <option value="">選択してください</option>
               <optgroup label="個人のお客様">
@@ -174,7 +172,7 @@
           <div class="form-privacy">
             <label class="checkbox-label">
               <input type="checkbox" name="privacy" required>
-              <span><a href="#" target="_blank" style="color: #5767bf; font-weight: 700;">個人情報保護方針</a>に同意する</span>
+              <span><a href="#" target="_blank">個人情報保護方針</a>に同意する</span>
             </label>
           </div>
 
@@ -182,7 +180,7 @@
             <button type="submit" class="btn btn-large btn-primary">送信する</button>
           </div>
 
-          <p style="text-align: center; color: #666; font-size: 0.875rem; margin-top: 24px;">
+          <p class="text-center">
             ※送信後、自動返信メールが届きます。届かない場合はメールアドレスをご確認ください。
           </p>
         </form>
@@ -191,50 +189,50 @@
   </section>
 
   <!-- よくあるご質問 -->
-  <section class="section" style="background-color: #f5f7fa;">
-    <div class="container" style="max-width: 900px;">
+  <section class="section">
+    <div class="container">
       <div class="section-header">
         <h2 class="section-title">よくあるご質問</h2>
         <p class="section-lead">お問い合わせの前にご確認ください</p>
       </div>
 
-      <div style="display: grid; gap: 16px;">
-        <details style="background: white; padding: 24px 32px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer;">
-          <summary style="font-weight: 700; color: #333; font-size: 1.125rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <details class="border p-24 mb-16">
+          <summary>
             <span>Q. 相談は本当に無料ですか？</span>
-            <span style="color: #5767bf; font-size: 1.5rem;">+</span>
+            <span>+</span>
           </summary>
-          <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e0e0e0; color: #666; line-height: 1.8;">
+          <p>
             A. はい、初回相談は無料です。お客様の状況をヒアリングし、最適なプランをご提案させていただきます。具体的な商品のご契約や継続的なコンサルティングをご希望の場合は、別途費用が発生する場合がございます。
           </p>
         </details>
 
-        <details style="background: white; padding: 24px 32px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer;">
-          <summary style="font-weight: 700; color: #333; font-size: 1.125rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <details class="border p-24 mb-16">
+          <summary>
             <span>Q. 土日祝日も相談できますか？</span>
-            <span style="color: #5767bf; font-size: 1.5rem;">+</span>
+            <span>+</span>
           </summary>
-          <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e0e0e0; color: #666; line-height: 1.8;">
+          <p>
             A. 土日祝日は予約制となっております。平日お仕事で忙しい方も、ご都合の良い日時をお知らせいただければ対応可能です。お電話またはお問い合わせフォームにてご相談ください。
           </p>
         </details>
 
-        <details style="background: white; padding: 24px 32px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer;">
-          <summary style="font-weight: 700; color: #333; font-size: 1.125rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <details class="border p-24 mb-16">
+          <summary>
             <span>Q. 訪問での相談も可能ですか？</span>
-            <span style="color: #5767bf; font-size: 1.5rem;">+</span>
+            <span>+</span>
           </summary>
-          <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e0e0e0; color: #666; line-height: 1.8;">
+          <p>
             A. はい、可能です。大分市内および近郊エリアであれば、ご自宅やご指定の場所へお伺いいたします。お気軽にご相談ください。
           </p>
         </details>
 
-        <details style="background: white; padding: 24px 32px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer;">
-          <summary style="font-weight: 700; color: #333; font-size: 1.125rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <details class="border p-24 mb-16">
+          <summary>
             <span>Q. 契約を強制されることはありませんか？</span>
-            <span style="color: #5767bf; font-size: 1.5rem;">+</span>
+            <span>+</span>
           </summary>
-          <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e0e0e0; color: #666; line-height: 1.8;">
+          <p>
             A. ご安心ください。当社では無理な営業や契約の強制は一切行っておりません。お客様にとって最適なプランをご提案し、ご納得いただいた上でのご契約をお願いしております。
           </p>
         </details>
