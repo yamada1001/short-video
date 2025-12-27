@@ -1166,10 +1166,15 @@
 │   │   ├── 一覧ページ - URL: /news/column/
 │   │   ├── 詳細ページ - URL: /news/column/detail.html
 │   │   ├── 保険コラム - URL: /news/column/insurance/
+│   │   │   └── 詳細ページ - URL: /news/column/insurance/detail.html
 │   │   ├── 資産運用コラム - URL: /news/column/asset-management/
+│   │   │   └── 詳細ページ - URL: /news/column/asset-management/detail.html
 │   │   ├── 相続・事業承継コラム - URL: /news/column/inheritance/
+│   │   │   └── 詳細ページ - URL: /news/column/inheritance/detail.html
 │   │   ├── 税金・節税コラム - URL: /news/column/tax/
+│   │   │   └── 詳細ページ - URL: /news/column/tax/detail.html
 │   │   └── ライフプランニングコラム - URL: /news/column/life-planning/
+│   │       └── 詳細ページ - URL: /news/column/life-planning/detail.html
 │   │
 │   └── スタッフブログ - URL: /news/staff-blog/
 │       ├── 一覧ページ - URL: /news/staff-blog/
@@ -1214,6 +1219,61 @@
                 <li>サービスページを4つの大カテゴリに分割</li>
                 <li>スタッフ紹介に顔写真・詳細プロフィール追加</li>
                 <li>会社情報の充実</li>
+              </ul>
+            </div>
+
+            <div class="card" id="task-progress">
+              <h3 class="card-header">モックアップ制作タスク進捗</h3>
+              <p class="note"><strong>最終更新:</strong> 2025年12月28日</p>
+
+              <h4 class="subsection-subtitle">完了済みタスク ✓</h4>
+              <ul class="checklist">
+                <li style="text-decoration: line-through; color: #888;">✓ 個人向けサービス5ページ（ライフプランニング・保険・住宅ローン・相続・投資）をLP形式に統一</li>
+                <li style="text-decoration: line-through; color: #888;">✓ サイドバー形式から脱却、ヘッダー+ブレッドクラム+メインコンテンツ形式に変更</li>
+                <li style="text-decoration: line-through; color: #888;">✓ お知らせ・ニュース詳細ページ（/news/detail.html）を作成</li>
+                <li style="text-decoration: line-through; color: #888;">✓ 公式コラム詳細ページテンプレート（/news/column/detail.html）を作成</li>
+                <li style="text-decoration: line-through; color: #888;">✓ 各コラムカテゴリ（insurance/asset-management/inheritance/tax/life-planning）に詳細ページ追加</li>
+                <li style="text-decoration: line-through; color: #888;">✓ スタッフブログ詳細ページ（/news/staff-blog/detail.html）を充実化（著者プロフィール・関連記事・タグ追加）</li>
+                <li style="text-decoration: line-through; color: #888;">✓ お問い合わせ完了ページ（/contact/thanks.html）から不要セクション削除</li>
+                <li style="text-decoration: line-through; color: #888;">✓ 推奨サイト構造の更新（個人向けサービスをLP形式に表記変更）</li>
+                <li style="text-decoration: line-through; color: #888;">✓ news/index.htmlに「詳細を見る」ボタンを各項目に追加</li>
+              </ul>
+
+              <h4 class="subsection-subtitle">進行中・残りタスク</h4>
+              <ul class="checklist">
+                <li>□ ディレクトリマップの最終確認と必要に応じて更新</li>
+                <li>□ WordPress開発用ディレクトリマップ（確定版）の確認と更新</li>
+                <li>□ #recommended-structureセクション全体の書き換え確認</li>
+                <li>□ 変更をコミット&プッシュ</li>
+                <li>□ モックアップからFigmaへの移行方法を調査・提示</li>
+              </ul>
+
+              <h4 class="subsection-subtitle">変更・追加ページ一覧（目視確認用）</h4>
+              <p><strong>個人向けサービスページ（LP形式に変更）:</strong></p>
+              <ul>
+                <li><a href="mockup/services/personal/life-planning/index.html" target="_blank">ライフプランニング</a></li>
+                <li><a href="mockup/services/personal/insurance/index.html" target="_blank">保険の見直し・ご相談</a></li>
+                <li><a href="mockup/services/personal/housing-loan/index.html" target="_blank">住宅ローンのご相談</a></li>
+                <li><a href="mockup/services/personal/inheritance/index.html" target="_blank">相続に関するご相談</a></li>
+                <li><a href="mockup/services/personal/investment/index.html" target="_blank">投資信託・資産運用</a></li>
+              </ul>
+
+              <p><strong>ニュース・コラム関連（新規作成・変更）:</strong></p>
+              <ul>
+                <li><a href="mockup/news/index.html" target="_blank">お知らせ一覧ページ</a>（「詳細を見る」ボタン追加）</li>
+                <li><a href="mockup/news/detail.html" target="_blank">お知らせ詳細ページ</a>（新規）</li>
+                <li><a href="mockup/news/column/detail.html" target="_blank">コラム詳細ページ（メイン）</a>（新規）</li>
+                <li><a href="mockup/news/column/insurance/detail.html" target="_blank">保険コラム詳細</a>（新規）</li>
+                <li><a href="mockup/news/column/asset-management/detail.html" target="_blank">資産運用コラム詳細</a>（新規）</li>
+                <li><a href="mockup/news/column/inheritance/detail.html" target="_blank">相続コラム詳細</a>（新規）</li>
+                <li><a href="mockup/news/column/tax/detail.html" target="_blank">税金コラム詳細</a>（新規）</li>
+                <li><a href="mockup/news/column/life-planning/detail.html" target="_blank">ライフプランニングコラム詳細</a>（新規）</li>
+                <li><a href="mockup/news/staff-blog/detail.html" target="_blank">スタッフブログ詳細ページ</a>（拡充）</li>
+              </ul>
+
+              <p><strong>その他修正:</strong></p>
+              <ul>
+                <li><a href="mockup/contact/thanks.html" target="_blank">お問い合わせ完了ページ</a>（不要セクション削除）</li>
               </ul>
             </div>
 
@@ -1273,21 +1333,41 @@
 │
 ├── <strong>news/</strong> （お知らせ）
 │   ├── index.html （新着情報一覧） - <a href="mockup/news/index.html" target="_blank">モックアップ</a>
+│   ├── detail.html （お知らせ詳細テンプレート） - <a href="mockup/news/detail.html" target="_blank">モックアップ</a>
+│   │
 │   ├── seminar/ （セミナー・イベント）
 │   │   ├── index.html （セミナー一覧） - <a href="mockup/news/seminar/index.html" target="_blank">モックアップ</a>
 │   │   └── detail.html （セミナー詳細テンプレート） - <a href="mockup/news/seminar/detail.html" target="_blank">モックアップ</a>
+│   │
 │   ├── column/ （公式コラム・お役立ち情報）
 │   │   ├── index.html （コラム一覧） - <a href="mockup/news/column/index.html" target="_blank">モックアップ</a>
-│   │   ├── insurance/ （保険コラム） - <a href="mockup/news/column/insurance/index.html" target="_blank">モックアップ</a>
-│   │   ├── asset-management/ （資産運用コラム） - <a href="mockup/news/column/asset-management/index.html" target="_blank">モックアップ</a>
-│   │   ├── inheritance/ （相続・事業承継コラム） - <a href="mockup/news/column/inheritance/index.html" target="_blank">モックアップ</a>
-│   │   ├── tax/ （税金・節税コラム） - <a href="mockup/news/column/tax/index.html" target="_blank">モックアップ</a>
-│   │   └── life-planning/ （ライフプランニングコラム） - <a href="mockup/news/column/life-planning/index.html" target="_blank">モックアップ</a>
+│   │   ├── detail.html （コラム詳細テンプレート） - <a href="mockup/news/column/detail.html" target="_blank">モックアップ</a>
+│   │   │
+│   │   ├── insurance/ （保険コラム）
+│   │   │   ├── index.html - <a href="mockup/news/column/insurance/index.html" target="_blank">モックアップ</a>
+│   │   │   └── detail.html - <a href="mockup/news/column/insurance/detail.html" target="_blank">モックアップ</a>
+│   │   │
+│   │   ├── asset-management/ （資産運用コラム）
+│   │   │   ├── index.html - <a href="mockup/news/column/asset-management/index.html" target="_blank">モックアップ</a>
+│   │   │   └── detail.html - <a href="mockup/news/column/asset-management/detail.html" target="_blank">モックアップ</a>
+│   │   │
+│   │   ├── inheritance/ （相続・事業承継コラム）
+│   │   │   ├── index.html - <a href="mockup/news/column/inheritance/index.html" target="_blank">モックアップ</a>
+│   │   │   └── detail.html - <a href="mockup/news/column/inheritance/detail.html" target="_blank">モックアップ</a>
+│   │   │
+│   │   ├── tax/ （税金・節税コラム）
+│   │   │   ├── index.html - <a href="mockup/news/column/tax/index.html" target="_blank">モックアップ</a>
+│   │   │   └── detail.html - <a href="mockup/news/column/tax/detail.html" target="_blank">モックアップ</a>
+│   │   │
+│   │   └── life-planning/ （ライフプランニングコラム）
+│   │       ├── index.html - <a href="mockup/news/column/life-planning/index.html" target="_blank">モックアップ</a>
+│   │       └── detail.html - <a href="mockup/news/column/life-planning/detail.html" target="_blank">モックアップ</a>
+│   │
 │   └── staff-blog/ （スタッフブログ）
 │       ├── index.html （スタッフブログ一覧） - <a href="mockup/news/staff-blog/index.html" target="_blank">モックアップ</a>
+│       ├── detail.html （ブログ記事テンプレート） - <a href="mockup/news/staff-blog/detail.html" target="_blank">モックアップ</a>
 │       ├── by-staff/ （スタッフ別アーカイブ） - <a href="mockup/news/staff-blog/by-staff/index.html" target="_blank">モックアップ</a>
-│       ├── by-category/ （カテゴリ別アーカイブ） - <a href="mockup/news/staff-blog/by-category/index.html" target="_blank">モックアップ</a>
-│       └── detail.html （ブログ記事テンプレート） - <a href="mockup/news/staff-blog/detail.html" target="_blank">モックアップ</a>
+│       └── by-category/ （カテゴリ別アーカイブ） - <a href="mockup/news/staff-blog/by-category/index.html" target="_blank">モックアップ</a>
 │
 ├── <strong>faq/</strong> （よくあるご質問）
 │   └── index.html （全カテゴリ統合） - <a href="mockup/faq/index.html" target="_blank">モックアップ</a>
