@@ -186,6 +186,11 @@ p {
   color: #fff;
 }
 
+/* Fix for nav buttons - override nav-list color */
+.nav-list a.btn-primary {
+  color: #fff;
+}
+
 .btn-outline {
   background-color: #fff;
   color: #000;
