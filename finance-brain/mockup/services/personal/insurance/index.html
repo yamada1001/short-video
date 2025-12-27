@@ -3,259 +3,203 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>生命保険見直し | ファイナンスブレーン</title>
+  <title>生命保険見直し | 個人向けサービス | ファイナンスブレーン</title>
+  <meta name="description" content="本当に必要な保障だけに絞って保険料を削減。中立的な立場から最適な保険をご提案します。">
   <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="sidebar-layout">
-    <!-- サイドバー -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <div class="logo">
-          <h1>FINANCE<br>BRAIN</h1>
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="header-logo">
+          <a href="../../../index.html">
+            <h1 class="logo-text">ファイナンスブレーン</h1>
+            <p class="logo-tagline">Finance Brain</p>
+          </a>
         </div>
+        <nav class="header-nav">
+          <ul class="nav-list">
+            <li><a href="../../../about/index.html">ファイナンスブレーンとは</a></li>
+            <li><a href="../../../index.html#services">サービス</a></li>
+            <li><a href="../../../why-us/index.html">選ばれる理由</a></li>
+            <li><a href="../../../voice/index.html">お客様の声</a></li>
+            <li><a href="../../../company/index.html">会社概要</a></li>
+            <li><a href="../../../contact/index.html" class="btn-primary">お問い合わせ</a></li>
+          </ul>
+        </nav>
+        <button class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="../../../index.html">ホーム</a></li>
+        <li>›</li>
+        <li><a href="../index.html">個人向けサービス</a></li>
+        <li>›</li>
+        <li>生命保険見直し</li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <div class="container">
+      <div class="text-center">
+        <h1>生命保険見直し</h1>
+        <p>Life Insurance Review</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-64">
+        <h2 class="section-title">保険料、月3万円以上払っていませんか？<br>本当に必要な保障だけに絞れば、半額になるかもしれません。</h2>
+        <p class="section-description">
+          「勧められるまま加入」した保険を見直して、年間20万円以上の節約に成功した事例多数。<br>
+          中立的な立場から、あなたにとって本当に最適な保険をご提案します。
+        </p>
       </div>
 
-      <nav class="sidebar-nav">
-        <div class="nav-section">
-          <h3 class="nav-section-title">法人のお客様</h3>
+      <h2 class="section-subtitle">こんなお悩みありませんか？</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>💸 保険料が高すぎる</h3>
           <ul>
-            <li><a href="../../corporate/financial-consulting/index.html">財務コンサルティング</a></li>
-            <li><a href="../../corporate/retirement/index.html">退職金コンサルティング</a></li>
-            <li><a href="../../corporate/succession/index.html">事業承継対策</a></li>
-            <li><a href="../../corporate/stock/index.html">自社株対策</a></li>
+            <li>毎月の保険料が3万円以上かかっているが、本当に必要か分からない</li>
+            <li>「これだけ払っているのに、本当に役に立つの？」と疑問に思っている</li>
+            <li>保険料の負担が重く、貯蓄に回すお金がない</li>
           </ul>
         </div>
-
-        <div class="nav-section">
-          <h3 class="nav-section-title">個人のお客様</h3>
+        <div class="card">
+          <h3>🤔 保険の内容が分からない</h3>
           <ul>
-            <li><a href="../life-planning/index.html">ライフプランニング</a></li>
-            <li><a href="../insurance/index.html" class="active">生命保険見直し</a></li>
-            <li><a href="../housing-loan/index.html">住宅ローン相談</a></li>
-            <li><a href="../inheritance/index.html">相続対策</a></li>
-            <li><a href="../investment/index.html">資産運用</a></li>
+            <li>加入している保険の内容が複雑すぎて、何が保障されているのか分からない</li>
+            <li>「死亡保険金3,000万円」と言われても、それが適正かどうか判断できない</li>
+            <li>保険証券を見ても、専門用語ばかりで理解できない</li>
           </ul>
         </div>
-
-        <div class="nav-section">
+        <div class="card">
+          <h3>📄 見直しを一度もしたことがない</h3>
           <ul>
-            <li><a href="../../../index.html#about">ファイナンスブレーンとは</a></li>
-            <li><a href="../../../index.html#strengths">選ばれる理由</a></li>
-            <li><a href="../../../index.html#cases">導入事例</a></li>
-            <li><a href="../../../index.html#faq">よくあるご質問</a></li>
+            <li>結婚・出産・マイホーム購入など、ライフステージが変わっても保険を見直していない</li>
+            <li>20代の独身時代に加入した保険を、40代の今も続けている</li>
+            <li>どこに相談すればいいか分からず、そのままになっている</li>
           </ul>
         </div>
-      </nav>
-
-      <div class="sidebar-cta">
-        <a href="../../../index.html#contact" class="btn btn-primary btn-block">無料相談のご予約</a>
-        <p class="text-sm text-center mt-16">お電話でのお問い合わせ<br><strong>097-574-8212</strong><br>平日 9:00-18:00</p>
+        <div class="card">
+          <h3>😓 営業マンに勧められるまま加入した</h3>
+          <ul>
+            <li>「これが一番いいですよ」と言われて、よく分からないまま契約してしまった</li>
+            <li>親戚・友人が保険営業をしていて、断れなかった</li>
+            <li>本当に必要かどうか分からないまま、何種類もの保険に加入している</li>
+          </ul>
+        </div>
       </div>
-    </aside>
+    </div>
+  </section>
 
-    <!-- メインコンテンツ -->
-    <main class="main-content">
-      <!-- ページヘッダー -->
-      <section class="page-header">
-        <div class="breadcrumb">
-          <a href="../../../index.html">ホーム</a> &gt;
-          <a href="../index.html">個人のお客様</a> &gt;
-          <span>生命保険見直し</span>
+  <section class="section bg-light">
+    <div class="container">
+      <h2 class="section-title text-center mb-48">⚠️ その悩み、放置すると危険です</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>不要な保険に年間50万円以上払い続ける</h3>
+          <p>「なんとなく不安だから」という理由で、<strong>本当は不要な保険に毎月4万円以上払っているケース</strong>があります。年間48万円、10年で480万円、30年で1,440万円…この金額があれば、老後資金や教育資金に回せたはずです。</p>
+          <p class="mt-16"><strong>実際の事例：</strong>40代のAさんは、20代の独身時代に加入した死亡保険金5,000万円の保険を、結婚後も続けていました。見直しの結果、<strong>独身時代の保険（月2万円）は不要</strong>と判明。10年間で240万円を無駄に払い続けていました。</p>
         </div>
-        <h1>保険料、月3万円以上払っていませんか？<br>本当に必要な保障だけに絞れば、半額になるかもしれません。</h1>
-        <p class="lead">「勧められるまま加入」した保険を見直して、年間20万円以上の節約に成功した事例多数。</p>
-      </section>
-
-      <!-- こんなお悩みありませんか？ -->
-      <section class="section">
-        <h2>こんなお悩みありませんか？</h2>
-        <div class="grid-2">
-          <div>
-            <h3>💸 保険料が高すぎる</h3>
-            <ul>
-              <li>• 毎月の保険料が3万円以上かかっているが、本当に必要か分からない</li>
-              <li>• 「これだけ払っているのに、本当に役に立つの？」と疑問に思っている</li>
-              <li>• 保険料の負担が重く、貯蓄に回すお金がない</li>
-              <li>• 「保険料を払い続けるくらいなら、貯金した方がいいのでは？」と感じている</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3>🤔 保険の内容が分からない</h3>
-            <ul>
-              <li>• 加入している保険の内容が複雑すぎて、何が保障されているのか分からない</li>
-              <li>• 「死亡保険金3,000万円」と言われても、それが適正かどうか判断できない</li>
-              <li>• 特約がたくさん付いているが、それぞれ何のためのものか分からない</li>
-              <li>• 保険証券を見ても、専門用語ばかりで理解できない</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3>📄 見直しを一度もしたことがない</h3>
-            <ul>
-              <li>• 結婚・出産・マイホーム購入など、ライフステージが変わっても保険を見直していない</li>
-              <li>• 20代の独身時代に加入した保険を、40代の今も続けている</li>
-              <li>• 「見直した方がいい」と思いながら、何年も放置している</li>
-              <li>• どこに相談すればいいか分からず、そのままになっている</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3>😓 営業マンに勧められるまま加入した</h3>
-            <ul>
-              <li>• 「これが一番いいですよ」と言われて、よく分からないまま契約してしまった</li>
-              <li>• 「みんな入っていますよ」と言われて、断れずに加入してしまった</li>
-              <li>• 親戚・友人が保険営業をしていて、断れなかった</li>
-              <li>• 本当に必要かどうか分からないまま、何種類もの保険に加入している</li>
-            </ul>
-          </div>
+        <div class="card">
+          <h3>いざという時に保険金が出ない</h3>
+          <p>「保険に入っているから安心」と思っていても、<strong>保障内容を理解していないと、いざという時に保険金が出ない</strong>ケースがあります。「がん保険に入っていたのに、上皮内がんは対象外だった」など、トラブルは後を絶ちません。</p>
+          <p class="mt-16"><strong>実際の事例：</strong>50代のBさんは、がんと診断されて初めて保険証券を確認。しかし、<strong>「上皮内がん」は保障対象外</strong>と書かれており、診断給付金100万円が受け取れませんでした。</p>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- その悩み、放置すると危険です -->
-      <section class="section bg-danger">
-        <h2>⚠️ その悩み、放置すると危険です</h2>
-        <div class="grid-2">
-          <div class="border p-24">
-            <h3>不要な保険に年間50万円以上払い続ける</h3>
-            <p>「なんとなく不安だから」という理由で、<strong>本当は不要な保険に毎月4万円以上払っているケース</strong>があります。年間48万円、10年で480万円、30年で1,440万円…この金額があれば、老後資金や教育資金に回せたはずです。</p>
-            <p class="mt-16"><strong>実際の事例：</strong>40代のAさんは、20代の独身時代に加入した死亡保険金5,000万円の保険を、結婚後も続けていました。「子供が生まれたから保障が必要」と新たに保険を追加し、月4.5万円に。見直しの結果、<strong>独身時代の保険（月2万円）は不要</strong>と判明。10年間で240万円を無駄に払い続けていました。</p>
-          </div>
-
-          <div class="border p-24">
-            <h3>いざという時に保険金が出ない</h3>
-            <p>「保険に入っているから安心」と思っていても、<strong>保障内容を理解していないと、いざという時に保険金が出ない</strong>ケースがあります。「がん保険に入っていたのに、上皮内がんは対象外だった」「入院日数が足りず、給付金がもらえなかった」など、トラブルは後を絶ちません。</p>
-            <p class="mt-16"><strong>実際の事例：</strong>50代のBさんは、がんと診断されて初めて保険証券を確認しました。しかし、<strong>「上皮内がん」は保障対象外</strong>と書かれており、診断給付金100万円が受け取れませんでした。「営業マンから『がんになったら100万円出ます』と聞いていたのに…」と後悔しています。</p>
-          </div>
-
-          <div class="border p-24">
-            <h3>保険料の負担で家計が圧迫され、貯蓄ができない</h3>
-            <p>「保険は大切だから」と高額な保険料を払い続けた結果、<strong>貯蓄に回すお金がなくなり、老後資金が貯まらない</strong>ケースが増えています。保険は「もしも」のための備えですが、<strong>貯蓄がなければ、日々の生活すら成り立ちません</strong>。</p>
-            <p class="mt-16"><strong>実際の事例：</strong>30代のCさん夫婦は、夫婦で月4万円の保険料を払っていました。「子供の教育費も貯めたい」と思っていましたが、保険料の負担が重く、貯蓄がほとんどできない状態に。見直しの結果、<strong>保険料を月2万円に削減</strong>し、浮いた2万円を教育費の積立に回すことができました。</p>
-          </div>
-
-          <div class="border p-24">
-            <h3>ライフステージの変化に保障が合っていない</h3>
-            <p>独身時代に「死亡保険金5,000万円」は不要ですが、<strong>「子供が生まれたら3,000万円の保障が必要」</strong>になります。逆に、<strong>子供が独立したら、死亡保障は減らしてもOK</strong>です。ライフステージに合わせて保険を見直さないと、「不要な保障にお金を払い続ける」ことになります。</p>
-            <p class="mt-16"><strong>実際の事例：</strong>60代のDさんは、子供が独立した後も、死亡保険金3,000万円の保険を続けていました。「もう子供も独立したし、妻の老後資金さえ残れば十分」と気づき、保険を見直し。<strong>死亡保障を500万円に減額</strong>し、浮いた保険料（月1.5万円）を老後資金の積立に回しました。</p>
-          </div>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title text-center mb-48">✅ ファイナンスブレーンが解決します</h2>
+      <div class="grid-3">
+        <div class="card text-center">
+          <div class="stat-number">年20万円</div>
+          <p class="stat-label">平均削減額</p>
+          <p class="text-sm mt-8">不要な保険を解約し、必要な保障だけに絞ることで、年間20万円以上の節約に成功。</p>
         </div>
-      </section>
-
-      <!-- ファイナンスブレーンが解決します -->
-      <section class="section">
-        <h2>✅ ファイナンスブレーンが解決します</h2>
-        <div class="grid-3">
-          <div class="border p-24 text-center">
-            <div class="stat-number">年20万円</div>
-            <p class="stat-label">平均削減額</p>
-            <p class="text-sm mt-8">不要な保険を解約し、必要な保障だけに絞ることで、年間20万円以上の節約に成功。</p>
-          </div>
-          <div class="border p-24 text-center">
-            <div class="stat-number">100%</div>
-            <p class="stat-label">中立的な提案</p>
-            <p class="text-sm mt-8">特定の保険会社に所属していないため、あなたにとって本当に最適な保険をご提案します。</p>
-          </div>
-          <div class="border p-24 text-center">
-            <div class="stat-number">19年</div>
-            <p class="stat-label">相談実績</p>
-            <p class="text-sm mt-8">2006年の創業以来、累計1,000世帯以上の保険見直しを支援してきました。</p>
-          </div>
+        <div class="card text-center">
+          <div class="stat-number">100%</div>
+          <p class="stat-label">中立的な提案</p>
+          <p class="text-sm mt-8">特定の保険会社に所属していないため、あなたにとって本当に最適な保険をご提案します。</p>
         </div>
-
-        <div class="mt-48">
-          <h3>なぜ、ファイナンスブレーンなら解決できるのか？</h3>
-          <div class="grid-2 mt-24">
-            <div class="border p-24">
-              <h4>💡 理由1：必要保障額を「数字で」算出</h4>
-              <p>「死亡保険金はいくら必要か」を、<strong>ライフプランシミュレーションで算出</strong>します。遺族の生活費・教育費・住宅ローン残債などを考慮し、<strong>「本当に必要な金額」を数字で明示</strong>します。営業マンの「とりあえず3,000万円あれば安心ですよ」ではなく、根拠のある提案をします。</p>
-            </div>
-
-            <div class="border p-24">
-              <h4>🎯 理由2：中立的な立場で提案</h4>
-              <p>当社は特定の保険会社に所属していないため、<strong>複数の保険会社の商品を比較し、あなたにとって本当に最適なものをご提案</strong>します。「自社の商品を売りたい」という営業マンとは違い、<strong>「保険に入らない」という選択肢も含めて提案</strong>します。</p>
-            </div>
-
-            <div class="border p-24">
-              <h4>📊 理由3：現在の保険を徹底分析</h4>
-              <p>「今入っている保険がどんな内容か分からない」という方も安心してください。<strong>保険証券を1枚1枚確認し、保障内容を分かりやすく説明</strong>します。「この特約は不要」「この保険は継続すべき」と、具体的にアドバイスします。</p>
-            </div>
-
-            <div class="border p-24">
-              <h4>🤝 理由4：無理な勧誘は一切なし</h4>
-              <p>「保険に入る必要がない」と判断すれば、その旨をお伝えします。「とりあえず何か入っておいた方が安心ですよ」という営業トークは一切ありません。<strong>お客様にとって本当に必要なものだけをご提案</strong>します。</p>
-            </div>
-          </div>
+        <div class="card text-center">
+          <div class="stat-number">19年</div>
+          <p class="stat-label">相談実績</p>
+          <p class="text-sm mt-8">2006年の創業以来、累計1,000世帯以上の保険見直しを支援してきました。</p>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- 実際の事例（見直し前後の具体的な内容を省略してtoken節約） -->
-      <section class="section bg-light">
-        <h2>📊 実際の見直し事例</h2>
-        <div class="border p-32">
-          <p><strong>【40代夫婦（子供2人）：世帯年収700万円】</strong></p>
-          <h3>保険料を月3.5万円→1.8万円に削減、年間20万円の節約に成功</h3>
+  <section class="section bg-light">
+    <div class="container">
+      <h2 class="section-title text-center mb-48">📊 実際の見直し事例</h2>
+      <div class="card">
+        <p class="text-bold mb-16">【40代夫婦（子供2人）：世帯年収700万円】</p>
+        <h3 class="mb-24">保険料を月3.5万円→1.8万円に削減、年間20万円の節約に成功</h3>
+        <h4>課題</h4>
+        <p>夫婦で5種類の保険に加入しており、毎月の保険料が3.5万円。「本当に必要な保障か分からない」「保険料が高すぎて、貯蓄に回すお金がない」と悩んでいました。</p>
+        <h4 class="mt-24">実施した見直し</h4>
+        <ul>
+          <li>独身時代の死亡保険金5,000万円を収入保障保険（2,500万円相当）に切り替え → 月1.8万円→8,000円に削減</li>
+          <li>医療保険とがん保険を1つの「医療保険（がん特約付き)」に統合 → 月9,000円→6,000円に削減</li>
+          <li>個人年金保険を解約し、つみたてNISAに切り替え → 保険料ゼロ、月5,000円をつみたてNISAに</li>
+        </ul>
+        <h4 class="mt-24">結果</h4>
+        <p>保険料を<strong>月3.5万円→1.8万円に削減（年間20万円の節約）</strong>。浮いたお金を、教育費の積立（月1万円）と老後資金の積立（月7,000円）に回すことができました。</p>
+      </div>
+    </div>
+  </section>
 
-          <h4>課題</h4>
-          <p>夫婦で5種類の保険に加入しており、毎月の保険料が3.5万円。「本当に必要な保障か分からない」「保険料が高すぎて、貯蓄に回すお金がない」と悩んでいました。</p>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title text-center mb-48">❓ よくあるご質問</h2>
+      <div class="faq-item">
+        <h3>Q1. 相談料はかかりますか？</h3>
+        <p><strong>A.</strong> 初回相談は無料です。現在の保険を総点検し、見直しのアドバイスをさせていただきます。</p>
+      </div>
+      <div class="faq-item">
+        <h3>Q2. 保険に加入しなくてもいいですか？</h3>
+        <p><strong>A.</strong> もちろんです。「保険に入る必要がない」と判断すれば、その旨をお伝えします。無理な勧誘は一切いたしませんので、ご安心ください。</p>
+      </div>
+      <div class="faq-item">
+        <h3>Q3. 今の保険を解約しなければいけませんか？</h3>
+        <p><strong>A.</strong> いいえ。「この保険は継続すべき」と判断すれば、そのまま継続することをおすすめします。無駄な部分だけを削り、必要な保障は残します。</p>
+      </div>
+    </div>
+  </section>
 
-          <h4>実施した見直し</h4>
-          <ul>
-            <li>• 独身時代の死亡保険金5,000万円を収入保障保険（2,500万円相当）に切り替え → 月1.8万円→8,000円に削減</li>
-            <li>• 医療保険とがん保険を1つの「医療保険（がん特約付き)」に統合 → 月9,000円→6,000円に削減</li>
-            <li>• 個人年金保険を解約し、つみたてNISAに切り替え → 保険料ゼロ、月5,000円をつみたてNISAに</li>
-          </ul>
+  <section class="section cta-section">
+    <div class="container text-center">
+      <h2 class="section-title text-white mb-24">まずは無料相談から</h2>
+      <p class="section-description text-white mb-32">保険料、月3万円以上払っていませんか？無料で保険を総点検します。<br>初回相談は無料です。お気軽にご相談ください。</p>
+      <a href="../../../contact/index.html" class="btn btn-secondary btn-lg">無料相談を予約する</a>
+      <p class="mt-24 text-white">お電話でのお問い合わせ：<strong>097-574-8212</strong>（平日 9:00-18:00）</p>
+    </div>
+  </section>
 
-          <h4>結果</h4>
-          <p>保険料を<strong>月3.5万円→1.8万円に削減（年間20万円の節約）</strong>。浮いたお金を、教育費の積立（月1万円）と老後資金の積立（月7,000円）に回すことができました。</p>
-
-          <div class="mt-24">
-            <h4>💬 お客様の声</h4>
-            <p>「保険料が高すぎると感じていましたが、どこを削ればいいか分かりませんでした。ファイナンスブレーンさんに相談し、年間20万円の節約に成功。浮いたお金を、子供の教育費と老後資金の積立に回せるようになりました。」</p>
-            <p class="text-right mt-16"><strong>— 40代・会社員夫婦（子供2人）</strong></p>
-          </div>
-        </div>
-      </section>
-
-      <!-- よくあるご質問 -->
-      <section class="section">
-        <h2>❓ よくあるご質問</h2>
-
-        <div class="faq-item">
-          <h3>Q1. 相談料はかかりますか？</h3>
-          <p><strong>A.</strong> 初回相談は無料です。現在の保険を総点検し、見直しのアドバイスをさせていただきます。</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>Q2. 保険に加入しなくてもいいですか？</h3>
-          <p><strong>A.</strong> もちろんです。「保険に入る必要がない」と判断すれば、その旨をお伝えします。無理な勧誘は一切いたしませんので、ご安心ください。</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>Q3. 今の保険を解約しなければいけませんか？</h3>
-          <p><strong>A.</strong> いいえ。「この保険は継続すべき」と判断すれば、そのまま継続することをおすすめします。無駄な部分だけを削り、必要な保障は残します。</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>Q4. どんな保険会社の商品を取り扱っていますか？</h3>
-          <p><strong>A.</strong> 複数の保険会社の商品を取り扱っており、あなたにとって最適なものをご提案します。特定の保険会社に所属していないため、中立的な立場でアドバイスできます。</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>Q5. 親戚・友人が保険営業をしていて、断りづらいのですが…</h3>
-          <p><strong>A.</strong> そのようなお悩みをお持ちの方は多いです。当社では、「現在の保険を継続すべきか、見直すべきか」を客観的にアドバイスします。その上で、ご自身で判断していただければと思います。</p>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section class="section bg-primary text-white text-center">
-        <h2>まずは無料相談から</h2>
-        <p class="lead">保険料、月3万円以上払っていませんか？無料で保険を総点検します。<br>初回相談は無料です。お気軽にご相談ください。</p>
-        <a href="../../../index.html#contact" class="btn btn-secondary btn-lg mt-24">無料相談を予約する</a>
-        <p class="mt-24">お電話でのお問い合わせ：<strong>097-574-8212</strong>（平日 9:00-18:00）</p>
-      </section>
-    </main>
-  </div>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 ファイナンスブレーン. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
