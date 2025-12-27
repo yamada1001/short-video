@@ -662,10 +662,279 @@ textarea.form-control {
 }
 
 /* ========================================
+   Sidebar Layout
+======================================== */
+.sidebar-layout {
+  display: flex;
+  gap: 0;
+  max-width: 100%;
+  padding: 0;
+  border: none;
+}
+
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  border-right: 2px solid #000;
+  padding: 24px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.sidebar-header {
+  padding-bottom: 24px;
+  border-bottom: 2px solid #000;
+  margin-bottom: 24px;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+.sidebar-nav {
+  margin-bottom: 32px;
+}
+
+.nav-section {
+  margin-bottom: 32px;
+}
+
+.nav-section-title {
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #000;
+}
+
+.nav-section ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-section a {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.nav-section a:hover,
+.nav-section a.active {
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+.sidebar-cta {
+  border-top: 2px solid #000;
+  padding-top: 24px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  max-width: 1200px;
+}
+
+/* ========================================
+   Grid Layouts (Additional)
+======================================== */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+}
+
+/* ========================================
+   Background Colors
+======================================== */
+.bg-light {
+  background-color: #f5f5f5;
+  padding: 40px;
+}
+
+.bg-danger {
+  background-color: #fff;
+  border: 2px solid #000;
+  padding: 40px;
+}
+
+.bg-primary {
+  background-color: #000;
+  color: #fff;
+  padding: 60px 40px;
+}
+
+.bg-primary h2,
+.bg-primary h3 {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+/* ========================================
+   Text Utilities
+======================================== */
+.text-white {
+  color: #fff;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.lead {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* ========================================
+   FAQ
+======================================== */
+.faq-item {
+  border: 1px solid #000;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.faq-item h3 {
+  font-size: 1.125rem;
+  margin-bottom: 12px;
+}
+
+.faq-item p {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   Page Header (Service Pages)
+======================================== */
+.page-header {
+  border: 2px solid #000;
+  padding: 60px 40px;
+  margin-bottom: 40px;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.breadcrumb {
+  font-size: 0.875rem;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #000;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+}
+
+/* ========================================
+   Service Cards (Corporate Index)
+======================================== */
+.service-card {
+  display: block;
+  text-decoration: none;
+  border: 2px solid #000;
+  padding: 32px;
+  transition: all 0.3s;
+}
+
+.service-card:hover {
+  background-color: #f5f5f5;
+}
+
+.service-card-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.service-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #000;
+  padding-bottom: 12px;
+}
+
+.service-card-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.service-card-link {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* ========================================
+   Additional Button Styles
+======================================== */
+.btn-secondary {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #fff;
+}
+
+.btn-lg {
+  padding: 16px 48px;
+  font-size: 1.25rem;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+/* ========================================
    Utility Classes
 ======================================== */
 .text-center {
   text-align: center;
+}
+
+.mt-8 {
+  margin-top: 8px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.mt-24 {
+  margin-top: 24px;
 }
 
 .mb-16 {
