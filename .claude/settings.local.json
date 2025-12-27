@@ -282,7 +282,22 @@
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff chatgpt-learning-platform/public/assets/css/progate-v2.css)",
       "Bash(if grep -q \"^\\.$class\" /Users/yamadaren/Movies/claude-code-projects/yojitu.com/chatgpt-learning-platform/public/assets/css/progate-v2.css)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com status --short)",
-      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com log --oneline -5 -- chatgpt-learning-platform/admin/)"
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com log --oneline -5 -- chatgpt-learning-platform/admin/)",
+      "Bash(/tmp/housedo_part1.txt)",
+      "Bash(/tmp/housedo_flow_section.txt)",
+      "Bash(/tmp/housedo_part2.txt)",
+      "Bash(/tmp/housedo_part3.txt)",
+      "Bash(/tmp/part1.txt)",
+      "Bash(/tmp/part2_education.txt)",
+      "Bash(/tmp/part3_flow.txt)",
+      "Bash(/tmp/part4_footer.txt)",
+      "Bash(index.html)",
+      "WebFetch(domain:finance-brain.co.jp)",
+      "WebFetch(domain:theo.blue)",
+      "WebFetch(domain:www.sharetive.co.jp)",
+      "WebFetch(domain:www.gaiainc.jp)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff --cached finance-brain/assets/css/sidebar.css finance-brain/index.html)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff --cached finance-brain/index.html)"
     ],
     "deny": [],
     "ask": []
