@@ -65,6 +65,9 @@ define('MAIL_PASSWORD', $_ENV['MAIL_PASSWORD']);
 define('MAIL_FROM_ADDRESS', $_ENV['MAIL_FROM_ADDRESS']);
 define('MAIL_FROM_NAME', $_ENV['MAIL_FROM_NAME']);
 
+// メール配信停止トークン用シークレット
+define('UNSUBSCRIBE_SECRET', $_ENV['UNSUBSCRIBE_SECRET'] ?? 'change-me-in-production');
+
 // アプリケーション設定
 define('APP_URL', $_ENV['APP_URL']);
 define('APP_ENV', $_ENV['APP_ENV']);

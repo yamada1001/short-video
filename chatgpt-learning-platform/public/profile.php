@@ -202,6 +202,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </dl>
                     </div>
 
+                    <div class="info-card">
+                        <h3 class="info-card__title">メール設定</h3>
+                        <dl class="info-list">
+                            <dt>配信状態</dt>
+                            <dd>
+                                <?php if (!empty($user['email_unsubscribed'])): ?>
+                                    <span style="color: #dc2626; font-weight: 600;">
+                                        <i class="fas fa-bell-slash"></i> 停止中
+                                    </span>
+                                <?php else: ?>
+                                    <span style="color: #10b981; font-weight: 600;">
+                                        <i class="fas fa-bell"></i> 配信中
+                                    </span>
+                                <?php endif; ?>
+                            </dd>
+                        </dl>
+                        <?php
+                        // 配信停止リンクを生成
+                        $unsubscribeToken = hash_hmac('sha256', $user['id'], UNSUBSCRIBE_SECRET);
+                        $unsubscribeUrl = APP_URL . '/unsubscribe.php?user=' . $user['id'] . '&token=' . $unsubscribeToken;
+                        ?>
+                        <a href="<?= h($unsubscribeUrl) ?>" class="btn btn-outline btn-block" style="margin-top: 12px;">
+                            <i class="fas fa-cog"></i> メール設定を変更
+                        </a>
+                    </div>
+
                     <div class="info-card info-card--danger">
                         <h3 class="info-card__title">アカウント削除</h3>
                         <p class="info-card__text">

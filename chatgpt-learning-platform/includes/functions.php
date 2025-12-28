@@ -177,6 +177,35 @@ function getCourseProgress($courseId) {
  * メール送信（PHPMailer）
  */
 function sendEmail($to, $subject, $body) {
+    // 配信停止済みユーザーのチェック
+    $userSql = "SELECT id, email_unsubscribed FROM users WHERE email = ?";
+    $user = db()->fetchOne($userSql, [$to]);
+
+    // ユーザーが配信停止している場合は送信しない
+    if ($user && $user['email_unsubscribed']) {
+        error_log("Email not sent to {$to}: User has unsubscribed");
+        return false;
+    }
+
+    // 配信停止リンクを追加（ユーザーが存在する場合）
+    if ($user) {
+        $userId = $user['id'];
+        $unsubscribeToken = hash_hmac('sha256', $userId, UNSUBSCRIBE_SECRET);
+        $unsubscribeUrl = APP_URL . '/unsubscribe.php?user=' . $userId . '&token=' . $unsubscribeToken;
+
+        // メール本文にフッターを追加
+        $footer = <<<HTML
+<div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #9ca3af; text-align: center;">
+    <p style="margin: 8px 0;">このメールに心当たりがない場合は、無視してください。</p>
+    <p style="margin: 8px 0;">
+        <a href="{$unsubscribeUrl}" style="color: #9ca3af; text-decoration: underline;">メール配信を停止する</a>
+    </p>
+    <p style="margin: 8px 0;">© 2025 Gemini AI学習プラットフォーム</p>
+</div>
+HTML;
+        $body = $body . $footer;
+    }
+
     $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
     try {
