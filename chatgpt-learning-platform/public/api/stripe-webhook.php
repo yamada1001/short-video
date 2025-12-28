@@ -4,8 +4,8 @@
  *
  * Stripeからのwebhookイベントを受け取り、サブスクリプション状態を更新する
  */
-require_once __DIR__ . '/../includes/config.php';
-require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../../includes/config.php';
+require_once __DIR__ . '/../../includes/db.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Stripe設定
