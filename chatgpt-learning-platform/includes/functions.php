@@ -726,7 +726,7 @@ function calculateCourseScores($answers) {
  * @return bool 成功/失敗
  */
 function sendWelcomeEmail($email, $name) {
-    $subject = '【Gemini AI学習プラットフォーム】ご登録ありがとうございます';
+    $subject = '【AI活用学習プラットフォーム】ご登録ありがとうございます';
 
     $body = <<<HTML
 <!DOCTYPE html>
@@ -777,12 +777,20 @@ function sendWelcomeEmail($email, $name) {
         .button {
             display: inline-block;
             background: #FF6B6B;
-            color: #ffffff;
+            color: #ffffff !important;
             text-decoration: none;
-            padding: 12px 32px;
-            border-radius: 24px;
+            padding: 16px 48px;
+            border-radius: 30px;
             font-weight: bold;
+            font-size: 18px;
             margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background: #FF5252;
+            box-shadow: 0 6px 16px rgba(255, 107, 107, 0.5);
+            transform: translateY(-2px);
         }
         .features {
             background: #f8f9fa;
@@ -823,25 +831,25 @@ function sendWelcomeEmail($email, $name) {
 <body>
     <div class="container">
         <div class="header">
-            <h1>Gemini AI学習プラットフォーム</h1>
+            <h1>AI活用学習プラットフォーム</h1>
         </div>
         <div class="content">
             <p class="greeting">{$name} 様</p>
 
             <div class="message">
-                <p>この度は、Gemini AI学習プラットフォームにご登録いただき、誠にありがとうございます。</p>
-                <p>AIを使った仕事の進め方を、わかりやすく学べるコースをご用意しています。</p>
+                <p>この度は、AI活用学習プラットフォームにご登録いただき、誠にありがとうございます。</p>
+                <p>ChatGPTをはじめとする生成AIを使った仕事の進め方を、わかりやすく学べるコースをご用意しています。</p>
             </div>
 
-            <div style="text-align: center;">
-                <a href="https://yojitu.com/chatgpt-learning-platform/dashboard.php" class="button">学習を始める</a>
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="https://yojitu.com/chatgpt-learning-platform/dashboard.php" class="button">今すぐ学習を始める →</a>
             </div>
 
             <div class="features">
                 <h3>このプラットフォームでできること</h3>
                 <ul>
                     <li>AIに上手に質問する方法を学べます</li>
-                    <li>実際に使える例文がたくさん見られます</li>
+                    <li>実際に使える例文（プロンプト）がたくさん見られます</li>
                     <li>クイズで楽しく理解度をチェックできます</li>
                     <li>仕事ですぐに使えるテクニックが身につきます</li>
                 </ul>
@@ -855,7 +863,7 @@ function sendWelcomeEmail($email, $name) {
             <p>それでは、楽しい学習をお楽しみください！</p>
         </div>
         <div class="footer">
-            <p>Gemini AI学習プラットフォーム 運営チーム</p>
+            <p>AI活用学習プラットフォーム 運営チーム</p>
             <p><a href="https://yojitu.com/chatgpt-learning-platform" style="color: #6c757d;">https://yojitu.com/chatgpt-learning-platform</a></p>
         </div>
     </div>
