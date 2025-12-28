@@ -66,7 +66,11 @@ try {
         db()->execute($insertSql, [$email, $name, $googleId]);
 
         // ログイン
-        $_SESSION['user_id'] = db()->lastInsertId();
+        $newUserId = db()->lastInsertId();
+        $_SESSION['user_id'] = $newUserId;
+
+        // ウェルカムメール送信
+        sendWelcomeEmail($email, $name);
     }
 
     // ダッシュボードへリダイレクト

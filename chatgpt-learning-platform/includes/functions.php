@@ -685,3 +685,159 @@ function calculateCourseScores($answers) {
     
     return $scores;
 }
+
+/**
+ * ウェルカムメール送信
+ *
+ * 新規登録ユーザーにウェルカムメールを送信
+ *
+ * @param string $email メールアドレス
+ * @param string $name ユーザー名
+ * @return bool 成功/失敗
+ */
+function sendWelcomeEmail($email, $name) {
+    $subject = '【Gemini AI学習プラットフォーム】ご登録ありがとうございます';
+
+    $body = <<<HTML
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Hiragino Sans', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .message {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        .button {
+            display: inline-block;
+            background: #FF6B6B;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 32px;
+            border-radius: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .features {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        .features h3 {
+            margin-top: 0;
+            color: #FF6B6B;
+        }
+        .features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .features li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gemini AI学習プラットフォーム</h1>
+        </div>
+        <div class="content">
+            <p class="greeting">{$name} 様</p>
+
+            <div class="message">
+                <p>この度は、Gemini AI学習プラットフォームにご登録いただき、誠にありがとうございます。</p>
+                <p>AIを使った仕事の進め方を、わかりやすく学べるコースをご用意しています。</p>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="https://yojitu.com/chatgpt-learning-platform/dashboard.php" class="button">学習を始める</a>
+            </div>
+
+            <div class="features">
+                <h3>このプラットフォームでできること</h3>
+                <ul>
+                    <li>AIに上手に質問する方法を学べます</li>
+                    <li>実際に使える例文がたくさん見られます</li>
+                    <li>クイズで楽しく理解度をチェックできます</li>
+                    <li>仕事ですぐに使えるテクニックが身につきます</li>
+                </ul>
+            </div>
+
+            <div class="message">
+                <p>まずは「初めてのプロンプトエンジニアリング」コースから始めてみましょう。</p>
+                <p>わからないことがあれば、各レッスンページの「わからないことがあれば質問」ボタンから、いつでもお気軽にご質問ください。</p>
+            </div>
+
+            <p>それでは、楽しい学習をお楽しみください！</p>
+        </div>
+        <div class="footer">
+            <p>Gemini AI学習プラットフォーム 運営チーム</p>
+            <p><a href="https://yojitu.com/chatgpt-learning-platform" style="color: #6c757d;">https://yojitu.com/chatgpt-learning-platform</a></p>
+        </div>
+    </div>
+</body>
+</html>
+HTML;
+
+    try {
+        return sendEmail($email, $subject, $body);
+    } catch (Exception $e) {
+        error_log('Welcome email error: ' . $e->getMessage());
+        // メール送信失敗しても登録処理は継続
+        return false;
+    }
+}
