@@ -2337,17 +2337,22 @@ p {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background: var(--bg-white);
-  color: var(--text-primary);
-  border: 1px solid var(--border-light);
-  font-weight: var(--font-weight-medium);
-  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+  background: #ffffff;
+  color: #1a202c;
+  border: 1px solid #d1d5db;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 15px;
 }
 
 .btn-google:hover {
-  background: var(--bg-light-gray);
-  border-color: var(--border-medium);
-  color: var(--text-primary);
+  background: #f9fafb;
+  border-color: #9ca3af;
+  color: #1a202c;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-icon {
@@ -5883,4 +5888,126 @@ select.form-control {
     color: #7f1d1d;
     font-size: 14px;
     line-height: 1.6;
+}
+
+/* ========================================
+   プロフィールページ
+   ======================================== */
+
+.profile-page {
+    background: #f7fafc;
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 32px;
+    margin-top: 32px;
+}
+
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card__title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.profile-form .form-group {
+    margin-bottom: 24px;
+}
+
+.profile-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 8px;
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="email"],
+.profile-form input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.profile-form input:focus {
+    outline: none;
+    border-color: #FF6B6B;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.form-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 32px 0 16px 0;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.form-hint {
+    display: block;
+    font-size: 13px;
+    color: #718096;
+    margin-top: 6px;
+}
+
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.info-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.info-card__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 16px;
+}
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-list dt {
+    font-size: 13px;
+    font-weight: 600;
+    color: #718096;
+}
+
+.info-list dd {
+    font-size: 15px;
+    color: #2d3748;
+    margin: 0 0 12px 0;
 }
