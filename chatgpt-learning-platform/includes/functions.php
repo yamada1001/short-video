@@ -217,6 +217,7 @@ HTML;
         $mail->Password = MAIL_PASSWORD;
         $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = MAIL_PORT;
+        $mail->Timeout = 5; // タイムアウトを5秒に設定（デフォルトは30秒以上）
 
         // 送信者・受信者設定
         $mail->setFrom(MAIL_FROM_ADDRESS, MAIL_FROM_NAME);
