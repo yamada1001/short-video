@@ -48,11 +48,11 @@ $progressPercent = $totalLessons > 0 ? round(($completedLessons / $totalLessons)
 $courseBenefits = [
     1 => [ // 初めてのプロンプトエンジニアリング
         'skills' => [
-            '効果的なプロンプトの書き方',
-            'AI との対話の基本原則',
-            '具体的な指示の出し方',
-            'コンテキストの与え方',
-            '結果の改善方法'
+            'AIに上手に質問する方法',
+            'AIと話すときの基本ルール',
+            'やってほしいことを詳しく伝える方法',
+            'AIに状況や背景を説明する方法',
+            'AIの答えをもっと良くする方法'
         ],
         'realworld' => [
             [
@@ -75,9 +75,9 @@ $courseBenefits = [
 // 現在のコースのベネフィットを取得（デフォルト値を設定）
 $benefits = $courseBenefits[$courseId] ?? [
     'skills' => [
-        'AIツールの基本的な使い方',
-        '効率的な業務の進め方',
-        'プロンプト作成の基礎知識'
+        'AIを使った仕事の進め方',
+        '時間を節約する方法',
+        'AIに質問する基本の書き方'
     ],
     'realworld' => [
         [
@@ -176,7 +176,7 @@ $benefits = $courseBenefits[$courseId] ?? [
                         <ul class="skills-list">
                             <?php foreach ($benefits['skills'] as $skill): ?>
                                 <li>
-                                    <span class="skill-check">✓</span>
+                                    <i class="fas fa-check-circle skill-check"></i>
                                     <span><?= h($skill) ?></span>
                                 </li>
                             <?php endforeach; ?>
