@@ -200,7 +200,13 @@ $streakDates = is_array($streakData) ? array_column($streakData, 'activity_date'
                             ?>
                             <div class="course-card <?= !$canAccess ? 'locked' : '' ?> recommended">
                                 <div class="recommended-badge">おすすめ</div>
-                                <img src="<?= h($course['thumbnail_url']) ?>" alt="<?= h($course['title']) ?>" class="course-thumbnail">
+                                <?php if ($course['thumbnail_url']): ?>
+                                    <img src="<?= h($course['thumbnail_url']) ?>" alt="<?= h($course['title']) ?>" class="course-thumbnail">
+                                <?php else: ?>
+                                    <div class="course-thumbnail course-thumbnail-default">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                <?php endif; ?>
                                 <div class="course-info">
                                     <h3><?= h($course['title']) ?></h3>
                                     <p><?= h($course['description']) ?></p>
@@ -233,7 +239,13 @@ $streakDates = is_array($streakData) ? array_column($streakData, 'activity_date'
                         $progress = getCourseProgress($course['id']);
                         ?>
                         <div class="course-card <?= !$canAccess ? 'locked' : '' ?>">
-                            <img src="<?= h($course['thumbnail_url']) ?>" alt="<?= h($course['title']) ?>" class="course-thumbnail">
+                            <?php if ($course['thumbnail_url']): ?>
+                                <img src="<?= h($course['thumbnail_url']) ?>" alt="<?= h($course['title']) ?>" class="course-thumbnail">
+                            <?php else: ?>
+                                <div class="course-thumbnail course-thumbnail-default">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                            <?php endif; ?>
                             <div class="course-info">
                                 <h3><?= h($course['title']) ?></h3>
                                 <p><?= h($course['description']) ?></p>

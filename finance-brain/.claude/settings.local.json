@@ -9,7 +9,10 @@
       "Bash(for dir in insurance asset-management inheritance tax life-planning)",
       "Bash(do)",
       "Bash(done)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(pip install:*)",
+      "Bash(brew install:*)",
+      "Bash(python3:*)"
     ],
     "deny": [],
     "ask": []

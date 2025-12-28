@@ -1383,6 +1383,19 @@ p {
   margin-bottom: 16px;
 }
 
+.course-thumbnail-default {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  object-fit: unset;
+}
+
+.course-thumbnail-default i {
+  font-size: 64px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .course-info {
   padding: 0;
 }
