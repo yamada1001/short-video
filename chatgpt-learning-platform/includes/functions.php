@@ -373,12 +373,18 @@ function calculateLessonPoints($lessonId, $userId) {
 function updateStreak($userId) {
     try {
         $today = date('Y-m-d');
-        
+
         // 今日の記録があるかチェック
-        $checkSql = "SELECT COUNT(*) as count FROM user_streaks 
+        $checkSql = "SELECT COUNT(*) as count FROM user_streaks
                     WHERE user_id = ? AND activity_date = ?";
         $existing = db()->fetchOne($checkSql, [$userId, $today]);
-        
+
+        // クエリが失敗した場合は早期リターン
+        if ($existing === false) {
+            error_log('updateStreak: user_streaks table query failed for user ' . $userId);
+            return false;
+        }
+
         // 今日の記録がなければ追加
         if ($existing['count'] == 0) {
             $insertSql = "INSERT INTO user_streaks (user_id, activity_date) VALUES (?, ?)";
@@ -409,13 +415,14 @@ function updateStreak($userId) {
  * @return int 連続日数
  */
 function calculateCurrentStreak($userId) {
-    $sql = "SELECT activity_date FROM user_streaks 
-            WHERE user_id = ? 
+    $sql = "SELECT activity_date FROM user_streaks
+            WHERE user_id = ?
             ORDER BY activity_date DESC";
-    
+
     $records = db()->fetchAll($sql, [$userId]);
-    
-    if (empty($records)) {
+
+    // クエリが失敗した場合は0を返す
+    if ($records === false || empty($records)) {
         return 0;
     }
     
@@ -446,17 +453,23 @@ function calculateCurrentStreak($userId) {
  */
 function checkAndAwardBadges($userId) {
     $newBadges = [];
-    
+
     try {
         // 未獲得のバッジ一覧を取得
-        $badgesSql = "SELECT * FROM gamification_badges 
+        $badgesSql = "SELECT * FROM gamification_badges
                      WHERE id NOT IN (
                          SELECT badge_id FROM user_badges WHERE user_id = ?
                      )
                      ORDER BY display_order";
-        
+
         $badges = db()->fetchAll($badgesSql, [$userId]);
-        
+
+        // クエリが失敗した場合は早期リターン
+        if ($badges === false) {
+            error_log('checkAndAwardBadges: gamification_badges table query failed for user ' . $userId);
+            return [];
+        }
+
         foreach ($badges as $badge) {
             $condition = json_decode($badge['required_condition'], true);
             
