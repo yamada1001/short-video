@@ -75,10 +75,13 @@ $slides = $content['slides'] ?? [];
 // スライド制御
 let currentSlide = 0;
 const totalSlides = <?= count($slides) ?>;
+const hasNextLesson = <?= $nextLesson ? 'true' : 'false' ?>;
+const nextLessonId = <?= $nextLesson ? $nextLesson['id'] : 'null' ?>;
 
 function showSlide(n) {
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
+    const nextBtn = document.getElementById('nextSlide');
 
     slides.forEach(slide => slide.style.display = 'none');
     dots.forEach(dot => dot.classList.remove('active'));
@@ -91,7 +94,16 @@ function showSlide(n) {
 
     // ボタンの状態更新
     document.getElementById('prevSlide').disabled = currentSlide === 0;
-    document.getElementById('nextSlide').disabled = currentSlide === totalSlides - 1;
+
+    // 最後のスライドに到達したらボタンテキストを変更
+    if (currentSlide === totalSlides - 1) {
+        nextBtn.innerHTML = hasNextLesson ? '次のレッスンへ →' : 'レッスンを完了する';
+        nextBtn.classList.add('btn-completion');
+    } else {
+        nextBtn.innerHTML = '次へ →';
+        nextBtn.classList.remove('btn-completion');
+        nextBtn.disabled = false;
+    }
 }
 
 document.getElementById('prevSlide').addEventListener('click', () => {
@@ -100,8 +112,13 @@ document.getElementById('prevSlide').addEventListener('click', () => {
 });
 
 document.getElementById('nextSlide').addEventListener('click', () => {
-    currentSlide++;
-    showSlide(currentSlide);
+    // 最後のスライドの場合は完了処理
+    if (currentSlide === totalSlides - 1) {
+        showSlideCompletionModal();
+    } else {
+        currentSlide++;
+        showSlide(currentSlide);
+    }
 });
 
 // ドットクリック
@@ -123,9 +140,82 @@ document.addEventListener('keydown', (e) => {
         if (currentSlide < totalSlides - 1) {
             currentSlide++;
             showSlide(currentSlide);
+        } else if (currentSlide === totalSlides - 1) {
+            // 最後のスライドで右キーを押したら完了モーダルを表示
+            showSlideCompletionModal();
         }
     }
 });
+
+// スライド完了モーダルを表示
+function showSlideCompletionModal() {
+    const modalHTML = `
+        <div id="slideCompletionModal" class="completion-modal-overlay">
+            <div class="completion-modal">
+                <div class="completion-modal-icon">${hasNextLesson ? '🎯' : '🎉'}</div>
+                <h2 class="completion-modal-title">${hasNextLesson ? '次のレッスンへ進みましょう！' : 'お疲れ様でした！'}</h2>
+                <p class="completion-modal-text">
+                    ${hasNextLesson ?
+                        'このレッスンの内容を確認できましたか？<br>次のレッスンに進んで学習を続けましょう。' :
+                        'このレッスンを完了しました。<br>素晴らしいです！'}
+                </p>
+                <div class="completion-modal-actions">
+                    ${hasNextLesson ?
+                        `<button onclick="closeSlideCompletionModal()" class="btn btn-secondary">このレッスンをもう一度見る</button>
+                         <button onclick="goToNextLesson()" class="btn btn-primary">次のレッスンへ進む →</button>` :
+                        `<button onclick="closeSlideCompletionModal()" class="btn btn-secondary">このレッスンをもう一度見る</button>
+                         <button onclick="markAsComplete()" class="btn btn-success">完了にしてコースに戻る</button>`
+                    }
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+// スライド完了モーダルを閉じる
+function closeSlideCompletionModal() {
+    const modal = document.getElementById('slideCompletionModal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// 次のレッスンへ進む
+function goToNextLesson() {
+    if (hasNextLesson && nextLessonId) {
+        window.location.href = `${appUrl}/lesson.php?id=${nextLessonId}`;
+    }
+}
+
+// レッスンを完了としてマークする
+async function markAsComplete() {
+    try {
+        const response = await fetch(`${appUrl}/public/api/progress.php`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                lesson_id: lessonId,
+                status: 'completed'
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+            throw new Error(data.error);
+        }
+
+        // コースページに戻る
+        window.location.href = `${appUrl}/course.php?id=${courseId}`;
+    } catch (error) {
+        alert('エラーが発生しました: ' + error.message);
+        closeSlideCompletionModal();
+    }
+}
 
 // プロンプトコピー機能
 document.querySelectorAll('.copy-prompt-btn').forEach(button => {
