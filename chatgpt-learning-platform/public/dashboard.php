@@ -87,7 +87,7 @@ $streakDates = is_array($streakData) ? array_column($streakData, 'activity_date'
             <div class="dashboard-header">
                 <h1>こんにちは、<?= h($user['name']) ?>さん！</h1>
                 <p class="dashboard-subtitle">
-                    今日のAPI残り: <?= API_LIMIT_FREE - checkApiLimit() ?>回
+                    今日も学習を続けましょう！
                 </p>
             </div>
 
