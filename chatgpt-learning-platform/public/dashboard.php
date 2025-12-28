@@ -54,7 +54,7 @@ $streakDataSql = "SELECT activity_date FROM user_streaks
                  AND activity_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
                  ORDER BY activity_date DESC";
 $streakData = db()->fetchAll($streakDataSql, [$user['id']]);
-$streakDates = array_column($streakData, 'activity_date');
+$streakDates = is_array($streakData) ? array_column($streakData, 'activity_date') : [];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
