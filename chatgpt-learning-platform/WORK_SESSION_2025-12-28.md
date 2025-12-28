@@ -379,5 +379,97 @@
 
 ---
 
-**最終更新**: 2025-12-28 (セッション2完了)
-**ステータス**: ✅ 全タスク完了 - 本番デプロイ待ち
+## 📋 セッション3: 本番環境セットアップとテスト（2025-12-28 継続）
+
+### ✅ 完了した作業
+
+#### 1. データベースマイグレーション実行
+- **対応内容**: phpMyAdminでマイグレーションSQLを実行
+- **追加カラム**:
+  - `email_unsubscribed` TINYINT(1) DEFAULT 0
+  - `email_unsubscribed_at` DATETIME NULL
+  - インデックス `idx_email_unsubscribed`
+- **結果**: ✅ 成功
+
+#### 2. UNSUBSCRIBE_SECRET環境変数の設定
+- **生成したシークレット**: `RAbsZkoh32QbZiktNgXY6p6mqHGSwh4v8rMXLycqqwY=`
+- **追加先**: 本番環境 `.env` ファイル
+- **結果**: ✅ 成功
+
+#### 3. 全機能テスト実施
+
+**テスト1: アカウント削除機能**
+- ✅ プロフィールページのアカウント削除カード表示
+- ✅ 削除モーダル表示（赤いヘッダー）
+- ✅ DELETE入力による確認機能
+- ✅ 二重確認（モーダル + confirm）
+- ✅ アカウント完全削除成功
+- ✅ ログインページへのリダイレクト
+
+**テスト2: Google OAuth再登録**
+- ✅ 削除したアカウントで再登録成功
+- ✅ ダッシュボードへのリダイレクト
+- ❌ ウェルカムメールが届かない（原因: SMTP設定が未設定）
+
+**テスト3: メール配信停止機能**
+- ✅ プロフィールページの「メール設定」カード表示
+- ✅ メール設定変更ボタンで配信停止ページへ遷移
+- ✅ 配信状態の表示（配信中/停止中）
+- ✅ 自動配信停止機能
+- ✅ 配信再開機能
+
+#### 4. 問題発見と修正
+
+**問題1: Googleログインボタンのデザイン未適用**
+- **原因**: `google-icon.svg` ファイルが存在しない
+- **修正内容**:
+  - `login.php`: Font Awesome アイコンに変更 + CDN追加
+  - `register.php`: Font Awesome アイコンに変更 + CDN追加
+  - `<img>` タグを `<i class="fab fa-google">` に置き換え
+- **ファイル**: `public/login.php`, `public/register.php`
+- **結果**: ✅ 修正完了
+
+**問題2: ウェルカムメールが届かない**
+- **原因**: `.env` ファイルのSMTP設定がプレースホルダーのまま
+- **現状の設定**:
+  ```
+  MAIL_HOST=smtp.example.com  ← 例示のまま
+  MAIL_USERNAME=your_email@example.com  ← 例示のまま
+  MAIL_PASSWORD=your_email_password  ← 例示のまま
+  ```
+- **必要な設定**:
+  ```
+  MAIL_HOST=yojitu.com
+  MAIL_PORT=465
+  MAIL_USERNAME=yamada@yojitu.com
+  MAIL_PASSWORD=（yamada@yojitu.comのパスワード）
+  MAIL_FROM_ADDRESS=yamada@yojitu.com
+  MAIL_FROM_NAME="Gemini AI学習プラットフォーム"
+  ```
+- **結果**: ⏳ 修正待ち（ユーザーによる.env編集が必要）
+
+---
+
+### 📌 残タスク
+
+#### 高優先度
+1. **SMTP設定の修正**（本番環境 .env）
+   - MAIL_HOST, MAIL_USERNAME, MAIL_PASSWORD などを実際の値に変更
+   - 設定後、ウェルカムメール送信をテスト
+
+2. **デザイン修正**
+   - profile.phpのデザイン調整（ユーザーから指摘あり）
+
+#### 中優先度
+3. **Googleログインボタンのテスト**
+   - 修正後のデザインを本番環境で確認
+
+---
+
+### コミット履歴（セッション3）
+15. `（未コミット）` - Fix: Googleログインボタンのデザイン修正（Font Awesomeアイコンに変更）
+
+---
+
+**最終更新**: 2025-12-28 (セッション3進行中)
+**ステータス**: 🔄 本番環境テスト完了・問題修正中

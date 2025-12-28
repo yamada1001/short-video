@@ -70,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="<?= APP_URL ?>/public/assets/css/progate-v2.css">
 </head>
 <body class="auth-page">
@@ -116,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <a href="<?= APP_URL ?>/google-login.php" class="btn btn-google btn-block">
-                <img src="<?= APP_URL ?>/assets/images/google-icon.svg" alt="Google" class="btn-icon">
+                <i class="fab fa-google" style="margin-right: 8px;"></i>
                 Googleでログイン
             </a>
 
