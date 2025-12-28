@@ -1,7 +1,7 @@
 <?php
 /**
  * レッスン詳細ページ
- * 4つのタイプに対応: slide, editor, quiz, assignment
+ * 5つのタイプに対応: slide, editor, quiz, assignment, article
  */
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/db.php';
@@ -134,6 +134,10 @@ $prevLesson = db()->fetchOne($prevLessonSql, [$lesson['course_id'], $lesson['ord
             <?php elseif ($lesson['lesson_type'] === 'assignment'): ?>
                 <!-- 課題形式 -->
                 <?php include __DIR__ . '/../includes/lesson-types/assignment.php'; ?>
+
+            <?php elseif ($lesson['lesson_type'] === 'article'): ?>
+                <!-- 記事形式 -->
+                <?php include __DIR__ . '/../includes/lesson-types/article.php'; ?>
 
             <?php endif; ?>
         </main>

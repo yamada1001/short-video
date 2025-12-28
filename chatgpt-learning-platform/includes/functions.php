@@ -879,3 +879,52 @@ HTML;
         return false;
     }
 }
+
+/**
+ * HTMLエスケープ関数（article.php用）
+ */
+if (!function_exists('esc_html')) {
+    function esc_html($text) {
+        return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+    }
+}
+
+if (!function_exists('esc_attr')) {
+    function esc_attr($text) {
+        return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+    }
+}
+
+if (!function_exists('esc_url')) {
+    function esc_url($url) {
+        return filter_var($url, FILTER_SANITIZE_URL);
+    }
+}
+
+if (!function_exists('wp_kses_post')) {
+    function wp_kses_post($html) {
+        // 許可するHTMLタグと属性
+        $allowed_tags = [
+            'h2' => ['id' => [], 'class' => []],
+            'h3' => ['id' => [], 'class' => []],
+            'h4' => ['id' => [], 'class' => []],
+            'p' => ['class' => []],
+            'a' => ['href' => [], 'class' => [], 'target' => [], 'rel' => []],
+            'strong' => [],
+            'b' => [],
+            'em' => [],
+            'i' => [],
+            'ul' => ['class' => []],
+            'ol' => ['class' => []],
+            'li' => [],
+            'code' => ['class' => []],
+            'pre' => ['class' => []],
+            'div' => ['class' => [], 'id' => []],
+            'span' => ['class' => []],
+            'br' => [],
+            'blockquote' => ['class' => []],
+        ];
+
+        return strip_tags($html, array_keys($allowed_tags));
+    }
+}
