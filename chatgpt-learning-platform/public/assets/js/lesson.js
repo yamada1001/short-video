@@ -17,7 +17,7 @@ if (completeBtn) {
         completeBtn.textContent = '更新中...';
 
         try {
-            const response = await fetch(`${appUrl}/api/progress.php`, {
+            const response = await fetch(`${appUrl}/public/api/progress.php`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
