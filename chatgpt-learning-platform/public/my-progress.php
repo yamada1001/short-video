@@ -18,24 +18,24 @@ $totalLessonsSql = "SELECT COUNT(DISTINCT l.id) as total
 $totalLessonsResult = db()->fetchOne($totalLessonsSql);
 $totalLessons = $totalLessonsResult['total'] ?? 0;
 
-$completedLessonsSql = "SELECT COUNT(DISTINCT up.lesson_id) as completed
+$completedLessonsCountSql = "SELECT COUNT(DISTINCT up.lesson_id) as completed
                         FROM user_progress up
                         JOIN lessons l ON up.lesson_id = l.id
                         JOIN courses c ON l.course_id = c.id
                         WHERE up.user_id = ? AND up.status = 'completed'";
-$completedLessonsResult = db()->fetchOne($completedLessonsSql, [$user['id']]);
-$completedLessons = $completedLessonsResult['completed'] ?? 0;
+$completedLessonsCountResult = db()->fetchOne($completedLessonsCountSql, [$user['id']]);
+$completedLessonsCount = $completedLessonsCountResult['completed'] ?? 0;
 
-$inProgressLessonsSql = "SELECT COUNT(DISTINCT up.lesson_id) as in_progress
+$inProgressLessonsCountSql = "SELECT COUNT(DISTINCT up.lesson_id) as in_progress
                          FROM user_progress up
                          JOIN lessons l ON up.lesson_id = l.id
                          JOIN courses c ON l.course_id = c.id
                          WHERE up.user_id = ? AND up.status = 'in_progress'";
-$inProgressLessonsResult = db()->fetchOne($inProgressLessonsSql, [$user['id']]);
-$inProgressLessons = $inProgressLessonsResult['in_progress'] ?? 0;
+$inProgressLessonsCountResult = db()->fetchOne($inProgressLessonsCountSql, [$user['id']]);
+$inProgressLessonsCount = $inProgressLessonsCountResult['in_progress'] ?? 0;
 
 // 全体の進捗率を計算
-$overallProgress = $totalLessons > 0 ? round(($completedLessons / $totalLessons) * 100) : 0;
+$overallProgress = $totalLessons > 0 ? round(($completedLessonsCount / $totalLessons) * 100) : 0;
 
 // 完了済みレッスン一覧を取得
 $completedLessonsSql = "SELECT l.*, c.title as course_title, c.id as course_id, up.completed_at, up.updated_at
@@ -110,11 +110,11 @@ $courseProgress = db()->fetchAll($courseProgressSql, [$user['id']]);
             <section class="progress-stats">
                 <div class="progress-stats__grid">
                     <div class="stat-card">
-                        <div class="stat-card__value"><?= $completedLessons ?></div>
+                        <div class="stat-card__value"><?= $completedLessonsCount ?></div>
                         <div class="stat-card__label">完了済みレッスン</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-card__value"><?= $inProgressLessons ?></div>
+                        <div class="stat-card__value"><?= $inProgressLessonsCount ?></div>
                         <div class="stat-card__label">進行中レッスン</div>
                     </div>
                     <div class="stat-card">
