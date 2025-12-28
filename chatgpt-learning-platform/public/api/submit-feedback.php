@@ -5,9 +5,22 @@
  * ユーザーからのフィードバック（質問・バグ報告・要望）を保存
  */
 
+// APIレスポンスなのでエラー出力を無効化（JSONレスポンスを保証）
+ini_set('display_errors', '0');
+error_reporting(E_ALL);
+
 require_once __DIR__ . '/../../includes/config.php';
 require_once __DIR__ . '/../../includes/db.php';
 require_once __DIR__ . '/../../includes/functions.php';
+
+// グローバルエラーハンドラー（予期しないエラーをキャッチ）
+set_exception_handler(function($e) {
+    error_log('API Exception: ' . $e->getMessage());
+    http_response_code(500);
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'サーバーエラーが発生しました'], JSON_UNESCAPED_UNICODE);
+    exit;
+});
 
 // POSTのみ許可
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

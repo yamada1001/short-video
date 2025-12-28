@@ -127,16 +127,23 @@ function updateProgress($lessonId, $status = 'completed') {
     $result = db()->execute($sql, [$user['id'], $lessonId, $status, $completedAt]);
 
     // レッスン完了時のゲーミフィケーション処理
+    // エラーが発生しても進捗更新自体は成功させる
     if ($result && $status === 'completed') {
-        // ポイント付与
-        $points = calculateLessonPoints($lessonId, $user['id']);
-        awardPoints($user['id'], $points, "レッスン完了", 'lesson', $lessonId);
+        try {
+            // ポイント付与
+            $points = calculateLessonPoints($lessonId, $user['id']);
+            awardPoints($user['id'], $points, "レッスン完了", 'lesson', $lessonId);
 
-        // ストリーク更新
-        updateStreak($user['id']);
+            // ストリーク更新
+            updateStreak($user['id']);
 
-        // バッジチェック
-        checkAndAwardBadges($user['id']);
+            // バッジチェック
+            checkAndAwardBadges($user['id']);
+        } catch (Exception $e) {
+            // ゲーミフィケーション処理のエラーはログに記録するだけ
+            error_log('Gamification error in updateProgress: ' . $e->getMessage());
+            // 進捗更新自体は成功しているのでtrueを返す
+        }
     }
 
     return $result;
