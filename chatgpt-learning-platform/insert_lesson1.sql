@@ -1,7 +1,5 @@
 -- レッスン1「ChatGPTとは？」を挿入するSQL
--- 実行前に、ChatGPT基礎コースのIDを確認してください
-
-USE chatgpt_learning;
+-- phpMyAdminで xs545151_chatgptlearning データベースを選択してから実行してください
 
 -- ChatGPT基礎コースを作成（まだ存在しない場合）
 INSERT INTO courses (title, description, thumbnail_url, is_free, order_num, created_at, updated_at)
