@@ -300,6 +300,6 @@ $prevLesson = db()->fetchOne($prevLessonSql, [$lesson['course_id'], $lesson['ord
         const lessonId = <?= $lessonId ?>;
         const courseId = <?= $lesson['course_id'] ?>;
     </script>
-    <script src="<?= APP_URL ?>/assets/js/lesson.js"></script>
+    <script src="<?= APP_URL ?>/public/assets/js/lesson.js"></script>
 </body>
 </html>
