@@ -107,6 +107,7 @@ $benefits = $courseBenefits[$courseId] ?? [
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="<?= APP_URL ?>/public/assets/css/progate-v2.css">
 </head>
 <body>
@@ -169,7 +170,7 @@ $benefits = $courseBenefits[$courseId] ?? [
                     <!-- 得られるスキル -->
                     <div class="benefit-card benefit-skills">
                         <div class="benefit-header">
-                            <div class="benefit-icon">💡</div>
+                            <div class="benefit-icon"><i class="fas fa-lightbulb"></i></div>
                             <h3>このコースで得られるスキル</h3>
                         </div>
                         <ul class="skills-list">

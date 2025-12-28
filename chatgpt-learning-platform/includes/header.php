@@ -14,7 +14,6 @@ $user = getCurrentUser();
         <nav class="header__nav">
             <?php if ($user): ?>
                 <a href="<?= APP_URL ?>/dashboard.php" class="header__link">ダッシュボード</a>
-                <a href="<?= APP_URL ?>/course.php" class="header__link">コース一覧</a>
                 <a href="<?= APP_URL ?>/my-progress.php" class="header__link">学習進捗</a>
                 <div class="user-menu">
                     <button class="user-menu-toggle">
