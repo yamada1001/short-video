@@ -207,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <p class="info-card__text">
                             アカウントを削除すると、全ての学習データが失われます。この操作は取り消せません。
                         </p>
-                        <button type="button" class="btn btn-outline btn-block" onclick="alert('この機能は現在開発中です。')">
+                        <button type="button" class="btn btn-outline btn-block" onclick="showDeleteModal()">
                             アカウントを削除
                         </button>
                     </div>
@@ -217,5 +217,117 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
 
     <?php include __DIR__ . '/../includes/footer.php'; ?>
+
+    <!-- アカウント削除モーダル -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header modal-header--danger">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h2>アカウント削除の確認</h2>
+            </div>
+            <div class="modal-body">
+                <div class="warning-box">
+                    <p><strong>この操作は取り消すことができません。</strong></p>
+                    <p>アカウントを削除すると、以下のデータが完全に削除されます：</p>
+                    <ul class="delete-list">
+                        <li><i class="fas fa-times-circle"></i> すべての学習進捗データ</li>
+                        <li><i class="fas fa-times-circle"></i> アンケート回答</li>
+                        <li><i class="fas fa-times-circle"></i> ストリークとバッジ</li>
+                        <li><i class="fas fa-times-circle"></i> フィードバック</li>
+                        <li><i class="fas fa-times-circle"></i> アカウント情報</li>
+                    </ul>
+                </div>
+
+                <div class="confirmation-box">
+                    <p>本当に削除する場合は、下のボックスに <strong>DELETE</strong> と入力してください：</p>
+                    <input type="text" id="deleteConfirmation" class="confirmation-input" placeholder="DELETE と入力">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">キャンセル</button>
+                <button type="button" class="btn btn-danger" onclick="deleteAccount()" id="deleteButton" disabled>
+                    アカウントを完全に削除
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // モーダル表示
+        function showDeleteModal() {
+            document.getElementById('deleteModal').style.display = 'block';
+            document.getElementById('deleteConfirmation').value = '';
+            document.getElementById('deleteButton').disabled = true;
+        }
+
+        // モーダル非表示
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+        }
+
+        // 確認テキストの入力チェック
+        document.addEventListener('DOMContentLoaded', function() {
+            const confirmationInput = document.getElementById('deleteConfirmation');
+            const deleteButton = document.getElementById('deleteButton');
+
+            if (confirmationInput && deleteButton) {
+                confirmationInput.addEventListener('input', function() {
+                    if (this.value === 'DELETE') {
+                        deleteButton.disabled = false;
+                    } else {
+                        deleteButton.disabled = true;
+                    }
+                });
+            }
+
+            // モーダル外クリックで閉じる
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('deleteModal');
+                if (event.target === modal) {
+                    closeDeleteModal();
+                }
+            });
+        });
+
+        // アカウント削除処理
+        async function deleteAccount() {
+            const confirmation = document.getElementById('deleteConfirmation').value;
+
+            if (confirmation !== 'DELETE') {
+                alert('確認テキストが正しくありません。');
+                return;
+            }
+
+            // 最終確認
+            if (!confirm('本当にアカウントを削除しますか？この操作は取り消せません。')) {
+                return;
+            }
+
+            try {
+                const response = await fetch('<?= APP_URL ?>/api/delete-account.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        csrf_token: '<?= generateCsrfToken() ?>',
+                        confirmation: confirmation
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(result.message);
+                    // ログインページにリダイレクト
+                    window.location.href = '<?= APP_URL ?>/login.php';
+                } else {
+                    alert('エラー: ' + result.message);
+                }
+            } catch (error) {
+                alert('通信エラーが発生しました: ' + error.message);
+            }
+        }
+    </script>
 </body>
 </html>
