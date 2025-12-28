@@ -873,17 +873,4 @@ function sanitize_title_with_dashes($title) {
     return $title;
 }
 
-/**
- * WordPress-compatible text escaping
- * Used if wp_kses_post is not available
- *
- * @param string $text Text to escape
- * @return string Escaped text
- */
-function wp_kses_post($text) {
-    if (function_exists('\wp_kses_post')) {
-        return \wp_kses_post($text);
-    }
-    return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
-}
 ?>
