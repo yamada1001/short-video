@@ -12,7 +12,7 @@ requireLogin();
 $user = getCurrentUser();
 
 // 既に回答済みかチェック
-if ($user['survey_completed_at']) {
+if (!empty($user['survey_completed_at'])) {
     // 回答済みの場合は編集モード
     $isEdit = true;
 } else {
@@ -22,6 +22,11 @@ if ($user['survey_completed_at']) {
 // アンケート質問を取得
 $questionsSql = "SELECT * FROM survey_questions ORDER BY display_order";
 $questions = db()->fetchAll($questionsSql);
+
+// クエリが失敗した場合は空配列
+if ($questions === false) {
+    $questions = [];
+}
 
 // 既存の回答を取得（編集モードの場合）
 $userAnswers = [];
