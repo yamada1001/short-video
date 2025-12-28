@@ -72,6 +72,7 @@ $streakDates = is_array($streakData) ? array_column($streakData, 'activity_date'
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="<?= APP_URL ?>/public/assets/css/progate-v2.css">
 </head>
 <body>
@@ -91,10 +92,10 @@ $streakDates = is_array($streakData) ? array_column($streakData, 'activity_date'
             </div>
 
             <!-- アンケート未回答の場合のバナー -->
-            <?php if (!$user['survey_completed_at']): ?>
+            <?php if (empty($user['survey_completed_at'])): ?>
                 <div class="survey-banner">
                     <div class="survey-banner-content">
-                        <div class="survey-banner-icon">📋</div>
+                        <div class="survey-banner-icon"><i class="fas fa-clipboard-list"></i></div>
                         <div class="survey-banner-text">
                             <h3>学習目的診断アンケート</h3>
                             <p>あなたに最適なコースをおすすめするため、簡単なアンケートにご協力ください（約3分）</p>
@@ -109,7 +110,7 @@ $streakDates = is_array($streakData) ? array_column($streakData, 'activity_date'
                 <div class="stats-grid">
                     <!-- レベル -->
                     <div class="stat-card stat-level">
-                        <div class="stat-icon">🎯</div>
+                        <div class="stat-icon"><i class="fas fa-bullseye"></i></div>
                         <div class="stat-content">
                             <div class="stat-label">レベル</div>
                             <div class="stat-value">Lv.<?= $userStats['level'] ?></div>
@@ -118,7 +119,7 @@ $streakDates = is_array($streakData) ? array_column($streakData, 'activity_date'
 
                     <!-- ポイント -->
                     <div class="stat-card stat-points">
-                        <div class="stat-icon">⭐</div>
+                        <div class="stat-icon"><i class="fas fa-star"></i></div>
                         <div class="stat-content">
                             <div class="stat-label">獲得ポイント</div>
                             <div class="stat-value"><?= number_format($userStats['total_points']) ?></div>
@@ -127,7 +128,7 @@ $streakDates = is_array($streakData) ? array_column($streakData, 'activity_date'
 
                     <!-- ストリーク -->
                     <div class="stat-card stat-streak">
-                        <div class="stat-icon">🔥</div>
+                        <div class="stat-icon"><i class="fas fa-fire"></i></div>
                         <div class="stat-content">
                             <div class="stat-label">連続学習</div>
                             <div class="stat-value"><?= $userStats['current_streak'] ?>日</div>
@@ -137,7 +138,7 @@ $streakDates = is_array($streakData) ? array_column($streakData, 'activity_date'
 
                     <!-- バッジ -->
                     <div class="stat-card stat-badges">
-                        <div class="stat-icon">🏆</div>
+                        <div class="stat-icon"><i class="fas fa-trophy"></i></div>
                         <div class="stat-content">
                             <div class="stat-label">獲得バッジ</div>
                             <div class="stat-value"><?= $userStats['badge_count'] ?></div>
@@ -185,10 +186,10 @@ $streakDates = is_array($streakData) ? array_column($streakData, 'activity_date'
             </section>
 
             <!-- あなたにおすすめのコース -->
-            <?php if (!empty($recommendedCourses) && $user['survey_completed_at']): ?>
+            <?php if (!empty($recommendedCourses) && !empty($user['survey_completed_at'])): ?>
                 <section class="dashboard-section recommended-courses">
                     <div class="section-header">
-                        <h2>✨ あなたにおすすめのコース</h2>
+                        <h2><i class="fas fa-sparkles"></i> あなたにおすすめのコース</h2>
                         <p class="section-subtitle">学習目的に基づいて最適なコースをピックアップしました</p>
                     </div>
                     <div class="course-grid">
