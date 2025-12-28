@@ -9,10 +9,6 @@ const completeBtn = document.getElementById('completeBtn');
 
 if (completeBtn) {
     completeBtn.addEventListener('click', async () => {
-        if (!confirm('このレッスンを完了にしますか？')) {
-            return;
-        }
-
         completeBtn.disabled = true;
         completeBtn.textContent = '更新中...';
 
