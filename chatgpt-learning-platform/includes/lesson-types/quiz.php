@@ -8,7 +8,7 @@ $passingScore = $content['passing_score'] ?? 80; // 合格ライン（%）
 
 <div class="lesson-quiz">
     <div class="quiz-header">
-        <h2>✏️ クイズ</h2>
+        <h2><i class="fas fa-pencil-alt"></i> クイズ</h2>
         <p>以下の問題に答えてください。合格ライン: <?= $passingScore ?>%</p>
     </div>
 
@@ -126,11 +126,11 @@ function displayResults(data) {
 
         if (result.correct) {
             resultDiv.className = 'question-result correct';
-            resultDiv.innerHTML = '<span class="result-icon">✓</span> 正解！';
+            resultDiv.innerHTML = '<i class="fas fa-check-circle result-icon"></i> 正解！';
         } else {
             resultDiv.className = 'question-result incorrect';
             resultDiv.innerHTML = `
-                <span class="result-icon">✗</span> 不正解
+                <i class="fas fa-times-circle result-icon"></i> 不正解
                 ${result.explanation ? `<p class="explanation">${escapeHtml(result.explanation)}</p>` : ''}
             `;
         }
@@ -146,11 +146,11 @@ function displayResults(data) {
     scorePercent.textContent = percent;
 
     if (passed) {
-        resultTitle.textContent = '🎉 合格です！';
+        resultTitle.innerHTML = '<i class="fas fa-trophy"></i> 合格です！';
         scoreText.textContent = `${score} / ${max_score} 問正解`;
         quizResult.className = 'quiz-result passed';
     } else {
-        resultTitle.textContent = '😢 不合格...';
+        resultTitle.innerHTML = '<i class="fas fa-redo"></i> 不合格...';
         scoreText.textContent = `${score} / ${max_score} 問正解 （合格ラインには ${Math.ceil((passingScore / 100) * max_score) - score} 問足りません）`;
         quizResult.className = 'quiz-result failed';
     }

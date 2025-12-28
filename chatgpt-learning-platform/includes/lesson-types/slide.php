@@ -27,11 +27,11 @@ $slides = $content['slides'] ?? [];
                         <div class="prompt-card">
                             <div class="prompt-header">
                                 <h3 class="prompt-title">
-                                    <span class="prompt-icon">💬</span>
+                                    <i class="fas fa-comment-dots prompt-icon"></i>
                                     <?= isset($slide['ai_tool_name']) ? h($slide['ai_tool_name']) : 'Gemini' ?>用プロンプト
                                 </h3>
                                 <button class="copy-prompt-btn" data-prompt="<?= h($slide['prompt']) ?>" title="コピー">
-                                    <span class="copy-icon">📋</span>
+                                    <i class="fas fa-clipboard copy-icon"></i>
                                     <span class="copy-text">コピー</span>
                                 </button>
                             </div>
@@ -43,9 +43,9 @@ $slides = $content['slides'] ?? [];
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    class="try-ai-btn">
-                                    <span class="try-icon">🚀</span>
+                                    <i class="fas fa-rocket try-icon"></i>
                                     <?= isset($slide['ai_tool_name']) ? h($slide['ai_tool_name']) : 'Gemini' ?>で試す
-                                    <span class="external-icon">↗</span>
+                                    <i class="fas fa-external-link-alt external-icon"></i>
                                 </a>
                             </div>
                         </div>
@@ -135,7 +135,7 @@ document.querySelectorAll('.copy-prompt-btn').forEach(button => {
             await navigator.clipboard.writeText(promptText);
             // コピー成功のフィードバック
             const originalHTML = this.innerHTML;
-            this.innerHTML = '<span class="copy-icon">✅</span><span class="copy-text">コピーしました！</span>';
+            this.innerHTML = '<i class="fas fa-check copy-icon"></i><span class="copy-text">コピーしました！</span>';
             this.disabled = true;
 
             // 2秒後に元に戻す
@@ -154,7 +154,7 @@ document.querySelectorAll('.copy-prompt-btn').forEach(button => {
             try {
                 document.execCommand('copy');
                 const originalHTML = this.innerHTML;
-                this.innerHTML = '<span class="copy-icon">✅</span><span class="copy-text">コピーしました！</span>';
+                this.innerHTML = '<i class="fas fa-check copy-icon"></i><span class="copy-text">コピーしました！</span>';
                 this.disabled = true;
                 setTimeout(() => {
                     this.innerHTML = originalHTML;
