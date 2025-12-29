@@ -4,635 +4,403 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>スクレイピング＋GASマネタイズ戦略</title>
+    <title>スクレイピング＋GAS 業務自動化ツール アイデア集</title>
     <link rel="stylesheet" href="../kakutei-shinkoku/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        .business-card {
+        .tool-card {
             background: white;
             border: 1px solid var(--color-border);
             border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
+            padding: 30px;
+            margin-bottom: 30px;
         }
-        .business-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-        .business-card h3 {
+        .tool-card h3 {
             color: var(--color-natural-brown);
             margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
             border-bottom: 2px solid var(--color-beige);
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
-        .business-card h4 {
+        .tool-card h4 {
             color: var(--color-charcoal);
             margin-top: 25px;
             margin-bottom: 12px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             border-left: 3px solid var(--color-natural-brown);
             padding-left: 12px;
         }
-        .badge {
+        .tech-stack {
+            background: #F5F3F0;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .tech-stack-item {
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-        .badge-high { background: #FFE5E5; color: #C62828; }
-        .badge-medium { background: #FFF9E5; color: #F57C00; }
-        .badge-low { background: #E8F5E9; color: #2E7D32; }
-        .badge-stock { background: #E3F2FD; color: #1565C0; }
-        .badge-flow { background: #F3E5F5; color: #6A1B9A; }
-        .metric {
-            display: inline-block;
-            margin-right: 20px;
-            margin-bottom: 10px;
-        }
-        .metric-label {
-            font-weight: 600;
-            color: var(--color-charcoal);
-        }
-        .icon-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--color-beige);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--color-natural-brown);
-            margin-bottom: 15px;
-        }
-        .step-number-monetize {
-            display: inline-block;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: var(--color-natural-brown);
-            color: white;
-            text-align: center;
-            line-height: 35px;
-            font-weight: 600;
-            margin-right: 12px;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            padding: 6px 12px;
+            margin: 5px 5px 5px 0;
+            font-size: 0.9rem;
         }
         .workflow-box {
-            background: #F5F3F0;
-            border: 1px solid var(--color-border);
-            border-radius: 6px;
+            background: #FAFAFA;
+            border-left: 3px solid var(--color-natural-brown);
             padding: 20px;
             margin: 15px 0;
         }
         .workflow-step {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
         }
-        .workflow-step:last-child {
-            margin-bottom: 0;
+        .workflow-step::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: var(--color-natural-brown);
         }
-        .workflow-icon {
-            width: 30px;
-            height: 30px;
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            border-radius: 6px;
+            padding: 15px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin: 15px 0;
+        }
+        .code-comment {
+            color: #75715e;
+        }
+        .code-string {
+            color: #e6db74;
+        }
+        .code-function {
+            color: #66d9ef;
+        }
+        .code-keyword {
+            color: #f92672;
+        }
+        .price-tag {
+            display: inline-block;
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        .number-badge {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: var(--color-natural-brown);
             color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-            font-size: 0.9rem;
-        }
-        .workflow-content {
-            flex: 1;
-        }
-        .usecase-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .usecase-item {
-            background: white;
-            border: 1px solid var(--color-border);
-            border-radius: 6px;
-            padding: 20px;
-        }
-        .usecase-item h5 {
-            color: var(--color-natural-brown);
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.05rem;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 600;
+            margin-right: 12px;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="hero">
-            <h1><i class="fas fa-rocket"></i> スクレイピング＋GASマネタイズ戦略</h1>
-            <p>あなたのスキルを収益化する具体的な方法</p>
-            <p style="margin-top: 10px; font-size: 1rem; opacity: 0.9;">クラウドソーシングなしで月30万円を目指す</p>
+            <h1><i class="fas fa-robot"></i> スクレイピング＋GAS 業務自動化ツール アイデア集</h1>
+            <p>実装可能な業務自動化ツールの技術的詳細</p>
         </div>
 
         <main style="padding: 40px;">
             <!-- 概要 -->
             <section class="note-box">
-                <h2><i class="fas fa-lightbulb"></i> あなたの強み</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-                    <div>
-                        <div class="icon-circle"><i class="fas fa-spider"></i></div>
-                        <h3 style="margin: 10px 0 5px 0;">スクレイピング</h3>
-                        <p>Webサイトから自動でデータを収集する技術。競合分析、価格監視、情報収集に活用。</p>
-                    </div>
-                    <div>
-                        <div class="icon-circle"><i class="fab fa-google"></i></div>
-                        <h3 style="margin: 10px 0 5px 0;">Google Apps Script</h3>
-                        <p>Googleスプレッドシート、Gmail、カレンダーと連携。無料で自動化・定期実行が可能。</p>
-                    </div>
-                </div>
+                <h2><i class="fas fa-lightbulb"></i> このドキュメントについて</h2>
+                <p>スクレイピング＋Google Apps Script（GAS）で実装可能な業務自動化ツールのアイデアと、技術的な実装方法をまとめたカタログです。</p>
+                <p style="margin-top: 10px;">各ツールには以下を記載しています：</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>業務フロー（何をどう自動化するか）</li>
+                    <li>技術スタック（使用する技術・ライブラリ）</li>
+                    <li>実装方法（GASコード例）</li>
+                    <li>スクレイピング対象サイト</li>
+                    <li>想定価格（月額課金の目安）</li>
+                </ul>
             </section>
 
-            <!-- 戦略：ストック型に集中 -->
-            <section style="margin-top: 40px;">
-                <h2><i class="fas fa-chart-line"></i> マネタイズ戦略：ストック型に集中する</h2>
-
-                <div class="note-box" style="background: #E8F5E9; border-left: 3px solid #4CAF50;">
-                    <strong><i class="fas fa-check-circle"></i> おすすめ戦略：</strong>最初から<strong>ストック型（SaaS）</strong>に集中します。フロー型（単発案件）は避けて、継続課金で安定収入を目指します。
-                </div>
-
-                <div style="margin-top: 20px;">
-                    <h3>なぜストック型なのか？</h3>
-                    <ul>
-                        <li><strong>安定収入：</strong>一度顧客を獲得すれば毎月課金される</li>
-                        <li><strong>スケール可能：</strong>顧客が増えても作業量は増えない</li>
-                        <li><strong>資産化：</strong>継続顧客が積み上がり、ビジネスの価値が上がる</li>
-                        <li><strong>自動化：</strong>GASで定期実行するので手間がかからない</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- 具体的なビジネスアイデア -->
+            <!-- ツール一覧 -->
             <section style="margin-top: 50px;">
-                <h2><i class="fas fa-briefcase"></i> 具体的なビジネスアイデア（優先度順）</h2>
+                <h2><i class="fas fa-wrench"></i> 業務自動化ツール アイデア一覧</h2>
 
-                <!-- アイデア1 -->
-                <div class="business-card">
-                    <h3><span class="step-number-monetize">1</span> EC事業者向け価格監視ツール</h3>
-                    <div style="margin-bottom: 15px;">
-                        <span class="badge badge-high">収益性：高</span>
-                        <span class="badge badge-medium">難易度：中</span>
-                        <span class="badge badge-stock">ストック型</span>
+                <!-- ツール1: リード管理自動化 -->
+                <div class="tool-card">
+                    <h3><span class="number-badge">1</span> 営業会社向け：リード管理自動化ツール</h3>
+
+                    <div class="price-tag">
+                        <i class="fas fa-tag"></i> 想定価格：月額5万円〜10万円
                     </div>
 
-                    <p><strong>サービス内容：</strong></p>
-                    <ul>
-                        <li>競合ECサイトの価格を毎日自動監視</li>
-                        <li>価格変動をGoogleスプレッドシートに記録</li>
-                        <li>値下げ時にGmailで通知</li>
-                        <li>月次レポートを自動生成</li>
-                    </ul>
-
-                    <p><strong>ターゲット顧客：</strong></p>
-                    <ul>
-                        <li>中小ECサイト運営者（Amazon、楽天出店者）</li>
-                        <li>小売店・卸売業者</li>
-                        <li>価格.com等に出品している事業者</li>
-                    </ul>
-
-                    <div class="metric">
-                        <span class="metric-label">想定価格：</span> 月額5,000円〜20,000円
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">顧客獲得目標：</span> 10社で月5〜20万円
-                    </div>
-
-                    <h4><i class="fas fa-cogs"></i> 実際の業務フロー</h4>
+                    <h4><i class="fas fa-tasks"></i> 業務フロー</h4>
                     <div class="workflow-box">
-                        <div class="workflow-step">
-                            <div class="workflow-icon">1</div>
-                            <div class="workflow-content">
-                                <strong>毎朝9時にGASが自動実行</strong><br>
-                                競合10社のECサイトにアクセス（1社あたり5秒間隔）
-                            </div>
-                        </div>
-                        <div class="workflow-step">
-                            <div class="workflow-icon">2</div>
-                            <div class="workflow-content">
-                                <strong>商品価格をスクレイピング</strong><br>
-                                商品名、価格、在庫状況、レビュー数を取得
-                            </div>
-                        </div>
-                        <div class="workflow-step">
-                            <div class="workflow-icon">3</div>
-                            <div class="workflow-content">
-                                <strong>Googleスプレッドシートに記録</strong><br>
-                                日付、商品名、価格、前日比を自動入力
-                            </div>
-                        </div>
-                        <div class="workflow-step">
-                            <div class="workflow-icon">4</div>
-                            <div class="workflow-content">
-                                <strong>価格変動を検知</strong><br>
-                                値下げが5%以上の場合、Gmailで即時通知
-                            </div>
-                        </div>
-                        <div class="workflow-step">
-                            <div class="workflow-icon">5</div>
-                            <div class="workflow-content">
-                                <strong>毎週月曜にレポート送信</strong><br>
-                                価格推移グラフ、平均価格、最安値を自動生成してメール
-                            </div>
-                        </div>
+                        <div class="workflow-step">毎朝8時にGASが自動実行</div>
+                        <div class="workflow-step">複数の問い合わせフォーム（自社サイト、LP、予約システムなど）から新規リードを収集</div>
+                        <div class="workflow-step">Googleスプレッドシートに自動入力（社名、担当者名、メール、電話番号、問い合わせ内容）</div>
+                        <div class="workflow-step">過去の商談履歴DBと照合して重複チェック</div>
+                        <div class="workflow-step">営業担当者にGmailで即時通知</div>
+                        <div class="workflow-step">Googleカレンダーに初回商談枠を仮予約</div>
                     </div>
 
-                    <div class="success-box" style="margin-top: 15px;">
-                        <strong><i class="fas fa-rocket"></i> 始め方：</strong>
+                    <h4><i class="fas fa-code"></i> 技術スタック</h4>
+                    <div class="tech-stack">
+                        <span class="tech-stack-item"><i class="fab fa-google"></i> Google Apps Script</span>
+                        <span class="tech-stack-item"><i class="fas fa-table"></i> Google Spreadsheet API</span>
+                        <span class="tech-stack-item"><i class="fas fa-envelope"></i> Gmail API</span>
+                        <span class="tech-stack-item"><i class="fas fa-calendar"></i> Google Calendar API</span>
+                        <span class="tech-stack-item"><i class="fas fa-code"></i> UrlFetchApp（HTTPリクエスト）</span>
+                    </div>
+
+                    <h4><i class="fas fa-laptop-code"></i> 実装方法</h4>
+
+                    <p><strong>1. 問い合わせフォームからデータ取得</strong></p>
+                    <div class="code-block">
+<span class="code-keyword">function</span> <span class="code-function">fetchLeads</span>() {
+  <span class="code-comment">// スプレッドシートを取得</span>
+  <span class="code-keyword">const</span> sheet = SpreadsheetApp.openById(<span class="code-string">'YOUR_SHEET_ID'</span>).getSheetByName(<span class="code-string">'リード一覧'</span>);
+
+  <span class="code-comment">// フォームの回答を取得（Googleフォームと連携している場合）</span>
+  <span class="code-keyword">const</span> form = FormApp.openById(<span class="code-string">'YOUR_FORM_ID'</span>);
+  <span class="code-keyword">const</span> responses = form.getResponses();
+  <span class="code-keyword">const</span> latestResponse = responses[responses.length - 1];
+
+  <span class="code-comment">// 回答内容を配列に格納</span>
+  <span class="code-keyword">const</span> itemResponses = latestResponse.getItemResponses();
+  <span class="code-keyword">const</span> data = [
+    <span class="code-keyword">new</span> Date(), <span class="code-comment">// タイムスタンプ</span>
+    itemResponses[0].getResponse(), <span class="code-comment">// 会社名</span>
+    itemResponses[1].getResponse(), <span class="code-comment">// 担当者名</span>
+    itemResponses[2].getResponse(), <span class="code-comment">// メールアドレス</span>
+    itemResponses[3].getResponse()  <span class="code-comment">// 問い合わせ内容</span>
+  ];
+
+  <span class="code-comment">// スプレッドシートに追加</span>
+  sheet.appendRow(data);
+
+  <span class="code-comment">// 営業担当者にメール通知</span>
+  <span class="code-function">sendNotification</span>(data);
+}
+                    </div>
+
+                    <p><strong>2. 営業担当者にメール通知</strong></p>
+                    <div class="code-block">
+<span class="code-keyword">function</span> <span class="code-function">sendNotification</span>(data) {
+  <span class="code-keyword">const</span> recipient = <span class="code-string">'sales@example.com'</span>;
+  <span class="code-keyword">const</span> subject = <span class="code-string">'【新規リード】'</span> + data[1] + <span class="code-string">'様からお問い合わせ'</span>;
+  <span class="code-keyword">const</span> body = <span class="code-string">`
+新規のお問い合わせがありました。
+
+会社名: ${data[1]}
+担当者: ${data[2]}
+メール: ${data[3]}
+内容: ${data[4]}
+
+スプレッドシートで確認してください。
+  `</span>;
+
+  GmailApp.sendEmail(recipient, subject, body);
+}
+                    </div>
+
+                    <h4><i class="fas fa-globe"></i> スクレイピング対象例</h4>
+                    <ul>
+                        <li>Googleフォーム（FormApp APIで直接取得可能）</li>
+                        <li>自社サイトの問い合わせフォーム（DBから取得 or Webhookで連携）</li>
+                        <li>予約システム（Airリザーブ、STORES予約などのAPI）</li>
+                        <li>メール受信（Gmailから特定の件名のメールを抽出）</li>
+                    </ul>
+                </div>
+
+                <!-- ツール2: 競合分析 -->
+                <div class="tool-card">
+                    <h3><span class="number-badge">2</span> メディア運営者向け：競合分析ツール</h3>
+
+                    <div class="price-tag">
+                        <i class="fas fa-tag"></i> 想定価格：月額3万円〜5万円
+                    </div>
+
+                    <h4><i class="fas fa-tasks"></i> 業務フロー</h4>
+                    <div class="workflow-box">
+                        <div class="workflow-step">毎朝10時にGASが自動実行</div>
+                        <div class="workflow-step">競合メディア10サイトの新着記事をスクレイピング</div>
+                        <div class="workflow-step">記事タイトル、URL、公開日時、カテゴリを取得</div>
+                        <div class="workflow-step">SNSシェア数を取得（Twitter、Facebook）</div>
+                        <div class="workflow-step">トレンドキーワードを分析（頻出単語を抽出）</div>
+                        <div class="workflow-step">Googleスプレッドシートに記録</div>
+                        <div class="workflow-step">毎週月曜に週次レポートをメール送信</div>
+                    </div>
+
+                    <h4><i class="fas fa-code"></i> 技術スタック</h4>
+                    <div class="tech-stack">
+                        <span class="tech-stack-item"><i class="fab fa-google"></i> Google Apps Script</span>
+                        <span class="tech-stack-item"><i class="fas fa-code"></i> UrlFetchApp（スクレイピング）</span>
+                        <span class="tech-stack-item"><i class="fas fa-table"></i> Google Spreadsheet API</span>
+                        <span class="tech-stack-item"><i class="fas fa-search"></i> Parser Library（Cheerio）</span>
+                        <span class="tech-stack-item"><i class="fab fa-twitter"></i> Twitter API（シェア数取得）</span>
+                    </div>
+
+                    <h4><i class="fas fa-laptop-code"></i> 実装方法</h4>
+
+                    <p><strong>1. 競合サイトの新着記事をスクレイピング（Cheerio使用）</strong></p>
+                    <div class="code-block">
+<span class="code-keyword">function</span> <span class="code-function">scrapeCompetitorArticles</span>(url) {
+  <span class="code-keyword">const</span> response = UrlFetchApp.fetch(url);
+  <span class="code-keyword">const</span> html = response.getContentText();
+
+  <span class="code-comment">// Cheerioライブラリを使用してHTMLをパース</span>
+  <span class="code-comment">// ライブラリID: 1ReeQ6WO8kKNxoaA_O0XEQ589cIrRvEBA9qcWpNqdOP17i47u6N9M5Xh0</span>
+  <span class="code-keyword">const</span> $ = Cheerio.load(html);
+
+  <span class="code-comment">// CSSセレクタで記事を抽出</span>
+  <span class="code-keyword">const</span> articles = [];
+  $(<span class="code-string">'.article-item'</span>).each(<span class="code-keyword">function</span>() {
+    <span class="code-keyword">const</span> title = $(<span class="code-keyword">this</span>).find(<span class="code-string">'.title'</span>).text();
+    <span class="code-keyword">const</span> link = $(<span class="code-keyword">this</span>).find(<span class="code-string">'a'</span>).attr(<span class="code-string">'href'</span>);
+    <span class="code-keyword">const</span> date = $(<span class="code-keyword">this</span>).find(<span class="code-string">'.date'</span>).text();
+
+    articles.push({ title, link, date });
+  });
+
+  <span class="code-keyword">return</span> articles;
+}
+                    </div>
+
+                    <h4><i class="fas fa-globe"></i> スクレイピング対象例</h4>
+                    <ul>
+                        <li>競合メディアのブログ・ニュースページ</li>
+                        <li>業界ニュースサイト（TechCrunch、ITmediaなど）</li>
+                        <li>note、Zenn、Qiitaなどの技術記事</li>
+                        <li>はてなブックマーク人気記事</li>
+                    </ul>
+
+                    <div class="note-box" style="margin-top: 20px;">
+                        <strong><i class="fas fa-info-circle"></i> Cheerioライブラリの追加方法：</strong>
                         <ol style="margin-left: 20px; margin-top: 10px;">
-                            <li>まず無料版を作成（1商品監視のみ）</li>
-                            <li>ランディングページで集客（SEO対策）</li>
-                            <li>初期顧客5社を獲得（割引価格で）</li>
-                            <li>フィードバックを元に機能追加</li>
-                            <li>有料プラン展開（複数商品監視）</li>
+                            <li>GASエディタで「ライブラリ」→「ライブラリを追加」</li>
+                            <li>スクリプトID: <code>1ReeQ6WO8kKNxoaA_O0XEQ589cIrRvEBA9qcWpNqdOP17i47u6N9M5Xh0</code></li>
+                            <li>バージョン: 最新</li>
+                            <li>識別子: Cheerio</li>
                         </ol>
                     </div>
                 </div>
 
-                <!-- アイデア2 -->
-                <div class="business-card">
-                    <h3><span class="step-number-monetize">2</span> 業務自動化ツール開発（月額サービス）</h3>
-                    <div style="margin-bottom: 15px;">
-                        <span class="badge badge-high">収益性：高</span>
-                        <span class="badge badge-medium">難易度：中</span>
-                        <span class="badge badge-stock">ストック型</span>
+                <!-- ツール3: 業界ニュース配信 -->
+                <div class="tool-card">
+                    <h3><span class="number-badge">3</span> 士業・コンサル向け：業界ニュース自動配信</h3>
+
+                    <div class="price-tag">
+                        <i class="fas fa-tag"></i> 想定価格：月額8万円〜15万円
                     </div>
 
-                    <p><strong>コンセプト：</strong></p>
-                    <p>企業の面倒な定型業務を、スクレイピング＋GASで完全自動化するサービス。<strong>単発開発ではなく、月額保守契約で継続課金</strong>を実現します。</p>
-
-                    <div class="metric">
-                        <span class="metric-label">想定価格：</span> 初期費用10万円 + 月額3万円〜10万円
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">顧客獲得目標：</span> 5社で月15〜50万円
-                    </div>
-
-                    <h4><i class="fas fa-list-ul"></i> 具体的な業務自動化の例（5つ）</h4>
-
-                    <div class="usecase-grid">
-                        <!-- ユースケース1 -->
-                        <div class="usecase-item">
-                            <h5><i class="fas fa-shopping-cart"></i> EC運営者向け：在庫切れ監視</h5>
-                            <div class="workflow-box" style="margin-top: 10px; padding: 15px;">
-                                <div style="font-size: 0.95rem;">
-                                    <p><strong>毎日15時に実行：</strong></p>
-                                    <ol style="margin-left: 20px; font-size: 0.9rem;">
-                                        <li>自社ECサイトの全商品をチェック</li>
-                                        <li>在庫数が10個以下の商品を抽出</li>
-                                        <li>仕入先サイトで在庫状況を確認</li>
-                                        <li>Gmailで在庫アラート送信</li>
-                                        <li>スプレッドシートに発注候補リスト作成</li>
-                                    </ol>
-                                    <div style="margin-top: 10px; padding: 10px; background: white; border-radius: 4px; font-size: 0.85rem;">
-                                        <strong>価格：</strong>月額5万円<br>
-                                        <strong>ターゲット：</strong>楽天・Amazonに100商品以上出品している事業者
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ユースケース2 -->
-                        <div class="usecase-item">
-                            <h5><i class="fas fa-building"></i> 営業会社向け：リード管理自動化</h5>
-                            <div class="workflow-box" style="margin-top: 10px; padding: 15px;">
-                                <div style="font-size: 0.95rem;">
-                                    <p><strong>毎朝8時に実行：</strong></p>
-                                    <ol style="margin-left: 20px; font-size: 0.9rem;">
-                                        <li>複数の問い合わせフォームから新規リードを収集</li>
-                                        <li>スプレッドシートに自動入力（社名、担当者、メール、電話）</li>
-                                        <li>重複チェック＋過去の商談履歴を照合</li>
-                                        <li>営業担当者にGmailで通知</li>
-                                        <li>Googleカレンダーに初回商談枠を仮予約</li>
-                                    </ol>
-                                    <div style="margin-top: 10px; padding: 10px; background: white; border-radius: 4px; font-size: 0.85rem;">
-                                        <strong>価格：</strong>月額7万円<br>
-                                        <strong>ターゲット：</strong>月間50件以上の問い合わせがある営業会社
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ユースケース3 -->
-                        <div class="usecase-item">
-                            <h5><i class="fas fa-newspaper"></i> メディア運営者向け：競合分析</h5>
-                            <div class="workflow-box" style="margin-top: 10px; padding: 15px;">
-                                <div style="font-size: 0.95rem;">
-                                    <p><strong>毎朝10時に実行：</strong></p>
-                                    <ol style="margin-left: 20px; font-size: 0.9rem;">
-                                        <li>競合メディア10サイトの新着記事を収集</li>
-                                        <li>記事タイトル、カテゴリ、公開日時を取得</li>
-                                        <li>SNSシェア数（Twitter、Facebook）を集計</li>
-                                        <li>トレンドキーワードを分析</li>
-                                        <li>週次レポートを自動生成してメール送信</li>
-                                    </ol>
-                                    <div style="margin-top: 10px; padding: 10px; background: white; border-radius: 4px; font-size: 0.85rem;">
-                                        <strong>価格：</strong>月額3万円<br>
-                                        <strong>ターゲット：</strong>Webメディア運営者、マーケティング会社
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ユースケース4 -->
-                        <div class="usecase-item">
-                            <h5><i class="fas fa-user-tie"></i> 士業・コンサル向け：業界ニュース配信</h5>
-                            <div class="workflow-box" style="margin-top: 10px; padding: 15px;">
-                                <div style="font-size: 0.95rem;">
-                                    <p><strong>毎朝7時に実行：</strong></p>
-                                    <ol style="margin-left: 20px; font-size: 0.9rem;">
-                                        <li>業界ニュースサイト・官公庁サイトから情報収集</li>
-                                        <li>法改正、補助金、業界トレンドをピックアップ</li>
-                                        <li>クライアント企業に関連するニュースを抽出</li>
-                                        <li>要約文を自動生成</li>
-                                        <li>Gmailで個別配信（クライアントごとにカスタマイズ）</li>
-                                    </ol>
-                                    <div style="margin-top: 10px; padding: 10px; background: white; border-radius: 4px; font-size: 0.85rem;">
-                                        <strong>価格：</strong>月額10万円<br>
-                                        <strong>ターゲット：</strong>税理士、社労士、経営コンサルタント
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ユースケース5 -->
-                        <div class="usecase-item">
-                            <h5><i class="fas fa-users"></i> 人事・採用担当向け：求人情報管理</h5>
-                            <div class="workflow-box" style="margin-top: 10px; padding: 15px;">
-                                <div style="font-size: 0.95rem;">
-                                    <p><strong>毎日12時に実行：</strong></p>
-                                    <ol style="margin-left: 20px; font-size: 0.9rem;">
-                                        <li>複数の求人媒体から応募者データを収集</li>
-                                        <li>スプレッドシートに一元管理（氏名、連絡先、職歴）</li>
-                                        <li>書類選考→面接→最終面接の進捗を自動更新</li>
-                                        <li>面接日の3日前にリマインドメール自動送信</li>
-                                        <li>Googleカレンダーに面接予定を自動登録</li>
-                                    </ol>
-                                    <div style="margin-top: 10px; padding: 10px; background: white; border-radius: 4px; font-size: 0.85rem;">
-                                        <strong>価格：</strong>月額5万円<br>
-                                        <strong>ターゲット：</strong>人材紹介会社、採用担当者
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <h4><i class="fas fa-tasks"></i> 業務フロー</h4>
+                    <div class="workflow-box">
+                        <div class="workflow-step">毎朝7時にGASが自動実行</div>
+                        <div class="workflow-step">業界ニュースサイト・官公庁サイトから最新情報を収集</div>
+                        <div class="workflow-step">法改正、補助金、業界トレンドなどをキーワードでフィルタリング</div>
+                        <div class="workflow-step">クライアント企業の業種に関連するニュースを抽出</div>
+                        <div class="workflow-step">要約文を生成（重要部分を抜粋）</div>
+                        <div class="workflow-step">Gmailでクライアントごとに個別配信</div>
                     </div>
 
-                    <div class="note-box" style="margin-top: 25px; background: #FFF9E5; border-left: 3px solid #F57C00;">
-                        <strong><i class="fas fa-info-circle"></i> ポイント：</strong>
-                        <p>単発開発で終わらせず、<strong>「保守契約」として月額課金</strong>します。理由：</p>
-                        <ul style="margin-left: 20px; margin-top: 10px;">
-                            <li>スクレイピング先のサイトがリニューアルされた際の修正対応</li>
-                            <li>データ集計ロジックの改善</li>
-                            <li>新機能の追加</li>
-                            <li>月次レポートの提供</li>
-                        </ul>
-                        <p style="margin-top: 10px;">これにより、<strong>一度作れば継続課金</strong>が可能になります。</p>
+                    <h4><i class="fas fa-code"></i> 技術スタック</h4>
+                    <div class="tech-stack">
+                        <span class="tech-stack-item"><i class="fab fa-google"></i> Google Apps Script</span>
+                        <span class="tech-stack-item"><i class="fas fa-code"></i> UrlFetchApp</span>
+                        <span class="tech-stack-item"><i class="fas fa-envelope"></i> Gmail API</span>
+                        <span class="tech-stack-item"><i class="fas fa-rss"></i> XML Service（RSSパース）</span>
+                        <span class="tech-stack-item"><i class="fas fa-robot"></i> ChatGPT API（要約生成・オプション）</span>
                     </div>
-                </div>
-            </section>
 
-            <!-- 顧客獲得戦略（クラウドソーシングなし） -->
-            <section style="margin-top: 50px;">
-                <h2><i class="fas fa-bullseye"></i> 顧客獲得戦略（クラウドソーシングなし）</h2>
+                    <h4><i class="fas fa-laptop-code"></i> 実装方法</h4>
 
-                <div class="business-card">
-                    <h3><i class="fas fa-search"></i> 1. SEO対策したランディングページ</h3>
-                    <p>あなたのサイト（yojitu.com）に専用ページを作成して、SEO対策で集客します。</p>
+                    <p><strong>1. RSSフィードからニュースを取得</strong></p>
+                    <div class="code-block">
+<span class="code-keyword">function</span> <span class="code-function">fetchNewsFromRSS</span>() {
+  <span class="code-comment">// 官公庁・業界団体のRSSフィード</span>
+  <span class="code-keyword">const</span> rssUrls = [
+    <span class="code-string">'https://www.meti.go.jp/rss/index.rdf'</span>, <span class="code-comment">// 経済産業省</span>
+    <span class="code-string">'https://www.nta.go.jp/rss/index.rdf'</span>     <span class="code-comment">// 国税庁</span>
+  ];
 
-                    <h4>狙うキーワード例：</h4>
+  <span class="code-keyword">const</span> allNews = [];
+
+  rssUrls.forEach(<span class="code-keyword">function</span>(rssUrl) {
+    <span class="code-keyword">const</span> xml = UrlFetchApp.fetch(rssUrl).getContentText();
+    <span class="code-keyword">const</span> document = XmlService.parse(xml);
+    <span class="code-keyword">const</span> root = document.getRootElement();
+
+    <span class="code-comment">// RSS 2.0形式の場合</span>
+    <span class="code-keyword">const</span> items = root.getChild(<span class="code-string">'channel'</span>).getChildren(<span class="code-string">'item'</span>);
+
+    items.forEach(<span class="code-keyword">function</span>(item) {
+      <span class="code-keyword">const</span> title = item.getChild(<span class="code-string">'title'</span>).getText();
+      <span class="code-keyword">const</span> link = item.getChild(<span class="code-string">'link'</span>).getText();
+      <span class="code-keyword">const</span> pubDate = item.getChild(<span class="code-string">'pubDate'</span>).getText();
+
+      allNews.push({ title, link, pubDate });
+    });
+  });
+
+  <span class="code-keyword">return</span> allNews;
+}
+                    </div>
+
+                    <h4><i class="fas fa-globe"></i> スクレイピング対象例</h4>
                     <ul>
-                        <li>「EC 価格監視 ツール」</li>
-                        <li>「競合 価格 自動チェック」</li>
-                        <li>「楽天 Amazon 価格比較 自動化」</li>
-                        <li>「業務自動化 スプレッドシート」</li>
-                        <li>「問い合わせ管理 自動化」</li>
+                        <li>官公庁サイト（経済産業省、厚生労働省、国税庁など）</li>
+                        <li>業界団体のニュースページ（商工会議所、業界団体など）</li>
+                        <li>補助金・助成金情報サイト（ミラサポplus、J-Net21など）</li>
+                        <li>法改正情報サイト（官報、e-Gov法令検索など）</li>
                     </ul>
-
-                    <div class="workflow-box" style="margin-top: 15px;">
-                        <strong>ランディングページに含める内容：</strong>
-                        <ol style="margin-left: 20px; margin-top: 10px;">
-                            <li>サービス紹介（具体的な業務フローを図解）</li>
-                            <li>料金プラン（無料トライアル → 月額課金）</li>
-                            <li>導入事例（匿名でもOK）</li>
-                            <li>お問い合わせフォーム</li>
-                            <li>FAQ</li>
-                        </ol>
-                    </div>
                 </div>
 
-                <div class="business-card">
-                    <h3><i class="fas fa-handshake"></i> 2. 直接営業（既存の人脈）</h3>
-                    <p>知人・友人のビジネス、取引先などに直接提案します。</p>
-
-                    <h4>営業トーク例：</h4>
-                    <div class="workflow-box" style="margin-top: 10px; padding: 15px;">
-                        <p>「〇〇さん、ECサイト運営してますよね。競合の価格チェックって毎日やってます？それ、完全自動化できますよ。毎朝9時に競合10社の価格を自動でスプレッドシートに記録して、値下げがあったらメールで通知します。月額1万円でどうですか？最初の1ヶ月は無料でお試しできますよ。」</p>
-                    </div>
-                </div>
-
-                <div class="business-card">
-                    <h3><i class="fab fa-twitter"></i> 3. SNS（Twitter / X）での発信</h3>
-                    <p>「今日はこんな自動化ツールを作りました」と定期的に発信。実績を見せることで問い合わせを獲得します。</p>
-
-                    <h4>投稿例：</h4>
-                    <div class="workflow-box" style="margin-top: 10px; padding: 15px;">
-                        <p>「GASで作った価格監視ツール、今日も朝9時に競合10社の価格を自動チェック。値下げが3件あったのでクライアントにメール通知しました。こういう面倒な作業、全部自動化できますよ。 #業務自動化 #GAS #スクレイピング」</p>
-                    </div>
-                </div>
-
-                <div class="business-card">
-                    <h3><i class="fas fa-envelope"></i> 4. メール営業（リスト作成）</h3>
-                    <p>ターゲット企業のリストを作成して、直接メールで提案します。</p>
-
-                    <h4>リスト作成方法：</h4>
-                    <ul>
-                        <li>楽天・Amazonで出店している中小企業</li>
-                        <li>地元の営業会社（問い合わせフォームがあるサイト）</li>
-                        <li>Webメディア運営者（個人ブロガー含む）</li>
-                    </ul>
-
-                    <div class="workflow-box" style="margin-top: 10px; padding: 15px;">
-                        <p><strong>メールテンプレート：</strong></p>
-                        <p style="margin-top: 10px;">件名：【無料トライアル】競合価格を毎日自動チェックするツールのご案内</p>
-                        <p style="margin-top: 10px;">本文：<br>
-                        〇〇様<br><br>
-                        突然のご連絡失礼いたします。業務自動化ツール開発を行っている山田と申します。<br><br>
-                        御社のECサイトを拝見し、競合との価格競争が激しいのではないかと思いご連絡しました。<br><br>
-                        弊社では、競合サイトの価格を毎日自動でチェックし、値下げがあった際に即座に通知するツールを提供しております。<br><br>
-                        【サービス内容】<br>
-                        - 競合10社の価格を毎日自動監視<br>
-                        - Googleスプレッドシートに記録<br>
-                        - 値下げ時にメール通知<br>
-                        - 月額1万円（初月無料）<br><br>
-                        もしご興味がございましたら、無料トライアルをご案内させていただきます。<br><br>
-                        よろしくお願いいたします。
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 収益シミュレーション -->
-            <section style="margin-top: 40px;">
-                <h2><i class="fas fa-calculator"></i> 収益シミュレーション（6ヶ月後）</h2>
-
-                <table class="comparison-table" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-                    <thead>
-                        <tr style="background: var(--color-beige);">
-                            <th style="padding: 12px; text-align: left; border: 1px solid var(--color-border);">サービス</th>
-                            <th style="padding: 12px; text-align: left; border: 1px solid var(--color-border);">単価</th>
-                            <th style="padding: 12px; text-align: left; border: 1px solid var(--color-border);">顧客数</th>
-                            <th style="padding: 12px; text-align: left; border: 1px solid var(--color-border);">月収</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);">価格監視ツール</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);">月額1万円</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);">5社</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);"><strong>5万円</strong></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);">在庫切れ監視</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);">月額5万円</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);">2社</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);"><strong>10万円</strong></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);">リード管理自動化</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);">月額7万円</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);">2社</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);"><strong>14万円</strong></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);">競合分析ツール</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);">月額3万円</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);">2社</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border);"><strong>6万円</strong></td>
-                        </tr>
-                        <tr style="background: #E8F5E9; font-weight: 600;">
-                            <td colspan="3" style="padding: 12px; border: 1px solid var(--color-border);">合計月収</td>
-                            <td style="padding: 12px; border: 1px solid var(--color-border); color: #2E7D32; font-size: 1.2rem;"><strong>35万円</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="note-box" style="margin-top: 20px; background: #E8F5E9; border-left: 3px solid #4CAF50;">
-                    <strong><i class="fas fa-chart-line"></i> ポイント：</strong>月額課金なので、一度顧客を獲得すれば毎月安定した収入になります。6ヶ月で月35万円、1年で月50万円超えも十分可能です。
-                </div>
-            </section>
-
-            <!-- 3ヶ月ロードマップ -->
-            <section style="margin-top: 50px;">
-                <h2><i class="fas fa-road"></i> 3ヶ月ロードマップ</h2>
-
-                <div class="calendar">
-                    <div class="calendar-title"><i class="fas fa-calendar-alt"></i> 最初の3ヶ月でやること</div>
-
-                    <div class="calendar-event" style="border-left-color: var(--color-natural-brown);">
-                        <div class="calendar-event-date" style="color: var(--color-natural-brown);"><i class="fas fa-calendar-day"></i> 1ヶ月目</div>
-                        <div class="calendar-event-title" style="color: var(--color-natural-brown);">プロトタイプ作成＋ランディングページ</div>
-                        <div class="calendar-event-desc">
-                            <ul style="margin-top: 10px; margin-left: 20px;">
-                                <li>価格監視ツールのプロトタイプを作成（1商品のみ）</li>
-                                <li>yojitu.comにランディングページを追加</li>
-                                <li>SEO対策（キーワード選定、タイトル・メタディスクリプション設定）</li>
-                                <li>無料トライアル用のフォーム設置</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="calendar-event">
-                        <div class="calendar-event-date"><i class="fas fa-calendar-day"></i> 2ヶ月目</div>
-                        <div class="calendar-event-title">初期顧客5社獲得</div>
-                        <div class="calendar-event-desc">
-                            <ul style="margin-top: 10px; margin-left: 20px;">
-                                <li>知人・友人に直接営業（無料トライアル提案）</li>
-                                <li>Twitterで週3回発信（実績紹介）</li>
-                                <li>ターゲット企業50社にメール営業</li>
-                                <li>初期顧客5社獲得（目標：月5万円）</li>
-                                <li>フィードバックを元に機能改善</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="calendar-event">
-                        <div class="calendar-event-date"><i class="fas fa-calendar-day"></i> 3ヶ月目</div>
-                        <div class="calendar-event-title">サービス拡充＋顧客増加</div>
-                        <div class="calendar-event-desc">
-                            <ul style="margin-top: 10px; margin-left: 20px;">
-                                <li>在庫切れ監視ツールを追加開発</li>
-                                <li>リード管理自動化ツールを追加開発</li>
-                                <li>既存顧客にアップセル提案</li>
-                                <li>新規顧客5社追加獲得（目標：月15万円）</li>
-                                <li>導入事例をランディングページに追加</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </section>
 
             <!-- 注意点 -->
-            <section style="margin-top: 40px;">
-                <h2><i class="fas fa-exclamation-circle"></i> スクレイピングの注意点</h2>
+            <section style="margin-top: 50px;">
+                <h2><i class="fas fa-exclamation-triangle"></i> スクレイピングの法的注意点</h2>
 
                 <div class="warning-box">
-                    <strong><i class="fas fa-gavel"></i> 法的リスクに注意</strong>
+                    <strong><i class="fas fa-gavel"></i> 必ず守るべきルール</strong>
                     <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li><strong>利用規約を必ず確認：</strong>スクレイピング禁止のサイトは対象外</li>
+                        <li><strong>利用規約を確認：</strong>スクレイピング禁止のサイトは絶対に対象外にする</li>
                         <li><strong>robots.txtを遵守：</strong>クローリング禁止の指定に従う</li>
-                        <li><strong>アクセス頻度を制限：</strong>サーバーに負荷をかけない（1秒間隔など）</li>
-                        <li><strong>著作権に配慮：</strong>データの二次利用は慎重に</li>
-                        <li><strong>偽計業務妨害に注意：</strong>過度なアクセスは違法行為になる可能性</li>
+                        <li><strong>アクセス頻度を制限：</strong>最低1秒間隔、推奨は3〜5秒間隔</li>
+                        <li><strong>User-Agentを設定：</strong>正しいUser-Agent文字列を設定する</li>
+                        <li><strong>営業時間外に実行：</strong>サーバー負荷を考慮して深夜・早朝に実行</li>
+                        <li><strong>公式APIを優先：</strong>APIが提供されている場合は必ずAPIを使用</li>
                     </ul>
                 </div>
 
                 <div class="success-box" style="margin-top: 20px;">
                     <strong><i class="fas fa-shield-alt"></i> 安全にスクレイピングするために</strong>
                     <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li>公式APIがあれば優先的に使用</li>
-                        <li>User-Agentを適切に設定</li>
-                        <li>アクセス間隔を十分に空ける（最低1秒、推奨3〜5秒）</li>
-                        <li>営業時間外にクローリング実行</li>
+                        <li>スクレイピング実行前に必ず利用規約を確認</li>
+                        <li>アクセス間隔を<code>Utilities.sleep(3000)</code>で3秒空ける</li>
                         <li>必要最小限のデータのみ収集</li>
+                        <li>データの二次利用は慎重に（著作権に配慮）</li>
+                        <li>過度なアクセスは偽計業務妨害罪に該当する可能性あり</li>
                     </ul>
                 </div>
             </section>
 
-            <!-- 次のアクション -->
-            <section style="margin-top: 40px;">
-                <h2><i class="fas fa-play-circle"></i> 今すぐやるべきこと</h2>
-
-                <div class="success-box">
-                    <ol style="margin-left: 20px; font-size: 1.1rem; line-height: 2;">
-                        <li><strong>価格監視ツールのプロトタイプを作成</strong>（1週間以内）</li>
-                        <li><strong>ランディングページを作成</strong>（2週間以内）</li>
-                        <li><strong>知人1名に無料トライアル提案</strong>（2週間以内）</li>
-                        <li><strong>Twitterアカウントで実績発信開始</strong>（今日から）</li>
-                        <li><strong>ターゲット企業リスト50社を作成</strong>（1ヶ月以内）</li>
-                    </ol>
-                </div>
-            </section>
         </main>
 
         <footer>
             <p>最終更新: 2025年12月29日</p>
-            <p>このメモは個人用です。実際のビジネス展開は市場調査を十分に行ってください。</p>
+            <p>このドキュメントは技術的な参考資料です。実際の実装前に必ず各サイトの利用規約を確認してください。</p>
         </footer>
     </div>
 </body>
