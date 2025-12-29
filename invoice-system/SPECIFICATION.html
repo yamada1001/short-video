@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>請求書・見積書自動作成ツール - 機能仕様書</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* yojitu.comと同じカラースキーム */
+            --color-beige: #E5DDD5;
+            --color-off-white: #F5F3F0;
+            --color-light-gray: #E8E8E8;
+            --color-natural-brown: #8B7355;
+            --color-charcoal: #4A4A4A;
+            --color-text: #4A4A4A;
+            --color-text-light: #6B6B6B;
+            --color-bg: #F5F3F0;
+            --color-bg-white: #FFFFFF;
+            --color-border: rgba(139, 115, 85, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            background: var(--color-bg-white);
+            border-bottom: 1px solid var(--color-border);
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: var(--color-natural-brown);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: var(--color-text-light);
+            font-size: 1rem;
+        }
+
+        .section {
+            background: var(--color-bg-white);
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: var(--color-natural-brown);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--color-beige);
+        }
+
+        .section h3 {
+            color: var(--color-charcoal);
+            font-size: 1.2rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--color-charcoal);
+            font-size: 1rem;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .section ul,
+        .section ol {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+        }
+
+        .section strong {
+            color: var(--color-natural-brown);
+        }
+
+        .directory-tree {
+            background: var(--color-beige);
+            padding: 20px;
+            border-radius: 2px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--color-natural-brown);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 2px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+
+        .badge.phase-1 {
+            background: var(--color-natural-brown);
+        }
+
+        .badge.phase-2 {
+            background: var(--color-charcoal);
+        }
+
+        .info-box {
+            background: var(--color-beige);
+            border-left: 4px solid var(--color-natural-brown);
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .table th {
+            background: var(--color-beige);
+            color: var(--color-charcoal);
+            font-weight: 600;
+        }
+
+        .toc {
+            background: var(--color-off-white);
+            padding: 20px;
+            border-radius: 2px;
+            margin-bottom: 30px;
+        }
+
+        .toc h2 {
+            color: var(--color-natural-brown);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            color: var(--color-natural-brown);
+        }
+
+        code {
+            background: var(--color-beige);
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .pdf-preview {
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            margin: 20px 0;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-file-invoice-dollar"></i> 請求書・見積書自動作成ツール</h1>
+            <p>機能仕様書 v1.0 | クライアント専用型（1社1システム）</p>
+        </div>
+
+        <!-- 目次 -->
+        <div class="toc">
+            <h2><i class="fas fa-list"></i> 目次</h2>
+            <ul>
+                <li><a href="#overview">1. プロジェクト概要</a></li>
+                <li><a href="#directory">2. ディレクトリ構造</a></li>
+                <li><a href="#tech-stack">3. 技術スタック</a></li>
+                <li><a href="#database">4. データベース設計</a></li>
+                <li><a href="#features">5. 機能仕様</a></li>
+                <li><a href="#phases">6. Phase分け</a></li>
+            </ul>
+        </div>
+
+        <!-- 1. プロジェクト概要 -->
+        <div class="section" id="overview">
+            <h2>1. プロジェクト概要</h2>
+
+            <h3>目的</h3>
+            <p>大分の小規模企業（建設・不動産・士業など）向けに、請求書・見積書作成業務を効率化するWebアプリケーションを提供する。</p>
+
+            <div class="info-box" style="margin-top: 20px;">
+                <strong><i class="fas fa-lightbulb"></i> クライアント専用型の優位性</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>1社ごとに独立したシステムを納品（マルチテナントではない）</li>
+                    <li>カスタマイズが自由（大手SaaSとの差別化）</li>
+                    <li>データ完全分離でセキュリティが高い</li>
+                    <li>各社の要望に柔軟に対応可能</li>
+                </ul>
+            </div>
+
+            <h3>ターゲット顧客</h3>
+            <ul>
+                <li><strong>建設業:</strong> 見積書・請求書作成、工事進捗管理</li>
+                <li><strong>不動産業:</strong> 物件情報管理、問い合わせ対応</li>
+                <li><strong>士業:</strong> 顧客管理、書類作成</li>
+                <li><strong>小売・飲食:</strong> 在庫管理、予約管理</li>
+            </ul>
+
+            <h3>価格設定</h3>
+            <ul>
+                <li><strong>初期費用:</strong> 50,000円（開発・導入・レクチャー）</li>
+                <li><strong>月額費用:</strong> 10,000円（保守・カスタマイズ対応）</li>
+            </ul>
+        </div>
+
+        <!-- 2. ディレクトリ構造 -->
+        <div class="section" id="directory">
+            <h2>2. ディレクトリ構造</h2>
+
+            <h3>ベーステンプレート（Git管理）</h3>
+            <div class="directory-tree">
+invoice-system/                 # ベーステンプレート
+├── public/                     # 公開ディレクトリ（Webルート）
+│   ├── index.php              # ダッシュボード
+│   ├── customers/             # 顧客管理
+│   │   ├── index.php         # 顧客一覧
+│   │   ├── add.php           # 顧客追加
+│   │   └── edit.php          # 顧客編集
+│   ├── invoices/             # 請求書管理
+│   │   ├── index.php         # 請求書一覧
+│   │   ├── create.php        # 請求書作成
+│   │   └── view.php          # 請求書詳細
+│   ├── quotes/               # 見積書管理
+│   │   ├── index.php         # 見積書一覧
+│   │   ├── create.php        # 見積書作成
+│   │   └── view.php          # 見積書詳細
+│   └── assets/
+│       ├── css/
+│       │   ├── base.css      # yojitu.comからコピー
+│       │   └── invoice.css   # このアプリ専用CSS
+│       ├── js/
+│       │   └── app.js
+│       └── images/
+├── api/                       # API エンドポイント（AJAX用）
+│   ├── customers.php
+│   ├── invoices.php
+│   └── pdf-generate.php
+├── includes/                  # 共通ファイル
+│   ├── config.sample.php     # 設定サンプル
+│   ├── db.php                # データベース接続
+│   ├── functions.php         # 共通関数
+│   ├── header.php            # ヘッダー
+│   └── footer.php            # フッター
+├── database/
+│   └── schema.sql            # テーブル定義
+├── templates/                # PDF テンプレート
+│   ├── invoice.php
+│   └── quote.php
+├── pdfs/                     # 生成されたPDF格納
+│   ├── invoices/
+│   └── quotes/
+├── vendor/                   # Composer（PDF生成ライブラリ）
+├── .htaccess                # URL rewrite設定
+├── .gitignore
+├── composer.json
+├── README.md
+└── SPECIFICATION.html        # この仕様書
+            </div>
+
+            <h3>各社へのデプロイ例</h3>
+            <div class="directory-tree">
+/var/www/
+├── invoice-yamada-construction/    # A社（建設業）専用
+│   ├── public/
+│   ├── database/
+│   │   └── yamada.db              # A社専用DB（SQLite）
+│   └── includes/
+│       └── config.php             # A社専用設定
+│
+├── invoice-tanaka-realestate/     # B社（不動産）専用
+│   ├── public/
+│   ├── database/
+│   │   └── tanaka.db
+│   └── includes/
+│       └── config.php
+│
+└── invoice-suzuki-lawoffice/      # C社（士業）専用
+    ├── public/
+    ├── database/
+    │   └── suzuki.db
+    └── includes/
+        └── config.php
+            </div>
+        </div>
+
+        <!-- 3. 技術スタック -->
+        <div class="section" id="tech-stack">
+            <h2>3. 技術スタック</h2>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>項目</th>
+                        <th>技術</th>
+                        <th>理由</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>バックエンド</td>
+                        <td>PHP 8.0+</td>
+                        <td>yojitu.comと同じ、保守性が高い</td>
+                    </tr>
+                    <tr>
+                        <td>データベース</td>
+                        <td>SQLite（開発・小規模）<br>MySQL（本番・大規模）</td>
+                        <td>SQLiteは導入が簡単、スケール時にMySQL移行</td>
+                    </tr>
+                    <tr>
+                        <td>PDF生成</td>
+                        <td>TCPDF または mPDF</td>
+                        <td>日本語対応、カスタマイズ性が高い</td>
+                    </tr>
+                    <tr>
+                        <td>フロントエンド</td>
+                        <td>Vanilla JS（jQuery不使用）</td>
+                        <td>軽量、シンプル</td>
+                    </tr>
+                    <tr>
+                        <td>デザイン</td>
+                        <td>yojitu.com base.css流用</td>
+                        <td>ナチュラルブラウン系、無印良品風</td>
+                    </tr>
+                    <tr>
+                        <td>認証</td>
+                        <td>セッション認証（Phase 2）</td>
+                        <td>シンプル、小規模向け</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 4. データベース設計 -->
+        <div class="section" id="database">
+            <h2>4. データベース設計</h2>
+
+            <h3>4.1 テーブル一覧</h3>
+
+            <h4>customers（顧客テーブル）</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>カラム名</th>
+                        <th>型</th>
+                        <th>制約</th>
+                        <th>説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>INTEGER</td>
+                        <td>PRIMARY KEY</td>
+                        <td>顧客ID（自動採番）</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>TEXT</td>
+                        <td>NOT NULL</td>
+                        <td>顧客名</td>
+                    </tr>
+                    <tr>
+                        <td>postal_code</td>
+                        <td>TEXT</td>
+                        <td></td>
+                        <td>郵便番号（7桁）</td>
+                    </tr>
+                    <tr>
+                        <td>address</td>
+                        <td>TEXT</td>
+                        <td>NOT NULL</td>
+                        <td>住所</td>
+                    </tr>
+                    <tr>
+                        <td>phone</td>
+                        <td>TEXT</td>
+                        <td></td>
+                        <td>電話番号</td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td>TEXT</td>
+                        <td></td>
+                        <td>メールアドレス</td>
+                    </tr>
+                    <tr>
+                        <td>notes</td>
+                        <td>TEXT</td>
+                        <td></td>
+                        <td>備考</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DATETIME</td>
+                        <td>DEFAULT CURRENT_TIMESTAMP</td>
+                        <td>登録日時</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DATETIME</td>
+                        <td></td>
+                        <td>更新日時</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>invoices（請求書テーブル）</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>カラム名</th>
+                        <th>型</th>
+                        <th>制約</th>
+                        <th>説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>INTEGER</td>
+                        <td>PRIMARY KEY</td>
+                        <td>請求書ID</td>
+                    </tr>
+                    <tr>
+                        <td>invoice_number</td>
+                        <td>TEXT</td>
+                        <td>UNIQUE NOT NULL</td>
+                        <td>請求書番号（INV-20250129-001）</td>
+                    </tr>
+                    <tr>
+                        <td>customer_id</td>
+                        <td>INTEGER</td>
+                        <td>NOT NULL</td>
+                        <td>顧客ID（外部キー）</td>
+                    </tr>
+                    <tr>
+                        <td>issue_date</td>
+                        <td>DATE</td>
+                        <td>NOT NULL</td>
+                        <td>発行日</td>
+                    </tr>
+                    <tr>
+                        <td>due_date</td>
+                        <td>DATE</td>
+                        <td>NOT NULL</td>
+                        <td>支払期限</td>
+                    </tr>
+                    <tr>
+                        <td>subject</td>
+                        <td>TEXT</td>
+                        <td></td>
+                        <td>件名</td>
+                    </tr>
+                    <tr>
+                        <td>subtotal</td>
+                        <td>INTEGER</td>
+                        <td>NOT NULL</td>
+                        <td>小計（税抜）</td>
+                    </tr>
+                    <tr>
+                        <td>tax</td>
+                        <td>INTEGER</td>
+                        <td>NOT NULL</td>
+                        <td>消費税</td>
+                    </tr>
+                    <tr>
+                        <td>total</td>
+                        <td>INTEGER</td>
+                        <td>NOT NULL</td>
+                        <td>合計（税込）</td>
+                    </tr>
+                    <tr>
+                        <td>bank_info</td>
+                        <td>TEXT</td>
+                        <td></td>
+                        <td>振込先情報</td>
+                    </tr>
+                    <tr>
+                        <td>notes</td>
+                        <td>TEXT</td>
+                        <td></td>
+                        <td>備考</td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>TEXT</td>
+                        <td>DEFAULT 'draft'</td>
+                        <td>ステータス（draft/sent/paid）</td>
+                    </tr>
+                    <tr>
+                        <td>pdf_path</td>
+                        <td>TEXT</td>
+                        <td></td>
+                        <td>PDF保存パス</td>
+                    </tr>
+                    <tr>
+                        <td>is_deleted</td>
+                        <td>INTEGER</td>
+                        <td>DEFAULT 0</td>
+                        <td>論理削除フラグ</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DATETIME</td>
+                        <td>DEFAULT CURRENT_TIMESTAMP</td>
+                        <td>作成日時</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DATETIME</td>
+                        <td></td>
+                        <td>更新日時</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>invoice_items（請求書明細テーブル）</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>カラム名</th>
+                        <th>型</th>
+                        <th>制約</th>
+                        <th>説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>INTEGER</td>
+                        <td>PRIMARY KEY</td>
+                        <td>明細ID</td>
+                    </tr>
+                    <tr>
+                        <td>invoice_id</td>
+                        <td>INTEGER</td>
+                        <td>NOT NULL</td>
+                        <td>請求書ID（外部キー）</td>
+                    </tr>
+                    <tr>
+                        <td>item_name</td>
+                        <td>TEXT</td>
+                        <td>NOT NULL</td>
+                        <td>品目名</td>
+                    </tr>
+                    <tr>
+                        <td>quantity</td>
+                        <td>INTEGER</td>
+                        <td>NOT NULL</td>
+                        <td>数量</td>
+                    </tr>
+                    <tr>
+                        <td>unit_price</td>
+                        <td>INTEGER</td>
+                        <td>NOT NULL</td>
+                        <td>単価</td>
+                    </tr>
+                    <tr>
+                        <td>amount</td>
+                        <td>INTEGER</td>
+                        <td>NOT NULL</td>
+                        <td>金額（quantity × unit_price）</td>
+                    </tr>
+                    <tr>
+                        <td>sort_order</td>
+                        <td>INTEGER</td>
+                        <td>DEFAULT 0</td>
+                        <td>表示順</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>quotes（見積書テーブル）</h4>
+            <p>請求書テーブルとほぼ同じ構造。違いは以下：</p>
+            <ul>
+                <li><code>quote_number</code>: 見積書番号（QUO-20250129-001）</li>
+                <li><code>valid_until</code>: 有効期限（DATE型）</li>
+                <li><code>delivery_date</code>: 納期（DATE型、任意）</li>
+                <li><code>status</code>: draft/sent/accepted/rejected</li>
+            </ul>
+
+            <h4>settings（設定テーブル）</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>カラム名</th>
+                        <th>型</th>
+                        <th>説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>key</td>
+                        <td>TEXT</td>
+                        <td>設定キー（例: company_name, tax_rate）</td>
+                    </tr>
+                    <tr>
+                        <td>value</td>
+                        <td>TEXT</td>
+                        <td>設定値</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 5. 機能仕様 -->
+        <div class="section" id="features">
+            <h2>5. 機能仕様</h2>
+
+            <h3>5.1 ダッシュボード <span class="badge phase-1">Phase 1</span></h3>
+            <h4>表示内容</h4>
+            <ul>
+                <li><strong>今月の統計:</strong> 請求書発行件数、請求書合計金額、見積書発行件数</li>
+                <li><strong>未入金リスト:</strong> 支払期限が過ぎた請求書（赤色）、支払期限が近い請求書（黄色）</li>
+                <li><strong>最近の活動:</strong> 直近10件の請求書・見積書</li>
+            </ul>
+
+            <h3>5.2 顧客管理 <span class="badge phase-1">Phase 1</span></h3>
+
+            <h4>5.2.1 顧客一覧</h4>
+            <ul>
+                <li>表示項目: 顧客ID、顧客名、住所、電話番号、メールアドレス、登録日</li>
+                <li>検索機能: 顧客名で部分一致検索</li>
+                <li>ソート: 登録日、顧客名</li>
+                <li>ページネーション: 1ページ20件</li>
+            </ul>
+
+            <h4>5.2.2 顧客追加</h4>
+            <ul>
+                <li>入力項目: 顧客名（必須）、郵便番号、住所（必須）、電話番号、メールアドレス、備考</li>
+                <li>バリデーション:
+                    <ul>
+                        <li>顧客名: 100文字以内</li>
+                        <li>郵便番号: 7桁（ハイフンなし）</li>
+                        <li>メール: RFC準拠</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>5.2.3 顧客編集</h4>
+            <ul>
+                <li>既存情報の編集</li>
+                <li>削除機能（請求書紐付けチェック）</li>
+            </ul>
+
+            <h3>5.3 請求書管理 <span class="badge phase-1">Phase 1</span></h3>
+
+            <h4>5.3.1 請求書一覧</h4>
+            <ul>
+                <li>表示項目: 請求書番号、顧客名、請求日、支払期限、合計金額、ステータス、作成日</li>
+                <li>検索: 顧客名、請求書番号</li>
+                <li>フィルター: ステータス（未送付/送付済/入金済）、期間</li>
+                <li>ソート: 請求日、金額</li>
+                <li>CSV出力</li>
+            </ul>
+
+            <h4>5.3.2 請求書作成</h4>
+            <p><strong>ステップ1: 基本情報</strong></p>
+            <ul>
+                <li>顧客選択（プルダウン）</li>
+                <li>請求日（デフォルト: 今日）</li>
+                <li>支払期限（デフォルト: 請求日+30日）</li>
+                <li>件名（例: 2025年1月分 Web制作費用）</li>
+            </ul>
+
+            <p><strong>ステップ2: 明細入力</strong></p>
+            <ul>
+                <li>品目（テキスト、最大50文字）</li>
+                <li>数量（数値）</li>
+                <li>単価（数値）</li>
+                <li>金額（自動計算: 数量 × 単価）</li>
+                <li>明細行の追加/削除（最大20行）</li>
+            </ul>
+
+            <p><strong>ステップ3: 計算</strong></p>
+            <ul>
+                <li>小計（自動計算）</li>
+                <li>消費税（10%、自動計算）</li>
+                <li>合計（自動計算）</li>
+            </ul>
+
+            <p><strong>ステップ4: 備考・その他</strong></p>
+            <ul>
+                <li>振込先情報（テンプレート選択可）</li>
+                <li>備考（自由記入）</li>
+            </ul>
+
+            <h4>5.3.3 請求書プレビュー・保存</h4>
+            <ul>
+                <li>PDF形式でプレビュー表示</li>
+                <li>修正ボタンで編集画面に戻る</li>
+                <li>保存時:
+                    <ul>
+                        <li>データベースに保存</li>
+                        <li>PDF自動生成（<code>/pdfs/invoices/INV-YYYYMMDD-001.pdf</code>）</li>
+                        <li>ステータス: draft（未送付）</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>5.3.4 PDF出力</h4>
+            <div class="pdf-preview">
+                <strong>【請求書 PDFレイアウト（A4縦）】</strong>
+                <pre style="margin-top: 15px; line-height: 1.6;">
+┌─────────────────────────────────────┐
+│                                     │
+│  請求書                             │
+│                                     │
+│  請求書番号: INV-20250129-001       │
+│  発行日: 2025年1月29日              │
+│                                     │
+│  ○○株式会社 御中                   │
+│                                     │
+│  下記の通りご請求申し上げます。     │
+│                                     │
+│  ご請求金額: ¥110,000（税込）       │
+│                                     │
+│ ┌──────┬──────┬──────┬──────┐
+│ │品目    │数量    │単価    │金額    │
+│ ├──────┼──────┼──────┼──────┤
+│ │Web制作 │1       │100,000 │100,000 │
+│ └──────┴──────┴──────┴──────┘
+│                                     │
+│  小計:   ¥100,000                   │
+│  消費税:  ¥10,000                   │
+│  合計:   ¥110,000                   │
+│                                     │
+│  振込先:                            │
+│  ○○銀行 ○○支店                    │
+│  普通 1234567                       │
+│                                     │
+│  【発行者情報】                     │
+│  余日（Yojitsu）                    │
+│  〒XXX-XXXX 大分県...               │
+│  TEL: XXX-XXXX-XXXX                 │
+│                                     │
+└─────────────────────────────────────┘
+                </pre>
+            </div>
+
+            <h3>5.4 見積書管理 <span class="badge phase-1">Phase 1</span></h3>
+            <p>請求書とほぼ同様の機能。以下の違いあり：</p>
+            <ul>
+                <li>見積書番号: QUO-YYYYMMDD-001</li>
+                <li>有効期限（デフォルト: 作成日+30日）</li>
+                <li>納期（任意入力）</li>
+                <li>ステータス: draft/sent/accepted/rejected</li>
+            </ul>
+
+            <h3>5.5 設定 <span class="badge phase-1">Phase 1</span></h3>
+            <ul>
+                <li>会社情報編集（社名、住所、電話、メール）</li>
+                <li>振込先情報編集（複数登録可）</li>
+                <li>消費税率設定（デフォルト: 10%）</li>
+                <li>ロゴ画像アップロード</li>
+            </ul>
+
+            <h3>5.6 メール送信 <span class="badge phase-2">Phase 2</span></h3>
+            <ul>
+                <li>件名: 【請求書】○月分のご請求（株式会社○○様）</li>
+                <li>本文テンプレート</li>
+                <li>PDF添付</li>
+                <li>送付後ステータス: sent（送付済）</li>
+            </ul>
+
+            <h3>5.7 その他機能 <span class="badge phase-2">Phase 2</span></h3>
+            <ul>
+                <li>見積書→請求書変換</li>
+                <li>ユーザー認証（ログイン機能）</li>
+                <li>データバックアップ（SQLiteファイルダウンロード）</li>
+                <li>CSV一括エクスポート</li>
+            </ul>
+        </div>
+
+        <!-- 6. Phase分け -->
+        <div class="section" id="phases">
+            <h2>6. Phase分け</h2>
+
+            <h3>Phase 1（MVP: 最初に作る）<span class="badge phase-1">優先</span></h3>
+            <div class="info-box">
+                <strong>目標:</strong> 最小限の機能で請求書・見積書作成を実現し、営業資料として使える状態にする
+            </div>
+            <ul>
+                <li>✅ ダッシュボード（基本統計）</li>
+                <li>✅ 顧客管理（追加・編集・一覧）</li>
+                <li>✅ 請求書作成・一覧・PDF出力</li>
+                <li>✅ 見積書作成・一覧・PDF出力</li>
+                <li>✅ 設定（会社情報・振込先）</li>
+            </ul>
+            <p><strong>工数見積もり:</strong> 10〜15時間</p>
+
+            <h3>Phase 2（追加機能）<span class="badge phase-2">次フェーズ</span></h3>
+            <div class="info-box">
+                <strong>目標:</strong> 実際の運用で必要になる機能を追加
+            </div>
+            <ul>
+                <li>⏳ メール送信機能</li>
+                <li>⏳ 見積書→請求書変換</li>
+                <li>⏳ ユーザー認証（ログイン機能）</li>
+                <li>⏳ データバックアップ</li>
+                <li>⏳ CSV一括インポート・エクスポート</li>
+            </ul>
+            <p><strong>工数見積もり:</strong> 5〜10時間</p>
+
+            <div class="info-box" style="margin-top: 30px; background: var(--color-off-white); border-left: 4px solid var(--color-charcoal);">
+                <strong><i class="fas fa-info-circle"></i> 運用方針</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Phase 1を完成させて、営業資料・デモとして使用</li>
+                    <li>1社目の顧客獲得後、実際の運用で必要な機能をPhase 2で追加</li>
+                    <li>各社の要望に応じて個別カスタマイズ</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- フッター -->
+        <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-light);">
+            <p>請求書・見積書自動作成ツール 機能仕様書 v1.0</p>
+            <p style="margin-top: 5px;">作成日: 2025年12月29日 | 余日（Yojitsu）</p>
+        </div>
+    </div>
+</body>
+</html>
