@@ -538,17 +538,23 @@
         <h2><i class="fas fa-rocket"></i> 次のステップ</h2>
 
         <div class="info-box">
-            <strong><i class="fas fa-lightbulb"></i> さらに高度な機能が必要な場合</strong>
-            <p>フルバージョン（個別ファイル版）では以下の機能が利用できます：</p>
+            <strong><i class="fas fa-lightbulb"></i> FULL_VERSION.gs の追加機能</strong>
+            <p>FULL_VERSION.gs（推奨版）には以下の機能が含まれています：</p>
             <ul style="margin-top: 10px;">
-                <li>リッチなダイアログUI（複数明細の追加・削除）</li>
-                <li>Google Docs連携のPDF自動生成</li>
-                <li>Gmail連携のメール送信</li>
-                <li>合算請求書作成（複数の見積書・納品書から1つの請求書を作成）</li>
+                <li>✅ リッチなダイアログUI（複数明細の追加・削除）</li>
+                <li>✅ **PDF自動生成**（Google Docs テンプレート）</li>
+                <li>✅ **テストデータ自動挿入**（すぐに動作確認可能）</li>
+                <li>✅ 合算請求書作成（複数の見積書・納品書から1つの請求書を作成）</li>
+                <li>❌ Gmail連携（必要に応じて追加可能）</li>
             </ul>
-            <p style="margin-top: 15px;">フルバージョンの仕様書：<br>
-            <a href="https://www.yojitu.com/invoice-system/GAS_SPECIFICATION.html" target="_blank" class="btn">仕様書を見る</a>
-            </p>
+            <p style="margin-top: 15px;"><strong>PDF生成の設定方法：</strong></p>
+            <ol style="margin-top: 5px; margin-left: 20px;">
+                <li>Google Docsで請求書テンプレートを作成（変数 {{書類番号}}, {{取引先名}} 等を配置）</li>
+                <li>テンプレートのIDを取得</li>
+                <li>FULL_VERSION.gs の39-44行目の TEMPLATE_IDS に設定</li>
+                <li>メニュー「📥 PDFを生成」から書類をPDF化</li>
+            </ol>
+            <p style="margin-top: 15px;">詳細は <strong>README.md</strong> を参照してください。</p>
         </div>
 
         <div style="margin-top: 50px; padding: 30px; background: white; border: 2px solid var(--color-beige); border-radius: 2px; text-align: center;">

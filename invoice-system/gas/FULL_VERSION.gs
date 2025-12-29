@@ -10,6 +10,7 @@
  * ✅ リアルタイム金額計算（小計・消費税・合計）
  * ✅ 取引先管理
  * ✅ 初期セットアップ（シート自動作成）
+ * ✅ PDF自動生成（Google Docs テンプレート）
  */
 
 // ============================================
@@ -33,6 +34,15 @@ const DOC_TYPES = {
   RECEIPT: { prefix: 'R', name: '領収書' }
 };
 
+// Google DocsテンプレートID（各書類種別ごとに設定）
+// 設定方法: README.md参照
+const TEMPLATE_IDS = {
+  QUOTE: 'YOUR_QUOTE_TEMPLATE_ID',      // 見積書テンプレート
+  DELIVERY: 'YOUR_DELIVERY_TEMPLATE_ID', // 納品書テンプレート
+  INVOICE: 'YOUR_INVOICE_TEMPLATE_ID',   // 請求書テンプレート
+  RECEIPT: 'YOUR_RECEIPT_TEMPLATE_ID'    // 領収書テンプレート
+};
+
 // ============================================
 // メイン処理（カスタムメニュー）
 // ============================================
@@ -41,6 +51,7 @@ function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('📄 請求書管理')
     .addItem('🔧 初期セットアップ（初回のみ）', 'setupSheets')
+    .addItem('🧪 テストデータを挿入', 'insertTestData')
     .addSeparator()
     .addItem('見積書作成', 'showCreateQuoteDialog')
     .addItem('納品書作成', 'showCreateDeliveryDialog')
@@ -52,6 +63,8 @@ function onOpen() {
     .addItem('納品書 → 請求書に変換', 'showConvertDeliveryToInvoiceDialog')
     .addSeparator()
     .addItem('合算請求書を作成', 'showCombineInvoiceDialog')
+    .addSeparator()
+    .addItem('📥 PDFを生成', 'showGeneratePDFDialog')
     .addSeparator()
     .addItem('取引先を追加', 'showAddCustomerDialog')
     .addToUi();
@@ -1063,4 +1076,411 @@ function getAddCustomerDialogHTML() {
 </body>
 </html>
   `.trim();
+}
+
+// ============================================
+// PDF生成処理
+// ============================================
+
+/**
+ * PDF生成ダイアログを表示
+ */
+function showGeneratePDFDialog() {
+  const html = HtmlService.createHtmlOutput(getGeneratePDFDialogHTML())
+    .setWidth(600)
+    .setHeight(400);
+  SpreadsheetApp.getUi().showModalDialog(html, 'PDFを生成');
+}
+
+/**
+ * PDFを生成
+ */
+function generatePDF(docNumber, docType) {
+  try {
+    // テンプレートIDを取得
+    const templateId = TEMPLATE_IDS[docType];
+    if (!templateId || templateId.startsWith('YOUR_')) {
+      return {
+        success: false,
+        message: `テンプレートIDが設定されていません。\nコード内のTEMPLATE_IDS（39-44行目）を設定してください。\n設定方法: README.md参照`
+      };
+    }
+
+    // 書類データを取得
+    const docData = getDocumentData(docType, docNumber);
+    if (!docData) {
+      return { success: false, message: '書類データが見つかりません' };
+    }
+
+    // 自社情報を取得
+    const companyInfo = getCompanyInfo();
+
+    // 取引先情報を取得
+    const customer = getCustomerById(docData.customerId);
+
+    // テンプレートをコピー
+    const templateDoc = DriveApp.getFileById(templateId);
+    const copyDoc = templateDoc.makeCopy(`${docNumber}_temp`);
+    const copyDocId = copyDoc.getId();
+
+    // Google Docsを開いて変数を置換
+    const doc = DocumentApp.openById(copyDocId);
+    const body = doc.getBody();
+
+    // 明細テーブルを作成
+    const lineItemsTable = createLineItemsTable(docData.lineItems);
+
+    // 置換マップ
+    const replacements = {
+      '{{書類種別}}': DOC_TYPES[docType].name,
+      '{{書類番号}}': docNumber,
+      '{{発行日}}': formatDate(docData.issueDate),
+      '{{支払期限}}': docData.dueDate ? formatDate(docData.dueDate) : '',
+      '{{取引先名}}': customer.name,
+      '{{取引先郵便番号}}': customer.postalCode || '',
+      '{{取引先住所}}': customer.address || '',
+      '{{取引先担当者}}': customer.contactPerson || '',
+      '{{件名}}': docData.subject,
+      '{{明細}}': lineItemsTable,
+      '{{小計}}': formatCurrency(docData.subtotal),
+      '{{消費税}}': formatCurrency(docData.tax),
+      '{{合計金額}}': formatCurrency(docData.total),
+      '{{備考}}': docData.notes || '',
+      '{{会社名}}': companyInfo.name || '',
+      '{{会社郵便番号}}': companyInfo.postalCode || '',
+      '{{会社住所}}': companyInfo.address || '',
+      '{{会社電話}}': companyInfo.phone || '',
+      '{{会社メール}}': companyInfo.email || '',
+      '{{登録番号}}': companyInfo.registrationNumber || '',
+      '{{銀行名}}': companyInfo.bankName || '',
+      '{{支店名}}': companyInfo.branchName || '',
+      '{{口座種別}}': companyInfo.accountType || '',
+      '{{口座番号}}': companyInfo.accountNumber || '',
+      '{{口座名義}}': companyInfo.accountHolder || ''
+    };
+
+    // テキストを置換
+    for (const [key, value] of Object.entries(replacements)) {
+      body.replaceText(key, String(value));
+    }
+
+    doc.saveAndClose();
+
+    // PDFに変換
+    const pdfBlob = copyDoc.getAs('application/pdf');
+    pdfBlob.setName(`${docNumber}.pdf`);
+
+    // Google Driveに保存
+    const folder = getOrCreatePDFFolder(docType);
+    const pdfFile = folder.createFile(pdfBlob);
+    const pdfUrl = pdfFile.getUrl();
+
+    // 一時ファイルを削除
+    DriveApp.getFileById(copyDocId).setTrashed(true);
+
+    // スプレッドシートにPDF URLを記録
+    updatePDFUrl(docNumber, docType, pdfUrl);
+
+    return {
+      success: true,
+      message: `PDF生成完了: ${docNumber}.pdf\n\nGoogle Driveに保存しました。`,
+      pdfUrl: pdfUrl,
+      fileName: `${docNumber}.pdf`
+    };
+
+  } catch (error) {
+    Logger.log(`PDF生成エラー: ${error.message}`);
+    return {
+      success: false,
+      message: `PDF生成エラー: ${error.message}`
+    };
+  }
+}
+
+/**
+ * 明細テーブルをテキスト形式で作成
+ */
+function createLineItemsTable(lineItems) {
+  if (!lineItems || lineItems.length === 0) {
+    return '明細なし';
+  }
+
+  let table = '品目\t数量\t単価\t金額\n';
+  table += '─'.repeat(50) + '\n';
+
+  lineItems.forEach(item => {
+    table += `${item.itemName}\t${item.quantity}\t${formatCurrency(item.unitPrice)}\t${formatCurrency(item.amount)}\n`;
+  });
+
+  return table;
+}
+
+/**
+ * 金額をフォーマット（カンマ区切り）
+ */
+function formatCurrency(amount) {
+  if (!amount && amount !== 0) return '¥0';
+  return '¥' + Number(amount).toLocaleString('ja-JP');
+}
+
+/**
+ * PDF保存用フォルダを取得（なければ作成）
+ */
+function getOrCreatePDFFolder(docType) {
+  const folderName = `${DOC_TYPES[docType].name}PDF`;
+  const folders = DriveApp.getFoldersByName(folderName);
+
+  if (folders.hasNext()) {
+    return folders.next();
+  } else {
+    return DriveApp.createFolder(folderName);
+  }
+}
+
+/**
+ * スプレッドシートにPDF URLを記録
+ */
+function updatePDFUrl(docNumber, docType, pdfUrl) {
+  const sheetName = getSheetNameByDocType(docType);
+  const sheet = getSheet(sheetName);
+  const lastRow = sheet.getLastRow();
+
+  if (lastRow < 2) return;
+
+  const data = sheet.getRange(2, 1, lastRow - 1, 1).getValues();
+  const rowIndex = data.findIndex(row => row[0] === docNumber);
+
+  if (rowIndex >= 0) {
+    sheet.getRange(rowIndex + 2, 15).setValue(pdfUrl); // O列にPDF URLを記録
+  }
+}
+
+/**
+ * PDF生成ダイアログHTML
+ */
+function getGeneratePDFDialogHTML() {
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    body { font-family: 'Noto Sans JP', Arial, sans-serif; padding: 20px; background: #F5F3F0; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; font-weight: 600; color: #4A4A4A; }
+    select { width: 100%; padding: 8px; border: 1px solid #E5DDD5; border-radius: 2px; font-size: 14px; box-sizing: border-box; }
+    .btn { background: #8B7355; color: white; border: none; padding: 10px 20px; border-radius: 2px; cursor: pointer; margin-right: 10px; }
+    .btn:hover { background: #6B5335; }
+    .btn-secondary { background: #E5DDD5; color: #4A4A4A; }
+    #message { margin-top: 15px; padding: 10px; border-radius: 2px; display: none; }
+    .success { background: #E8F5E9; color: #2E7D32; border: 1px solid #4CAF50; }
+    .error { background: #FFEBEE; color: #C62828; border: 1px solid #F44336; }
+    .info { background: #E3F2FD; color: #1565C0; border: 1px solid #2196F3; padding: 10px; border-radius: 2px; margin-bottom: 15px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="info">
+    📌 事前準備: Google Docsテンプレートを作成し、TEMPLATE_IDS（コード39-44行目）を設定してください。<br>
+    設定方法は README.md を参照してください。
+  </div>
+
+  <form id="pdfForm">
+    <div class="form-group">
+      <label>書類種別 *</label>
+      <select id="docType" required onchange="loadDocuments()">
+        <option value="">選択してください</option>
+        <option value="QUOTE">見積書</option>
+        <option value="DELIVERY">納品書</option>
+        <option value="INVOICE">請求書</option>
+        <option value="RECEIPT">領収書</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>書類番号 *</label>
+      <select id="docNumber" required>
+        <option value="">まず書類種別を選択してください</option>
+      </select>
+    </div>
+
+    <div>
+      <button type="submit" class="btn">PDF生成</button>
+      <button type="button" class="btn btn-secondary" onclick="google.script.host.close()">キャンセル</button>
+    </div>
+
+    <div id="message"></div>
+  </form>
+
+  <script>
+    function loadDocuments() {
+      const docType = document.getElementById('docType').value;
+      if (!docType) return;
+
+      const docNumberSelect = document.getElementById('docNumber');
+      docNumberSelect.innerHTML = '<option value="">読み込み中...</option>';
+
+      google.script.run
+        .withSuccessHandler(function(docs) {
+          docNumberSelect.innerHTML = '<option value="">選択してください</option>';
+          docs.forEach(d => {
+            const option = document.createElement('option');
+            option.value = d.docNumber;
+            option.textContent = d.docNumber + ' - ' + d.customerName + ' (¥' + d.total.toLocaleString() + ')';
+            docNumberSelect.appendChild(option);
+          });
+        })
+        .getDocumentList(docType);
+    }
+
+    document.getElementById('pdfForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const docNumber = document.getElementById('docNumber').value;
+      const docType = document.getElementById('docType').value;
+
+      if (!docNumber || !docType) {
+        alert('書類種別と書類番号を選択してください');
+        return;
+      }
+
+      const messageDiv = document.getElementById('message');
+      messageDiv.textContent = 'PDF生成中...';
+      messageDiv.className = 'info';
+      messageDiv.style.display = 'block';
+
+      google.script.run
+        .withSuccessHandler(function(result) {
+          messageDiv.className = result.success ? 'success' : 'error';
+          messageDiv.innerHTML = result.message;
+          if (result.pdfUrl) {
+            messageDiv.innerHTML += '<br><a href="' + result.pdfUrl + '" target="_blank">PDFを開く</a>';
+          }
+          messageDiv.style.display = 'block';
+        })
+        .withFailureHandler(function(error) {
+          messageDiv.className = 'error';
+          messageDiv.textContent = 'エラー: ' + error.message;
+          messageDiv.style.display = 'block';
+        })
+        .generatePDF(docNumber, docType);
+    });
+  </script>
+</body>
+</html>
+  `.trim();
+}
+
+// ============================================
+// テストデータ挿入
+// ============================================
+
+/**
+ * テストデータを挿入（開発・テスト用）
+ */
+function insertTestData() {
+  const ui = SpreadsheetApp.getUi();
+  const response = ui.alert(
+    'テストデータ挿入',
+    'テストデータ（自社情報・取引先3件・見積書2件・請求書1件）を挿入しますか？',
+    ui.ButtonSet.OK_CANCEL
+  );
+
+  if (response !== ui.Button.OK) return;
+
+  try {
+    const ss = getSpreadsheet();
+
+    // 1. 自社情報を挿入
+    const settingsSheet = getSheet(SHEET_NAMES.SETTINGS);
+    settingsSheet.getRange('B2:B14').setValues([
+      ['株式会社YOJITU'],
+      ['870-0123'],
+      ['大分県大分市中央町1-2-3 YOJITUビル5F'],
+      ['097-123-4567'],
+      ['097-123-4568'],
+      ['info@yojitu.com'],
+      ['T1234567890123'],
+      ['大分銀行'],
+      ['中央支店'],
+      ['普通'],
+      ['1234567'],
+      ['カ）ヨジツ'],
+      [''] // 印鑑画像URL
+    ]);
+
+    // 2. 取引先3件を挿入
+    const customersSheet = getSheet(SHEET_NAMES.CUSTOMERS);
+    const testCustomers = [
+      ['C001', '株式会社ABC建設', '870-0001', '大分県大分市府内町1-1-1', '山田太郎', '097-111-1111', 'yamada@abc-const.co.jp', '定期取引先', now(), now()],
+      ['C002', '有限会社XYZ商事', '870-0002', '大分県大分市荷揚町2-2-2', '佐藤花子', '097-222-2222', 'sato@xyz-trade.co.jp', '新規取引先', now(), now()],
+      ['C003', '合同会社テクノロジー', '870-0003', '大分県大分市都町3-3-3', '鈴木一郎', '097-333-3333', 'suzuki@tech.co.jp', 'VIP顧客', now(), now()]
+    ];
+    testCustomers.forEach(customer => customersSheet.appendRow(customer));
+
+    // 3. 見積書2件を挿入
+    const quotesSheet = getSheet(SHEET_NAMES.QUOTES);
+    const today = new Date();
+    const dateStr = Utilities.formatDate(today, 'Asia/Tokyo', 'yyyyMMdd');
+
+    const quote1LineItems = [
+      { itemName: 'Webサイト制作', quantity: 1, unitPrice: 500000, amount: 500000 },
+      { itemName: 'SEO対策', quantity: 1, unitPrice: 100000, amount: 100000 }
+    ];
+    const quote1Amounts = calculateAmounts(quote1LineItems);
+    quotesSheet.appendRow([
+      `Q-${dateStr}-001`, '作成中', 'C001', '株式会社ABC建設',
+      formatDate(today), '',
+      'コーポレートサイト制作のお見積り',
+      stringifyLineItems(quote1LineItems),
+      quote1Amounts.subtotal, quote1Amounts.tax, quote1Amounts.total,
+      '納期: 2ヶ月', '初回取引', '', '', now(), now()
+    ]);
+
+    const quote2LineItems = [
+      { itemName: 'LP制作', quantity: 1, unitPrice: 300000, amount: 300000 },
+      { itemName: '広告運用', quantity: 3, unitPrice: 50000, amount: 150000 }
+    ];
+    const quote2Amounts = calculateAmounts(quote2LineItems);
+    quotesSheet.appendRow([
+      `Q-${dateStr}-002`, '作成中', 'C002', '有限会社XYZ商事',
+      formatDate(today), '',
+      'ランディングページ制作＋広告運用',
+      stringifyLineItems(quote2LineItems),
+      quote2Amounts.subtotal, quote2Amounts.tax, quote2Amounts.total,
+      '納期: 1.5ヶ月', '', '', '', now(), now()
+    ]);
+
+    // 4. 請求書1件を挿入
+    const invoicesSheet = getSheet(SHEET_NAMES.INVOICES);
+    const dueDate = new Date();
+    dueDate.setDate(dueDate.getDate() + 30);
+
+    const invoice1LineItems = [
+      { itemName: 'システム開発', quantity: 1, unitPrice: 800000, amount: 800000 },
+      { itemName: '保守サポート（3ヶ月）', quantity: 3, unitPrice: 50000, amount: 150000 }
+    ];
+    const invoice1Amounts = calculateAmounts(invoice1LineItems);
+    invoicesSheet.appendRow([
+      `I-${dateStr}-001`, '作成中', 'C003', '合同会社テクノロジー',
+      formatDate(today), formatDate(dueDate),
+      '業務システム開発＋保守サポート',
+      stringifyLineItems(invoice1LineItems),
+      invoice1Amounts.subtotal, invoice1Amounts.tax, invoice1Amounts.total,
+      '支払い期限: 月末締め翌月末払い', 'VIP顧客につき優先対応', '', '', now(), now()
+    ]);
+
+    ui.alert(
+      '✅ テストデータ挿入完了',
+      '以下のデータを挿入しました：\n\n' +
+      '• 自社情報（株式会社YOJITU）\n' +
+      '• 取引先3件（ABC建設、XYZ商事、テクノロジー）\n' +
+      '• 見積書2件（Q-' + dateStr + '-001, Q-' + dateStr + '-002）\n' +
+      '• 請求書1件（I-' + dateStr + '-001）\n\n' +
+      'すぐに動作確認ができます！',
+      ui.ButtonSet.OK
+    );
+
+  } catch (error) {
+    ui.alert('エラー', `テストデータ挿入エラー：${error.message}`, ui.ButtonSet.OK);
+  }
 }
