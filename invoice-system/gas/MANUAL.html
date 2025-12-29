@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>GAS版 請求書システム 使い方マニュアル</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --color-beige: #E5DDD5;
+            --color-natural-brown: #8B7355;
+            --color-charcoal: #4A4A4A;
+            --color-bg: #F5F3F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-charcoal);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--color-natural-brown);
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--color-natural-brown);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--color-natural-brown);
+            margin: 40px 0 20px 0;
+            border-left: 4px solid var(--color-natural-brown);
+            padding-left: 15px;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: var(--color-charcoal);
+            margin: 30px 0 15px 0;
+        }
+
+        .step {
+            background: white;
+            border: 2px solid var(--color-beige);
+            border-radius: 2px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: var(--color-natural-brown);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-natural-brown);
+            margin-bottom: 15px;
+        }
+
+        .code-box {
+            background: var(--color-charcoal);
+            color: #E0E0E0;
+            padding: 15px;
+            border-radius: 2px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        .info-box {
+            background: #FFF9F0;
+            border-left: 3px solid var(--color-natural-brown);
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #FFF3E0;
+            border-left: 3px solid #FF9800;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+
+        .success-box {
+            background: #E8F5E9;
+            border-left: 3px solid #4CAF50;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--color-natural-brown);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #6B5335;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 25px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+
+        th {
+            background: var(--color-beige);
+            color: var(--color-charcoal);
+            font-weight: 600;
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--color-beige);
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid var(--color-beige);
+        }
+
+        .screenshot {
+            background: white;
+            border: 2px solid var(--color-beige);
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-style: italic;
+            color: #999;
+        }
+
+        kbd {
+            background: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 2px 6px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-book"></i> GAS版 請求書システム 使い方マニュアル</h1>
+
+        <div class="info-box">
+            <strong><i class="fas fa-info-circle"></i> このシステムでできること</strong>
+            <ul style="margin-top: 10px;">
+                <li>見積書・納品書・請求書・領収書の作成</li>
+                <li>見積書 → 納品書 / 請求書への変換</li>
+                <li>納品書 → 請求書への変換</li>
+                <li>書類番号の自動採番（Q-20250101-001形式）</li>
+                <li>消費税10%の自動計算</li>
+            </ul>
+        </div>
+
+        <!-- ステップ1: 初期セットアップ -->
+        <div class="step">
+            <div class="step-title">
+                <span class="step-number">1</span>
+                初期セットアップ（初回のみ、5分）
+            </div>
+
+            <h3>1-1. Googleスプレッドシートを作成</h3>
+            <ol>
+                <li>Google Driveを開く</li>
+                <li>「新規」→「Googleスプレッドシート」→「空白のスプレッドシート」</li>
+                <li>ファイル名を変更（例：「請求書管理システム」）</li>
+            </ol>
+
+            <h3>1-2. Apps Scriptエディタを開く</h3>
+            <ol>
+                <li>スプレッドシートで「拡張機能」メニュー → 「Apps Script」をクリック</li>
+                <li>Apps Scriptエディタが新しいタブで開きます</li>
+            </ol>
+
+            <h3>1-3. コードを貼り付け</h3>
+            <ol>
+                <li>GitHubで以下のURLを開く：<br>
+                    <div class="code-box">https://github.com/yamada1001/short-video/blob/main/invoice-system/gas/ALL_IN_ONE.gs</div>
+                </li>
+                <li>「Raw」ボタンをクリック</li>
+                <li>全選択（<kbd>Cmd</kbd>+<kbd>A</kbd> / <kbd>Ctrl</kbd>+<kbd>A</kbd>）</li>
+                <li>コピー（<kbd>Cmd</kbd>+<kbd>C</kbd> / <kbd>Ctrl</kbd>+<kbd>C</kbd>）</li>
+                <li>Apps Scriptエディタに戻り、既存のコードを全て削除</li>
+                <li>貼り付け（<kbd>Cmd</kbd>+<kbd>V</kbd> / <kbd>Ctrl</kbd>+<kbd>V</kbd>）</li>
+                <li>保存（<kbd>Cmd</kbd>+<kbd>S</kbd> / <kbd>Ctrl</kbd>+<kbd>S</kbd>）</li>
+            </ol>
+
+            <div class="success-box">
+                <strong><i class="fas fa-check-circle"></i> 保存完了のサイン</strong><br>
+                画面上部に「すべての変更がドライブに保存されました」と表示されればOKです。
+            </div>
+
+            <h3>1-4. スプレッドシートに戻ってシートを作成</h3>
+            <ol>
+                <li>スプレッドシートのタブに戻る</li>
+                <li>ページをリロード（<kbd>Cmd</kbd>+<kbd>R</kbd> / <kbd>Ctrl</kbd>+<kbd>R</kbd>）</li>
+                <li>メニューバーに「📄 請求書管理」が表示される</li>
+                <li>「📄 請求書管理」→「🔧 初期セットアップ（初回のみ）」をクリック</li>
+                <li>「セットアップ完了」のダイアログが表示される</li>
+            </ol>
+
+            <div class="success-box">
+                <strong><i class="fas fa-check-circle"></i> セットアップ成功</strong><br>
+                以下の7つのシートが自動作成されます：
+                <ul style="margin-top: 10px;">
+                    <li>設定</li>
+                    <li>取引先マスタ</li>
+                    <li>見積書</li>
+                    <li>納品書</li>
+                    <li>請求書</li>
+                    <li>領収書</li>
+                    <li>品目マスタ</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ステップ2: 自社情報の入力 -->
+        <div class="step">
+            <div class="step-title">
+                <span class="step-number">2</span>
+                自社情報を入力（初回のみ、3分）
+            </div>
+
+            <ol>
+                <li>「設定」シートを開く</li>
+                <li>B列に自社情報を入力：</li>
+            </ol>
+
+            <table>
+                <tr>
+                    <th>項目（A列）</th>
+                    <th>入力例（B列）</th>
+                </tr>
+                <tr>
+                    <td>会社名</td>
+                    <td>株式会社YOJITU</td>
+                </tr>
+                <tr>
+                    <td>郵便番号</td>
+                    <td>870-0000</td>
+                </tr>
+                <tr>
+                    <td>住所</td>
+                    <td>大分県大分市〇〇 1-2-3</td>
+                </tr>
+                <tr>
+                    <td>電話番号</td>
+                    <td>097-XXX-XXXX</td>
+                </tr>
+                <tr>
+                    <td>メールアドレス</td>
+                    <td>info@yojitu.com</td>
+                </tr>
+                <tr>
+                    <td>登録番号（インボイス）</td>
+                    <td>T1234567890123</td>
+                </tr>
+                <tr>
+                    <td>振込先銀行名</td>
+                    <td>大分銀行</td>
+                </tr>
+                <tr>
+                    <td>振込先支店名</td>
+                    <td>本店</td>
+                </tr>
+                <tr>
+                    <td>振込先口座種別</td>
+                    <td>普通</td>
+                </tr>
+                <tr>
+                    <td>振込先口座番号</td>
+                    <td>1234567</td>
+                </tr>
+                <tr>
+                    <td>振込先口座名義</td>
+                    <td>カ）ヨウジツ</td>
+                </tr>
+            </table>
+
+            <div class="info-box">
+                <strong><i class="fas fa-info-circle"></i> 印鑑画像URL</strong><br>
+                角印・丸印の画像をGoogle Driveにアップロードして、共有リンクを貼り付けることができます（任意）。個人事業主で印鑑登録していない場合は空欄でOKです。
+            </div>
+        </div>
+
+        <!-- ステップ3: 取引先を追加 -->
+        <div class="step">
+            <div class="step-title">
+                <span class="step-number">3</span>
+                取引先を追加（1分/社）
+            </div>
+
+            <ol>
+                <li>メニュー「📄 請求書管理」→「取引先を追加」をクリック</li>
+                <li>入力ボックスが表示されるので順番に入力：</li>
+            </ol>
+
+            <table>
+                <tr>
+                    <th>項目</th>
+                    <th>入力例</th>
+                </tr>
+                <tr>
+                    <td>取引先名</td>
+                    <td>株式会社〇〇</td>
+                </tr>
+                <tr>
+                    <td>メールアドレス</td>
+                    <td>contact@example.com</td>
+                </tr>
+            </table>
+
+            <div class="success-box">
+                <strong><i class="fas fa-check-circle"></i> 取引先IDが自動採番</strong><br>
+                「C001」「C002」...という形式で自動的にIDが割り振られます。このIDを使って見積書を作成します。
+            </div>
+
+            <div class="info-box">
+                <strong><i class="fas fa-info-circle"></i> 詳細情報の追加</strong><br>
+                「取引先マスタ」シートを直接編集して、郵便番号・住所・担当者名・電話番号・備考を追加できます。
+            </div>
+        </div>
+
+        <!-- ステップ4: 見積書を作成 -->
+        <div class="step">
+            <div class="step-title">
+                <span class="step-number">4</span>
+                見積書を作成（2分/件）
+            </div>
+
+            <ol>
+                <li>メニュー「📄 請求書管理」→「見積書作成」をクリック</li>
+                <li>入力ボックスが順番に表示されるので入力：</li>
+            </ol>
+
+            <table>
+                <tr>
+                    <th>項目</th>
+                    <th>入力例</th>
+                    <th>説明</th>
+                </tr>
+                <tr>
+                    <td>取引先ID</td>
+                    <td>C001</td>
+                    <td>ステップ3で作成したID</td>
+                </tr>
+                <tr>
+                    <td>件名</td>
+                    <td>〇〇工事のお見積り</td>
+                    <td>見積書のタイトル</td>
+                </tr>
+                <tr>
+                    <td>金額（税抜）</td>
+                    <td>100000</td>
+                    <td>税抜金額（自動で消費税10%が計算される）</td>
+                </tr>
+            </table>
+
+            <div class="success-box">
+                <strong><i class="fas fa-check-circle"></i> 見積書が作成されました</strong><br>
+                「見積書 Q-20250101-001 を作成しました（金額: ¥110,000）」というメッセージが表示されます。
+            </div>
+
+            <h3>確認方法</h3>
+            <ol>
+                <li>「見積書」シートを開く</li>
+                <li>最新の見積書が1行追加されています</li>
+            </ol>
+
+            <table>
+                <tr>
+                    <th>列</th>
+                    <th>内容</th>
+                </tr>
+                <tr>
+                    <td>A列</td>
+                    <td>書類番号（Q-20250101-001）</td>
+                </tr>
+                <tr>
+                    <td>B列</td>
+                    <td>ステータス（作成中）</td>
+                </tr>
+                <tr>
+                    <td>C列</td>
+                    <td>取引先ID（C001）</td>
+                </tr>
+                <tr>
+                    <td>D列</td>
+                    <td>取引先名</td>
+                </tr>
+                <tr>
+                    <td>I列</td>
+                    <td>小計（100,000）</td>
+                </tr>
+                <tr>
+                    <td>J列</td>
+                    <td>消費税（10,000）</td>
+                </tr>
+                <tr>
+                    <td>K列</td>
+                    <td>合計金額（110,000）</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ステップ5: 見積書を請求書に変換 -->
+        <div class="step">
+            <div class="step-title">
+                <span class="step-number">5</span>
+                見積書を請求書に変換（1分）
+            </div>
+
+            <h3>受注確定後、見積書から請求書を作成</h3>
+
+            <ol>
+                <li>メニュー「📄 請求書管理」→「見積書 → 請求書に変換」をクリック</li>
+                <li>見積書番号を入力（例：Q-20250101-001）</li>
+                <li>支払期限を入力（例：2025/01/31）</li>
+            </ol>
+
+            <div class="success-box">
+                <strong><i class="fas fa-check-circle"></i> 請求書が作成されました</strong><br>
+                「見積書 Q-20250101-001 から請求書 I-20250101-001 を作成しました」というメッセージが表示されます。
+            </div>
+
+            <h3>確認方法</h3>
+            <ol>
+                <li>「請求書」シートを開く</li>
+                <li>見積書と同じ内容の請求書が追加されています</li>
+                <li>N列（変換元）に元の見積書番号が記録されています</li>
+            </ol>
+
+            <div class="info-box">
+                <strong><i class="fas fa-lightbulb"></i> freee準拠の変換機能</strong>
+                <ul style="margin-top: 10px;">
+                    <li>見積書 → 納品書</li>
+                    <li>見積書 → 請求書</li>
+                    <li>納品書 → 請求書</li>
+                </ul>
+                いずれも明細・金額・取引先情報がそのままコピーされます。
+            </div>
+        </div>
+
+        <!-- よくある質問 -->
+        <h2><i class="fas fa-question-circle"></i> よくある質問</h2>
+
+        <div class="step">
+            <h3>Q1. 複数の明細を入力したい</h3>
+            <p>現在の簡易版では1明細のみ対応しています。複数明細が必要な場合は、「見積書」シートを直接編集してH列（明細JSON）に以下の形式で入力してください：</p>
+            <div class="code-box">[{"itemName":"工事費","quantity":1,"unitPrice":50000,"amount":50000},{"itemName":"材料費","quantity":1,"unitPrice":30000,"amount":30000}]</div>
+            <p>I列（小計）、J列（消費税）、K列（合計金額）を手動で再計算してください。</p>
+        </div>
+
+        <div class="step">
+            <h3>Q2. 書類を削除したい</h3>
+            <p>該当するシート（見積書・納品書・請求書など）を開き、削除したい行を右クリック → 「行を削除」を選択してください。</p>
+        </div>
+
+        <div class="step">
+            <h3>Q3. 書類番号の形式を変更したい</h3>
+            <p>Apps Scriptエディタで <code>generateDocumentNumber</code> 関数を編集してください。現在の形式：Q-20250101-001（Q=見積書、日付、連番）</p>
+        </div>
+
+        <div class="step">
+            <h3>Q4. PDF生成はできますか？</h3>
+            <p>現在の簡易版ではPDF生成機能は含まれていません。フルバージョン（個別ファイル版）にはGoogle Docs連携のPDF生成機能が実装されています。</p>
+        </div>
+
+        <div class="step">
+            <h3>Q5. メール送信はできますか？</h3>
+            <p>現在の簡易版ではメール送信機能は含まれていません。フルバージョン（個別ファイル版）にはGmail連携のメール送信機能が実装されています。</p>
+        </div>
+
+        <!-- トラブルシューティング -->
+        <h2><i class="fas fa-wrench"></i> トラブルシューティング</h2>
+
+        <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle"></i> エラー: シート「〇〇」が見つかりません</strong><br>
+            <strong>原因:</strong> 初期セットアップが完了していません。<br>
+            <strong>解決:</strong> メニュー「📄 請求書管理」→「🔧 初期セットアップ（初回のみ）」を実行してください。
+        </div>
+
+        <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle"></i> エラー: 取引先が見つかりません</strong><br>
+            <strong>原因:</strong> 入力した取引先IDが存在しません。<br>
+            <strong>解決:</strong> 「取引先マスタ」シートを開いて、正しいIDを確認してください（C001, C002...）。
+        </div>
+
+        <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle"></i> メニュー「📄 請求書管理」が表示されない</strong><br>
+            <strong>原因:</strong> スプレッドシートがリロードされていません。<br>
+            <strong>解決:</strong> ページをリロード（<kbd>Cmd</kbd>+<kbd>R</kbd> / <kbd>Ctrl</kbd>+<kbd>R</kbd>）してください。
+        </div>
+
+        <!-- 次のステップ -->
+        <h2><i class="fas fa-rocket"></i> 次のステップ</h2>
+
+        <div class="info-box">
+            <strong><i class="fas fa-lightbulb"></i> さらに高度な機能が必要な場合</strong>
+            <p>フルバージョン（個別ファイル版）では以下の機能が利用できます：</p>
+            <ul style="margin-top: 10px;">
+                <li>リッチなダイアログUI（複数明細の追加・削除）</li>
+                <li>Google Docs連携のPDF自動生成</li>
+                <li>Gmail連携のメール送信</li>
+                <li>合算請求書作成（複数の見積書・納品書から1つの請求書を作成）</li>
+            </ul>
+            <p style="margin-top: 15px;">フルバージョンの仕様書：<br>
+            <a href="https://www.yojitu.com/invoice-system/GAS_SPECIFICATION.html" target="_blank" class="btn">仕様書を見る</a>
+            </p>
+        </div>
+
+        <div style="margin-top: 50px; padding: 30px; background: white; border: 2px solid var(--color-beige); border-radius: 2px; text-align: center;">
+            <h3 style="color: var(--color-natural-brown); margin-bottom: 15px;">お問い合わせ</h3>
+            <p>カスタマイズ・導入サポートのご相談は：</p>
+            <p style="margin-top: 15px;">
+                <strong>株式会社YOJITU</strong><br>
+                Email: info@yojitu.com<br>
+                Web: <a href="https://www.yojitu.com" target="_blank">https://www.yojitu.com</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
