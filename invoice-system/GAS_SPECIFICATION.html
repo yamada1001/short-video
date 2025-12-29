@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>GAS版 請求書・見積書システム - 機能仕様書</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* yojitu.comと同じカラースキーム */
+            --color-beige: #E5DDD5;
+            --color-off-white: #F5F3F0;
+            --color-light-gray: #E8E8E8;
+            --color-natural-brown: #8B7355;
+            --color-charcoal: #4A4A4A;
+            --color-text: #4A4A4A;
+            --color-text-light: #6B6B6B;
+            --color-bg: #F5F3F0;
+            --color-bg-white: #FFFFFF;
+            --color-border: rgba(139, 115, 85, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            background: var(--color-bg-white);
+            border-bottom: 1px solid var(--color-border);
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            color: var(--color-natural-brown);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+        }
+
+        .toc {
+            background: var(--color-bg-white);
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .toc h2 {
+            font-size: 1.3rem;
+            color: var(--color-natural-brown);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--color-beige);
+            padding-bottom: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 12px;
+        }
+
+        .toc a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            color: var(--color-natural-brown);
+        }
+
+        .section {
+            background: var(--color-bg-white);
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            color: var(--color-natural-brown);
+            margin-bottom: 25px;
+            border-left: 4px solid var(--color-natural-brown);
+            padding-left: 15px;
+        }
+
+        .section h3 {
+            font-size: 1.2rem;
+            color: var(--color-charcoal);
+            margin: 30px 0 15px 0;
+        }
+
+        .section h4 {
+            font-size: 1rem;
+            color: var(--color-charcoal);
+            margin: 20px 0 10px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+        }
+
+        .section ul, .section ol {
+            margin: 15px 0 15px 25px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+        }
+
+        .info-box {
+            background: #FFF9F0;
+            border-left: 3px solid var(--color-natural-brown);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #FFF3E0;
+            border-left: 3px solid #FF9800;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .success-box {
+            background: #E8F5E9;
+            border-left: 3px solid #4CAF50;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--color-bg-white);
+        }
+
+        th {
+            background: var(--color-beige);
+            color: var(--color-charcoal);
+            font-weight: 600;
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--color-border);
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        tr:nth-child(even) {
+            background: var(--color-off-white);
+        }
+
+        pre {
+            background: var(--color-charcoal);
+            color: #E0E0E0;
+            padding: 20px;
+            border-radius: 2px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 20px 0;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--color-natural-brown);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 2px;
+            font-size: 0.85rem;
+            margin-left: 10px;
+        }
+
+        .badge.green {
+            background: #4CAF50;
+        }
+
+        .badge.orange {
+            background: #FF9800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-file-invoice"></i> GAS版 請求書・見積書システム - 機能仕様書</h1>
+            <p>Google Apps Script + スプレッドシート版（freee形式準拠）</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">初期費用: 3〜4万円 | 月額費用: 0円（Googleアカウントのみ）</p>
+        </div>
+
+        <!-- 目次 -->
+        <div class="toc">
+            <h2><i class="fas fa-list"></i> 目次</h2>
+            <ul>
+                <li><a href="#overview">1. プロジェクト概要</a></li>
+                <li><a href="#comparison">2. PHP版との比較</a></li>
+                <li><a href="#structure">3. スプレッドシート構造</a></li>
+                <li><a href="#features">4. 機能仕様（freee準拠）</a></li>
+                <li><a href="#implementation">5. 実装方法</a></li>
+                <li><a href="#workflow">6. 使い方（ユーザー視点）</a></li>
+                <li><a href="#limitations">7. GASの制限事項</a></li>
+            </ul>
+        </div>
+
+        <!-- 1. プロジェクト概要 -->
+        <div class="section" id="overview">
+            <h2>1. プロジェクト概要</h2>
+
+            <h3>目的</h3>
+            <p>大分の小規模企業向けに、<strong>freee形式</strong>の請求書・見積書・納品書・領収書を作成できるGoogle Apps Scriptシステムを提供する。</p>
+
+            <div class="info-box">
+                <strong><i class="fas fa-lightbulb"></i> GAS版の特徴</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><strong>サーバー不要</strong>: Googleアカウントのみで運用可能</li>
+                    <li><strong>月額費用 0円</strong>: 保守費用が不要（Google無料枠内）</li>
+                    <li><strong>初期費用 3〜4万円</strong>: PHP版より1〜2万円安い</li>
+                    <li><strong>スプレッドシートで直接編集</strong>: データベース知識不要</li>
+                    <li><strong>Gmail連携</strong>: メール送信が簡単</li>
+                    <li><strong>簡単なデータ移行</strong>: スプレッドシートをコピーするだけ</li>
+                </ul>
+            </div>
+
+            <h3>ターゲット顧客</h3>
+            <ul>
+                <li>建設業（見積書・請求書・納品書の頻繁なやり取り）</li>
+                <li>不動産業（物件ごとの請求管理）</li>
+                <li>士業（顧問料の請求書発行）</li>
+                <li>小売・飲食（領収書発行）</li>
+                <li>個人事業主・フリーランス（月額費用を抑えたい層）</li>
+            </ul>
+
+            <h3>価格設定</h3>
+            <table>
+                <tr>
+                    <th>項目</th>
+                    <th>金額</th>
+                    <th>備考</th>
+                </tr>
+                <tr>
+                    <td>初期費用</td>
+                    <td><strong>30,000〜40,000円</strong></td>
+                    <td>スプレッドシート構築 + GASコード実装 + PDF テンプレート作成</td>
+                </tr>
+                <tr>
+                    <td>月額費用</td>
+                    <td><strong>0円</strong></td>
+                    <td>Google無料枠内で運用可能（月間実行回数制限内）</td>
+                </tr>
+                <tr>
+                    <td>保守サポート（任意）</td>
+                    <td>5,000円/月</td>
+                    <td>機能追加・カスタマイズ対応</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 2. PHP版との比較 -->
+        <div class="section" id="comparison">
+            <h2>2. PHP版との比較</h2>
+
+            <table>
+                <tr>
+                    <th>項目</th>
+                    <th>PHP版（従来仕様）</th>
+                    <th>GAS版（今回実装）</th>
+                </tr>
+                <tr>
+                    <td>データ保存</td>
+                    <td>SQLite / MySQL</td>
+                    <td>Googleスプレッドシート</td>
+                </tr>
+                <tr>
+                    <td>PDF生成</td>
+                    <td>TCPDF / mPDF</td>
+                    <td>Google Docs API → PDF出力</td>
+                </tr>
+                <tr>
+                    <td>サーバー</td>
+                    <td>各社専用サーバー（レンタルサーバー）</td>
+                    <td>Google Apps Script（無料）</td>
+                </tr>
+                <tr>
+                    <td>初期費用</td>
+                    <td>50,000円</td>
+                    <td><strong>30,000〜40,000円</strong></td>
+                </tr>
+                <tr>
+                    <td>月額費用</td>
+                    <td>10,000円（サーバー保守）</td>
+                    <td><strong>0円</strong></td>
+                </tr>
+                <tr>
+                    <td>カスタマイズ性</td>
+                    <td>◎ 自由度高い</td>
+                    <td>○ GAS制限内で可能</td>
+                </tr>
+                <tr>
+                    <td>実行速度</td>
+                    <td>◎ 高速</td>
+                    <td>△ GAS制限あり（6分/実行）</td>
+                </tr>
+                <tr>
+                    <td>データ移行</td>
+                    <td>△ DB知識必要</td>
+                    <td>◎ スプレッドシートコピーのみ</td>
+                </tr>
+                <tr>
+                    <td>複数ユーザー</td>
+                    <td>◎ 制限なし</td>
+                    <td>○ Google共有設定で可能</td>
+                </tr>
+                <tr>
+                    <td>適した顧客</td>
+                    <td>長期利用・大量データ・高速処理</td>
+                    <td><strong>小規模・コスト重視・月間100件以下</strong></td>
+                </tr>
+            </table>
+
+            <div class="success-box">
+                <strong><i class="fas fa-check-circle"></i> GAS版が適しているケース</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>月間の請求書発行が100件以下</li>
+                    <li>初期費用・月額費用を抑えたい</li>
+                    <li>スプレッドシートで直接データを確認・編集したい</li>
+                    <li>Gmailで請求書を送信したい</li>
+                    <li>個人事業主・小規模企業</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong><i class="fas fa-exclamation-triangle"></i> PHP版が適しているケース</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>月間100件以上の大量処理</li>
+                    <li>複雑なカスタマイズが必要</li>
+                    <li>高速処理が必須</li>
+                    <li>データベースで厳密な管理が必要</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. スプレッドシート構造 -->
+        <div class="section" id="structure">
+            <h2>3. スプレッドシート構造</h2>
+
+            <p>1つのスプレッドシートに以下のシートを作成します：</p>
+
+            <h3>シート一覧</h3>
+            <pre>
+【請求書管理.xlsx】
+├── 設定               # 自社情報・印鑑設定
+├── 取引先マスタ       # 顧客情報
+├── 見積書             # 見積書データ
+├── 納品書             # 納品書データ
+├── 請求書             # 請求書データ
+├── 領収書             # 領収書データ
+└── 品目マスタ         # よく使う品目の登録
+            </pre>
+
+            <h3>シート詳細</h3>
+
+            <h4>① 設定シート</h4>
+            <table>
+                <tr>
+                    <th>項目</th>
+                    <th>説明</th>
+                </tr>
+                <tr>
+                    <td>会社名</td>
+                    <td>自社の正式名称</td>
+                </tr>
+                <tr>
+                    <td>郵便番号</td>
+                    <td>〒XXX-XXXX</td>
+                </tr>
+                <tr>
+                    <td>住所</td>
+                    <td>本社所在地</td>
+                </tr>
+                <tr>
+                    <td>電話番号</td>
+                    <td>代表電話</td>
+                </tr>
+                <tr>
+                    <td>FAX番号</td>
+                    <td>FAX番号（任意）</td>
+                </tr>
+                <tr>
+                    <td>メールアドレス</td>
+                    <td>問い合わせ先メール</td>
+                </tr>
+                <tr>
+                    <td>登録番号</td>
+                    <td>適格請求書発行事業者番号（インボイス）</td>
+                </tr>
+                <tr>
+                    <td>振込先銀行名</td>
+                    <td>例: 大分銀行</td>
+                </tr>
+                <tr>
+                    <td>振込先支店名</td>
+                    <td>例: 本店</td>
+                </tr>
+                <tr>
+                    <td>振込先口座種別</td>
+                    <td>普通 / 当座</td>
+                </tr>
+                <tr>
+                    <td>振込先口座番号</td>
+                    <td>7桁</td>
+                </tr>
+                <tr>
+                    <td>振込先口座名義</td>
+                    <td>カタカナ</td>
+                </tr>
+                <tr>
+                    <td>印鑑画像URL</td>
+                    <td>Google Driveの共有リンク（任意）</td>
+                </tr>
+            </table>
+
+            <h4>② 取引先マスタシート</h4>
+            <table>
+                <tr>
+                    <th>列</th>
+                    <th>項目</th>
+                    <th>説明</th>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>取引先ID</td>
+                    <td>自動採番（C001, C002...）</td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>取引先名</td>
+                    <td>株式会社〇〇</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>郵便番号</td>
+                    <td>〒XXX-XXXX</td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>住所</td>
+                    <td>都道府県市区町村...</td>
+                </tr>
+                <tr>
+                    <td>E</td>
+                    <td>担当者名</td>
+                    <td>山田太郎 様</td>
+                </tr>
+                <tr>
+                    <td>F</td>
+                    <td>電話番号</td>
+                    <td>000-0000-0000</td>
+                </tr>
+                <tr>
+                    <td>G</td>
+                    <td>メールアドレス</td>
+                    <td>送信先メール</td>
+                </tr>
+                <tr>
+                    <td>H</td>
+                    <td>備考</td>
+                    <td>メモ</td>
+                </tr>
+                <tr>
+                    <td>I</td>
+                    <td>作成日</td>
+                    <td>自動</td>
+                </tr>
+                <tr>
+                    <td>J</td>
+                    <td>更新日</td>
+                    <td>自動</td>
+                </tr>
+            </table>
+
+            <h4>③ 見積書 / 納品書 / 請求書 / 領収書シート（共通構造）</h4>
+            <table>
+                <tr>
+                    <th>列</th>
+                    <th>項目</th>
+                    <th>説明</th>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>書類番号</td>
+                    <td>Q-20250101-001（見積書）、D-...（納品書）、I-...（請求書）、R-...（領収書）</td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>ステータス</td>
+                    <td>作成中 / 送付済み / 入金済み（請求書のみ）</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>取引先ID</td>
+                    <td>C001...</td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>取引先名</td>
+                    <td>自動取得</td>
+                </tr>
+                <tr>
+                    <td>E</td>
+                    <td>発行日</td>
+                    <td>2025/01/01</td>
+                </tr>
+                <tr>
+                    <td>F</td>
+                    <td>支払期限</td>
+                    <td>2025/01/31（請求書のみ）</td>
+                </tr>
+                <tr>
+                    <td>G</td>
+                    <td>件名</td>
+                    <td>〇〇工事のお見積り</td>
+                </tr>
+                <tr>
+                    <td>H</td>
+                    <td>明細JSON</td>
+                    <td>[{"品目":"〇〇","数量":1,"単価":10000,"金額":10000}...]</td>
+                </tr>
+                <tr>
+                    <td>I</td>
+                    <td>小計</td>
+                    <td>10,000</td>
+                </tr>
+                <tr>
+                    <td>J</td>
+                    <td>消費税（10%）</td>
+                    <td>1,000</td>
+                </tr>
+                <tr>
+                    <td>K</td>
+                    <td>合計金額</td>
+                    <td>11,000</td>
+                </tr>
+                <tr>
+                    <td>L</td>
+                    <td>備考</td>
+                    <td>納期など</td>
+                </tr>
+                <tr>
+                    <td>M</td>
+                    <td>社内メモ</td>
+                    <td>内部用（PDF非表示）</td>
+                </tr>
+                <tr>
+                    <td>N</td>
+                    <td>変換元</td>
+                    <td>Q-20250101-001（見積書から変換した場合）</td>
+                </tr>
+                <tr>
+                    <td>O</td>
+                    <td>PDF URL</td>
+                    <td>Google DriveのPDFリンク</td>
+                </tr>
+                <tr>
+                    <td>P</td>
+                    <td>作成日</td>
+                    <td>自動</td>
+                </tr>
+                <tr>
+                    <td>Q</td>
+                    <td>更新日</td>
+                    <td>自動</td>
+                </tr>
+            </table>
+
+            <h4>④ 品目マスタシート</h4>
+            <table>
+                <tr>
+                    <th>列</th>
+                    <th>項目</th>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>品目名</td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>単価</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>単位</td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>備考</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 4. 機能仕様（freee準拠） -->
+        <div class="section" id="features">
+            <h2>4. 機能仕様（freee準拠）</h2>
+
+            <h3>4.1 カスタムメニュー</h3>
+            <p>スプレッドシートを開くと、カスタムメニュー「<strong>📄 請求書管理</strong>」が表示されます。</p>
+            <pre>
+📄 請求書管理
+  ├── 見積書作成
+  ├── 納品書作成
+  ├── 請求書作成
+  ├── 領収書作成
+  ├── ─────────
+  ├── 見積書 → 納品書に変換
+  ├── 見積書 → 請求書に変換
+  ├── 納品書 → 請求書に変換
+  ├── ─────────
+  ├── 合算請求書を作成（複数の見積書・納品書から）
+  ├── ─────────
+  ├── PDF一括生成
+  └── 取引先を追加
+            </pre>
+
+            <h3>4.2 見積書作成</h3>
+            <ol>
+                <li>メニュー「見積書作成」をクリック</li>
+                <li>ダイアログが開く：
+                    <ul>
+                        <li>取引先（プルダウン）</li>
+                        <li>発行日（デフォルト: 今日）</li>
+                        <li>件名</li>
+                        <li>明細（品目・数量・単価を複数行入力）</li>
+                        <li>備考</li>
+                        <li>社内メモ</li>
+                    </ul>
+                </li>
+                <li>「作成」ボタン → 見積書シートに追加 + PDF自動生成</li>
+            </ol>
+
+            <h3>4.3 見積書 → 納品書 / 請求書に変換</h3>
+            <p>freee同様、<strong>見積書をコピーして納品書・請求書を作成</strong>できます。</p>
+            <ol>
+                <li>メニュー「見積書 → 納品書に変換」をクリック</li>
+                <li>ダイアログで見積書番号を選択</li>
+                <li>発行日・件名を編集（必要に応じて）</li>
+                <li>「変換」ボタン → 納品書シートに追加（変換元に見積書番号を記録）</li>
+            </ol>
+
+            <div class="info-box">
+                <strong><i class="fas fa-info-circle"></i> 変換の流れ（freee準拠）</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><strong>見積書</strong> → 納品書 or 請求書</li>
+                    <li><strong>納品書</strong> → 請求書</li>
+                    <li>変換時、明細・金額・取引先情報がそのままコピーされる</li>
+                    <li>変換元の書類番号が記録される（トレーサビリティ確保）</li>
+                </ul>
+            </div>
+
+            <h3>4.4 合算請求書作成</h3>
+            <p>複数の見積書・納品書から<strong>1つの請求書</strong>を作成します（freee機能準拠）。</p>
+            <ol>
+                <li>メニュー「合算請求書を作成」をクリック</li>
+                <li>ダイアログで取引先を選択</li>
+                <li>その取引先の見積書・納品書の一覧が表示される</li>
+                <li>チェックボックスで合算する書類を選択</li>
+                <li>「合算請求書を作成」ボタン → 明細を結合して請求書シートに追加</li>
+            </ol>
+
+            <h3>4.5 PDF生成</h3>
+            <p>Google Docs テンプレート → PDF変換で実装します。</p>
+            <ol>
+                <li>Google Docsで請求書テンプレートを作成（{{変数}}でプレースホルダー）</li>
+                <li>GASでテンプレートをコピー → 変数を置換</li>
+                <li>Google Docs API で PDF に変換</li>
+                <li>Google Drive に保存 → URLをシートに記録</li>
+            </ol>
+
+            <h4>PDFレイアウト（freee形式準拠）</h4>
+            <pre>
+┌──────────────────────────────────────┐
+│  請求書                              │
+│                                      │
+│  〇〇株式会社 御中                    │
+│  〒XXX-XXXX                           │
+│  東京都〇〇区〇〇 1-2-3               │
+│  担当: 山田太郎 様                    │
+│                                      │
+│  請求書番号: I-20250101-001          │
+│  発行日: 2025年1月1日                │
+│  支払期限: 2025年1月31日             │
+│                                      │
+│  件名: 〇〇工事費用のご請求           │
+│                                      │
+│  ─────────────────────────   │
+│  下記の通りご請求申し上げます。       │
+│                                      │
+│  【ご請求金額】                       │
+│  ￥11,000（税込）                    │
+│  ─────────────────────────   │
+│                                      │
+│  【明細】                             │
+│  品目          数量  単価     金額   │
+│  ──────────────────────     │
+│  〇〇工事      1式  10,000  10,000  │
+│  ──────────────────────     │
+│  小計                      10,000   │
+│  消費税（10%）              1,000   │
+│  ──────────────────────     │
+│  合計                      11,000   │
+│                                      │
+│  【お振込先】                         │
+│  大分銀行 本店 普通 1234567          │
+│  カ）ヨウジツ                         │
+│                                      │
+│  【備考】                             │
+│  納期: 2025年1月末                   │
+│                                      │
+│  ─────────────────────────   │
+│  株式会社YOJITU                       │
+│  〒870-0000 大分県大分市〇〇 1-2-3   │
+│  TEL: 097-XXX-XXXX                   │
+│  Email: info@yojitu.com              │
+│  登録番号: T1234567890123            │
+│                           [印鑑画像] │
+└──────────────────────────────────────┘
+            </pre>
+
+            <h3>4.6 印鑑設定（任意）</h3>
+            <ol>
+                <li>角印・丸印の画像を準備（PNG、背景透過推奨）</li>
+                <li>Google Driveにアップロード → 共有リンクを取得</li>
+                <li>「設定」シートの「印鑑画像URL」に貼り付け</li>
+                <li>PDF生成時、右下に自動配置</li>
+            </ol>
+
+            <div class="info-box">
+                <strong><i class="fas fa-info-circle"></i> 印鑑なしでもOK</strong>
+                <p style="margin-top: 10px;">個人事業主で印鑑登録していない場合、印鑑なしでも請求書として有効です。設定シートの印鑑URLを空欄にすれば、印鑑なしのPDFが生成されます。</p>
+            </div>
+
+            <h3>4.7 メール送信（Gmail連携）</h3>
+            <ol>
+                <li>請求書シートで送信したい行を選択</li>
+                <li>メニュー「メール送信」をクリック</li>
+                <li>取引先のメールアドレス宛に、PDFを添付して自動送信</li>
+                <li>件名・本文はテンプレート化（カスタマイズ可能）</li>
+            </ol>
+        </div>
+
+        <!-- 5. 実装方法 -->
+        <div class="section" id="implementation">
+            <h2>5. 実装方法</h2>
+
+            <h3>5.1 技術スタック</h3>
+            <table>
+                <tr>
+                    <th>項目</th>
+                    <th>技術</th>
+                </tr>
+                <tr>
+                    <td>データ保存</td>
+                    <td>Googleスプレッドシート</td>
+                </tr>
+                <tr>
+                    <td>バックエンド</td>
+                    <td>Google Apps Script（JavaScript）</td>
+                </tr>
+                <tr>
+                    <td>PDF生成</td>
+                    <td>Google Docs API → PDF変換</td>
+                </tr>
+                <tr>
+                    <td>メール送信</td>
+                    <td>GmailApp API</td>
+                </tr>
+                <tr>
+                    <td>UI</td>
+                    <td>HTML Service（ダイアログ・サイドバー）</td>
+                </tr>
+            </table>
+
+            <h3>5.2 ファイル構成</h3>
+            <pre>
+【GASプロジェクト】
+├── Code.gs               # メイン処理
+├── Menu.gs               # カスタムメニュー
+├── Quote.gs              # 見積書処理
+├── Delivery.gs           # 納品書処理
+├── Invoice.gs            # 請求書処理
+├── Receipt.gs            # 領収書処理
+├── Conversion.gs         # 書類変換処理
+├── PDF.gs                # PDF生成処理
+├── Mail.gs               # メール送信処理
+├── Utils.gs              # ユーティリティ関数
+├── CreateQuoteDialog.html   # 見積書作成ダイアログ
+├── ConversionDialog.html    # 変換ダイアログ
+└── CombineInvoiceDialog.html # 合算請求書ダイアログ
+            </pre>
+
+            <h3>5.3 開発手順</h3>
+            <ol>
+                <li><strong>スプレッドシート作成</strong>: 各シート（設定、取引先、見積書...）を作成</li>
+                <li><strong>GASプロジェクト作成</strong>: 拡張機能 → Apps Script</li>
+                <li><strong>カスタムメニュー実装</strong>: onOpenトリガーでメニュー追加</li>
+                <li><strong>書類作成機能実装</strong>: ダイアログ → データ保存 → PDF生成</li>
+                <li><strong>変換機能実装</strong>: 見積書→納品書/請求書、納品書→請求書</li>
+                <li><strong>合算請求書実装</strong>: 複数書類の明細を結合</li>
+                <li><strong>PDF生成実装</strong>: Google Docsテンプレート → PDF変換</li>
+                <li><strong>メール送信実装</strong>: GmailApp APIで送信</li>
+                <li><strong>動作確認</strong>: テストデータで全機能検証</li>
+            </ol>
+        </div>
+
+        <!-- 6. 使い方（ユーザー視点） -->
+        <div class="section" id="workflow">
+            <h2>6. 使い方（ユーザー視点）</h2>
+
+            <h3>初回セットアップ（5分）</h3>
+            <ol>
+                <li>スプレッドシートを開く</li>
+                <li>「設定」シートに自社情報を入力（会社名、住所、振込先など）</li>
+                <li>「取引先マスタ」シートに顧客情報を登録</li>
+                <li>（任意）印鑑画像をGoogle Driveにアップロード → URLを設定シートに貼り付け</li>
+            </ol>
+
+            <h3>日常業務フロー</h3>
+
+            <h4>パターン1: 見積書 → 請求書</h4>
+            <ol>
+                <li>メニュー「見積書作成」→ 取引先・明細を入力 → 作成</li>
+                <li>PDFが自動生成 → メール送信 or ダウンロード</li>
+                <li>受注確定後、メニュー「見積書 → 請求書に変換」→ 請求書作成</li>
+                <li>請求書PDFを送付</li>
+                <li>入金確認後、請求書シートのステータスを「入金済み」に変更</li>
+            </ol>
+
+            <h4>パターン2: 見積書 → 納品書 → 請求書</h4>
+            <ol>
+                <li>見積書作成 → 送付</li>
+                <li>受注確定後、メニュー「見積書 → 納品書に変換」</li>
+                <li>納品後、メニュー「納品書 → 請求書に変換」</li>
+                <li>請求書PDFを送付</li>
+            </ol>
+
+            <h4>パターン3: 合算請求書</h4>
+            <ol>
+                <li>複数の見積書・納品書を作成（同一取引先）</li>
+                <li>月末にメニュー「合算請求書を作成」</li>
+                <li>対象書類を選択 → 1つの請求書に統合</li>
+                <li>請求書PDFを送付</li>
+            </ol>
+        </div>
+
+        <!-- 7. GASの制限事項 -->
+        <div class="section" id="limitations">
+            <h2>7. GASの制限事項</h2>
+
+            <div class="warning-box">
+                <strong><i class="fas fa-exclamation-triangle"></i> Google Apps Scriptの制限</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><strong>実行時間上限</strong>: 6分/実行（カスタム関数は30秒）</li>
+                    <li><strong>トリガー実行時間</strong>: 90分/日（無料アカウント）</li>
+                    <li><strong>URL Fetch呼び出し</strong>: 20,000回/日</li>
+                    <li><strong>メール送信</strong>: 100通/日（無料）、1,500通/日（Google Workspace）</li>
+                    <li><strong>スプレッドシート</strong>: 500万セルまで</li>
+                </ul>
+            </div>
+
+            <h3>対策</h3>
+            <ul>
+                <li>PDF一括生成は1回10件まで（6分制限対策）</li>
+                <li>月間100件程度の発行なら問題なし</li>
+                <li>大量処理が必要な場合はPHP版を検討</li>
+            </ul>
+
+            <div class="success-box">
+                <strong><i class="fas fa-check-circle"></i> 実用上の目安</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>月間請求書発行: <strong>100件以下</strong></li>
+                    <li>1日のPDF生成: <strong>20件以下</strong></li>
+                    <li>メール送信: <strong>50通/日以下</strong></li>
+                </ul>
+                <p style="margin-top: 10px;">→ 小規模企業・個人事業主なら十分に実用レベルです。</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

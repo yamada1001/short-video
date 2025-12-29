@@ -340,7 +340,9 @@
       "WebFetch(domain:crowdworks.jp)",
       "WebFetch(domain:www.lancers.jp)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com status --short invoice-system/)",
-      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff .claude/settings.local.json)"
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff .claude/settings.local.json)",
+      "WebFetch(domain:www.freee.co.jp)",
+      "WebFetch(domain:support.freee.co.jp)"
     ],
     "deny": [],
     "ask": []

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    body {
+      font-family: 'Noto Sans JP', Arial, sans-serif;
+      padding: 20px;
+      background: #F5F3F0;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #4A4A4A;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #E5DDD5;
+      border-radius: 2px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    textarea {
+      min-height: 60px;
+      resize: vertical;
+    }
+    .line-items {
+      margin: 20px 0;
+      border: 1px solid #E5DDD5;
+      padding: 15px;
+      background: white;
+      border-radius: 2px;
+    }
+    .line-item {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1fr 1fr 30px;
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items: end;
+    }
+    .line-item input {
+      width: 100%;
+    }
+    .btn {
+      background: #8B7355;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 2px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    .btn:hover {
+      background: #6B5335;
+    }
+    .btn-secondary {
+      background: #E5DDD5;
+      color: #4A4A4A;
+    }
+    .btn-secondary:hover {
+      background: #D5CDB5;
+    }
+    .btn-add {
+      background: #4CAF50;
+      padding: 8px 15px;
+      font-size: 13px;
+    }
+    .remove-btn {
+      background: #f44336;
+      color: white;
+      border: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 2px;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+    }
+    .total-section {
+      text-align: right;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 2px solid #E5DDD5;
+      font-weight: 600;
+    }
+    #message {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 2px;
+      display: none;
+    }
+    .success {
+      background: #E8F5E9;
+      color: #2E7D32;
+      border: 1px solid #4CAF50;
+    }
+    .error {
+      background: #FFEBEE;
+      color: #C62828;
+      border: 1px solid #F44336;
+    }
+  </style>
+</head>
+<body>
+  <form id="quoteForm">
+    <div class="form-group">
+      <label>取引先 *</label>
+      <select id="customerId" required>
+        <option value="">選択してください</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>発行日 *</label>
+      <input type="date" id="issueDate" required>
+    </div>
+
+    <div class="form-group">
+      <label>件名 *</label>
+      <input type="text" id="subject" placeholder="例: 〇〇工事のお見積り" required>
+    </div>
+
+    <div class="line-items">
+      <label>明細 *</label>
+      <div id="lineItemsContainer">
+        <div class="line-item">
+          <input type="text" placeholder="品目" class="item-name" required>
+          <input type="number" placeholder="数量" class="item-qty" value="1" min="1" required>
+          <input type="number" placeholder="単価" class="item-price" min="0" required>
+          <input type="number" placeholder="金額" class="item-amount" readonly>
+          <button type="button" class="remove-btn" onclick="removeLineItem(this)">×</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-add" onclick="addLineItem()">+ 明細を追加</button>
+
+      <div class="total-section">
+        <div>小計: ¥<span id="subtotal">0</span></div>
+        <div>消費税(10%): ¥<span id="tax">0</span></div>
+        <div style="font-size: 18px; color: #8B7355; margin-top: 10px;">合計: ¥<span id="total">0</span></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>備考</label>
+      <textarea id="notes" placeholder="納期など"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>社内メモ（PDF非表示）</label>
+      <textarea id="internalMemo" placeholder="内部メモ"></textarea>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <button type="submit" class="btn">見積書を作成</button>
+      <button type="button" class="btn btn-secondary" onclick="google.script.host.close()">キャンセル</button>
+    </div>
+
+    <div id="message"></div>
+  </form>
+
+  <script>
+    // 取引先一覧を取得
+    google.script.run.withSuccessHandler(function(customers) {
+      const select = document.getElementById('customerId');
+      customers.forEach(function(customer) {
+        const option = document.createElement('option');
+        option.value = customer.id;
+        option.textContent = customer.name;
+        select.appendChild(option);
+      });
+    }).getCustomerList();
+
+    // 今日の日付をデフォルト設定
+    document.getElementById('issueDate').valueAsDate = new Date();
+
+    // 明細を追加
+    function addLineItem() {
+      const container = document.getElementById('lineItemsContainer');
+      const newItem = document.createElement('div');
+      newItem.className = 'line-item';
+      newItem.innerHTML = `
+        <input type="text" placeholder="品目" class="item-name" required>
+        <input type="number" placeholder="数量" class="item-qty" value="1" min="1" required>
+        <input type="number" placeholder="単価" class="item-price" min="0" required>
+        <input type="number" placeholder="金額" class="item-amount" readonly>
+        <button type="button" class="remove-btn" onclick="removeLineItem(this)">×</button>
+      `;
+      container.appendChild(newItem);
+      attachCalculateListeners(newItem);
+    }
+
+    // 明細を削除
+    function removeLineItem(btn) {
+      if (document.querySelectorAll('.line-item').length > 1) {
+        btn.closest('.line-item').remove();
+        calculateTotal();
+      } else {
+        alert('最低1つの明細が必要です');
+      }
+    }
+
+    // 金額計算
+    function calculateLineAmount(lineItem) {
+      const qty = parseFloat(lineItem.querySelector('.item-qty').value) || 0;
+      const price = parseFloat(lineItem.querySelector('.item-price').value) || 0;
+      const amount = qty * price;
+      lineItem.querySelector('.item-amount').value = amount;
+      calculateTotal();
+    }
+
+    // 合計計算
+    function calculateTotal() {
+      let subtotal = 0;
+      document.querySelectorAll('.line-item').forEach(function(item) {
+        const amount = parseFloat(item.querySelector('.item-amount').value) || 0;
+        subtotal += amount;
+      });
+
+      const tax = Math.floor(subtotal * 0.1);
+      const total = subtotal + tax;
+
+      document.getElementById('subtotal').textContent = subtotal.toLocaleString();
+      document.getElementById('tax').textContent = tax.toLocaleString();
+      document.getElementById('total').textContent = total.toLocaleString();
+    }
+
+    // イベントリスナーを追加
+    function attachCalculateListeners(lineItem) {
+      lineItem.querySelector('.item-qty').addEventListener('input', function() {
+        calculateLineAmount(lineItem);
+      });
+      lineItem.querySelector('.item-price').addEventListener('input', function() {
+        calculateLineAmount(lineItem);
+      });
+    }
+
+    // 初期イベントリスナー
+    document.querySelectorAll('.line-item').forEach(attachCalculateListeners);
+
+    // フォーム送信
+    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // 明細を収集
+      const lineItems = [];
+      document.querySelectorAll('.line-item').forEach(function(item) {
+        const itemName = item.querySelector('.item-name').value;
+        const quantity = parseFloat(item.querySelector('.item-qty').value);
+        const unitPrice = parseFloat(item.querySelector('.item-price').value);
+        const amount = parseFloat(item.querySelector('.item-amount').value);
+
+        if (itemName && quantity && unitPrice >= 0) {
+          lineItems.push({
+            itemName: itemName,
+            quantity: quantity,
+            unitPrice: unitPrice,
+            amount: amount
+          });
+        }
+      });
+
+      if (lineItems.length === 0) {
+        alert('明細を入力してください');
+        return;
+      }
+
+      const formData = {
+        customerId: document.getElementById('customerId').value,
+        issueDate: document.getElementById('issueDate').value,
+        subject: document.getElementById('subject').value,
+        lineItems: lineItems,
+        notes: document.getElementById('notes').value,
+        internalMemo: document.getElementById('internalMemo').value
+      };
+
+      // GAS関数を呼び出し
+      google.script.run
+        .withSuccessHandler(function(result) {
+          const messageDiv = document.getElementById('message');
+          if (result.success) {
+            messageDiv.className = 'success';
+            messageDiv.textContent = result.message;
+            messageDiv.style.display = 'block';
+            setTimeout(function() {
+              google.script.host.close();
+            }, 2000);
+          } else {
+            messageDiv.className = 'error';
+            messageDiv.textContent = result.message;
+            messageDiv.style.display = 'block';
+          }
+        })
+        .withFailureHandler(function(error) {
+          const messageDiv = document.getElementById('message');
+          messageDiv.className = 'error';
+          messageDiv.textContent = 'エラー: ' + error.message;
+          messageDiv.style.display = 'block';
+        })
+        .createQuote(formData);
+    });
+  </script>
+</body>
+</html>
