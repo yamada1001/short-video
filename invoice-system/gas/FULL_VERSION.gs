@@ -958,7 +958,7 @@ function getCombineInvoiceDialogHTML() {
     document.getElementById('combineForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const selectedDocs = Array.from(document.querySelectorAll('input[name="doc"]:checked')).map(cb => cb.value);
-      if (selected Docs.length === 0) {
+      if (selectedDocs.length === 0) {
         alert('合算する書類を選択してください');
         return;
       }
