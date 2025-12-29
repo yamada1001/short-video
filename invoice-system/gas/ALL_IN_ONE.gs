@@ -37,6 +37,8 @@ const DOC_TYPES = {
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('📄 請求書管理')
+    .addItem('🔧 初期セットアップ（初回のみ）', 'setupSheets')
+    .addSeparator()
     .addItem('見積書作成', 'showCreateQuoteDialog')
     .addItem('納品書作成', 'showCreateDeliveryDialog')
     .addItem('請求書作成', 'showCreateInvoiceDialog')
@@ -50,6 +52,130 @@ function onOpen() {
     .addSeparator()
     .addItem('取引先を追加', 'showAddCustomerDialog')
     .addToUi();
+}
+
+// ============================================
+// 初期セットアップ（シート自動作成）
+// ============================================
+
+function setupSheets() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ui = SpreadsheetApp.getUi();
+
+  try {
+    // 1. 設定シート
+    let settingsSheet = ss.getSheetByName(SHEET_NAMES.SETTINGS);
+    if (!settingsSheet) {
+      settingsSheet = ss.insertSheet(SHEET_NAMES.SETTINGS);
+      settingsSheet.getRange('A1:B1').setValues([['項目名', '値']]);
+      settingsSheet.getRange('A2:A14').setValues([
+        ['会社名'],
+        ['郵便番号'],
+        ['住所'],
+        ['電話番号'],
+        ['FAX番号'],
+        ['メールアドレス'],
+        ['登録番号（インボイス）'],
+        ['振込先銀行名'],
+        ['振込先支店名'],
+        ['振込先口座種別'],
+        ['振込先口座番号'],
+        ['振込先口座名義'],
+        ['印鑑画像URL']
+      ]);
+      settingsSheet.getRange('A1:B14').setFontWeight('bold');
+    }
+
+    // 2. 取引先マスタシート
+    let customersSheet = ss.getSheetByName(SHEET_NAMES.CUSTOMERS);
+    if (!customersSheet) {
+      customersSheet = ss.insertSheet(SHEET_NAMES.CUSTOMERS);
+      customersSheet.getRange('A1:J1').setValues([[
+        '取引先ID', '取引先名', '郵便番号', '住所', '担当者名',
+        '電話番号', 'メールアドレス', '備考', '作成日', '更新日'
+      ]]);
+      customersSheet.getRange('A1:J1').setFontWeight('bold').setBackground('#E5DDD5');
+    }
+
+    // 3. 見積書シート
+    let quotesSheet = ss.getSheetByName(SHEET_NAMES.QUOTES);
+    if (!quotesSheet) {
+      quotesSheet = ss.insertSheet(SHEET_NAMES.QUOTES);
+      quotesSheet.getRange('A1:Q1').setValues([[
+        '書類番号', 'ステータス', '取引先ID', '取引先名', '発行日', '支払期限',
+        '件名', '明細JSON', '小計', '消費税', '合計金額', '備考',
+        '社内メモ', '変換元', 'PDF URL', '作成日', '更新日'
+      ]]);
+      quotesSheet.getRange('A1:Q1').setFontWeight('bold').setBackground('#E5DDD5');
+    }
+
+    // 4. 納品書シート
+    let deliveriesSheet = ss.getSheetByName(SHEET_NAMES.DELIVERIES);
+    if (!deliveriesSheet) {
+      deliveriesSheet = ss.insertSheet(SHEET_NAMES.DELIVERIES);
+      deliveriesSheet.getRange('A1:Q1').setValues([[
+        '書類番号', 'ステータス', '取引先ID', '取引先名', '発行日', '支払期限',
+        '件名', '明細JSON', '小計', '消費税', '合計金額', '備考',
+        '社内メモ', '変換元', 'PDF URL', '作成日', '更新日'
+      ]]);
+      deliveriesSheet.getRange('A1:Q1').setFontWeight('bold').setBackground('#E5DDD5');
+    }
+
+    // 5. 請求書シート
+    let invoicesSheet = ss.getSheetByName(SHEET_NAMES.INVOICES);
+    if (!invoicesSheet) {
+      invoicesSheet = ss.insertSheet(SHEET_NAMES.INVOICES);
+      invoicesSheet.getRange('A1:Q1').setValues([[
+        '書類番号', 'ステータス', '取引先ID', '取引先名', '発行日', '支払期限',
+        '件名', '明細JSON', '小計', '消費税', '合計金額', '備考',
+        '社内メモ', '変換元', 'PDF URL', '作成日', '更新日'
+      ]]);
+      invoicesSheet.getRange('A1:Q1').setFontWeight('bold').setBackground('#E5DDD5');
+    }
+
+    // 6. 領収書シート
+    let receiptsSheet = ss.getSheetByName(SHEET_NAMES.RECEIPTS);
+    if (!receiptsSheet) {
+      receiptsSheet = ss.insertSheet(SHEET_NAMES.RECEIPTS);
+      receiptsSheet.getRange('A1:Q1').setValues([[
+        '書類番号', 'ステータス', '取引先ID', '取引先名', '発行日', '支払期限',
+        '件名', '明細JSON', '小計', '消費税', '合計金額', '備考',
+        '社内メモ', '変換元', 'PDF URL', '作成日', '更新日'
+      ]]);
+      receiptsSheet.getRange('A1:Q1').setFontWeight('bold').setBackground('#E5DDD5');
+    }
+
+    // 7. 品目マスタシート（任意）
+    let itemsSheet = ss.getSheetByName(SHEET_NAMES.ITEMS);
+    if (!itemsSheet) {
+      itemsSheet = ss.insertSheet(SHEET_NAMES.ITEMS);
+      itemsSheet.getRange('A1:D1').setValues([['品目名', '単価', '単位', '備考']]);
+      itemsSheet.getRange('A1:D1').setFontWeight('bold').setBackground('#E5DDD5');
+    }
+
+    // 最初のSheet1を削除（存在する場合）
+    const sheet1 = ss.getSheetByName('Sheet1');
+    if (sheet1 && ss.getSheets().length > 1) {
+      ss.deleteSheet(sheet1);
+    }
+
+    ui.alert(
+      '✅ セットアップ完了',
+      '以下のシートを作成しました：\n\n' +
+      '・設定\n' +
+      '・取引先マスタ\n' +
+      '・見積書\n' +
+      '・納品書\n' +
+      '・請求書\n' +
+      '・領収書\n' +
+      '・品目マスタ\n\n' +
+      'まず「設定」シートに自社情報を入力してください。',
+      ui.ButtonSet.OK
+    );
+
+  } catch (error) {
+    ui.alert('エラー', `セットアップ中にエラーが発生しました：\n${error.message}`, ui.ButtonSet.OK);
+  }
 }
 
 // ============================================
