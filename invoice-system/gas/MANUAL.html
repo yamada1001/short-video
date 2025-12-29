@@ -542,19 +542,27 @@
             <p>FULL_VERSION.gs（推奨版）には以下の機能が含まれています：</p>
             <ul style="margin-top: 10px;">
                 <li>✅ リッチなダイアログUI（複数明細の追加・削除）</li>
-                <li>✅ **PDF自動生成**（Google Docs テンプレート）</li>
+                <li>✅ **PDF自動生成**（シート作成方式・設定不要）</li>
                 <li>✅ **テストデータ自動挿入**（すぐに動作確認可能）</li>
+                <li>✅ **PDFシート削除機能**（チェックボックスで一括削除）</li>
                 <li>✅ 合算請求書作成（複数の見積書・納品書から1つの請求書を作成）</li>
                 <li>❌ Gmail連携（必要に応じて追加可能）</li>
             </ul>
-            <p style="margin-top: 15px;"><strong>PDF生成の設定方法：</strong></p>
+            <p style="margin-top: 15px;"><strong>PDF生成方法（簡単！設定不要）：</strong></p>
             <ol style="margin-top: 5px; margin-left: 20px;">
-                <li>Google Docsで請求書テンプレートを作成（変数 {{書類番号}}, {{取引先名}} 等を配置）</li>
-                <li>テンプレートのIDを取得</li>
-                <li>FULL_VERSION.gs の39-44行目の TEMPLATE_IDS に設定</li>
-                <li>メニュー「📥 PDFを生成」から書類をPDF化</li>
+                <li>メニュー「📥 PDFを生成」をクリック</li>
+                <li>書類種別と書類番号を選択</li>
+                <li>「PDF生成」ボタンをクリック</li>
+                <li>新しいシート（PDF_書類番号）が作成されます</li>
+                <li>PDFダウンロードリンクをクリックしてダウンロード</li>
             </ol>
-            <p style="margin-top: 15px;">詳細は <strong>README.md</strong> を参照してください。</p>
+            <p style="margin-top: 15px;"><strong>不要なPDFシートを削除：</strong></p>
+            <ol style="margin-top: 5px; margin-left: 20px;">
+                <li>メニュー「🗑️ PDFシートを削除」をクリック</li>
+                <li>削除したいシートをチェック</li>
+                <li>「削除」ボタンをクリック</li>
+            </ol>
+            <p style="margin-top: 15px;">✅ Google Docsテンプレート不要！すぐに使えます。</p>
         </div>
 
         <div style="margin-top: 50px; padding: 30px; background: white; border: 2px solid var(--color-beige); border-radius: 2px; text-align: center;">

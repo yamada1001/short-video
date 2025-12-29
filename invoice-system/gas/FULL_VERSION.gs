@@ -34,15 +34,6 @@ const DOC_TYPES = {
   RECEIPT: { prefix: 'R', name: '領収書' }
 };
 
-// Google DocsテンプレートID（各書類種別ごとに設定）
-// 設定方法: README.md参照
-const TEMPLATE_IDS = {
-  QUOTE: 'YOUR_QUOTE_TEMPLATE_ID',      // 見積書テンプレート
-  DELIVERY: 'YOUR_DELIVERY_TEMPLATE_ID', // 納品書テンプレート
-  INVOICE: 'YOUR_INVOICE_TEMPLATE_ID',   // 請求書テンプレート
-  RECEIPT: 'YOUR_RECEIPT_TEMPLATE_ID'    // 領収書テンプレート
-};
-
 // ============================================
 // メイン処理（カスタムメニュー）
 // ============================================
@@ -65,6 +56,7 @@ function onOpen() {
     .addItem('合算請求書を作成', 'showCombineInvoiceDialog')
     .addSeparator()
     .addItem('📥 PDFを生成', 'showGeneratePDFDialog')
+    .addItem('🗑️ PDFシートを削除', 'showDeletePDFSheetsDialog')
     .addSeparator()
     .addItem('取引先を追加', 'showAddCustomerDialog')
     .addToUi();
@@ -1093,18 +1085,11 @@ function showGeneratePDFDialog() {
 }
 
 /**
- * PDFを生成
+ * PDFを生成（新方式: シート作成 → PDF エクスポート）
  */
 function generatePDF(docNumber, docType) {
   try {
-    // テンプレートIDを取得
-    const templateId = TEMPLATE_IDS[docType];
-    if (!templateId || templateId.startsWith('YOUR_')) {
-      return {
-        success: false,
-        message: `テンプレートIDが設定されていません。\nコード内のTEMPLATE_IDS（39-44行目）を設定してください。\n設定方法: README.md参照`
-      };
-    }
+    const ss = getSpreadsheet();
 
     // 書類データを取得
     const docData = getDocumentData(docType, docNumber);
@@ -1118,73 +1103,33 @@ function generatePDF(docNumber, docType) {
     // 取引先情報を取得
     const customer = getCustomerById(docData.customerId);
 
-    // テンプレートをコピー
-    const templateDoc = DriveApp.getFileById(templateId);
-    const copyDoc = templateDoc.makeCopy(`${docNumber}_temp`);
-    const copyDocId = copyDoc.getId();
+    // 新しいシートを作成
+    const sheetName = `PDF_${docNumber}`;
 
-    // Google Docsを開いて変数を置換
-    const doc = DocumentApp.openById(copyDocId);
-    const body = doc.getBody();
-
-    // 明細テーブルを作成
-    const lineItemsTable = createLineItemsTable(docData.lineItems);
-
-    // 置換マップ
-    const replacements = {
-      '{{書類種別}}': DOC_TYPES[docType].name,
-      '{{書類番号}}': docNumber,
-      '{{発行日}}': formatDate(docData.issueDate),
-      '{{支払期限}}': docData.dueDate ? formatDate(docData.dueDate) : '',
-      '{{取引先名}}': customer.name,
-      '{{取引先郵便番号}}': customer.postalCode || '',
-      '{{取引先住所}}': customer.address || '',
-      '{{取引先担当者}}': customer.contactPerson || '',
-      '{{件名}}': docData.subject,
-      '{{明細}}': lineItemsTable,
-      '{{小計}}': formatCurrency(docData.subtotal),
-      '{{消費税}}': formatCurrency(docData.tax),
-      '{{合計金額}}': formatCurrency(docData.total),
-      '{{備考}}': docData.notes || '',
-      '{{会社名}}': companyInfo.name || '',
-      '{{会社郵便番号}}': companyInfo.postalCode || '',
-      '{{会社住所}}': companyInfo.address || '',
-      '{{会社電話}}': companyInfo.phone || '',
-      '{{会社メール}}': companyInfo.email || '',
-      '{{登録番号}}': companyInfo.registrationNumber || '',
-      '{{銀行名}}': companyInfo.bankName || '',
-      '{{支店名}}': companyInfo.branchName || '',
-      '{{口座種別}}': companyInfo.accountType || '',
-      '{{口座番号}}': companyInfo.accountNumber || '',
-      '{{口座名義}}': companyInfo.accountHolder || ''
-    };
-
-    // テキストを置換
-    for (const [key, value] of Object.entries(replacements)) {
-      body.replaceText(key, String(value));
+    // 既存のシートがあれば削除
+    const existingSheet = ss.getSheetByName(sheetName);
+    if (existingSheet) {
+      ss.deleteSheet(existingSheet);
     }
 
-    doc.saveAndClose();
+    const pdfSheet = ss.insertSheet(sheetName);
 
-    // PDFに変換
-    const pdfBlob = copyDoc.getAs('application/pdf');
-    pdfBlob.setName(`${docNumber}.pdf`);
+    // シートをフォーマット（freee風レイアウト）
+    formatPDFSheet(pdfSheet, docType, docData, companyInfo, customer);
 
-    // Google Driveに保存
-    const folder = getOrCreatePDFFolder(docType);
-    const pdfFile = folder.createFile(pdfBlob);
-    const pdfUrl = pdfFile.getUrl();
-
-    // 一時ファイルを削除
-    DriveApp.getFileById(copyDocId).setTrashed(true);
+    // PDF エクスポートURLを生成
+    const spreadsheetId = ss.getId();
+    const sheetId = pdfSheet.getSheetId();
+    const pdfUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=pdf&gid=${sheetId}&portrait=true&size=A4&fitw=true`;
 
     // スプレッドシートにPDF URLを記録
     updatePDFUrl(docNumber, docType, pdfUrl);
 
     return {
       success: true,
-      message: `PDF生成完了: ${docNumber}.pdf\n\nGoogle Driveに保存しました。`,
+      message: `PDF生成完了！\n\nシート「${sheetName}」を作成しました。\n下記リンクからPDFダウンロードできます。`,
       pdfUrl: pdfUrl,
+      sheetName: sheetName,
       fileName: `${docNumber}.pdf`
     };
 
@@ -1195,6 +1140,163 @@ function generatePDF(docNumber, docType) {
       message: `PDF生成エラー: ${error.message}`
     };
   }
+}
+
+/**
+ * PDFシートをフォーマット（freee風レイアウト）
+ */
+function formatPDFSheet(sheet, docType, docData, companyInfo, customer) {
+  // シート幅を調整
+  sheet.setColumnWidth(1, 500);
+  sheet.setColumnWidth(2, 150);
+  sheet.setColumnWidth(3, 100);
+  sheet.setColumnWidth(4, 100);
+  sheet.setColumnWidth(5, 120);
+
+  let row = 1;
+
+  // ===== ヘッダー =====
+  sheet.getRange(row, 1, 1, 5).merge();
+  sheet.getRange(row, 1).setValue(DOC_TYPES[docType].name);
+  sheet.getRange(row, 1).setFontSize(24).setFontWeight('bold').setHorizontalAlignment('center');
+  sheet.setRowHeight(row, 50);
+  row += 2;
+
+  // ===== 取引先情報 =====
+  sheet.getRange(row, 1).setValue(`${customer.name} 御中`);
+  sheet.getRange(row, 1).setFontSize(14).setFontWeight('bold');
+  row++;
+
+  if (customer.postalCode || customer.address) {
+    sheet.getRange(row, 1).setValue(`〒${customer.postalCode || ''} ${customer.address || ''}`);
+    sheet.getRange(row, 1).setFontSize(10);
+    row++;
+  }
+
+  if (customer.contactPerson) {
+    sheet.getRange(row, 1).setValue(`担当: ${customer.contactPerson}`);
+    sheet.getRange(row, 1).setFontSize(10);
+    row++;
+  }
+  row++;
+
+  // ===== 書類情報 =====
+  sheet.getRange(row, 1).setValue('書類番号:');
+  sheet.getRange(row, 2).setValue(docData.docNumber);
+  row++;
+
+  sheet.getRange(row, 1).setValue('発行日:');
+  sheet.getRange(row, 2).setValue(formatDate(docData.issueDate));
+  row++;
+
+  if (docData.dueDate) {
+    sheet.getRange(row, 1).setValue('支払期限:');
+    sheet.getRange(row, 2).setValue(formatDate(docData.dueDate));
+    row++;
+  }
+  row++;
+
+  // ===== 件名 =====
+  sheet.getRange(row, 1).setValue(`件名: ${docData.subject}`);
+  sheet.getRange(row, 1).setFontSize(12).setFontWeight('bold');
+  row += 2;
+
+  // ===== 明細テーブル =====
+  const headerRow = row;
+  sheet.getRange(headerRow, 1).setValue('品目');
+  sheet.getRange(headerRow, 3).setValue('数量');
+  sheet.getRange(headerRow, 4).setValue('単価');
+  sheet.getRange(headerRow, 5).setValue('金額');
+
+  // ヘッダー行のスタイル
+  sheet.getRange(headerRow, 1, 1, 5).setBackground('#E5DDD5').setFontWeight('bold').setHorizontalAlignment('center');
+  row++;
+
+  // 明細行
+  docData.lineItems.forEach(item => {
+    sheet.getRange(row, 1, 1, 2).merge();
+    sheet.getRange(row, 1).setValue(item.itemName);
+    sheet.getRange(row, 3).setValue(item.quantity);
+    sheet.getRange(row, 4).setValue(item.unitPrice).setNumberFormat('#,##0');
+    sheet.getRange(row, 5).setValue(item.amount).setNumberFormat('#,##0');
+
+    // 右寄せ
+    sheet.getRange(row, 3, 1, 3).setHorizontalAlignment('right');
+    row++;
+  });
+
+  row++;
+
+  // ===== 合計 =====
+  sheet.getRange(row, 4).setValue('小計:');
+  sheet.getRange(row, 5).setValue(docData.subtotal).setNumberFormat('#,##0');
+  sheet.getRange(row, 4, 1, 2).setFontWeight('bold').setHorizontalAlignment('right');
+  row++;
+
+  sheet.getRange(row, 4).setValue('消費税(10%):');
+  sheet.getRange(row, 5).setValue(docData.tax).setNumberFormat('#,##0');
+  sheet.getRange(row, 4, 1, 2).setFontWeight('bold').setHorizontalAlignment('right');
+  row++;
+
+  sheet.getRange(row, 4).setValue('合計金額:');
+  sheet.getRange(row, 5).setValue(docData.total).setNumberFormat('#,##0');
+  sheet.getRange(row, 4, 1, 2).setFontSize(14).setFontWeight('bold').setHorizontalAlignment('right').setBackground('#FFF9E6');
+  row += 2;
+
+  // ===== 備考 =====
+  if (docData.notes) {
+    sheet.getRange(row, 1).setValue(`備考: ${docData.notes}`);
+    sheet.getRange(row, 1).setFontSize(10);
+    row += 2;
+  }
+
+  // ===== 発行元情報 =====
+  sheet.getRange(row, 1, 1, 5).merge();
+  sheet.getRange(row, 1).setValue('━'.repeat(60));
+  row++;
+
+  sheet.getRange(row, 1).setValue('発行元');
+  sheet.getRange(row, 1).setFontWeight('bold');
+  row++;
+
+  sheet.getRange(row, 1).setValue(companyInfo.name || '');
+  sheet.getRange(row, 1).setFontSize(12).setFontWeight('bold');
+  row++;
+
+  sheet.getRange(row, 1).setValue(`〒${companyInfo.postalCode || ''} ${companyInfo.address || ''}`);
+  sheet.getRange(row, 1).setFontSize(10);
+  row++;
+
+  sheet.getRange(row, 1).setValue(`TEL: ${companyInfo.phone || ''} / Email: ${companyInfo.email || ''}`);
+  sheet.getRange(row, 1).setFontSize(10);
+  row++;
+
+  if (companyInfo.registrationNumber) {
+    sheet.getRange(row, 1).setValue(`登録番号: ${companyInfo.registrationNumber}`);
+    sheet.getRange(row, 1).setFontSize(10);
+    row++;
+  }
+
+  row++;
+
+  // ===== 振込先情報 =====
+  if (companyInfo.bankName) {
+    sheet.getRange(row, 1).setValue('【お振込先】');
+    sheet.getRange(row, 1).setFontWeight('bold');
+    row++;
+
+    sheet.getRange(row, 1).setValue(`${companyInfo.bankName || ''} ${companyInfo.branchName || ''} ${companyInfo.accountType || ''} ${companyInfo.accountNumber || ''}`);
+    sheet.getRange(row, 1).setFontSize(10);
+    row++;
+
+    sheet.getRange(row, 1).setValue(`${companyInfo.accountHolder || ''}`);
+    sheet.getRange(row, 1).setFontSize(10);
+    row++;
+  }
+
+  // 枠線を追加
+  const dataRange = sheet.getRange(1, 1, row - 1, 5);
+  dataRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
 }
 
 /**
@@ -1280,8 +1382,9 @@ function getGeneratePDFDialogHTML() {
 </head>
 <body>
   <div class="info">
-    📌 事前準備: Google Docsテンプレートを作成し、TEMPLATE_IDS（コード39-44行目）を設定してください。<br>
-    設定方法は README.md を参照してください。
+    📌 PDFシートを作成して、PDFとしてダウンロードできます。<br>
+    生成されたシートは「PDF_書類番号」という名前で保存されます。<br>
+    不要なシートは「🗑️ PDFシートを削除」メニューから削除できます。
   </div>
 
   <form id="pdfForm">
@@ -1483,4 +1586,193 @@ function insertTestData() {
   } catch (error) {
     ui.alert('エラー', `テストデータ挿入エラー：${error.message}`, ui.ButtonSet.OK);
   }
+}
+
+// ============================================
+// PDFシート削除機能
+// ============================================
+
+/**
+ * PDFシート削除ダイアログを表示
+ */
+function showDeletePDFSheetsDialog() {
+  const html = HtmlService.createHtmlOutput(getDeletePDFSheetsDialogHTML())
+    .setWidth(600)
+    .setHeight(500);
+  SpreadsheetApp.getUi().showModalDialog(html, 'PDFシートを削除');
+}
+
+/**
+ * PDFシート一覧を取得
+ */
+function getPDFSheets() {
+  const ss = getSpreadsheet();
+  const sheets = ss.getSheets();
+  const pdfSheets = [];
+
+  sheets.forEach(sheet => {
+    const name = sheet.getName();
+    if (name.startsWith('PDF_')) {
+      pdfSheets.push({
+        name: name,
+        sheetId: sheet.getSheetId()
+      });
+    }
+  });
+
+  return pdfSheets;
+}
+
+/**
+ * 選択されたPDFシートを削除
+ */
+function deletePDFSheets(sheetNames) {
+  try {
+    if (!sheetNames || sheetNames.length === 0) {
+      return { success: false, message: '削除するシートを選択してください' };
+    }
+
+    const ss = getSpreadsheet();
+    let deletedCount = 0;
+
+    sheetNames.forEach(sheetName => {
+      const sheet = ss.getSheetByName(sheetName);
+      if (sheet) {
+        ss.deleteSheet(sheet);
+        deletedCount++;
+      }
+    });
+
+    return {
+      success: true,
+      message: `${deletedCount}件のPDFシートを削除しました`
+    };
+
+  } catch (error) {
+    return {
+      success: false,
+      message: `削除エラー: ${error.message}`
+    };
+  }
+}
+
+/**
+ * PDFシート削除ダイアログHTML
+ */
+function getDeletePDFSheetsDialogHTML() {
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    body { font-family: 'Noto Sans JP', Arial, sans-serif; padding: 20px; background: #F5F3F0; }
+    .info { background: #E3F2FD; color: #1565C0; border: 1px solid #2196F3; padding: 10px; border-radius: 2px; margin-bottom: 15px; font-size: 13px; }
+    .sheet-list { max-height: 300px; overflow-y: auto; border: 1px solid #E5DDD5; padding: 10px; background: white; margin: 15px 0; }
+    .sheet-item { padding: 8px; margin: 5px 0; background: #f9f9f9; border-radius: 2px; display: flex; align-items: center; }
+    .sheet-item:hover { background: #f0f0f0; }
+    .sheet-item input[type="checkbox"] { margin-right: 10px; width: 18px; height: 18px; cursor: pointer; }
+    .sheet-item label { flex: 1; cursor: pointer; user-select: none; }
+    .btn { background: #8B7355; color: white; border: none; padding: 10px 20px; border-radius: 2px; cursor: pointer; margin-right: 10px; font-size: 14px; }
+    .btn:hover { background: #6B5335; }
+    .btn-danger { background: #f44336; }
+    .btn-danger:hover { background: #d32f2f; }
+    .btn-secondary { background: #E5DDD5; color: #4A4A4A; }
+    .btn-secondary:hover { background: #D5CDB5; }
+    #message { margin-top: 15px; padding: 10px; border-radius: 2px; display: none; }
+    .success { background: #E8F5E9; color: #2E7D32; border: 1px solid #4CAF50; }
+    .error { background: #FFEBEE; color: #C62828; border: 1px solid #F44336; }
+    .select-all { margin-bottom: 10px; padding: 8px; background: #FFF9E6; border-radius: 2px; }
+    .select-all input { margin-right: 8px; }
+  </style>
+</head>
+<body>
+  <div class="info">
+    📌 生成されたPDFシート（PDF_で始まるシート）を削除できます。<br>
+    削除したいシートをチェックして「削除」ボタンをクリックしてください。
+  </div>
+
+  <div class="select-all">
+    <input type="checkbox" id="selectAll" onchange="toggleSelectAll(this.checked)">
+    <label for="selectAll">すべて選択</label>
+  </div>
+
+  <div class="sheet-list" id="sheetList">
+    <p style="text-align: center; color: #999;">読み込み中...</p>
+  </div>
+
+  <div>
+    <button type="button" class="btn btn-danger" onclick="deleteSelectedSheets()">🗑️ 選択したシートを削除</button>
+    <button type="button" class="btn btn-secondary" onclick="google.script.host.close()">キャンセル</button>
+  </div>
+
+  <div id="message"></div>
+
+  <script>
+    // PDFシート一覧を読み込み
+    google.script.run
+      .withSuccessHandler(function(pdfSheets) {
+        const sheetList = document.getElementById('sheetList');
+
+        if (pdfSheets.length === 0) {
+          sheetList.innerHTML = '<p style="text-align: center; color: #999;">PDFシートがありません</p>';
+          return;
+        }
+
+        sheetList.innerHTML = pdfSheets.map(sheet => 
+          '<div class="sheet-item">' +
+          '<input type="checkbox" name="sheet" value="' + sheet.name + '" id="' + sheet.name + '">' +
+          '<label for="' + sheet.name + '">' + sheet.name + '</label>' +
+          '</div>'
+        ).join('');
+      })
+      .getPDFSheets();
+
+    // すべて選択/解除
+    function toggleSelectAll(checked) {
+      document.querySelectorAll('input[name="sheet"]').forEach(cb => {
+        cb.checked = checked;
+      });
+    }
+
+    // 選択したシートを削除
+    function deleteSelectedSheets() {
+      const selectedSheets = Array.from(document.querySelectorAll('input[name="sheet"]:checked'))
+        .map(cb => cb.value);
+
+      if (selectedSheets.length === 0) {
+        alert('削除するシートを選択してください');
+        return;
+      }
+
+      const confirmed = confirm(`${selectedSheets.length}件のシートを削除しますか？\\n\\n削除されたシートは元に戻せません。`);
+      if (!confirmed) return;
+
+      const messageDiv = document.getElementById('message');
+      messageDiv.textContent = '削除中...';
+      messageDiv.className = 'info';
+      messageDiv.style.display = 'block';
+
+      google.script.run
+        .withSuccessHandler(function(result) {
+          messageDiv.className = result.success ? 'success' : 'error';
+          messageDiv.textContent = result.message;
+          messageDiv.style.display = 'block';
+
+          if (result.success) {
+            // 一覧を再読み込み
+            setTimeout(() => location.reload(), 1500);
+          }
+        })
+        .withFailureHandler(function(error) {
+          messageDiv.className = 'error';
+          messageDiv.textContent = 'エラー: ' + error.message;
+          messageDiv.style.display = 'block';
+        })
+        .deletePDFSheets(selectedSheets);
+    }
+  </script>
+</body>
+</html>
+  `.trim();
 }
