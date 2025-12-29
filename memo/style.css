@@ -610,3 +610,34 @@ footer p {
         gap: var(--spacing-md);
     }
 }
+
+/* 財務テーブル */
+.finance-summary {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-md) 0;
+    border: 1px solid var(--color-border);
+}
+
+.finance-summary th,
+.finance-summary td {
+    padding: var(--spacing-sm);
+    text-align: left;
+    border: 1px solid var(--color-border);
+}
+
+.finance-summary th {
+    background: var(--color-off-white);
+    font-weight: 500;
+    color: var(--color-natural-brown);
+}
+
+.finance-summary .total-row {
+    background: var(--color-off-white);
+    font-weight: 500;
+}
+
+.finance-summary .deficit {
+    color: var(--color-natural-brown);
+    font-weight: 600;
+}
