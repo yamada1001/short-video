@@ -28,7 +28,6 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /yojitu.com/public_html/
-        timeout: 600000
         exclude: |
           **/.git*
           **/.git*/**
@@ -37,5 +36,4 @@ jobs:
           **/generate-sitemap.php
           **/.DS_Store
           **/Thumbs.db
-          **/protea-app/config/.env
-          **/protea-app/database/*.db
+        dangerous-salt-value: protea-vendor-upload
