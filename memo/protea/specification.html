@@ -409,7 +409,13 @@
         <header>
             <h1>🌸 Protea Webアプリ</h1>
             <div class="subtitle">SEO記事作成支援システム　システム仕様書</div>
-            <div class="version">Version 1.0 | 2025-12-30</div>
+            <div class="version">Version 1.1 | 2025-12-30（GASレビュー反映版）</div>
+            <div style="margin-top: 20px; background: rgba(255,255,255,0.15); padding: 10px; border-radius: 4px;">
+                <p style="margin: 0; font-size: 14px;">
+                    ★ クライアントのGAS実装（11ファイル）をレビューし、実際の仕様を反映しました。<br>
+                    詳細は <a href="GAS_REVIEW.md" style="color: #fff; text-decoration: underline;">GAS_REVIEW.md</a> を参照してください。
+                </p>
+            </div>
         </header>
 
         <nav>
@@ -538,7 +544,7 @@
                     </div>
                 </div>
 
-                <h3>2.1 Excelファイル構造</h3>
+                <h3>2.1 Excelファイル構造（★GASレビューで確定）</h3>
                 <table>
                     <tr>
                         <th>シート名</th>
@@ -550,31 +556,37 @@
                         <td>ブログ記事</td>
                         <td>URL, タイトル</td>
                         <td>10件</td>
-                        <td>競合ブログ10件</td>
+                        <td>競合ブログ10件（ヘッダー除く）</td>
                     </tr>
                     <tr>
                         <td>共起語</td>
-                        <td>共起語</td>
-                        <td>可変</td>
-                        <td>SEO共起語リスト（個数不定）</td>
+                        <td>共起語, 出現回数</td>
+                        <td>可変（15件程度）</td>
+                        <td>SEO共起語リスト＋出現頻度</td>
                     </tr>
                     <tr>
                         <td>サジェスト</td>
                         <td>クエリ, サジェスト</td>
                         <td>4件</td>
-                        <td>検索サジェスト</td>
+                        <td>検索サジェスト（ヘッダー除く）</td>
                     </tr>
                     <tr>
                         <td>URL本文</td>
                         <td>URL, タイトル, 本文</td>
                         <td>5件</td>
-                        <td>競合記事本文</td>
+                        <td>競合記事本文（ヘッダー除く）</td>
                     </tr>
                     <tr>
                         <td>Yahoo知恵袋</td>
                         <td>URL, 質問, ベストアンサー</td>
-                        <td>10件</td>
-                        <td>知恵袋Q&A</td>
+                        <td>15件</td>
+                        <td>知恵袋Q&A（ヘッダー除く）</td>
+                    </tr>
+                    <tr>
+                        <td>goo Q&A ★追加</td>
+                        <td>URL, 質問, ベストアンサー</td>
+                        <td>5件</td>
+                        <td>goo Q&A（ヘッダー除く）</td>
                     </tr>
                 </table>
             </section>
