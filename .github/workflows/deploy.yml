@@ -21,7 +21,7 @@ jobs:
     - name: Generate Sitemap
       run: php generate-sitemap.php
 
-    - name: FTP Deploy (Main Site)
+    - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
@@ -29,6 +29,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /yojitu.com/public_html/
         timeout: 600000
+        dangerous-clean-slate: true
         exclude: |
           **/.git*
           **/.git*/**
@@ -37,18 +38,5 @@ jobs:
           **/generate-sitemap.php
           **/.DS_Store
           **/Thumbs.db
-          **/protea-app/**
-
-    - name: FTP Deploy (Protea App Only)
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /yojitu.com/public_html/protea-app/
-        local-dir: ./protea-app/
-        timeout: 600000
-        exclude: |
-          **/.git*
-          **/config/.env
-          **/database/*.db
+          **/protea-app/config/.env
+          **/protea-app/database/*.db
