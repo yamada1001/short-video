@@ -4,18 +4,31 @@
 # ======================================================
 # 用途: Xserverの本番環境から全ファイルをローカルにバックアップ
 # 実行頻度: 月1回推奨（重要な変更前は必ず実行）
-# 実行方法: chmod +x backup-production.sh && ./backup-production.sh
+# 実行方法: ./backup-production.sh
 # ======================================================
+
+# スクリプトのディレクトリに移動
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+
+# .envファイルを読み込み
+if [ -f ".env" ]; then
+    source .env
+else
+    echo "❌ エラー: .envファイルが見つかりません"
+    echo ""
+    echo ".envファイルを作成してください："
+    echo "  cp .env.example .env"
+    echo "  # .envファイルにFTPパスワードを入力"
+    exit 1
+fi
 
 # 設定
 DATE=$(date +%Y%m%d_%H%M%S)
 BACKUP_ROOT="$HOME/Backups/yojitu.com"
 BACKUP_DIR="$BACKUP_ROOT/$DATE"
 
-# FTP認証情報（環境変数から取得）
-FTP_SERVER="${FTP_SERVER:-ftp.xserver.jp}"  # Xserverのデフォルト
-FTP_USER="${FTP_USER}"
-FTP_PASS="${FTP_PASS}"
+# FTP認証情報（.envから読み込み済み）
 REMOTE_DIR="/yojitu.com/public_html"
 
 echo "======================================"
@@ -29,17 +42,13 @@ echo ""
 mkdir -p "$BACKUP_DIR"
 
 # FTP認証情報チェック
-if [ -z "$FTP_USER" ] || [ -z "$FTP_PASS" ]; then
-    echo "❌ エラー: FTP認証情報が設定されていません"
+if [ -z "$FTP_SERVER" ] || [ -z "$FTP_USER" ] || [ -z "$FTP_PASS" ]; then
+    echo "❌ エラー: .envファイルのFTP認証情報が不完全です"
     echo ""
-    echo "以下の環境変数を設定してください："
-    echo "  export FTP_USER='あなたのFTPユーザー名'"
-    echo "  export FTP_PASS='あなたのFTPパスワード'"
-    echo ""
-    echo "または、.envファイルを作成してください："
-    echo "  echo 'FTP_USER=あなたのFTPユーザー名' > .env"
-    echo "  echo 'FTP_PASS=あなたのFTPパスワード' >> .env"
-    echo "  source .env"
+    echo ".envファイルを確認してください："
+    echo "  FTP_SERVER=sv16695.xserver.jp"
+    echo "  FTP_USER=xs545151"
+    echo "  FTP_PASS=あなたのFTPパスワード"
     exit 1
 fi
 
