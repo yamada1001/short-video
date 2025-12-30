@@ -1745,7 +1745,7 @@ function getDeletePDFSheetsDialogHTML() {
         return;
       }
 
-      const confirmed = confirm(`${selectedSheets.length}件のシートを削除しますか？\\n\\n削除されたシートは元に戻せません。`);
+      const confirmed = confirm(selectedSheets.length + '件のシートを削除しますか？\\n\\n削除されたシートは元に戻せません。');
       if (!confirmed) return;
 
       const messageDiv = document.getElementById('message');
@@ -1761,7 +1761,7 @@ function getDeletePDFSheetsDialogHTML() {
 
           if (result.success) {
             // 一覧を再読み込み
-            setTimeout(() => location.reload(), 1500);
+            setTimeout(function() { location.reload(); }, 1500);
           }
         })
         .withFailureHandler(function(error) {
