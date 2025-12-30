@@ -15,3 +15,7 @@ demo/CREDENTIALS.md
 
 # バックアップディレクトリ
 Backups/
+
+# 削除済みプロジェクト（バックアップからダウンロードされても無視）
+protea-app/
+chatgpt-learning-platform/
