@@ -29,7 +29,6 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /yojitu.com/public_html/
         timeout: 600000
-        dangerous-clean-slate: true
         exclude: |
           **/.git*
           **/.git*/**
