@@ -25,6 +25,7 @@ function createKeywordSheet() {
     '',
     '',
     '',
+    '',
     ''
   ];
 
@@ -54,8 +55,9 @@ function createKeywordSheet() {
   sheet.setColumnWidth(7, 80);   // 森確認
   sheet.setColumnWidth(8, 80);   // 空白
   sheet.setColumnWidth(9, 100);  // 集計ラベル
-  sheet.setColumnWidth(10, 80);  // 本数/単価
-  sheet.setColumnWidth(11, 100); // 計
+  sheet.setColumnWidth(10, 80);  // 本数
+  sheet.setColumnWidth(11, 80);  // 単価
+  sheet.setColumnWidth(12, 100); // 計
 
   // 行の高さを調整
   sheet.setRowHeight(1, 30);
