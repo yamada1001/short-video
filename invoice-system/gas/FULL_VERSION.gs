@@ -1143,160 +1143,353 @@ function generatePDF(docNumber, docType) {
 }
 
 /**
- * PDFシートをフォーマット（freee風レイアウト）
+ * PDFシートをフォーマット（freee風プロフェッショナルデザイン）
  */
 function formatPDFSheet(sheet, docType, docData, companyInfo, customer) {
-  // シート幅を調整
-  sheet.setColumnWidth(1, 500);
-  sheet.setColumnWidth(2, 150);
-  sheet.setColumnWidth(3, 100);
-  sheet.setColumnWidth(4, 100);
-  sheet.setColumnWidth(5, 120);
+  // 列幅を設定（8列レイアウト）
+  sheet.setColumnWidth(1, 100);  // A
+  sheet.setColumnWidth(2, 100);  // B
+  sheet.setColumnWidth(3, 100);  // C
+  sheet.setColumnWidth(4, 100);  // D
+  sheet.setColumnWidth(5, 80);   // E
+  sheet.setColumnWidth(6, 100);  // F
+  sheet.setColumnWidth(7, 100);  // G
+  sheet.setColumnWidth(8, 120);  // H
 
   let row = 1;
 
-  // ===== ヘッダー =====
-  sheet.getRange(row, 1, 1, 5).merge();
+  // ===== ヘッダーバー（ブルー背景） =====
+  sheet.getRange(row, 1, 2, 8).merge();
   sheet.getRange(row, 1).setValue(DOC_TYPES[docType].name);
-  sheet.getRange(row, 1).setFontSize(24).setFontWeight('bold').setHorizontalAlignment('center');
-  sheet.setRowHeight(row, 50);
+  sheet.getRange(row, 1)
+    .setFontSize(28)
+    .setFontWeight('bold')
+    .setHorizontalAlignment('center')
+    .setVerticalAlignment('middle')
+    .setBackground('#4A90E2')
+    .setFontColor('#FFFFFF');
+  sheet.setRowHeight(row, 60);
   row += 2;
 
-  // ===== 取引先情報 =====
-  sheet.getRange(row, 1).setValue(`${customer.name} 御中`);
-  sheet.getRange(row, 1).setFontSize(14).setFontWeight('bold');
+  // 空白行
+  sheet.setRowHeight(row, 10);
+  row++;
+
+  // ===== 上部エリア（2カラムレイアウト） =====
+  const topStartRow = row;
+
+  // 【左側：取引先情報】
+  sheet.getRange(row, 1, 1, 4).merge();
+  sheet.getRange(row, 1).setValue(customer.name + ' 御中');
+  sheet.getRange(row, 1)
+    .setFontSize(16)
+    .setFontWeight('bold')
+    .setFontColor('#2C3E50');
   row++;
 
   if (customer.postalCode || customer.address) {
-    sheet.getRange(row, 1).setValue(`〒${customer.postalCode || ''} ${customer.address || ''}`);
-    sheet.getRange(row, 1).setFontSize(10);
+    sheet.getRange(row, 1, 1, 4).merge();
+    sheet.getRange(row, 1).setValue('〒' + (customer.postalCode || '') + ' ' + (customer.address || ''));
+    sheet.getRange(row, 1).setFontSize(10).setFontColor('#7F8C8D');
     row++;
   }
 
   if (customer.contactPerson) {
-    sheet.getRange(row, 1).setValue(`担当: ${customer.contactPerson}`);
-    sheet.getRange(row, 1).setFontSize(10);
+    sheet.getRange(row, 1, 1, 4).merge();
+    sheet.getRange(row, 1).setValue('担当: ' + customer.contactPerson);
+    sheet.getRange(row, 1).setFontSize(10).setFontColor('#7F8C8D');
     row++;
   }
-  row++;
 
-  // ===== 書類情報 =====
-  sheet.getRange(row, 1).setValue('書類番号:');
-  sheet.getRange(row, 2).setValue(docData.docNumber);
-  row++;
+  // 【右側：書類情報＋会社情報】
+  let rightRow = topStartRow;
 
-  sheet.getRange(row, 1).setValue('発行日:');
-  sheet.getRange(row, 2).setValue(formatDate(docData.issueDate));
-  row++;
+  // 書類番号
+  sheet.getRange(rightRow, 5, 1, 2).merge();
+  sheet.getRange(rightRow, 5).setValue('No.');
+  sheet.getRange(rightRow, 5)
+    .setFontSize(10)
+    .setFontWeight('bold')
+    .setBackground('#F8F9FA')
+    .setHorizontalAlignment('center');
+  sheet.getRange(rightRow, 7, 1, 2).merge();
+  sheet.getRange(rightRow, 7).setValue(docData.docNumber);
+  sheet.getRange(rightRow, 7).setFontSize(10);
+  rightRow++;
 
+  // 発行日
+  sheet.getRange(rightRow, 5, 1, 2).merge();
+  sheet.getRange(rightRow, 5).setValue('発行日');
+  sheet.getRange(rightRow, 5)
+    .setFontSize(10)
+    .setFontWeight('bold')
+    .setBackground('#F8F9FA')
+    .setHorizontalAlignment('center');
+  sheet.getRange(rightRow, 7, 1, 2).merge();
+  sheet.getRange(rightRow, 7).setValue(formatDate(docData.issueDate));
+  sheet.getRange(rightRow, 7).setFontSize(10);
+  rightRow++;
+
+  // 支払期限
   if (docData.dueDate) {
-    sheet.getRange(row, 1).setValue('支払期限:');
-    sheet.getRange(row, 2).setValue(formatDate(docData.dueDate));
-    row++;
+    sheet.getRange(rightRow, 5, 1, 2).merge();
+    sheet.getRange(rightRow, 5).setValue('支払期限');
+    sheet.getRange(rightRow, 5)
+      .setFontSize(10)
+      .setFontWeight('bold')
+      .setBackground('#F8F9FA')
+      .setHorizontalAlignment('center');
+    sheet.getRange(rightRow, 7, 1, 2).merge();
+    sheet.getRange(rightRow, 7).setValue(formatDate(docData.dueDate));
+    sheet.getRange(rightRow, 7).setFontSize(10);
+    rightRow++;
   }
+
+  // 会社名
+  sheet.getRange(rightRow, 5, 1, 4).merge();
+  sheet.getRange(rightRow, 5).setValue(companyInfo.name || '');
+  sheet.getRange(rightRow, 5)
+    .setFontSize(11)
+    .setFontWeight('bold')
+    .setHorizontalAlignment('right')
+    .setFontColor('#2C3E50');
+  rightRow++;
+
+  // 住所
+  sheet.getRange(rightRow, 5, 1, 4).merge();
+  sheet.getRange(rightRow, 5).setValue('〒' + (companyInfo.postalCode || '') + ' ' + (companyInfo.address || ''));
+  sheet.getRange(rightRow, 5)
+    .setFontSize(9)
+    .setHorizontalAlignment('right')
+    .setFontColor('#7F8C8D');
+  rightRow++;
+
+  // 連絡先
+  sheet.getRange(rightRow, 5, 1, 4).merge();
+  sheet.getRange(rightRow, 5).setValue('TEL: ' + (companyInfo.phone || '') + ' / Email: ' + (companyInfo.email || ''));
+  sheet.getRange(rightRow, 5)
+    .setFontSize(9)
+    .setHorizontalAlignment('right')
+    .setFontColor('#7F8C8D');
+  rightRow++;
+
+  row = Math.max(row, rightRow) + 1;
+
+  // 空白行
+  sheet.setRowHeight(row, 15);
   row++;
 
-  // ===== 件名 =====
-  sheet.getRange(row, 1).setValue(`件名: ${docData.subject}`);
-  sheet.getRange(row, 1).setFontSize(12).setFontWeight('bold');
-  row += 2;
+  // ===== 件名エリア =====
+  sheet.getRange(row, 1, 1, 8).merge();
+  sheet.getRange(row, 1).setValue(docData.subject);
+  sheet.getRange(row, 1)
+    .setFontSize(14)
+    .setFontWeight('bold')
+    .setFontColor('#2C3E50')
+    .setBackground('#E8F4F8')
+    .setHorizontalAlignment('center')
+    .setVerticalAlignment('middle');
+  sheet.setRowHeight(row, 35);
+  row++;
+
+  // 空白行
+  sheet.setRowHeight(row, 10);
+  row++;
 
   // ===== 明細テーブル =====
-  const headerRow = row;
-  sheet.getRange(headerRow, 1).setValue('品目');
-  sheet.getRange(headerRow, 3).setValue('数量');
-  sheet.getRange(headerRow, 4).setValue('単価');
-  sheet.getRange(headerRow, 5).setValue('金額');
+  const tableHeaderRow = row;
 
-  // ヘッダー行のスタイル
-  sheet.getRange(headerRow, 1, 1, 5).setBackground('#E5DDD5').setFontWeight('bold').setHorizontalAlignment('center');
+  // ヘッダー行
+  sheet.getRange(tableHeaderRow, 1, 1, 4).merge();
+  sheet.getRange(tableHeaderRow, 1).setValue('品目');
+  sheet.getRange(tableHeaderRow, 5).setValue('数量');
+  sheet.getRange(tableHeaderRow, 6, 1, 2).merge();
+  sheet.getRange(tableHeaderRow, 6).setValue('単価');
+  sheet.getRange(tableHeaderRow, 8).setValue('金額');
+
+  // ヘッダースタイル
+  sheet.getRange(tableHeaderRow, 1, 1, 8)
+    .setBackground('#34495E')
+    .setFontColor('#FFFFFF')
+    .setFontWeight('bold')
+    .setFontSize(11)
+    .setHorizontalAlignment('center')
+    .setVerticalAlignment('middle');
+  sheet.setRowHeight(tableHeaderRow, 30);
   row++;
 
-  // 明細行
-  docData.lineItems.forEach(item => {
-    sheet.getRange(row, 1, 1, 2).merge();
-    sheet.getRange(row, 1).setValue(item.itemName);
-    sheet.getRange(row, 3).setValue(item.quantity);
-    sheet.getRange(row, 4).setValue(item.unitPrice).setNumberFormat('#,##0');
-    sheet.getRange(row, 5).setValue(item.amount).setNumberFormat('#,##0');
+  // 明細行（ストライプ背景）
+  docData.lineItems.forEach(function(item, index) {
+    const bgColor = index % 2 === 0 ? '#FFFFFF' : '#F8F9FA';
 
-    // 右寄せ
-    sheet.getRange(row, 3, 1, 3).setHorizontalAlignment('right');
+    sheet.getRange(row, 1, 1, 4).merge();
+    sheet.getRange(row, 1).setValue(item.itemName);
+    sheet.getRange(row, 1)
+      .setBackground(bgColor)
+      .setFontSize(10)
+      .setVerticalAlignment('middle');
+
+    sheet.getRange(row, 5).setValue(item.quantity);
+    sheet.getRange(row, 5)
+      .setBackground(bgColor)
+      .setHorizontalAlignment('right')
+      .setFontSize(10)
+      .setVerticalAlignment('middle');
+
+    sheet.getRange(row, 6, 1, 2).merge();
+    sheet.getRange(row, 6).setValue('¥' + item.unitPrice.toLocaleString());
+    sheet.getRange(row, 6)
+      .setBackground(bgColor)
+      .setHorizontalAlignment('right')
+      .setFontSize(10)
+      .setVerticalAlignment('middle');
+
+    sheet.getRange(row, 8).setValue('¥' + item.amount.toLocaleString());
+    sheet.getRange(row, 8)
+      .setBackground(bgColor)
+      .setHorizontalAlignment('right')
+      .setFontSize(10)
+      .setVerticalAlignment('middle')
+      .setFontWeight('bold');
+
+    sheet.setRowHeight(row, 28);
     row++;
   });
 
+  // 空白行
   row++;
 
-  // ===== 合計 =====
-  sheet.getRange(row, 4).setValue('小計:');
-  sheet.getRange(row, 5).setValue(docData.subtotal).setNumberFormat('#,##0');
-  sheet.getRange(row, 4, 1, 2).setFontWeight('bold').setHorizontalAlignment('right');
+  // ===== 合計エリア =====
+  // 小計
+  sheet.getRange(row, 1, 1, 6).merge();
+  sheet.getRange(row, 1).setValue('');
+  sheet.getRange(row, 7).setValue('小計');
+  sheet.getRange(row, 7)
+    .setFontSize(11)
+    .setFontWeight('bold')
+    .setHorizontalAlignment('right')
+    .setBackground('#F8F9FA');
+  sheet.getRange(row, 8).setValue('¥' + docData.subtotal.toLocaleString());
+  sheet.getRange(row, 8)
+    .setFontSize(11)
+    .setHorizontalAlignment('right')
+    .setBackground('#F8F9FA');
   row++;
 
-  sheet.getRange(row, 4).setValue('消費税(10%):');
-  sheet.getRange(row, 5).setValue(docData.tax).setNumberFormat('#,##0');
-  sheet.getRange(row, 4, 1, 2).setFontWeight('bold').setHorizontalAlignment('right');
+  // 消費税
+  sheet.getRange(row, 1, 1, 6).merge();
+  sheet.getRange(row, 7).setValue('消費税(10%)');
+  sheet.getRange(row, 7)
+    .setFontSize(11)
+    .setFontWeight('bold')
+    .setHorizontalAlignment('right')
+    .setBackground('#F8F9FA');
+  sheet.getRange(row, 8).setValue('¥' + docData.tax.toLocaleString());
+  sheet.getRange(row, 8)
+    .setFontSize(11)
+    .setHorizontalAlignment('right')
+    .setBackground('#F8F9FA');
   row++;
 
-  sheet.getRange(row, 4).setValue('合計金額:');
-  sheet.getRange(row, 5).setValue(docData.total).setNumberFormat('#,##0');
-  sheet.getRange(row, 4, 1, 2).setFontSize(14).setFontWeight('bold').setHorizontalAlignment('right').setBackground('#FFF9E6');
-  row += 2;
+  // 合計金額（目立つように）
+  sheet.getRange(row, 1, 1, 6).merge();
+  sheet.getRange(row, 7).setValue('合計金額');
+  sheet.getRange(row, 7)
+    .setFontSize(14)
+    .setFontWeight('bold')
+    .setHorizontalAlignment('right')
+    .setBackground('#4A90E2')
+    .setFontColor('#FFFFFF');
+  sheet.getRange(row, 8).setValue('¥' + docData.total.toLocaleString());
+  sheet.getRange(row, 8)
+    .setFontSize(16)
+    .setFontWeight('bold')
+    .setHorizontalAlignment('right')
+    .setBackground('#4A90E2')
+    .setFontColor('#FFFFFF');
+  sheet.setRowHeight(row, 35);
+  row++;
+
+  // 空白行
+  sheet.setRowHeight(row, 15);
+  row++;
 
   // ===== 備考 =====
   if (docData.notes) {
-    sheet.getRange(row, 1).setValue(`備考: ${docData.notes}`);
-    sheet.getRange(row, 1).setFontSize(10);
+    sheet.getRange(row, 1, 1, 8).merge();
+    sheet.getRange(row, 1).setValue('【備考】');
+    sheet.getRange(row, 1)
+      .setFontSize(10)
+      .setFontWeight('bold')
+      .setBackground('#F8F9FA');
+    row++;
+
+    sheet.getRange(row, 1, 1, 8).merge();
+    sheet.getRange(row, 1).setValue(docData.notes);
+    sheet.getRange(row, 1)
+      .setFontSize(10)
+      .setWrap(true)
+      .setVerticalAlignment('top');
     row += 2;
   }
 
-  // ===== 発行元情報 =====
-  sheet.getRange(row, 1, 1, 5).merge();
-  sheet.getRange(row, 1).setValue('━'.repeat(60));
-  row++;
-
-  sheet.getRange(row, 1).setValue('発行元');
-  sheet.getRange(row, 1).setFontWeight('bold');
-  row++;
-
-  sheet.getRange(row, 1).setValue(companyInfo.name || '');
-  sheet.getRange(row, 1).setFontSize(12).setFontWeight('bold');
-  row++;
-
-  sheet.getRange(row, 1).setValue(`〒${companyInfo.postalCode || ''} ${companyInfo.address || ''}`);
-  sheet.getRange(row, 1).setFontSize(10);
-  row++;
-
-  sheet.getRange(row, 1).setValue(`TEL: ${companyInfo.phone || ''} / Email: ${companyInfo.email || ''}`);
-  sheet.getRange(row, 1).setFontSize(10);
-  row++;
-
-  if (companyInfo.registrationNumber) {
-    sheet.getRange(row, 1).setValue(`登録番号: ${companyInfo.registrationNumber}`);
-    sheet.getRange(row, 1).setFontSize(10);
-    row++;
-  }
-
-  row++;
-
-  // ===== 振込先情報 =====
+  // ===== フッター：振込先情報 =====
   if (companyInfo.bankName) {
+    sheet.getRange(row, 1, 1, 8).merge();
+    sheet.getRange(row, 1).setValue('');
+    sheet.getRange(row, 1).setBackground('#E8F4F8');
+    sheet.setRowHeight(row, 5);
+    row++;
+
+    sheet.getRange(row, 1, 1, 8).merge();
     sheet.getRange(row, 1).setValue('【お振込先】');
-    sheet.getRange(row, 1).setFontWeight('bold');
+    sheet.getRange(row, 1)
+      .setFontSize(11)
+      .setFontWeight('bold')
+      .setBackground('#E8F4F8')
+      .setFontColor('#2C3E50');
     row++;
 
-    sheet.getRange(row, 1).setValue(`${companyInfo.bankName || ''} ${companyInfo.branchName || ''} ${companyInfo.accountType || ''} ${companyInfo.accountNumber || ''}`);
-    sheet.getRange(row, 1).setFontSize(10);
+    sheet.getRange(row, 1, 1, 8).merge();
+    const bankInfo = (companyInfo.bankName || '') + ' ' +
+                     (companyInfo.branchName || '') + ' ' +
+                     (companyInfo.accountType || '') + ' ' +
+                     (companyInfo.accountNumber || '') + ' / ' +
+                     (companyInfo.accountHolder || '');
+    sheet.getRange(row, 1).setValue(bankInfo);
+    sheet.getRange(row, 1)
+      .setFontSize(10)
+      .setBackground('#E8F4F8')
+      .setFontColor('#34495E');
     row++;
 
-    sheet.getRange(row, 1).setValue(`${companyInfo.accountHolder || ''}`);
-    sheet.getRange(row, 1).setFontSize(10);
+    sheet.getRange(row, 1, 1, 8).merge();
+    sheet.getRange(row, 1).setValue('');
+    sheet.getRange(row, 1).setBackground('#E8F4F8');
+    sheet.setRowHeight(row, 5);
     row++;
   }
 
-  // 枠線を追加
-  const dataRange = sheet.getRange(1, 1, row - 1, 5);
-  dataRange.setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
+  // 登録番号
+  if (companyInfo.registrationNumber) {
+    sheet.getRange(row, 1, 1, 8).merge();
+    sheet.getRange(row, 1).setValue('登録番号（インボイス）: ' + companyInfo.registrationNumber);
+    sheet.getRange(row, 1)
+      .setFontSize(9)
+      .setHorizontalAlignment('center')
+      .setFontColor('#95A5A6');
+    row++;
+  }
+
+  // 全体に外枠を追加
+  const fullRange = sheet.getRange(1, 1, row - 1, 8);
+  fullRange.setBorder(true, true, true, true, false, false, '#BDC3C7', SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+
+  // テーブル部分に内枠を追加
+  if (docData.lineItems.length > 0) {
+    const tableRange = sheet.getRange(tableHeaderRow, 1, docData.lineItems.length + 1, 8);
+    tableRange.setBorder(true, true, true, true, true, true, '#BDC3C7', SpreadsheetApp.BorderStyle.SOLID);
+  }
 }
 
 /**
