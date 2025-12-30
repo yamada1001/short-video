@@ -1,0 +1,26 @@
+# Protea Public .htaccess
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # セキュリティ: vendor/, config/, database/へのアクセス禁止
+    RewriteRule ^(vendor|config|database|storage)/ - [F,L]
+
+    # すでに存在するファイル・ディレクトリはそのまま表示
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # 存在しないファイルはindex.phpへリダイレクト（将来のルーティング用）
+    # RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
+
+# ディレクトリインデックス
+DirectoryIndex index.php
+
+# PHP設定
+<IfModule mod_php.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value memory_limit 256M
+</IfModule>
