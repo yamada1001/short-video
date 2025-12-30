@@ -364,7 +364,7 @@
                     <h4>📌 目的</h4>
                     <ul>
                         <li>Googleスプレッドシート管理からの脱却</li>
-                        <li>スクレイピングデータの一元管理</li>
+                        <li>スクレイピングデータ（Excelファイル）の一元管理</li>
                         <li>GPT APIを活用した記事自動生成</li>
                         <li>チームでの進捗管理</li>
                     </ul>
@@ -380,7 +380,15 @@
                 </div>
 
                 <h3>解決策</h3>
-                <p><strong>Excelインポート → データ管理 → 記事生成 → 公開</strong>までをWebアプリで一元化</p>
+                <p><strong>Excelインポート → データ管理 → 記事生成・編集</strong>までをWebアプリで一元化</p>
+                <div class="card info">
+                    <h4>💡 重要な前提</h4>
+                    <ul>
+                        <li><strong>スクレイピングはWebアプリで実装しない</strong> → Pythonツール（ローカル）で実行</li>
+                        <li><strong>記事公開機能は実装しない</strong> → 記事生成・編集まで</li>
+                        <li><strong>Excelファイルアップロードのみ</strong> → 1キーワード=1ファイル</li>
+                    </ul>
+                </div>
 
                 <div class="diagram">┌─────────────────────────────────────┐
 │ Python (ローカル)                    │
@@ -396,7 +404,7 @@
 │ 3. キーワード管理画面                │
 │ 4. GPT記事生成                      │
 │ 5. 記事プレビュー＆編集              │
-│ 6. 記事公開                         │
+│ （記事公開機能は実装しない）          │
 └──────────┬──────────────────────────┘
            │
            ▼
@@ -432,7 +440,7 @@
 
                     <div class="feature-item">
                         <h4>📝 記事編集</h4>
-                        <p>WYSIWYGエディタで編集。プレビュー機能付き。下書き保存〜公開まで対応。</p>
+                        <p>WYSIWYGエディタで編集。プレビュー機能付き。下書き保存機能。</p>
                     </div>
 
                     <div class="feature-item">
@@ -463,8 +471,8 @@
                     <tr>
                         <td>共起語</td>
                         <td>共起語</td>
-                        <td>20件</td>
-                        <td>SEO共起語リスト</td>
+                        <td>可変</td>
+                        <td>SEO共起語リスト（個数不定）</td>
                     </tr>
                     <tr>
                         <td>サジェスト</td>
@@ -572,7 +580,7 @@
                         <td>3</td>
                         <td>cooccurrence_words</td>
                         <td>共起語</td>
-                        <td>2,000件</td>
+                        <td>可変（個数不定）</td>
                     </tr>
                     <tr>
                         <td>4</td>
@@ -649,12 +657,7 @@ prompt_templates (1) ─ (N) generated_articles</div>
 
                     <div class="workflow-step">
                         <strong>6. 記事編集・プレビュー</strong><br>
-                        WYSIWYGエディタで修正
-                    </div>
-
-                    <div class="workflow-step">
-                        <strong>7. 記事公開</strong><br>
-                        ステータス: 公開済
+                        WYSIWYGエディタで修正・保存
                     </div>
                 </div>
             </section>
