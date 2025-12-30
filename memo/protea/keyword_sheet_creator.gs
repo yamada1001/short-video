@@ -45,25 +45,17 @@ function createKeywordSheet() {
   // 集計表を作成
   createSummaryTable(sheet);
 
-  // 列幅を調整
-  sheet.setColumnWidth(1, 50);   // 番号
-  sheet.setColumnWidth(2, 250);  // キーワード
-  sheet.setColumnWidth(3, 100);  // ステータス
-  sheet.setColumnWidth(4, 400);  // 納品URL
-  sheet.setColumnWidth(5, 150);  // 備考
-  sheet.setColumnWidth(6, 100);  // 対象月
-  sheet.setColumnWidth(7, 80);   // 森確認
-  sheet.setColumnWidth(8, 80);   // 空白
-  sheet.setColumnWidth(9, 100);  // 集計ラベル
-  sheet.setColumnWidth(10, 80);  // 本数
-  sheet.setColumnWidth(11, 80);  // 単価
-  sheet.setColumnWidth(12, 100); // 計
+  // 列幅を一括設定（高速化）
+  const columnWidths = [50, 250, 100, 400, 150, 100, 80, 80, 100, 80, 80, 100];
+  columnWidths.forEach(function(width, index) {
+    sheet.setColumnWidth(index + 1, width);
+  });
 
   // 行の高さを調整
   sheet.setRowHeight(1, 30);
 
-  // 枠線を追加
-  const dataRange = sheet.getRange(1, 1, 100, headers.length);
+  // 枠線を追加（データ範囲のみ）
+  const dataRange = sheet.getRange(1, 1, data.length + 1, headers.length);
   dataRange.setBorder(true, true, true, true, true, true, '#CCCCCC', SpreadsheetApp.BorderStyle.SOLID);
 
   SpreadsheetApp.getUi().alert('✅ キーワード一覧シートを作成しました！');
@@ -114,8 +106,8 @@ function getKeywordData() {
     [38, '開業医 患者 来ない', '作成済', 'リライト機能付き_営業用・出力テスト_作業シート_20250418', '', '2025/12', '', '', '', '', '', '']
   ];
 
-  // 39-99行目は空行
-  for (let i = 39; i <= 99; i++) {
+  // 39-50行目は空行（必要最小限に削減）
+  for (let i = 39; i <= 50; i++) {
     keywords.push([i, '', '', '', '', '', '', '', '', '', '', '']);
   }
 
@@ -139,7 +131,7 @@ function createSummaryTable(sheet) {
   sheet.getRange(6, 10, 1, 3).setBackground('#E8F4F8').setFontWeight('bold');
 
   // ステータス列の条件付き書式（「作成済」は緑背景）
-  const statusRange = sheet.getRange(2, 3, 99, 1);
+  const statusRange = sheet.getRange(2, 3, 50, 1);
   const rule = SpreadsheetApp.newConditionalFormatRule()
     .whenTextEqualTo('作成済')
     .setBackground('#D4EDDA')
