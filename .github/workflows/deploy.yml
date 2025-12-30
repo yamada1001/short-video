@@ -36,4 +36,7 @@ jobs:
           **/generate-sitemap.php
           **/.DS_Store
           **/Thumbs.db
-        dangerous-salt-value: protea-vendor-upload
+        # ⚠️ 警告: 以下のパラメータは絶対に使用しないこと ⚠️
+        # dangerous-clean-slate: true  ← 本番環境の全ファイルを削除します（致命的）
+        # dangerous-salt-value: xxx    ← 不正なパラメータ
+        # このファイルを変更する場合は、必ず事前に十分な確認を行うこと

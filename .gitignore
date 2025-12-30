@@ -9,3 +9,9 @@ blog/credentials.json
 blog/logs/
 .htpasswd
 demo/CREDENTIALS.md
+
+# FTP認証情報（バックアップスクリプト用）
+.env
+
+# バックアップディレクトリ
+Backups/
