@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protea Webアプリ システム仕様書 v1.0</title>
+    <title>Protea Webアプリ システム仕様書 v1.1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* YOJITU.COM デザインシステム準拠 */
         :root {
@@ -472,7 +473,7 @@
                 <h3>解決策</h3>
                 <p><strong>Excelインポート → データ管理 → 記事生成・編集</strong>までをWebアプリで一元化</p>
                 <div class="card info">
-                    <h4>💡 重要な前提</h4>
+                    <h4><i class="fas fa-lightbulb"></i> 重要な前提</h4>
                     <ul>
                         <li><strong>スクレイピングはWebアプリで実装しない</strong> → Pythonツール（ローカル）で実行</li>
                         <li><strong>記事公開機能は実装しない</strong> → 記事生成・編集まで</li>
@@ -825,56 +826,419 @@ prompt_templates (1) ─ (N) generated_articles</div>
                 </div>
             </section>
 
-            <!-- 8. 開発スケジュール -->
+            <!-- 8. 開発スケジュール & 詳細TODO -->
             <section id="schedule">
-                <h2>8. 開発スケジュール</h2>
+                <h2>8. 開発スケジュール & 詳細TODO</h2>
 
+                <div class="card warning" style="margin-bottom: 20px;">
+                    <h4><i class="fas fa-exclamation-triangle"></i> 重要な注意事項</h4>
+                    <ul style="margin-left: 20px; line-height: 2.0;">
+                        <li><strong style="color: #d32f2f;">クライアントのAPIキーは絶対に使用しない</strong> - 自分のOpenAI/AnthropicアカウントでAPIキーを取得</li>
+                        <li><strong style="color: #d32f2f;">Excelインポートは複雑</strong> - 6シート構造、可変データ、バリデーションが必要</li>
+                        <li>GASの実装はあくまで「参考」 - そのまま移植するのではなく、Webアプリ向けに再設計</li>
+                    </ul>
+                </div>
+
+                <div class="card info" style="margin-bottom: 40px;">
+                    <h4><i class="fas fa-lightbulb"></i> 作業再開時のチェックリスト</h4>
+                    <ol style="margin-left: 20px; line-height: 2.0;">
+                        <li><strong>GAS_REVIEW.md</strong> を読んで、GAS実装の詳細を再確認</li>
+                        <li><strong>schema.sql</strong> を確認し、テーブル構造を把握</li>
+                        <li>現在のPhaseの「詳細タスク」を確認</li>
+                        <li>前回の作業ログ（コミットメッセージ）を確認</li>
+                        <li><strong style="color: #d32f2f;">自分のAPIキー</strong>（OpenAI, Anthropic）を確認・設定</li>
+                        <li>Excelサンプルファイルを確認（6シート構造）</li>
+                    </ol>
+                </div>
+
+                <h3>8.1 フェーズ概要</h3>
                 <table>
                     <tr>
                         <th>フェーズ</th>
                         <th>作業内容</th>
                         <th>期間</th>
+                        <th>状態</th>
+                    </tr>
+                    <tr>
+                        <td>Phase 0</td>
+                        <td>環境準備・プロジェクト初期化</td>
+                        <td>0.5日</td>
+                        <td><span class="badge">TODO</span></td>
                     </tr>
                     <tr>
                         <td>Phase 1</td>
                         <td>DB設計・テーブル作成</td>
                         <td>1日</td>
+                        <td><span class="badge">TODO</span></td>
                     </tr>
                     <tr>
                         <td>Phase 2</td>
                         <td>Excelアップロード機能</td>
                         <td>2日</td>
+                        <td><span class="badge">TODO</span></td>
                     </tr>
                     <tr>
                         <td>Phase 3</td>
                         <td>キーワード管理画面</td>
                         <td>2日</td>
+                        <td><span class="badge">TODO</span></td>
                     </tr>
                     <tr>
                         <td>Phase 4</td>
                         <td>記事生成機能（GPT API）</td>
                         <td>3日</td>
+                        <td><span class="badge">TODO</span></td>
                     </tr>
                     <tr>
                         <td>Phase 5</td>
                         <td>記事編集・プレビュー</td>
                         <td>2日</td>
+                        <td><span class="badge">TODO</span></td>
                     </tr>
                     <tr>
                         <td>Phase 6</td>
                         <td>ダッシュボード・統計</td>
                         <td>1日</td>
+                        <td><span class="badge">TODO</span></td>
                     </tr>
                     <tr>
                         <td>Phase 7</td>
                         <td>テスト・デバッグ</td>
                         <td>2日</td>
+                        <td><span class="badge">TODO</span></td>
                     </tr>
                     <tr>
                         <th colspan="2">合計</th>
                         <th>13日</th>
                     </tr>
                 </table>
+
+                <h3>8.2 Phase 0: 環境準備・プロジェクト初期化（0.5日）</h3>
+                <div class="card">
+                    <h4>□ Task 0-1: プロジェクトディレクトリ作成</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>protea-app/</code> ディレクトリ作成</li>
+                        <li>[ ] <code>protea-app/public/</code> - 公開ディレクトリ</li>
+                        <li>[ ] <code>protea-app/src/</code> - PHPクラス</li>
+                        <li>[ ] <code>protea-app/config/</code> - 設定ファイル</li>
+                        <li>[ ] <code>protea-app/database/</code> - SQL/マイグレーション</li>
+                        <li>[ ] <code>protea-app/assets/</code> - CSS/JS</li>
+                    </ul>
+
+                    <h4>□ Task 0-2: Composer初期化</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>composer init</code> 実行</li>
+                        <li>[ ] PhpSpreadsheet インストール: <code>composer require phpoffice/phpspreadsheet</code></li>
+                        <li>[ ] Guzzle（HTTP Client）インストール: <code>composer require guzzlehttp/guzzle</code></li>
+                        <li>[ ] .gitignore 作成（vendor/, .env 除外）</li>
+                    </ul>
+
+                    <h4>□ Task 0-3: 設定ファイル作成</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>config/.env.example</code> - 環境変数テンプレート</li>
+                        <li>[ ] <code>config/database.php</code> - DB接続設定</li>
+                        <li>[ ] <code>config/api.php</code> - APIキー設定（OpenAI, Anthropic）</li>
+                        <li>[ ] README.md 作成（セットアップ手順）</li>
+                    </ul>
+                </div>
+
+                <div class="card info" style="margin-top: 30px;">
+                    <h4><i class="fas fa-folder-tree"></i> 詳細ディレクトリ構造</h4>
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 20px; border-radius: 4px; overflow-x: auto; line-height: 1.6;">
+protea-app/
+├── public/                          # 公開ディレクトリ（ドキュメントルート）
+│   ├── index.php                    # キーワード一覧ページ
+│   ├── detail.php                   # キーワード詳細ページ
+│   ├── upload.php                   # Excelアップロードページ
+│   ├── generate.php                 # 記事生成ページ
+│   ├── edit.php                     # 記事編集ページ
+│   ├── templates.php                # プロンプトテンプレート管理
+│   ├── dashboard.php                # ダッシュボード
+│   └── .htaccess                    # Apacheリライトルール
+│
+├── src/                             # PHPクラス（ビジネスロジック）
+│   ├── Database.php                 # PDO接続クラス
+│   ├── ExcelParser.php              # Excelパーサー（PhpSpreadsheet）
+│   ├── KeywordRepository.php        # キーワードDB操作
+│   ├── ArticleGenerator.php         # 記事生成ロジック
+│   ├── PromptBuilder.php            # プロンプト組み立て
+│   ├── OpenAIClient.php             # OpenAI API クライアント
+│   ├── AnthropicClient.php          # Anthropic Claude API クライアント
+│   └── Validator.php                # バリデーションクラス
+│
+├── config/                          # 設定ファイル
+│   ├── .env.example                 # 環境変数テンプレート
+│   ├── database.php                 # DB接続設定（PDO DSN）
+│   └── api.php                      # APIキー設定
+│
+├── database/                        # SQL/マイグレーション
+│   ├── schema.sql                   # テーブル定義（8テーブル）
+│   ├── seeds/                       # 初期データ
+│   │   └── prompt_templates.sql     # デフォルトプロンプト
+│   └── migrations/                  # マイグレーション（将来用）
+│
+├── assets/                          # 静的ファイル
+│   ├── css/
+│   │   ├── style.css                # メインCSS（YOJITU.COM準拠）
+│   │   ├── upload.css               # アップロードページCSS
+│   │   └── editor.css               # エディタCSS
+│   └── js/
+│       ├── upload.js                # ドラッグ&ドロップ
+│       ├── generate.js              # 記事生成UI
+│       └── editor.js                # TinyMCE統合
+│
+├── storage/                         # ファイルストレージ（gitignore）
+│   ├── uploads/                     # アップロードされたExcelファイル
+│   └── logs/                        # アプリケーションログ
+│
+├── vendor/                          # Composer依存関係（gitignore）
+│   ├── phpoffice/phpspreadsheet/    # Excelパーサー
+│   └── guzzlehttp/guzzle/           # HTTP Client
+│
+├── composer.json                    # Composer設定
+├── composer.lock                    # 依存関係ロックファイル
+├── .gitignore                       # Git除外設定
+└── README.md                        # セットアップドキュメント
+                    </pre>
+                    <p style="margin-top: 15px; color: var(--color-text-light);">
+                        <strong>重要</strong>: クエリが増えた場合は、<code>src/</code> 配下をさらに分割（例: <code>src/Repositories/</code>, <code>src/Services/</code>, <code>src/API/</code>）してください。
+                    </p>
+                </div>
+
+                <h3>8.3 Phase 1: DB設計・テーブル作成（1日）</h3>
+                <div class="card">
+                    <h4>□ Task 1-1: schema.sql 修正</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>goo_qa</code> テーブル追加（id, keyword_id, url, question, answer）</li>
+                        <li>[ ] <code>keywords</code> に <code>search_needs</code> カラム追加</li>
+                        <li>[ ] <code>cooccurrence_words</code> に <code>count</code> カラム追加</li>
+                        <li>[ ] 外部キー制約確認（ON DELETE CASCADE）</li>
+                    </ul>
+
+                    <h4>□ Task 1-2: データベース作成</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] XserverでMySQL データベース作成</li>
+                        <li>[ ] データベース名: <code>protea_db</code></li>
+                        <li>[ ] ユーザー作成・権限付与</li>
+                        <li>[ ] phpMyAdmin で schema.sql 実行</li>
+                        <li>[ ] テーブル作成確認（8テーブル）</li>
+                    </ul>
+
+                    <h4>□ Task 1-3: DB接続テスト</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>src/Database.php</code> クラス作成（PDO接続）</li>
+                        <li>[ ] 接続テストスクリプト作成</li>
+                        <li>[ ] SELECT 1 で接続確認</li>
+                    </ul>
+                </div>
+
+                <h3>8.4 Phase 2: Excelアップロード機能（2日）★難易度高</h3>
+                <div class="card warning">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Phase 2 の難しさ</h4>
+                    <p><strong>このPhaseは最も複雑</strong>です。以下の理由により、慎重に実装する必要があります：</p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>6シート構造</strong> - 各シートで異なるカラム構成・行数</li>
+                        <li><strong>可変データ</strong> - 共起語の個数が不定（15件程度だが、ファイルによって異なる）</li>
+                        <li><strong>データバリデーション</strong> - 必須カラムチェック、型チェック、重複チェック</li>
+                        <li><strong>トランザクション処理</strong> - 7テーブルへの一括INSERT（どこかで失敗したらロールバック）</li>
+                        <li><strong>エラーハンドリング</strong> - パースエラー、DB接続エラー、重複キーエラーなど</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>推奨アプローチ</strong>: まず1シートだけ（ブログ記事）でパース→DB登録の流れを確認してから、残り5シートに拡張する。</p>
+                </div>
+
+                <div class="card">
+                    <h4>□ Task 2-1: アップロードページ作成</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>public/upload.php</code> - アップロードフォーム</li>
+                        <li>[ ] ドラッグ&ドロップUI実装</li>
+                        <li>[ ] ファイル形式バリデーション（.xlsx のみ）</li>
+                        <li>[ ] ファイルサイズ制限（10MB以下）</li>
+                    </ul>
+
+                    <h4>□ Task 2-2: Excelパーサー実装</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>src/ExcelParser.php</code> クラス作成</li>
+                        <li>[ ] PhpSpreadsheet でExcel読み込み</li>
+                        <li>[ ] 6シート（ブログ/共起語/サジェスト/本文/Yahoo/goo）パース</li>
+                        <li>[ ] ファイル名からキーワード抽出（例: <code>開業医_患者_来ない</code>）</li>
+                        <li>[ ] データバリデーション（必須カラムチェック）</li>
+                    </ul>
+
+                    <h4>□ Task 2-3: データベース登録</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>keywords</code> テーブルにINSERT（ステータス: スクレイピング完了）</li>
+                        <li>[ ] <code>blog_articles</code> に10件INSERT</li>
+                        <li>[ ] <code>cooccurrence_words</code> に可変件数INSERT</li>
+                        <li>[ ] <code>suggestions</code> に4件INSERT</li>
+                        <li>[ ] <code>article_contents</code> に5件INSERT</li>
+                        <li>[ ] <code>yahoo_qa</code> に15件INSERT</li>
+                        <li>[ ] <code>goo_qa</code> に5件INSERT</li>
+                        <li>[ ] トランザクション処理（全件成功 or ロールバック）</li>
+                    </ul>
+
+                    <h4>□ Task 2-4: アップロード結果表示</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] 成功メッセージ表示</li>
+                        <li>[ ] 登録件数表示（キーワード1件、ブログ10件、etc.）</li>
+                        <li>[ ] エラーハンドリング（重複キーワード、パースエラー）</li>
+                    </ul>
+                </div>
+
+                <h3>8.5 Phase 3: キーワード管理画面（2日）</h3>
+                <div class="card">
+                    <h4>□ Task 3-1: 一覧ページ作成</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>public/index.php</code> - キーワード一覧</li>
+                        <li>[ ] テーブル表示（ID, キーワード, ステータス, 対象月, 更新日時）</li>
+                        <li>[ ] ページネーション実装（20件/ページ）</li>
+                        <li>[ ] ステータス別カラー表示（未着手=グレー、完成=緑）</li>
+                    </ul>
+
+                    <h4>□ Task 3-2: 検索・フィルタ機能</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] キーワード検索（部分一致）</li>
+                        <li>[ ] ステータスフィルタ（ドロップダウン）</li>
+                        <li>[ ] 対象月フィルタ</li>
+                        <li>[ ] ソート機能（更新日時 DESC）</li>
+                    </ul>
+
+                    <h4>□ Task 3-3: 詳細ページ作成</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>public/detail.php?id=1</code> - キーワード詳細</li>
+                        <li>[ ] タブUI実装（ブログ/共起語/サジェスト/本文/知恵袋）</li>
+                        <li>[ ] 各タブでデータ表示</li>
+                        <li>[ ] 競合記事本文をプレビュー表示</li>
+                    </ul>
+
+                    <h4>□ Task 3-4: アクションボタン</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] 「記事生成」ボタン（→ Phase 4へ遷移）</li>
+                        <li>[ ] 「削除」ボタン（確認モーダル付き）</li>
+                        <li>[ ] ステータス更新ボタン</li>
+                    </ul>
+                </div>
+
+                <h3>8.6 Phase 4: 記事生成機能（GPT API）（3日）</h3>
+                <div class="card">
+                    <h4>□ Task 4-1: プロンプトテンプレート管理</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>prompt_templates</code> テーブルにデフォルトテンプレート登録</li>
+                        <li>[ ] <code>public/templates.php</code> - テンプレート管理画面</li>
+                        <li>[ ] テンプレート新規作成・編集・削除機能</li>
+                        <li>[ ] 変数プレースホルダー（{{keyword}}, {{cooccurrence}}, etc.）実装</li>
+                    </ul>
+
+                    <h4>□ Task 4-2: GPT API統合（タイトル生成）</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>src/GPTClient.php</code> クラス作成</li>
+                        <li>[ ] OpenAI API呼び出し（gpt-4-turbo）</li>
+                        <li>[ ] タイトル生成プロンプト実装（GAS参考）</li>
+                        <li>[ ] 2段階プロンプト（生成→選定）</li>
+                        <li>[ ] JSON形式レスポンスパース</li>
+                    </ul>
+
+                    <h4>□ Task 4-3: GPT API統合（リード文・見出し・本文）</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] リード文生成API実装</li>
+                        <li>[ ] 見出し生成API実装（h2/h3/h4）</li>
+                        <li>[ ] 本文生成API実装（HTML形式、5000文字以上）</li>
+                        <li>[ ] 各ステップで前の結果を参照</li>
+                    </ul>
+
+                    <h4>□ Task 4-4: Claude API統合（リライト機能）</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>src/ClaudeClient.php</code> クラス作成</li>
+                        <li>[ ] Anthropic API呼び出し（claude-3.5-sonnet）</li>
+                        <li>[ ] 記事分割処理（h2タグごとに2見出しずつ）</li>
+                        <li>[ ] 段階的リライト実装</li>
+                    </ul>
+
+                    <h4>□ Task 4-5: 記事生成UI</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>public/generate.php?keyword_id=1</code></li>
+                        <li>[ ] テンプレート選択ドロップダウン</li>
+                        <li>[ ] モデル選択（gpt-4, gpt-4-turbo, gpt-3.5-turbo）</li>
+                        <li>[ ] 生成ボタン＋プログレスバー表示</li>
+                        <li>[ ] 生成結果を <code>generated_articles</code> に保存</li>
+                    </ul>
+                </div>
+
+                <h3>8.7 Phase 5: 記事編集・プレビュー（2日）</h3>
+                <div class="card">
+                    <h4>□ Task 5-1: 記事編集画面</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>public/edit.php?article_id=1</code></li>
+                        <li>[ ] TinyMCE エディタ統合</li>
+                        <li>[ ] タイトル・本文編集</li>
+                        <li>[ ] 自動保存機能（LocalStorage）</li>
+                    </ul>
+
+                    <h4>□ Task 5-2: プレビュー機能</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] リアルタイムプレビュー表示</li>
+                        <li>[ ] HTML整形・サニタイズ</li>
+                        <li>[ ] 文字数カウント表示</li>
+                    </ul>
+
+                    <h4>□ Task 5-3: 保存・更新機能</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] 編集内容をDBに保存</li>
+                        <li>[ ] ステータス更新（下書き→レビュー中→完成）</li>
+                        <li>[ ] 更新履歴管理（updated_at）</li>
+                    </ul>
+                </div>
+
+                <h3>8.8 Phase 6: ダッシュボード・統計（1日）</h3>
+                <div class="card">
+                    <h4>□ Task 6-1: ダッシュボードページ</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] <code>public/dashboard.php</code></li>
+                        <li>[ ] ステータス別件数表示（円グラフ）</li>
+                        <li>[ ] 月別件数グラフ（棒グラフ）</li>
+                        <li>[ ] 最近の活動（タイムライン）</li>
+                    </ul>
+
+                    <h4>□ Task 6-2: Chart.js 統合</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] Chart.js CDN読み込み</li>
+                        <li>[ ] 円グラフ実装</li>
+                        <li>[ ] 棒グラフ実装</li>
+                    </ul>
+                </div>
+
+                <h3>8.9 Phase 7: テスト・デバッグ（2日）</h3>
+                <div class="card">
+                    <h4>□ Task 7-1: 機能テスト</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] Excelアップロード（正常系・異常系）</li>
+                        <li>[ ] 記事生成（全ステップ）</li>
+                        <li>[ ] 編集・保存</li>
+                        <li>[ ] 検索・フィルタ</li>
+                    </ul>
+
+                    <h4>□ Task 7-2: エラーハンドリング強化</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] APIエラー時の処理</li>
+                        <li>[ ] DB接続エラー時の処理</li>
+                        <li>[ ] ファイルアップロードエラー</li>
+                        <li>[ ] エラーログ記録</li>
+                    </ul>
+
+                    <h4>□ Task 7-3: パフォーマンス最適化</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] SQLクエリ最適化（INDEX確認）</li>
+                        <li>[ ] 画像・CSS・JS圧縮</li>
+                        <li>[ ] キャッシュ設定</li>
+                    </ul>
+
+                    <h4>□ Task 7-4: デプロイ準備</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>[ ] 本番環境用 .env 設定</li>
+                        <li>[ ] .htaccess 設定（URL rewrite）</li>
+                        <li>[ ] セキュリティチェック（SQL Injection, XSS）</li>
+                        <li>[ ] 本番サーバーにアップロード</li>
+                    </ul>
+                </div>
 
                 <div class="card success">
                     <h4>🚀 今後の拡張案</h4>
