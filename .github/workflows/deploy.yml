@@ -34,3 +34,6 @@ jobs:
           **/node_modules/**
           **/.github/**
           **/generate-sitemap.php
+          **/.DS_Store
+          **/Thumbs.db
+        dangerous-salt-value: protea-vendor-upload
