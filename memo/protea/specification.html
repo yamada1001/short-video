@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protea Webアプリ システム仕様書 v1.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #2C3E50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        header .version {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        nav {
+            background: #34495E;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: #4A90E2;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            font-size: 24px;
+            color: #34495E;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #7F8C8D;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .card {
+            background: #F8F9FA;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .card.warning {
+            border-left-color: #e74c3c;
+            background: #FFEBEE;
+        }
+
+        .card.success {
+            border-left-color: #27ae60;
+            background: #E8F5E9;
+        }
+
+        .card.info {
+            border-left-color: #3498db;
+            background: #E3F2FD;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ECF0F1;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #F8F9FA;
+        }
+
+        .diagram {
+            background: #F8F9FA;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            border: 2px solid #E0E0E0;
+        }
+
+        .workflow {
+            background: linear-gradient(to bottom, #E8F4F8, white);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .workflow-step {
+            background: white;
+            padding: 15px 25px;
+            margin: 10px auto;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .workflow-step::after {
+            content: '↓';
+            display: block;
+            font-size: 24px;
+            color: #667eea;
+            margin-top: 10px;
+        }
+
+        .workflow-step:last-child::after {
+            display: none;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .tech-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #667eea;
+        }
+
+        .tech-card h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .feature-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .feature-item h4 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .badge.success {
+            background: #27ae60;
+        }
+
+        .badge.warning {
+            background: #f39c12;
+        }
+
+        footer {
+            background: #34495E;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .toc {
+            background: #F8F9FA;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            padding: 8px 0;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌸 Protea Webアプリ</h1>
+            <div class="subtitle">SEO記事作成支援システム　システム仕様書</div>
+            <div class="version">Version 1.0 | 2025-12-30</div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#overview">概要</a></li>
+                <li><a href="#features">機能一覧</a></li>
+                <li><a href="#screens">画面設計</a></li>
+                <li><a href="#database">DB設計</a></li>
+                <li><a href="#workflow">ワークフロー</a></li>
+                <li><a href="#tech">技術スタック</a></li>
+                <li><a href="#schedule">スケジュール</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- 目次 -->
+            <div class="toc">
+                <h3>📋 目次</h3>
+                <ul>
+                    <li><a href="#overview">1. システム概要</a></li>
+                    <li><a href="#features">2. 機能一覧</a></li>
+                    <li><a href="#screens">3. 画面設計</a></li>
+                    <li><a href="#database">4. データベース設計</a></li>
+                    <li><a href="#workflow">5. ワークフロー</a></li>
+                    <li><a href="#tech">6. 技術スタック</a></li>
+                    <li><a href="#constraints">7. 制約事項</a></li>
+                    <li><a href="#schedule">8. 開発スケジュール</a></li>
+                </ul>
+            </div>
+
+            <!-- 1. システム概要 -->
+            <section id="overview">
+                <h2>1. システム概要</h2>
+
+                <div class="card success">
+                    <h4>📌 目的</h4>
+                    <ul>
+                        <li>Googleスプレッドシート管理からの脱却</li>
+                        <li>スクレイピングデータの一元管理</li>
+                        <li>GPT APIを活用した記事自動生成</li>
+                        <li>チームでの進捗管理</li>
+                    </ul>
+                </div>
+
+                <h3>現状の課題</h3>
+                <div class="card warning">
+                    <ul>
+                        <li>Pythonスクレイピング結果（Excel）とスプレッドシートの二重管理</li>
+                        <li>記事生成フローが手動で非効率</li>
+                        <li>進捗管理が煩雑</li>
+                    </ul>
+                </div>
+
+                <h3>解決策</h3>
+                <p><strong>Excelインポート → データ管理 → 記事生成 → 公開</strong>までをWebアプリで一元化</p>
+
+                <div class="diagram">┌─────────────────────────────────────┐
+│ Python (ローカル)                    │
+│ スクレイピングツール                  │
+└──────────┬──────────────────────────┘
+           │ Excel出力 (1キーワード=1ファイル)
+           ▼
+┌─────────────────────────────────────┐
+│ Protea Web App (Xserver/PHP/MySQL) │
+├─────────────────────────────────────┤
+│ 1. Excelアップロード                 │
+│ 2. データパース＆DB保存              │
+│ 3. キーワード管理画面                │
+│ 4. GPT記事生成                      │
+│ 5. 記事プレビュー＆編集              │
+│ 6. 記事公開                         │
+└──────────┬──────────────────────────┘
+           │
+           ▼
+┌─────────────────────────────────────┐
+│ MySQL Database                      │
+└─────────────────────────────────────┘</div>
+            </section>
+
+            <!-- 2. 機能一覧 -->
+            <section id="features">
+                <h2>2. 機能一覧</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>📤 Excelインポート</h4>
+                        <p>Pythonスクレイピング結果をアップロード。5シート（ブログ・共起語・サジェスト・本文・知恵袋）を自動パース。</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <h4>📋 キーワード管理</h4>
+                        <p>一覧表示・検索・フィルタ・ステータス管理。未着手〜公開済まで進捗を可視化。</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <h4>🔍 詳細表示</h4>
+                        <p>スクレイピングデータをタブ切り替えで表示。競合ブログ10件、共起語20件など。</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <h4>✍️ 記事生成</h4>
+                        <p>GPT APIで記事を自動生成。gpt-4 / gpt-4-turbo / gpt-3.5から選択可能。</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <h4>📝 記事編集</h4>
+                        <p>WYSIWYGエディタで編集。プレビュー機能付き。下書き保存〜公開まで対応。</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <h4>🎯 プロンプト管理</h4>
+                        <p>GPTプロンプトのテンプレート作成・編集。変数埋め込み機能。</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <h4>📊 ダッシュボード</h4>
+                        <p>全体進捗を可視化。ステータス別円グラフ、月別棒グラフ、最近の活動。</p>
+                    </div>
+                </div>
+
+                <h3>2.1 Excelファイル構造</h3>
+                <table>
+                    <tr>
+                        <th>シート名</th>
+                        <th>列構成</th>
+                        <th>行数</th>
+                        <th>内容</th>
+                    </tr>
+                    <tr>
+                        <td>ブログ記事</td>
+                        <td>URL, タイトル</td>
+                        <td>10件</td>
+                        <td>競合ブログ10件</td>
+                    </tr>
+                    <tr>
+                        <td>共起語</td>
+                        <td>共起語</td>
+                        <td>20件</td>
+                        <td>SEO共起語リスト</td>
+                    </tr>
+                    <tr>
+                        <td>サジェスト</td>
+                        <td>クエリ, サジェスト</td>
+                        <td>4件</td>
+                        <td>検索サジェスト</td>
+                    </tr>
+                    <tr>
+                        <td>URL本文</td>
+                        <td>URL, タイトル, 本文</td>
+                        <td>5件</td>
+                        <td>競合記事本文</td>
+                    </tr>
+                    <tr>
+                        <td>Yahoo知恵袋</td>
+                        <td>URL, 質問, ベストアンサー</td>
+                        <td>10件</td>
+                        <td>知恵袋Q&A</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- 3. 画面設計 -->
+            <section id="screens">
+                <h2>3. 画面設計</h2>
+
+                <h3>3.1 画面一覧</h3>
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>画面名</th>
+                        <th>URL</th>
+                        <th>説明</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>ダッシュボード</td>
+                        <td><code>/protea/</code></td>
+                        <td>全体進捗表示</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Excelアップロード</td>
+                        <td><code>/protea/upload.php</code></td>
+                        <td>Excelファイルアップロード</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>キーワード一覧</td>
+                        <td><code>/protea/keywords.php</code></td>
+                        <td>キーワード管理</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>キーワード詳細</td>
+                        <td><code>/protea/keyword_detail.php?id=123</code></td>
+                        <td>スクレイピングデータ表示</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>記事生成</td>
+                        <td><code>/protea/generate_article.php?keyword_id=123</code></td>
+                        <td>GPT記事生成</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>記事編集</td>
+                        <td><code>/protea/edit_article.php?id=456</code></td>
+                        <td>記事編集・プレビュー</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>プロンプト管理</td>
+                        <td><code>/protea/prompts.php</code></td>
+                        <td>テンプレート管理</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- 4. データベース設計 -->
+            <section id="database">
+                <h2>4. データベース設計</h2>
+
+                <h3>4.1 テーブル一覧</h3>
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>テーブル名</th>
+                        <th>説明</th>
+                        <th>行数目安</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>keywords</td>
+                        <td>キーワードマスタ</td>
+                        <td>100件</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>blog_articles</td>
+                        <td>競合ブログ記事</td>
+                        <td>1,000件</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>cooccurrence_words</td>
+                        <td>共起語</td>
+                        <td>2,000件</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>suggestions</td>
+                        <td>サジェスト</td>
+                        <td>400件</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>article_contents</td>
+                        <td>競合記事本文</td>
+                        <td>500件</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>yahoo_qa</td>
+                        <td>Yahoo知恵袋</td>
+                        <td>1,000件</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>generated_articles</td>
+                        <td>生成記事</td>
+                        <td>100件</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>prompt_templates</td>
+                        <td>プロンプトテンプレート</td>
+                        <td>10件</td>
+                    </tr>
+                </table>
+
+                <h3>4.2 ER図</h3>
+                <div class="diagram">keywords (1) ─┬─ (N) blog_articles
+              ├─ (N) cooccurrence_words
+              ├─ (N) suggestions
+              ├─ (N) article_contents
+              ├─ (N) yahoo_qa
+              └─ (N) generated_articles
+
+prompt_templates (1) ─ (N) generated_articles</div>
+            </section>
+
+            <!-- 5. ワークフロー -->
+            <section id="workflow">
+                <h2>5. ワークフロー</h2>
+
+                <div class="workflow">
+                    <div class="workflow-step">
+                        <strong>1. Pythonスクレイピング（ローカル）</strong><br>
+                        Excelファイル出力
+                    </div>
+
+                    <div class="workflow-step">
+                        <strong>2. Excelアップロード（Webアプリ）</strong><br>
+                        データパース
+                    </div>
+
+                    <div class="workflow-step">
+                        <strong>3. DB保存</strong><br>
+                        5シート → 5テーブル + キーワード登録
+                    </div>
+
+                    <div class="workflow-step">
+                        <strong>4. キーワード一覧表示</strong><br>
+                        検索・フィルタ・詳細表示
+                    </div>
+
+                    <div class="workflow-step">
+                        <strong>5. 記事生成（GPT API）</strong><br>
+                        タイトル + 本文（5000文字以上）
+                    </div>
+
+                    <div class="workflow-step">
+                        <strong>6. 記事編集・プレビュー</strong><br>
+                        WYSIWYGエディタで修正
+                    </div>
+
+                    <div class="workflow-step">
+                        <strong>7. 記事公開</strong><br>
+                        ステータス: 公開済
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. 技術スタック -->
+            <section id="tech">
+                <h2>6. 技術スタック</h2>
+
+                <div class="tech-stack">
+                    <div class="tech-card">
+                        <h4>バックエンド</h4>
+                        <ul>
+                            <li>PHP 7.4+</li>
+                            <li>MySQL 5.7+</li>
+                            <li>PhpSpreadsheet 1.x</li>
+                            <li>Guzzle 7.x（HTTP Client）</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4>フロントエンド</h4>
+                        <ul>
+                            <li>HTML/CSS</li>
+                            <li>JavaScript (ES6)</li>
+                            <li>Chart.js 4.x（グラフ）</li>
+                            <li>TinyMCE 6.x（エディタ）</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4>外部API</h4>
+                        <ul>
+                            <li>OpenAI GPT API（記事生成）</li>
+                            <li>gpt-4 / gpt-4-turbo / gpt-3.5</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4>サーバー環境</h4>
+                        <ul>
+                            <li>Xserver</li>
+                            <li>ストレージ: 10GB</li>
+                            <li>PHPタイムアウト: 300秒</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. 制約事項 -->
+            <section id="constraints">
+                <h2>7. 制約事項</h2>
+
+                <div class="card warning">
+                    <h4>技術的制約</h4>
+                    <ul>
+                        <li>Xserverではスクレイピング不可 → Pythonローカルで実行</li>
+                        <li>PHPタイムアウト: 最大300秒（GPT API待機時間）</li>
+                        <li>ファイルサイズ上限: 10MB/アップロード</li>
+                    </ul>
+                </div>
+
+                <div class="card info">
+                    <h4>運用上の制約</h4>
+                    <ul>
+                        <li>キーワード数: 最大1,000件</li>
+                        <li>同時アップロード: 1ファイルずつ（バッチ処理なし）</li>
+                        <li>GPT API: 月間トークン数制限あり</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 8. 開発スケジュール -->
+            <section id="schedule">
+                <h2>8. 開発スケジュール</h2>
+
+                <table>
+                    <tr>
+                        <th>フェーズ</th>
+                        <th>作業内容</th>
+                        <th>期間</th>
+                    </tr>
+                    <tr>
+                        <td>Phase 1</td>
+                        <td>DB設計・テーブル作成</td>
+                        <td>1日</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 2</td>
+                        <td>Excelアップロード機能</td>
+                        <td>2日</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 3</td>
+                        <td>キーワード管理画面</td>
+                        <td>2日</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 4</td>
+                        <td>記事生成機能（GPT API）</td>
+                        <td>3日</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 5</td>
+                        <td>記事編集・プレビュー</td>
+                        <td>2日</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 6</td>
+                        <td>ダッシュボード・統計</td>
+                        <td>1日</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 7</td>
+                        <td>テスト・デバッグ</td>
+                        <td>2日</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">合計</th>
+                        <th>13日</th>
+                    </tr>
+                </table>
+
+                <div class="card success">
+                    <h4>🚀 今後の拡張案</h4>
+                    <ul>
+                        <li>ログイン・権限管理</li>
+                        <li>スケジュール自動実行（cron）</li>
+                        <li>WordPress連携（記事自動投稿）</li>
+                        <li>外部スクレイピングサービス連携</li>
+                        <li>A/Bテスト機能</li>
+                        <li>SEO分析ダッシュボード</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p><strong>Protea Webアプリ システム仕様書 v1.0</strong></p>
+            <p>作成日: 2025-12-30 | 作成者: Claude</p>
+            <p style="margin-top: 20px; font-size: 14px; opacity: 0.8;">
+                © 2025 YOJITU.COM - All Rights Reserved
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
