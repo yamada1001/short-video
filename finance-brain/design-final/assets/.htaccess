@@ -1,0 +1,9 @@
+# assetsディレクトリ配下の全ファイルへのアクセスを許可
+Require all granted
+
+# MIME Type設定
+AddType image/jpeg .jpg .jpeg
+AddType image/png .png
+AddType image/svg+xml .svg
+AddType image/webp .webp
+AddType image/x-icon .ico

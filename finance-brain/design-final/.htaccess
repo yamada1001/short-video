@@ -2,7 +2,7 @@
 Options +Indexes
 DirectoryIndex index.php index.html
 
-# 401エラー対策
+# 401エラー対策 - PHPとHTMLファイル
 <Files "index.php">
     Require all granted
 </Files>
@@ -11,6 +11,24 @@ DirectoryIndex index.php index.html
     Require all granted
 </Files>
 
+<Files "design-guide.php">
+    Require all granted
+</Files>
+
+# 画像・アセットファイルへのアクセス許可
+<FilesMatch "\.(jpg|jpeg|png|gif|svg|webp|ico|css|js|woff|woff2|ttf|eot)$">
+    Require all granted
+</FilesMatch>
+
+# assetsディレクトリ配下の全ファイルへのアクセス許可
+<Directory "assets">
+    Require all granted
+</Directory>
+
 # MIME Type設定
 AddType text/html .html
 AddType application/x-httpd-php .php
+AddType image/jpeg .jpg .jpeg
+AddType image/png .png
+AddType image/svg+xml .svg
+AddType image/webp .webp
