@@ -3,478 +3,309 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Finance Brain - Financial Planning & Consulting</title>
+  <title>ファイナンスブレーン | 大分の保険・投資信託・資産運用のコンサルタント</title>
+  <meta name="description" content="FPや投資診断士など、大分県内の専門資格所有者が多数在籍し、お金に関するご相談を幅広く承っています。">
 
-  <!-- Google Fonts - Variable Fonts for 2026 Trend -->
+  <!-- Google Fonts - Noto Sans JP -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      /* 2026 Color Palette - Mocha Mousse + Neo-Mint + Rich Reds */
-      --mocha-mousse: #A47864;
-      --neo-mint: #88E5D4;
-      --rich-terracotta: #D4745F;
-      --deep-navy: #1A1D2E;
-      --soft-cream: #FAF8F5;
-      --accent-yellow: #FFE17B;
-
-      /* Typography Scale */
-      --font-display: 'Space Grotesk', sans-serif;
-      --font-body: 'Inter', sans-serif;
-    }
-
-    * {
+    /* ========== Reset & Base Styles ========== */
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    :root {
+      /* Blue Gradient Color Palette */
+      --primary-dark: #1e3a8a;
+      --primary: #3b82f6;
+      --primary-light: #60a5fa;
+      --accent: #06b6d4;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+      --bg-gradient-reverse: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1e3a8a 100%);
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --text-light: #94a3b8;
+      --border-color: #e2e8f0;
+
+      /* Typography */
+      --font-ja: 'Noto Sans JP', sans-serif;
+      --font-en: 'Inter', sans-serif;
+
+      /* Spacing */
+      --section-padding: 120px;
+      --section-padding-mobile: 60px;
+      --container-width: 1200px;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: var(--font-body);
-      background-color: var(--soft-cream);
-      color: var(--deep-navy);
+      font-family: var(--font-ja);
+      color: var(--text-primary);
+      background-color: var(--bg-primary);
+      line-height: 1.8;
       overflow-x: hidden;
-      cursor: none;
     }
 
-    /* Custom Cursor - 2026 Trend */
-    .custom-cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--mocha-mousse);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 10000;
-      transition: transform 0.2s cubic-bezier(0.75, -0.5, 0, 1.75),
-                  border-color 0.3s ease;
-      mix-blend-mode: difference;
+    /* ========== Utility Classes ========== */
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 40px;
     }
 
-    .custom-cursor.hover {
-      transform: scale(2.5);
-      border-color: var(--neo-mint);
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
     }
 
-    .custom-cursor-follower {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background-color: var(--rich-terracotta);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.15s ease-out;
-    }
-
-    /* Navigation */
-    nav {
+    /* ========== Header ========== */
+    .header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      padding: 2rem 4rem;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .header.scrolled {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000;
-      mix-blend-mode: difference;
+      padding: 20px 0;
     }
 
-    .logo {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: white;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 3rem;
-      list-style: none;
-    }
-
-    .nav-menu a {
-      color: white;
+    .header-logo a {
       text-decoration: none;
-      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      background: var(--bg-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo-tagline {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-top: 2px;
+      letter-spacing: 0.1em;
+    }
+
+    .nav-list {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-list a {
+      text-decoration: none;
+      color: var(--text-primary);
+      font-size: 14px;
       font-weight: 500;
       position: relative;
-      transition: opacity 0.3s ease;
+      transition: color 0.3s ease;
     }
 
-    .nav-menu a::after {
+    .nav-list a:not(.btn-primary):hover {
+      color: var(--primary);
+    }
+
+    .nav-list a:not(.btn-primary)::after {
       content: '';
       position: absolute;
       bottom: -4px;
       left: 0;
       width: 0;
       height: 2px;
-      background-color: var(--neo-mint);
-      transition: width 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+      background: var(--bg-gradient);
+      transition: width 0.3s ease;
     }
 
-    .nav-menu a:hover::after {
+    .nav-list a:not(.btn-primary):hover::after {
       width: 100%;
     }
 
-    /* Hero Section - Oversized Typography */
+    .btn-primary {
+      background: var(--bg-gradient);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 1024px) {
+      .header-nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* ========== Hero Section ========== */
     .hero {
       position: relative;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: var(--bg-gradient);
       overflow: hidden;
-      background: linear-gradient(135deg, var(--soft-cream) 0%, #E8E3DC 100%);
+      padding-top: 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
     }
 
     .hero-content {
       position: relative;
       z-index: 10;
       text-align: center;
-      padding: 2rem;
+      color: white;
+      padding: 60px 0;
     }
 
     .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(4rem, 15vw, 12rem);
-      font-weight: 700;
-      line-height: 0.9;
-      letter-spacing: -0.04em;
-      color: var(--deep-navy);
-      margin-bottom: 2rem;
-    }
-
-    .hero-title .highlight {
-      color: var(--mocha-mousse);
-      position: relative;
-      display: inline-block;
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1.2rem, 3vw, 2rem);
-      font-weight: 300;
-      color: var(--mocha-mousse);
-      letter-spacing: 0.05em;
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease 0.5s forwards;
-    }
-
-    /* 3D Canvas Background */
-    #three-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-
-    /* Scroll Indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 3rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease 1s forwards;
-    }
-
-    .scroll-text {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--mocha-mousse);
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, var(--mocha-mousse), transparent);
-      animation: scrollLineMove 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollLineMove {
-      0%, 100% { opacity: 0; transform: translateY(-20px); }
-      50% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Services Section - Interactive Cards */
-    .services {
-      padding: 10rem 4rem;
-      background-color: var(--deep-navy);
-      position: relative;
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 700;
-      color: var(--soft-cream);
-      margin-bottom: 5rem;
-      letter-spacing: -0.03em;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .service-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
-      padding: 3rem;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-      backdrop-filter: blur(10px);
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, var(--neo-mint) 0%, var(--rich-terracotta) 100%);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    .service-card:hover::before {
-      opacity: 0.1;
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-      border-color: var(--neo-mint);
-    }
-
-    .service-icon {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      display: inline-block;
-      transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-    }
-
-    .service-card:hover .service-icon {
-      transform: scale(1.2) rotate(5deg);
-    }
-
-    .service-title {
-      font-family: var(--font-display);
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--soft-cream);
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .service-description {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: rgba(250, 248, 245, 0.7);
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Stats Section - Kinetic Typography */
-    .stats {
-      padding: 8rem 4rem;
-      background-color: var(--neo-mint);
-      overflow: hidden;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .stat-item {
-      position: relative;
-    }
-
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 700;
-      color: var(--deep-navy);
-      line-height: 1;
-      margin-bottom: 1rem;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .stat-label {
-      font-size: 1.1rem;
-      color: var(--deep-navy);
-      opacity: 0.8;
-      letter-spacing: 0.05em;
-    }
-
-    /* Philosophy Section - Large Quote */
-    .philosophy {
-      padding: 10rem 4rem;
-      background-color: var(--soft-cream);
-      position: relative;
-    }
-
-    .philosophy-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .philosophy-quote {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: 300;
+      font-size: clamp(36px, 7vw, 68px);
+      font-weight: 900;
       line-height: 1.4;
-      color: var(--deep-navy);
-      letter-spacing: -0.02em;
-      position: relative;
-      padding-left: 4rem;
+      margin-bottom: 32px;
+      letter-spacing: 0.02em;
+      animation: fadeInUp 1s ease;
     }
 
-    .philosophy-quote::before {
-      content: '"';
-      position: absolute;
-      left: 0;
-      top: -2rem;
-      font-size: 10rem;
-      color: var(--mocha-mousse);
-      opacity: 0.2;
-      font-family: Georgia, serif;
+    .hero-lead {
+      font-size: clamp(14px, 2vw, 18px);
+      line-height: 2;
+      margin-bottom: 48px;
+      opacity: 0.95;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease 0.2s backwards;
     }
 
-    .philosophy-author {
-      margin-top: 3rem;
-      font-size: 1.2rem;
-      color: var(--mocha-mousse);
-      font-weight: 500;
-      padding-left: 4rem;
-    }
-
-    /* CTA Section */
-    .cta {
-      padding: 8rem 4rem;
-      background: linear-gradient(135deg, var(--rich-terracotta) 0%, var(--mocha-mousse) 100%);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 700;
-      color: white;
-      margin-bottom: 2rem;
-      letter-spacing: -0.03em;
-    }
-
-    .cta-button {
-      display: inline-block;
-      padding: 1.5rem 4rem;
-      background-color: var(--deep-navy);
-      color: white;
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 50px;
-      transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      background-color: var(--neo-mint);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      transition: width 0.6s ease, height 0.6s ease;
-    }
-
-    .cta-button:hover::before {
-      width: 400px;
-      height: 400px;
-    }
-
-    .cta-button span {
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-button:hover {
-      transform: scale(1.05);
-    }
-
-    /* Footer */
-    footer {
-      padding: 4rem;
-      background-color: var(--deep-navy);
-      color: var(--soft-cream);
-      text-align: center;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
+    .hero-buttons {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      gap: 20px;
+      justify-content: center;
       flex-wrap: wrap;
-      gap: 2rem;
+      margin-bottom: 60px;
+      animation: fadeInUp 1s ease 0.4s backwards;
     }
 
-    .footer-logo {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .footer-links a {
-      color: var(--soft-cream);
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 40px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 50px;
       text-decoration: none;
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
 
-    .footer-links a:hover {
-      opacity: 1;
+    .btn-large {
+      padding: 20px 48px;
+      font-size: 18px;
     }
 
-    /* Animations */
+    .btn-outline {
+      background: white;
+      color: var(--primary);
+      border-color: white;
+    }
+
+    .btn-outline:hover {
+      background: transparent;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .hero-features {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease 0.6s backwards;
+    }
+
+    .feature-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -486,384 +317,1261 @@
       }
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
-      nav {
-        padding: 1.5rem 2rem;
+      .hero {
+        min-height: 80vh;
       }
 
-      .nav-menu {
-        gap: 1.5rem;
-      }
-
-      .nav-menu a {
-        font-size: 0.85rem;
-      }
-
-      .services, .stats, .philosophy, .cta {
-        padding: 5rem 2rem;
-      }
-
-      .footer-content {
+      .hero-buttons {
         flex-direction: column;
-        text-align: center;
+        align-items: center;
       }
 
-      .philosophy-quote {
-        padding-left: 2rem;
+      .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
       }
 
-      .philosophy-author {
-        padding-left: 2rem;
+      .hero-features {
+        flex-direction: column;
+        align-items: center;
       }
     }
 
-    /* Loading Animation */
-    .page-loader {
-      position: fixed;
+    /* ========== Section Common Styles ========== */
+    .section {
+      padding: var(--section-padding) 0;
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: var(--section-padding-mobile) 0;
+      }
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 900;
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--bg-gradient);
+      border-radius: 2px;
+    }
+
+    .section-lead {
+      font-size: clamp(14px, 2vw, 18px);
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-top: 32px;
+    }
+
+    /* ========== About Section ========== */
+    .section-about {
+      background: var(--bg-secondary);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .about-text h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .about-text p {
+      margin-bottom: 24px;
+      color: var(--text-secondary);
+    }
+
+    .about-text p:first-of-type {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1.9;
+    }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
+    }
+
+    .stat-number {
+      font-family: var(--font-en);
+      font-size: 48px;
+      font-weight: 900;
+      background: var(--bg-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-stats {
+        flex-direction: row;
+        overflow-x: auto;
+      }
+
+      .stat-card {
+        min-width: 150px;
+      }
+    }
+
+    /* ========== Services Section ========== */
+    .services-tabs {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 60px;
+    }
+
+    .tab-button {
+      padding: 16px 40px;
+      font-size: 16px;
+      font-weight: 600;
+      border: 2px solid var(--border-color);
+      background: white;
+      color: var(--text-secondary);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: var(--font-ja);
+    }
+
+    .tab-button.active {
+      background: var(--bg-gradient);
+      color: white;
+      border-color: transparent;
+    }
+
+    .tab-button:hover:not(.active) {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 4px;
+      height: 0;
+      background: var(--bg-gradient);
+      transition: height 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
+      border-color: var(--primary-light);
+    }
+
+    .service-card:hover::before {
       height: 100%;
-      background-color: var(--deep-navy);
-      z-index: 10001;
+    }
+
+    .service-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .service-description {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: gap 0.3s ease;
+    }
+
+    .service-link:hover {
+      gap: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .services-tabs {
+        flex-direction: column;
+      }
+
+      .tab-button {
+        width: 100%;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========== Why Us Section ========== */
+    .section-why-us {
+      background: var(--bg-secondary);
+    }
+
+    .reasons-grid {
+      display: grid;
+      gap: 40px;
+    }
+
+    .reason-card {
+      background: white;
+      padding: 48px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .reason-card:hover {
+      transform: translateX(8px);
+      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
+    }
+
+    .reason-number {
+      position: absolute;
+      top: -20px;
+      left: 48px;
+      width: 60px;
+      height: 60px;
+      background: var(--bg-gradient);
+      color: white;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      font-family: var(--font-en);
+      font-size: 20px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
     }
 
-    .page-loader.hidden {
+    .reason-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      margin-top: 24px;
+      color: var(--text-primary);
+    }
+
+    .reason-description {
+      font-size: 15px;
+      line-height: 2;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .reason-card {
+        padding: 40px 24px;
+      }
+
+      .reason-number {
+        left: 24px;
+      }
+    }
+
+    /* ========== Voice Section ========== */
+    .voice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .voice-card {
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .voice-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
+    }
+
+    .voice-header {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .voice-avatar {
+      width: 56px;
+      height: 56px;
+      background: var(--bg-gradient);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .voice-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .voice-category {
+      font-size: 12px;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .voice-text {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-secondary);
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .voice-text::before {
+      content: '"';
+      position: absolute;
+      left: 0;
+      top: -8px;
+      font-size: 48px;
+      color: var(--primary-light);
+      opacity: 0.3;
+      font-family: Georgia, serif;
+    }
+
+    @media (max-width: 768px) {
+      .voice-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========== Company Section ========== */
+    .section-company {
+      background: var(--bg-secondary);
+    }
+
+    .company-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .company-table {
+      width: 100%;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .company-table tr {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .company-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .company-table th {
+      background: var(--bg-secondary);
+      padding: 20px 24px;
+      text-align: left;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 14px;
+      width: 180px;
+      vertical-align: top;
+    }
+
+    .company-table td {
+      padding: 20px 24px;
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .company-table a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .company-table a:hover {
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      .company-table th,
+      .company-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .company-table th {
+        padding-bottom: 8px;
+      }
+
+      .company-table td {
+        padding-top: 0;
+        padding-bottom: 24px;
+      }
+    }
+
+    /* ========== CTA Section ========== */
+    .section-cta {
+      background: var(--bg-gradient);
+      color: white;
+      text-align: center;
+    }
+
+    .cta-title {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 900;
+      margin-bottom: 24px;
+    }
+
+    .cta-description {
+      font-size: clamp(14px, 2vw, 18px);
+      line-height: 1.9;
+      margin-bottom: 48px;
+      opacity: 0.95;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 24px 56px;
+      background: white;
+      color: var(--primary);
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-info {
+      margin-top: 40px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* ========== Footer ========== */
+    .footer {
+      background: var(--text-primary);
+      color: white;
+      padding: 60px 0 32px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 48px;
+    }
+
+    .footer-logo {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-description {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 24px;
+    }
+
+    .footer-section h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-light);
+    }
+
+    .footer-bottom {
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* ========== Scroll to Top Button ========== */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 56px;
+      height: 56px;
+      background: var(--bg-gradient);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
       opacity: 0;
       visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
     }
 
-    .loader-text {
-      font-family: var(--font-display);
-      font-size: 3rem;
-      color: var(--neo-mint);
-      font-weight: 700;
-      animation: pulse 2s ease-in-out infinite;
+    .scroll-to-top.visible {
+      opacity: 1;
+      visibility: visible;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
+    .scroll-to-top:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+    }
+
+    /* ========== Animation Classes ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .slide-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .slide-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
     }
   </style>
 </head>
 <body>
-  <!-- Page Loader -->
-  <div class="page-loader">
-    <div class="loader-text">Finance Brain</div>
-  </div>
 
-  <!-- Custom Cursor -->
-  <div class="custom-cursor"></div>
-  <div class="custom-cursor-follower"></div>
-
-  <!-- Navigation -->
-  <nav>
-    <div class="logo">Finance Brain</div>
-    <ul class="nav-menu">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#philosophy">Philosophy</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="header-logo">
+          <a href="#hero">
+            <h1 class="logo-text">ファイナンスブレーン</h1>
+            <p class="logo-tagline">Finance Brain</p>
+          </a>
+        </div>
+        <nav class="header-nav">
+          <ul class="nav-list">
+            <li><a href="#about">私たちについて</a></li>
+            <li><a href="#services">サービス</a></li>
+            <li><a href="#why-us">選ばれる理由</a></li>
+            <li><a href="#voice">お客様の声</a></li>
+            <li><a href="#company">会社概要</a></li>
+            <li><a href="#contact" class="btn-primary">お問い合わせ</a></li>
+          </ul>
+        </nav>
+        <button class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <canvas id="three-canvas"></canvas>
-    <div class="hero-content">
-      <h1 class="hero-title">
-        Your <span class="highlight">Financial</span><br>
-        Future Starts<br>
-        Here
-      </h1>
-      <p class="hero-subtitle">保険・資産運用・ライフプランニング</p>
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h2 class="hero-title">
+          お金のこと、<br>
+          安心して相談できる場所。
+        </h2>
+        <p class="hero-lead">
+          保険、投資、住宅ローン、相続——人生には、お金について考えるべき場面がたくさん。<br>
+          ファイナンシャルプランナーをはじめとする専門家が、<br>
+          お客様一人ひとりに寄り添い、最適なプランをご提案。
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-large btn-primary">無料相談予約</a>
+          <a href="tel:097-574-8212" class="btn btn-large btn-outline">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.3 14.4c-1.1-.2-2.2-.4-3.3-.4-.6 0-1.2.1-1.7.4l-1.3 1.3c-3.1-1.6-5.6-4.1-7.2-7.2l1.3-1.3c.3-.5.4-1.1.4-1.7 0-1.1-.2-2.2-.4-3.3C5.9 1.7 5.4 1.3 4.8 1.3H2.3C1.6 1.3 1 1.9 1 2.6 1 11.9 8.1 19 17.4 19c.7 0 1.3-.6 1.3-1.3v-2.5c0-.6-.4-1.1-1-.8z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            </svg>
+            097-574-8212
+          </a>
+        </div>
+        <div class="hero-features">
+          <div class="feature-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700"/>
+            </svg>
+            <span>2006年創業・大分で19年の実績</span>
+          </div>
+          <div class="feature-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700"/>
+            </svg>
+            <span>FP・投資診断士など専門資格所有者在籍</span>
+          </div>
+          <div class="feature-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700"/>
+            </svg>
+            <span>初回相談無料</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="scroll-indicator">
-      <span class="scroll-text">Scroll</span>
-      <div class="scroll-line"></div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section section-about" id="about">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">ファイナンスブレーンとは</h2>
+        <p class="section-lead">あなたの人生に寄り添う、お金の相談パートナーです</p>
+      </div>
+      <div class="about-content">
+        <div class="about-text fade-in">
+          <h3>私たちが大切にしていること</h3>
+          <p>
+            お客様の人生に寄り添い、本当に必要なサポートを、中立的な立場で提供すること。
+          </p>
+          <p>
+            2006年の創業以来、大分の地で1,000組以上のご家族・企業様と向き合ってきました。
+            「子どもの教育費が心配」「老後が不安」「会社を守りたい」——お金の悩みは人それぞれ。
+            正解は一つではありません。
+          </p>
+          <p>
+            だからこそ私たちは、お客様の話にじっくり耳を傾けることから始めます。
+            ファイナンシャルプランナー（FP）や投資診断士などの専門知識を持ったスタッフが、
+            あなたの「本当に大切なこと」を一緒に考え、実現するお手伝いをします。
+          </p>
+          <p>
+            保険、投資、住宅ローン、相続——専門的な知識が必要な分野だからこそ、
+            難しい言葉ではなく、わかりやすく。押し付けではなく、一緒に。
+            それが、ファイナンスブレーンのスタイルです。
+          </p>
+        </div>
+        <div class="about-stats fade-in">
+          <div class="stat-card">
+            <div class="stat-number" data-count="19">0</div>
+            <div class="stat-label">年の実績</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-count="16">0</div>
+            <div class="stat-label">取扱保険会社</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-count="1000">0</div>
+            <div class="stat-label">相談実績</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="services">
-    <h2 class="section-title">Our Services</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">🛡️</div>
-        <h3 class="service-title">生命保険</h3>
-        <p class="service-description">あなたとご家族の未来を守る、最適な生命保険プランをご提案します。複数の保険会社から最適なプランを選定。</p>
+  <section class="section section-services" id="services">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">サービス</h2>
+        <p class="section-lead">個人の方も、法人の方も——あなたの「困った」「不安」「知りたい」に、お応えします</p>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">🏠</div>
-        <h3 class="service-title">損害保険</h3>
-        <p class="service-description">住宅、自動車、事業リスクなど、あらゆる損害に備えた保険設計を行います。</p>
+      <div class="services-tabs fade-in">
+        <button class="tab-button active" data-tab="personal">個人向けサービス</button>
+        <button class="tab-button" data-tab="corporate">法人向けサービス</button>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">📊</div>
-        <h3 class="service-title">資産運用</h3>
-        <p class="service-description">長期的な視点で、あなたの資産を最大化するための運用戦略をご提案します。</p>
+      <!-- Personal Services -->
+      <div class="tab-content active" id="personal">
+        <div class="services-grid">
+          <div class="service-card fade-in">
+            <h3 class="service-title">ライフプランニング</h3>
+            <p class="service-description">
+              将来の夢や目標を実現するための資金計画を作成します。住宅購入、教育資金、老後資金など、ライフステージに合わせたプランをご提案。
+            </p>
+            <a href="#" class="service-link">詳しく見る →</a>
+          </div>
+
+          <div class="service-card fade-in">
+            <h3 class="service-title">保険の見直し・ご相談</h3>
+            <p class="service-description">
+              生命保険・損害保険の見直しから新規加入まで。生命保険11社・損害保険5社の取扱保険会社から、お客様に最適な保険をご提案します。
+            </p>
+            <a href="#" class="service-link">詳しく見る →</a>
+          </div>
+
+          <div class="service-card fade-in">
+            <h3 class="service-title">住宅ローンのご相談</h3>
+            <p class="service-description">
+              住宅ローンの選び方から借り換えまで。金利タイプの比較や返済計画のアドバイスを行います。
+            </p>
+            <a href="#" class="service-link">詳しく見る →</a>
+          </div>
+
+          <div class="service-card fade-in">
+            <h3 class="service-title">相続に関するご相談</h3>
+            <p class="service-description">
+              相続対策の基本から相続税対策、生前贈与、遺言書作成サポートまで。専門家と連携してトータルサポート。
+            </p>
+            <a href="#" class="service-link">詳しく見る →</a>
+          </div>
+
+          <div class="service-card fade-in">
+            <h3 class="service-title">投資信託・資産運用</h3>
+            <p class="service-description">
+              NISA・iDeCoを活用した資産形成プランをご提案。リスク管理も含めた長期的な資産運用をサポートします。
+            </p>
+            <a href="#" class="service-link">詳しく見る →</a>
+          </div>
+        </div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">🎯</div>
-        <h3 class="service-title">ライフプラン</h3>
-        <p class="service-description">教育資金、住宅購入、老後資金など、人生の各ステージに合わせた総合的なプランニング。</p>
-      </div>
+      <!-- Corporate Services -->
+      <div class="tab-content" id="corporate">
+        <div class="services-grid">
+          <div class="service-card">
+            <h3 class="service-title">財務コンサルティング</h3>
+            <p class="service-description">
+              売上は伸びているのに、なぜかお金が残らない——そんな悩みを抱える経営者様へ。財務の専門家が、資金繰り改善・銀行融資・事業計画策定をサポートします。
+            </p>
+            <a href="#" class="service-link">詳しく見る →</a>
+          </div>
 
-      <div class="service-card">
-        <div class="service-icon">🏢</div>
-        <h3 class="service-title">法人向けサービス</h3>
-        <p class="service-description">事業承継、従業員の福利厚生、企業リスクマネジメントまで幅広くサポート。</p>
-      </div>
+          <div class="service-card">
+            <h3 class="service-title">退職金コンサルティング</h3>
+            <p class="service-description">
+              優秀な人材の定着と節税を両立したい。企業型確定拠出年金（DC）、中小企業退職金共済（中退共）など、御社に最適な退職金制度をご提案します。
+            </p>
+            <a href="#" class="service-link">詳しく見る →</a>
+          </div>
 
-      <div class="service-card">
-        <div class="service-icon">💰</div>
-        <h3 class="service-title">相続対策</h3>
-        <p class="service-description">次世代への円滑な資産承継をサポート。税務面も含めた総合的なコンサルティング。</p>
+          <div class="service-card">
+            <h3 class="service-title">事業承継対策</h3>
+            <p class="service-description">
+              後継者問題、相続税対策——事業承継は複雑です。税理士・弁護士とも連携し、円滑な事業承継と相続税対策をトータルサポートします。
+            </p>
+            <a href="#" class="service-link">詳しく見る →</a>
+          </div>
+
+          <div class="service-card">
+            <h3 class="service-title">自社株対策</h3>
+            <p class="service-description">
+              自社株の評価額が高すぎて、相続税が払えない——そんな不安を解消。10年計画で評価額を削減し、相続税負担を大幅に軽減します。
+            </p>
+            <a href="#" class="service-link">詳しく見る →</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Stats Section -->
-  <section class="stats">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-number" data-target="2500">0</div>
-        <div class="stat-label">顧客数</div>
+  <!-- Why Us Section -->
+  <section class="section section-why-us" id="why-us">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">選ばれる理由</h2>
+        <p class="section-lead">なぜ、多くの方が私たちに相談してくださるのか</p>
       </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="98">0</div>
-        <div class="stat-label">顧客満足度 (%)</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="25">0</div>
-        <div class="stat-label">業界経験年数</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="150">0</div>
-        <div class="stat-label">取扱保険商品数</div>
+      <div class="reasons-grid">
+        <div class="reason-card fade-in">
+          <div class="reason-number">01</div>
+          <h3 class="reason-title">大分で19年、地域の皆様と歩んできた実績</h3>
+          <p class="reason-description">
+            2006年の創業以来、1,000組以上のご家族・企業様のお金の悩みに向き合ってきました。「顔の見える関係」を大切に、何度でも気軽にご相談いただける雰囲気づくりを心がけています。地元だからこそできる、きめ細やかなサポートを提供します。
+          </p>
+        </div>
+        <div class="reason-card fade-in">
+          <div class="reason-number">02</div>
+          <h3 class="reason-title">専門知識を持ったスタッフが、わかりやすく説明</h3>
+          <p class="reason-description">
+            CFP®、1級FP技能士、投資診断士®、相続診断士など、各分野の専門資格を持つスタッフが在籍。でも、難しい専門用語は使いません。「わかりやすく、丁寧に」をモットーに、あなたに本当に必要な情報だけをお伝えします。
+          </p>
+        </div>
+        <div class="reason-card fade-in">
+          <div class="reason-number">03</div>
+          <h3 class="reason-title">税理士・弁護士とも連携、複雑な相談もお任せください</h3>
+          <p class="reason-description">
+            相続や事業承継など、税務や法務の知識が必要な相談も、公認会計士・税理士・弁護士・社労士などの専門家ネットワークを活用して対応。窓口は一つ、でもサポートは総合的に。複雑なお悩みもワンストップで解決します。
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Philosophy Section -->
-  <section id="philosophy" class="philosophy">
-    <div class="philosophy-content">
-      <blockquote class="philosophy-quote">
-        私たちは、単なる保険の販売ではなく、お客様の人生に寄り添い、最適な財務戦略を共に創り上げるパートナーでありたいと考えています。
-      </blockquote>
-      <p class="philosophy-author">— Finance Brain 経営理念より</p>
+  <!-- Voice Section -->
+  <section class="section section-voice" id="voice">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">お客様の声</h2>
+        <p class="section-lead">「相談して良かった」――そんな声が、私たちの誇りです</p>
+      </div>
+      <div class="voice-grid">
+        <div class="voice-card fade-in">
+          <div class="voice-header">
+            <div class="voice-avatar"></div>
+            <div class="voice-info">
+              <div class="voice-name">40代男性 / 会社員</div>
+              <div class="voice-category">ライフプランニング</div>
+            </div>
+          </div>
+          <p class="voice-text">
+            将来の資金計画について漠然とした不安がありましたが、FPの方に丁寧に相談に乗っていただき、明確な目標と計画を立てることができました。住宅購入や子供の教育費についても具体的なアドバイスをいただけて安心しました。
+          </p>
+        </div>
+
+        <div class="voice-card fade-in">
+          <div class="voice-header">
+            <div class="voice-avatar"></div>
+            <div class="voice-info">
+              <div class="voice-name">30代女性 / 自営業</div>
+              <div class="voice-category">保険の見直し</div>
+            </div>
+          </div>
+          <p class="voice-text">
+            複数の保険会社を比較検討していただき、自分に最適な保険を見つけることができました。無理な営業は一切なく、中立的な立場でアドバイスいただけたのが良かったです。保険料も以前より安くなり満足しています。
+          </p>
+        </div>
+
+        <div class="voice-card fade-in">
+          <div class="voice-header">
+            <div class="voice-avatar"></div>
+            <div class="voice-info">
+              <div class="voice-name">60代男性 / 経営者</div>
+              <div class="voice-category">事業承継対策</div>
+            </div>
+          </div>
+          <p class="voice-text">
+            事業承継について悩んでいましたが、税理士とも連携しながら総合的なサポートをしていただきました。自社株対策や後継者への引き継ぎ計画など、専門的なアドバイスをいただけて大変助かりました。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Section -->
+  <section class="section section-company" id="company">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">会社概要・アクセス</h2>
+        <p class="section-lead">株式会社ファイナンスブレーン</p>
+      </div>
+      <div class="company-content fade-in">
+        <table class="company-table">
+          <tr>
+            <th>会社名</th>
+            <td>株式会社ファイナンスブレーン</td>
+          </tr>
+          <tr>
+            <th>代表取締役</th>
+            <td>高橋 英一郎</td>
+          </tr>
+          <tr>
+            <th>設立</th>
+            <td>2006年8月</td>
+          </tr>
+          <tr>
+            <th>所在地</th>
+            <td>
+              〒870-0934<br>
+              大分県大分市東津留1-6-11<br>
+              大分ハイデンス1F
+            </td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><a href="tel:097-574-8212">097-574-8212</a></td>
+          </tr>
+          <tr>
+            <th>FAX</th>
+            <td>097-574-8213</td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td>9:00〜18:00（土日祝日を除く）</td>
+          </tr>
+          <tr>
+            <th>事業内容</th>
+            <td>
+              生命保険媒介業<br>
+              損害保険代理業<br>
+              ファイナンシャルプランニング<br>
+              資産運用コンサルティング
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section id="contact" class="cta">
-    <h2 class="cta-title">無料相談を始める</h2>
-    <a href="#" class="cta-button"><span>お問い合わせ</span></a>
+  <section class="section section-cta" id="contact">
+    <div class="container">
+      <h2 class="cta-title">まずは無料相談から、始めてみませんか？</h2>
+      <p class="cta-description">
+        お金のこと、一人で悩まないでください。<br>
+        専門家が、あなたの不安や疑問に丁寧にお答えします。
+      </p>
+      <a href="tel:097-574-8212" class="cta-button">
+        <svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.3 14.4c-1.1-.2-2.2-.4-3.3-.4-.6 0-1.2.1-1.7.4l-1.3 1.3c-3.1-1.6-5.6-4.1-7.2-7.2l1.3-1.3c.3-.5.4-1.1.4-1.7 0-1.1-.2-2.2-.4-3.3C5.9 1.7 5.4 1.3 4.8 1.3H2.3C1.6 1.3 1 1.9 1 2.6 1 11.9 8.1 19 17.4 19c.7 0 1.3-.6 1.3-1.3v-2.5c0-.6-.4-1.1-1-.8z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+        097-574-8212
+      </a>
+      <p class="cta-info">営業時間：9:00〜18:00（土日祝日を除く）</p>
+    </div>
   </section>
 
   <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-logo">Finance Brain</div>
-      <ul class="footer-links">
-        <li><a href="#">プライバシーポリシー</a></li>
-        <li><a href="#">利用規約</a></li>
-        <li><a href="#">会社概要</a></li>
-      </ul>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">ファイナンスブレーン</div>
+          <p class="footer-description">
+            お客様の人生に寄り添い、本当に必要なサポートを、中立的な立場で提供すること。それが、私たちの使命です。
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>サービス</h3>
+          <ul class="footer-links">
+            <li><a href="#services">ライフプランニング</a></li>
+            <li><a href="#services">保険の見直し</a></li>
+            <li><a href="#services">住宅ローン相談</a></li>
+            <li><a href="#services">相続対策</a></li>
+            <li><a href="#services">資産運用</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>会社情報</h3>
+          <ul class="footer-links">
+            <li><a href="#about">私たちについて</a></li>
+            <li><a href="#why-us">選ばれる理由</a></li>
+            <li><a href="#company">会社概要</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Finance Brain. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
-  <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollToTop">↑</button>
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <script>
-    // Page Loader
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.querySelector('.page-loader').classList.add('hidden');
-      }, 1500);
+    // ========== Header Scroll Effect ==========
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     });
 
-    // Custom Cursor
-    const cursor = document.querySelector('.custom-cursor');
-    const cursorFollower = document.querySelector('.custom-cursor-follower');
-
-    let mouseX = 0, mouseY = 0;
-    let followerX = 0, followerY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
-    });
-
-    // Smooth follower movement
-    function animateFollower() {
-      followerX += (mouseX - followerX) * 0.1;
-      followerY += (mouseY - followerY) * 0.1;
-
-      cursorFollower.style.left = followerX + 'px';
-      cursorFollower.style.top = followerY + 'px';
-
-      requestAnimationFrame(animateFollower);
-    }
-    animateFollower();
-
-    // Cursor hover effects
-    const interactiveElements = document.querySelectorAll('a, button, .service-card');
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-
-    // Three.js Scene
-    const canvas = document.getElementById('three-canvas');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    camera.position.z = 5;
-
-    // Create abstract geometric shapes
-    const geometry = new THREE.IcosahedronGeometry(1, 1);
-    const material = new THREE.MeshPhongMaterial({
-      color: 0xA47864,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.3
-    });
-
-    const shapes = [];
-    for (let i = 0; i < 5; i++) {
-      const mesh = new THREE.Mesh(geometry, material.clone());
-      mesh.position.x = (Math.random() - 0.5) * 10;
-      mesh.position.y = (Math.random() - 0.5) * 10;
-      mesh.position.z = (Math.random() - 0.5) * 5;
-      mesh.rotation.x = Math.random() * Math.PI;
-      mesh.rotation.y = Math.random() * Math.PI;
-      scene.add(mesh);
-      shapes.push(mesh);
-    }
-
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    scene.add(ambientLight);
-
-    const pointLight = new THREE.PointLight(0x88E5D4, 1);
-    pointLight.position.set(5, 5, 5);
-    scene.add(pointLight);
-
-    // Mouse interaction
-    let mouseXThree = 0, mouseYThree = 0;
-    document.addEventListener('mousemove', (e) => {
-      mouseXThree = (e.clientX / window.innerWidth) * 2 - 1;
-      mouseYThree = -(e.clientY / window.innerHeight) * 2 + 1;
-    });
-
-    // Animation loop
-    function animate() {
-      requestAnimationFrame(animate);
-
-      // Rotate shapes
-      shapes.forEach((shape, index) => {
-        shape.rotation.x += 0.001 * (index + 1);
-        shape.rotation.y += 0.002 * (index + 1);
-
-        // Follow mouse
-        shape.position.x += (mouseXThree * 2 - shape.position.x) * 0.02;
-        shape.position.y += (mouseYThree * 2 - shape.position.y) * 0.02;
+    // ========== Smooth Scroll ==========
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offsetTop = target.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
       });
-
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    // Handle resize
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // GSAP ScrollTrigger Animations
+    // ========== Tab Switching ==========
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetTab = button.getAttribute('data-tab');
+
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        button.classList.add('active');
+        document.getElementById(targetTab).classList.add('active');
+      });
+    });
+
+    // ========== Scroll to Top Button ==========
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // ========== Counter Animation ==========
+    function animateCounter(element) {
+      const target = parseInt(element.getAttribute('data-count'));
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          element.textContent = target.toLocaleString();
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current).toLocaleString();
+        }
+      }, 16);
+    }
+
+    // ========== Intersection Observer for Animations ==========
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+
+          // Trigger counter animation for stat numbers
+          if (entry.target.querySelector('.stat-number[data-count]')) {
+            entry.target.querySelectorAll('.stat-number[data-count]').forEach(counter => {
+              if (!counter.classList.contains('animated')) {
+                counter.classList.add('animated');
+                animateCounter(counter);
+              }
+            });
+          }
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Observe stat cards
+    document.querySelectorAll('.about-stats').forEach(el => {
+      observer.observe(el);
+    });
+
+    // ========== GSAP Animations ==========
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero title animation
-    gsap.from('.hero-title', {
-      opacity: 0,
-      y: 100,
-      duration: 1.2,
-      ease: 'power4.out',
-      delay: 1.5
-    });
-
-    // Service cards animation
+    // Service cards stagger animation
     gsap.from('.service-card', {
       scrollTrigger: {
-        trigger: '.services',
-        start: 'top 70%',
+        trigger: '.services-grid',
+        start: 'top 80%',
       },
+      y: 40,
       opacity: 0,
-      y: 60,
-      stagger: 0.15,
+      stagger: 0.1,
+      duration: 0.6,
+      ease: 'power2.out'
+    });
+
+    // Reason cards animation
+    gsap.from('.reason-card', {
+      scrollTrigger: {
+        trigger: '.reasons-grid',
+        start: 'top 80%',
+      },
+      x: -50,
+      opacity: 0,
+      stagger: 0.2,
       duration: 0.8,
       ease: 'power3.out'
     });
 
-    // Counter animation for stats
-    const counters = document.querySelectorAll('.stat-number');
-    counters.forEach(counter => {
-      const target = parseInt(counter.getAttribute('data-target'));
-
-      ScrollTrigger.create({
-        trigger: counter,
-        start: 'top 80%',
-        onEnter: () => {
-          gsap.to(counter, {
-            innerText: target,
-            duration: 2,
-            snap: { innerText: 1 },
-            ease: 'power2.out',
-            onUpdate: function() {
-              counter.innerText = Math.ceil(counter.innerText);
-            }
-          });
-        },
-        once: true
-      });
-    });
-
-    // Philosophy quote animation
-    gsap.from('.philosophy-quote', {
+    // Voice cards animation
+    gsap.from('.voice-card', {
       scrollTrigger: {
-        trigger: '.philosophy',
-        start: 'top 60%',
+        trigger: '.voice-grid',
+        start: 'top 80%',
       },
+      y: 40,
       opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: 'power3.out'
+      stagger: 0.15,
+      duration: 0.7,
+      ease: 'power2.out'
     });
 
-    // Parallax effect on hero
-    gsap.to('.hero-content', {
+    // Hero parallax effect
+    gsap.to('.hero-bg', {
       scrollTrigger: {
         trigger: '.hero',
         start: 'top top',
@@ -871,7 +1579,7 @@
         scrub: true
       },
       y: 200,
-      opacity: 0.5
+      opacity: 0
     });
   </script>
 </body>
