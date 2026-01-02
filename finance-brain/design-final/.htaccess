@@ -20,11 +20,6 @@ DirectoryIndex index.php index.html
     Require all granted
 </FilesMatch>
 
-# assetsディレクトリ配下の全ファイルへのアクセス許可
-<Directory "assets">
-    Require all granted
-</Directory>
-
 # MIME Type設定
 AddType text/html .html
 AddType application/x-httpd-php .php
