@@ -194,25 +194,140 @@
 
     <!-- ディレクトリ構成 -->
     <div class="section">
-      <h2 class="section-title">📂 ディレクトリ構成</h2>
+      <h2 class="section-title">📂 ディレクトリ構成（全32ページ）</h2>
+      <div class="info-box">
+        <strong>📌 仕様書の「推奨ディレクトリ構成（開発用）」に基づく完全版</strong>
+        <p style="margin-top: 0.5rem; line-height: 1.8;">
+          以下は、仕様書で定義された32ページすべてのディレクトリ構成です。<br>
+          この構成に従って、design-final/ディレクトリ内でHTMLファイルを作成してください。
+        </p>
+      </div>
       <div class="code-block"><pre>design-final/
-├── index.html              # トップページ（デザイン完成版）
-├── about/                  # 会社紹介
-├── services/               # サービスページ
-│   ├── personal/          # 個人向け
-│   └── corporate/         # 法人向け
-├── why-us/                # 選ばれる理由
-├── voice/                 # お客様の声
-├── staff/                 # スタッフ紹介
-├── company/               # 会社情報
-├── news/                  # お知らせ
-├── faq/                   # よくあるご質問
-├── contact/               # お問い合わせ
-└── assets/                # 静的ファイル
-    ├── css/
-    ├── js/
-    ├── images/
-    └── fonts/</pre></div>
+│
+├── <strong>index.html</strong>                           # 1. トップページ
+│
+├── <strong>about/</strong>                                 # 会社紹介
+│   └── index.html                         # 2. ファイナンスブレーンとは（理念・沿革含む）
+│
+├── <strong>services/</strong>                              # サービス
+│   │
+│   ├── <strong>personal/</strong>                         # 個人のお客様向けサービス
+│   │   ├── index.html                     # 3. 個人向けサービス一覧
+│   │   │
+│   │   ├── <strong>life-planning/</strong>               # ライフプランニング
+│   │   │   ├── index.html                 # 4. ライフプランニングTOP
+│   │   │   ├── housing.html               # 5. 住宅購入資金
+│   │   │   ├── education.html             # 6. 教育資金
+│   │   │   └── retirement.html            # 7. 老後資金
+│   │   │
+│   │   ├── <strong>insurance/</strong>                  # 保険の見直し・ご相談
+│   │   │   ├── index.html                 # 8. 保険TOP
+│   │   │   ├── life-insurance.html        # 9. 生命保険
+│   │   │   └── general-insurance.html     # 10. 損害保険
+│   │   │
+│   │   ├── <strong>housing-loan/</strong>               # 住宅ローンのご相談
+│   │   │   └── index.html                 # 11. 住宅ローン（選び方・借り換え等を統合）
+│   │   │
+│   │   ├── <strong>inheritance/</strong>                # 相続に関するご相談
+│   │   │   └── index.html                 # 12. 相続対策（相続対策・税務等を統合）
+│   │   │
+│   │   └── <strong>investment/</strong>                 # 投資信託・資産運用
+│   │       └── index.html                 # 13. 投資信託（NISA等を統合）
+│   │
+│   └── <strong>corporate/</strong>                       # 法人のお客様向けサービス
+│       └── index.html                     # 14. 法人向けサービス一覧（財務コンサル・退職金・事業承継・自社株対策を統合）
+│
+├── <strong>why-us/</strong>                                # 選ばれる理由
+│   └── index.html                         # 15. 選ばれる理由
+│
+├── <strong>voice/</strong>                                 # お客様の声
+│   └── index.html                         # 16. お客様の声（個人・法人の声を統合）
+│
+├── <strong>staff/</strong>                                 # スタッフ紹介
+│   └── index.html                         # 17. スタッフ紹介
+│
+├── <strong>company/</strong>                               # 会社情報
+│   ├── index.html                         # 18. 会社概要（アクセス・地図含む）
+│   ├── privacy.html                       # 19. 個人情報保護方針
+│   └── solicitation.html                  # 20. 勧誘方針
+│
+├── <strong>news/</strong>                                  # お知らせ
+│   ├── index.html                         # 21. 新着情報一覧
+│   ├── detail.html                        # 22. お知らせ詳細テンプレート
+│   │
+│   ├── <strong>seminar/</strong>                         # セミナー・イベント
+│   │   ├── index.html                     # 23. セミナー一覧
+│   │   └── detail.html                    # 24. セミナー詳細テンプレート
+│   │
+│   └── <strong>staff-blog/</strong>                     # スタッフブログ
+│       ├── index.html                     # 25. スタッフブログ一覧
+│       ├── detail.html                    # 26. ブログ記事テンプレート
+│       ├── by-staff/                      # スタッフ別アーカイブ
+│       │   └── index.html                 # 27. スタッフ別アーカイブ
+│       └── by-category/                   # カテゴリ別アーカイブ
+│           └── index.html                 # 28. カテゴリ別アーカイブ
+│
+├── <strong>faq/</strong>                                   # よくあるご質問
+│   └── index.html                         # 29. FAQ（全カテゴリ統合）
+│
+├── <strong>contact/</strong>                               # お問い合わせ
+│   ├── index.html                         # 30. お問い合わせフォーム（種別選択で無料相談予約も対応、LINE相談ボタンも含む）
+│   └── thanks.html                        # 31. 送信完了ページ
+│
+└── <strong>assets/</strong>                                # 静的ファイル
+    ├── <strong>css/</strong>                               # CSSファイル
+    │   ├── reset.css                      # リセットCSS
+    │   ├── variables.css                  # CSS変数（カラーパレット等）
+    │   ├── common.css                     # 共通スタイル
+    │   ├── layout.css                     # レイアウト
+    │   ├── components.css                 # コンポーネント（ボタン、カード等）
+    │   └── pages/                         # ページ別CSS
+    │       ├── front-page.css             # トップページ
+    │       ├── services.css               # サービスページ
+    │       ├── about.css                  # 会社紹介
+    │       └── contact.css                # お問い合わせ
+    │
+    ├── <strong>js/</strong>                                # JavaScriptファイル
+    │   ├── common.js                      # 共通スクリプト
+    │   ├── scroll-animation.js            # スクロールアニメーション
+    │   └── form-validation.js             # フォームバリデーション
+    │
+    ├── <strong>images/</strong>                            # 画像ファイル
+    │   ├── logo/                          # ロゴ
+    │   ├── hero/                          # ヒーロー画像
+    │   ├── services/                      # サービス画像
+    │   ├── staff/                         # スタッフ写真
+    │   └── icons/                         # アイコン（SVG推奨）
+    │
+    └── <strong>fonts/</strong>                             # フォントファイル
+        └── NotoSansJP/                    # Noto Sans JP（woff2形式）
+
+<strong>📊 ページ数カウント:</strong>
+- 合計: <strong>31ページ</strong>（index.phpは除外、assetsは静的ファイルなのでカウントせず）
+- 個人向けサービス: 10ページ
+- 法人向けサービス: 1ページ
+- その他コンテンツページ: 11ページ
+- お知らせ関連: 7ページ
+- お問い合わせ: 2ページ
+
+<strong>⚠️ 注意:</strong> 仕様書では「32ページ」と記載されていますが、上記構成では31ページです。
+おそらく、company/の下にもう1ページ（例: 特定商取引法表記など）があるか、
+または404.htmlなどのエラーページがカウントされている可能性があります。</pre></div>
+
+      <div class="info-box" style="margin-top: 1.5rem;">
+        <strong>💡 制作時の優先順位</strong>
+        <p style="margin-top: 0.5rem; line-height: 1.8;">
+          すべてのページを一度に作る必要はありません。以下の順序で進めることを推奨します：
+        </p>
+        <ol style="margin: 0.5rem 0 0 1.5rem; line-height: 1.8;">
+          <li><strong>フェーズ1:</strong> トップページ（index.html） + 共通パーツ（ヘッダー、フッター）</li>
+          <li><strong>フェーズ2:</strong> 個人向けサービス主要ページ（life-planning, insurance, housing-loan, inheritance, investment の各TOP）</li>
+          <li><strong>フェーズ3:</strong> その他重要ページ（about, why-us, voice, contact）</li>
+          <li><strong>フェーズ4:</strong> 法人向けサービス、会社情報、FAQ</li>
+          <li><strong>フェーズ5:</strong> お知らせ・ブログ関連（テンプレート）</li>
+          <li><strong>フェーズ6:</strong> 詳細ページ（housing.html, education.html等）</li>
+        </ol>
+      </div>
     </div>
 
     <!-- カラーパレット -->
