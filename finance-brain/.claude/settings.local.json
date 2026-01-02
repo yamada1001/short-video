@@ -13,7 +13,9 @@
       "Bash(pip install:*)",
       "Bash(brew install:*)",
       "Bash(python3:*)",
-      "WebFetch(domain:www.yojitu.com)"
+      "WebFetch(domain:www.yojitu.com)",
+      "Bash(curl:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []
