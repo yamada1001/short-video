@@ -22,6 +22,11 @@
         <div class="header-meta-item">
           <strong>業種:</strong> 保険代理店・資産運用コンサルタント・ファイナンシャルプランニング
         </div>
+        <div class="header-meta-item" style="margin-top: 1rem;">
+          <strong>📄 ドキュメント:</strong>
+          <a href="estimate.html" target="_blank" style="color: #ff8c42; text-decoration: underline;">お見積書を見る</a> |
+          <a href="mockup/index.html" target="_blank" style="color: rgba(255,255,255,0.9); text-decoration: underline;">モックアップを見る</a>
+        </div>
       </div>
     </div>
   </header>
@@ -475,19 +480,27 @@
               <h3 class="card-header">サイト構造案</h3>
               <pre><code>ホーム（リニューアル）
 ├─ ファイナンスブレーンとは（経営理念統合）
-├─ サービス
-│  ├─ 保険のご相談
-│  ├─ 資産運用のご相談
+├─ 個人向けサービス
 │  ├─ ライフプランニング
-│  └─ 相続・事業承継
+│  ├─ 保険の見直し・ご相談
+│  ├─ 住宅ローンのご相談
+│  ├─ 相続に関するご相談
+│  └─ 投資信託・資産運用
+├─ 法人向けサービス（統合ページ）
+│  ├─ 財務コンサルティング
+│  ├─ 退職金コンサルティング
+│  ├─ 事業承継対策
+│  └─ 自社株対策
 ├─ 選ばれる理由（新設）
 ├─ お客様の声（新設）
-├─ よくあるご質問
+├─ よくあるご質問（新設）
 ├─ スタッフ紹介（役員紹介拡充）
 ├─ 会社概要
 │  ├─ 取扱保険会社
 │  └─ アクセス
 ├─ お知らせ
+│  ├─ セミナー・イベント情報
+│  └─ スタッフブログ（メインコンテンツ）
 └─ お問い合わせ</code></pre>
             </div>
 
@@ -573,7 +586,7 @@
             <div class="card" id="page-structure">
               <h3 class="card-header">ページ構成</h3>
               <p><strong>現在のサイトは1ページ構成（シングルページレイアウト）</strong></p>
-              <p>全てのコンテンツがindex.html内にあり、ページ内リンク（アンカーリンク）で各セクションへ遷移する仕組みです。</p>
+              <p>すべてのコンテンツがindex.html内にあり、ページ内リンク（アンカーリンク）で各セクションへ遷移する仕組みです。</p>
               <pre><code>finance-brain.co.jp/
 │
 ├── <strong>index.html</strong> （メインページ - 全セクション統合）
@@ -612,7 +625,7 @@
               <h3 class="card-header">ナビゲーション構造</h3>
 
               <h4 class="subsection-subtitle">グローバルナビゲーション（ヘッダー）</h4>
-              <p>全てページ内アンカーリンク（#top-s01〜#top-s07）で遷移</p>
+              <p>すべてページ内アンカーリンク（#top-s01〜#top-s07）で遷移</p>
               <div class="grid-3">
                 <span class="badge badge-primary">お知らせ (#top-s01)</span>
                 <span class="badge badge-primary">経営理念 (#top-s02)</span>
@@ -1103,22 +1116,26 @@
 │   └── 外部専門家との連携
 │
 ├── <strong>個人のお客様向けサービス</strong> - URL: /services/personal/
-│   │   ※各サービスは1ページ完結のLP形式（詳細ページなし）
 │   │
 │   ├── 01. ライフプランニング - URL: /services/personal/life-planning/
-│   │       └── index.html（サービス紹介LP）
+│   │   ├── index.html（サービス概要）
+│   │   ├── housing.html（住宅購入資金）
+│   │   ├── education.html（教育資金）
+│   │   └── retirement.html（老後資金）
 │   │
 │   ├── 02. 保険の見直し・ご相談 - URL: /services/personal/insurance/
-│   │       └── index.html（サービス紹介LP）
+│   │   ├── index.html（サービス概要）
+│   │   ├── life-insurance.html（生命保険）
+│   │   └── general-insurance.html（損害保険）
 │   │
 │   ├── 03. 住宅ローンのご相談 - URL: /services/personal/housing-loan/
-│   │       └── index.html（サービス紹介LP）
+│   │   └── index.html（選び方・借り換え等を統合）
 │   │
 │   ├── 04. 相続に関するご相談 - URL: /services/personal/inheritance/
-│   │       └── index.html（サービス紹介LP）
+│   │   └── index.html（相続対策・税務等を統合）
 │   │
 │   └── 05. 投資信託・資産運用 - URL: /services/personal/investment/
-│           └── index.html（サービス紹介LP）
+│       └── index.html（投資信託・NISA等を統合）
 │
 ├── <strong>法人のお客様向けサービス</strong> - URL: /services/corporate/
 │   │   ※法人向けは統合型1ページ（個別ページなし）
@@ -1562,7 +1579,7 @@
 ├── package.json （npm設定）
 ├── gulpfile.js or webpack.config.js （ビルド設定）
 ├── .gitignore （Git除外設定）
-├── .editorconfig （エディタ設定）
+├── .editorconfig （エディター設定）
 ├── README.md （プロジェクト説明）
 │
 └── <strong>ドキュメント/</strong>
@@ -1772,7 +1789,7 @@
                 <div class="info-box">
                   <strong>3. プロジェクトスコープ</strong>
                   <ul style="margin-top: 0.5rem;">
-                    <li><strong>対象ページ数:</strong> 約30ページ（トップ + サービス9ページ + コラム・ブログ + その他）</li>
+                    <li><strong>対象ページ数:</strong> 32ページ（推奨ディレクトリ構成に基づく）</li>
                     <li><strong>カスタム投稿タイプ:</strong> 8種類（事例、セミナー、お客様の声、スタッフ、FAQ、サービス、<strong>公式コラム、スタッフブログ</strong>）</li>
                     <li><strong>プラグイン:</strong> 必須4種 + 推奨8種（合計12種）</li>
                     <li><strong>画像素材:</strong> クライアント提供（ストックフォト購入は別途）</li>
@@ -1785,7 +1802,7 @@
                   <strong>4. 追加料金が発生する作業</strong>
                   <ul style="margin-top: 0.5rem;">
                     <li>デザイン修正4回目以降</li>
-                    <li>ページ数の追加（21ページ以降）</li>
+                    <li>ページ数の追加（32ページ以降）</li>
                     <li>カスタム機能の追加（見積もり外の機能）</li>
                     <li>画像素材の購入・加工</li>
                     <li>テキスト原稿のライティング</li>
@@ -1798,7 +1815,7 @@
                 <div class="info-box">
                   <strong>5. 納期・スケジュール</strong>
                   <ul style="margin-top: 0.5rem;">
-                    <li><strong>標準開発期間:</strong> 3〜4ヶ月（要件定義〜納品まで）</li>
+                    <li><strong>標準開発期間:</strong> 3〜4か月（要件定義〜納品まで）</li>
                     <li><strong>フェーズ1:</strong> 要件定義・設計（2週間）</li>
                     <li><strong>フェーズ2:</strong> デザイン制作（3〜4週間）</li>
                     <li><strong>フェーズ3:</strong> コーディング・実装（4〜5週間）</li>
@@ -1823,7 +1840,7 @@
                 <div class="info-box">
                   <strong>7. 保守・運用</strong>
                   <ul style="margin-top: 0.5rem;">
-                    <li><strong>無償保証期間:</strong> 納品後1ヶ月間（不具合修正のみ）</li>
+                    <li><strong>無償保証期間:</strong> 納品後1か月間（不具合修正のみ）</li>
                     <li><strong>保守契約:</strong> 月額制で別途契約（WordPress更新、プラグイン更新、バックアップ）</li>
                     <li><strong>緊急対応:</strong> 保守契約外は都度見積もり</li>
                     <li><strong>WordPress更新:</strong> クライアント自身で実施可能（マニュアル提供）</li>
@@ -1834,11 +1851,10 @@
                 <div class="info-box">
                   <strong>8. 支払い条件</strong>
                   <ul style="margin-top: 0.5rem;">
-                    <li><strong>着手金:</strong> 契約時に総額の50%</li>
-                    <li><strong>中間金:</strong> デザイン承認後に総額の30%</li>
-                    <li><strong>残金:</strong> 納品・検収完了後に総額の20%</li>
+                    <li><strong>支払い方法:</strong> 前金100%（契約時に総額を一括払い）</li>
                     <li><strong>振込手数料:</strong> クライアント負担</li>
-                    <li><strong>支払い期限:</strong> 請求書発行後30日以内</li>
+                    <li><strong>支払い期限:</strong> 契約書締結後7営業日以内</li>
+                    <li><strong>プロジェクト開始:</strong> 入金確認後に開始</li>
                     <li><strong>延滞:</strong> 支払い遅延時は年14.6%の遅延損害金</li>
                   </ul>
                 </div>
@@ -1846,9 +1862,10 @@
                 <div class="info-box">
                   <strong>9. 契約解除・キャンセル</strong>
                   <ul style="margin-top: 0.5rem;">
-                    <li><strong>着手前:</strong> 着手金の返金（事務手数料10%控除）</li>
-                    <li><strong>デザイン段階:</strong> 着手金の返金なし + 制作済み分請求</li>
-                    <li><strong>コーディング段階:</strong> 着手金・中間金の返金なし + 制作済み分請求</li>
+                    <li><strong>着手前（入金後、作業開始前）:</strong> 全額返金（事務手数料10%控除）</li>
+                    <li><strong>要件定義・設計段階:</strong> 制作済み分を差し引いた金額を返金</li>
+                    <li><strong>デザイン段階:</strong> 制作済み分を差し引いた金額を返金（最低50%は返金なし）</li>
+                    <li><strong>コーディング段階以降:</strong> 返金なし（制作済み分を納品）</li>
                     <li><strong>クライアント都合:</strong> 上記条件適用</li>
                     <li><strong>制作会社都合:</strong> 全額返金 + 損害賠償</li>
                   </ul>
@@ -1871,12 +1888,12 @@
               <div class="info-box" style="background-color: #fff3cd; border: 2px solid #ffc107;">
                 <ul class="checklist" style="margin-top: 0.5rem;">
                   <li>□ デザイン修正回数（3回まで）を理解・合意した</li>
-                  <li>□ 対象ページ数（20ページ）を確認した</li>
+                  <li>□ 対象ページ数（32ページ）を確認した</li>
                   <li>□ 画像素材・テキスト原稿はクライアント提供であることを確認した</li>
                   <li>□ 追加料金が発生する作業内容を確認した</li>
-                  <li>□ 開発期間（3〜4ヶ月）を確認した</li>
-                  <li>□ 支払い条件（着手金50% + 中間金30% + 残金20%）を確認した</li>
-                  <li>□ 無償保証期間（1ヶ月）を確認した</li>
+                  <li>□ 開発期間（3〜4か月）を確認した</li>
+                  <li>□ 支払い条件（前金100%・契約時一括払い）を確認した</li>
+                  <li>□ 無償保証期間（1か月）を確認した</li>
                   <li>□ キャンセルポリシーを理解・合意した</li>
                   <li>□ 著作権譲渡のタイミング（最終納品後）を確認した</li>
                   <li>□ 責任範囲・免責事項を理解・合意した</li>

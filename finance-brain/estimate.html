@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ファイナンスブレーン様 Webサイトリニューアル お見積書</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .estimate-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #fff;
+    }
+    .estimate-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 3px solid #5767bf;
+    }
+    .estimate-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    .estimate-meta {
+      font-size: 1rem;
+      color: #666;
+    }
+    .total-amount {
+      background: linear-gradient(135deg, #5767bf 0%, #3a4a8f 100%);
+      color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    .total-amount-label {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .total-amount-value {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .total-amount-tax {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    .breakdown-section {
+      margin-bottom: 3rem;
+    }
+    .breakdown-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #5767bf;
+    }
+    .breakdown-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+    }
+    .breakdown-table th,
+    .breakdown-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .breakdown-table th {
+      background: #f5f7fa;
+      font-weight: 600;
+      color: #333;
+    }
+    .breakdown-table td.amount {
+      text-align: right;
+      font-weight: 600;
+      color: #5767bf;
+    }
+    .breakdown-table tr.subtotal td {
+      background: #f5f7fa;
+      font-weight: 700;
+      color: #333;
+      border-top: 2px solid #5767bf;
+    }
+    .breakdown-table tr.total td {
+      background: #5767bf;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-top: 3px solid #3a4a8f;
+    }
+    .explanation {
+      background: #fff9f5;
+      border-left: 4px solid #ff8c42;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .note-box {
+      background: #f5f7fa;
+      border: 1px solid #d0d8e0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .note-box-title {
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    .note-box ul {
+      margin: 0.5rem 0 0 1.5rem;
+      padding: 0;
+    }
+    .note-box ul li {
+      margin-bottom: 0.3rem;
+    }
+    .payment-terms {
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .payment-terms-title {
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .warranty-section {
+      background: #e8f5e9;
+      border: 2px solid #4caf50;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .warranty-title {
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .optional-section {
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .optional-title {
+      font-weight: 700;
+      color: #666;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .footer-note {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid #e0e0e0;
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="estimate-container">
+    <!-- ヘッダー -->
+    <div class="estimate-header">
+      <h1 class="estimate-title">Webサイトリニューアル お見積書</h1>
+      <div class="estimate-meta">
+        <p><strong>お客様:</strong> 株式会社ファイナンスブレーン 様</p>
+        <p><strong>作成日:</strong> 2025年1月2日</p>
+        <p><strong>有効期限:</strong> 2025年2月28日まで</p>
+      </div>
+    </div>
+
+    <!-- 合計金額（目立つ表示） -->
+    <div class="total-amount">
+      <div class="total-amount-label">お見積り総額</div>
+      <div class="total-amount-value">¥1,650,000</div>
+      <div class="total-amount-tax">（税込 ¥1,815,000）</div>
+    </div>
+
+    <!-- 1. 基本設計・企画費用 -->
+    <div class="breakdown-section">
+      <h2 class="breakdown-title">1. 基本設計・企画費用</h2>
+      <div class="explanation">
+        <strong>📝 この費用について：</strong><br>
+        サイト全体の設計図を作ります。家を建てる前の設計図のようなもので、どんなページが必要か、どこに何を置くか、どんな機能が必要かを決めます。これがないと後で作り直しになってしまうため、とても大切な工程です。
+      </div>
+      <table class="breakdown-table">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>内容</th>
+            <th style="text-align: right;">金額（税抜）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>要件定義・サイト設計</td>
+            <td>お客様のご要望をまとめ、サイト全体の構成を決定します</td>
+            <td class="amount">¥100,000</td>
+          </tr>
+          <tr class="subtotal">
+            <td colspan="2">小計</td>
+            <td class="amount">¥100,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2. デザイン制作費用 -->
+    <div class="breakdown-section">
+      <h2 class="breakdown-title">2. デザイン制作費用</h2>
+      <div class="explanation">
+        <strong>🎨 この費用について：</strong><br>
+        サイトの見た目を作ります。色、レイアウト、ボタンの形など、お客様が見て「これいいね！」と思えるデザインを作成します。トップページは特に重要なので、他のページより時間をかけて丁寧に作ります。
+      </div>
+      <table class="breakdown-table">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>数量</th>
+            <th>単価（税抜）</th>
+            <th style="text-align: right;">金額（税抜）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>トップページデザイン</td>
+            <td>1ページ</td>
+            <td>¥100,000</td>
+            <td class="amount">¥100,000</td>
+          </tr>
+          <tr>
+            <td>サービスページデザイン<br><small>（個人向け5種類 + 法人向け1種類）</small></td>
+            <td>6種類</td>
+            <td>¥40,000</td>
+            <td class="amount">¥240,000</td>
+          </tr>
+          <tr>
+            <td>サービス詳細ページデザイン<br><small>（ライフプランニング3種類 + 保険2種類）</small></td>
+            <td>5ページ</td>
+            <td>¥20,000</td>
+            <td class="amount">¥100,000</td>
+          </tr>
+          <tr>
+            <td>その他ページデザイン<br><small>（会社概要、FAQ、お問い合わせ、スタッフ紹介等）</small></td>
+            <td>20ページ</td>
+            <td>¥15,000</td>
+            <td class="amount">¥300,000</td>
+          </tr>
+          <tr class="subtotal">
+            <td colspan="3">小計</td>
+            <td class="amount">¥740,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3. コーディング・実装費用 -->
+    <div class="breakdown-section">
+      <h2 class="breakdown-title">3. コーディング・実装費用</h2>
+      <div class="explanation">
+        <strong>💻 この費用について：</strong><br>
+        デザインを実際に動くWebサイトにします。パソコンでもスマホでもタブレットでも綺麗に見えるように作ります（これをレスポンシブ対応といいます）。また、お問い合わせフォームが正しく動くようにしたり、検索エンジンに見つけてもらいやすくする設定（SEO）も行います。
+      </div>
+      <table class="breakdown-table">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>内容</th>
+            <th style="text-align: right;">金額（税抜）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HTML/CSS/JavaScriptコーディング</td>
+            <td>32ページ分のコーディング（レスポンシブ対応込み）</td>
+            <td class="amount">¥450,000</td>
+          </tr>
+          <tr>
+            <td>お問い合わせフォーム実装</td>
+            <td>入力チェック機能、自動返信メール設定</td>
+            <td class="amount">¥50,000</td>
+          </tr>
+          <tr>
+            <td>SEO基本設定</td>
+            <td>タイトルタグ、メタディスクリプション、構造化データ設定</td>
+            <td class="amount">¥50,000</td>
+          </tr>
+          <tr class="subtotal">
+            <td colspan="2">小計</td>
+            <td class="amount">¥550,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. WordPress構築費用 -->
+    <div class="breakdown-section">
+      <h2 class="breakdown-title">4. WordPress構築費用</h2>
+      <div class="explanation">
+        <strong>⚙️ この費用について：</strong><br>
+        WordPressという仕組みを使って、お客様自身で「お知らせ」や「ブログ記事」を更新できるようにします。これがないと、文章を1つ変えるだけでも制作会社に依頼しなければならず、毎回費用がかかってしまいます。WordPressを入れることで、お客様が自由に更新できるようになります。
+      </div>
+      <table class="breakdown-table">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>内容</th>
+            <th style="text-align: right;">金額（税抜）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>WordPressテーマ開発</td>
+            <td>オリジナルテーマの構築</td>
+            <td class="amount">¥150,000</td>
+          </tr>
+          <tr>
+            <td>カスタム投稿タイプ設定</td>
+            <td>お知らせ、スタッフブログ、セミナー情報など8種類</td>
+            <td class="amount">¥80,000</td>
+          </tr>
+          <tr>
+            <td>プラグイン導入・設定</td>
+            <td>SEO、フォーム、画像最適化など12種類</td>
+            <td class="amount">¥30,000</td>
+          </tr>
+          <tr class="subtotal">
+            <td colspan="2">小計</td>
+            <td class="amount">¥260,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 5. その他費用 -->
+    <div class="breakdown-section">
+      <h2 class="breakdown-title">5. その他費用</h2>
+      <div class="explanation">
+        <strong>🔍 この費用について：</strong><br>
+        完成したサイトに問題がないかを確認します。リンク切れはないか、フォームは正しく動くか、スマホで見たときにレイアウトが崩れていないか、など細かくチェックします。また、お客様に使い方を説明する時間も含まれています。
+      </div>
+      <table class="breakdown-table">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>内容</th>
+            <th style="text-align: right;">金額（税抜）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>テスト・検証</td>
+            <td>各種ブラウザ・デバイスでの動作確認</td>
+            <td class="amount">¥50,000</td>
+          </tr>
+          <tr>
+            <td>操作レクチャー</td>
+            <td>WordPress管理画面の使い方説明（1回・2時間程度）</td>
+            <td class="amount">¥30,000</td>
+          </tr>
+          <tr>
+            <td>マニュアル作成</td>
+            <td>更新方法をまとめたマニュアル（PDF）</td>
+            <td class="amount">¥20,000</td>
+          </tr>
+          <tr class="subtotal">
+            <td colspan="2">小計</td>
+            <td class="amount">¥100,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 合計 -->
+    <div class="breakdown-section">
+      <table class="breakdown-table">
+        <tbody>
+          <tr class="total">
+            <td colspan="3">お見積り総額（税抜）</td>
+            <td class="amount">¥1,650,000</td>
+          </tr>
+          <tr class="total">
+            <td colspan="3">消費税（10%）</td>
+            <td class="amount">¥165,000</td>
+          </tr>
+          <tr class="total">
+            <td colspan="3">お見積り総額（税込）</td>
+            <td class="amount">¥1,815,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- お支払い条件 -->
+    <div class="payment-terms">
+      <h3 class="payment-terms-title">💰 お支払い条件</h3>
+      <ul>
+        <li><strong>支払い方法:</strong> 前金100%（契約時に総額を一括でお支払いいただきます）</li>
+        <li><strong>支払い期限:</strong> 契約書締結後7営業日以内</li>
+        <li><strong>プロジェクト開始:</strong> ご入金確認後、すぐに制作を開始いたします</li>
+        <li><strong>振込手数料:</strong> お客様ご負担でお願いいたします</li>
+      </ul>
+      <div class="explanation" style="margin-top: 1rem;">
+        <strong>なぜ前金100%なのか？</strong><br>
+        制作途中でのキャンセルや方針変更により、制作会社が大きな損失を被るリスクを避けるためです。ただし、万が一当社都合で納品できない場合は、全額返金いたします。
+      </div>
+    </div>
+
+    <!-- 無償保証について -->
+    <div class="warranty-section">
+      <h3 class="warranty-title">✅ 無償保証について（1か月間）</h3>
+      <p><strong>納品後1か月間は、以下の対応を無償で行います：</strong></p>
+      <ul>
+        <li>✓ プログラムの不具合（バグ）の修正</li>
+        <li>✓ リンク切れの修正</li>
+        <li>✓ 表示崩れの修正</li>
+        <li>✓ フォームが正しく送信されない場合の修正</li>
+      </ul>
+      <p style="margin-top: 1rem;"><strong>⚠️ 以下は無償保証の対象外です：</strong></p>
+      <ul>
+        <li>× お客様のご要望による新規機能の追加</li>
+        <li>× デザインの大幅な変更</li>
+        <li>× コンテンツ（文章・画像）の追加・変更</li>
+        <li>× WordPressやプラグインのアップデート作業</li>
+      </ul>
+    </div>
+
+    <!-- 保守契約について（オプション） -->
+    <div class="optional-section">
+      <h3 class="optional-title">🔧 保守契約について（オプション・任意）</h3>
+      <div class="explanation">
+        <strong>保守契約とは？</strong><br>
+        WordPressは定期的にアップデートが必要です。アップデートしないとセキュリティの問題が発生する可能性があります。ただし、<strong>お客様ご自身でもアップデートは可能</strong>です。
+      </div>
+      <p><strong>もしご自身で対応が難しい場合、以下の保守契約をご用意しております（任意）：</strong></p>
+      <table class="breakdown-table">
+        <thead>
+          <tr>
+            <th>プラン</th>
+            <th>内容</th>
+            <th style="text-align: right;">月額（税抜）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ライトプラン</td>
+            <td>WordPress本体・プラグインの月1回アップデート<br>バックアップ（月1回）</td>
+            <td class="amount">¥10,000</td>
+          </tr>
+          <tr>
+            <td>スタンダードプラン</td>
+            <td>WordPress本体・プラグインの月2回アップデート<br>バックアップ（週1回）<br>簡易的な修正対応（月1時間まで）</td>
+            <td class="amount">¥20,000</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 1rem; color: #d9534f;"><strong>⚠️ 重要：</strong> 保守契約は任意です。ご契約いただかなくても問題ありません。ご自身でアップデートする方法はマニュアルに記載いたします。</p>
+    </div>
+
+    <!-- お見積もり内容に含まれないもの -->
+    <div class="note-box">
+      <h3 class="note-box-title">📌 本お見積もりに含まれないもの</h3>
+      <ul>
+        <li>サーバー・ドメインの契約費用（お客様にてご契約をお願いいたします）</li>
+        <li>画像素材・テキスト原稿の作成（お客様にてご提供をお願いいたします）</li>
+        <li>ストックフォト（有料写真素材）の購入費用（必要な場合は別途お見積もり）</li>
+        <li>テキスト原稿のライティング代行（必要な場合は別途お見積もり）</li>
+        <li>既存サイトからのデータ移行作業（必要な場合は別途お見積もり）</li>
+        <li>サーバー移転作業（必要な場合は別途お見積もり）</li>
+        <li>継続的なSEO対策（必要な場合は別途ご相談）</li>
+      </ul>
+    </div>
+
+    <!-- 制作期間 -->
+    <div class="note-box">
+      <h3 class="note-box-title">📅 制作期間（目安）</h3>
+      <ul>
+        <li><strong>標準制作期間:</strong> 3〜4か月（ご入金確認後から納品まで）</li>
+        <li><strong>フェーズ1:</strong> 要件定義・設計（2週間）</li>
+        <li><strong>フェーズ2:</strong> デザイン制作（3〜4週間）</li>
+        <li><strong>フェーズ3:</strong> コーディング・実装（4〜5週間）</li>
+        <li><strong>フェーズ4:</strong> テスト・修正（2週間）</li>
+        <li><strong>フェーズ5:</strong> 納品・公開（1週間）</li>
+      </ul>
+      <p style="margin-top: 0.5rem; color: #666;">※お客様の確認・承認のタイミングにより前後する場合がございます。</p>
+    </div>
+
+    <!-- 注意事項 -->
+    <div class="note-box">
+      <h3 class="note-box-title">⚠️ ご確認ください</h3>
+      <ul>
+        <li>デザイン修正は<strong>3回まで</strong>無償で承ります。4回目以降は追加料金が発生します。</li>
+        <li>対象ページ数は<strong>32ページ</strong>です。追加ページは1ページあたり別途お見積もりとなります。</li>
+        <li>本見積もりは<strong>2025年2月28日まで</strong>有効です。</li>
+        <li>制作開始後のキャンセルについては、<a href="index.html#development-risk-management">仕様書のキャンセルポリシー</a>をご確認ください。</li>
+      </ul>
+    </div>
+
+    <!-- フッター -->
+    <div class="footer-note">
+      <p>ご不明な点がございましたら、お気軽にお問い合わせください。</p>
+      <p style="margin-top: 1rem;">作成日: 2025年1月2日</p>
+    </div>
+  </div>
+</body>
+</html>
