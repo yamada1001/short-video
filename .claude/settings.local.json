@@ -342,7 +342,16 @@
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com status --short invoice-system/)",
       "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com diff .claude/settings.local.json)",
       "WebFetch(domain:www.freee.co.jp)",
-      "WebFetch(domain:support.freee.co.jp)"
+      "WebFetch(domain:support.freee.co.jp)",
+      "Bash(grep:*)",
+      "Bash(FULL_VERSION_temp.gs)",
+      "Bash(sudo npm install:*)",
+      "Bash(npx clasp:*)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com check-ignore:*)",
+      "Bash(source .env)",
+      "Bash(lftp -c \"\nset ftp:ssl-allow no\nopen -u $FTP_USER,$FTP_PASS $FTP_SERVER\nls /yojitu.com/public_html/ | head -10\nbye\n\")",
+      "Bash(./backup-production.sh:*)",
+      "Bash(git -C /Users/yamadaren/Movies/claude-code-projects/yojitu.com status protea-app/)"
     ],
     "deny": [],
     "ask": []
