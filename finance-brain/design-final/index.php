@@ -5,159 +5,255 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ファイナンスブレーン | 大分の【保険・投資信託・資産運用】のコンサルタント</title>
   <meta name="description" content="FPや投資診断士など、大分県内の専門資格所有者が多数在籍し、お金に関するご相談を幅広く承っています。お金の貯め方・増やし方・残し方に迷うことなく、安心して将来に備えたい方は他にいませんか？">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- ClashDisplay Variable Font (ローカルホスト用はCDN、本番はローカルファイル推奨) -->
+  <style>
+    @font-face {
+      font-family: 'ClashDisplay-Variable';
+      font-style: normal;
+      font-weight: 200 700;
+      src: url('https://cdn.jsdelivr.net/gh/SorkinType/ClashDisplay@latest/fonts/variable/ClashDisplay-Variable.woff2') format('woff2');
+      font-display: swap;
+    }
+  </style>
+
   <style>
     /* ========================================
-       CSS Variables
+       CSS Custom Properties (BuySell Technologies方式)
     ======================================== */
     :root {
-      /* Colors */
-      --color-primary: #5767bf;
-      --color-primary-dark: #4a5ab3;
-      --color-primary-darker: #3a4a8f;
-      --color-primary-light: #6b7ac7;
-      --color-secondary: #ff8c42;
-      --color-secondary-dark: #e67e22;
-      --color-accent-light: #a0b3e0;
+      /* Viewport計算 */
+      --viewport-width: 100vw;
+      --mw: max(1440px, 90rem);
+      --scale: 1;
+      --px: 1px;
+      --rem: 1rem;
+
+      /* Colors - Finance Brain */
+      --white: #fff;
+      --black: #222;
+      --blue: #5767bf;
+      --dark-blue: #4a5ab3;
+      --darker-blue: #3a4a8f;
+      --light-blue: #cfe2ff;
+      --orange: #ff8c42;
+      --dark-orange: #e67e22;
+
+      /* Gradients (6種類 - BuySell Technologies方式) */
+      --gradient-1: linear-gradient(90deg, #5767bf 0%, #4a5ab3 100%);
+      --gradient-2: linear-gradient(90deg, #5767bf 0%, #6b7ac7 30.29%, #5767bf 80.29%, #4a5ab3 100%);
+      --gradient-3: linear-gradient(90deg, #e8ecff 0%, #e4f2fe 50%, #e1e9ff 100%);
+      --gradient-4: linear-gradient(90deg, #f0f3ff 0%, #f7f9fd 50.48%, #e8ecff 100%);
+      --gradient-5: linear-gradient(114deg, #d9e3ff 0%, #c8e6ff 39.4%, #cddeff 84.03%, #d0d6f5 98.75%);
+      --gradient-6: linear-gradient(93deg, #afd9ff 20.13%, #bdb9ff 81.55%), #5767bf;
+
+      /* Text Colors */
+      --text-dark: #333;
+      --text-medium: #666;
+      --text-light: #999;
 
       /* Background */
-      --color-bg-white: #ffffff;
-      --color-bg-light: #f5f7fa;
-      --color-bg-lighter: #fafbfc;
-
-      /* Text */
-      --color-text-dark: #333333;
-      --color-text-medium: #666666;
-      --color-text-light: #999999;
+      --bg-white: #fff;
+      --bg-light: #f5f7fa;
+      --bg-lighter: #fafbfc;
 
       /* Border */
-      --color-border: #e0e0e0;
+      --border-01: #cbd4db;
+      --border-02: rgb(221 221 221 / 20%);
 
-      /* Spacing (8の倍数) */
-      --spacing-xs: 8px;
-      --spacing-sm: 16px;
-      --spacing-md: 24px;
-      --spacing-lg: 32px;
-      --spacing-xl: 40px;
-      --spacing-2xl: 48px;
-      --spacing-3xl: 64px;
-      --spacing-4xl: 80px;
+      /* Spacing (clamp()で流動的) */
+      --grid-gutter: clamp(20px, 2.5vw, 40px);
+      --inline-space-sm: clamp(8px, 1vw, 16px);
+      --inline-space-md: clamp(10px, 1.25vw, 20px);
+      --inline-space-lg: clamp(20px, 2.5vw, 40px);
+      --inline-space-xl: clamp(30px, 4vw, 80px);
 
-      /* Font */
-      --font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+      /* Font Sizes (clamp()で流動的) */
+      --fz-root: clamp(0.9375rem, 1vw, 1rem);
+      --fz-3xlg: clamp(1.5rem, 2vw + 0.5rem, 2.5rem);
+      --fz-2xlg: clamp(1.375rem, 1.5vw + 0.5rem, 2rem);
+      --fz-xlg: clamp(1.25rem, 1.25vw + 0.5rem, 1.75rem);
+      --fz-lg: clamp(1.125rem, 1vw + 0.25rem, 1.5rem);
+      --fz-md: clamp(1rem, 0.75vw + 0.25rem, 1.25rem);
+      --fz-sm: clamp(0.875rem, 0.5vw + 0.25rem, 1rem);
+      --fz-xs: clamp(0.75rem, 0.5vw + 0.15rem, 0.875rem);
+      --fz-en-lg: clamp(2rem, 2.5vw + 1rem, 3.5rem);
+      --fz-en-md: clamp(1.25rem, 1.5vw + 0.5rem, 2rem);
+      --fz-en-sm: clamp(0.875rem, 0.75vw + 0.25rem, 1.125rem);
 
-      /* Transitions */
-      --transition-base: all 0.3s ease;
-      --transition-fast: all 0.2s ease;
+      /* Font Families */
+      --font-jp: 'Noto Sans JP', 'Hiragino Sans', 'ヒラギノ角ゴ ProN', sans-serif;
+      --font-jp-serif: 'Noto Serif JP', 'Yu Mincho', serif;
+      --font-en: 'ClashDisplay-Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      /* Animation */
+      --duration: 1s;
+      --easing: cubic-bezier(.23, 1, .32, 1);
     }
 
     /* ========================================
        Reset & Base
     ======================================== */
-    * {
-      margin: 0;
-      padding: 0;
+    *,
+    *:before,
+    *:after {
       box-sizing: border-box;
     }
 
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
     html {
-      font-size: 16px;
+      font-size: var(--fz-root);
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
-      font-family: var(--font-family);
-      color: var(--color-text-dark);
-      line-height: 1.7;
-      background-color: var(--color-bg-white);
+      font-family: var(--font-jp);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.75;
+      letter-spacing: 0.04em;
+      color: var(--text-dark);
+      background: var(--gradient-2);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
     img {
       max-width: 100%;
       height: auto;
       display: block;
+      vertical-align: bottom;
     }
 
     a {
       color: inherit;
       text-decoration: none;
+      display: inline-block;
     }
 
     ul, ol {
       list-style: none;
     }
 
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
     /* ========================================
-       Layout
+       SVG Icons System (BuySell Technologies方式)
+    ======================================== */
+    svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .icon {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+    }
+
+    .icon svg {
+      fill: currentColor;
+    }
+
+    /* ========================================
+       Utility Classes
     ======================================== */
     .container {
-      max-width: 1200px;
+      max-width: min(1440px, 90rem);
       margin: 0 auto;
-      padding: 0 var(--spacing-md);
+      padding: 0 var(--inline-space-md);
     }
 
     .section {
-      padding: var(--spacing-4xl) 0;
+      padding: clamp(2.5rem, 5vw, 5rem) 0;
     }
 
-    .section-bg-light {
-      background-color: var(--color-bg-light);
+    .section-white {
+      background: var(--bg-white);
+      border-radius: 10px;
     }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: var(--spacing-2xl);
+    /* ========================================
+       Typography
+    ======================================== */
+    .heading-en {
+      font-family: var(--font-en);
+      font-weight: 500;
+      font-variation-settings: "wght" 500;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: transparent;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      background-clip: text;
     }
 
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--color-text-dark);
-      margin-bottom: var(--spacing-sm);
-      line-height: 1.4;
+    .heading-group {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: clamp(0.125rem, 0.25vw, 0.3125rem);
     }
 
-    .section-subtitle {
-      font-size: 1.125rem;
-      color: var(--color-text-medium);
-      line-height: 1.7;
+    .heading-group .heading-en {
+      font-size: var(--fz-en-md);
+    }
+
+    .heading-group .heading-jp {
+      font-size: var(--fz-2xlg);
+      font-weight: 600;
+      color: var(--text-dark);
     }
 
     /* ========================================
        Header
     ======================================== */
     .header {
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-      padding: var(--spacing-sm) 0;
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      background: var(--bg-white);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     .header-inner {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
       align-items: center;
+      gap: var(--grid-gutter);
+      padding: clamp(0.625rem, 1.5vw, 1.25rem) var(--inline-space-md);
     }
 
     .header-logo {
-      color: var(--color-bg-white);
+      display: grid;
+      gap: 4px;
     }
 
-    .logo-text {
-      font-size: 1.5rem;
+    .logo-main {
+      font-size: clamp(1.25rem, 1.75vw, 1.75rem);
       font-weight: 700;
-      margin-bottom: 4px;
+      color: var(--blue);
+      font-family: var(--font-jp);
     }
 
-    .logo-tagline {
-      font-size: 0.75rem;
-      opacity: 0.9;
+    .logo-sub {
+      font-size: clamp(0.625rem, 0.75vw, 0.75rem);
+      color: var(--text-medium);
       letter-spacing: 0.05em;
     }
 
@@ -165,229 +261,258 @@
       display: none;
     }
 
-    .nav-list {
-      display: flex;
-      gap: var(--spacing-md);
-      align-items: center;
+    @media (min-width: 768px) {
+      .header-nav {
+        display: block;
+      }
+
+      .nav-list {
+        display: flex;
+        gap: clamp(20px, 2vw, 32px);
+      }
+
+      .nav-item a {
+        font-size: var(--fz-sm);
+        font-weight: 500;
+        color: var(--text-dark);
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: all calc(var(--duration) * 0.25) var(--easing);
+        position: relative;
+      }
+
+      .nav-item a:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: var(--gradient-1);
+        transition: width calc(var(--duration) * 0.4) var(--easing);
+      }
+
+      .nav-item a:hover:after {
+        width: 100%;
+      }
     }
 
-    .nav-list a {
-      color: var(--color-bg-white);
-      font-weight: 500;
-      transition: var(--transition-fast);
-      padding: var(--spacing-xs) var(--spacing-sm);
-      border-radius: 4px;
+    .header-cta {
+      display: grid;
     }
 
-    .nav-list a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .hamburger {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
+    /* ========================================
+       Button Component (高度なアニメーション)
+    ======================================== */
+    .btn {
+      position: relative;
+      display: inline-grid;
+      place-items: center;
+      padding: clamp(12px, 1.5vw, 16px) clamp(24px, 3vw, 40px);
+      font-size: var(--fz-sm);
+      font-weight: 600;
+      font-family: var(--font-jp);
+      color: var(--white);
+      background: var(--blue);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: background-color calc(var(--duration) * 0.5) var(--easing);
       cursor: pointer;
-      padding: var(--spacing-xs);
     }
 
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background-color: var(--color-bg-white);
-      transition: var(--transition-fast);
+    .btn:before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
+      margin: auto;
+      background: var(--gradient-6);
+      border-radius: 10px;
+      opacity: 0;
+      scale: 1;
+      transition: calc(var(--duration) * 0.5) var(--easing);
+      transition-property: opacity, width, height, scale;
+    }
+
+    .btn:hover {
+      background-color: transparent;
+      transition-delay: 0.48s;
+    }
+
+    .btn:hover:before {
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      scale: 1.01;
+    }
+
+    .btn-text {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover .btn-text {
+      color: var(--dark-blue);
     }
 
     /* ========================================
        Hero Section
     ======================================== */
     .hero {
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-      color: var(--color-bg-white);
-      padding: var(--spacing-4xl) 0;
       position: relative;
+      min-height: clamp(500px, 60vh, 700px);
+      background: var(--gradient-2);
+      padding: clamp(3.75rem, 8vw, 6.25rem) var(--inline-space-lg);
+      display: grid;
+      place-items: center;
       overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
-      opacity: 0.3;
     }
 
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    .hero-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: var(--spacing-md);
-    }
-
-    .hero-lead {
-      font-size: 1.125rem;
-      line-height: 1.8;
-      margin-bottom: var(--spacing-xl);
-      opacity: 0.95;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: var(--spacing-sm);
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: var(--spacing-xl);
-    }
-
-    .hero-features {
-      display: flex;
-      gap: var(--spacing-md);
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .feature-badge {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-xs);
-      background-color: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      padding: var(--spacing-sm) var(--spacing-md);
-      border-radius: 100px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      font-size: 0.875rem;
-      font-weight: 500;
-    }
-
-    /* ========================================
-       Buttons
-    ======================================== */
-    .btn {
-      display: inline-block;
-      padding: var(--spacing-sm) var(--spacing-lg);
-      font-size: 1rem;
+    .hero-heading-en {
+      font-family: var(--font-en);
+      font-size: var(--fz-en-lg);
       font-weight: 600;
-      text-align: center;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: var(--transition-base);
-      border: none;
-      min-width: 200px;
+      font-variation-settings: "wght" 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .btn-primary {
-      background: linear-gradient(180deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
-      color: var(--color-bg-white);
-      box-shadow: 0 4px 12px rgba(255, 140, 66, 0.3);
+    .hero-heading-jp {
+      font-size: var(--fz-2xlg);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+      line-height: 1.6;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(255, 140, 66, 0.4);
+    .hero-description {
+      font-size: var(--fz-md);
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.9;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
     }
 
-    .btn-primary:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 8px rgba(255, 140, 66, 0.3);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--color-bg-white);
-      border: 2px solid var(--color-bg-white);
-    }
-
-    .btn-outline:hover {
-      background: var(--color-bg-white);
-      color: var(--color-primary);
-      transform: translateY(-2px);
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--grid-gutter);
+      justify-content: center;
     }
 
     /* ========================================
-       Cards
+       Card Component (高度なホバーエフェクト)
     ======================================== */
     .card {
-      background: var(--color-bg-white);
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      padding: var(--spacing-lg);
+      position: relative;
+      display: grid;
+      background: var(--bg-white);
+      border-radius: 10px;
+      overflow: hidden;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      transition: var(--transition-base);
-      height: 100%;
-      display: block;
+      transition: background-color calc(var(--duration) * 0.5) var(--easing);
+    }
+
+    .card:before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
+      margin: auto;
+      background: var(--gradient-6);
+      border-radius: 10px;
+      opacity: 0;
+      scale: 1;
+      transition: calc(var(--duration) * 0.5) var(--easing);
+      transition-property: opacity, width, height, scale;
+      pointer-events: none;
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      border-color: var(--color-primary);
+      background-color: transparent;
+      transition-delay: 0.48s;
+    }
+
+    .card:hover:before {
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      scale: 1.01;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+      padding: clamp(1.25rem, 2.5vw, 2rem);
     }
 
     .card-icon {
-      width: 56px;
-      height: 56px;
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--spacing-md);
-      font-size: 1.5rem;
+      width: clamp(48px, 6vw, 64px);
+      height: clamp(48px, 6vw, 64px);
+      display: grid;
+      place-items: center;
+      background: var(--gradient-3);
+      border-radius: 10px;
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .card-icon svg {
+      width: 60%;
+      height: 60%;
+      fill: var(--blue);
     }
 
     .card-title {
-      font-size: 1.25rem;
+      font-size: var(--fz-lg);
       font-weight: 600;
-      color: var(--color-text-dark);
-      margin-bottom: var(--spacing-sm);
+      color: var(--text-dark);
+      margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+      transition: color calc(var(--duration) * 0.25) var(--easing);
     }
 
-    .card-text {
-      font-size: 0.9375rem;
-      color: var(--color-text-medium);
-      line-height: 1.7;
-      margin-bottom: var(--spacing-md);
+    .card:hover .card-title {
+      color: var(--dark-blue);
     }
 
-    .card-link {
-      color: var(--color-primary);
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: var(--transition-fast);
+    .card-description {
+      font-size: var(--fz-sm);
+      color: var(--text-medium);
+      line-height: 1.8;
     }
 
-    .card:hover .card-link {
-      gap: 8px;
+    .card-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
     }
 
-    /* ========================================
-       Grid
-    ======================================== */
-    .grid {
-      display: grid;
-      gap: var(--spacing-md);
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform calc(var(--duration) * 0.8) var(--easing);
     }
 
-    .grid-2 {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    .card:hover .card-image img {
+      transform: scale(1.1);
     }
 
     /* ========================================
@@ -395,577 +520,337 @@
     ======================================== */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--spacing-md);
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--grid-gutter);
     }
 
     /* ========================================
-       Why Us Section
+       Arrow Icon Animation (2つのSVGでスライド)
     ======================================== */
-    .why-us-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--spacing-lg);
+    .arrow-wrapper {
+      position: relative;
+      display: inline-grid;
+      place-items: center;
+      width: 1em;
+      aspect-ratio: 1;
+      overflow: hidden;
     }
 
-    .why-us-item {
-      text-align: center;
+    .arrow-wrapper svg {
+      position: absolute;
+      width: 100%;
+      transition: translate calc(var(--duration) * 0.4) var(--easing);
     }
 
-    .why-us-number {
-      display: inline-block;
-      width: 64px;
-      height: 64px;
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-      color: var(--color-bg-white);
-      border-radius: 50%;
-      font-size: 1.5rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto var(--spacing-md);
+    .arrow-wrapper svg:first-child {
+      translate: 0 0;
     }
 
-    .why-us-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--color-text-dark);
-      margin-bottom: var(--spacing-sm);
+    .arrow-wrapper svg:last-child {
+      translate: calc((100% + 5px) * -1) 0;
     }
 
-    .why-us-text {
-      font-size: 0.9375rem;
-      color: var(--color-text-medium);
-      line-height: 1.7;
+    a:hover .arrow-wrapper svg:first-child,
+    button:hover .arrow-wrapper svg:first-child {
+      translate: calc(100% + 5px) 0;
     }
 
-    /* ========================================
-       Voice Section
-    ======================================== */
-    .voice-card {
-      background: var(--color-bg-white);
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      padding: var(--spacing-lg);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .voice-header {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-md);
-    }
-
-    .voice-avatar {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-primary-light) 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-bg-white);
-      font-weight: 600;
-    }
-
-    .voice-info h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--color-text-dark);
-      margin-bottom: 4px;
-    }
-
-    .voice-info p {
-      font-size: 0.875rem;
-      color: var(--color-text-light);
-    }
-
-    .voice-text {
-      font-size: 0.9375rem;
-      color: var(--color-text-medium);
-      line-height: 1.8;
-      margin-bottom: var(--spacing-sm);
-    }
-
-    .voice-stars {
-      color: #ffd700;
-      font-size: 1.125rem;
-      margin-bottom: var(--spacing-sm);
-    }
-
-    /* ========================================
-       CTA Section
-    ======================================== */
-    .cta-section {
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-      color: var(--color-bg-white);
-      text-align: center;
-      padding: var(--spacing-4xl) 0;
-    }
-
-    .cta-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: var(--spacing-md);
-      line-height: 1.4;
-    }
-
-    .cta-text {
-      font-size: 1.125rem;
-      margin-bottom: var(--spacing-xl);
-      opacity: 0.95;
-      line-height: 1.7;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: var(--spacing-sm);
-      justify-content: center;
-      flex-wrap: wrap;
+    a:hover .arrow-wrapper svg:last-child,
+    button:hover .arrow-wrapper svg:last-child {
+      translate: 0 0;
     }
 
     /* ========================================
        Footer
     ======================================== */
     .footer {
-      background-color: var(--color-text-dark);
-      color: var(--color-bg-white);
-      padding: var(--spacing-2xl) 0 var(--spacing-md);
+      background: var(--text-dark);
+      color: var(--bg-white);
+      padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(1.5rem, 3vw, 2rem);
     }
 
     .footer-content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--spacing-xl);
-      margin-bottom: var(--spacing-xl);
+      gap: var(--grid-gutter);
+      margin-bottom: clamp(2rem, 4vw, 3rem);
     }
 
-    .footer-section h3 {
-      font-size: 1.125rem;
+    @media (min-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1.5fr 1fr 1fr;
+      }
+    }
+
+    .footer-logo {
+      font-size: clamp(1.25rem, 1.75vw, 1.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .footer-description {
+      font-size: var(--fz-sm);
+      line-height: 1.8;
+      opacity: 0.8;
+    }
+
+    .footer-section-title {
+      font-size: var(--fz-md);
       font-weight: 600;
-      margin-bottom: var(--spacing-md);
+      margin-bottom: 1rem;
     }
 
-    .footer-section ul {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-sm);
+    .footer-links {
+      display: grid;
+      gap: 0.75rem;
     }
 
-    .footer-section a {
-      color: rgba(255, 255, 255, 0.8);
-      transition: var(--transition-fast);
-      font-size: 0.9375rem;
+    .footer-links a {
+      font-size: var(--fz-sm);
+      opacity: 0.8;
+      transition: all calc(var(--duration) * 0.25) var(--easing);
     }
 
-    .footer-section a:hover {
-      color: var(--color-bg-white);
+    .footer-links a:hover {
+      opacity: 1;
+      color: var(--light-blue);
+      padding-left: 4px;
     }
 
     .footer-bottom {
       text-align: center;
-      padding-top: var(--spacing-md);
+      padding-top: clamp(1.5rem, 3vw, 2rem);
       border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.7);
+      font-size: var(--fz-xs);
+      opacity: 0.6;
     }
 
     /* ========================================
-       Responsive (Tablet & PC)
+       Responsive
     ======================================== */
-    @media (min-width: 768px) {
-      .header-nav {
-        display: block;
+    @media (max-width: 767px) {
+      .hero {
+        padding: clamp(2.5rem, 6vw, 4rem) var(--inline-space-md);
       }
 
-      .hamburger {
-        display: none;
+      .hero-heading-en {
+        font-size: clamp(1.75rem, 8vw, 2.5rem);
       }
 
-      .hero-title {
-        font-size: 3.5rem;
+      .hero-heading-jp {
+        font-size: clamp(1.125rem, 5vw, 1.5rem);
       }
 
-      .section {
-        padding: var(--spacing-4xl) 0;
+      .hero-cta {
+        flex-direction: column;
       }
 
-      .section-title {
-        font-size: 2.5rem;
-      }
-    }
-
-    @media (min-width: 1025px) {
-      .hero-title {
-        font-size: 4rem;
-      }
-
-      .container {
-        padding: 0 var(--spacing-xl);
-      }
-    }
-
-    /* ========================================
-       Animations
-    ======================================== */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-in.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Page loaded state */
-    .hero-content {
-      animation: heroFadeIn 0.8s ease forwards;
-    }
-
-    @keyframes heroFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      .btn {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
-  <!-- ヘッダー -->
+  <!-- SVG Symbols Definition (1回だけ定義して使い回し) -->
+  <svg style="display: none;" aria-hidden="true">
+    <defs>
+      <symbol id="icon-arrow-forward" viewBox="0 0 10 10">
+        <path fill="currentColor" d="m9.425 4.612.388.389-.388.389-3.437 3.435-.777-.777L7.708 5.55H0v-1.1h7.707l-2.496-2.5.777-.778z"/>
+      </symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 18c-3.45-.89-6-4.54-6-8.83V6.3l6-2.25 6 2.25v4.87c0 4.29-2.55 7.94-6 8.83z"/>
+      </symbol>
+      <symbol id="icon-chart" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M3 13h2v7H3zm4-6h2v13H7zm4 3h2v10h-2zm4-1h2v11h-2zm4-5h2v16h-2z"/>
+      </symbol>
+      <symbol id="icon-people" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+      </symbol>
+      <symbol id="icon-home" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </symbol>
+      <symbol id="icon-trending-up" viewBox="0 0 24 24">
+        <path fill="currentColor" d="m16 6 2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Header -->
   <header class="header">
-    <div class="container">
-      <div class="header-inner">
-        <div class="header-logo">
-          <a href="index.html">
-            <h1 class="logo-text">ファイナンスブレーン</h1>
-            <p class="logo-tagline">Finance Brain</p>
-          </a>
-        </div>
-        <nav class="header-nav">
-          <ul class="nav-list">
-            <li><a href="about/">会社紹介</a></li>
-            <li><a href="services/personal/">個人向けサービス</a></li>
-            <li><a href="services/corporate/">法人向けサービス</a></li>
-            <li><a href="voice/">お客様の声</a></li>
-            <li><a href="contact/" class="btn btn-primary" style="min-width: auto; padding: 8px 16px;">お問い合わせ</a></li>
-          </ul>
-        </nav>
-        <button class="hamburger" id="hamburger" aria-label="メニュー">
-          <span></span>
-          <span></span>
-          <span></span>
+    <div class="header-inner container">
+      <div class="header-logo">
+        <div class="logo-main">ファイナンスブレーン</div>
+        <div class="logo-sub">Finance Brain</div>
+      </div>
+
+      <nav class="header-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#services">サービス</a></li>
+          <li class="nav-item"><a href="#about">私たちについて</a></li>
+          <li class="nav-item"><a href="#voice">お客様の声</a></li>
+          <li class="nav-item"><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <button class="btn">
+          <span class="btn-text">
+            無料相談予約
+            <span class="arrow-wrapper">
+              <svg><use href="#icon-arrow-forward"></use></svg>
+              <svg><use href="#icon-arrow-forward"></use></svg>
+            </span>
+          </span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- ヒーローセクション -->
+  <!-- Hero Section -->
   <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h2 class="hero-title">
-          お金のこと、<br>
-          安心して相談できる場所。
-        </h2>
-        <p class="hero-lead">
-          保険、投資、住宅ローン、相続——人生には、お金について考えるべき場面がたくさん。<br>
-          ファイナンシャルプランナーをはじめとする専門家が、<br>
-          お客様一人ひとりに寄り添い、最適なプランをご提案します。
-        </p>
-        <div class="hero-buttons">
-          <a href="contact/" class="btn btn-primary">無料相談予約</a>
-          <a href="tel:097-574-8212" class="btn btn-outline">
-            📞 097-574-8212
-          </a>
-        </div>
-        <div class="hero-features">
-          <div class="feature-badge">
-            ⭐ 2006年創業・大分で19年の実績
-          </div>
-          <div class="feature-badge">
-            🎓 FP・投資診断士など専門資格所有者在籍
-          </div>
-          <div class="feature-badge">
-            💬 初回相談無料
-          </div>
-        </div>
+    <div class="hero-content">
+      <h1 class="hero-heading-en">Financial Planning for Your Future</h1>
+      <p class="hero-heading-jp">お金の不安を安心に変える、<br>大分のファイナンシャルパートナー</p>
+      <p class="hero-description">
+        FPや投資診断士など、大分県内の専門資格所有者が多数在籍。<br>
+        保険・投資信託・資産運用・相続など、お金に関するあらゆるご相談を承ります。
+      </p>
+      <div class="hero-cta">
+        <button class="btn">
+          <span class="btn-text">
+            無料相談を予約する
+            <span class="arrow-wrapper">
+              <svg><use href="#icon-arrow-forward"></use></svg>
+              <svg><use href="#icon-arrow-forward"></use></svg>
+            </span>
+          </span>
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- ファイナンスブレーンとは -->
-  <section class="section">
+  <!-- Services Section -->
+  <section id="services" class="section section-white">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">ファイナンスブレーンとは</h2>
-        <p class="section-subtitle">あなたの人生に寄り添う、お金の相談パートナーです</p>
+      <div class="heading-group" style="text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem);">
+        <span class="heading-en">Our Services</span>
+        <h2 class="heading-jp">提供サービス</h2>
       </div>
-      <div class="grid grid-2">
-        <div>
-          <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--color-text-dark);">私たちが大切にしていること</h3>
-          <p style="font-size: 1rem; line-height: 1.8; color: var(--color-text-medium); margin-bottom: 1.5rem;">
-            ファイナンスブレーンは、2006年の創業以来、大分県内でお金に関する幅広いご相談を承ってまいりました。
-            私たちは、お客様一人ひとりの人生設計に真摯に向き合い、最適な金融商品やプランをご提案することをお約束します。
-          </p>
-          <p style="font-size: 1rem; line-height: 1.8; color: var(--color-text-medium);">
-            ファイナンシャルプランナー（FP）や投資診断士などの専門資格を持つスタッフが、保険、投資信託、住宅ローン、相続など、
-            お金に関するあらゆるご相談に対応いたします。
-          </p>
-        </div>
-        <div>
-          <div style="background: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-bg-lighter) 100%); border-radius: 12px; padding: 2rem; height: 100%; display: flex; align-items: center; justify-content: center; min-height: 300px;">
-            <p style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); text-align: center; line-height: 1.8;">
-              「お金の貯め方・増やし方・残し方」を<br>
-              トータルサポート
+
+      <div class="services-grid">
+        <a href="#" class="card">
+          <div class="card-content">
+            <div class="card-icon">
+              <svg><use href="#icon-shield"></use></svg>
+            </div>
+            <h3 class="card-title">保険コンサルティング</h3>
+            <p class="card-description">
+              生命保険・医療保険・がん保険など、あなたとご家族に最適な保障をご提案します。複数社の商品を比較検討し、本当に必要な保険を見つけます。
             </p>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- サービス -->
-  <section class="section section-bg-light">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">サービス</h2>
-        <p class="section-subtitle">個人のお客様・法人のお客様、それぞれに最適なプランをご提案</p>
-      </div>
-      <div class="services-grid">
-        <!-- 個人向けサービス -->
-        <a href="services/personal/life-planning/" class="card">
-          <div class="card-icon">📊</div>
-          <h3 class="card-title">ライフプランニング</h3>
-          <p class="card-text">住宅購入、教育資金、老後資金など、人生の節目に必要なお金の計画をサポートします。</p>
-          <span class="card-link">詳しく見る →</span>
         </a>
 
-        <a href="services/personal/insurance/" class="card">
-          <div class="card-icon">🛡️</div>
-          <h3 class="card-title">保険の見直し・ご相談</h3>
-          <p class="card-text">生命保険・損害保険の見直しから新規加入まで、ライフスタイルに合わせた保険をご提案します。</p>
-          <span class="card-link">詳しく見る →</span>
-        </a>
-
-        <a href="services/personal/housing-loan/" class="card">
-          <div class="card-icon">🏠</div>
-          <h3 class="card-title">住宅ローンのご相談</h3>
-          <p class="card-text">住宅ローンの選び方から借り換えまで、最適なプランをアドバイスいたします。</p>
-          <span class="card-link">詳しく見る →</span>
-        </a>
-
-        <a href="services/personal/inheritance/" class="card">
-          <div class="card-icon">📜</div>
-          <h3 class="card-title">相続に関するご相談</h3>
-          <p class="card-text">相続対策や相続税の試算、遺言書作成サポートなど、相続に関する幅広いご相談を承ります。</p>
-          <span class="card-link">詳しく見る →</span>
-        </a>
-
-        <a href="services/personal/investment/" class="card">
-          <div class="card-icon">📈</div>
-          <h3 class="card-title">投資信託・資産運用</h3>
-          <p class="card-text">NISA、iDeCoなどの制度を活用した資産運用をサポート。初心者の方にも丁寧にご説明します。</p>
-          <span class="card-link">詳しく見る →</span>
-        </a>
-
-        <a href="services/corporate/" class="card">
-          <div class="card-icon">🏢</div>
-          <h3 class="card-title">法人向けサービス</h3>
-          <p class="card-text">財務コンサルティング、退職金制度設計、事業承継、自社株対策など、企業経営をサポートします。</p>
-          <span class="card-link">詳しく見る →</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 選ばれる理由 -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">選ばれる理由</h2>
-        <p class="section-subtitle">多くのお客様にご信頼いただいている3つの理由</p>
-      </div>
-      <div class="why-us-list">
-        <div class="why-us-item">
-          <div class="why-us-number">01</div>
-          <h3 class="why-us-title">専門資格を持つスタッフ</h3>
-          <p class="why-us-text">
-            ファイナンシャルプランナー（FP）、投資診断士など、豊富な専門知識を持つスタッフが在籍。
-            お客様のご相談内容に合わせて、最適なアドバイスをご提供します。
-          </p>
-        </div>
-
-        <div class="why-us-item">
-          <div class="why-us-number">02</div>
-          <h3 class="why-us-title">地域密着19年の実績</h3>
-          <p class="why-us-text">
-            2006年の創業以来、大分県内で数多くのお客様のライフプランをサポート。
-            地域に根ざした信頼と実績があります。
-          </p>
-        </div>
-
-        <div class="why-us-item">
-          <div class="why-us-number">03</div>
-          <h3 class="why-us-title">中立的な立場でご提案</h3>
-          <p class="why-us-text">
-            特定の金融機関に偏らず、お客様の立場に立った中立的なアドバイスを心がけています。
-            初回相談は無料ですので、お気軽にご相談ください。
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- お客様の声 -->
-  <section class="section section-bg-light">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">お客様の声</h2>
-        <p class="section-subtitle">ご利用いただいたお客様からのお声をご紹介します</p>
-      </div>
-      <div class="grid grid-2">
-        <div class="voice-card">
-          <div class="voice-header">
-            <div class="voice-avatar">A.T</div>
-            <div class="voice-info">
-              <h4>A.T様（30代・会社員）</h4>
-              <p>ライフプランニング</p>
+        <a href="#" class="card">
+          <div class="card-content">
+            <div class="card-icon">
+              <svg><use href="#icon-chart"></use></svg>
             </div>
+            <h3 class="card-title">資産運用・投資信託</h3>
+            <p class="card-description">
+              NISA・iDeCoを活用した長期資産形成から、投資信託の選び方まで。投資診断士がお客様のリスク許容度に合わせた運用プランを作成します。
+            </p>
           </div>
-          <div class="voice-stars">★★★★★</div>
-          <p class="voice-text">
-            住宅購入を検討していましたが、ローンの組み方や将来の資金計画について不安がありました。
-            ファイナンスブレーンさんに相談したところ、丁寧にシミュレーションしていただき、
-            安心して住宅購入に踏み切ることができました。アフターフォローも充実していて、とても頼りになります。
-          </p>
-        </div>
+        </a>
 
-        <div class="voice-card">
-          <div class="voice-header">
-            <div class="voice-avatar">M.S</div>
-            <div class="voice-info">
-              <h4>M.S様（50代・自営業）</h4>
-              <p>相続対策</p>
+        <a href="#" class="card">
+          <div class="card-content">
+            <div class="card-icon">
+              <svg><use href="#icon-people"></use></svg>
             </div>
+            <h3 class="card-title">相続・事業承継</h3>
+            <p class="card-description">
+              相続税対策、遺言書作成サポート、事業承継プランニングなど。次世代へスムーズに資産を引き継ぐためのトータルサポートを提供します。
+            </p>
           </div>
-          <div class="voice-stars">★★★★★</div>
-          <p class="voice-text">
-            相続について何から始めればよいかわからず、相談しました。
-            税理士の先生とも連携してくださり、複雑な手続きをスムーズに進めることができました。
-            専門的な知識と豊富な経験に基づいたアドバイスで、家族みんなが安心できる対策ができました。
-          </p>
-        </div>
-      </div>
-      <div style="text-align: center; margin-top: var(--spacing-xl);">
-        <a href="voice/" class="btn btn-primary">お客様の声をもっと見る</a>
+        </a>
+
+        <a href="#" class="card">
+          <div class="card-content">
+            <div class="card-icon">
+              <svg><use href="#icon-home"></use></svg>
+            </div>
+            <h3 class="card-title">住宅ローン相談</h3>
+            <p class="card-description">
+              マイホーム購入時の資金計画から、住宅ローンの借り換え相談まで。将来を見据えた無理のない返済プランをご提案します。
+            </p>
+          </div>
+        </a>
+
+        <a href="#" class="card">
+          <div class="card-content">
+            <div class="card-icon">
+              <svg><use href="#icon-trending-up"></use></svg>
+            </div>
+            <h3 class="card-title">ライフプランニング</h3>
+            <p class="card-description">
+              教育資金、老後資金、住宅購入など、人生の各ステージに必要な資金を可視化。キャッシュフロー表を作成し、将来の不安を解消します。
+            </p>
+          </div>
+        </a>
+
+        <a href="#" class="card">
+          <div class="card-content">
+            <div class="card-icon">
+              <svg><use href="#icon-chart"></use></svg>
+            </div>
+            <h3 class="card-title">税金・節税対策</h3>
+            <p class="card-description">
+              所得税・住民税の節税方法から、ふるさと納税の活用法まで。税理士と連携し、合法的な節税対策をアドバイスします。
+            </p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container">
-      <h2 class="cta-title">まずはお気軽にご相談ください</h2>
-      <p class="cta-text">
-        初回相談は無料です。お電話またはお問い合わせフォームからご予約ください。<br>
-        平日 9:00〜18:00（土日祝日は事前予約制）
-      </p>
-      <div class="cta-buttons">
-        <a href="contact/" class="btn btn-primary">お問い合わせフォーム</a>
-        <a href="tel:097-574-8212" class="btn btn-outline">📞 097-574-8212</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- フッター -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <div class="footer-section">
-          <h3>ファイナンスブレーン</h3>
-          <p style="font-size: 0.9375rem; line-height: 1.7; color: rgba(255, 255, 255, 0.8);">
-            大分県の保険・投資信託・資産運用コンサルタント。<br>
-            お金の貯め方・増やし方・残し方をトータルサポート。
+        <div class="footer-column">
+          <div class="footer-logo">ファイナンスブレーン</div>
+          <p class="footer-description">
+            大分のFP・投資診断士による、お金のトータルコンサルティング。保険・投資・相続など、あらゆるご相談に対応いたします。
           </p>
         </div>
 
-        <div class="footer-section">
-          <h3>サービス</h3>
-          <ul>
-            <li><a href="services/personal/life-planning/">ライフプランニング</a></li>
-            <li><a href="services/personal/insurance/">保険の見直し</a></li>
-            <li><a href="services/personal/housing-loan/">住宅ローン相談</a></li>
-            <li><a href="services/personal/inheritance/">相続相談</a></li>
-            <li><a href="services/personal/investment/">投資信託・資産運用</a></li>
-            <li><a href="services/corporate/">法人向けサービス</a></li>
-          </ul>
+        <div class="footer-column">
+          <h3 class="footer-section-title">サービス</h3>
+          <div class="footer-links">
+            <a href="#">保険コンサルティング</a>
+            <a href="#">資産運用・投資信託</a>
+            <a href="#">相続・事業承継</a>
+            <a href="#">住宅ローン相談</a>
+            <a href="#">ライフプランニング</a>
+          </div>
         </div>
 
-        <div class="footer-section">
-          <h3>会社情報</h3>
-          <ul>
-            <li><a href="about/">ファイナンスブレーンとは</a></li>
-            <li><a href="company/">会社概要</a></li>
-            <li><a href="staff/">スタッフ紹介</a></li>
-            <li><a href="company/privacy.html">個人情報保護方針</a></li>
-            <li><a href="company/solicitation.html">勧誘方針</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h3>お問い合わせ</h3>
-          <ul>
-            <li><a href="contact/">お問い合わせフォーム</a></li>
-            <li><a href="faq/">よくあるご質問</a></li>
-            <li style="margin-top: var(--spacing-sm);">
-              <strong>TEL:</strong> <a href="tel:097-574-8212">097-574-8212</a>
-            </li>
-            <li><strong>営業時間:</strong> 平日 9:00〜18:00</li>
-          </ul>
+        <div class="footer-column">
+          <h3 class="footer-section-title">会社情報</h3>
+          <div class="footer-links">
+            <a href="#">私たちについて</a>
+            <a href="#">お客様の声</a>
+            <a href="#">よくあるご質問</a>
+            <a href="#">お問い合わせ</a>
+            <a href="#">プライバシーポリシー</a>
+          </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 Finance Brain. All Rights Reserved.</p>
+        &copy; 2026 Finance Brain. All Rights Reserved.
       </div>
     </div>
   </footer>
-
-  <!-- JavaScript -->
-  <script>
-    // スクロールアニメーション
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, observerOptions);
-
-    // fade-in クラスを持つ要素を監視
-    document.querySelectorAll('.fade-in').forEach(el => {
-      observer.observe(el);
-    });
-
-    // ハンバーガーメニュー（モバイル対応は今後実装）
-    const hamburger = document.getElementById('hamburger');
-    hamburger.addEventListener('click', () => {
-      // TODO: モバイルメニューの開閉処理を実装
-      alert('モバイルメニューは今後実装予定です');
-    });
-  </script>
 </body>
 </html>

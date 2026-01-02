@@ -1005,6 +1005,325 @@ background: linear-gradient(to right, red 0%, orange 20%, yellow 40%, green 60%,
       </div>
     </div>
 
+    <!-- 参考サイト詳細分析 BuySell Technologies -->
+    <div class="section">
+      <h2 class="section-title">📘 参考サイト詳細分析：BuySell Technologies 採用サイト</h2>
+
+      <div class="info-box" style="background: #e3f2fd; border-left-color: #2750df;">
+        <strong>🎯 このサイトを参考にする理由</strong>
+        <p style="margin-top: 0.5rem; line-height: 1.8;">
+          株式会社BuySell Technologiesの新卒採用サイトは、<strong style="color: #2750df;">青をベースカラーとした超モダンなデザイン</strong>を実現しています。<br>
+          金融・信頼性が求められる業界でありながら、洗練された先進的なUIを提供する優れた事例です。
+        </p>
+      </div>
+
+      <h3 style="font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: #2750df;">🎨 カラーシステム</h3>
+
+      <div class="note-box" style="background: #f8f9fa;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">メインカラー</h4>
+        <div class="color-palette">
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: #2750df; color: #fff;">#2750df</div>
+            <div class="color-info">
+              <div class="color-name">Blue（メイン）</div>
+              <div class="color-code">#2750df</div>
+              <div class="color-usage">ブランドカラー、ボタン、アイコン</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: #183aae; color: #fff;">#183aae</div>
+            <div class="color-info">
+              <div class="color-name">Dark Blue</div>
+              <div class="color-code">#183aae</div>
+              <div class="color-usage">ホバー、強調、見出し</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: #cfe2ff; color: #333;">#cfe2ff</div>
+            <div class="color-info">
+              <div class="color-name">Light Blue</div>
+              <div class="color-code">#cfe2ff</div>
+              <div class="color-usage">背景、淡い装飾</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note-box" style="background: #f8f9fa; margin-top: 1.5rem;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">グラデーション（重要！）</h4>
+        <p style="margin-bottom: 1rem; line-height: 1.7;">このサイトの<strong>モダンさの秘密は、複数のグラデーション</strong>を巧みに使い分けていることです。</p>
+
+        <div class="code-block"><pre>/* Gradient 1: メインボタン・テキストグラデーション */
+background: linear-gradient(90deg, #2750df 0%, #183aae 100%);
+
+/* Gradient 2: 背景グラデーション（複雑） */
+background: linear-gradient(90deg,
+  #2750df 0%,
+  #5071e2 30.29%,
+  #3c5fd7 80.29%,
+  #375ad5 100%
+);
+
+/* Gradient 3: 淡い背景 */
+background: linear-gradient(90deg,
+  #ebe8fd 0%,
+  #e4f2fe 50%,
+  #e1e3fd 100%
+);
+
+/* Gradient 4: さらに淡い背景 */
+background: linear-gradient(90deg,
+  #e9f0fe 0%,
+  #f7f9fd 50.48%,
+  #dee7fe 100%
+);
+
+/* Gradient 5: 斜めグラデーション */
+background: linear-gradient(114deg,
+  #dfd9ff 0%,
+  #c8e6ff 39.4%,
+  #cddeff 84.03%,
+  #ced1f5 98.75%
+);
+
+/* Gradient 6: ホバーエフェクト用 */
+background: linear-gradient(93deg,
+  #afd9ff 20.13%,
+  #bdb9ff 81.55%
+), #2750df;</pre></div>
+      </div>
+
+      <h3 style="font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: #2750df;">✍️ タイポグラフィ</h3>
+
+      <div class="note-box" style="background: #f8f9fa;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">フォントファミリー</h4>
+        <div class="code-block"><pre>/* 英文見出し用 - 可変フォント */
+font-family: 'ClashDisplay-Variable', var(--base-font);
+font-weight: 200～700（可変）
+font-variation-settings: "wght" 500;
+
+/* 日本語本文用 */
+font-family: 'Noto Sans JP', sans-serif;
+font-weight: 400～900
+
+/* 日本語見出し・強調用 */
+font-family: 'Noto Serif JP', serif;
+font-weight: 200～900
+
+/* 補助フォント */
+font-family: 'Switzer-Variable';
+font-weight: 100～900（可変）</pre></div>
+
+        <div class="info-box" style="margin-top: 1rem;">
+          <strong>⚠️ 重要ポイント</strong>
+          <ul style="margin-top: 0.5rem; padding-left: 1.5rem; line-height: 1.8;">
+            <li><strong>英文は必ずClashDisplay-Variable</strong>を使用（モダンで高級感）</li>
+            <li><strong>可変フォント（Variable Font）</strong>でウェイト調整が滑らか</li>
+            <li><strong>font-feature-settings: "palt"</strong> でプロポーショナルメトリクス有効化</li>
+            <li><strong>letter-spacing</strong> を細かく調整（英文: -0.01em, 和文: 0.04em）</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: #2750df;">🏗️ レイアウトシステム</h3>
+
+      <div class="note-box" style="background: #f8f9fa;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">CSS Custom Properties（CSS変数）</h4>
+        <div class="code-block"><pre>:root {
+  /* スケーリングシステム */
+  --viewport-width: 100vw;
+  --window-width: tan(atan2(var(--viewport-width), 1px));
+  --mw: max(1440px, 90rem);
+  --max: tan(atan2(var(--mw), 1px));
+  --scale: max(1, var(--window-width) / var(--max));
+  --px: calc(1px * var(--scale));
+  --rem: calc(1rem * var(--scale));
+
+  /* スペーシング（clampで流動的） */
+  --grid-gutter: clamp(20 * var(--px), (var(--window-width) * .0188 + 12.958) * var(--px), 40 * var(--px));
+  --inline-space-md: clamp(10 * var(--px), (var(--window-width) * .00939 + 6.479) * var(--px), 20 * var(--px));
+  --inline-space-lg: clamp(20 * var(--px), (var(--window-width) * .0188 + 12.958) * var(--px), 40 * var(--px));
+  --inline-space-xl: clamp(30 * var(--px), (var(--window-width) * .047 + 12.394) * var(--px), 80 * var(--px));
+
+  /* フォントサイズ（clampで流動的） */
+  --fz-root: clamp(.9375 * var(--rem), (var(--window-width) * .0000587 + .916) * var(--rem), 1 * var(--rem));
+  --fz-3xlg: clamp(1.5 * var(--rem), (var(--window-width) * .00047 + 1.324) * var(--rem), 2 * var(--rem));
+  --fz-2xlg: clamp(1.375 * var(--rem), (var(--window-width) * .000353 + 1.243) * var(--rem), 1.75 * var(--rem));
+  --fz-xlg: clamp(1.25 * var(--rem), (var(--window-width) * .000235 + 1.162) * var(--rem), 1.5 * var(--rem));
+
+  /* アニメーション */
+  --duration: 1s;
+}</pre></div>
+
+        <div class="info-box" style="margin-top: 1rem;">
+          <strong>🎯 このシステムの強み</strong>
+          <ul style="margin-top: 0.5rem; padding-left: 1.5rem; line-height: 1.8;">
+            <li><strong>clamp()</strong>による流動的なレスポンシブ（メディアクエリ不要）</li>
+            <li><strong>数学関数</strong>を使った高度なスケーリング</li>
+            <li><strong>8pxの倍数</strong>を基準にした統一感</li>
+            <li><strong>calc()演算</strong>で柔軟な計算</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note-box" style="background: #f8f9fa; margin-top: 1.5rem;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">CSS Grid + Container Queries</h4>
+        <div class="code-block"><pre>/* Container Queriesを使用 */
+.container {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: 25.0666666667cqw 1fr;
+  gap: var(--grid-gutter);
+}
+
+@container (min-width: max(550px, 34.375rem)) {
+  .parent-box {
+    grid-auto-flow: column;
+  }
+}</pre></div>
+
+        <div class="info-box" style="margin-top: 1rem;">
+          <strong>💡 Container Queriesとは</strong>
+          <p style="margin-top: 0.5rem; line-height: 1.8;">
+            通常のメディアクエリは<strong>ビューポート</strong>を基準にしますが、<br>
+            Container Queriesは<strong>親要素のサイズ</strong>を基準にできる次世代の技術です。<br>
+            <strong>cqw（container query width）</strong>単位で柔軟なレイアウトが可能！
+          </p>
+        </div>
+      </div>
+
+      <h3 style="font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: #2750df;">🎭 アニメーション・インタラクション</h3>
+
+      <div class="note-box" style="background: #f8f9fa;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">ホバーエフェクト</h4>
+        <div class="code-block"><pre>/* カードホバー */
+.card {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--white);
+  border-radius: calc(10 * var(--px));
+  transition: background-color calc(var(--duration) * .5) cubic-bezier(.23, 1, .32, 1);
+}
+
+.card:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: calc(100% - calc(10 * var(--px)));
+  height: calc(100% - calc(10 * var(--px)));
+  margin: auto;
+  background: var(--gradient-6);
+  border-radius: calc(10 * var(--px));
+  opacity: 0;
+  scale: 1;
+  transition: calc(var(--duration) * .5) cubic-bezier(.23, 1, .32, 1);
+  transition-property: opacity, width, height, scale;
+}
+
+.card:hover {
+  background-color: transparent;
+  transition-delay: .48s;
+}
+
+.card:hover:before {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  scale: 1.01;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+/* 矢印アニメーション（2つのSVGを重ねる） */
+.arrow svg {
+  position: absolute;
+  width: 100%;
+  transition: translate calc(var(--duration) * .4) cubic-bezier(.23, 1, .32, 1);
+}
+
+.arrow svg:first-child {
+  translate: 0 0;
+}
+
+.arrow svg:last-child {
+  translate: calc((100% + calc(5 * var(--px))) * -1) 0;
+}
+
+.card:hover .arrow svg:first-child {
+  translate: 100% 0;
+}
+
+.card:hover .arrow svg:last-child {
+  translate: 0 0;
+}</pre></div>
+
+        <div class="info-box" style="margin-top: 1rem;">
+          <strong>✨ このアニメーションの工夫</strong>
+          <ul style="margin-top: 0.5rem; padding-left: 1.5rem; line-height: 1.8;">
+            <li><strong>cubic-bezier(.23, 1, .32, 1)</strong>のイージング（滑らかで自然）</li>
+            <li><strong>transition-delay</strong>で段階的なアニメーション</li>
+            <li><strong>2つのSVG矢印</strong>を重ねてスライドイン効果</li>
+            <li><strong>:before疑似要素</strong>でグラデーション背景をオーバーレイ</li>
+            <li><strong>scale(1.01)</strong>の微妙な拡大で立体感</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: #2750df;">🖼️ SVGアイコンシステム</h3>
+
+      <div class="note-box" style="background: #f8f9fa;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">SVG Spriteパターン</h4>
+        <div class="code-block"><pre>&lt;!-- SVG Symbol定義（1回だけ定義） --&gt;
+&lt;svg width="1em" height="1em" aria-hidden="true"&gt;
+  &lt;symbol id="ai:local:common/arrow-forward" viewBox="0 0 10 10"&gt;
+    &lt;path fill="currentColor" d="m9.425 4.612.388.389-.388.389-3.437 3.435-.777-.777L7.708 5.55H0v-1.1h7.707l-2.496-2.5.777-.778z"/&gt;
+  &lt;/symbol&gt;
+&lt;/svg&gt;
+
+&lt;!-- 使い回し（何度でも） --&gt;
+&lt;svg width="1em" height="1em" class="icon"&gt;
+  &lt;use href="#ai:local:common/arrow-forward"&gt;&lt;/use&gt;
+&lt;/svg&gt;</pre></div>
+
+        <div class="info-box" style="margin-top: 1rem;">
+          <strong>🎯 SVG Spriteの利点</strong>
+          <ul style="margin-top: 0.5rem; padding-left: 1.5rem; line-height: 1.8;">
+            <li><strong>再利用性が高い</strong>：1つ定義すれば何度でも使える</li>
+            <li><strong>キャッシュ効率</strong>：外部ファイルより高速</li>
+            <li><strong>fill="currentColor"</strong>でテキスト色に連動</li>
+            <li><strong>width="1em"</strong>でフォントサイズに比例</li>
+            <li><strong>絵文字は一切使わない</strong>（プロフェッショナル）</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="font-size: 1.3rem; font-weight: 600; margin: 2rem 0 1rem; color: #2750df;">📋 Finance Brainへの適用方針</h3>
+
+      <div class="note-box" style="background: #fff3cd; border-left-color: #ff8c42;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">採用するポイント ✅</h4>
+        <ul style="padding-left: 1.5rem; line-height: 1.8;">
+          <li><strong>カラー</strong>：#5767bf を #2750df のように使用、グラデーション多用</li>
+          <li><strong>フォント</strong>：ClashDisplay-Variable（英）+ Noto Sans JP（日）の組み合わせ</li>
+          <li><strong>SVGアイコン</strong>：SVG Spriteパターンで統一（絵文字廃止）</li>
+          <li><strong>レイアウト</strong>：CSS Grid + Container Queries</li>
+          <li><strong>アニメーション</strong>：cubic-bezier(.23, 1, .32, 1)、矢印スライド、画像scale(1.1)</li>
+          <li><strong>スペーシング</strong>：clamp()による流動的サイズ、8pxの倍数</li>
+        </ul>
+      </div>
+
+      <div class="note-box" style="background: #ffe9e9; border-left-color: #d9534f; margin-top: 1.5rem;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">調整が必要なポイント ⚠️</h4>
+        <ul style="padding-left: 1.5rem; line-height: 1.8;">
+          <li><strong>グラデーションの使用量</strong>：やや控えめに（金融サイトとして）</li>
+          <li><strong>アニメーション速度</strong>：少し遅めに（落ち着いた印象）</li>
+          <li><strong>明度</strong>：やや明るめに（Finance Brainは親しみやすさ重視）</li>
+          <li><strong>文字サイズ</strong>：やや大きめに（高齢者にも配慮）</li>
+        </ul>
+      </div>
+    </div>
+
     <!-- 参考サイト（2026年トレンド） -->
     <div class="section">
       <h2 class="section-title">🌐 参考サイト（2026年モダンデザイン）</h2>
