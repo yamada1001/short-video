@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance Brain - Financial Planning & Consulting</title>
+
+  <!-- Google Fonts - Variable Fonts for 2026 Trend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* 2026 Color Palette - Mocha Mousse + Neo-Mint + Rich Reds */
+      --mocha-mousse: #A47864;
+      --neo-mint: #88E5D4;
+      --rich-terracotta: #D4745F;
+      --deep-navy: #1A1D2E;
+      --soft-cream: #FAF8F5;
+      --accent-yellow: #FFE17B;
+
+      /* Typography Scale */
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--soft-cream);
+      color: var(--deep-navy);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom Cursor - 2026 Trend */
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--mocha-mousse);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transition: transform 0.2s cubic-bezier(0.75, -0.5, 0, 1.75),
+                  border-color 0.3s ease;
+      mix-blend-mode: difference;
+    }
+
+    .custom-cursor.hover {
+      transform: scale(2.5);
+      border-color: var(--neo-mint);
+    }
+
+    .custom-cursor-follower {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background-color: var(--rich-terracotta);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease-out;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      mix-blend-mode: difference;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      position: relative;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--neo-mint);
+      transition: width 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section - Oversized Typography */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--soft-cream) 0%, #E8E3DC 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 15vw, 12rem);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      color: var(--deep-navy);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title .highlight {
+      color: var(--mocha-mousse);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 300;
+      color: var(--mocha-mousse);
+      letter-spacing: 0.05em;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.5s forwards;
+    }
+
+    /* 3D Canvas Background */
+    #three-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 1s forwards;
+    }
+
+    .scroll-text {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mocha-mousse);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--mocha-mousse), transparent);
+      animation: scrollLineMove 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLineMove {
+      0%, 100% { opacity: 0; transform: translateY(-20px); }
+      50% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Services Section - Interactive Cards */
+    .services {
+      padding: 10rem 4rem;
+      background-color: var(--deep-navy);
+      position: relative;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      color: var(--soft-cream);
+      margin-bottom: 5rem;
+      letter-spacing: -0.03em;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--neo-mint) 0%, var(--rich-terracotta) 100%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .service-card:hover::before {
+      opacity: 0.1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--neo-mint);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--soft-cream);
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-description {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(250, 248, 245, 0.7);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Stats Section - Kinetic Typography */
+    .stats {
+      padding: 8rem 4rem;
+      background-color: var(--neo-mint);
+      overflow: hidden;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .stat-item {
+      position: relative;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 700;
+      color: var(--deep-navy);
+      line-height: 1;
+      margin-bottom: 1rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      color: var(--deep-navy);
+      opacity: 0.8;
+      letter-spacing: 0.05em;
+    }
+
+    /* Philosophy Section - Large Quote */
+    .philosophy {
+      padding: 10rem 4rem;
+      background-color: var(--soft-cream);
+      position: relative;
+    }
+
+    .philosophy-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .philosophy-quote {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--deep-navy);
+      letter-spacing: -0.02em;
+      position: relative;
+      padding-left: 4rem;
+    }
+
+    .philosophy-quote::before {
+      content: '"';
+      position: absolute;
+      left: 0;
+      top: -2rem;
+      font-size: 10rem;
+      color: var(--mocha-mousse);
+      opacity: 0.2;
+      font-family: Georgia, serif;
+    }
+
+    .philosophy-author {
+      margin-top: 3rem;
+      font-size: 1.2rem;
+      color: var(--mocha-mousse);
+      font-weight: 500;
+      padding-left: 4rem;
+    }
+
+    /* CTA Section */
+    .cta {
+      padding: 8rem 4rem;
+      background: linear-gradient(135deg, var(--rich-terracotta) 0%, var(--mocha-mousse) 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1.5rem 4rem;
+      background-color: var(--deep-navy);
+      color: white;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background-color: var(--neo-mint);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .cta-button:hover::before {
+      width: 400px;
+      height: 400px;
+    }
+
+    .cta-button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      padding: 4rem;
+      background-color: var(--deep-navy);
+      color: var(--soft-cream);
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--soft-cream);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1.5rem 2rem;
+      }
+
+      .nav-menu {
+        gap: 1.5rem;
+      }
+
+      .nav-menu a {
+        font-size: 0.85rem;
+      }
+
+      .services, .stats, .philosophy, .cta {
+        padding: 5rem 2rem;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .philosophy-quote {
+        padding-left: 2rem;
+      }
+
+      .philosophy-author {
+        padding-left: 2rem;
+      }
+    }
+
+    /* Loading Animation */
+    .page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--deep-navy);
+      z-index: 10001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .page-loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-text {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      color: var(--neo-mint);
+      font-weight: 700;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Page Loader -->
+  <div class="page-loader">
+    <div class="loader-text">Finance Brain</div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-follower"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">Finance Brain</div>
+    <ul class="nav-menu">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <canvas id="three-canvas"></canvas>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Your <span class="highlight">Financial</span><br>
+        Future Starts<br>
+        Here
+      </h1>
+      <p class="hero-subtitle">保険・資産運用・ライフプランニング</p>
+    </div>
+    <div class="scroll-indicator">
+      <span class="scroll-text">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <h3 class="service-title">生命保険</h3>
+        <p class="service-description">あなたとご家族の未来を守る、最適な生命保険プランをご提案します。複数の保険会社から最適なプランを選定。</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3 class="service-title">損害保険</h3>
+        <p class="service-description">住宅、自動車、事業リスクなど、あらゆる損害に備えた保険設計を行います。</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3 class="service-title">資産運用</h3>
+        <p class="service-description">長期的な視点で、あなたの資産を最大化するための運用戦略をご提案します。</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎯</div>
+        <h3 class="service-title">ライフプラン</h3>
+        <p class="service-description">教育資金、住宅購入、老後資金など、人生の各ステージに合わせた総合的なプランニング。</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <h3 class="service-title">法人向けサービス</h3>
+        <p class="service-description">事業承継、従業員の福利厚生、企業リスクマネジメントまで幅広くサポート。</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">💰</div>
+        <h3 class="service-title">相続対策</h3>
+        <p class="service-description">次世代への円滑な資産承継をサポート。税務面も含めた総合的なコンサルティング。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number" data-target="2500">0</div>
+        <div class="stat-label">顧客数</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="98">0</div>
+        <div class="stat-label">顧客満足度 (%)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="25">0</div>
+        <div class="stat-label">業界経験年数</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="150">0</div>
+        <div class="stat-label">取扱保険商品数</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy Section -->
+  <section id="philosophy" class="philosophy">
+    <div class="philosophy-content">
+      <blockquote class="philosophy-quote">
+        私たちは、単なる保険の販売ではなく、お客様の人生に寄り添い、最適な財務戦略を共に創り上げるパートナーでありたいと考えています。
+      </blockquote>
+      <p class="philosophy-author">— Finance Brain 経営理念より</p>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="contact" class="cta">
+    <h2 class="cta-title">無料相談を始める</h2>
+    <a href="#" class="cta-button"><span>お問い合わせ</span></a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">Finance Brain</div>
+      <ul class="footer-links">
+        <li><a href="#">プライバシーポリシー</a></li>
+        <li><a href="#">利用規約</a></li>
+        <li><a href="#">会社概要</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    // Page Loader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelector('.page-loader').classList.add('hidden');
+      }, 1500);
+    });
+
+    // Custom Cursor
+    const cursor = document.querySelector('.custom-cursor');
+    const cursorFollower = document.querySelector('.custom-cursor-follower');
+
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+
+    // Smooth follower movement
+    function animateFollower() {
+      followerX += (mouseX - followerX) * 0.1;
+      followerY += (mouseY - followerY) * 0.1;
+
+      cursorFollower.style.left = followerX + 'px';
+      cursorFollower.style.top = followerY + 'px';
+
+      requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+
+    // Cursor hover effects
+    const interactiveElements = document.querySelectorAll('a, button, .service-card');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // Three.js Scene
+    const canvas = document.getElementById('three-canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    camera.position.z = 5;
+
+    // Create abstract geometric shapes
+    const geometry = new THREE.IcosahedronGeometry(1, 1);
+    const material = new THREE.MeshPhongMaterial({
+      color: 0xA47864,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.3
+    });
+
+    const shapes = [];
+    for (let i = 0; i < 5; i++) {
+      const mesh = new THREE.Mesh(geometry, material.clone());
+      mesh.position.x = (Math.random() - 0.5) * 10;
+      mesh.position.y = (Math.random() - 0.5) * 10;
+      mesh.position.z = (Math.random() - 0.5) * 5;
+      mesh.rotation.x = Math.random() * Math.PI;
+      mesh.rotation.y = Math.random() * Math.PI;
+      scene.add(mesh);
+      shapes.push(mesh);
+    }
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+    const pointLight = new THREE.PointLight(0x88E5D4, 1);
+    pointLight.position.set(5, 5, 5);
+    scene.add(pointLight);
+
+    // Mouse interaction
+    let mouseXThree = 0, mouseYThree = 0;
+    document.addEventListener('mousemove', (e) => {
+      mouseXThree = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseYThree = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Rotate shapes
+      shapes.forEach((shape, index) => {
+        shape.rotation.x += 0.001 * (index + 1);
+        shape.rotation.y += 0.002 * (index + 1);
+
+        // Follow mouse
+        shape.position.x += (mouseXThree * 2 - shape.position.x) * 0.02;
+        shape.position.y += (mouseYThree * 2 - shape.position.y) * 0.02;
+      });
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // GSAP ScrollTrigger Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero title animation
+    gsap.from('.hero-title', {
+      opacity: 0,
+      y: 100,
+      duration: 1.2,
+      ease: 'power4.out',
+      delay: 1.5
+    });
+
+    // Service cards animation
+    gsap.from('.service-card', {
+      scrollTrigger: {
+        trigger: '.services',
+        start: 'top 70%',
+      },
+      opacity: 0,
+      y: 60,
+      stagger: 0.15,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+
+    // Counter animation for stats
+    const counters = document.querySelectorAll('.stat-number');
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target'));
+
+      ScrollTrigger.create({
+        trigger: counter,
+        start: 'top 80%',
+        onEnter: () => {
+          gsap.to(counter, {
+            innerText: target,
+            duration: 2,
+            snap: { innerText: 1 },
+            ease: 'power2.out',
+            onUpdate: function() {
+              counter.innerText = Math.ceil(counter.innerText);
+            }
+          });
+        },
+        once: true
+      });
+    });
+
+    // Philosophy quote animation
+    gsap.from('.philosophy-quote', {
+      scrollTrigger: {
+        trigger: '.philosophy',
+        start: 'top 60%',
+      },
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: 'power3.out'
+    });
+
+    // Parallax effect on hero
+    gsap.to('.hero-content', {
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      },
+      y: 200,
+      opacity: 0.5
+    });
+  </script>
+</body>
+</html>
