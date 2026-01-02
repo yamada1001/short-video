@@ -121,6 +121,46 @@
       margin-bottom: var(--spacing-md);
     }
 
+    /* 1文字ずつ装飾 */
+    .hero-content h1 .char {
+      display: inline-block;
+      opacity: 0;
+      animation: charFadeIn 0.8s ease forwards;
+      transform-origin: center;
+      transition: all 0.3s ease;
+    }
+
+    .hero-content h1 .char:hover {
+      transform: scale(1.2) rotate(-5deg);
+      text-shadow: 0 8px 16px rgba(79, 70, 229, 0.3);
+    }
+
+    @keyframes charFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) rotate(-10deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+
+    .hero-content h1 .char.gradient {
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s ease infinite, charFadeIn 0.8s ease forwards;
+      background-size: 200% 200%;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     .hero-content .highlight {
       background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
       -webkit-background-clip: text;
@@ -221,6 +261,29 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: var(--spacing-md);
+    }
+
+    /* セクションタイトルの文字装飾 */
+    .section-title .char {
+      display: inline-block;
+      opacity: 0;
+      animation: charSlideIn 0.6s ease forwards;
+      transition: transform 0.3s ease;
+    }
+
+    .section-title .char:hover {
+      transform: scale(1.15);
+    }
+
+    @keyframes charSlideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
     .section-desc {
@@ -773,6 +836,48 @@
     }, { threshold: 0.5 });
 
     counters.forEach(counter => observer.observe(counter));
+
+    // 1文字ずつ装飾するスクリプト
+    function wrapChars(selector) {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(element => {
+        const text = element.textContent;
+        element.innerHTML = '';
+
+        text.split('').forEach((char, index) => {
+          const span = document.createElement('span');
+          span.className = 'char';
+
+          // ヒーローh1の「一緒に」の文字にグラデーション
+          if (selector === '.hero-content h1' && (char === '一' || char === '緒' || char === 'に')) {
+            span.classList.add('gradient');
+          }
+
+          span.textContent = char;
+          span.style.animationDelay = `${index * 0.05}s`;
+          element.appendChild(span);
+        });
+      });
+    }
+
+    // ページ読み込み時に実行
+    window.addEventListener('DOMContentLoaded', () => {
+      wrapChars('.hero-content h1');
+
+      // Intersection Observerでセクションタイトルをアニメーション
+      const titleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.classList.contains('animated-title')) {
+            entry.target.classList.add('animated-title');
+            wrapChars(`#${entry.target.id} .section-title`);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('.about, .services').forEach(section => {
+        titleObserver.observe(section);
+      });
+    });
   </script>
 </body>
 </html>
