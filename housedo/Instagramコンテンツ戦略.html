@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram コンテンツ戦略 - ハウスドゥ明野店</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'LINE Seed JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #fff 100%);
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            padding: 3rem 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #8B7355;
+            margin-bottom: 1rem;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        h1 i {
+            margin-right: 1rem;
+            color: #A68968;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFFAF5 100%);
+            border-left: 4px solid #8B7355;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+        }
+
+        .summary h3 {
+            color: #8B7355;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .summary h3 i {
+            margin-right: 0.5rem;
+        }
+
+        .summary p {
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #8B7355;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #8B7355;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        h2 i {
+            font-size: 1.6rem;
+            color: #A68968;
+        }
+
+        h2::before {
+            content: "";
+            width: 6px;
+            height: 2rem;
+            background: linear-gradient(135deg, #8B7355 0%, #A68968 100%);
+            border-radius: 3px;
+        }
+
+        .category-intro {
+            background: #f9f9f9;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .content-card {
+            background: #fff;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card:hover {
+            border-color: #8B7355;
+            box-shadow: 0 4px 16px rgba(139, 115, 85, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .content-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #8B7355 0%, #A68968 100%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+        }
+
+        .content-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .content-desc {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .content-format {
+            display: inline-block;
+            background: #E8F4FD;
+            color: #4A90E2;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            margin-right: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .content-format i {
+            margin-right: 0.3rem;
+        }
+
+        .content-format.reel {
+            background: #FFE8E8;
+            color: #E24A4A;
+        }
+
+        .content-format.story {
+            background: #F0E8FF;
+            color: #8B4AE2;
+        }
+
+        .content-format.carousel {
+            background: #E8FFF0;
+            color: #4AE28B;
+        }
+
+        .owned-media-link {
+            background: #FFF8E8;
+            color: #E2A84A;
+            border: 2px solid #E2A84A;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .owned-media-link i {
+            margin-right: 0.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fab fa-instagram"></i>Instagram コンテンツ戦略</h1>
+        <p class="subtitle">ハウスドゥ明野店｜購入検討者 × 売却検討者の2軸設計</p>
+
+        <div class="summary">
+            <h3><i class="fas fa-chart-pie"></i> コンテンツ構成</h3>
+            <p><strong>購入検討者向け</strong>：30案（住宅ローン15、物件選び10、大分エリア5）</p>
+            <p><strong>売却検討者向け</strong>：20案（売却ノウハウ10、リースバック5、相続・老後5）</p>
+            <p style="margin-top: 1rem;"><strong>投稿頻度</strong>：週5投稿（月水金：購入、火木：売却）</p>
+            <p><strong>連携</strong>：オウンドメディア記事（全50記事）と連動し、Instagramで要約→詳細は記事へ誘導</p>
+        </div>
+
+        <!-- ========== 購入検討者向け：住宅ローン ========== -->
+        <h2><i class="fas fa-home"></i> 購入検討者向け｜住宅ローン攻略（15案）</h2>
+        <div class="category-intro">
+            <strong>オウンドメディア連動</strong>：既存記事6本（団信・金利・フラット35・審査対策など）をベースに、Instagram用に要約・図解化。
+        </div>
+
+        <div class="content-grid">
+            <div class="content-card">
+                <span class="content-number">001</span>
+                <div class="content-title">【団体信用生命保険】団信ってなに？必要？</div>
+                <div class="content-desc">オウンドメディア記事④を要約。「万が一の時、住宅ローンが0円になる保険」を図解。がん団信・三大疾病団信の違いも。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+                <div class="owned-media-link"><i class="fas fa-link"></i> 詳細記事: /blog/kounyuumae/144749/</div>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">002</span>
+                <div class="content-title">【住宅ローン金利】変動 vs 固定、どっちが得？</div>
+                <div class="content-desc">オウンドメディア記事③を要約。2025年の金利動向を踏まえた比較。メリット・デメリットを分かりやすく図解。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+                <div class="owned-media-link"><i class="fas fa-link"></i> 詳細記事: /blog/kounyuumae/144227/</div>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">003</span>
+                <div class="content-title">【住宅ローン基礎】初心者向け完全ガイド</div>
+                <div class="content-desc">オウンドメディア記事②を要約。「そもそも住宅ローンって？」から、申込み→審査→契約までの流れを図解。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+                <div class="owned-media-link"><i class="fas fa-link"></i> 詳細記事: /blog/kounyuumae/143614/</div>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">004</span>
+                <div class="content-title">【フラット35】わかりやすく解説</div>
+                <div class="content-desc">オウンドメディア記事⑥を要約。「固定金利で安心のフラット35」メリット・デメリット、利用条件を図解。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+                <div class="owned-media-link"><i class="fas fa-link"></i> 詳細記事: /blog/kounyuumae/151072/</div>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">005</span>
+                <div class="content-title">【審査対策】住宅ローン審査に通る5つのコツ</div>
+                <div class="content-desc">オウンドメディア記事⑤を要約。事前準備・書類・クレヒス改善など、実践的なアドバイス。「通らない人の特徴」も。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+                <div class="owned-media-link"><i class="fas fa-link"></i> 詳細記事: /blog/kounyuumae/166433/</div>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">006</span>
+                <div class="content-title">【世帯年収400万】買える家の予算は？</div>
+                <div class="content-desc">年収別シミュレーション。頭金・ローン年数・月々の返済額を具体的に提示。「うちでも買えるかも」と希望を持たせる。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">007</span>
+                <div class="content-title">【世帯年収500万】買える家の予算は？</div>
+                <div class="content-desc">年収500万円台の具体的シミュレーション。大分市の平均的な世帯年収層に刺さる。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">008</span>
+                <div class="content-title">【世帯年収600万】買える家の予算は？</div>
+                <div class="content-desc">年収600万円台のシミュレーション。より幅広い選択肢を提示。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">009</span>
+                <div class="content-title">頭金ゼロで家を買うのはアリ？ナシ？</div>
+                <div class="content-desc">フルローンのメリット・デメリット。「貯金がないけど買いたい」層に刺さる。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">010</span>
+                <div class="content-title">住宅ローン控除で年間いくら戻る？</div>
+                <div class="content-desc">税制優遇の仕組みを分かりやすく。「こんなに得するの！？」と驚かせる。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">011</span>
+                <div class="content-title">ボーナス払い、やめとけ！その理由</div>
+                <div class="content-desc">週刊誌風に「危険！」と煽りつつ、リスクを解説。賛否両論でコメント欄が盛り上がる。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">012</span>
+                <div class="content-title">35年ローンは長すぎ？最適な年数は？</div>
+                <div class="content-desc">年齢・ライフプラン別のおすすめ年数。「定年前に完済したい」ニーズに応える。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">013</span>
+                <div class="content-title">住宅ローン、夫婦で組むべき？単独で組むべき？</div>
+                <div class="content-desc">ペアローン・連帯債務・連帯保証の違いを図解。共働き世帯に刺さる。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">014</span>
+                <div class="content-title">【実例】年収450万、3人家族の返済計画</div>
+                <div class="content-desc">リアルなケーススタディ。車ローン・教育費も含めた家計シミュレーション。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">015</span>
+                <div class="content-title">事前審査通ったのに本審査で落ちた！なぜ？</div>
+                <div class="content-desc">週刊誌風にドラマチックに。事前審査と本審査の違い、落ちる原因を解説。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+        </div>
+
+        <!-- ========== 購入検討者向け：物件選び ========== -->
+        <h2><i class="fas fa-search-location"></i> 購入検討者向け｜物件選びのコツ（10案）</h2>
+        <div class="category-intro">
+            建売・中古・マンション選びの実践的なアドバイス。失敗談・成功談を交えて親近感を持たせる。
+        </div>
+
+        <div class="content-grid">
+            <div class="content-card">
+                <span class="content-number">016</span>
+                <div class="content-title">建売 vs 中古 vs 新築マンション、どれが正解？</div>
+                <div class="content-desc">メリット・デメリット比較表。予算・ライフスタイル別のおすすめを提示。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">017</span>
+                <div class="content-title">【後悔ポイント】建売住宅で失敗しない5つのチェック</div>
+                <div class="content-desc">日当たり・収納・断熱性能など、見落としがちなポイント。バズるハッシュタグ #後悔ポイント。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">018</span>
+                <div class="content-title">中古住宅、こんな物件は買っちゃダメ！</div>
+                <div class="content-desc">週刊誌風に「危険物件」を紹介。雨漏り・シロアリ・傾きなど、チェックポイント。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">019</span>
+                <div class="content-title">中古住宅のホームインスペクション、やるべき？</div>
+                <div class="content-desc">ハウスドゥのサービス紹介も兼ねて。費用・期間・メリットを解説。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">020</span>
+                <div class="content-title">【マンション購入】新築 vs 中古、資産価値で比較</div>
+                <div class="content-desc">10年後・20年後の価値を比較。投資目線でも見る。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">021</span>
+                <div class="content-title">物件見学、ここだけは絶対チェック！10箇所</div>
+                <div class="content-desc">水回り・床下・天井裏など、素人でもできるチェックリスト。保存される投稿に。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">022</span>
+                <div class="content-title">南向きが最強？実は東向きもアリな理由</div>
+                <div class="content-desc">日当たりの常識を覆す。ライフスタイル別のおすすめ方角。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">023</span>
+                <div class="content-title">【太陽光発電】つけるべき？メリット・デメリット</div>
+                <div class="content-desc">オウンドメディア記事④を要約。売電収入・初期費用・メンテナンス費用を正直に。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+                <div class="owned-media-link"><i class="fas fa-link"></i> 詳細記事: /blog/kounyuumae/166445/</div>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">024</span>
+                <div class="content-title">【築年数】築10年 vs 築20年 vs 築30年、何が違う？</div>
+                <div class="content-desc">築年数別のメリット・デメリット、メンテナンス費用。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">025</span>
+                <div class="content-title">【値引き交渉】売主に「-100万円」を受け入れてもらう方法</div>
+                <div class="content-desc">週刊誌風に「裏ワザ公開！」交渉のコツ・タイミング。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+        </div>
+
+        <!-- ========== 購入検討者向け：大分エリア情報 ========== -->
+        <h2><i class="fas fa-map-marked-alt"></i> 購入検討者向け｜大分エリア情報（5案）</h2>
+        <div class="category-intro">
+            地域密着型の強み。大分市・別府市の学区・子育て環境・利便性を紹介。ローカルSEOにも効果。
+        </div>
+
+        <div class="content-grid">
+            <div class="content-card">
+                <span class="content-number">026</span>
+                <div class="content-title">【大分市】子育てしやすい小学校区ランキングTOP5</div>
+                <div class="content-desc">評判・通学路の安全性・習い事の充実度などを調査。保存される投稿に。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">027</span>
+                <div class="content-title">【明野エリア】住みやすさを徹底解説！</div>
+                <div class="content-desc">ハウスドゥ明野店の地元PR。スーパー・病院・公園など生活利便性。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">028</span>
+                <div class="content-title">【大分市】スーパーが近い！買い物便利エリアTOP3</div>
+                <div class="content-desc">イオン・マルショク・トキハなど、主婦目線の情報。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">029</span>
+                <div class="content-title">【大分市】公園が多い！子育て環境◎エリアTOP3</div>
+                <div class="content-desc">公園マップ、遊具の充実度。子育て世帯に刺さる。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">030</span>
+                <div class="content-title">【大分市】病院・クリニックが近い安心エリア</div>
+                <div class="content-desc">小児科・内科・救急病院の充実度。子育て・高齢者に重要。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+        </div>
+
+        <!-- ========== 売却検討者向け：売却ノウハウ ========== -->
+        <h2><i class="fas fa-hand-holding-usd"></i> 売却検討者向け｜売却ノウハウ（10案）</h2>
+        <div class="category-intro">
+            50-60代空き巣世代の不安を解消。売却プロセス・タイミング・価格設定を分かりやすく。
+        </div>
+
+        <div class="content-grid">
+            <div class="content-card">
+                <span class="content-number">031</span>
+                <div class="content-title">【売却の流れ】問い合わせ→契約まで何日かかる？</div>
+                <div class="content-desc">全体スケジュールを図解。「思ったより早い」or「時間がかかる」を正直に。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">032</span>
+                <div class="content-title">仲介 vs 買取、どっちが得？メリット・デメリット</div>
+                <div class="content-desc">価格・スピード・手間を比較。ハウスドゥのサービス紹介も兼ねて。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">033</span>
+                <div class="content-title">【高く売るコツ】売却前にやるべき5つのこと</div>
+                <div class="content-desc">掃除・修繕・ホームステージングなど、即実践できる内容。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">034</span>
+                <div class="content-title">【売却タイミング】今すぐ売るべき？待つべき？</div>
+                <div class="content-desc">2025年の市況・金利動向を踏まえた判断基準。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">035</span>
+                <div class="content-title">【査定額】なぜ不動産会社によって100万円も違う？</div>
+                <div class="content-desc">週刊誌風に「業界の裏側」を暴露。複数社査定の重要性。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">036</span>
+                <div class="content-title">【売却費用】手数料・税金、いくらかかる？</div>
+                <div class="content-desc">仲介手数料・譲渡所得税・印紙代など、総額を明示。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">037</span>
+                <div class="content-title">【3000万円特別控除】売却益の税金を減らす方法</div>
+                <div class="content-desc">居住用財産の特例を分かりやすく。「数百万円得する！」と訴求。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">038</span>
+                <div class="content-title">【空き家問題】放置すると固定資産税が6倍に！</div>
+                <div class="content-desc">週刊誌風に「危険！」と煽りつつ、早めの売却を促す。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">039</span>
+                <div class="content-title">【売却期間】平均何ヶ月で売れる？</div>
+                <div class="content-desc">大分市の平均売却期間。「早く売りたい」ニーズに応える。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">040</span>
+                <div class="content-title">【不動産会社選び】大手 vs 地元、どっちが良い？</div>
+                <div class="content-desc">ハウスドゥ（地元密着）の強みをアピール。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+        </div>
+
+        <!-- ========== 売却検討者向け：リースバック ========== -->
+        <h2><i class="fas fa-key"></i> 売却検討者向け｜リースバック（5案）</h2>
+        <div class="category-intro">
+            ハウスドゥの強み「リースバック」を積極的にPR。老後資金確保×住み続けられる安心感。
+        </div>
+
+        <div class="content-grid">
+            <div class="content-card">
+                <span class="content-number">041</span>
+                <div class="content-title">【リースバックとは？】売却しても住み続けられる！</div>
+                <div class="content-desc">基本の仕組みを図解。「こんな方法があったのか！」と驚かせる。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">042</span>
+                <div class="content-title">【リースバック】こんな人におすすめ5選</div>
+                <div class="content-desc">老後資金・住宅ローン返済・相続対策など、具体的なケース。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">043</span>
+                <div class="content-title">【リースバック】メリット・デメリット正直に話します</div>
+                <div class="content-desc">家賃負担・買戻し権など、デメリットも隠さず。信頼性アップ。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">044</span>
+                <div class="content-title">【実例】60代夫婦、リースバックで老後資金2000万円確保</div>
+                <div class="content-desc">ケーススタディ。リアルな数字で説得力。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">045</span>
+                <div class="content-title">【リースバック】家賃はいくら？相場を公開</div>
+                <div class="content-desc">売却価格に対する家賃の目安。透明性アピール。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+        </div>
+
+        <!-- ========== 売却検討者向け：相続・老後資金 ========== -->
+        <h2><i class="fas fa-user-clock"></i> 売却検討者向け｜相続・老後資金（5案）</h2>
+        <div class="category-intro">
+            50-60代の最大の関心事。終活・相続税・空き家問題を分かりやすく解説。FP・税理士とのコラボも視野。
+        </div>
+
+        <div class="content-grid">
+            <div class="content-card">
+                <span class="content-number">046</span>
+                <div class="content-title">【相続税】不動産いくらから課税される？</div>
+                <div class="content-desc">基礎控除・評価額の計算方法。「うちは大丈夫？」の不安を解消。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">047</span>
+                <div class="content-title">【空き家問題】子供が「実家いらない」と言ったら？</div>
+                <div class="content-desc">週刊誌風に「リアルな悩み」を紹介。売却・賃貸・解体の選択肢。</div>
+                <span class="content-format reel"><i class="fas fa-video"></i> リール</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">048</span>
+                <div class="content-title">【老後資金】不動産売却で2000万円問題を解決</div>
+                <div class="content-desc">年金不足を不動産売却で補う。リースバックとの組み合わせも。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">049</span>
+                <div class="content-title">【終活】60代からの不動産整理、何から始める？</div>
+                <div class="content-desc">ステップバイステップで解説。専門家相談会の告知も兼ねて。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+
+            <div class="content-card">
+                <span class="content-number">050</span>
+                <div class="content-title">【相続トラブル】兄弟で揉めない不動産分割方法</div>
+                <div class="content-desc">現物分割・代償分割・換価分割を図解。専門家への相談を促す。</div>
+                <span class="content-format"><i class="fas fa-images"></i> 投稿</span>
+                <span class="content-format carousel"><i class="fas fa-layer-group"></i> カルーセル</span>
+            </div>
+        </div>
+
+        <!-- ========== まとめ ========== -->
+        <div class="summary" style="margin-top: 4rem;">
+            <h3><i class="fas fa-calendar-alt"></i> 投稿スケジュール例（週5投稿）</h3>
+            <p><strong>月曜</strong>：購入検討者向け（住宅ローン）- 例：001-015</p>
+            <p><strong>水曜</strong>：購入検討者向け（物件選び・大分エリア）- 例：016-030</p>
+            <p><strong>金曜</strong>：購入検討者向け（住宅ローン）- 例：001-015（ローテーション）</p>
+            <p><strong>火曜</strong>：売却検討者向け（売却ノウハウ）- 例：031-040</p>
+            <p><strong>木曜</strong>：売却検討者向け（リースバック・相続）- 例：041-050</p>
+            <p style="margin-top: 1rem;"><strong>リール投稿</strong>：週2-3本（バズる可能性の高いコンテンツ）</p>
+            <p><strong>ストーリーズ</strong>：毎日（アンケート・質問箱・日常風景）</p>
+        </div>
+
+        <div class="summary" style="border-left-color: #4A90E2;">
+            <h3><i class="fas fa-lightbulb"></i> コンテンツ運用のポイント</h3>
+            <p><strong>1. オウンドメディアとの連携</strong></p>
+            <p>Instagramで要約→「詳しくはブログで！」と誘導。SEOとSNSの相乗効果。</p>
+
+            <p style="margin-top: 1rem;"><strong>2. 保存される投稿を意識</strong></p>
+            <p>カルーセル投稿（スワイプ形式）で、保存したくなる「お役立ち情報」を提供。後で見返したくなる内容に。</p>
+
+            <p style="margin-top: 1rem;"><strong>3. リールでバズを狙う</strong></p>
+            <p>週刊誌風の煽りタイトル、テンポの良い編集、音楽で拡散を狙う。リーチを広げる最強ツール。</p>
+
+            <p style="margin-top: 1rem;"><strong>4. ストーリーズで双方向コミュニケーション</strong></p>
+            <p>アンケート・質問箱で視聴者参加型に。「○○さんの質問に答えます！」でリール化。</p>
+
+            <p style="margin-top: 1rem;"><strong>5. コラボ施策との連動</strong></p>
+            <p>FP・税理士・終活セミナー主催者とInstagram Live共演。相互送客でWin-Win。</p>
+        </div>
+    </div>
+</body>
+</html>
