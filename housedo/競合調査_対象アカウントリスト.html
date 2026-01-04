@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>競合調査 対象アカウントリスト | ハウスドゥ Instagram運用代行</title>
+    <meta name="description" content="ハウスドゥ様のInstagram運用代行プロジェクト 競合調査対象アカウント一覧">
+
+    <!-- LINE Seed Font -->
+    <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --color-natural-brown: #8B7355;
+            --color-natural-brown-light: #A68968;
+            --color-bg: #FAFAF8;
+            --color-white: #FFFFFF;
+            --color-text: #333333;
+            --color-text-light: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'LINE Seed JP', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, var(--color-natural-brown) 0%, var(--color-natural-brown-light) 100%);
+            color: var(--color-white);
+            margin-bottom: 3rem;
+            border-radius: 16px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            opacity: 0.95;
+        }
+
+        .strategy-section {
+            background: var(--color-white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .strategy-section h2 {
+            font-size: 1.75rem;
+            color: var(--color-natural-brown);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--color-natural-brown);
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .strategy-card {
+            background: linear-gradient(135deg, #F5F5F3 0%, #FFFFFF 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--color-natural-brown);
+        }
+
+        .strategy-card h3 {
+            font-size: 1.25rem;
+            color: var(--color-natural-brown);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .strategy-card p {
+            color: var(--color-text-light);
+            line-height: 1.7;
+        }
+
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, var(--color-natural-brown) 0%, var(--color-natural-brown-light) 100%);
+            color: var(--color-white);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .category-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-header p {
+            font-size: 1.125rem;
+            opacity: 0.95;
+        }
+
+        .subcategory {
+            margin-bottom: 2.5rem;
+        }
+
+        .subcategory h3 {
+            font-size: 1.5rem;
+            color: var(--color-natural-brown);
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 4px solid var(--color-natural-brown);
+        }
+
+        .account-card {
+            background: var(--color-white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .account-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .account-card h4 {
+            font-size: 1.5rem;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .account-info {
+            display: grid;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .account-info-item {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .account-info-label {
+            font-weight: 700;
+            color: var(--color-natural-brown);
+            min-width: 140px;
+        }
+
+        .account-info-value {
+            color: var(--color-text-light);
+            flex: 1;
+        }
+
+        .research-criteria {
+            background: var(--color-white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .research-criteria h2 {
+            font-size: 1.75rem;
+            color: var(--color-natural-brown);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--color-natural-brown);
+        }
+
+        .research-criteria h3 {
+            font-size: 1.25rem;
+            color: var(--color-natural-brown);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .research-criteria ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .research-criteria li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-text-light);
+        }
+
+        .research-criteria li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--color-natural-brown);
+            font-weight: 700;
+        }
+
+        .next-steps {
+            background: linear-gradient(135deg, #F5F5F3 0%, #FFFFFF 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+            border: 2px solid var(--color-natural-brown);
+        }
+
+        .next-steps h2 {
+            font-size: 1.75rem;
+            color: var(--color-natural-brown);
+            margin-bottom: 1.5rem;
+        }
+
+        .next-steps ol {
+            padding-left: 1.5rem;
+        }
+
+        .next-steps li {
+            padding: 0.5rem 0;
+            color: var(--color-text-light);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.75rem;
+            }
+
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .account-info-label {
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-users"></i> 競合調査 対象アカウントリスト</h1>
+            <p>ハウスドゥ Instagram運用代行プロジェクト</p>
+        </div>
+
+        <div class="strategy-section">
+            <h2><i class="fas fa-compass"></i> 調査方針</h2>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <h3><i class="fas fa-graduation-cap"></i> 軸1：役立つコンテンツ</h3>
+                    <p>教育・専門性を重視したコンテンツで信頼性を示す。資格保有者や専門家による知識発信を参考にする。</p>
+                </div>
+                <div class="strategy-card">
+                    <h3><i class="fas fa-heart"></i> 軸2：人間味コンテンツ</h3>
+                    <p>共感・親近感を重視したコンテンツで「この人に相談したい」と思ってもらう。エンタメ性や日常を見せる発信を参考にする。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 軸1：役立つコンテンツ系 -->
+        <div class="category-section">
+            <div class="category-header">
+                <h2><i class="fas fa-graduation-cap"></i> 【軸1：役立つコンテンツ系】専門性・教育価値</h2>
+                <p>信頼性を高めるための専門知識コンテンツ</p>
+            </div>
+
+            <div class="subcategory">
+                <h3><i class="fas fa-home"></i> 不動産系（専門家・資格保有者）</h3>
+
+                <div class="account-card">
+                    <h4>ラクジュ建築と不動産</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">YouTube</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">一級建築士・不動産コンサルマスター資格保有</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">専門的な視点から解説、実務経験に基づく知識</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">参考URL：</span>
+                            <span class="account-info-value">要検索</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>YouTube不動産（印南和行）</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">YouTube</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">一級建築士、10万登録者、2年で3000万再生</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">専門家による信頼性の高い情報発信</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">参考URL：</span>
+                            <span class="account-info-value">要検索</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>ウラケン不動産（浦田健）</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">YouTube</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">不動産コンサルタント、FP、一級施工管理技士等多数の資格</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">複数の専門資格に基づく総合的な解説</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">参考URL：</span>
+                            <span class="account-info-value">要検索</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>アパートメントラボ</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">YouTube</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">不動産業界10年経験、貸主・借主・買主・売主の4視点経験</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">専門用語を避けた分かりやすい解説</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">参考URL：</span>
+                            <span class="account-info-value">要検索</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subcategory">
+                <h3><i class="fas fa-gavel"></i> 士業系（TikTokで成功）</h3>
+
+                <div class="account-card">
+                    <h4>岡野タケシ弁護士</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">TikTok</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">フォロワー：</span>
+                            <span class="account-info-value">64.5万</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">士業系インフルエンサーNo.1、TikTok CREATOR AWARD受賞</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">バラエティ番組風の編集でエンタメ性を持たせた法律解説</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">要検索</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>桑田悠子税理士</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">TikTok</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">フォロワー：</span>
+                            <span class="account-info-value">1.5万</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">相続税専門、100万再生超え動画あり</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">テンポの良い分かりやすい短尺動画</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">要検索</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 軸2：人間味・共感系 -->
+        <div class="category-section">
+            <div class="category-header">
+                <h2><i class="fas fa-heart"></i> 【軸2：人間味・共感系】親しみやすさ・エンタメ性</h2>
+                <p>共感を生み出す人間味溢れるコンテンツ</p>
+            </div>
+
+            <div class="subcategory">
+                <h3><i class="fas fa-smile"></i> エンタメ系経営者</h3>
+
+                <div class="account-card">
+                    <h4>ブラック社長</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">TikTok, Instagram</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">フォロワー：</span>
+                            <span class="account-info-value">TikTok 47.2万、Instagram（@kenty_black）</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">社長と部下のやり取りをエンタメ化</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">会社の日常をコミカルに発信</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">@black_shacho (TikTok), @kenty_black (Instagram)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>ブラックコーポレーション</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">TikTok</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">フォロワー：</span>
+                            <span class="account-info-value">5.4万</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">株式会社ブラックコーポレーション公式</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">社内の様子をエンタメ化</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">@black.corporation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subcategory">
+                <h3><i class="fas fa-home"></i> 不動産系（親しみやすさ重視）</h3>
+
+                <div class="account-card">
+                    <h4>RoomPa（ルムパ）</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">Instagram, YouTube Shorts</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">フォロワー：</span>
+                            <span class="account-info-value">Instagram 31.3万</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">毎日更新、「おかえり」で始まる物件紹介</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">ルームツアー形式、平均1万再生、最高400万再生</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">@roompa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>グッドルーム</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">Instagram</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">フォロワー：</span>
+                            <span class="account-info-value">10.7万</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">リノベ・デザイナーズ物件中心</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">ライフスタイル提案（ミニマリスト、IKEA/HAYなど）、人物写真で生活イメージを演出</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">@goodrooms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>アイズルーム</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">Instagram</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">フォロワー：</span>
+                            <span class="account-info-value">1万（3ヶ月で達成）</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">急成長事例、短期間で成果</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">エンタメ性重視にピボット成功</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">@isroom_official</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>Simple NAIKEN</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">Instagram</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">フォロワー：</span>
+                            <span class="account-info-value">5.7万</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">若年層ターゲット、トレンドキーワード活用</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">おしゃれな生活を想像させる高品質動画</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">@simple_naiken</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>東京R不動産</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">Instagram</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">フォロワー：</span>
+                            <span class="account-info-value">6万</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">レトロ・ヴィンテージ・デザイン物件特化</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">「不動産のセレクトショップ」として独自ポジション確立</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">要検索</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>スタイリー不動産</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">Instagram</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">フォロワー：</span>
+                            <span class="account-info-value">1.4万</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">大阪・神戸エリア特化、2,544投稿（2025年6月時点）</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">写真・動画で物件の魅力を効果的に発信</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">要検索</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subcategory">
+                <h3><i class="fas fa-hammer"></i> 工務店・リフォーム系（親しみやすさ・信頼性）</h3>
+
+                <div class="account-card">
+                    <h4>無印良品の家</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">Instagram</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">フォロワー：</span>
+                            <span class="account-info-value">50万</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">住宅業界最大級、ブランドイメージとの一貫性</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">シンプル・スタイリッシュな世界観、ストーリーズで有益情報</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">要検索</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>竹村工務店</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">Instagram</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">奈良県、平屋中心</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">リフォーム・建築事例、サムネイルにテキスト追加、「VR ROOM TOUR」等ユニーク企画</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">要検索</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>黒澤工務店</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">Instagram</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">高級感のある建築事例</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">ライティング技術で高級感演出、ストーリーズ質問機能・ライブ配信で双方向コミュニケーション</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">要検索</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-card">
+                    <h4>カリフォルニア工務店</h4>
+                    <div class="account-info">
+                        <div class="account-info-item">
+                            <span class="account-info-label">プラットフォーム：</span>
+                            <span class="account-info-value">Instagram</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">特徴：</span>
+                            <span class="account-info-value">東京、カリフォルニアスタイル特化</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">内容：</span>
+                            <span class="account-info-value">注文住宅・リフォーム・店舗設計、#サーファーズハウス等ハッシュタグでターゲット層リーチ</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span class="account-info-label">アカウント：</span>
+                            <span class="account-info-value">要検索</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 調査項目 -->
+        <div class="research-criteria">
+            <h2><i class="fas fa-clipboard-check"></i> 調査項目（各アカウント共通）</h2>
+
+            <h3>1. コンテンツ内容</h3>
+            <ul>
+                <li>どんなテーマを扱っているか</li>
+                <li>専門性 vs エンタメ性のバランス</li>
+                <li>シリーズ化・体系化されているか</li>
+            </ul>
+
+            <h3>2. トーン・雰囲気</h3>
+            <ul>
+                <li>真面目 / 親しみやすい / プロフェッショナル / コミカル</li>
+                <li>話し方・テンポ</li>
+                <li>BGM・効果音の使い方</li>
+            </ul>
+
+            <h3>3. 出演者・演出</h3>
+            <ul>
+                <li>顔出し有無</li>
+                <li>社長 / スタッフ / 専門家</li>
+                <li>キャラクター性（「税理士芸人」等）</li>
+            </ul>
+
+            <h3>4. 構成・編集</h3>
+            <ul>
+                <li>動画の長さ（15秒 / 30秒 / 60秒 / 90秒）</li>
+                <li>テロップの使い方</li>
+                <li>サムネイルデザイン</li>
+                <li>撮影場所（オフィス / 現場 / スタジオ）</li>
+            </ul>
+
+            <h3>5. CTA（行動喚起）</h3>
+            <ul>
+                <li>どう誘導しているか（DM / LINE / 問い合わせフォーム / イベント / ホワイトペーパー）</li>
+                <li>中間CV設計（リスト獲得）の有無</li>
+                <li>プロフィールのリンク先</li>
+            </ul>
+
+            <h3>6. エンゲージメント（参考値）</h3>
+            <ul>
+                <li>いいね数・コメント数</li>
+                <li>再生数</li>
+                <li>保存数（取得できれば）</li>
+            </ul>
+        </div>
+
+        <!-- 次のステップ -->
+        <div class="next-steps">
+            <h2><i class="fas fa-tasks"></i> 次のステップ</h2>
+            <ol>
+                <li>各アカウントを実際に閲覧</li>
+                <li>上記調査項目に沿って情報を記録</li>
+                <li>「週刊誌」形式のコンテンツ設計に活用</li>
+                <li>ハウスドゥ向けコンテンツ案50-100案を作成</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
