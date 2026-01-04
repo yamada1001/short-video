@@ -412,6 +412,50 @@
             line-height: 1.7;
         }
 
+        .content-video-details {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-left: 3px solid #8B7355;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .video-structure-title {
+            font-weight: 700;
+            color: #8B7355;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-timeline {
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 0.5rem;
+            gap: 0.5rem;
+        }
+
+        .timeline-time {
+            flex-shrink: 0;
+            font-weight: 600;
+            color: #555;
+            min-width: 60px;
+        }
+
+        .timeline-content {
+            color: #333;
+        }
+
+        .video-hook {
+            padding-top: 0.75rem;
+            border-top: 1px solid #e0e0e0;
+            color: #8B7355;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
         /* レスポンシブ */
         @media (min-width: 769px) and (max-width: 1024px) {
             .sidebar-toc {
@@ -1253,55 +1297,217 @@
                     <div class="content-number">No.1</div>
                     <div class="content-title">【60秒で分かる】物件選び4つのコツ</div>
                     <div class="content-desc">動機→予算→間取り→立地の4ステップをテンポよく解説。「まずは優先順位を決めよう！」というメッセージ。</div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「家を買いたいけど、何から始めればいいか分からない...」という悩みを提示。共感を得る。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】4つのステップを図解：①動機を明確に（なぜ買う？）②予算を決める（月々いくら返せる？）③間取りを考える（家族構成は？）④立地を選ぶ（職場・学校へのアクセス）。各ステップの具体例を紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「まずは優先順位を決めることが大切！ハウスドゥで無料相談受付中」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 初めての家探しで「何から始めればいいか分からない」という不安を解消。具体的な行動ステップを示すことで、前に進める感覚を与える。</div>
+                    </div>
                 </div>
 
                 <div class="content-card">
                     <div class="content-number">No.2</div>
                     <div class="content-title">新築 vs 中古、どっちがお得？</div>
                     <div class="content-desc">10秒で、価格・資産価値・メンテナンス費用を比較。最後のシーンで「詳しくはプロフィールのリンクから」と誘導。</div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「新築と中古、どっちがお得？」という疑問を提示。価格差のグラフを表示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】3つの軸で比較：①価格（中古は新築の約70%）②資産価値（新築は購入後すぐ下落）③メンテナンス費用（中古は要リフォーム）。それぞれのメリット・デメリットを具体的な数字で解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合った選択を！詳しくはプロフィールのリンクから」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」というインサイトに応え、具体的な数字で比較することで納得感を与える。自分に合った選択肢を見つけられる安心感。</div>
+                    </div>
                 </div>
 
                 <div class="content-card">
                     <div class="content-number">No.3</div>
                     <div class="content-title">戸建 vs マンション、あなたに合うのは？</div>
                     <div class="content-desc">ライフスタイル別（子育て世帯・共働き・シニア）におすすめを診断。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「戸建とマンション、どっちがいいの？」という疑問を提示。多くの人が悩むポイント。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】ライフスタイル別に診断：①子育て世帯→戸建（庭で遊べる・騒音気にしない）②共働き→マンション（駅近・セキュリティ充実）③シニア→マンション（バリアフリー・管理楽）。それぞれの特徴を図解で解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたのライフスタイルに合った選択を！ハウスドゥで無料相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: ライフスタイルに合わせた選択肢を示すことで、「失敗したくない」不安を解消。家族の未来をイメージしやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.4</div>
                     <div class="content-title">【賃貸 vs 購入】50年で407万円の差！</div>
                     <div class="content-desc">生涯コストをグラフでテンポよく解説。「持ち家派67.5%」というアンケート結果も紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「賃貸と購入、結局どっちが得？」という永遠のテーマを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】50年間の総コストを比較：賃貸（月7万×50年=4,200万円）vs 購入（3,500万円+諸費用+固定資産税=約3,793万円）。グラフでビジュアル化し、407万円の差を強調。持ち家派67.5%というアンケート結果も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたはどっち派？詳しいシミュレーションはハウスドゥで」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」というインサイトに直球で応える。具体的な数字で示すことで、購入への背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.5</div>
                     <div class="content-title">物件探しの3つの方法、全部使ってますか？</div>
                     <div class="content-desc">ネット検索・チラシ・不動産店舗訪問のメリット・デメリットを比較。未公開物件の入手方法も紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「未公開物件、本当にあるの？」という疑問に答える。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】物件探しの3つの方法を比較：①ネット検索（手軽・情報多い）②チラシ（地域密着・掘り出し物）③不動産店舗訪問（未公開物件・プロの提案）。それぞれのメリット・デメリットと、未公開物件を入手する方法（信頼関係構築）を解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「全部使って理想の家を見つけよう！ハウスドゥに相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「良い物件を見逃したくない」という不安に応え、複数の方法を組み合わせることで成功率が上がることを伝える。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.6</div>
                     <div class="content-title">【よくある質問】家を買うタイミングはいつ？</div>
                     <div class="content-desc">「金利が上がる前に買うべき？」「建築費高騰は続く？」などのFAQに回答。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「今買うべき？それとも待つべき？」という悩みを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】よくある質問に回答：①金利が上がる前に買うべき？→金利上昇リスクあり、早めが有利 ②建築費高騰は続く？→人手不足・資材高騰で続く見込み ③ライフイベント優先→結婚・出産・子どもの入学前がベストタイミング。3つの視点で判断基準を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合ったタイミングを一緒に考えましょう！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、タイミングの判断材料を提供。「今がベスト」と背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.7</div>
                     <div class="content-title">【診断】あなたの家探し優先度チェックリスト</div>
                     <div class="content-desc">「予算」「立地」「広さ」「築年数」など10項目をチェックし、優先順位を明確化するワークシート。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「あなたの家探しで一番大事なことは？」と問いかけ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】10項目のチェックリストを提示：予算・立地・広さ・築年数・間取り・日当たり・駐車場・学区・治安・将来性。各項目に優先度（高・中・低）を付けるワークシート形式。最後に「優先順位が明確になれば、物件選びがスムーズに！」とまとめ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「このチェックリストを保存して、物件探しに活用しよう！」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「何を優先すべきか分からない」という悩みを解消。自分で判断できる感覚を与えることで、行動しやすくなる。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.8</div>
                     <div class="content-title">【初心者向け】不動産用語集10選</div>
                     <div class="content-desc">仲介手数料、諸費用、引き渡し、決済など、家探しで必ず出てくる用語を解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「不動産用語、分からなくて困った...」という経験を共有。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】初心者が知っておくべき10用語を解説：①仲介手数料（物件価格×3%+6万円）②諸費用（物件価格の5-10%）③引き渡し（鍵を受け取る日）④決済（残金支払い）⑤登記（所有権移転手続き）⑥重要事項説明⑦手付金⑧ローン特約⑨瑕疵担保⑩媒介契約。各用語を1文で分かりやすく解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この10用語を覚えておけば安心！保存推奨」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「分かりやすく教えてほしい」というインサイトに応え、専門用語の壁を取り除く。安心して相談できる雰囲気を作る。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.9</div>
                     <div class="content-title">【保存版】家を買う前にやるべき5つのこと</div>
                     <div class="content-desc">①予算確認 ②エリア絞り込み ③住宅ローン事前審査 ④内覧3件以上 ⑤ライフプラン作成。ポイントを順番に紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「家を買う前に、何をすればいいの？」という不安を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】5つのステップを順番に紹介：①予算確認（年収の5-6倍が目安）②エリア絞り込み（通勤・学区・生活環境）③住宅ローン事前審査（借入可能額を把握）④内覧3件以上（比較して判断）⑤ライフプラン作成（10年後を見据える）。各ステップの重要ポイントを解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この5つをクリアすれば、安心して購入できる！ハウスドゥがサポート」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、準備すべきことを明確化。行動計画が立てられる安心感を提供。</div>
+                    </div>
+</div>
 
             </div>
         </div>
@@ -1334,103 +1540,409 @@
                     <div class="content-number">No.3</div>
                     <div class="content-title">【固定 vs 変動】金利タイプ、どっちを選ぶ？</div>
                     <div class="content-desc">ライフプラン別（子育て中・共働き・シニア）におすすめ金利タイプを診断。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「戸建とマンション、どっちがいいの？」という疑問を提示。多くの人が悩むポイント。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】ライフスタイル別に診断：①子育て世帯→戸建（庭で遊べる・騒音気にしない）②共働き→マンション（駅近・セキュリティ充実）③シニア→マンション（バリアフリー・管理楽）。それぞれの特徴を図解で解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたのライフスタイルに合った選択を！ハウスドゥで無料相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: ライフスタイルに合わせた選択肢を示すことで、「失敗したくない」不安を解消。家族の未来をイメージしやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.4</div>
                     <div class="content-title">【審査落ち対策】住宅ローンに通らない12の理由</div>
                     <div class="content-desc">延滞履歴・借入金・健康問題など、審査落ちの原因と対策を一覧で紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「賃貸と購入、結局どっちが得？」という永遠のテーマを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】50年間の総コストを比較：賃貸（月7万×50年=4,200万円）vs 購入（3,500万円+諸費用+固定資産税=約3,793万円）。グラフでビジュアル化し、407万円の差を強調。持ち家派67.5%というアンケート結果も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたはどっち派？詳しいシミュレーションはハウスドゥで」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」というインサイトに直球で応える。具体的な数字で示すことで、購入への背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.5</div>
                     <div class="content-title">フラット35って何？メリット・デメリット完全解説</div>
                     <div class="content-desc">個人事業主・転職直後の人に向いている理由をテンポよく解説。適合証明書の費用も紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「未公開物件、本当にあるの？」という疑問に答える。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】物件探しの3つの方法を比較：①ネット検索（手軽・情報多い）②チラシ（地域密着・掘り出し物）③不動産店舗訪問（未公開物件・プロの提案）。それぞれのメリット・デメリットと、未公開物件を入手する方法（信頼関係構築）を解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「全部使って理想の家を見つけよう！ハウスドゥに相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「良い物件を見逃したくない」という不安に応え、複数の方法を組み合わせることで成功率が上がることを伝える。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.6</div>
                     <div class="content-title">【衝撃】金利1%違うだけで500万円の差！</div>
                     <div class="content-desc">3000万円35年ローンの総返済額をシミュレーション。銀行選びの重要性を強調。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「今買うべき？それとも待つべき？」という悩みを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】よくある質問に回答：①金利が上がる前に買うべき？→金利上昇リスクあり、早めが有利 ②建築費高騰は続く？→人手不足・資材高騰で続く見込み ③ライフイベント優先→結婚・出産・子どもの入学前がベストタイミング。3つの視点で判断基準を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合ったタイミングを一緒に考えましょう！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、タイミングの判断材料を提供。「今がベスト」と背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.7</div>
                     <div class="content-title">【返済比率25％が黄金比率】年収別の借入額目安</div>
                     <div class="content-desc">年収300万・400万・500万・600万円ごとに、無理なく返せる借入額を算出。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「あなたの家探しで一番大事なことは？」と問いかけ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】10項目のチェックリストを提示：予算・立地・広さ・築年数・間取り・日当たり・駐車場・学区・治安・将来性。各項目に優先度（高・中・低）を付けるワークシート形式。最後に「優先順位が明確になれば、物件選びがスムーズに！」とまとめ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「このチェックリストを保存して、物件探しに活用しよう！」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「何を優先すべきか分からない」という悩みを解消。自分で判断できる感覚を与えることで、行動しやすくなる。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.8</div>
                     <div class="content-title">繰り上げ返済、やるべき？メリット・デメリット</div>
                     <div class="content-desc">利息削減 vs 手元資金減少、住宅ローン控除への影響を比較。最適なタイミングも紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「不動産用語、分からなくて困った...」という経験を共有。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】初心者が知っておくべき10用語を解説：①仲介手数料（物件価格×3%+6万円）②諸費用（物件価格の5-10%）③引き渡し（鍵を受け取る日）④決済（残金支払い）⑤登記（所有権移転手続き）⑥重要事項説明⑦手付金⑧ローン特約⑨瑕疵担保⑩媒介契約。各用語を1文で分かりやすく解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この10用語を覚えておけば安心！保存推奨」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「分かりやすく教えてほしい」というインサイトに応え、専門用語の壁を取り除く。安心して相談できる雰囲気を作る。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.9</div>
                     <div class="content-title">【住宅ローン控除 × ふるさと納税】併用できる？</div>
                     <div class="content-desc">併用時の控除額減少リスクと、ワンストップ特例制度での回避方法を解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「家を買う前に、何をすればいいの？」という不安を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】5つのステップを順番に紹介：①予算確認（年収の5-6倍が目安）②エリア絞り込み（通勤・学区・生活環境）③住宅ローン事前審査（借入可能額を把握）④内覧3件以上（比較して判断）⑤ライフプラン作成（10年後を見据える）。各ステップの重要ポイントを解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この5つをクリアすれば、安心して購入できる！ハウスドゥがサポート」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、準備すべきことを明確化。行動計画が立てられる安心感を提供。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.10</div>
                     <div class="content-title">【諸費用5～10％】物件価格以外にかかるお金</div>
                     <div class="content-desc">契約・ローン・登記・保険の4カテゴリで諸費用を整理。3000万円物件なら150～300万円。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「団信って何？入らないとダメ？」という疑問を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】団体信用生命保険の仕組みを解説：万が一の時（死亡・高度障害）にローン残債が0円に。家族を守る保険。さらに、がん団信（がん診断で残債50%または100%免除）、三大疾病団信（がん・心筋梗塞・脳卒中）の違いも30秒で比較。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「家族の未来を守る団信、詳しくはハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「家族を守りたい」「万が一に備えたい」という不安に応え、保険の重要性を伝える。安心感を提供。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.11</div>
                     <div class="content-title">【現金一括購入】メリット・デメリット徹底比較</div>
                     <div class="content-desc">ローン金利不要 vs 税務調査リスク、ローン控除が受けられないデメリットも紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「メガバンク、地方銀行、ネット銀行、どれがお得？」という疑問。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】5つのタイプを比較：①メガバンク（安心感・窓口充実）②地方銀行（地域密着・柔軟審査）③ネット銀行（低金利・手続き簡単）④信用金庫（地元企業優遇）⑤フラット35（自営業・転職者向け）。属性別おすすめ（公務員→メガバンク、自営業→フラット35など）も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合った銀行選びをサポート！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「どこで借りればいいか分からない」不安を解消。自分に合った選択肢を示すことで、判断しやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.12</div>
                     <div class="content-title">【IT重説】自宅でZoom契約、メリット・注意点</div>
                     <div class="content-desc">非対面で重要事項説明ができる制度を紹介。通信トラブル対策も解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「変動と固定、どっちを選べばいいの？」という最大の悩みを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】変動金利と固定金利を比較：変動（低金利・金利上昇リスク・5年ルール）vs 固定（金利固定・高め・安心感）。タイプ別診断：①返済に余裕あり・リスク許容→変動 ②安定重視・計画的→固定 ③中間→固定期間選択型（当初10年固定など）。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「自分に合った金利プランを見つけよう！ハウスドゥで無料シミュレーション」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」「失敗したくない」インサイトに応え、分かりやすく比較。自分で判断できる材料を提供。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.13</div>
                     <div class="content-title">【エージェントに聞いた】よくある質問TOP5</div>
                     <div class="content-desc">「ローン審査に何日かかる？」「ペアローンとは？」など、実際のQ&Aを紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「ローン審査に落ちた...なぜ？」という不安を共有。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】審査落ちの12の理由を一覧で紹介：①延滞履歴（クレカ・携帯料金）②他の借入（カーローン・奨学金）③健康問題（団信加入できない）④勤続年数短い⑤年収低い⑥返済比率高い⑦自営業⑧転職直後⑨物件担保評価低い⑩個人信用情報⑪年齢⑫虚偽申告。それぞれの対策も簡潔に解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「事前に対策すれば審査通過率UP！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「審査に通るか不安」という悩みに寄り添い、事前対策を示すことで安心感を提供。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.14</div>
                     <div class="content-title">【住宅ローン用語集】初心者が知っておくべき10用語</div>
                     <div class="content-desc">元利均等返済、元金均等返済、保証料、事務手数料など、必須用語を解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「フラット35って何がいいの？」という疑問。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】フラット35の特徴を解説：①全期間固定金利（金利変動リスクなし）②自営業・転職直後でも審査通りやすい③団信任意加入④適合証明書必要（費用5-10万円）⑤繰上返済手数料無料。メリット（安心・審査柔軟）とデメリット（金利やや高い・手続き複雑）を比較。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「自営業・転職者の強い味方！フラット35について詳しく相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「審査に通るか不安」な自営業者・転職者に希望を与える。選択肢があることで安心感。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.15</div>
                     <div class="content-title">【チェックリスト】住宅ローン申し込み前にやるべき5つのこと</div>
                     <div class="content-desc">①信用情報確認 ②他の借入整理 ③健康診断 ④源泉徴収票準備 ⑤返済比率計算。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「金利1%違うだけで、総額500万円も変わる！」と衝撃の事実を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】3000万円35年ローンの総返済額をシミュレーション：金利0.5%→約3,289万円、金利1.0%→約3,557万円、金利1.5%→約3,849万円。差額は560万円！グラフでビジュアル化し、銀行選びの重要性を強調。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「たった1%で人生が変わる！最適な銀行選びをサポート」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」インサイトに直球で応える。具体的な数字でインパクトを与え、銀行選びの重要性を認識させる。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.16</div>
                     <div class="content-title">【年収別シミュレーション】あなたが借りられる金額は？</div>
                     <div class="content-desc">年収300万～800万円まで100万円刻みで、借入可能額と月々の返済額を算出。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「年収の何倍まで借りられる？」という疑問。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】年収別の借入額目安を算出：返済比率25%が黄金比率。年収300万→借入可能額約1,500万円（月6.2万円）、年収400万→約2,000万円（月8.3万円）、年収500万→約2,500万円（月10.4万円）、年収600万→約3,000万円（月12.5万円）。具体的な表で分かりやすく提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「無理なく返せる金額を一緒に計算しよう！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「返済できるか不安」という悩みに応え、具体的な目安を示すことで計画を立てやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.17</div>
                     <div class="content-title">【変動金利の5年ルール・1.25倍ルール】って何？</div>
                     <div class="content-desc">変動金利の仕組みをテンポよく解説。急激な返済額増加を防ぐルールを30秒で解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「繰上返済、やった方がいいの？」という疑問。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】繰上返済のメリット・デメリットを比較：メリット（利息削減・返済期間短縮・精神的安心）vs デメリット（手元資金減少・住宅ローン控除の恩恵減・教育費不足リスク）。最適なタイミングも紹介（控除期間終了後・子供独立後など）。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合った返済計画を一緒に考えましょう！」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」インサイトに応え、状況に応じた最適な判断材料を提供。安心して決断できる。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.18</div>
                     <div class="content-title">【比較表】固定・変動・固定期間選択、どれを選ぶ？</div>
                     <div class="content-desc">3つの金利タイプをメリット・デメリット・向いている人で比較。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「住宅ローン控除とふるさと納税、両方使える？」という疑問。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】併用時の注意点を解説：住宅ローン控除が優先されるため、ふるさと納税の控除額が減る可能性あり。ただし、ワンストップ特例制度を使えば住民税のみから控除され、影響を最小化できる。具体例（年収500万円のケース）で計算。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「賢く制度を活用して節税しよう！詳しくはハウスドゥで」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」「お得に活用したい」インサイトに応え、制度の併用方法を分かりやすく解説。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.19</div>
                     <div class="content-title">【中古×リフォーム】資金計画の立て方（大分市）</div>
                     <div class="content-desc">物件費用+リフォーム費用+諸費用の内訳をテンポよく解説。補助金活用法も紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「物件価格だけじゃない！諸費用って何？」という疑問。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】諸費用の内訳を4カテゴリで整理：①契約関連（仲介手数料・印紙税）②ローン関連（保証料・事務手数料・団信）③登記関連（登録免許税・司法書士報酬）④保険・その他（火災保険・固定資産税清算）。3000万円物件なら150～300万円（5-10%）が目安。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「諸費用も含めた総予算を一緒に計算しましょう！」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「予想外の出費で困った」を防ぐため、事前に諸費用を明示。透明性のある情報提供で信頼感を得る。</div>
+                    </div>
+</div>
 
             </div>
         </div>
@@ -1463,79 +1975,313 @@
                     <div class="content-number">No.3</div>
                     <div class="content-title">【不動産広告】騙されないための7つのチェックポイント</div>
                     <div class="content-desc">徒歩○分の計算方法、「新築」表示の期限、市街化調整区域など、知らないと損する広告ルール。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「戸建とマンション、どっちがいいの？」という疑問を提示。多くの人が悩むポイント。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】ライフスタイル別に診断：①子育て世帯→戸建（庭で遊べる・騒音気にしない）②共働き→マンション（駅近・セキュリティ充実）③シニア→マンション（バリアフリー・管理楽）。それぞれの特徴を図解で解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたのライフスタイルに合った選択を！ハウスドゥで無料相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: ライフスタイルに合わせた選択肢を示すことで、「失敗したくない」不安を解消。家族の未来をイメージしやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.4</div>
                     <div class="content-title">【物件タイプ別】広告で見落としがちな危険ポイント</div>
                     <div class="content-desc">土地・マンション・一戸建てごとに、接道義務、管理費、建蔽率などの重要項目を解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「賃貸と購入、結局どっちが得？」という永遠のテーマを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】50年間の総コストを比較：賃貸（月7万×50年=4,200万円）vs 購入（3,500万円+諸費用+固定資産税=約3,793万円）。グラフでビジュアル化し、407万円の差を強調。持ち家派67.5%というアンケート結果も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたはどっち派？詳しいシミュレーションはハウスドゥで」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」というインサイトに直球で応える。具体的な数字で示すことで、購入への背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.5</div>
                     <div class="content-title">【土地探し】失敗しないための3つのコツ</div>
                     <div class="content-desc">建築法規制の確認、旗竿地のデメリット、総予算の立て方を30秒で解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「未公開物件、本当にあるの？」という疑問に答える。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】物件探しの3つの方法を比較：①ネット検索（手軽・情報多い）②チラシ（地域密着・掘り出し物）③不動産店舗訪問（未公開物件・プロの提案）。それぞれのメリット・デメリットと、未公開物件を入手する方法（信頼関係構築）を解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「全部使って理想の家を見つけよう！ハウスドゥに相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「良い物件を見逃したくない」という不安に応え、複数の方法を組み合わせることで成功率が上がることを伝える。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.6</div>
                     <div class="content-title">【未公開物件】って本当にあるの？入手方法4選</div>
                     <div class="content-desc">登録期限前、売主の事情、不動産会社所有、囲い込みの4パターンを解説。信頼関係構築が鍵。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「今買うべき？それとも待つべき？」という悩みを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】よくある質問に回答：①金利が上がる前に買うべき？→金利上昇リスクあり、早めが有利 ②建築費高騰は続く？→人手不足・資材高騰で続く見込み ③ライフイベント優先→結婚・出産・子どもの入学前がベストタイミング。3つの視点で判断基準を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合ったタイミングを一緒に考えましょう！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、タイミングの判断材料を提供。「今がベスト」と背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.7</div>
                     <div class="content-title">【未完成の建売】メリット・デメリット徹底比較</div>
                     <div class="content-desc">区画選択の自由度 vs 高額価格、施工品質確認可能 vs 完成イメージ困難。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「あなたの家探しで一番大事なことは？」と問いかけ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】10項目のチェックリストを提示：予算・立地・広さ・築年数・間取り・日当たり・駐車場・学区・治安・将来性。各項目に優先度（高・中・低）を付けるワークシート形式。最後に「優先順位が明確になれば、物件選びがスムーズに！」とまとめ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「このチェックリストを保存して、物件探しに活用しよう！」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「何を優先すべきか分からない」という悩みを解消。自分で判断できる感覚を与えることで、行動しやすくなる。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.8</div>
                     <div class="content-title">【内覧の持ち物】プロが教える必携アイテム7選</div>
                     <div class="content-desc">メジャー、スマホ（写真撮影・方位磁石アプリ）、間取り図、筆記用具など。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「不動産用語、分からなくて困った...」という経験を共有。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】初心者が知っておくべき10用語を解説：①仲介手数料（物件価格×3%+6万円）②諸費用（物件価格の5-10%）③引き渡し（鍵を受け取る日）④決済（残金支払い）⑤登記（所有権移転手続き）⑥重要事項説明⑦手付金⑧ローン特約⑨瑕疵担保⑩媒介契約。各用語を1文で分かりやすく解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この10用語を覚えておけば安心！保存推奨」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「分かりやすく教えてほしい」というインサイトに応え、専門用語の壁を取り除く。安心して相談できる雰囲気を作る。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.9</div>
                     <div class="content-title">【内覧は3回行こう】朝・昼・夜で見るポイントが違う</div>
                     <div class="content-desc">朝の日当たり、昼の騒音、夜の街灯・防犯など、時間帯別のチェック項目を紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「家を買う前に、何をすればいいの？」という不安を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】5つのステップを順番に紹介：①予算確認（年収の5-6倍が目安）②エリア絞り込み（通勤・学区・生活環境）③住宅ローン事前審査（借入可能額を把握）④内覧3件以上（比較して判断）⑤ライフプラン作成（10年後を見据える）。各ステップの重要ポイントを解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この5つをクリアすれば、安心して購入できる！ハウスドゥがサポート」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、準備すべきことを明確化。行動計画が立てられる安心感を提供。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.10</div>
                     <div class="content-title">【ハザードマップ】災害リスクを確認しよう</div>
                     <div class="content-desc">洪水、土砂災害、津波、地震の4つのハザードマップの見方をテンポよく解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「団信って何？入らないとダメ？」という疑問を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】団体信用生命保険の仕組みを解説：万が一の時（死亡・高度障害）にローン残債が0円に。家族を守る保険。さらに、がん団信（がん診断で残債50%または100%免除）、三大疾病団信（がん・心筋梗塞・脳卒中）の違いも30秒で比較。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「家族の未来を守る団信、詳しくはハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「家族を守りたい」「万が一に備えたい」という不安に応え、保険の重要性を伝える。安心感を提供。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.11</div>
                     <div class="content-title">【内覧あるある】見落としがちなポイントTOP5</div>
                     <div class="content-desc">コンセント数、収納奥行き、窓の開閉、隣家との距離、駐車スペースなど。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「メガバンク、地方銀行、ネット銀行、どれがお得？」という疑問。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】5つのタイプを比較：①メガバンク（安心感・窓口充実）②地方銀行（地域密着・柔軟審査）③ネット銀行（低金利・手続き簡単）④信用金庫（地元企業優遇）⑤フラット35（自営業・転職者向け）。属性別おすすめ（公務員→メガバンク、自営業→フラット35など）も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合った銀行選びをサポート！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「どこで借りればいいか分からない」不安を解消。自分に合った選択肢を示すことで、判断しやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.12</div>
                     <div class="content-title">【周辺環境】内覧時にチェックすべき10項目</div>
                     <div class="content-desc">スーパー、病院、学校、公園、駅、バス停、ゴミ捨て場、街灯、治安、騒音。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「変動と固定、どっちを選べばいいの？」という最大の悩みを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】変動金利と固定金利を比較：変動（低金利・金利上昇リスク・5年ルール）vs 固定（金利固定・高め・安心感）。タイプ別診断：①返済に余裕あり・リスク許容→変動 ②安定重視・計画的→固定 ③中間→固定期間選択型（当初10年固定など）。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「自分に合った金利プランを見つけよう！ハウスドゥで無料シミュレーション」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」「失敗したくない」インサイトに応え、分かりやすく比較。自分で判断できる材料を提供。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.13</div>
                     <div class="content-title">【戸建 vs マンション】内覧チェックポイントの違い</div>
                     <div class="content-desc">戸建は境界・駐車場、マンションは管理費・修繕積立金など、物件タイプ別の重点項目。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「ローン審査に落ちた...なぜ？」という不安を共有。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】審査落ちの12の理由を一覧で紹介：①延滞履歴（クレカ・携帯料金）②他の借入（カーローン・奨学金）③健康問題（団信加入できない）④勤続年数短い⑤年収低い⑥返済比率高い⑦自営業⑧転職直後⑨物件担保評価低い⑩個人信用情報⑪年齢⑫虚偽申告。それぞれの対策も簡潔に解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「事前に対策すれば審査通過率UP！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「審査に通るか不安」という悩みに寄り添い、事前対策を示すことで安心感を提供。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.14</div>
                     <div class="content-title">【内覧の流れ】初めてでも安心、5ステップ</div>
                     <div class="content-desc">予約→持ち物準備→外観チェック→室内チェック→質問タイムの流れを実演。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「フラット35って何がいいの？」という疑問。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】フラット35の特徴を解説：①全期間固定金利（金利変動リスクなし）②自営業・転職直後でも審査通りやすい③団信任意加入④適合証明書必要（費用5-10万円）⑤繰上返済手数料無料。メリット（安心・審査柔軟）とデメリット（金利やや高い・手続き複雑）を比較。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「自営業・転職者の強い味方！フラット35について詳しく相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「審査に通るか不安」な自営業者・転職者に希望を与える。選択肢があることで安心感。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.15</div>
                     <div class="content-title">【広告用語集】知らないと損する不動産用語10選</div>
                     <div class="content-desc">徒歩○分、駅近、築浅、リフォーム済、管理費込みなど、広告でよく見る用語を解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「金利1%違うだけで、総額500万円も変わる！」と衝撃の事実を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】3000万円35年ローンの総返済額をシミュレーション：金利0.5%→約3,289万円、金利1.0%→約3,557万円、金利1.5%→約3,849万円。差額は560万円！グラフでビジュアル化し、銀行選びの重要性を強調。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「たった1%で人生が変わる！最適な銀行選びをサポート」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」インサイトに直球で応える。具体的な数字でインパクトを与え、銀行選びの重要性を認識させる。</div>
+                    </div>
+</div>
 
             </div>
         </div>
@@ -1568,37 +2314,145 @@
                     <div class="content-number">No.3</div>
                     <div class="content-title">【大分市】中古マンション×リノベが人気の理由</div>
                     <div class="content-desc">新築比で割安、物件選択肢豊富、好みのデザインに変更可能というメリットを30秒で解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「戸建とマンション、どっちがいいの？」という疑問を提示。多くの人が悩むポイント。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】ライフスタイル別に診断：①子育て世帯→戸建（庭で遊べる・騒音気にしない）②共働き→マンション（駅近・セキュリティ充実）③シニア→マンション（バリアフリー・管理楽）。それぞれの特徴を図解で解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたのライフスタイルに合った選択を！ハウスドゥで無料相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: ライフスタイルに合わせた選択肢を示すことで、「失敗したくない」不安を解消。家族の未来をイメージしやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.4</div>
                     <div class="content-title">【築20～30年】中古マンションのメリット・デメリット</div>
                     <div class="content-desc">安い・物件数多い・立地良い vs 耐震基準確認・修繕状況・リフォーム費用。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「賃貸と購入、結局どっちが得？」という永遠のテーマを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】50年間の総コストを比較：賃貸（月7万×50年=4,200万円）vs 購入（3,500万円+諸費用+固定資産税=約3,793万円）。グラフでビジュアル化し、407万円の差を強調。持ち家派67.5%というアンケート結果も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたはどっち派？詳しいシミュレーションはハウスドゥで」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」というインサイトに直球で応える。具体的な数字で示すことで、購入への背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.5</div>
                     <div class="content-title">【管理費・修繕積立金】って何？毎月いくらかかる？</div>
                     <div class="content-desc">マンション特有の費用をテンポよく解説。修繕積立金が段階的に上がるケースも紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「未公開物件、本当にあるの？」という疑問に答える。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】物件探しの3つの方法を比較：①ネット検索（手軽・情報多い）②チラシ（地域密着・掘り出し物）③不動産店舗訪問（未公開物件・プロの提案）。それぞれのメリット・デメリットと、未公開物件を入手する方法（信頼関係構築）を解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「全部使って理想の家を見つけよう！ハウスドゥに相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「良い物件を見逃したくない」という不安に応え、複数の方法を組み合わせることで成功率が上がることを伝える。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.6</div>
                     <div class="content-title">【新耐震 vs 旧耐震】中古マンションの耐震基準を確認しよう</div>
                     <div class="content-desc">1981年6月以降が新耐震基準。耐震診断・補強工事の有無も確認ポイント。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「今買うべき？それとも待つべき？」という悩みを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】よくある質問に回答：①金利が上がる前に買うべき？→金利上昇リスクあり、早めが有利 ②建築費高騰は続く？→人手不足・資材高騰で続く見込み ③ライフイベント優先→結婚・出産・子どもの入学前がベストタイミング。3つの視点で判断基準を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合ったタイミングを一緒に考えましょう！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、タイミングの判断材料を提供。「今がベスト」と背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.7</div>
                     <div class="content-title">【管理規約】ペット飼育・リフォーム可否を確認</div>
                     <div class="content-desc">管理規約でペット可否、リフォーム範囲、楽器演奏、駐車場利用などが決まっている。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「あなたの家探しで一番大事なことは？」と問いかけ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】10項目のチェックリストを提示：予算・立地・広さ・築年数・間取り・日当たり・駐車場・学区・治安・将来性。各項目に優先度（高・中・低）を付けるワークシート形式。最後に「優先順位が明確になれば、物件選びがスムーズに！」とまとめ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「このチェックリストを保存して、物件探しに活用しよう！」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「何を優先すべきか分からない」という悩みを解消。自分で判断できる感覚を与えることで、行動しやすくなる。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.8</div>
                     <div class="content-title">【修繕計画】長期修繕計画書の見方を解説</div>
                     <div class="content-desc">大規模修繕の時期、修繕積立金の残高、将来の値上げ予定などをチェック。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「不動産用語、分からなくて困った...」という経験を共有。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】初心者が知っておくべき10用語を解説：①仲介手数料（物件価格×3%+6万円）②諸費用（物件価格の5-10%）③引き渡し（鍵を受け取る日）④決済（残金支払い）⑤登記（所有権移転手続き）⑥重要事項説明⑦手付金⑧ローン特約⑨瑕疵担保⑩媒介契約。各用語を1文で分かりやすく解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この10用語を覚えておけば安心！保存推奨」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「分かりやすく教えてほしい」というインサイトに応え、専門用語の壁を取り除く。安心して相談できる雰囲気を作る。</div>
+                    </div>
+</div>
 
             </div>
         </div>
@@ -1631,55 +2485,217 @@
                     <div class="content-number">No.3</div>
                     <div class="content-title">【リフォームできない!?】購入前に確認すべき4つのポイント</div>
                     <div class="content-desc">構造上の問題、法的規制、管理規約、費用面でリフォームできないケースを解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「戸建とマンション、どっちがいいの？」という疑問を提示。多くの人が悩むポイント。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】ライフスタイル別に診断：①子育て世帯→戸建（庭で遊べる・騒音気にしない）②共働き→マンション（駅近・セキュリティ充実）③シニア→マンション（バリアフリー・管理楽）。それぞれの特徴を図解で解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたのライフスタイルに合った選択を！ハウスドゥで無料相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: ライフスタイルに合わせた選択肢を示すことで、「失敗したくない」不安を解消。家族の未来をイメージしやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.4</div>
                     <div class="content-title">【インスペクション】建物検査で中古住宅の不安を解消</div>
                     <div class="content-desc">既存住宅瑕疵保険、インスペクション検査、建物保証の仕組みをテンポよく解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「賃貸と購入、結局どっちが得？」という永遠のテーマを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】50年間の総コストを比較：賃貸（月7万×50年=4,200万円）vs 購入（3,500万円+諸費用+固定資産税=約3,793万円）。グラフでビジュアル化し、407万円の差を強調。持ち家派67.5%というアンケート結果も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたはどっち派？詳しいシミュレーションはハウスドゥで」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」というインサイトに直球で応える。具体的な数字で示すことで、購入への背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.5</div>
                     <div class="content-title">【築25年の中古戸建】メリット・デメリット</div>
                     <div class="content-desc">安い・物件数豊富 vs 修繕費・ローン審査の課題。ホームインスペクション活用も紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「未公開物件、本当にあるの？」という疑問に答える。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】物件探しの3つの方法を比較：①ネット検索（手軽・情報多い）②チラシ（地域密着・掘り出し物）③不動産店舗訪問（未公開物件・プロの提案）。それぞれのメリット・デメリットと、未公開物件を入手する方法（信頼関係構築）を解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「全部使って理想の家を見つけよう！ハウスドゥに相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「良い物件を見逃したくない」という不安に応え、複数の方法を組み合わせることで成功率が上がることを伝える。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.6</div>
                     <div class="content-title">【住宅設備保証】エアコン・給湯器の故障に備える</div>
                     <div class="content-desc">設備故障に備える保証制度のメリット・デメリット、新築と中古での対応の違い。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「今買うべき？それとも待つべき？」という悩みを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】よくある質問に回答：①金利が上がる前に買うべき？→金利上昇リスクあり、早めが有利 ②建築費高騰は続く？→人手不足・資材高騰で続く見込み ③ライフイベント優先→結婚・出産・子どもの入学前がベストタイミング。3つの視点で判断基準を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合ったタイミングを一緒に考えましょう！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、タイミングの判断材料を提供。「今がベスト」と背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.7</div>
                     <div class="content-title">【リフォーム費用】相場はいくら？部位別に解説</div>
                     <div class="content-desc">キッチン・バス・トイレ・外壁・屋根など、部位別のリフォーム費用相場を30秒で紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「あなたの家探しで一番大事なことは？」と問いかけ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】10項目のチェックリストを提示：予算・立地・広さ・築年数・間取り・日当たり・駐車場・学区・治安・将来性。各項目に優先度（高・中・低）を付けるワークシート形式。最後に「優先順位が明確になれば、物件選びがスムーズに！」とまとめ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「このチェックリストを保存して、物件探しに活用しよう！」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「何を優先すべきか分からない」という悩みを解消。自分で判断できる感覚を与えることで、行動しやすくなる。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.8</div>
                     <div class="content-title">【築年数別】中古戸建のチェックポイント</div>
                     <div class="content-desc">築10年・20年・30年・40年以上で、確認すべき項目が異なる。年数別のチェックリスト。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「不動産用語、分からなくて困った...」という経験を共有。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】初心者が知っておくべき10用語を解説：①仲介手数料（物件価格×3%+6万円）②諸費用（物件価格の5-10%）③引き渡し（鍵を受け取る日）④決済（残金支払い）⑤登記（所有権移転手続き）⑥重要事項説明⑦手付金⑧ローン特約⑨瑕疵担保⑩媒介契約。各用語を1文で分かりやすく解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この10用語を覚えておけば安心！保存推奨」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「分かりやすく教えてほしい」というインサイトに応え、専門用語の壁を取り除く。安心して相談できる雰囲気を作る。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.9</div>
                     <div class="content-title">【リフォームvs建て替え】どっちがお得？</div>
                     <div class="content-desc">費用、工期、自由度、資産価値の4軸で比較。判断基準をテンポよく解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「家を買う前に、何をすればいいの？」という不安を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】5つのステップを順番に紹介：①予算確認（年収の5-6倍が目安）②エリア絞り込み（通勤・学区・生活環境）③住宅ローン事前審査（借入可能額を把握）④内覧3件以上（比較して判断）⑤ライフプラン作成（10年後を見据える）。各ステップの重要ポイントを解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この5つをクリアすれば、安心して購入できる！ハウスドゥがサポート」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、準備すべきことを明確化。行動計画が立てられる安心感を提供。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.10</div>
                     <div class="content-title">【インスペクション実演】プロはここをチェックする</div>
                     <div class="content-desc">床下、屋根裏、外壁、基礎のチェック方法を実演形式で紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「団信って何？入らないとダメ？」という疑問を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】団体信用生命保険の仕組みを解説：万が一の時（死亡・高度障害）にローン残債が0円に。家族を守る保険。さらに、がん団信（がん診断で残債50%または100%免除）、三大疾病団信（がん・心筋梗塞・脳卒中）の違いも30秒で比較。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「家族の未来を守る団信、詳しくはハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「家族を守りたい」「万が一に備えたい」という不安に応え、保険の重要性を伝える。安心感を提供。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.11</div>
                     <div class="content-title">【保存版】中古住宅購入前のチェックリスト30項目</div>
                     <div class="content-desc">建物・設備・権利関係・周辺環境など、購入前に確認すべき全項目を一覧で紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「メガバンク、地方銀行、ネット銀行、どれがお得？」という疑問。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】5つのタイプを比較：①メガバンク（安心感・窓口充実）②地方銀行（地域密着・柔軟審査）③ネット銀行（低金利・手続き簡単）④信用金庫（地元企業優遇）⑤フラット35（自営業・転職者向け）。属性別おすすめ（公務員→メガバンク、自営業→フラット35など）も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合った銀行選びをサポート！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「どこで借りればいいか分からない」不安を解消。自分に合った選択肢を示すことで、判断しやすくする。</div>
+                    </div>
+</div>
 
             </div>
         </div>
@@ -1712,49 +2728,193 @@
                     <div class="content-number">No.3</div>
                     <div class="content-title">【子育てエコホーム支援事業】最大100万円の補助金</div>
                     <div class="content-desc">子育て世帯・若者夫婦世帯が対象。省エネ性能の高い住宅購入・リフォームで補助金受給。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「戸建とマンション、どっちがいいの？」という疑問を提示。多くの人が悩むポイント。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】ライフスタイル別に診断：①子育て世帯→戸建（庭で遊べる・騒音気にしない）②共働き→マンション（駅近・セキュリティ充実）③シニア→マンション（バリアフリー・管理楽）。それぞれの特徴を図解で解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたのライフスタイルに合った選択を！ハウスドゥで無料相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: ライフスタイルに合わせた選択肢を示すことで、「失敗したくない」不安を解消。家族の未来をイメージしやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.4</div>
                     <div class="content-title">【親から資金援助】非課税特例を活用しよう</div>
                     <div class="content-desc">基礎控除110万円+非課税特例の活用法、相続時精算課税制度を30秒で解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「賃貸と購入、結局どっちが得？」という永遠のテーマを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】50年間の総コストを比較：賃貸（月7万×50年=4,200万円）vs 購入（3,500万円+諸費用+固定資産税=約3,793万円）。グラフでビジュアル化し、407万円の差を強調。持ち家派67.5%というアンケート結果も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたはどっち派？詳しいシミュレーションはハウスドゥで」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」というインサイトに直球で応える。具体的な数字で示すことで、購入への背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.5</div>
                     <div class="content-title">【5つの税金】不動産購入時にかかる税金まとめ</div>
                     <div class="content-desc">固定資産税、不動産取得税、登録免許税、印紙税、消費税の内容と軽減措置をテンポよく解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「未公開物件、本当にあるの？」という疑問に答える。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】物件探しの3つの方法を比較：①ネット検索（手軽・情報多い）②チラシ（地域密着・掘り出し物）③不動産店舗訪問（未公開物件・プロの提案）。それぞれのメリット・デメリットと、未公開物件を入手する方法（信頼関係構築）を解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「全部使って理想の家を見つけよう！ハウスドゥに相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「良い物件を見逃したくない」という不安に応え、複数の方法を組み合わせることで成功率が上がることを伝える。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.6</div>
                     <div class="content-title">【補助金まとめ】2024年に使える住宅補助金3選</div>
                     <div class="content-desc">先進的窓リノベ、給湯省エネ、子育てエコホームの3つを比較ポイントを解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「今買うべき？それとも待つべき？」という悩みを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】よくある質問に回答：①金利が上がる前に買うべき？→金利上昇リスクあり、早めが有利 ②建築費高騰は続く？→人手不足・資材高騰で続く見込み ③ライフイベント優先→結婚・出産・子どもの入学前がベストタイミング。3つの視点で判断基準を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合ったタイミングを一緒に考えましょう！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、タイミングの判断材料を提供。「今がベスト」と背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.7</div>
                     <div class="content-title">【固定資産税】毎年いくらかかる？計算方法を解説</div>
                     <div class="content-desc">固定資産税評価額×1.4％の計算式。軽減措置（新築・中古）も紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「あなたの家探しで一番大事なことは？」と問いかけ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】10項目のチェックリストを提示：予算・立地・広さ・築年数・間取り・日当たり・駐車場・学区・治安・将来性。各項目に優先度（高・中・低）を付けるワークシート形式。最後に「優先順位が明確になれば、物件選びがスムーズに！」とまとめ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「このチェックリストを保存して、物件探しに活用しよう！」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「何を優先すべきか分からない」という悩みを解消。自分で判断できる感覚を与えることで、行動しやすくなる。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.8</div>
                     <div class="content-title">【不動産取得税】購入時に一度だけかかる税金</div>
                     <div class="content-desc">課税標準×3％の計算式。軽減措置（床面積50㎡以上など）の条件をテンポよく解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「不動産用語、分からなくて困った...」という経験を共有。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】初心者が知っておくべき10用語を解説：①仲介手数料（物件価格×3%+6万円）②諸費用（物件価格の5-10%）③引き渡し（鍵を受け取る日）④決済（残金支払い）⑤登記（所有権移転手続き）⑥重要事項説明⑦手付金⑧ローン特約⑨瑕疵担保⑩媒介契約。各用語を1文で分かりやすく解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この10用語を覚えておけば安心！保存推奨」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「分かりやすく教えてほしい」というインサイトに応え、専門用語の壁を取り除く。安心して相談できる雰囲気を作る。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.9</div>
                     <div class="content-title">【登録免許税】所有権移転・抵当権設定にかかる税金</div>
                     <div class="content-desc">土地・建物の所有権移転、抵当権設定の税率と軽減措置を整理。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「家を買う前に、何をすればいいの？」という不安を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】5つのステップを順番に紹介：①予算確認（年収の5-6倍が目安）②エリア絞り込み（通勤・学区・生活環境）③住宅ローン事前審査（借入可能額を把握）④内覧3件以上（比較して判断）⑤ライフプラン作成（10年後を見据える）。各ステップの重要ポイントを解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この5つをクリアすれば、安心して購入できる！ハウスドゥがサポート」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、準備すべきことを明確化。行動計画が立てられる安心感を提供。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.10</div>
                     <div class="content-title">【補助金申請】失敗しないための3つのポイント</div>
                     <div class="content-desc">期限厳守、書類不備に注意、業者選びが重要。申請の流れを実演。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「団信って何？入らないとダメ？」という疑問を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】団体信用生命保険の仕組みを解説：万が一の時（死亡・高度障害）にローン残債が0円に。家族を守る保険。さらに、がん団信（がん診断で残債50%または100%免除）、三大疾病団信（がん・心筋梗塞・脳卒中）の違いも30秒で比較。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「家族の未来を守る団信、詳しくはハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「家族を守りたい」「万が一に備えたい」という不安に応え、保険の重要性を伝える。安心感を提供。</div>
+                    </div>
+</div>
 
             </div>
         </div>
@@ -1787,37 +2947,145 @@
                     <div class="content-number">No.3</div>
                     <div class="content-title">【購入の流れ】情報収集から入居まで約3ヶ月</div>
                     <div class="content-desc">情報収集→相談→物件選び→申込→契約→ローン手続き→決済の8ステップをテンポよく解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「戸建とマンション、どっちがいいの？」という疑問を提示。多くの人が悩むポイント。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】ライフスタイル別に診断：①子育て世帯→戸建（庭で遊べる・騒音気にしない）②共働き→マンション（駅近・セキュリティ充実）③シニア→マンション（バリアフリー・管理楽）。それぞれの特徴を図解で解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたのライフスタイルに合った選択を！ハウスドゥで無料相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: ライフスタイルに合わせた選択肢を示すことで、「失敗したくない」不安を解消。家族の未来をイメージしやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.4</div>
                     <div class="content-title">【不動産会社の選び方】囲い込みを避ける方法</div>
                     <div class="content-desc">誠実な説明、幅広い物件紹介、囲い込みなどの悪質行為を避ける業者選びのポイント。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「賃貸と購入、結局どっちが得？」という永遠のテーマを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】50年間の総コストを比較：賃貸（月7万×50年=4,200万円）vs 購入（3,500万円+諸費用+固定資産税=約3,793万円）。グラフでビジュアル化し、407万円の差を強調。持ち家派67.5%というアンケート結果も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたはどっち派？詳しいシミュレーションはハウスドゥで」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」というインサイトに直球で応える。具体的な数字で示すことで、購入への背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.5</div>
                     <div class="content-title">【契約当日】持ち物・流れを事前確認</div>
                     <div class="content-desc">印鑑、身分証明書、手付金、印紙代など、契約当日の持ち物と流れを実演。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「未公開物件、本当にあるの？」という疑問に答える。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】物件探しの3つの方法を比較：①ネット検索（手軽・情報多い）②チラシ（地域密着・掘り出し物）③不動産店舗訪問（未公開物件・プロの提案）。それぞれのメリット・デメリットと、未公開物件を入手する方法（信頼関係構築）を解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「全部使って理想の家を見つけよう！ハウスドゥに相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「良い物件を見逃したくない」という不安に応え、複数の方法を組み合わせることで成功率が上がることを伝える。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.6</div>
                     <div class="content-title">【必要書類チェックリスト】購入時に用意するもの</div>
                     <div class="content-desc">申し込み時、契約時、ローン申込時、決済時の4段階で必要書類を整理。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「今買うべき？それとも待つべき？」という悩みを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】よくある質問に回答：①金利が上がる前に買うべき？→金利上昇リスクあり、早めが有利 ②建築費高騰は続く？→人手不足・資材高騰で続く見込み ③ライフイベント優先→結婚・出産・子どもの入学前がベストタイミング。3つの視点で判断基準を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合ったタイミングを一緒に考えましょう！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、タイミングの判断材料を提供。「今がベスト」と背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.7</div>
                     <div class="content-title">【3つの契約】売買契約・ローン契約・保険契約の違い</div>
                     <div class="content-desc">不動産売買契約、住宅ローン契約、火災保険契約の内容と順序をテンポよく解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「あなたの家探しで一番大事なことは？」と問いかけ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】10項目のチェックリストを提示：予算・立地・広さ・築年数・間取り・日当たり・駐車場・学区・治安・将来性。各項目に優先度（高・中・低）を付けるワークシート形式。最後に「優先順位が明確になれば、物件選びがスムーズに！」とまとめ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「このチェックリストを保存して、物件探しに活用しよう！」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「何を優先すべきか分からない」という悩みを解消。自分で判断できる感覚を与えることで、行動しやすくなる。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.8</div>
                     <div class="content-title">【決済の流れ】引き渡し当日のスケジュール</div>
                     <div class="content-desc">残金支払い、登記手続き、鍵の引き渡しまでの流れを時系列で紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「不動産用語、分からなくて困った...」という経験を共有。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】初心者が知っておくべき10用語を解説：①仲介手数料（物件価格×3%+6万円）②諸費用（物件価格の5-10%）③引き渡し（鍵を受け取る日）④決済（残金支払い）⑤登記（所有権移転手続き）⑥重要事項説明⑦手付金⑧ローン特約⑨瑕疵担保⑩媒介契約。各用語を1文で分かりやすく解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この10用語を覚えておけば安心！保存推奨」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「分かりやすく教えてほしい」というインサイトに応え、専門用語の壁を取り除く。安心して相談できる雰囲気を作る。</div>
+                    </div>
+</div>
 
             </div>
         </div>
@@ -1850,13 +3118,49 @@
                     <div class="content-number">No.3</div>
                     <div class="content-title">【太陽光の仕組み】5段階フロー図で理解</div>
                     <div class="content-desc">パネル→接続箱→パワーコンディショナ→分電盤→メーターの流れをテンポよく解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「戸建とマンション、どっちがいいの？」という疑問を提示。多くの人が悩むポイント。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】ライフスタイル別に診断：①子育て世帯→戸建（庭で遊べる・騒音気にしない）②共働き→マンション（駅近・セキュリティ充実）③シニア→マンション（バリアフリー・管理楽）。それぞれの特徴を図解で解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたのライフスタイルに合った選択を！ハウスドゥで無料相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: ライフスタイルに合わせた選択肢を示すことで、「失敗したくない」不安を解消。家族の未来をイメージしやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.4</div>
                     <div class="content-title">【建築費が上がる理由】人手不足・資材価格上昇</div>
                     <div class="content-desc">複数要因で建築費が上昇し続ける背景を解説。今後の見通しも紹介。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「賃貸と購入、結局どっちが得？」という永遠のテーマを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】50年間の総コストを比較：賃貸（月7万×50年=4,200万円）vs 購入（3,500万円+諸費用+固定資産税=約3,793万円）。グラフでビジュアル化し、407万円の差を強調。持ち家派67.5%というアンケート結果も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたはどっち派？詳しいシミュレーションはハウスドゥで」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」というインサイトに直球で応える。具体的な数字で示すことで、購入への背中を押す。</div>
+                    </div>
+</div>
 
             </div>
         </div>
@@ -1889,49 +3193,193 @@
                     <div class="content-number">No.3</div>
                     <div class="content-title">【売却タイミング】いつ売るのがベスト？</div>
                     <div class="content-desc">築年数、金利動向、市況、ライフプラン から最適なタイミングを判断。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「戸建とマンション、どっちがいいの？」という疑問を提示。多くの人が悩むポイント。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】ライフスタイル別に診断：①子育て世帯→戸建（庭で遊べる・騒音気にしない）②共働き→マンション（駅近・セキュリティ充実）③シニア→マンション（バリアフリー・管理楽）。それぞれの特徴を図解で解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたのライフスタイルに合った選択を！ハウスドゥで無料相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: ライフスタイルに合わせた選択肢を示すことで、「失敗したくない」不安を解消。家族の未来をイメージしやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.4</div>
                     <div class="content-title">【査定方法】机上査定 vs 訪問査定</div>
                     <div class="content-desc">机上査定は早い・手軽、訪問査定は正確。状況に応じて使い分ける。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「賃貸と購入、結局どっちが得？」という永遠のテーマを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】50年間の総コストを比較：賃貸（月7万×50年=4,200万円）vs 購入（3,500万円+諸費用+固定資産税=約3,793万円）。グラフでビジュアル化し、407万円の差を強調。持ち家派67.5%というアンケート結果も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたはどっち派？詳しいシミュレーションはハウスドゥで」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」というインサイトに直球で応える。具体的な数字で示すことで、購入への背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.5</div>
                     <div class="content-title">【媒介契約】一般・専任・専属専任、どれを選ぶ？</div>
                     <div class="content-desc">3つの媒介契約の違いを30秒で解説。複数社に依頼できる vs 1社専属。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「未公開物件、本当にあるの？」という疑問に答える。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】物件探しの3つの方法を比較：①ネット検索（手軽・情報多い）②チラシ（地域密着・掘り出し物）③不動産店舗訪問（未公開物件・プロの提案）。それぞれのメリット・デメリットと、未公開物件を入手する方法（信頼関係構築）を解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「全部使って理想の家を見つけよう！ハウスドゥに相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「良い物件を見逃したくない」という不安に応え、複数の方法を組み合わせることで成功率が上がることを伝える。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.6</div>
                     <div class="content-title">【高く売るコツ】内覧前にやるべき5つのこと</div>
                     <div class="content-desc">清掃・整理整頓・におい対策・照明確保・修繕。第一印象が重要。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「今買うべき？それとも待つべき？」という悩みを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】よくある質問に回答：①金利が上がる前に買うべき？→金利上昇リスクあり、早めが有利 ②建築費高騰は続く？→人手不足・資材高騰で続く見込み ③ライフイベント優先→結婚・出産・子どもの入学前がベストタイミング。3つの視点で判断基準を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたに合ったタイミングを一緒に考えましょう！ハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、タイミングの判断材料を提供。「今がベスト」と背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.7</div>
                     <div class="content-title">【売却費用】仲介手数料・税金はいくらかかる？</div>
                     <div class="content-desc">仲介手数料、譲渡所得税、印紙税、抵当権抹消費用などを整理。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「あなたの家探しで一番大事なことは？」と問いかけ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】10項目のチェックリストを提示：予算・立地・広さ・築年数・間取り・日当たり・駐車場・学区・治安・将来性。各項目に優先度（高・中・低）を付けるワークシート形式。最後に「優先順位が明確になれば、物件選びがスムーズに！」とまとめ。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「このチェックリストを保存して、物件探しに活用しよう！」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「何を優先すべきか分からない」という悩みを解消。自分で判断できる感覚を与えることで、行動しやすくなる。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.8</div>
                     <div class="content-title">【よくある失敗】売却でやってはいけない3つのこと</div>
                     <div class="content-desc">相場を無視した高値設定、内覧対応の失敗、焦って安売りなど。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「不動産用語、分からなくて困った...」という経験を共有。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】初心者が知っておくべき10用語を解説：①仲介手数料（物件価格×3%+6万円）②諸費用（物件価格の5-10%）③引き渡し（鍵を受け取る日）④決済（残金支払い）⑤登記（所有権移転手続き）⑥重要事項説明⑦手付金⑧ローン特約⑨瑕疵担保⑩媒介契約。各用語を1文で分かりやすく解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この10用語を覚えておけば安心！保存推奨」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「分かりやすく教えてほしい」というインサイトに応え、専門用語の壁を取り除く。安心して相談できる雰囲気を作る。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.9</div>
                     <div class="content-title">【査定額が違う理由】複数社に依頼すべき？</div>
                     <div class="content-desc">査定額にばらつきが出る理由、適正価格の見極め方を解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「家を買う前に、何をすればいいの？」という不安を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】5つのステップを順番に紹介：①予算確認（年収の5-6倍が目安）②エリア絞り込み（通勤・学区・生活環境）③住宅ローン事前審査（借入可能額を把握）④内覧3件以上（比較して判断）⑤ライフプラン作成（10年後を見据える）。各ステップの重要ポイントを解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「この5つをクリアすれば、安心して購入できる！ハウスドゥがサポート」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「失敗したくない」不安に寄り添い、準備すべきことを明確化。行動計画が立てられる安心感を提供。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.10</div>
                     <div class="content-title">【売却期間】平均3～6ヶ月、早く売るコツは？</div>
                     <div class="content-desc">価格設定、内覧対応、販売活動の工夫で売却期間を短縮。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「団信って何？入らないとダメ？」という疑問を提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】団体信用生命保険の仕組みを解説：万が一の時（死亡・高度障害）にローン残債が0円に。家族を守る保険。さらに、がん団信（がん診断で残債50%または100%免除）、三大疾病団信（がん・心筋梗塞・脳卒中）の違いも30秒で比較。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「家族の未来を守る団信、詳しくはハウスドゥで相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「家族を守りたい」「万が一に備えたい」という不安に応え、保険の重要性を伝える。安心感を提供。</div>
+                    </div>
+</div>
 
             </div>
         </div>
@@ -1964,19 +3412,73 @@
                     <div class="content-number">No.3</div>
                     <div class="content-title">【リースバックが向いている人】老後資金・相続対策</div>
                     <div class="content-desc">老後資金が必要、相続でもめたくない、住み慣れた家に住み続けたい人に最適。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「戸建とマンション、どっちがいいの？」という疑問を提示。多くの人が悩むポイント。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】ライフスタイル別に診断：①子育て世帯→戸建（庭で遊べる・騒音気にしない）②共働き→マンション（駅近・セキュリティ充実）③シニア→マンション（バリアフリー・管理楽）。それぞれの特徴を図解で解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたのライフスタイルに合った選択を！ハウスドゥで無料相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: ライフスタイルに合わせた選択肢を示すことで、「失敗したくない」不安を解消。家族の未来をイメージしやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.4</div>
                     <div class="content-title">【リースバックvs通常売却】どっちを選ぶ？</div>
                     <div class="content-desc">状況別（老後資金・相続対策・引っ越ししたい）におすすめを診断。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「賃貸と購入、結局どっちが得？」という永遠のテーマを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】50年間の総コストを比較：賃貸（月7万×50年=4,200万円）vs 購入（3,500万円+諸費用+固定資産税=約3,793万円）。グラフでビジュアル化し、407万円の差を強調。持ち家派67.5%というアンケート結果も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたはどっち派？詳しいシミュレーションはハウスドゥで」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」というインサイトに直球で応える。具体的な数字で示すことで、購入への背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.5</div>
                     <div class="content-title">【リースバックの流れ】査定から賃貸契約まで</div>
                     <div class="content-desc">査定→売買契約→売却代金受取→賃貸契約→そのまま居住の5ステップ。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「未公開物件、本当にあるの？」という疑問に答える。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】物件探しの3つの方法を比較：①ネット検索（手軽・情報多い）②チラシ（地域密着・掘り出し物）③不動産店舗訪問（未公開物件・プロの提案）。それぞれのメリット・デメリットと、未公開物件を入手する方法（信頼関係構築）を解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「全部使って理想の家を見つけよう！ハウスドゥに相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「良い物件を見逃したくない」という不安に応え、複数の方法を組み合わせることで成功率が上がることを伝える。</div>
+                    </div>
+</div>
 
             </div>
         </div>
@@ -2009,19 +3511,73 @@
                     <div class="content-number">No.3</div>
                     <div class="content-title">【資産整理】老後資金のために不動産を売却</div>
                     <div class="content-desc">年金だけでは不安、医療費・介護費用に備えたい人向けの資産整理術。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「戸建とマンション、どっちがいいの？」という疑問を提示。多くの人が悩むポイント。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】ライフスタイル別に診断：①子育て世帯→戸建（庭で遊べる・騒音気にしない）②共働き→マンション（駅近・セキュリティ充実）③シニア→マンション（バリアフリー・管理楽）。それぞれの特徴を図解で解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたのライフスタイルに合った選択を！ハウスドゥで無料相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: ライフスタイルに合わせた選択肢を示すことで、「失敗したくない」不安を解消。家族の未来をイメージしやすくする。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.4</div>
                     <div class="content-title">【生前贈与】不動産を子供に贈与する方法</div>
                     <div class="content-desc">贈与税の計算、非課税枠、相続時精算課税制度をテンポよく解説。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「賃貸と購入、結局どっちが得？」という永遠のテーマを提示。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】50年間の総コストを比較：賃貸（月7万×50年=4,200万円）vs 購入（3,500万円+諸費用+固定資産税=約3,793万円）。グラフでビジュアル化し、407万円の差を強調。持ち家派67.5%というアンケート結果も紹介。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「あなたはどっち派？詳しいシミュレーションはハウスドゥで」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「損したくない」というインサイトに直球で応える。具体的な数字で示すことで、購入への背中を押す。</div>
+                    </div>
+</div>
 
                 <div class="content-card">
                     <div class="content-number">No.5</div>
                     <div class="content-title">【終活】不動産の整理は早めに始めよう</div>
                     <div class="content-desc">元気なうちに売却・贈与を検討。相続でもめないための準備。</div>
-                </div>
+                    <div class="content-video-details">
+                        <div class="video-structure-title">📹 動画構成（60秒）</div>
+                        <div class="video-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-time">0-10秒</span>
+                                <span class="timeline-content">【フック】「未公開物件、本当にあるの？」という疑問に答える。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">10-50秒</span>
+                                <span class="timeline-content">【本編】物件探しの3つの方法を比較：①ネット検索（手軽・情報多い）②チラシ（地域密着・掘り出し物）③不動産店舗訪問（未公開物件・プロの提案）。それぞれのメリット・デメリットと、未公開物件を入手する方法（信頼関係構築）を解説。</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-time">50-60秒</span>
+                                <span class="timeline-content">【CTA】「全部使って理想の家を見つけよう！ハウスドゥに相談」</span>
+                            </div>
+                        </div>
+                        <div class="video-hook">💡 刺さるポイント: 「良い物件を見逃したくない」という不安に応え、複数の方法を組み合わせることで成功率が上がることを伝える。</div>
+                    </div>
+</div>
 
             </div>
         </div>
