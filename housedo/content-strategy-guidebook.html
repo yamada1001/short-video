@@ -75,7 +75,7 @@
         }
 
         .cover-title {
-            font-family: 'Noto Serif JP', serif;
+            font-family: 'Noto Sans JP', sans-serif;
             font-size: 3.2rem;
             font-weight: 900;
             margin-bottom: 1.5rem;
@@ -84,7 +84,7 @@
         }
 
         .cover-subtitle {
-            font-family: 'Noto Serif JP', serif;
+            font-family: 'Noto Sans JP', sans-serif;
             font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 3rem;
@@ -105,7 +105,7 @@
         .cover-stat-number {
             font-size: 4rem;
             font-weight: 900;
-            font-family: 'Noto Serif JP', serif;
+            font-family: 'Noto Sans JP', sans-serif;
         }
 
         .cover-stat-label {
@@ -125,13 +125,25 @@
             min-height: 100vh;
             padding: 4rem 3rem;
             background: #fff;
+            overflow-x: auto;
+        }
+
+        .book-toc {
+            writing-mode: vertical-rl;
+            direction: ltr;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2rem;
+            margin: 0 auto;
+            width: max-content;
         }
 
         .toc-title {
-            font-family: 'Noto Serif JP', serif;
+            font-family: 'Noto Sans JP', sans-serif;
             font-size: 2.5rem;
             font-weight: 900;
             text-align: center;
+            writing-mode: horizontal-tb;
             margin-bottom: 3rem;
             color: #8B7355;
             padding-bottom: 1rem;
@@ -139,61 +151,81 @@
         }
 
         .toc-part {
-            margin-bottom: 2.5rem;
+            margin-left: 4rem;
+            padding-right: 2rem;
+            border-right: 2px solid #e0e0e0;
+        }
+
+        .toc-part:first-of-type {
+            margin-left: 0;
         }
 
         .toc-part-title {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 1.5rem;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1.8rem;
             font-weight: 700;
             color: #8B7355;
-            margin-bottom: 1rem;
-            padding-left: 1rem;
-            border-left: 5px solid #8B7355;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #8B7355;
+            letter-spacing: 0.2em;
         }
 
-        .toc-chapter {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 0.8rem 1.5rem;
-            margin-bottom: 0.5rem;
-            text-decoration: none;
+        .toc-chapter-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .toc-chapter-section:last-child {
+            border-bottom: none;
+        }
+
+        .toc-chapter-header {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
             color: #2c2c2c;
-            transition: all 0.2s ease;
-            border-bottom: 1px dotted #ddd;
-        }
-
-        .toc-chapter:hover {
-            background: #f5ebe0;
-            padding-left: 2rem;
-        }
-
-        .toc-chapter-title {
-            font-weight: 500;
-            flex: 1;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #8B7355;
         }
 
         .toc-chapter-number {
-            font-family: 'Noto Serif JP', serif;
-            font-weight: 700;
-            margin-right: 0.8rem;
             color: #8B7355;
-            min-width: 3rem;
-        }
-
-        .toc-chapter-count {
-            font-size: 0.9rem;
-            color: #666;
-            margin: 0 1rem;
+            margin-bottom: 0.3rem;
         }
 
         .toc-chapter-page {
-            font-family: 'Noto Serif JP', serif;
-            font-weight: 600;
+            font-size: 1rem;
+            color: #999;
+            margin-bottom: 0.3rem;
+        }
+
+        .toc-content-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .toc-content-item {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid #ddd;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .toc-content-number {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
             color: #8B7355;
-            min-width: 3rem;
-            text-align: right;
+            margin-bottom: 0.2rem;
+        }
+
+        .toc-content-title {
+            color: #2c2c2c;
+            font-weight: 500;
         }
 
         /* 章ページ */
@@ -209,14 +241,14 @@
         }
 
         .chapter-page-number {
-            font-family: 'Noto Serif JP', serif;
+            font-family: 'Noto Sans JP', sans-serif;
             font-size: 1rem;
             color: #999;
             margin-bottom: 0.5rem;
         }
 
         .chapter-title {
-            font-family: 'Noto Serif JP', serif;
+            font-family: 'Noto Sans JP', sans-serif;
             font-size: 2.2rem;
             font-weight: 900;
             color: #2c2c2c;
@@ -226,7 +258,7 @@
         }
 
         .chapter-number {
-            font-family: 'Noto Serif JP', serif;
+            font-family: 'Noto Sans JP', sans-serif;
             color: #8B7355;
             margin-right: 1rem;
         }
@@ -259,7 +291,7 @@
         }
 
         .content-number {
-            font-family: 'Noto Serif JP', serif;
+            font-family: 'Noto Sans JP', sans-serif;
             font-size: 0.9rem;
             font-weight: 700;
             color: #8B7355;
@@ -300,13 +332,25 @@
                 padding: 2rem 1.5rem;
             }
 
-            .toc-chapter {
-                flex-direction: column;
-                align-items: flex-start;
+            .book-toc {
+                max-height: 70vh;
+                padding: 1rem;
             }
 
-            .toc-chapter-page {
-                margin-top: 0.3rem;
+            .toc-part {
+                margin-left: 2rem;
+            }
+
+            .toc-part-title {
+                font-size: 1.4rem;
+            }
+
+            .toc-chapter-header {
+                font-size: 1.1rem;
+            }
+
+            .toc-content-item {
+                font-size: 0.9rem;
             }
 
             .content-grid {
@@ -361,94 +405,542 @@
         <div class="toc-page">
             <h2 class="toc-title">目次</h2>
 
-            <div class="toc-part">
-                <h3 class="toc-part-title">第1部 家を買う【購入検討者向け】</h3>
+            <div class="book-toc">
+                <div class="toc-part">
+                    <h3 class="toc-part-title">第1部 家を買う【購入検討者向け】</h3>
 
-                <a href="#chapter-1" class="toc-chapter">
-                    <span class="toc-chapter-number">第1章</span>
-                    <span class="toc-chapter-title">はじめての家探し｜基礎知識</span>
-                    <span class="toc-chapter-count">(10本)</span>
-                    <span class="toc-chapter-page">p.1</span>
-                </a>
+                    <div class="toc-chapter-section">
+                        <div class="toc-chapter-header">
+                            <div class="toc-chapter-number">第1章: はじめての家探し｜基礎知識</div>
+                            <div class="toc-chapter-page">p.1</div>
+                        </div>
+                        <ul class="toc-content-list">
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.1</div>
+                                <div class="toc-content-title">【60秒で分かる】物件選び4つのコツ</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.2</div>
+                                <div class="toc-content-title">新築 vs 中古、どっちがお得？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.3</div>
+                                <div class="toc-content-title">戸建 vs マンション、あなたに合うのは？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.4</div>
+                                <div class="toc-content-title">【賃貸 vs 購入】50年で407万円の差！</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.5</div>
+                                <div class="toc-content-title">物件探しの3つの方法、全部使ってますか？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.6</div>
+                                <div class="toc-content-title">【よくある質問】家を買うタイミングはいつ？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.7</div>
+                                <div class="toc-content-title">【診断】あなたの家探し優先度チェックリスト</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.8</div>
+                                <div class="toc-content-title">【初心者向け】不動産用語集10選</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.9</div>
+                                <div class="toc-content-title">【実録】お客様の家探しストーリー</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.10</div>
+                                <div class="toc-content-title">【保存版】家を買う前にやるべき5つのこと</div>
+                            </li>
+                        </ul>
+                    </div>
 
-                <a href="#chapter-2" class="toc-chapter">
-                    <span class="toc-chapter-number">第2章</span>
-                    <span class="toc-chapter-title">住宅ローン完全攻略｜金利・審査・返済</span>
-                    <span class="toc-chapter-count">(20本)</span>
-                    <span class="toc-chapter-page">p.2</span>
-                </a>
+                    <div class="toc-chapter-section">
+                        <div class="toc-chapter-header">
+                            <div class="toc-chapter-number">第2章: 住宅ローン完全攻略｜金利・審査・返済</div>
+                            <div class="toc-chapter-page">p.2</div>
+                        </div>
+                        <ul class="toc-content-list">
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.1</div>
+                                <div class="toc-content-title">【団信ってなに？】万が一の時、ローンが0円になる保険</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.2</div>
+                                <div class="toc-content-title">【銀行選び】メガバンク vs 地方銀行 vs ネット銀行、どれがお得？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.3</div>
+                                <div class="toc-content-title">【固定 vs 変動】金利タイプ、どっちを選ぶ？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.4</div>
+                                <div class="toc-content-title">【審査落ち対策】住宅ローンに通らない12の理由</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.5</div>
+                                <div class="toc-content-title">フラット35って何？メリット・デメリット完全解説</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.6</div>
+                                <div class="toc-content-title">【衝撃】金利1%違うだけで500万円の差！</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.7</div>
+                                <div class="toc-content-title">【返済比率25％が黄金比率】年収別の借入額目安</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.8</div>
+                                <div class="toc-content-title">繰り上げ返済、やるべき？メリット・デメリット</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.9</div>
+                                <div class="toc-content-title">【住宅ローン控除 × ふるさと納税】併用できる？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.10</div>
+                                <div class="toc-content-title">【諸費用5～10％】物件価格以外にかかるお金</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.11</div>
+                                <div class="toc-content-title">【現金一括購入】メリット・デメリット徹底比較</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.12</div>
+                                <div class="toc-content-title">【IT重説】自宅でZoom契約、メリット・注意点</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.13</div>
+                                <div class="toc-content-title">【エージェントに聞いた】よくある質問TOP5</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.14</div>
+                                <div class="toc-content-title">【住宅ローン用語集】初心者が知っておくべき10用語</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.15</div>
+                                <div class="toc-content-title">【実録】審査に落ちた→別の銀行で通った話</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.16</div>
+                                <div class="toc-content-title">【チェックリスト】住宅ローン申し込み前にやるべき5つのこと</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.17</div>
+                                <div class="toc-content-title">【年収別シミュレーション】あなたが借りられる金額は？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.18</div>
+                                <div class="toc-content-title">【変動金利の5年ルール・1.25倍ルール】って何？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.19</div>
+                                <div class="toc-content-title">【比較表】固定・変動・固定期間選択、どれを選ぶ？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.20</div>
+                                <div class="toc-content-title">【中古×リフォーム】資金計画の立て方（大分市）</div>
+                            </li>
+                        </ul>
+                    </div>
 
-                <a href="#chapter-3" class="toc-chapter">
-                    <span class="toc-chapter-number">第3章</span>
-                    <span class="toc-chapter-title">物件の選び方・見極め方｜内覧・広告</span>
-                    <span class="toc-chapter-count">(15本)</span>
-                    <span class="toc-chapter-page">p.3</span>
-                </a>
+                    <div class="toc-chapter-section">
+                        <div class="toc-chapter-header">
+                            <div class="toc-chapter-number">第3章: 物件の選び方・見極め方｜内覧・広告</div>
+                            <div class="toc-chapter-page">p.3</div>
+                        </div>
+                        <ul class="toc-content-list">
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.1</div>
+                                <div class="toc-content-title">【保存版】内覧チェックリスト20項目</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.2</div>
+                                <div class="toc-content-title">【内覧で絶対チェック】水回り5つのポイント</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.3</div>
+                                <div class="toc-content-title">【不動産広告】騙されないための7つのチェックポイント</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.4</div>
+                                <div class="toc-content-title">【物件タイプ別】広告で見落としがちな危険ポイント</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.5</div>
+                                <div class="toc-content-title">【土地探し】失敗しないための3つのコツ</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.6</div>
+                                <div class="toc-content-title">【未公開物件】って本当にあるの？入手方法4選</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.7</div>
+                                <div class="toc-content-title">【未完成の建売】メリット・デメリット徹底比較</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.8</div>
+                                <div class="toc-content-title">【内覧の持ち物】プロが教える必携アイテム7選</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.9</div>
+                                <div class="toc-content-title">【内覧は3回行こう】朝・昼・夜で見るポイントが違う</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.10</div>
+                                <div class="toc-content-title">【ハザードマップ】災害リスクを確認しよう</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.11</div>
+                                <div class="toc-content-title">【内覧あるある】見落としがちなポイントTOP5</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.12</div>
+                                <div class="toc-content-title">【周辺環境】内覧時にチェックすべき10項目</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.13</div>
+                                <div class="toc-content-title">【戸建 vs マンション】内覧チェックポイントの違い</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.14</div>
+                                <div class="toc-content-title">【内覧の流れ】初めてでも安心、5ステップ</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.15</div>
+                                <div class="toc-content-title">【広告用語集】知らないと損する不動産用語10選</div>
+                            </li>
+                        </ul>
+                    </div>
 
-                <a href="#chapter-4" class="toc-chapter">
-                    <span class="toc-chapter-number">第4章</span>
-                    <span class="toc-chapter-title">中古マンション購入ガイド</span>
-                    <span class="toc-chapter-count">(8本)</span>
-                    <span class="toc-chapter-page">p.4</span>
-                </a>
+                    <div class="toc-chapter-section">
+                        <div class="toc-chapter-header">
+                            <div class="toc-chapter-number">第4章: 中古マンション購入ガイド</div>
+                            <div class="toc-chapter-page">p.4</div>
+                        </div>
+                        <ul class="toc-content-list">
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.1</div>
+                                <div class="toc-content-title">【中古マンション】購入前にチェックすべき4つのポイント</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.2</div>
+                                <div class="toc-content-title">【7つの注意点】中古マンション購入前に知っておくべきこと</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.3</div>
+                                <div class="toc-content-title">【大分市】中古マンション×リノベが人気の理由</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.4</div>
+                                <div class="toc-content-title">【築20～30年】中古マンションのメリット・デメリット</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.5</div>
+                                <div class="toc-content-title">【管理費・修繕積立金】って何？毎月いくらかかる？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.6</div>
+                                <div class="toc-content-title">【新耐震 vs 旧耐震】中古マンションの耐震基準を確認しよう</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.7</div>
+                                <div class="toc-content-title">【管理規約】ペット飼育・リフォーム可否を確認</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.8</div>
+                                <div class="toc-content-title">【修繕計画】長期修繕計画書の見方を解説</div>
+                            </li>
+                        </ul>
+                    </div>
 
-                <a href="#chapter-5" class="toc-chapter">
-                    <span class="toc-chapter-number">第5章</span>
-                    <span class="toc-chapter-title">中古戸建×リフォーム戦略</span>
-                    <span class="toc-chapter-count">(12本)</span>
-                    <span class="toc-chapter-page">p.5</span>
-                </a>
+                    <div class="toc-chapter-section">
+                        <div class="toc-chapter-header">
+                            <div class="toc-chapter-number">第5章: 中古戸建×リフォーム戦略</div>
+                            <div class="toc-chapter-page">p.5</div>
+                        </div>
+                        <ul class="toc-content-list">
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.1</div>
+                                <div class="toc-content-title">【中古×リフォーム】9つのステップで賢く進める</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.2</div>
+                                <div class="toc-content-title">【中古戸建×リノベ】新築より費用が安く、自由にデザインできる</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.3</div>
+                                <div class="toc-content-title">【リフォームできない!?】購入前に確認すべき4つのポイント</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.4</div>
+                                <div class="toc-content-title">【インスペクション】建物検査で中古住宅の不安を解消</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.5</div>
+                                <div class="toc-content-title">【築25年の中古戸建】メリット・デメリット</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.6</div>
+                                <div class="toc-content-title">【住宅設備保証】エアコン・給湯器の故障に備える</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.7</div>
+                                <div class="toc-content-title">【失敗事例】中古住宅購入でよくある失敗TOP5</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.8</div>
+                                <div class="toc-content-title">【リフォーム費用】相場はいくら？部位別に解説</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.9</div>
+                                <div class="toc-content-title">【築年数別】中古戸建のチェックポイント</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.10</div>
+                                <div class="toc-content-title">【リフォームvs建て替え】どっちがお得？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.11</div>
+                                <div class="toc-content-title">【インスペクション実演】プロはここをチェックする</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.12</div>
+                                <div class="toc-content-title">【保存版】中古住宅購入前のチェックリスト30項目</div>
+                            </li>
+                        </ul>
+                    </div>
 
-                <a href="#chapter-6" class="toc-chapter">
-                    <span class="toc-chapter-number">第6章</span>
-                    <span class="toc-chapter-title">賢く使う補助金・税金｜最大200万円の補助</span>
-                    <span class="toc-chapter-count">(10本)</span>
-                    <span class="toc-chapter-page">p.6</span>
-                </a>
+                    <div class="toc-chapter-section">
+                        <div class="toc-chapter-header">
+                            <div class="toc-chapter-number">第6章: 賢く使う補助金・税金｜最大200万円の補助</div>
+                            <div class="toc-chapter-page">p.6</div>
+                        </div>
+                        <ul class="toc-content-list">
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.1</div>
+                                <div class="toc-content-title">【最大200万円】先進的窓リノベ補助金の申請方法</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.2</div>
+                                <div class="toc-content-title">【給湯省エネ2024】高効率給湯器で最大18万円補助</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.3</div>
+                                <div class="toc-content-title">【子育てエコホーム支援事業】最大100万円の補助金</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.4</div>
+                                <div class="toc-content-title">【親から資金援助】非課税特例を活用しよう</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.5</div>
+                                <div class="toc-content-title">【5つの税金】不動産購入時にかかる税金まとめ</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.6</div>
+                                <div class="toc-content-title">【補助金まとめ】2024年に使える住宅補助金3選</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.7</div>
+                                <div class="toc-content-title">【固定資産税】毎年いくらかかる？計算方法を解説</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.8</div>
+                                <div class="toc-content-title">【不動産取得税】購入時に一度だけかかる税金</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.9</div>
+                                <div class="toc-content-title">【登録免許税】所有権移転・抵当権設定にかかる税金</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.10</div>
+                                <div class="toc-content-title">【補助金申請】失敗しないための3つのポイント</div>
+                            </li>
+                        </ul>
+                    </div>
 
-                <a href="#chapter-7" class="toc-chapter">
-                    <span class="toc-chapter-number">第7章</span>
-                    <span class="toc-chapter-title">契約から入居まで｜手続きの流れ</span>
-                    <span class="toc-chapter-count">(8本)</span>
-                    <span class="toc-chapter-page">p.7</span>
-                </a>
+                    <div class="toc-chapter-section">
+                        <div class="toc-chapter-header">
+                            <div class="toc-chapter-number">第7章: 契約から入居まで｜手続きの流れ</div>
+                            <div class="toc-chapter-page">p.7</div>
+                        </div>
+                        <ul class="toc-content-list">
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.1</div>
+                                <div class="toc-content-title">【購入申し込み前】チェックすべき3つのポイント</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.2</div>
+                                <div class="toc-content-title">【売買契約】手付金・解除条件を理解しよう</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.3</div>
+                                <div class="toc-content-title">【購入の流れ】情報収集から入居まで約3ヶ月</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.4</div>
+                                <div class="toc-content-title">【不動産会社の選び方】囲い込みを避ける方法</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.5</div>
+                                <div class="toc-content-title">【契約当日】持ち物・流れを事前確認</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.6</div>
+                                <div class="toc-content-title">【必要書類チェックリスト】購入時に用意するもの</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.7</div>
+                                <div class="toc-content-title">【3つの契約】売買契約・ローン契約・保険契約の違い</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.8</div>
+                                <div class="toc-content-title">【決済の流れ】引き渡し当日のスケジュール</div>
+                            </li>
+                        </ul>
+                    </div>
 
-                <a href="#chapter-8" class="toc-chapter">
-                    <span class="toc-chapter-number">第8章</span>
-                    <span class="toc-chapter-title">その他｜太陽光・建築費・サービス</span>
-                    <span class="toc-chapter-count">(4本)</span>
-                    <span class="toc-chapter-page">p.8</span>
-                </a>
+                    <div class="toc-chapter-section">
+                        <div class="toc-chapter-header">
+                            <div class="toc-chapter-number">第8章: その他｜太陽光・建築費・サービス</div>
+                            <div class="toc-chapter-page">p.8</div>
+                        </div>
+                        <ul class="toc-content-list">
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.1</div>
+                                <div class="toc-content-title">【太陽光発電】メリット・デメリット徹底比較</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.2</div>
+                                <div class="toc-content-title">【建築費高騰】今買うべき？待つべき？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.3</div>
+                                <div class="toc-content-title">【太陽光の仕組み】5段階フロー図で理解</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.4</div>
+                                <div class="toc-content-title">【建築費が上がる理由】人手不足・資材価格上昇</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
+                <div class="toc-part">
+                    <h3 class="toc-part-title">第2部 家を売る【売却検討者向け】</h3>
+
+                    <div class="toc-chapter-section">
+                        <div class="toc-chapter-header">
+                            <div class="toc-chapter-number">第9章: 不動産売却の基礎知識</div>
+                            <div class="toc-chapter-page">p.9</div>
+                        </div>
+                        <ul class="toc-content-list">
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.1</div>
+                                <div class="toc-content-title">【売却の流れ】査定から引き渡しまで7ステップ</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.2</div>
+                                <div class="toc-content-title">【買取vs仲介】どっちがお得？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.3</div>
+                                <div class="toc-content-title">【売却タイミング】いつ売るのがベスト？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.4</div>
+                                <div class="toc-content-title">【査定方法】机上査定 vs 訪問査定</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.5</div>
+                                <div class="toc-content-title">【媒介契約】一般・専任・専属専任、どれを選ぶ？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.6</div>
+                                <div class="toc-content-title">【高く売るコツ】内覧前にやるべき5つのこと</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.7</div>
+                                <div class="toc-content-title">【売却費用】仲介手数料・税金はいくらかかる？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.8</div>
+                                <div class="toc-content-title">【よくある失敗】売却でやってはいけない3つのこと</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.9</div>
+                                <div class="toc-content-title">【査定額が違う理由】複数社に依頼すべき？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.10</div>
+                                <div class="toc-content-title">【売却期間】平均3～6ヶ月、早く売るコツは？</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="toc-chapter-section">
+                        <div class="toc-chapter-header">
+                            <div class="toc-chapter-number">第10章: リースバック活用術</div>
+                            <div class="toc-chapter-page">p.10</div>
+                        </div>
+                        <ul class="toc-content-list">
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.1</div>
+                                <div class="toc-content-title">【リースバックとは】売却しても住み続けられる仕組み</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.2</div>
+                                <div class="toc-content-title">【リースバック】メリット・デメリット徹底比較</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.3</div>
+                                <div class="toc-content-title">【リースバックが向いている人】老後資金・相続対策</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.4</div>
+                                <div class="toc-content-title">【リースバックvs通常売却】どっちを選ぶ？</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.5</div>
+                                <div class="toc-content-title">【リースバックの流れ】査定から賃貸契約まで</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="toc-chapter-section">
+                        <div class="toc-chapter-header">
+                            <div class="toc-chapter-number">第11章: 相続・資産整理</div>
+                            <div class="toc-chapter-page">p.11</div>
+                        </div>
+                        <ul class="toc-content-list">
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.1</div>
+                                <div class="toc-content-title">【相続対策】不動産を誰が相続するか決めておく</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.2</div>
+                                <div class="toc-content-title">【空き家問題】放置すると税金6倍！早めの対策を</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.3</div>
+                                <div class="toc-content-title">【資産整理】老後資金のために不動産を売却</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.4</div>
+                                <div class="toc-content-title">【生前贈与】不動産を子供に贈与する方法</div>
+                            </li>
+                            <li class="toc-content-item">
+                                <div class="toc-content-number">No.5</div>
+                                <div class="toc-content-title">【終活】不動産の整理は早めに始めよう</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-
-            <div class="toc-part">
-                <h3 class="toc-part-title">第2部 家を売る【売却検討者向け】</h3>
-
-                <a href="#chapter-9" class="toc-chapter">
-                    <span class="toc-chapter-number">第9章</span>
-                    <span class="toc-chapter-title">不動産売却の基礎知識</span>
-                    <span class="toc-chapter-count">(10本)</span>
-                    <span class="toc-chapter-page">p.9</span>
-                </a>
-
-                <a href="#chapter-10" class="toc-chapter">
-                    <span class="toc-chapter-number">第10章</span>
-                    <span class="toc-chapter-title">リースバック活用術</span>
-                    <span class="toc-chapter-count">(5本)</span>
-                    <span class="toc-chapter-page">p.10</span>
-                </a>
-
-                <a href="#chapter-11" class="toc-chapter">
-                    <span class="toc-chapter-number">第11章</span>
-                    <span class="toc-chapter-title">相続・資産整理</span>
-                    <span class="toc-chapter-count">(5本)</span>
-                    <span class="toc-chapter-page">p.11</span>
-                </a>
-
-            </div>
-
-
         </div>
 
         <!-- 第1章 -->
