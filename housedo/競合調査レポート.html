@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>競合調査レポート | ハウスドゥ Instagram運用代行</title>
+    <meta name="description" content="ハウスドゥ様のInstagram運用代行プロジェクト 詳細競合調査レポート">
+
+    <!-- LINE Seed Font -->
+    <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* 追加スタイル */
+        .account-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--color-natural-brown);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .account-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .account-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #E0E0E0;
+        }
+
+        .account-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .account-handle {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .follower-count {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #8B7355 0%, #A68968 100%);
+            color: #FFFFFF;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .account-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            background-color: #F5F3F0;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #8B7355;
+        }
+
+        .account-features {
+            margin-top: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-title i {
+            color: #8B7355;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-left: 1.5rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .feature-list i {
+            color: #428570;
+            margin-top: 0.25rem;
+        }
+
+        .success-badge {
+            display: inline-block;
+            background-color: #428570;
+            color: #FFFFFF;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
+
+        .category-section {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #8B7355;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #8B7355;
+        }
+
+        .category-description {
+            font-size: 1.125rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFF3D6 100%);
+            border-left: 4px solid #F39C12;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .tip-box__title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #F39C12;
+            margin-bottom: 1rem;
+        }
+
+        .tip-box__content {
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .comparison-table th {
+            background-color: #8B7355;
+            color: #FFFFFF;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #F5F3F0;
+        }
+
+        .action-items {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-left: 4px solid #428570;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+        }
+
+        .action-items__title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #428570;
+            margin-bottom: 1.5rem;
+        }
+
+        .action-items__list {
+            list-style: none;
+        }
+
+        .action-items__list li {
+            background-color: #FFFFFF;
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.75rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+
+        .action-items__list li i {
+            color: #428570;
+            font-size: 1.25rem;
+            margin-top: 0.125rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header" id="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <i class="fas fa-chart-line"></i>
+                <span>競合調査レポート</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="hero__bg">
+            <div class="hero__shape hero__shape--1"></div>
+            <div class="hero__shape hero__shape--2"></div>
+            <div class="hero__shape hero__shape--3"></div>
+        </div>
+        <div class="hero__container">
+            <div class="hero__content">
+                <div class="hero__label">
+                    <span class="hero__label-num">📊</span>
+                    <span class="hero__label-text">Competitive Analysis Report</span>
+                    <span class="hero__label-line"></span>
+                </div>
+                <h1 class="hero__title">
+                    <span class="hero__title-line">Instagram運用</span>
+                    <span class="hero__title-line">競合調査レポート</span>
+                </h1>
+                <p class="hero__text">
+                    大分の競合 + 全国の成功事例を徹底分析
+                </p>
+                <div class="hero__meta">
+                    <div class="hero__meta-item">
+                        <i class="fas fa-search"></i>
+                        <span>調査アカウント数: 15社以上</span>
+                    </div>
+                    <div class="hero__meta-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>総フォロワー数: 50万人超</span>
+                    </div>
+                    <div class="hero__meta-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>成功パターン: 10種類以上</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 目次 -->
+    <section class="section section--gray">
+        <div class="container">
+            <div class="info-box info-box--primary" style="background-color: #FFFFFF; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <div class="info-box__header">
+                    <i class="fas fa-list"></i>
+                    <h3>目次</h3>
+                </div>
+                <div class="info-box__body">
+                    <ul class="checklist">
+                        <li><i class="fas fa-chevron-right"></i><span><a href="#local-competitors" style="color: #8B7355; font-weight: 700;">1. 大分の競合アカウント</a></span></li>
+                        <li><i class="fas fa-chevron-right"></i><span><a href="#housedo-official" style="color: #8B7355; font-weight: 700;">2. ハウスドゥ公式アカウント</a></span></li>
+                        <li><i class="fas fa-chevron-right"></i><span><a href="#national-success" style="color: #8B7355; font-weight: 700;">3. 全国の成功事例（TOP 5）</a></span></li>
+                        <li><i class="fas fa-chevron-right"></i><span><a href="#success-patterns" style="color: #8B7355; font-weight: 700;">4. 成功パターンの分析</a></span></li>
+                        <li><i class="fas fa-chevron-right"></i><span><a href="#recommendations" style="color: #8B7355; font-weight: 700;">5. ハウスドゥへの推奨施策</a></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. 大分の競合アカウント -->
+    <section class="section" id="local-competitors">
+        <div class="container">
+            <div class="category-section">
+                <h2 class="category-title"><i class="fas fa-map-marker-alt"></i> 1. 大分の競合アカウント</h2>
+                <p class="category-description">ハウスドゥ様と同じ大分エリアで不動産Instagram運用をしている競合の分析です。</p>
+
+                <!-- タカラ不動産 -->
+                <div class="account-card">
+                    <div class="account-header">
+                        <div>
+                            <div class="account-name">タカラ不動産 <span class="success-badge">大分No.1</span></div>
+                            <div class="account-handle">@takara_estate</div>
+                        </div>
+                        <div class="follower-count">
+                            <i class="fas fa-users"></i>
+                            <span>2,603フォロワー</span>
+                        </div>
+                    </div>
+
+                    <div class="account-features">
+                        <div class="feature-title">
+                            <i class="fas fa-star"></i>
+                            特徴
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i><span><strong>大分で最もフォロワーが多い不動産アカウント</strong></span></li>
+                            <li><i class="fas fa-check-circle"></i><span>賃貸物件、リノベーション、ホームステージングに注力</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>「Quality of Life（生活の質）」をテーマに発信</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>大分での認知度が高く、地域密着型の運用</span></li>
+                        </ul>
+
+                        <div class="feature-title" style="margin-top: 1.5rem;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            注目ポイント
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-arrow-right"></i><span>地元で圧倒的なフォロワー数を獲得</span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>ライフスタイル提案型の投稿で差別化</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- センチュリー21大分ベスト不動産 -->
+                <div class="account-card">
+                    <div class="account-header">
+                        <div>
+                            <div class="account-name">センチュリー21大分ベスト不動産</div>
+                            <div class="account-handle">@c21_oitabest</div>
+                        </div>
+                        <div class="follower-count">
+                            <i class="fas fa-users"></i>
+                            <span>954フォロワー</span>
+                        </div>
+                    </div>
+
+                    <div class="account-features">
+                        <div class="feature-title">
+                            <i class="fas fa-star"></i>
+                            特徴
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i><span>145投稿で954フォロワー（約6.6フォロワー/投稿）</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>アカウントをリニューアルし、現在は @oitabest_c21 で運用中</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>大手フランチャイズの信頼性を活かした運用</span></li>
+                        </ul>
+
+                        <div class="feature-title" style="margin-top: 1.5rem;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            注目ポイント
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-arrow-right"></i><span>アカウントリニューアルで運用方針を変更中</span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>フランチャイズブランドを活かした運用</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 分析まとめ -->
+                <div class="tip-box">
+                    <div class="tip-box__title">
+                        <i class="fas fa-lightbulb"></i>
+                        大分エリアの分析まとめ
+                    </div>
+                    <div class="tip-box__content">
+                        <p><strong>現状：</strong> 大分での不動産Instagram運用は、まだ成熟していません。タカラ不動産が約2,600フォロワーで地域トップですが、全国の成功事例と比較すると10分の1以下です。</p>
+                        <p style="margin-top: 1rem;"><strong>チャンス：</strong> つまり、<strong>今から本格的にInstagram運用を開始すれば、大分エリアでのNo.1を狙えるポジション</strong>にあります。競合が少ない今がチャンスです！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. ハウスドゥ公式アカウント -->
+    <section class="section section--gray" id="housedo-official">
+        <div class="container">
+            <div class="category-section">
+                <h2 class="category-title"><i class="fas fa-building"></i> 2. ハウスドゥ公式アカウント</h2>
+                <p class="category-description">ハウスドゥ本部・他店舗のInstagram運用状況を分析します。</p>
+
+                <!-- ハウスドゥFC公式 -->
+                <div class="account-card">
+                    <div class="account-header">
+                        <div>
+                            <div class="account-name">ハウスドゥFC 公式</div>
+                            <div class="account-handle">@housedo_fc_official</div>
+                        </div>
+                        <div class="follower-count">
+                            <i class="fas fa-users"></i>
+                            <span>489フォロワー</span>
+                        </div>
+                    </div>
+
+                    <div class="account-features">
+                        <div class="feature-title">
+                            <i class="fas fa-star"></i>
+                            特徴
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i><span>「不動産売買仲介フランチャイズ店舗数No.1」を謳う</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>FC全体の情報を発信</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>ブランド認知向上に注力</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ハウスドゥ・ジャパン -->
+                <div class="account-card">
+                    <div class="account-header">
+                        <div>
+                            <div class="account-name">【公式】ハウスドゥ・ジャパン</div>
+                            <div class="account-handle">@housedo_japan</div>
+                        </div>
+                        <div class="follower-count">
+                            <i class="fas fa-users"></i>
+                            <span>460フォロワー</span>
+                        </div>
+                    </div>
+
+                    <div class="account-features">
+                        <div class="feature-title">
+                            <i class="fas fa-star"></i>
+                            特徴
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i><span>社員紹介、新築・中古物件再販、リフォーム、投資用物件など幅広く発信</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>事業の多角化をアピール</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 調査結果 -->
+                <div class="tip-box">
+                    <div class="tip-box__title">
+                        <i class="fas fa-chart-bar"></i>
+                        ハウスドゥのInstagram利用調査
+                    </div>
+                    <div class="tip-box__content">
+                        <p><strong>驚きの調査結果：</strong> ハウスドゥを運営するAnd Do Holdings社の調査によると、<strong>「住宅購入者の4人に1人がInstagramで情報収集している」</strong>ことが判明しています（日本経済新聞2024年5月報道）。</p>
+                        <p style="margin-top: 1rem;"><strong>つまり：</strong> Instagramは「あったらいいね」ではなく、<strong>「必須のマーケティングチャネル」</strong>になっています。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 全国の成功事例（TOP 5） -->
+    <section class="section" id="national-success">
+        <div class="container">
+            <div class="category-section">
+                <h2 class="category-title"><i class="fas fa-trophy"></i> 3. 全国の成功事例（TOP 5）</h2>
+                <p class="category-description">フォロワー数1万人以上の全国トップクラスのアカウントを分析します。</p>
+
+                <!-- RoomPa -->
+                <div class="account-card" style="border-left-color: #FF6B6B;">
+                    <div class="account-header">
+                        <div>
+                            <div class="account-name">RoomPa（ルムパ） <span class="success-badge" style="background-color: #FF6B6B;">全国No.1</span></div>
+                            <div class="account-handle">@roompa</div>
+                        </div>
+                        <div class="follower-count" style="background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);">
+                            <i class="fas fa-users"></i>
+                            <span>31.3万フォロワー</span>
+                        </div>
+                    </div>
+
+                    <div class="account-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">対象エリア</div>
+                            <div class="stat-value">関東中心</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">業態</div>
+                            <div class="stat-value">賃貸物件紹介</div>
+                        </div>
+                    </div>
+
+                    <div class="account-features">
+                        <div class="feature-title">
+                            <i class="fas fa-star"></i>
+                            成功のポイント
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i><span><strong>冒頭2〜3秒で珍しい物件を見せて離脱防止</strong></span></li>
+                            <li><i class="fas fa-check-circle"></i><span>ルームツアー形式でテンポよく紹介</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>「最新投稿にコメントでDM紹介」という導線設計で問い合わせ増加</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>リール動画を中心に投稿（静止画より動画が圧倒的に伸びる）</span></li>
+                        </ul>
+
+                        <div class="feature-title" style="margin-top: 1.5rem;">
+                            <i class="fas fa-video"></i>
+                            リール動画の特徴
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-arrow-right"></i><span>「家賃5万円なのに広い！」など<strong>キャッチーなサムネイル</strong></span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>軽快なBGMとテンポの良い編集</span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>物件のユニークさを最初に見せる</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- グッドルーム -->
+                <div class="account-card" style="border-left-color: #4A90E2;">
+                    <div class="account-header">
+                        <div>
+                            <div class="account-name">グッドルーム【公式】 <span class="success-badge" style="background-color: #4A90E2;">全国No.2</span></div>
+                            <div class="account-handle">@goodrooms</div>
+                        </div>
+                        <div class="follower-count" style="background: linear-gradient(135deg, #4A90E2 0%, #63A4E8 100%);">
+                            <i class="fas fa-users"></i>
+                            <span>10.7万フォロワー</span>
+                        </div>
+                    </div>
+
+                    <div class="account-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">対象エリア</div>
+                            <div class="stat-value">全国</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">業態</div>
+                            <div class="stat-value">ライフスタイル提案</div>
+                        </div>
+                    </div>
+
+                    <div class="account-features">
+                        <div class="feature-title">
+                            <i class="fas fa-star"></i>
+                            成功のポイント
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i><span><strong>物件紹介だけでなく、インテリア・ライフスタイル提案も発信</strong></span></li>
+                            <li><i class="fas fa-check-circle"></i><span>職人紹介動画で親近感を構築</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>ターゲット層（おしゃれな暮らしをしたい人）への認知拡大</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>メディアとしての位置づけでブランディング</span></li>
+                        </ul>
+
+                        <div class="feature-title" style="margin-top: 1.5rem;">
+                            <i class="fas fa-lightbulb"></i>
+                            参考になるポイント
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-arrow-right"></i><span>物件だけではなく「暮らし方」を提案</span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>フォロワーとの関係構築に注力</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- スモアル姫路本店・大阪店 -->
+                <div class="account-card" style="border-left-color: #F39C12;">
+                    <div class="account-header">
+                        <div>
+                            <div class="account-name">スモアル姫路本店・大阪店</div>
+                            <div class="account-handle">@smoall_official</div>
+                        </div>
+                        <div class="follower-count" style="background: linear-gradient(135deg, #F39C12 0%, #F5B041 100%);">
+                            <i class="fas fa-users"></i>
+                            <span>5万フォロワー</span>
+                        </div>
+                    </div>
+
+                    <div class="account-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">対象エリア</div>
+                            <div class="stat-value">関西中心</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">業態</div>
+                            <div class="stat-value">仲介手数料22,000円固定</div>
+                        </div>
+                    </div>
+
+                    <div class="account-features">
+                        <div class="feature-title">
+                            <i class="fas fa-star"></i>
+                            成功のポイント
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i><span><strong>エンタメ性のあるドッキリ動画・ドキュメンタリー動画</strong></span></li>
+                            <li><i class="fas fa-check-circle"></i><span>スタッフの個性を前面に出し、個人の人気化に成功</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>「この人から借りたい」と思わせる属人化戦略</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>TikTok的なエンタメ要素でバズを狙う</span></li>
+                        </ul>
+
+                        <div class="feature-title" style="margin-top: 1.5rem;">
+                            <i class="fas fa-video"></i>
+                            リール動画の特徴
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-arrow-right"></i><span>ドッキリ企画（例：「社長にバレずに〇〇できるか」）</span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>スタッフの日常を切り取ったドキュメンタリー</span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>視聴者参加型の企画</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Simple NAIKEN -->
+                <div class="account-card" style="border-left-color: #9B59B6;">
+                    <div class="account-header">
+                        <div>
+                            <div class="account-name">Simple NAIKEN</div>
+                            <div class="account-handle">@simple_naiken</div>
+                        </div>
+                        <div class="follower-count" style="background: linear-gradient(135deg, #9B59B6 0%, #B370CF 100%);">
+                            <i class="fas fa-users"></i>
+                            <span>4.4万フォロワー</span>
+                        </div>
+                    </div>
+
+                    <div class="account-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">対象エリア</div>
+                            <div class="stat-value">大阪中心</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">業態</div>
+                            <div class="stat-value">デザイン重視</div>
+                        </div>
+                    </div>
+
+                    <div class="account-features">
+                        <div class="feature-title">
+                            <i class="fas fa-star"></i>
+                            成功のポイント
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i><span><strong>統一感のあるデザインでブランディング</strong></span></li>
+                            <li><i class="fas fa-check-circle"></i><span>軽快なナレーションと効果音でテンポよく物件を解説</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>ストーリーズハイライト活用でFAQや会社情報を整理</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>インスタ映えするおしゃれ投稿でターゲット層の関心を引く</span></li>
+                        </ul>
+
+                        <div class="feature-title" style="margin-top: 1.5rem;">
+                            <i class="fas fa-palette"></i>
+                            デザインの特徴
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-arrow-right"></i><span>フィード全体が統一された色調・フォント</span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>サムネイルに必ずロゴを配置</span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>プロフェッショナルな印象を与える</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- スマイリー -->
+                <div class="account-card" style="border-left-color: #27AE60;">
+                    <div class="account-header">
+                        <div>
+                            <div class="account-name">スマイリー</div>
+                            <div class="account-handle">@smileey_official</div>
+                        </div>
+                        <div class="follower-count" style="background: linear-gradient(135deg, #27AE60 0%, #52BE80 100%);">
+                            <i class="fas fa-users"></i>
+                            <span>1.5万フォロワー</span>
+                        </div>
+                    </div>
+
+                    <div class="account-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">対象エリア</div>
+                            <div class="stat-value">全国</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">業態</div>
+                            <div class="stat-value">一人暮らし特化</div>
+                        </div>
+                    </div>
+
+                    <div class="account-features">
+                        <div class="feature-title">
+                            <i class="fas fa-star"></i>
+                            成功のポイント
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i><span><strong>一人暮らし向け物件に特化してターゲットを絞る</strong></span></li>
+                            <li><i class="fas fa-check-circle"></i><span>仲介手数料無料という強みを前面に押し出す</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>ユーザーが興味を引くキャッチフレーズをサムネイルに配置</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>「家賃5万円で駅近！」など具体的な数字で訴求</span></li>
+                        </ul>
+
+                        <div class="feature-title" style="margin-top: 1.5rem;">
+                            <i class="fas fa-bullseye"></i>
+                            ターゲティング戦略
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-arrow-right"></i><span>新社会人・学生に絞った投稿内容</span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>「初めての一人暮らし」に特化したハッシュタグ</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- アイズルーム（特別枠） -->
+                <div class="account-card" style="border-left-color: #E74C3C; background: linear-gradient(135deg, #FFF5F5 0%, #FFFFFF 100%);">
+                    <div class="account-header">
+                        <div>
+                            <div class="account-name">アイズルーム <span class="success-badge" style="background-color: #E74C3C;">急成長事例</span></div>
+                            <div class="account-handle">@isroom_official</div>
+                        </div>
+                        <div class="follower-count" style="background: linear-gradient(135deg, #E74C3C 0%, #EC7063 100%);">
+                            <i class="fas fa-users"></i>
+                            <span>1万フォロワー（3ヶ月で達成）</span>
+                        </div>
+                    </div>
+
+                    <div class="account-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">成長期間</div>
+                            <div class="stat-value"><strong>わずか3ヶ月</strong></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">戦略</div>
+                            <div class="stat-value">リール中心</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">特徴</div>
+                            <div class="stat-value">エンタメ重視</div>
+                        </div>
+                    </div>
+
+                    <div class="account-features">
+                        <div class="feature-title">
+                            <i class="fas fa-rocket"></i>
+                            驚異的な成長を遂げた施策
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i><span><strong>リール動画を中心に投稿（ルームツアーとの相性が抜群）</strong></span></li>
+                            <li><i class="fas fa-check-circle"></i><span><strong>物件情報を最後まで出さず、何度も再生させる設計</strong>でリーチ数UP</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>当初の「部屋探しノウハウ」から<strong>エンタメ性重視にピボット</strong></span></li>
+                            <li><i class="fas fa-check-circle"></i><span>公式LINE導入で若年層向けに気軽なコミュニケーション</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>月50組限定で希少性を演出</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>契約者をストーリーズで紹介し、信頼性を構築</span></li>
+                        </ul>
+
+                        <div class="feature-title" style="margin-top: 1.5rem;">
+                            <i class="fas fa-chart-line"></i>
+                            アイズルームから学べること
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-arrow-right"></i><span>SuumoやHomesなどの競合は静止画中心 → <strong>動画で差別化</strong></span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>ノウハウよりも<strong>エンタメ性</strong>のほうがエンゲージメントが高い</span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>「ターゲットが何を求めているか」を徹底的に考え抜く</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 成功パターンの分析 -->
+    <section class="section section--gray" id="success-patterns">
+        <div class="container">
+            <div class="category-section">
+                <h2 class="category-title"><i class="fas fa-chart-pie"></i> 4. 成功パターンの分析</h2>
+                <p class="category-description">全国の成功アカウントに共通する10の成功法則をまとめました。</p>
+
+                <!-- 比較表 -->
+                <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #333;">成功アカウントの共通点</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th>成功法則</th>
+                            <th>具体例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 700; color: #8B7355;">1</td>
+                            <td><strong>リール動画中心の投稿</strong></td>
+                            <td>全ての成功アカウントがリールを活用。静止画投稿は減少傾向。</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; color: #8B7355;">2</td>
+                            <td><strong>冒頭2〜3秒でユニークな特徴を見せる</strong></td>
+                            <td>「家賃5万円なのに広い！」「駅徒歩1分の物件」など、最初に驚きを与える</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; color: #8B7355;">3</td>
+                            <td><strong>ルームツアー形式でナレーション付き</strong></td>
+                            <td>物件を歩きながら紹介。テンポの良いナレーションで飽きさせない</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; color: #8B7355;">4</td>
+                            <td><strong>エンタメ性重視（ドッキリ・スタッフの個性）</strong></td>
+                            <td>スモアルのようなドッキリ企画、スタッフの日常を切り取った動画</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; color: #8B7355;">5</td>
+                            <td><strong>キャッチーなサムネイル</strong></td>
+                            <td>「ペット可でこの家賃！」「収納たっぷり1LDK」など</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; color: #8B7355;">6</td>
+                            <td><strong>ハッシュタグ活用（最大30個）</strong></td>
+                            <td>#場所+不動産、#一人暮らし、#駅近、#ペット可など</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; color: #8B7355;">7</td>
+                            <td><strong>Instagramライブでルームツアー</strong></td>
+                            <td>事前告知してライブ配信。リアルタイムで質問に回答</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; color: #8B7355;">8</td>
+                            <td><strong>公式LINE等の若者向け導線</strong></td>
+                            <td>電話よりLINEのほうが気軽に問い合わせできる</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; color: #8B7355;">9</td>
+                            <td><strong>ライフスタイル提案型</strong></td>
+                            <td>「どんな生活ができるか」を見せる。インテリア・暮らし方の提案</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; color: #8B7355;">10</td>
+                            <td><strong>Instagram広告（1,000円/日から）</strong></td>
+                            <td>年齢・関心事でターゲティング。自然な広告形式</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- 成功の方程式 -->
+                <div style="margin-top: 3rem;">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: #333; text-align: center;">
+                        <i class="fas fa-calculator"></i> 成功の方程式
+                    </h3>
+                    <div style="background: linear-gradient(135deg, #8B7355 0%, #A68968 100%); color: #FFFFFF; padding: 2rem; border-radius: 12px; text-align: center; font-size: 1.25rem; line-height: 1.8;">
+                        <strong style="font-size: 1.5rem;">リール動画（冒頭2秒でユニーク）</strong><br>
+                        ×<br>
+                        <strong style="font-size: 1.5rem;">エンタメ性（スタッフの個性・ドッキリ）</strong><br>
+                        ×<br>
+                        <strong style="font-size: 1.5rem;">ライフスタイル提案</strong><br>
+                        =<br>
+                        <strong style="font-size: 2rem;">Instagram成功</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ハウスドゥへの推奨施策 -->
+    <section class="section" id="recommendations">
+        <div class="container">
+            <div class="category-section">
+                <h2 class="category-title"><i class="fas fa-rocket"></i> 5. ハウスドゥへの推奨施策</h2>
+                <p class="category-description">競合調査の結果を踏まえ、ハウスドゥ様に最適な運用戦略を提案します。</p>
+
+                <!-- 推奨施策 -->
+                <div class="action-items">
+                    <div class="action-items__title">
+                        <i class="fas fa-clipboard-check"></i>
+                        今すぐ実施すべき10の施策
+                    </div>
+                    <ul class="action-items__list">
+                        <li>
+                            <i class="fas fa-video"></i>
+                            <div>
+                                <strong>リール動画を月10本投稿</strong><br>
+                                <span style="color: #666;">静止画ではなく、動画中心の投稿に切り替える。ルームツアー形式が効果的。</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-bolt"></i>
+                            <div>
+                                <strong>冒頭2〜3秒でユニークな特徴を見せる</strong><br>
+                                <span style="color: #666;">「家賃〇万円でこの広さ！」「駅徒歩〇分」など、視聴者の興味を引くポイントを最初に見せる。</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <strong>スタッフの個性を前面に出す</strong><br>
+                                <span style="color: #666;">「この人から買いたい」と思わせる属人化戦略。スタッフ紹介・1日密着動画など。</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-theater-masks"></i>
+                            <div>
+                                <strong>エンタメ性を重視（ドッキリ・スタッフの日常）</strong><br>
+                                <span style="color: #666;">不動産情報だけではなく、スモアルのようなエンタメ要素を取り入れる。</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-image"></i>
+                            <div>
+                                <strong>キャッチーなサムネイル作成</strong><br>
+                                <span style="color: #666;">「ペット可でこの家賃！」「収納たっぷり」など、一目で分かるキャッチコピーをサムネイルに配置。</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-hashtag"></i>
+                            <div>
+                                <strong>ハッシュタグ戦略（30個まで活用）</strong><br>
+                                <span style="color: #666;">#大分不動産 #大分賃貸 #駅近 #ペット可 など、検索されやすいワードを30個まで設定。</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-broadcast-tower"></i>
+                            <div>
+                                <strong>Instagramライブでルームツアー</strong><br>
+                                <span style="color: #666;">月1回、事前告知してライブ配信。リアルタイムで質問に回答し、臨場感を出す。</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-comments"></i>
+                            <div>
+                                <strong>公式LINE導入で若年層向け導線</strong><br>
+                                <span style="color: #666;">電話よりLINEのほうが気軽に問い合わせできる。「詳細はDMへ」ではなく「LINEで問い合わせ」。</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-home"></i>
+                            <div>
+                                <strong>ライフスタイル提案型の投稿</strong><br>
+                                <span style="color: #666;">「どんな生活ができるか」を見せる。大分の地域情報・おすすめスポットも発信。</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-ad"></i>
+                            <div>
+                                <strong>Instagram広告（1,000円/日から開始）</strong><br>
+                                <span style="color: #666;">年齢・地域・関心事でターゲティング。少額から始めて効果測定。</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 最終まとめ -->
+                <div style="margin-top: 3rem; background: linear-gradient(135deg, #8B7355 0%, #A68968 100%); color: #FFFFFF; padding: 3rem 2rem; border-radius: 12px; text-align: center;">
+                    <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem;">
+                        <i class="fas fa-trophy"></i> ハウスドゥが大分No.1になるために
+                    </h3>
+                    <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        大分エリアでは、まだInstagram運用が成熟していません。タカラ不動産（2,600フォロワー）が地域トップですが、<br>
+                        <strong style="font-size: 1.5rem;">全国の成功事例と比較すると10分の1以下</strong>です。
+                    </p>
+                    <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        つまり、<strong style="font-size: 1.5rem; text-decoration: underline;">今から本格的に運用を開始すれば、大分エリアでのNo.1を狙えるポジション</strong>にあります。
+                    </p>
+                    <p style="font-size: 1.25rem; font-weight: 700;">
+                        競合が少ない今がチャンスです！🚀
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__brand">
+                <div class="footer__logo">
+                    <i class="fas fa-home"></i>
+                    <span>HOUSEDO Instagram運用代行</span>
+                </div>
+                <p class="footer__desc">
+                    競合調査レポート<br>
+                    作成日: 2025年1月
+                </p>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>&copy; 2025 YOJITU. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- トップへ戻るボタン -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+</body>
+</html>
