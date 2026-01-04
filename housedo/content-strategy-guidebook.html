@@ -6,8 +6,7 @@
     <title>ハウスドゥ大分明野 Instagram コンテンツ戦略 完全ガイドブック</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,1459 +14,1250 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'LINE Seed+JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.8;
-            color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #fff 100%);
-            padding: 2rem 1rem;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .container {
-            max-width: 1600px;
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            color: #2c2c2c;
+            background: linear-gradient(135deg, #f5ebe0 0%, #faf6f1 50%, #f5ebe0 100%);
+            padding: 0;
+        }
+
+        .book-container {
+            max-width: 1000px;
             margin: 0 auto;
             background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            padding: 3rem 2rem;
+            box-shadow: 0 10px 60px rgba(0, 0, 0, 0.3);
         }
 
-        .book-cover {
-            text-align: center;
+        /* 表紙ページ */
+        .cover-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #8B7355 0%, #6B5744 100%);
+            color: #f5ebe0;
             padding: 4rem 2rem;
-            background: linear-gradient(135deg, #8B7355 0%, #A68968 100%);
-            border-radius: 12px;
-            margin-bottom: 3rem;
-            color: #fff;
-        }
-
-        .book-cover h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .book-cover .subtitle {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .book-cover .tagline {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            font-weight: 400;
-        }
-
-        .toc-intro {
-            background: linear-gradient(135deg, #F0F8FF 0%, #F5FAFF 100%);
-            border-left: 4px solid #4A90E2;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            border-radius: 8px;
-        }
-
-        .toc-intro h2 {
-            color: #4A90E2;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .toc-intro h2 i {
-            margin-right: 0.5rem;
-        }
-
-        .toc-intro p {
-            color: #555;
-            margin-bottom: 0.8rem;
-        }
-
-        .toc-intro .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .stat-box {
-            background: #fff;
-            padding: 1rem;
-            border-radius: 8px;
+            position: relative;
             text-align: center;
         }
 
-        .stat-number {
+        .cover-ornament {
+            width: 150px;
+            height: 2px;
+            background: #f5ebe0;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .cover-ornament::before,
+        .cover-ornament::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #f5ebe0;
+            border-radius: 50%;
+            top: -3px;
+        }
+
+        .cover-ornament::before {
+            left: -15px;
+        }
+
+        .cover-ornament::after {
+            right: -15px;
+        }
+
+        .cover-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            letter-spacing: 0.05em;
+        }
+
+        .cover-subtitle {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+        }
+
+        .cover-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .cover-stat {
+            text-align: center;
+        }
+
+        .cover-stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .cover-stat-label {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .cover-publisher {
+            margin-top: 4rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* 目次ページ */
+        .toc-page {
+            min-height: 100vh;
+            padding: 4rem 3rem;
+            background: #fff;
+        }
+
+        .toc-title {
+            font-family: 'Noto Serif JP', serif;
             font-size: 2.5rem;
             font-weight: 900;
-            color: #4A90E2;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #8B7355;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #8B7355;
         }
 
-        .stat-label {
+        .toc-part {
+            margin-bottom: 2.5rem;
+        }
+
+        .toc-part-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8B7355;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 5px solid #8B7355;
+        }
+
+        .toc-chapter {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.8rem 1.5rem;
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+            color: #2c2c2c;
+            transition: all 0.2s ease;
+            border-bottom: 1px dotted #ddd;
+        }
+
+        .toc-chapter:hover {
+            background: #f5ebe0;
+            padding-left: 2rem;
+        }
+
+        .toc-chapter-title {
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .toc-chapter-number {
+            font-family: 'Noto Serif JP', serif;
+            font-weight: 700;
+            margin-right: 0.8rem;
+            color: #8B7355;
+            min-width: 3rem;
+        }
+
+        .toc-chapter-count {
             font-size: 0.9rem;
             color: #666;
-            margin-top: 0.5rem;
+            margin: 0 1rem;
         }
 
-        .part {
-            margin: 4rem 0;
+        .toc-chapter-page {
+            font-family: 'Noto Serif JP', serif;
+            font-weight: 600;
+            color: #8B7355;
+            min-width: 3rem;
+            text-align: right;
         }
 
-        .part-header {
-            background: linear-gradient(135deg, #8B7355 0%, #A68968 100%);
-            color: #fff;
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-        }
-
-        .part-number {
-            font-size: 1.2rem;
-            font-weight: 700;
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
-        }
-
-        .part-title {
-            font-size: 2rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-        }
-
-        .part-desc {
-            font-size: 1rem;
-            opacity: 0.95;
-        }
-
-        .chapter {
-            margin: 3rem 0;
-            padding: 2rem;
-            background: #FAFAFA;
-            border-radius: 12px;
-            border-left: 6px solid #8B7355;
+        /* 章ページ */
+        .chapter-page {
+            min-height: 100vh;
+            padding: 4rem 3rem;
+            background: #fff;
+            border-top: 1px solid #e0e0e0;
         }
 
         .chapter-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 3rem;
         }
 
-        .chapter-number {
-            background: linear-gradient(135deg, #8B7355 0%, #A68968 100%);
-            color: #fff;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 900;
-            flex-shrink: 0;
+        .chapter-page-number {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1rem;
+            color: #999;
+            margin-bottom: 0.5rem;
         }
 
         .chapter-title {
-            font-size: 1.8rem;
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.2rem;
             font-weight: 900;
-            color: #333;
+            color: #2c2c2c;
+            margin-bottom: 0.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #8B7355;
         }
 
-        .chapter-desc {
+        .chapter-number {
+            font-family: 'Noto Serif JP', serif;
+            color: #8B7355;
+            margin-right: 1rem;
+        }
+
+        .chapter-part {
+            font-size: 1rem;
             color: #666;
-            margin-bottom: 2rem;
-            padding-left: 76px;
+            font-weight: 500;
         }
 
-        .section {
-            margin: 2rem 0;
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #8B7355;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .section-title i {
-            color: #8B7355;
-        }
-
-        .article-list {
-            background: #fff;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .article-item {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .article-item:last-child {
-            border-bottom: none;
-        }
-
-        .article-title {
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 0.3rem;
-        }
-
-        .article-link {
-            font-size: 0.85rem;
-            color: #4A90E2;
-            text-decoration: none;
-            font-family: monospace;
-        }
-
-        .article-link:hover {
-            text-decoration: underline;
-        }
-
-        .instagram-content {
-            background: linear-gradient(135deg, #FFE5F5 0%, #FFF0F8 100%);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .instagram-content h4 {
-            color: #E1306C;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .content-card-grid {
+        /* コンテンツカード */
+        .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .content-card {
-            background: #fff;
-            border-radius: 8px;
-            padding: 1rem;
-            border-left: 4px solid #E1306C;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-left: 4px solid #8B7355;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
         }
 
-        .content-card-title {
+        .content-card:hover {
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .content-number {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 0.9rem;
             font-weight: 700;
-            color: #333;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .content-card-format {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .format-reel {
-            background: #FFE5E5;
-            color: #FF0000;
-        }
-
-
-        .content-card-desc {
-            font-size: 0.85rem;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .appendix {
-            background: linear-gradient(135deg, #FFF8F0 0%, #FFFAF5 100%);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
-
-        .appendix h3 {
             color: #8B7355;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-title {
             font-weight: 700;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1.05rem;
+            color: #2c2c2c;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
         }
 
-        .appendix h3 i {
-            margin-right: 0.5rem;
+        .content-desc {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.7;
         }
 
+        /* レスポンシブ */
         @media (max-width: 768px) {
-            .container {
-                padding: 2rem 1rem;
-            }
-
-            .book-cover h1 {
+            .cover-title {
                 font-size: 2rem;
             }
 
-            .book-cover .subtitle {
+            .cover-subtitle {
                 font-size: 1.2rem;
             }
 
-            .chapter-header {
+            .cover-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .toc-page,
+            .chapter-page {
+                padding: 2rem 1.5rem;
+            }
+
+            .toc-chapter {
                 flex-direction: column;
                 align-items: flex-start;
             }
 
-            .chapter-desc {
-                padding-left: 0;
+            .toc-chapter-page {
+                margin-top: 0.3rem;
             }
 
-            .content-card-grid {
+            .content-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .chapter-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* 印刷スタイル */
+        @media print {
+            .book-container {
+                box-shadow: none;
+            }
+
+            .chapter-page {
+                page-break-before: always;
+            }
+
+            .content-card {
+                page-break-inside: avoid;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="book-cover">
-            <h1><i class="fab fa-instagram"></i> ハウスドゥ大分明野<br>Instagram コンテンツ戦略</h1>
-            <p class="subtitle">〜「家を買う・売る」完全ガイドブック〜</p>
-            <p class="tagline">オウンドメディア44記事 × 競合調査 × Instagram戦略を一冊に凝縮</p>
+    <div class="book-container">
+        <!-- 表紙ページ -->
+        <div class="cover-page">
+            <div class="cover-ornament"></div>
+            <h1 class="cover-title">Instagram<br>コンテンツ戦略<br>完全ガイドブック</h1>
+            <p class="cover-subtitle">ハウスドゥ大分明野</p>
+            <div class="cover-ornament"></div>
+
+            <div class="cover-stats">
+                <div class="cover-stat">
+                    <div class="cover-stat-number">107</div>
+                    <div class="cover-stat-label">本のリール企画</div>
+                </div>
+                <div class="cover-stat">
+                    <div class="cover-stat-number">12</div>
+                    <div class="cover-stat-label">章</div>
+                </div>
+            </div>
+
+            <p class="cover-publisher">2026</p>
         </div>
 
-        <div class="toc-intro">
-            <h2><i class="fas fa-book-open"></i> 本書の構成について</h2>
-            <p>本書は、ハウスドゥ大分明野のオウンドメディア全44記事を体系的に整理し、「一冊の本」として再構築したInstagramコンテンツ戦略ガイドです。</p>
-            <p><strong>各章の構成:</strong></p>
-            <ul style="list-style: none; padding-left: 0; margin-top: 1rem;">
-                <li style="padding: 0.3rem 0;"><i class="fas fa-check" style="color: #4CAF50; margin-right: 0.5rem;"></i> <strong>オウンドメディア記事</strong> - 既存記事の一覧とURL</li>
-                <li style="padding: 0.3rem 0;"><i class="fas fa-check" style="color: #4CAF50; margin-right: 0.5rem;"></i> <strong>Instagramコンテンツ案</strong> - 各章から抽出した投稿案（リール・カルーセル・投稿）</li>
-                <li style="padding: 0.3rem 0;"><i class="fas fa-check" style="color: #4CAF50; margin-right: 0.5rem;"></i> <strong>オウンドメディア連携</strong> - Instagram投稿から詳細記事への導線設計</li>
-            </ul>
+        <!-- 目次ページ -->
+        <div class="toc-page">
+            <h2 class="toc-title">目次</h2>
 
-            <div class="stats">
-                <div class="stat-box">
-                    <div class="stat-number">44</div>
-                    <div class="stat-label">オウンドメディア記事</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">12</div>
-                    <div class="stat-label">章立て</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Instagramコンテンツ案</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">2</div>
-                    <div class="stat-label">ターゲット層（購入・売却）</div>
-                </div>
+            <div class="toc-part">
+                <h3 class="toc-part-title">第1部 家を買う【購入検討者向け】</h3>
+
+                <a href="#chapter-1" class="toc-chapter">
+                    <span class="toc-chapter-number">第1章</span>
+                    <span class="toc-chapter-title">はじめての家探し｜基礎知識</span>
+                    <span class="toc-chapter-count">(10本)</span>
+                    <span class="toc-chapter-page">p.1</span>
+                </a>
+
+                <a href="#chapter-2" class="toc-chapter">
+                    <span class="toc-chapter-number">第2章</span>
+                    <span class="toc-chapter-title">住宅ローン完全攻略｜金利・審査・返済</span>
+                    <span class="toc-chapter-count">(20本)</span>
+                    <span class="toc-chapter-page">p.2</span>
+                </a>
+
+                <a href="#chapter-3" class="toc-chapter">
+                    <span class="toc-chapter-number">第3章</span>
+                    <span class="toc-chapter-title">物件の選び方・見極め方｜内覧・広告</span>
+                    <span class="toc-chapter-count">(15本)</span>
+                    <span class="toc-chapter-page">p.3</span>
+                </a>
+
+                <a href="#chapter-4" class="toc-chapter">
+                    <span class="toc-chapter-number">第4章</span>
+                    <span class="toc-chapter-title">中古マンション購入ガイド</span>
+                    <span class="toc-chapter-count">(8本)</span>
+                    <span class="toc-chapter-page">p.4</span>
+                </a>
+
+                <a href="#chapter-5" class="toc-chapter">
+                    <span class="toc-chapter-number">第5章</span>
+                    <span class="toc-chapter-title">中古戸建×リフォーム戦略</span>
+                    <span class="toc-chapter-count">(12本)</span>
+                    <span class="toc-chapter-page">p.5</span>
+                </a>
+
+                <a href="#chapter-6" class="toc-chapter">
+                    <span class="toc-chapter-number">第6章</span>
+                    <span class="toc-chapter-title">賢く使う補助金・税金｜最大200万円の補助</span>
+                    <span class="toc-chapter-count">(10本)</span>
+                    <span class="toc-chapter-page">p.6</span>
+                </a>
+
+                <a href="#chapter-7" class="toc-chapter">
+                    <span class="toc-chapter-number">第7章</span>
+                    <span class="toc-chapter-title">契約から入居まで｜手続きの流れ</span>
+                    <span class="toc-chapter-count">(8本)</span>
+                    <span class="toc-chapter-page">p.7</span>
+                </a>
+
+                <a href="#chapter-8" class="toc-chapter">
+                    <span class="toc-chapter-number">第8章</span>
+                    <span class="toc-chapter-title">その他｜太陽光・建築費・サービス</span>
+                    <span class="toc-chapter-count">(4本)</span>
+                    <span class="toc-chapter-page">p.8</span>
+                </a>
+
             </div>
+
+            <div class="toc-part">
+                <h3 class="toc-part-title">第2部 家を売る【売却検討者向け】</h3>
+
+                <a href="#chapter-9" class="toc-chapter">
+                    <span class="toc-chapter-number">第9章</span>
+                    <span class="toc-chapter-title">不動産売却の基礎知識</span>
+                    <span class="toc-chapter-count">(10本)</span>
+                    <span class="toc-chapter-page">p.9</span>
+                </a>
+
+                <a href="#chapter-10" class="toc-chapter">
+                    <span class="toc-chapter-number">第10章</span>
+                    <span class="toc-chapter-title">リースバック活用術</span>
+                    <span class="toc-chapter-count">(5本)</span>
+                    <span class="toc-chapter-page">p.10</span>
+                </a>
+
+                <a href="#chapter-11" class="toc-chapter">
+                    <span class="toc-chapter-number">第11章</span>
+                    <span class="toc-chapter-title">相続・資産整理</span>
+                    <span class="toc-chapter-count">(5本)</span>
+                    <span class="toc-chapter-page">p.11</span>
+                </a>
+
+            </div>
+
+
         </div>
 
-        <!-- 第1部: 家を買う -->
-        <div class="part">
-            <div class="part-header">
-                <div class="part-number">第1部</div>
-                <div class="part-title"><i class="fas fa-home"></i> 家を買う【購入検討者向け】</div>
-                <div class="part-desc">ターゲット: 30-40代ファミリー層｜子供が小学校入学前後、建売・中古一戸建て・マンション購入を検討</div>
+        <!-- 第1章 -->
+        <div class="chapter-page" id="chapter-1">
+            <div class="chapter-header">
+                <div class="chapter-page-number">p.1</div>
+                <h2 class="chapter-title">
+                    <span class="chapter-number">第1章</span>はじめての家探し｜基礎知識
+                </h2>
+                <p class="chapter-part">第1部 家を買う【購入検討者向け】</p>
             </div>
 
-            <!-- 第1章 -->
-            <div class="chapter">
-                <div class="chapter-header">
-                    <div class="chapter-number">1</div>
-                    <div class="chapter-title">はじめての家探し｜基礎知識</div>
-                </div>
-                <p class="chapter-desc">家を買う動機、予算、新築vs中古、戸建vsマンションなど、家探しの最初の一歩を学ぶ章。</p>
+            <div class="content-grid">
 
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-file-alt"></i> オウンドメディア記事（4記事）</h3>
-                    <div class="article-list">
-                        <div class="article-item">
-                            <div class="article-title">【不動産のプロが教える】物件の選び方 4つのコツ</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/140303/" target="_blank" class="article-link">/blog/kounyuumae/140303/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">住むなら【新築？中古？？】【戸建？マンション？？】お悩みのお客様へ</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/146453/" target="_blank" class="article-link">/blog/kounyuumae/146453/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【初心者必見！】不動産情報の３つの探し方《物件購入編》</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/140639/" target="_blank" class="article-link">/blog/kounyuumae/140639/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【賃貸VS購入】《2024年4月時点最新アンケートあり》住み方の選択</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/145461/" target="_blank" class="article-link">/blog/kounyuumae/145461/</a>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.1</div>
+                    <div class="content-title">【60秒で分かる】物件選び4つのコツ</div>
+                    <div class="content-desc">動機→予算→間取り→立地の4ステップをテンポよく解説。「まずは優先順位を決めよう！」というメッセージ。</div>
                 </div>
 
-                <div class="instagram-content">
-                    <h4><i class="fab fa-instagram"></i> Instagramコンテンツ案（10案）</h4>
-                    <div class="content-card-grid">
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【60秒で分かる】物件選び4つのコツ</div>
-                            <div class="content-card-desc">動機→予算→間取り→立地の4ステップをテンポよく解説。「まずは優先順位を決めよう！」というメッセージ。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">新築 vs 中古、どっちがお得？</div>
-                            <div class="content-card-desc">10秒で、価格・資産価値・メンテナンス費用を比較。最後のシーンで「詳しくはプロフィールのリンクから」と誘導。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">戸建 vs マンション、あなたに合うのは？</div>
-                            <div class="content-card-desc">ライフスタイル別（子育て世帯・共働き・シニア）におすすめを診断。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【賃貸 vs 購入】50年で407万円の差！</div>
-                            <div class="content-card-desc">生涯コストをグラフでテンポよく解説。「持ち家派67.5%」というアンケート結果も紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">物件探しの3つの方法、全部使ってますか？</div>
-                            <div class="content-card-desc">ネット検索・チラシ・不動産店舗訪問のメリット・デメリットを比較。未公開物件の入手方法も紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【よくある質問】家を買うタイミングはいつ？</div>
-                            <div class="content-card-desc">「金利が上がる前に買うべき？」「建築費高騰は続く？」などのFAQに回答。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【診断】あなたの家探し優先度チェックリスト</div>
-                            <div class="content-card-desc">「予算」「立地」「広さ」「築年数」など10項目をチェックし、優先順位を明確化するワークシート。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【初心者向け】不動産用語集10選</div>
-                            <div class="content-card-desc">仲介手数料、諸費用、引き渡し、決済など、家探しで必ず出てくる用語を解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【実録】お客様の家探しストーリー</div>
-                            <div class="content-card-desc">実際のお客様（30代ファミリー）の家探しプロセスを再現。「最初は賃貸派だったけど...」というストーリー。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【保存版】家を買う前にやるべき5つのこと</div>
-                            <div class="content-card-desc">①予算確認 ②エリア絞り込み ③住宅ローン事前審査 ④内覧3件以上 ⑤ライフプラン作成。ポイントを順番に紹介。</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 第2章 -->
-            <div class="chapter">
-                <div class="chapter-header">
-                    <div class="chapter-number">2</div>
-                    <div class="chapter-title">住宅ローン完全攻略｜金利・審査・返済</div>
-                </div>
-                <p class="chapter-desc">住宅ローンの金利タイプ、銀行選び、審査対策、繰り上げ返済など、ローンに関する全てを網羅。</p>
-
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-file-alt"></i> オウンドメディア記事（16記事）</h3>
-                    <div class="article-list">
-                        <div class="article-item">
-                            <div class="article-title">団体信用生命保険について</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/144749/" target="_blank" class="article-link">/blog/kounyuumae/144749/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">住宅ローン選択ガイド（5つの銀行タイプ比較）</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/144227/" target="_blank" class="article-link">/blog/kounyuumae/144227/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">住宅ローン金利の3タイプ（固定・変動・固定期間選択）</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/143614/" target="_blank" class="article-link">/blog/kounyuumae/143614/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">住宅ローンに通らない人必見！12の原因と対策</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/166433/" target="_blank" class="article-link">/blog/kounyuumae/166433/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">フラット35とは？わかりやすく解説</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/151072/" target="_blank" class="article-link">/blog/kounyuumae/151072/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">住宅ローン控除とふるさと納税を併用する注意点</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/159002/" target="_blank" class="article-link">/blog/kounyuumae/159002/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">住宅ローン繰り上げ返済のメリット・デメリット</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/144778/" target="_blank" class="article-link">/blog/kounyuumae/144778/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">返済比率とは？無理なく返せる借入額の計算方法</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/142737/" target="_blank" class="article-link">/blog/kounyuumae/142737/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">住宅ローン金利の仕組み（1%違うと500万円の差）</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/143284/" target="_blank" class="article-link">/blog/kounyuumae/143284/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">中古×リフォームの資金計画（大分市）</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/157477/" target="_blank" class="article-link">/blog/kounyuumae/157477/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">不動産の現金一括購入はお得？注意点も解説</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/166419/" target="_blank" class="article-link">/blog/kounyuumae/166419/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">IT重説とは？非対面でも契約できる！</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/159012/" target="_blank" class="article-link">/blog/kounyuumae/159012/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">不動産購入時の諸費用の目安（5～10％）</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/140204/" target="_blank" class="article-link">/blog/kounyuumae/140204/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">お客様よくある質問！エージェント【影山編】</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/166573/" target="_blank" class="article-link">/blog/kounyuumae/166573/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">お客様からよくある質問！エージェント【姫野編】</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/166518/" target="_blank" class="article-link">/blog/kounyuumae/166518/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">お客様からよくある質問！エージェント【鶴林編】</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/166450/" target="_blank" class="article-link">/blog/kounyuumae/166450/</a>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.2</div>
+                    <div class="content-title">新築 vs 中古、どっちがお得？</div>
+                    <div class="content-desc">10秒で、価格・資産価値・メンテナンス費用を比較。最後のシーンで「詳しくはプロフィールのリンクから」と誘導。</div>
                 </div>
 
-                <div class="instagram-content">
-                    <h4><i class="fab fa-instagram"></i> Instagramコンテンツ案（20案）</h4>
-                    <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">※住宅ローンは最も関心の高いテーマのため、コンテンツ数を多く設定</p>
-                    <div class="content-card-grid">
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【団信ってなに？】万が一の時、ローンが0円になる保険</div>
-                            <div class="content-card-desc">団体信用生命保険の仕組みをテンポよく解説。がん団信・三大疾病団信の違いも30秒で解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【銀行選び】メガバンク vs 地方銀行 vs ネット銀行、どれがお得？</div>
-                            <div class="content-card-desc">5つの銀行タイプを比較ポイントを解説。自営業者・公務員など属性別おすすめも紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【固定 vs 変動】金利タイプ、どっちを選ぶ？</div>
-                            <div class="content-card-desc">ライフプラン別（子育て中・共働き・シニア）におすすめ金利タイプを診断。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【審査落ち対策】住宅ローンに通らない12の理由</div>
-                            <div class="content-card-desc">延滞履歴・借入金・健康問題など、審査落ちの原因と対策を一覧で紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">フラット35って何？メリット・デメリット完全解説</div>
-                            <div class="content-card-desc">個人事業主・転職直後の人に向いている理由をテンポよく解説。適合証明書の費用も紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【衝撃】金利1%違うだけで500万円の差！</div>
-                            <div class="content-card-desc">3000万円35年ローンの総返済額をシミュレーション。銀行選びの重要性を強調。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【返済比率25％が黄金比率】年収別の借入額目安</div>
-                            <div class="content-card-desc">年収300万・400万・500万・600万円ごとに、無理なく返せる借入額を算出。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">繰り上げ返済、やるべき？メリット・デメリット</div>
-                            <div class="content-card-desc">利息削減 vs 手元資金減少、住宅ローン控除への影響を比較。最適なタイミングも紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【住宅ローン控除 × ふるさと納税】併用できる？</div>
-                            <div class="content-card-desc">併用時の控除額減少リスクと、ワンストップ特例制度での回避方法を解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【諸費用5～10％】物件価格以外にかかるお金</div>
-                            <div class="content-card-desc">契約・ローン・登記・保険の4カテゴリで諸費用を整理。3000万円物件なら150～300万円。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【現金一括購入】メリット・デメリット徹底比較</div>
-                            <div class="content-card-desc">ローン金利不要 vs 税務調査リスク、ローン控除が受けられないデメリットも紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【IT重説】自宅でZoom契約、メリット・注意点</div>
-                            <div class="content-card-desc">非対面で重要事項説明ができる制度を紹介。通信トラブル対策も解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【エージェントに聞いた】よくある質問TOP5</div>
-                            <div class="content-card-desc">「ローン審査に何日かかる？」「ペアローンとは？」など、実際のQ&Aを紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【住宅ローン用語集】初心者が知っておくべき10用語</div>
-                            <div class="content-card-desc">元利均等返済、元金均等返済、保証料、事務手数料など、必須用語を解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【実録】審査に落ちた→別の銀行で通った話</div>
-                            <div class="content-card-desc">お客様の実体験をストーリー形式で紹介。「諦めないで！」というメッセージ。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【チェックリスト】住宅ローン申し込み前にやるべき5つのこと</div>
-                            <div class="content-card-desc">①信用情報確認 ②他の借入整理 ③健康診断 ④源泉徴収票準備 ⑤返済比率計算。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【年収別シミュレーション】あなたが借りられる金額は？</div>
-                            <div class="content-card-desc">年収300万～800万円まで100万円刻みで、借入可能額と月々の返済額を算出。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【変動金利の5年ルール・1.25倍ルール】って何？</div>
-                            <div class="content-card-desc">変動金利の仕組みをテンポよく解説。急激な返済額増加を防ぐルールを30秒で解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【比較表】固定・変動・固定期間選択、どれを選ぶ？</div>
-                            <div class="content-card-desc">3つの金利タイプをメリット・デメリット・向いている人で比較。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【中古×リフォーム】資金計画の立て方（大分市）</div>
-                            <div class="content-card-desc">物件費用+リフォーム費用+諸費用の内訳をテンポよく解説。補助金活用法も紹介。</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 第3章 -->
-            <div class="chapter">
-                <div class="chapter-header">
-                    <div class="chapter-number">3</div>
-                    <div class="chapter-title">物件の選び方・見極め方｜内覧・広告</div>
-                </div>
-                <p class="chapter-desc">内覧チェックリスト、広告の見方、土地探しのコツ、未公開物件の入手方法など。</p>
-
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-file-alt"></i> オウンドメディア記事（7記事）</h3>
-                    <div class="article-list">
-                        <div class="article-item">
-                            <div class="article-title">内覧時のチェックポイント（無料チェックリストDL可）</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/141329/" target="_blank" class="article-link">/blog/kounyuumae/141329/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">内覧時のチェックポイント（戸建・マンション別）</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/141043/" target="_blank" class="article-link">/blog/kounyuumae/141043/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【2024年最新版】騙されない!?ための不動産広告7つのチェックポイント</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/156409/" target="_blank" class="article-link">/blog/kounyuumae/156409/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【必見】見落とすと危険!?「物件別」不動産広告のチェックポイント</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/156575/" target="_blank" class="article-link">/blog/kounyuumae/156575/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">土地探しのコツ、注意点(確認点)</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/141956/" target="_blank" class="article-link">/blog/kounyuumae/141956/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">本当にあるの!?ネットに掲載されていない【未公開物件】探し方</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/145574/" target="_blank" class="article-link">/blog/kounyuumae/145574/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【未完成の建売住宅】を購入する場合のメリットとデメリット</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/162029/" target="_blank" class="article-link">/blog/kounyuumae/162029/</a>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.3</div>
+                    <div class="content-title">戸建 vs マンション、あなたに合うのは？</div>
+                    <div class="content-desc">ライフスタイル別（子育て世帯・共働き・シニア）におすすめを診断。</div>
                 </div>
 
-                <div class="instagram-content">
-                    <h4><i class="fab fa-instagram"></i> Instagramコンテンツ案（15案）</h4>
-                    <div class="content-card-grid">
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【保存版】内覧チェックリスト20項目</div>
-                            <div class="content-card-desc">電気・ガス・水道、境界、ゴミ捨て場、通学路、ハザードマップなど、見落としがちなポイントを網羅。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【内覧で絶対チェック】水回り5つのポイント</div>
-                            <div class="content-card-desc">キッチン・バス・トイレ・洗面所・洗濯機置場の確認方法を実演形式で紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【不動産広告】騙されないための7つのチェックポイント</div>
-                            <div class="content-card-desc">徒歩○分の計算方法、「新築」表示の期限、市街化調整区域など、知らないと損する広告ルール。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【物件タイプ別】広告で見落としがちな危険ポイント</div>
-                            <div class="content-card-desc">土地・マンション・一戸建てごとに、接道義務、管理費、建蔽率などの重要項目を解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【土地探し】失敗しないための3つのコツ</div>
-                            <div class="content-card-desc">建築法規制の確認、旗竿地のデメリット、総予算の立て方を30秒で解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【未公開物件】って本当にあるの？入手方法4選</div>
-                            <div class="content-card-desc">登録期限前、売主の事情、不動産会社所有、囲い込みの4パターンを解説。信頼関係構築が鍵。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【未完成の建売】メリット・デメリット徹底比較</div>
-                            <div class="content-card-desc">区画選択の自由度 vs 高額価格、施工品質確認可能 vs 完成イメージ困難。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【内覧の持ち物】プロが教える必携アイテム7選</div>
-                            <div class="content-card-desc">メジャー、スマホ（写真撮影・方位磁石アプリ）、間取り図、筆記用具など。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【内覧は3回行こう】朝・昼・夜で見るポイントが違う</div>
-                            <div class="content-card-desc">朝の日当たり、昼の騒音、夜の街灯・防犯など、時間帯別のチェック項目を紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【ハザードマップ】災害リスクを確認しよう</div>
-                            <div class="content-card-desc">洪水、土砂災害、津波、地震の4つのハザードマップの見方をテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【内覧あるある】見落としがちなポイントTOP5</div>
-                            <div class="content-card-desc">コンセント数、収納奥行き、窓の開閉、隣家との距離、駐車スペースなど。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【周辺環境】内覧時にチェックすべき10項目</div>
-                            <div class="content-card-desc">スーパー、病院、学校、公園、駅、バス停、ゴミ捨て場、街灯、治安、騒音。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【戸建 vs マンション】内覧チェックポイントの違い</div>
-                            <div class="content-card-desc">戸建は境界・駐車場、マンションは管理費・修繕積立金など、物件タイプ別の重点項目。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【内覧の流れ】初めてでも安心、5ステップ</div>
-                            <div class="content-card-desc">予約→持ち物準備→外観チェック→室内チェック→質問タイムの流れを実演。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【広告用語集】知らないと損する不動産用語10選</div>
-                            <div class="content-card-desc">徒歩○分、駅近、築浅、リフォーム済、管理費込みなど、広告でよく見る用語を解説。</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 第4章: 中古マンション -->
-            <div class="chapter">
-                <div class="chapter-header">
-                    <div class="chapter-number">4</div>
-                    <div class="chapter-title">中古マンション購入ガイド</div>
-                </div>
-                <p class="chapter-desc">管理費・修繕積立金、耐震基準、リノベーション、築年数別のポイントなど。</p>
-
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-file-alt"></i> オウンドメディア記事（4記事）</h3>
-                    <div class="article-list">
-                        <div class="article-item">
-                            <div class="article-title">【契約前に要チェック】中古マンション購入時の注意点</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/146423/" target="_blank" class="article-link">/blog/kounyuumae/146423/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">中古マンション購入の注意点、知っておくべきこと【7選】</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/151381/" target="_blank" class="article-link">/blog/kounyuumae/151381/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【大分市】中古マンション×リノベーションが人気の理由</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/149700/" target="_blank" class="article-link">/blog/kounyuumae/149700/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">築20～30年の中古マンションを購入するメリット・デメリット</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/149467/" target="_blank" class="article-link">/blog/kounyuumae/149467/</a>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.4</div>
+                    <div class="content-title">【賃貸 vs 購入】50年で407万円の差！</div>
+                    <div class="content-desc">生涯コストをグラフでテンポよく解説。「持ち家派67.5%」というアンケート結果も紹介。</div>
                 </div>
 
-                <div class="instagram-content">
-                    <h4><i class="fab fa-instagram"></i> Instagramコンテンツ案（8案）</h4>
-                    <div class="content-card-grid">
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【中古マンション】購入前にチェックすべき4つのポイント</div>
-                            <div class="content-card-desc">管理費・修繕積立金、管理形態、修繕計画、駐車場・ペット可否をテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【7つの注意点】中古マンション購入前に知っておくべきこと</div>
-                            <div class="content-card-desc">価格、費用、耐震基準、管理規約、立地、税金の7観点をチェック一覧で紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【大分市】中古マンション×リノベが人気の理由</div>
-                            <div class="content-card-desc">新築比で割安、物件選択肢豊富、好みのデザインに変更可能というメリットを30秒で解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【築20～30年】中古マンションのメリット・デメリット</div>
-                            <div class="content-card-desc">安い・物件数多い・立地良い vs 耐震基準確認・修繕状況・リフォーム費用。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【管理費・修繕積立金】って何？毎月いくらかかる？</div>
-                            <div class="content-card-desc">マンション特有の費用をテンポよく解説。修繕積立金が段階的に上がるケースも紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【新耐震 vs 旧耐震】中古マンションの耐震基準を確認しよう</div>
-                            <div class="content-card-desc">1981年6月以降が新耐震基準。耐震診断・補強工事の有無も確認ポイント。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【管理規約】ペット飼育・リフォーム可否を確認</div>
-                            <div class="content-card-desc">管理規約でペット可否、リフォーム範囲、楽器演奏、駐車場利用などが決まっている。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【修繕計画】長期修繕計画書の見方を解説</div>
-                            <div class="content-card-desc">大規模修繕の時期、修繕積立金の残高、将来の値上げ予定などをチェック。</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 第5章: 中古戸建×リフォーム -->
-            <div class="chapter">
-                <div class="chapter-header">
-                    <div class="chapter-number">5</div>
-                    <div class="chapter-title">中古戸建×リフォーム戦略</div>
-                </div>
-                <p class="chapter-desc">リフォームの進め方、インスペクション、保証制度、築年数別の注意点など。</p>
-
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-file-alt"></i> オウンドメディア記事（7記事）</h3>
-                    <div class="article-list">
-                        <div class="article-item">
-                            <div class="article-title">中古住宅を買ってリフォームしよう！「中古×リフォーム」の進め方</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/157410/" target="_blank" class="article-link">/blog/kounyuumae/157410/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">中古戸建×リノベーションが人気の理由</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/161672/" target="_blank" class="article-link">/blog/kounyuumae/161672/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【注意】物件を購入したのにリフォームできない!?となる前に知っておきたいこと</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/157428/" target="_blank" class="article-link">/blog/kounyuumae/157428/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">中古住宅に保証はないの?安心して中古物件を購入する場合の「建物検査」</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/157500/" target="_blank" class="article-link">/blog/kounyuumae/157500/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【中古戸建購入ご検討中の方へ】築25年の中古戸建を購入するメリット・デメリット</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/149649/" target="_blank" class="article-link">/blog/kounyuumae/149649/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">備えて安心! 住宅設備の保証制度について解説</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/157510/" target="_blank" class="article-link">/blog/kounyuumae/157510/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">失敗しない中古住宅選びの為に、購入前のモヤモヤ解消</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/137913/" target="_blank" class="article-link">/blog/kounyuumae/137913/</a>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.5</div>
+                    <div class="content-title">物件探しの3つの方法、全部使ってますか？</div>
+                    <div class="content-desc">ネット検索・チラシ・不動産店舗訪問のメリット・デメリットを比較。未公開物件の入手方法も紹介。</div>
                 </div>
 
-                <div class="instagram-content">
-                    <h4><i class="fab fa-instagram"></i> Instagramコンテンツ案（12案）</h4>
-                    <div class="content-card-grid">
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【中古×リフォーム】9つのステップで賢く進める</div>
-                            <div class="content-card-desc">目的明確化→予算設定→物件選択→プランニング→見積もり→購入→契約→工事→入居の流れをテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【中古戸建×リノベ】新築より費用が安く、自由にデザインできる</div>
-                            <div class="content-card-desc">立地選択肢が広がる、好みのデザインに変更可能というメリットを30秒で解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【リフォームできない!?】購入前に確認すべき4つのポイント</div>
-                            <div class="content-card-desc">構造上の問題、法的規制、管理規約、費用面でリフォームできないケースを解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【インスペクション】建物検査で中古住宅の不安を解消</div>
-                            <div class="content-card-desc">既存住宅瑕疵保険、インスペクション検査、建物保証の仕組みをテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【築25年の中古戸建】メリット・デメリット</div>
-                            <div class="content-card-desc">安い・物件数豊富 vs 修繕費・ローン審査の課題。ホームインスペクション活用も紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【住宅設備保証】エアコン・給湯器の故障に備える</div>
-                            <div class="content-card-desc">設備故障に備える保証制度のメリット・デメリット、新築と中古での対応の違い。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【失敗事例】中古住宅購入でよくある失敗TOP5</div>
-                            <div class="content-card-desc">予想以上の費用、設備故障、耐震不足、断熱性能低下、シロアリ被害などの事例と対策。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【リフォーム費用】相場はいくら？部位別に解説</div>
-                            <div class="content-card-desc">キッチン・バス・トイレ・外壁・屋根など、部位別のリフォーム費用相場を30秒で紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【築年数別】中古戸建のチェックポイント</div>
-                            <div class="content-card-desc">築10年・20年・30年・40年以上で、確認すべき項目が異なる。年数別のチェックリスト。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【リフォームvs建て替え】どっちがお得？</div>
-                            <div class="content-card-desc">費用、工期、自由度、資産価値の4軸で比較。判断基準をテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【インスペクション実演】プロはここをチェックする</div>
-                            <div class="content-card-desc">床下、屋根裏、外壁、基礎のチェック方法を実演形式で紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【保存版】中古住宅購入前のチェックリスト30項目</div>
-                            <div class="content-card-desc">建物・設備・権利関係・周辺環境など、購入前に確認すべき全項目を一覧で紹介。</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 第6章: 補助金・税金 -->
-            <div class="chapter">
-                <div class="chapter-header">
-                    <div class="chapter-number">6</div>
-                    <div class="chapter-title">賢く使う補助金・税金｜最大200万円の補助</div>
-                </div>
-                <p class="chapter-desc">窓リノベ、給湯省エネ、子育てエコホーム、資金援助時の税金、不動産取得税など。</p>
-
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-file-alt"></i> オウンドメディア記事（5記事）</h3>
-                    <div class="article-list">
-                        <div class="article-item">
-                            <div class="article-title">【令和6年住宅に関わる補助金②】先進的窓リノベ2024事業（最大200万円）</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/156068/" target="_blank" class="article-link">/blog/kounyuumae/156068/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【令和6年住宅に関わる補助金①】給湯省エネ2024事業（最大18万円）</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/155924/" target="_blank" class="article-link">/blog/kounyuumae/155924/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【2024年4月最新】「子育てエコホーム支援事業」新登場！（最大100万円）</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/145179/" target="_blank" class="article-link">/blog/kounyuumae/145179/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【不動産購入】親や祖父母からの資金援助を受けた際の注意点</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/149825/" target="_blank" class="article-link">/blog/kounyuumae/149825/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【知識】知っておこう！不動産購入にまつわる5つの税金</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/150220/" target="_blank" class="article-link">/blog/kounyuumae/150220/</a>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.6</div>
+                    <div class="content-title">【よくある質問】家を買うタイミングはいつ？</div>
+                    <div class="content-desc">「金利が上がる前に買うべき？」「建築費高騰は続く？」などのFAQに回答。</div>
                 </div>
 
-                <div class="instagram-content">
-                    <h4><i class="fab fa-instagram"></i> Instagramコンテンツ案（10案）</h4>
-                    <div class="content-card-grid">
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【最大200万円】先進的窓リノベ補助金の申請方法</div>
-                            <div class="content-card-desc">窓交換工事で最大200万円の補助金が受給可能。2024年からドア交換も対象に拡大。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【給湯省エネ2024】高効率給湯器で最大18万円補助</div>
-                            <div class="content-card-desc">対象機器（エコキュート・エネファーム等）、補助額、申請の流れをテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【子育てエコホーム支援事業】最大100万円の補助金</div>
-                            <div class="content-card-desc">子育て世帯・若者夫婦世帯が対象。省エネ性能の高い住宅購入・リフォームで補助金受給。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【親から資金援助】非課税特例を活用しよう</div>
-                            <div class="content-card-desc">基礎控除110万円+非課税特例の活用法、相続時精算課税制度を30秒で解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【5つの税金】不動産購入時にかかる税金まとめ</div>
-                            <div class="content-card-desc">固定資産税、不動産取得税、登録免許税、印紙税、消費税の内容と軽減措置をテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【補助金まとめ】2024年に使える住宅補助金3選</div>
-                            <div class="content-card-desc">先進的窓リノベ、給湯省エネ、子育てエコホームの3つを比較ポイントを解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【固定資産税】毎年いくらかかる？計算方法を解説</div>
-                            <div class="content-card-desc">固定資産税評価額×1.4％の計算式。軽減措置（新築・中古）も紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【不動産取得税】購入時に一度だけかかる税金</div>
-                            <div class="content-card-desc">課税標準×3％の計算式。軽減措置（床面積50㎡以上など）の条件をテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【登録免許税】所有権移転・抵当権設定にかかる税金</div>
-                            <div class="content-card-desc">土地・建物の所有権移転、抵当権設定の税率と軽減措置を整理。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【補助金申請】失敗しないための3つのポイント</div>
-                            <div class="content-card-desc">期限厳守、書類不備に注意、業者選びが重要。申請の流れを実演。</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 第7章: 契約・購入手続き -->
-            <div class="chapter">
-                <div class="chapter-header">
-                    <div class="chapter-number">7</div>
-                    <div class="chapter-title">契約から入居まで｜手続きの流れ</div>
-                </div>
-                <p class="chapter-desc">申し込み、売買契約、ローン手続き、決済、不動産会社の選び方など。</p>
-
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-file-alt"></i> オウンドメディア記事（4記事）</h3>
-                    <div class="article-list">
-                        <div class="article-item">
-                            <div class="article-title">不動産購入の申し込みをする前に知っておきたい注意点</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/156930/" target="_blank" class="article-link">/blog/kounyuumae/156930/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【基礎】不動産売買契約の基本的な知識や注意点</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/157357/" target="_blank" class="article-link">/blog/kounyuumae/157357/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【テンポよく解説】入居まで何日⁈不動産購入の流れ｜必要書類もチェック</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/140702/" target="_blank" class="article-link">/blog/kounyuumae/140702/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">【不動産購入検討者におすすめ!】不動産会社の選び方の裏側を解説</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/141722/" target="_blank" class="article-link">/blog/kounyuumae/141722/</a>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.7</div>
+                    <div class="content-title">【診断】あなたの家探し優先度チェックリスト</div>
+                    <div class="content-desc">「予算」「立地」「広さ」「築年数」など10項目をチェックし、優先順位を明確化するワークシート。</div>
                 </div>
 
-                <div class="instagram-content">
-                    <h4><i class="fab fa-instagram"></i> Instagramコンテンツ案（8案）</h4>
-                    <div class="content-card-grid">
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【購入申し込み前】チェックすべき3つのポイント</div>
-                            <div class="content-card-desc">物件確認、契約内容確認、買付証明書の正確な記載をテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【売買契約】手付金・解除条件を理解しよう</div>
-                            <div class="content-card-desc">契約の自由原則、手付金の性質、解除条件を30秒で解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【購入の流れ】情報収集から入居まで約3ヶ月</div>
-                            <div class="content-card-desc">情報収集→相談→物件選び→申込→契約→ローン手続き→決済の8ステップをテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【不動産会社の選び方】囲い込みを避ける方法</div>
-                            <div class="content-card-desc">誠実な説明、幅広い物件紹介、囲い込みなどの悪質行為を避ける業者選びのポイント。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【契約当日】持ち物・流れを事前確認</div>
-                            <div class="content-card-desc">印鑑、身分証明書、手付金、印紙代など、契約当日の持ち物と流れを実演。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【必要書類チェックリスト】購入時に用意するもの</div>
-                            <div class="content-card-desc">申し込み時、契約時、ローン申込時、決済時の4段階で必要書類を整理。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【3つの契約】売買契約・ローン契約・保険契約の違い</div>
-                            <div class="content-card-desc">不動産売買契約、住宅ローン契約、火災保険契約の内容と順序をテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【決済の流れ】引き渡し当日のスケジュール</div>
-                            <div class="content-card-desc">残金支払い、登記手続き、鍵の引き渡しまでの流れを時系列で紹介。</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 第8章: その他 -->
-            <div class="chapter">
-                <div class="chapter-header">
-                    <div class="chapter-number">8</div>
-                    <div class="chapter-title">その他｜太陽光・建築費・サービス</div>
-                </div>
-                <p class="chapter-desc">太陽光発電、賃貸vs購入比較、建築費高騰、ワンストップサービスなど。</p>
-
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-file-alt"></i> オウンドメディア記事（2記事）</h3>
-                    <div class="article-list">
-                        <div class="article-item">
-                            <div class="article-title">太陽光発電システムと蓄電池をつけるメリット・デメリット</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/166445/" target="_blank" class="article-link">/blog/kounyuumae/166445/</a>
-                        </div>
-                        <div class="article-item">
-                            <div class="article-title">建築費高騰はいつまで続く？住宅購入は見送るべき？？</div>
-                            <a href="https://oitaakeno-housedo.com/blog/kounyuumae/149634/" target="_blank" class="article-link">/blog/kounyuumae/149634/</a>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.8</div>
+                    <div class="content-title">【初心者向け】不動産用語集10選</div>
+                    <div class="content-desc">仲介手数料、諸費用、引き渡し、決済など、家探しで必ず出てくる用語を解説。</div>
                 </div>
 
-                <div class="instagram-content">
-                    <h4><i class="fab fa-instagram"></i> Instagramコンテンツ案（4案）</h4>
-                    <div class="content-card-grid">
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【太陽光発電】メリット・デメリット徹底比較</div>
-                            <div class="content-card-desc">電気代削減・災害時の電源確保 vs 初期費用100～200万円・蓄電池の寿命15年。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【建築費高騰】今買うべき？待つべき？</div>
-                            <div class="content-card-desc">購入を先延ばしするより、金利上昇リスク・家賃損失を考えると現在の購入が有利。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【太陽光の仕組み】5段階フロー図で理解</div>
-                            <div class="content-card-desc">パネル→接続箱→パワーコンディショナ→分電盤→メーターの流れをテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【建築費が上がる理由】人手不足・資材価格上昇</div>
-                            <div class="content-card-desc">複数要因で建築費が上昇し続ける背景を解説。今後の見通しも紹介。</div>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.9</div>
+                    <div class="content-title">【実録】お客様の家探しストーリー</div>
+                    <div class="content-desc">実際のお客様（30代ファミリー）の家探しプロセスを再現。「最初は賃貸派だったけど...」というストーリー。</div>
                 </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.10</div>
+                    <div class="content-title">【保存版】家を買う前にやるべき5つのこと</div>
+                    <div class="content-desc">①予算確認 ②エリア絞り込み ③住宅ローン事前審査 ④内覧3件以上 ⑤ライフプラン作成。ポイントを順番に紹介。</div>
+                </div>
+
             </div>
         </div>
 
-        <!-- 第2部: 家を売る -->
-        <div class="part">
-            <div class="part-header">
-                <div class="part-number">第2部</div>
-                <div class="part-title"><i class="fas fa-hand-holding-usd"></i> 家を売る【売却検討者向け】</div>
-                <div class="part-desc">ターゲット: 50-60代空き巣世代｜子供独立後、広い家を持て余している、売却・リースバック・相続対策</div>
+        <!-- 第2章 -->
+        <div class="chapter-page" id="chapter-2">
+            <div class="chapter-header">
+                <div class="chapter-page-number">p.2</div>
+                <h2 class="chapter-title">
+                    <span class="chapter-number">第2章</span>住宅ローン完全攻略｜金利・審査・返済
+                </h2>
+                <p class="chapter-part">第1部 家を買う【購入検討者向け】</p>
             </div>
 
-            <p style="padding: 2rem; background: linear-gradient(135deg, #FFF8F0 0%, #FFFAF5 100%); border-radius: 8px; color: #666; margin-bottom: 2rem;">
-                <i class="fas fa-info-circle" style="color: #FF9800; margin-right: 0.5rem;"></i>
-                <strong>注意:</strong> ハウスドゥ大分明野のオウンドメディア(/blog/kounyuumae/)は「購入前に役に立つ情報」に特化しているため、売却関連の記事は含まれていません。<br>
-                <strong>今後の対応:</strong> 売却検討者向けコンテンツは、競合調査（不動産売却チャンネル、楽待等）を参考に、新規にコンテンツ案を作成する必要があります。
-            </p>
+            <div class="content-grid">
 
-            <div class="chapter">
-                <div class="chapter-header">
-                    <div class="chapter-number">9</div>
-                    <div class="chapter-title">不動産売却の基礎知識</div>
+                <div class="content-card">
+                    <div class="content-number">No.1</div>
+                    <div class="content-title">【団信ってなに？】万が一の時、ローンが0円になる保険</div>
+                    <div class="content-desc">団体信用生命保険の仕組みをテンポよく解説。がん団信・三大疾病団信の違いも30秒で解説。</div>
                 </div>
-                <p class="chapter-desc">売却の流れ、タイミング、買取vs仲介、査定方法など。（※競合調査から抽出）</p>
 
-                <div class="instagram-content">
-                    <h4><i class="fab fa-instagram"></i> Instagramコンテンツ案（10案）</h4>
-                    <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">※競合調査（不動産売却チャンネル等）から抽出したコンテンツ案</p>
-                    <div class="content-card-grid">
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【売却の流れ】査定から引き渡しまで7ステップ</div>
-                            <div class="content-card-desc">査定→媒介契約→販売活動→内覧→交渉→契約→決済の流れをテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【買取vs仲介】どっちがお得？</div>
-                            <div class="content-card-desc">買取は早い・確実 vs 仲介は高く売れる。メリット・デメリットを比較。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【売却タイミング】いつ売るのがベスト？</div>
-                            <div class="content-card-desc">築年数、金利動向、市況、ライフプラン から最適なタイミングを判断。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【査定方法】机上査定 vs 訪問査定</div>
-                            <div class="content-card-desc">机上査定は早い・手軽、訪問査定は正確。状況に応じて使い分ける。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【媒介契約】一般・専任・専属専任、どれを選ぶ？</div>
-                            <div class="content-card-desc">3つの媒介契約の違いを30秒で解説。複数社に依頼できる vs 1社専属。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【高く売るコツ】内覧前にやるべき5つのこと</div>
-                            <div class="content-card-desc">清掃・整理整頓・におい対策・照明確保・修繕。第一印象が重要。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【売却費用】仲介手数料・税金はいくらかかる？</div>
-                            <div class="content-card-desc">仲介手数料、譲渡所得税、印紙税、抵当権抹消費用などを整理。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【よくある失敗】売却でやってはいけない3つのこと</div>
-                            <div class="content-card-desc">相場を無視した高値設定、内覧対応の失敗、焦って安売りなど。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【査定額が違う理由】複数社に依頼すべき？</div>
-                            <div class="content-card-desc">査定額にばらつきが出る理由、適正価格の見極め方を解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【売却期間】平均3～6ヶ月、早く売るコツは？</div>
-                            <div class="content-card-desc">価格設定、内覧対応、販売活動の工夫で売却期間を短縮。</div>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.2</div>
+                    <div class="content-title">【銀行選び】メガバンク vs 地方銀行 vs ネット銀行、どれがお得？</div>
+                    <div class="content-desc">5つの銀行タイプを比較ポイントを解説。自営業者・公務員など属性別おすすめも紹介。</div>
                 </div>
-            </div>
 
-            <div class="chapter">
-                <div class="chapter-header">
-                    <div class="chapter-number">10</div>
-                    <div class="chapter-title">リースバック活用術</div>
+                <div class="content-card">
+                    <div class="content-number">No.3</div>
+                    <div class="content-title">【固定 vs 変動】金利タイプ、どっちを選ぶ？</div>
+                    <div class="content-desc">ライフプラン別（子育て中・共働き・シニア）におすすめ金利タイプを診断。</div>
                 </div>
-                <p class="chapter-desc">リースバックの仕組み、メリット・デメリット、向いている人など。</p>
 
-                <div class="instagram-content">
-                    <h4><i class="fab fa-instagram"></i> Instagramコンテンツ案（5案）</h4>
-                    <div class="content-card-grid">
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【リースバックとは】売却しても住み続けられる仕組み</div>
-                            <div class="content-card-desc">自宅を売却して現金化し、そのまま賃貸として住み続ける仕組みをテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【リースバック】メリット・デメリット徹底比較</div>
-                            <div class="content-card-desc">まとまった現金が手に入る・引っ越し不要 vs 家賃が発生・買戻しが高額。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【リースバックが向いている人】老後資金・相続対策</div>
-                            <div class="content-card-desc">老後資金が必要、相続でもめたくない、住み慣れた家に住み続けたい人に最適。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【リースバックvs通常売却】どっちを選ぶ？</div>
-                            <div class="content-card-desc">状況別（老後資金・相続対策・引っ越ししたい）におすすめを診断。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【リースバックの流れ】査定から賃貸契約まで</div>
-                            <div class="content-card-desc">査定→売買契約→売却代金受取→賃貸契約→そのまま居住の5ステップ。</div>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.4</div>
+                    <div class="content-title">【審査落ち対策】住宅ローンに通らない12の理由</div>
+                    <div class="content-desc">延滞履歴・借入金・健康問題など、審査落ちの原因と対策を一覧で紹介。</div>
                 </div>
-            </div>
 
-            <div class="chapter">
-                <div class="chapter-header">
-                    <div class="chapter-number">11</div>
-                    <div class="chapter-title">相続・資産整理</div>
+                <div class="content-card">
+                    <div class="content-number">No.5</div>
+                    <div class="content-title">フラット35って何？メリット・デメリット完全解説</div>
+                    <div class="content-desc">個人事業主・転職直後の人に向いている理由をテンポよく解説。適合証明書の費用も紹介。</div>
                 </div>
-                <p class="chapter-desc">相続対策、空き家問題、資産整理、生前贈与など。</p>
 
-                <div class="instagram-content">
-                    <h4><i class="fab fa-instagram"></i> Instagramコンテンツ案（5案）</h4>
-                    <div class="content-card-grid">
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【相続対策】不動産を誰が相続するか決めておく</div>
-                            <div class="content-card-desc">遺言書作成、生前贈与、家族信託など、相続トラブルを避ける方法。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【空き家問題】放置すると税金6倍！早めの対策を</div>
-                            <div class="content-card-desc">特定空き家に指定されると固定資産税が6倍に。売却・活用・解体の3択。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【資産整理】老後資金のために不動産を売却</div>
-                            <div class="content-card-desc">年金だけでは不安、医療費・介護費用に備えたい人向けの資産整理術。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【生前贈与】不動産を子供に贈与する方法</div>
-                            <div class="content-card-desc">贈与税の計算、非課税枠、相続時精算課税制度をテンポよく解説。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【終活】不動産の整理は早めに始めよう</div>
-                            <div class="content-card-desc">元気なうちに売却・贈与を検討。相続でもめないための準備。</div>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.6</div>
+                    <div class="content-title">【衝撃】金利1%違うだけで500万円の差！</div>
+                    <div class="content-desc">3000万円35年ローンの総返済額をシミュレーション。銀行選びの重要性を強調。</div>
                 </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.7</div>
+                    <div class="content-title">【返済比率25％が黄金比率】年収別の借入額目安</div>
+                    <div class="content-desc">年収300万・400万・500万・600万円ごとに、無理なく返せる借入額を算出。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.8</div>
+                    <div class="content-title">繰り上げ返済、やるべき？メリット・デメリット</div>
+                    <div class="content-desc">利息削減 vs 手元資金減少、住宅ローン控除への影響を比較。最適なタイミングも紹介。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.9</div>
+                    <div class="content-title">【住宅ローン控除 × ふるさと納税】併用できる？</div>
+                    <div class="content-desc">併用時の控除額減少リスクと、ワンストップ特例制度での回避方法を解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.10</div>
+                    <div class="content-title">【諸費用5～10％】物件価格以外にかかるお金</div>
+                    <div class="content-desc">契約・ローン・登記・保険の4カテゴリで諸費用を整理。3000万円物件なら150～300万円。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.11</div>
+                    <div class="content-title">【現金一括購入】メリット・デメリット徹底比較</div>
+                    <div class="content-desc">ローン金利不要 vs 税務調査リスク、ローン控除が受けられないデメリットも紹介。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.12</div>
+                    <div class="content-title">【IT重説】自宅でZoom契約、メリット・注意点</div>
+                    <div class="content-desc">非対面で重要事項説明ができる制度を紹介。通信トラブル対策も解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.13</div>
+                    <div class="content-title">【エージェントに聞いた】よくある質問TOP5</div>
+                    <div class="content-desc">「ローン審査に何日かかる？」「ペアローンとは？」など、実際のQ&Aを紹介。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.14</div>
+                    <div class="content-title">【住宅ローン用語集】初心者が知っておくべき10用語</div>
+                    <div class="content-desc">元利均等返済、元金均等返済、保証料、事務手数料など、必須用語を解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.15</div>
+                    <div class="content-title">【実録】審査に落ちた→別の銀行で通った話</div>
+                    <div class="content-desc">お客様の実体験をストーリー形式で紹介。「諦めないで！」というメッセージ。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.16</div>
+                    <div class="content-title">【チェックリスト】住宅ローン申し込み前にやるべき5つのこと</div>
+                    <div class="content-desc">①信用情報確認 ②他の借入整理 ③健康診断 ④源泉徴収票準備 ⑤返済比率計算。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.17</div>
+                    <div class="content-title">【年収別シミュレーション】あなたが借りられる金額は？</div>
+                    <div class="content-desc">年収300万～800万円まで100万円刻みで、借入可能額と月々の返済額を算出。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.18</div>
+                    <div class="content-title">【変動金利の5年ルール・1.25倍ルール】って何？</div>
+                    <div class="content-desc">変動金利の仕組みをテンポよく解説。急激な返済額増加を防ぐルールを30秒で解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.19</div>
+                    <div class="content-title">【比較表】固定・変動・固定期間選択、どれを選ぶ？</div>
+                    <div class="content-desc">3つの金利タイプをメリット・デメリット・向いている人で比較。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.20</div>
+                    <div class="content-title">【中古×リフォーム】資金計画の立て方（大分市）</div>
+                    <div class="content-desc">物件費用+リフォーム費用+諸費用の内訳をテンポよく解説。補助金活用法も紹介。</div>
+                </div>
+
             </div>
         </div>
 
-        <!-- 第3部: 大分エリア情報 -->
-        <div class="part">
-            <div class="part-header">
-                <div class="part-number">第3部</div>
-                <div class="part-title"><i class="fas fa-map-marker-alt"></i> 大分エリア情報</div>
-                <div class="part-desc">大分市・別府市・臼杵市など、ハウスドゥ明野店対応エリアの情報</div>
+        <!-- 第3章 -->
+        <div class="chapter-page" id="chapter-3">
+            <div class="chapter-header">
+                <div class="chapter-page-number">p.3</div>
+                <h2 class="chapter-title">
+                    <span class="chapter-number">第3章</span>物件の選び方・見極め方｜内覧・広告
+                </h2>
+                <p class="chapter-part">第1部 家を買う【購入検討者向け】</p>
             </div>
 
-            <div class="chapter">
-                <div class="chapter-header">
-                    <div class="chapter-number">12</div>
-                    <div class="chapter-title">大分市の住みやすさガイド</div>
+            <div class="content-grid">
+
+                <div class="content-card">
+                    <div class="content-number">No.1</div>
+                    <div class="content-title">【保存版】内覧チェックリスト20項目</div>
+                    <div class="content-desc">電気・ガス・水道、境界、ゴミ捨て場、通学路、ハザードマップなど、見落としがちなポイントを網羅。</div>
                 </div>
-                <p class="chapter-desc">学区情報、子育て環境、商業施設、交通アクセスなど。（※今後作成）</p>
 
-                <div class="instagram-content">
-                    <h4><i class="fab fa-instagram"></i> Instagramコンテンツ案（10案）</h4>
-                    <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">※今後作成予定のコンテンツ案</p>
-                    <div class="content-card-grid">
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【大分市】子育てファミリーに人気のエリアTOP5</div>
-                            <div class="content-card-desc">学校区、公園、商業施設へのアクセスなど、子育て環境を総合評価。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【大分駅周辺】再開発で変わる街並み</div>
-                            <div class="content-card-desc">大分駅周辺の再開発状況、新施設、利便性向上を紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【学区マップ】大分市の小学校区を確認しよう</div>
-                            <div class="content-card-desc">エリア別の小学校区、評判、通学距離を整理。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【商業施設】大分市の主要ショッピングモール5選</div>
-                            <div class="content-card-desc">トキハわさだタウン、パークプレイス大分など、買い物に便利な施設を紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【交通アクセス】大分市から福岡・熊本へ</div>
-                            <div class="content-card-desc">高速道路、JR、空港へのアクセスを30秒で紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【公園】子供と遊べる大分市の公園10選</div>
-                            <div class="content-card-desc">遊具、広さ、駐車場、トイレなど、ファミリー向け公園情報。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【医療】大分市の総合病院・小児科マップ</div>
-                            <div class="content-card-desc">救急対応、夜間診療、小児科など、医療施設の場所と特徴。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【治安】大分市の住みやすいエリアは？</div>
-                            <div class="content-card-desc">犯罪発生率、街灯、防犯カメラなど、治安の良いエリアを紹介。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【通勤】大分市内の主要企業へのアクセス</div>
-                            <div class="content-card-desc">工業団地、オフィス街への通勤時間を エリア別に整理。</div>
-                        </div>
-                        <div class="content-card">
-                            <span class="content-card-format format-reel"><i class="fas fa-video"></i> リール</span>
-                            <div class="content-card-title">【別府市】温泉街の住みやすさ</div>
-                            <div class="content-card-desc">別府市のメリット（温泉・観光）、デメリット（観光客の多さ）を解説。</div>
-                        </div>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.2</div>
+                    <div class="content-title">【内覧で絶対チェック】水回り5つのポイント</div>
+                    <div class="content-desc">キッチン・バス・トイレ・洗面所・洗濯機置場の確認方法を実演形式で紹介。</div>
                 </div>
-            </div>
-        </div>
 
-        <!-- 付録 -->
-        <div class="appendix">
-            <h3><i class="fas fa-bookmark"></i> 付録：運用設計</h3>
-
-            <div style="background: #fff; padding: 2rem; border-radius: 8px; margin-top: 1.5rem;">
-                <h4 style="color: #8B7355; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">投稿頻度・カレンダー</h4>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: 0.4rem 0;"><i class="fas fa-calendar-day" style="color: #4A90E2; margin-right: 0.5rem;"></i> <strong>月・水・金</strong>: 購入検討者向け（住宅ローン・物件選び）</li>
-                    <li style="padding: 0.4rem 0;"><i class="fas fa-calendar-day" style="color: #E2904A; margin-right: 0.5rem;"></i> <strong>火・木</strong>: 売却検討者向け（売却ノウハウ・リースバック）</li>
-                    <li style="padding: 0.4rem 0;"><i class="fas fa-calendar-day" style="color: #8B7355; margin-right: 0.5rem;"></i> <strong>土・日</strong>: エリア情報・スタッフ紹介・お客様の声</li>
-                </ul>
-
-                <h4 style="color: #8B7355; font-weight: 700; margin: 2rem 0 1rem; font-size: 1.2rem;">オウンドメディア連携戦略</h4>
-                <p style="color: #555; margin-bottom: 0.8rem;">Instagram投稿 → オウンドメディア詳細記事への導線設計</p>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: 0.4rem 0;"><i class="fas fa-arrow-right" style="color: #E1306C; margin-right: 0.5rem;"></i> 投稿キャプションに「詳しくはプロフィールのリンクから」と記載</li>
-                    <li style="padding: 0.4rem 0;"><i class="fas fa-arrow-right" style="color: #E1306C; margin-right: 0.5rem;"></i> プロフィールにリンクツリー設置（カテゴリ別にブログ記事へ誘導）</li>
-                    <li style="padding: 0.4rem 0;"><i class="fas fa-arrow-right" style="color: #E1306C; margin-right: 0.5rem;"></i> ストーリーズで記事URLを直接リンク</li>
-                    <li style="padding: 0.4rem 0;"><i class="fas fa-arrow-right" style="color: #E1306C; margin-right: 0.5rem;"></i> リールのコメント欄に記事URLを固定</li>
-                </ul>
-
-                <h4 style="color: #8B7355; font-weight: 700; margin: 2rem 0 1rem; font-size: 1.2rem;">CTA（行動喚起）設計</h4>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: 0.4rem 0;"><i class="fas fa-comment-dots" style="color: #00B900; margin-right: 0.5rem;"></i> <strong>LINE登録</strong>: 「無料相談はLINEから」（友だち追加リンク）</li>
-                    <li style="padding: 0.4rem 0;"><i class="fas fa-phone" style="color: #4CAF50; margin-right: 0.5rem;"></i> <strong>電話</strong>: 「お気軽にお電話ください：097-529-5100」</li>
-                    <li style="padding: 0.4rem 0;"><i class="fas fa-envelope" style="color: #FF9800; margin-right: 0.5rem;"></i> <strong>お問い合わせフォーム</strong>: 「24時間受付中」</li>
-                    <li style="padding: 0.4rem 0;"><i class="fas fa-calendar-check" style="color: #2196F3; margin-right: 0.5rem;"></i> <strong>来店予約</strong>: 「オンライン予約はこちら」</li>
-                </ul>
-
-                <h4 style="color: #8B7355; font-weight: 700; margin: 2rem 0 1rem; font-size: 1.2rem;">ハッシュタグ戦略</h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                    <div style="background: #FAFAFA; padding: 1rem; border-radius: 8px;">
-                        <strong style="color: #8B7355;">大分エリア系</strong>
-                        <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">#大分市 #大分不動産 #大分マイホーム #大分暮らし #大分移住</p>
-                    </div>
-                    <div style="background: #FAFAFA; padding: 1rem; border-radius: 8px;">
-                        <strong style="color: #8B7355;">購入検討者系</strong>
-                        <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">#住宅ローン #マイホーム購入 #家探し #中古住宅 #リノベーション</p>
-                    </div>
-                    <div style="background: #FAFAFA; padding: 1rem; border-radius: 8px;">
-                        <strong style="color: #8B7355;">売却検討者系</strong>
-                        <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">#不動産売却 #リースバック #相続対策 #空き家問題 #老後資金</p>
-                    </div>
+                <div class="content-card">
+                    <div class="content-number">No.3</div>
+                    <div class="content-title">【不動産広告】騙されないための7つのチェックポイント</div>
+                    <div class="content-desc">徒歩○分の計算方法、「新築」表示の期限、市街化調整区域など、知らないと損する広告ルール。</div>
                 </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.4</div>
+                    <div class="content-title">【物件タイプ別】広告で見落としがちな危険ポイント</div>
+                    <div class="content-desc">土地・マンション・一戸建てごとに、接道義務、管理費、建蔽率などの重要項目を解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.5</div>
+                    <div class="content-title">【土地探し】失敗しないための3つのコツ</div>
+                    <div class="content-desc">建築法規制の確認、旗竿地のデメリット、総予算の立て方を30秒で解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.6</div>
+                    <div class="content-title">【未公開物件】って本当にあるの？入手方法4選</div>
+                    <div class="content-desc">登録期限前、売主の事情、不動産会社所有、囲い込みの4パターンを解説。信頼関係構築が鍵。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.7</div>
+                    <div class="content-title">【未完成の建売】メリット・デメリット徹底比較</div>
+                    <div class="content-desc">区画選択の自由度 vs 高額価格、施工品質確認可能 vs 完成イメージ困難。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.8</div>
+                    <div class="content-title">【内覧の持ち物】プロが教える必携アイテム7選</div>
+                    <div class="content-desc">メジャー、スマホ（写真撮影・方位磁石アプリ）、間取り図、筆記用具など。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.9</div>
+                    <div class="content-title">【内覧は3回行こう】朝・昼・夜で見るポイントが違う</div>
+                    <div class="content-desc">朝の日当たり、昼の騒音、夜の街灯・防犯など、時間帯別のチェック項目を紹介。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.10</div>
+                    <div class="content-title">【ハザードマップ】災害リスクを確認しよう</div>
+                    <div class="content-desc">洪水、土砂災害、津波、地震の4つのハザードマップの見方をテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.11</div>
+                    <div class="content-title">【内覧あるある】見落としがちなポイントTOP5</div>
+                    <div class="content-desc">コンセント数、収納奥行き、窓の開閉、隣家との距離、駐車スペースなど。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.12</div>
+                    <div class="content-title">【周辺環境】内覧時にチェックすべき10項目</div>
+                    <div class="content-desc">スーパー、病院、学校、公園、駅、バス停、ゴミ捨て場、街灯、治安、騒音。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.13</div>
+                    <div class="content-title">【戸建 vs マンション】内覧チェックポイントの違い</div>
+                    <div class="content-desc">戸建は境界・駐車場、マンションは管理費・修繕積立金など、物件タイプ別の重点項目。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.14</div>
+                    <div class="content-title">【内覧の流れ】初めてでも安心、5ステップ</div>
+                    <div class="content-desc">予約→持ち物準備→外観チェック→室内チェック→質問タイムの流れを実演。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.15</div>
+                    <div class="content-title">【広告用語集】知らないと損する不動産用語10選</div>
+                    <div class="content-desc">徒歩○分、駅近、築浅、リフォーム済、管理費込みなど、広告でよく見る用語を解説。</div>
+                </div>
+
             </div>
         </div>
 
-        <div style="background: linear-gradient(135deg, #8B7355 0%, #A68968 100%); color: #fff; padding: 2rem; border-radius: 12px; margin-top: 3rem; text-align: center;">
-            <h3 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 1rem;">次のステップ</h3>
-            <p style="font-size: 1.1rem; opacity: 0.95;">本ガイドブックをもとに、各章から優先度の高いコンテンツを選定し、Instagram投稿カレンダーを作成します。</p>
-            <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 1rem;">オウンドメディア記事とInstagram投稿を連携させることで、SEO（検索流入）とSNS（拡散）の両面から集客を強化できます。</p>
+        <!-- 第4章 -->
+        <div class="chapter-page" id="chapter-4">
+            <div class="chapter-header">
+                <div class="chapter-page-number">p.4</div>
+                <h2 class="chapter-title">
+                    <span class="chapter-number">第4章</span>中古マンション購入ガイド
+                </h2>
+                <p class="chapter-part">第1部 家を買う【購入検討者向け】</p>
+            </div>
+
+            <div class="content-grid">
+
+                <div class="content-card">
+                    <div class="content-number">No.1</div>
+                    <div class="content-title">【中古マンション】購入前にチェックすべき4つのポイント</div>
+                    <div class="content-desc">管理費・修繕積立金、管理形態、修繕計画、駐車場・ペット可否をテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.2</div>
+                    <div class="content-title">【7つの注意点】中古マンション購入前に知っておくべきこと</div>
+                    <div class="content-desc">価格、費用、耐震基準、管理規約、立地、税金の7観点をチェック一覧で紹介。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.3</div>
+                    <div class="content-title">【大分市】中古マンション×リノベが人気の理由</div>
+                    <div class="content-desc">新築比で割安、物件選択肢豊富、好みのデザインに変更可能というメリットを30秒で解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.4</div>
+                    <div class="content-title">【築20～30年】中古マンションのメリット・デメリット</div>
+                    <div class="content-desc">安い・物件数多い・立地良い vs 耐震基準確認・修繕状況・リフォーム費用。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.5</div>
+                    <div class="content-title">【管理費・修繕積立金】って何？毎月いくらかかる？</div>
+                    <div class="content-desc">マンション特有の費用をテンポよく解説。修繕積立金が段階的に上がるケースも紹介。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.6</div>
+                    <div class="content-title">【新耐震 vs 旧耐震】中古マンションの耐震基準を確認しよう</div>
+                    <div class="content-desc">1981年6月以降が新耐震基準。耐震診断・補強工事の有無も確認ポイント。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.7</div>
+                    <div class="content-title">【管理規約】ペット飼育・リフォーム可否を確認</div>
+                    <div class="content-desc">管理規約でペット可否、リフォーム範囲、楽器演奏、駐車場利用などが決まっている。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.8</div>
+                    <div class="content-title">【修繕計画】長期修繕計画書の見方を解説</div>
+                    <div class="content-desc">大規模修繕の時期、修繕積立金の残高、将来の値上げ予定などをチェック。</div>
+                </div>
+
+            </div>
         </div>
+
+        <!-- 第5章 -->
+        <div class="chapter-page" id="chapter-5">
+            <div class="chapter-header">
+                <div class="chapter-page-number">p.5</div>
+                <h2 class="chapter-title">
+                    <span class="chapter-number">第5章</span>中古戸建×リフォーム戦略
+                </h2>
+                <p class="chapter-part">第1部 家を買う【購入検討者向け】</p>
+            </div>
+
+            <div class="content-grid">
+
+                <div class="content-card">
+                    <div class="content-number">No.1</div>
+                    <div class="content-title">【中古×リフォーム】9つのステップで賢く進める</div>
+                    <div class="content-desc">目的明確化→予算設定→物件選択→プランニング→見積もり→購入→契約→工事→入居の流れをテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.2</div>
+                    <div class="content-title">【中古戸建×リノベ】新築より費用が安く、自由にデザインできる</div>
+                    <div class="content-desc">立地選択肢が広がる、好みのデザインに変更可能というメリットを30秒で解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.3</div>
+                    <div class="content-title">【リフォームできない!?】購入前に確認すべき4つのポイント</div>
+                    <div class="content-desc">構造上の問題、法的規制、管理規約、費用面でリフォームできないケースを解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.4</div>
+                    <div class="content-title">【インスペクション】建物検査で中古住宅の不安を解消</div>
+                    <div class="content-desc">既存住宅瑕疵保険、インスペクション検査、建物保証の仕組みをテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.5</div>
+                    <div class="content-title">【築25年の中古戸建】メリット・デメリット</div>
+                    <div class="content-desc">安い・物件数豊富 vs 修繕費・ローン審査の課題。ホームインスペクション活用も紹介。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.6</div>
+                    <div class="content-title">【住宅設備保証】エアコン・給湯器の故障に備える</div>
+                    <div class="content-desc">設備故障に備える保証制度のメリット・デメリット、新築と中古での対応の違い。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.7</div>
+                    <div class="content-title">【失敗事例】中古住宅購入でよくある失敗TOP5</div>
+                    <div class="content-desc">予想以上の費用、設備故障、耐震不足、断熱性能低下、シロアリ被害などの事例と対策。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.8</div>
+                    <div class="content-title">【リフォーム費用】相場はいくら？部位別に解説</div>
+                    <div class="content-desc">キッチン・バス・トイレ・外壁・屋根など、部位別のリフォーム費用相場を30秒で紹介。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.9</div>
+                    <div class="content-title">【築年数別】中古戸建のチェックポイント</div>
+                    <div class="content-desc">築10年・20年・30年・40年以上で、確認すべき項目が異なる。年数別のチェックリスト。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.10</div>
+                    <div class="content-title">【リフォームvs建て替え】どっちがお得？</div>
+                    <div class="content-desc">費用、工期、自由度、資産価値の4軸で比較。判断基準をテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.11</div>
+                    <div class="content-title">【インスペクション実演】プロはここをチェックする</div>
+                    <div class="content-desc">床下、屋根裏、外壁、基礎のチェック方法を実演形式で紹介。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.12</div>
+                    <div class="content-title">【保存版】中古住宅購入前のチェックリスト30項目</div>
+                    <div class="content-desc">建物・設備・権利関係・周辺環境など、購入前に確認すべき全項目を一覧で紹介。</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 第6章 -->
+        <div class="chapter-page" id="chapter-6">
+            <div class="chapter-header">
+                <div class="chapter-page-number">p.6</div>
+                <h2 class="chapter-title">
+                    <span class="chapter-number">第6章</span>賢く使う補助金・税金｜最大200万円の補助
+                </h2>
+                <p class="chapter-part">第1部 家を買う【購入検討者向け】</p>
+            </div>
+
+            <div class="content-grid">
+
+                <div class="content-card">
+                    <div class="content-number">No.1</div>
+                    <div class="content-title">【最大200万円】先進的窓リノベ補助金の申請方法</div>
+                    <div class="content-desc">窓交換工事で最大200万円の補助金が受給可能。2024年からドア交換も対象に拡大。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.2</div>
+                    <div class="content-title">【給湯省エネ2024】高効率給湯器で最大18万円補助</div>
+                    <div class="content-desc">対象機器（エコキュート・エネファーム等）、補助額、申請の流れをテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.3</div>
+                    <div class="content-title">【子育てエコホーム支援事業】最大100万円の補助金</div>
+                    <div class="content-desc">子育て世帯・若者夫婦世帯が対象。省エネ性能の高い住宅購入・リフォームで補助金受給。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.4</div>
+                    <div class="content-title">【親から資金援助】非課税特例を活用しよう</div>
+                    <div class="content-desc">基礎控除110万円+非課税特例の活用法、相続時精算課税制度を30秒で解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.5</div>
+                    <div class="content-title">【5つの税金】不動産購入時にかかる税金まとめ</div>
+                    <div class="content-desc">固定資産税、不動産取得税、登録免許税、印紙税、消費税の内容と軽減措置をテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.6</div>
+                    <div class="content-title">【補助金まとめ】2024年に使える住宅補助金3選</div>
+                    <div class="content-desc">先進的窓リノベ、給湯省エネ、子育てエコホームの3つを比較ポイントを解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.7</div>
+                    <div class="content-title">【固定資産税】毎年いくらかかる？計算方法を解説</div>
+                    <div class="content-desc">固定資産税評価額×1.4％の計算式。軽減措置（新築・中古）も紹介。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.8</div>
+                    <div class="content-title">【不動産取得税】購入時に一度だけかかる税金</div>
+                    <div class="content-desc">課税標準×3％の計算式。軽減措置（床面積50㎡以上など）の条件をテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.9</div>
+                    <div class="content-title">【登録免許税】所有権移転・抵当権設定にかかる税金</div>
+                    <div class="content-desc">土地・建物の所有権移転、抵当権設定の税率と軽減措置を整理。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.10</div>
+                    <div class="content-title">【補助金申請】失敗しないための3つのポイント</div>
+                    <div class="content-desc">期限厳守、書類不備に注意、業者選びが重要。申請の流れを実演。</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 第7章 -->
+        <div class="chapter-page" id="chapter-7">
+            <div class="chapter-header">
+                <div class="chapter-page-number">p.7</div>
+                <h2 class="chapter-title">
+                    <span class="chapter-number">第7章</span>契約から入居まで｜手続きの流れ
+                </h2>
+                <p class="chapter-part">第1部 家を買う【購入検討者向け】</p>
+            </div>
+
+            <div class="content-grid">
+
+                <div class="content-card">
+                    <div class="content-number">No.1</div>
+                    <div class="content-title">【購入申し込み前】チェックすべき3つのポイント</div>
+                    <div class="content-desc">物件確認、契約内容確認、買付証明書の正確な記載をテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.2</div>
+                    <div class="content-title">【売買契約】手付金・解除条件を理解しよう</div>
+                    <div class="content-desc">契約の自由原則、手付金の性質、解除条件を30秒で解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.3</div>
+                    <div class="content-title">【購入の流れ】情報収集から入居まで約3ヶ月</div>
+                    <div class="content-desc">情報収集→相談→物件選び→申込→契約→ローン手続き→決済の8ステップをテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.4</div>
+                    <div class="content-title">【不動産会社の選び方】囲い込みを避ける方法</div>
+                    <div class="content-desc">誠実な説明、幅広い物件紹介、囲い込みなどの悪質行為を避ける業者選びのポイント。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.5</div>
+                    <div class="content-title">【契約当日】持ち物・流れを事前確認</div>
+                    <div class="content-desc">印鑑、身分証明書、手付金、印紙代など、契約当日の持ち物と流れを実演。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.6</div>
+                    <div class="content-title">【必要書類チェックリスト】購入時に用意するもの</div>
+                    <div class="content-desc">申し込み時、契約時、ローン申込時、決済時の4段階で必要書類を整理。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.7</div>
+                    <div class="content-title">【3つの契約】売買契約・ローン契約・保険契約の違い</div>
+                    <div class="content-desc">不動産売買契約、住宅ローン契約、火災保険契約の内容と順序をテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.8</div>
+                    <div class="content-title">【決済の流れ】引き渡し当日のスケジュール</div>
+                    <div class="content-desc">残金支払い、登記手続き、鍵の引き渡しまでの流れを時系列で紹介。</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 第8章 -->
+        <div class="chapter-page" id="chapter-8">
+            <div class="chapter-header">
+                <div class="chapter-page-number">p.8</div>
+                <h2 class="chapter-title">
+                    <span class="chapter-number">第8章</span>その他｜太陽光・建築費・サービス
+                </h2>
+                <p class="chapter-part">第1部 家を買う【購入検討者向け】</p>
+            </div>
+
+            <div class="content-grid">
+
+                <div class="content-card">
+                    <div class="content-number">No.1</div>
+                    <div class="content-title">【太陽光発電】メリット・デメリット徹底比較</div>
+                    <div class="content-desc">電気代削減・災害時の電源確保 vs 初期費用100～200万円・蓄電池の寿命15年。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.2</div>
+                    <div class="content-title">【建築費高騰】今買うべき？待つべき？</div>
+                    <div class="content-desc">購入を先延ばしするより、金利上昇リスク・家賃損失を考えると現在の購入が有利。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.3</div>
+                    <div class="content-title">【太陽光の仕組み】5段階フロー図で理解</div>
+                    <div class="content-desc">パネル→接続箱→パワーコンディショナ→分電盤→メーターの流れをテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.4</div>
+                    <div class="content-title">【建築費が上がる理由】人手不足・資材価格上昇</div>
+                    <div class="content-desc">複数要因で建築費が上昇し続ける背景を解説。今後の見通しも紹介。</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 第9章 -->
+        <div class="chapter-page" id="chapter-9">
+            <div class="chapter-header">
+                <div class="chapter-page-number">p.9</div>
+                <h2 class="chapter-title">
+                    <span class="chapter-number">第9章</span>不動産売却の基礎知識
+                </h2>
+                <p class="chapter-part">第2部 家を売る【売却検討者向け】</p>
+            </div>
+
+            <div class="content-grid">
+
+                <div class="content-card">
+                    <div class="content-number">No.1</div>
+                    <div class="content-title">【売却の流れ】査定から引き渡しまで7ステップ</div>
+                    <div class="content-desc">査定→媒介契約→販売活動→内覧→交渉→契約→決済の流れをテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.2</div>
+                    <div class="content-title">【買取vs仲介】どっちがお得？</div>
+                    <div class="content-desc">買取は早い・確実 vs 仲介は高く売れる。メリット・デメリットを比較。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.3</div>
+                    <div class="content-title">【売却タイミング】いつ売るのがベスト？</div>
+                    <div class="content-desc">築年数、金利動向、市況、ライフプラン から最適なタイミングを判断。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.4</div>
+                    <div class="content-title">【査定方法】机上査定 vs 訪問査定</div>
+                    <div class="content-desc">机上査定は早い・手軽、訪問査定は正確。状況に応じて使い分ける。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.5</div>
+                    <div class="content-title">【媒介契約】一般・専任・専属専任、どれを選ぶ？</div>
+                    <div class="content-desc">3つの媒介契約の違いを30秒で解説。複数社に依頼できる vs 1社専属。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.6</div>
+                    <div class="content-title">【高く売るコツ】内覧前にやるべき5つのこと</div>
+                    <div class="content-desc">清掃・整理整頓・におい対策・照明確保・修繕。第一印象が重要。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.7</div>
+                    <div class="content-title">【売却費用】仲介手数料・税金はいくらかかる？</div>
+                    <div class="content-desc">仲介手数料、譲渡所得税、印紙税、抵当権抹消費用などを整理。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.8</div>
+                    <div class="content-title">【よくある失敗】売却でやってはいけない3つのこと</div>
+                    <div class="content-desc">相場を無視した高値設定、内覧対応の失敗、焦って安売りなど。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.9</div>
+                    <div class="content-title">【査定額が違う理由】複数社に依頼すべき？</div>
+                    <div class="content-desc">査定額にばらつきが出る理由、適正価格の見極め方を解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.10</div>
+                    <div class="content-title">【売却期間】平均3～6ヶ月、早く売るコツは？</div>
+                    <div class="content-desc">価格設定、内覧対応、販売活動の工夫で売却期間を短縮。</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 第10章 -->
+        <div class="chapter-page" id="chapter-10">
+            <div class="chapter-header">
+                <div class="chapter-page-number">p.10</div>
+                <h2 class="chapter-title">
+                    <span class="chapter-number">第10章</span>リースバック活用術
+                </h2>
+                <p class="chapter-part">第2部 家を売る【売却検討者向け】</p>
+            </div>
+
+            <div class="content-grid">
+
+                <div class="content-card">
+                    <div class="content-number">No.1</div>
+                    <div class="content-title">【リースバックとは】売却しても住み続けられる仕組み</div>
+                    <div class="content-desc">自宅を売却して現金化し、そのまま賃貸として住み続ける仕組みをテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.2</div>
+                    <div class="content-title">【リースバック】メリット・デメリット徹底比較</div>
+                    <div class="content-desc">まとまった現金が手に入る・引っ越し不要 vs 家賃が発生・買戻しが高額。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.3</div>
+                    <div class="content-title">【リースバックが向いている人】老後資金・相続対策</div>
+                    <div class="content-desc">老後資金が必要、相続でもめたくない、住み慣れた家に住み続けたい人に最適。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.4</div>
+                    <div class="content-title">【リースバックvs通常売却】どっちを選ぶ？</div>
+                    <div class="content-desc">状況別（老後資金・相続対策・引っ越ししたい）におすすめを診断。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.5</div>
+                    <div class="content-title">【リースバックの流れ】査定から賃貸契約まで</div>
+                    <div class="content-desc">査定→売買契約→売却代金受取→賃貸契約→そのまま居住の5ステップ。</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 第11章 -->
+        <div class="chapter-page" id="chapter-11">
+            <div class="chapter-header">
+                <div class="chapter-page-number">p.11</div>
+                <h2 class="chapter-title">
+                    <span class="chapter-number">第11章</span>相続・資産整理
+                </h2>
+                <p class="chapter-part">第2部 家を売る【売却検討者向け】</p>
+            </div>
+
+            <div class="content-grid">
+
+                <div class="content-card">
+                    <div class="content-number">No.1</div>
+                    <div class="content-title">【相続対策】不動産を誰が相続するか決めておく</div>
+                    <div class="content-desc">遺言書作成、生前贈与、家族信託など、相続トラブルを避ける方法。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.2</div>
+                    <div class="content-title">【空き家問題】放置すると税金6倍！早めの対策を</div>
+                    <div class="content-desc">特定空き家に指定されると固定資産税が6倍に。売却・活用・解体の3択。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.3</div>
+                    <div class="content-title">【資産整理】老後資金のために不動産を売却</div>
+                    <div class="content-desc">年金だけでは不安、医療費・介護費用に備えたい人向けの資産整理術。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.4</div>
+                    <div class="content-title">【生前贈与】不動産を子供に贈与する方法</div>
+                    <div class="content-desc">贈与税の計算、非課税枠、相続時精算課税制度をテンポよく解説。</div>
+                </div>
+
+                <div class="content-card">
+                    <div class="content-number">No.5</div>
+                    <div class="content-title">【終活】不動産の整理は早めに始めよう</div>
+                    <div class="content-desc">元気なうちに売却・贈与を検討。相続でもめないための準備。</div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
