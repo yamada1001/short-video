@@ -4,483 +4,436 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>2025年度 確定申告タスク管理</title>
+    <title>2025年度 確定申告ガイド | freee × e-Tax</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1><i class="fas fa-clipboard-list"></i> 2025年度 確定申告タスク管理</h1>
-            <div class="info-box">
-                <p><strong>開業日:</strong> 2025年5月</p>
-                <p><strong>申告方法:</strong> 青色申告</p>
-                <p><strong>所在地:</strong> 大分市</p>
-                <p><strong>適格請求書発行事業者:</strong> 登録済み（インボイス制度対応）</p>
-                <p><strong>申告期限:</strong> 2026年3月16日（月）</p>
-            </div>
-        </header>
+        <div class="hero">
+            <h1><i class="fas fa-graduation-cap"></i> 2025年度 確定申告ガイド</h1>
+            <p>freeeとe-Taxで、自宅から簡単にオンライン申告</p>
+        </div>
 
         <main>
-            <!-- Phase 1: 事前準備 -->
-            <section class="phase">
-                <h2>📌 Phase 1: 事前準備（〜2026年1月）</h2>
+            <!-- あなたの状況 -->
+            <section class="step">
+                <div class="step-header">
+                    <div class="step-number"><i class="fas fa-user"></i></div>
+                    <div class="step-title">あなたの状況（2025年度）</div>
+                </div>
+                <div class="step-content">
+                    <div class="info-box">
+                        <p><strong>2025年1月:</strong> 正社員として勤務（給与所得あり）</p>
+                        <p><strong>2025年5月:</strong> 開業・個人事業主としてスタート</p>
+                        <p><strong>申告方法:</strong> 青色申告</p>
+                        <p><strong>インボイス:</strong> 登録済み（適格請求書発行事業者）</p>
+                        <p><strong>会計ソフト:</strong> freee使用中</p>
+                    </div>
 
-                <div class="task-group">
-                    <h3>1.1 青色申告の確認</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-1-1">
-                            <label for="task-1-1">青色申告承認申請書の提出確認（開業から2ヶ月以内 or 1月16日まで）</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-1-2">
-                            <label for="task-1-2">青色申告特別控除（65万円 or 55万円）の要件確認</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-1-3">
-                            <label for="task-1-3">e-Taxでの申告方法を確認（65万円控除の条件）</label>
-                            <span class="priority high">重要</span>
-                        </li>
+                    <div class="warning-box">
+                        <strong><i class="fas fa-exclamation-circle"></i> 重要：給与所得+事業所得の両方を申告</strong><br>
+                        2025年は「1月の給与所得」と「5月〜12月の事業所得」の両方があるため、確定申告が必要です。<br>
+                        給与で源泉徴収された税金と、事業所得を合算することで、<strong>還付金が戻ってくる可能性があります。</strong>
+                    </div>
+
+                    <p><strong><i class="fas fa-calendar-check"></i> 申告期限</strong></p>
+                    <ul>
+                        <li><strong>所得税・復興特別所得税</strong>: 2026年2月16日（月）〜 3月16日（月）</li>
+                        <li><strong>消費税</strong>（インボイス登録者）: 2026年3月31日（水）まで</li>
                     </ul>
+
+                    <div class="success-box">
+                        <strong><i class="fas fa-info-circle"></i> 還付申告は早めに提出可能</strong><br>
+                        還付金が見込まれる場合、2026年2月14日（金）から受付開始されます。期限前でも提出できます。
+                    </div>
+                </div>
+            </section>
+
+            <!-- スケジュール -->
+            <section class="calendar">
+                <div class="calendar-title"><i class="fas fa-calendar-alt"></i> 確定申告スケジュール</div>
+
+                <div class="calendar-event">
+                    <div class="calendar-event-date"><i class="fas fa-arrow-right"></i> 2026年1月（今月〜2月）</div>
+                    <div class="calendar-event-title">必要書類を集める</div>
+                    <div class="calendar-event-desc">
+                        <strong style="color: var(--color-natural-brown);">最重要: 源泉徴収票（2025年1月分の給与）</strong><br>
+                        その他: 国民年金、国民健康保険、生命保険料の控除証明書など
+                    </div>
                 </div>
 
-                <div class="task-group">
-                    <h3>1.2 会計ソフトの準備</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-2-1">
-                            <label for="task-2-1">会計ソフトの選定（freee、マネーフォワード、弥生会計など）</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-2-2">
-                            <label for="task-2-2">事業用銀行口座との連携設定</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-2-3">
-                            <label for="task-2-3">クレジットカードとの連携設定</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-2-4">
-                            <label for="task-2-4">開業費の入力（開業前の経費を資産計上）</label>
-                        </li>
-                    </ul>
+                <div class="calendar-event">
+                    <div class="calendar-event-date"><i class="fas fa-edit"></i> 2026年2月</div>
+                    <div class="calendar-event-title">freeeで確定申告書を作成</div>
+                    <div class="calendar-event-desc">
+                        質問に答えるだけで申告書が完成。給与所得と事業所得が自動で合算されます。
+                    </div>
                 </div>
 
-                <div class="task-group">
-                    <h3>1.3 書類整理システムの構築</h3>
-                    <ul class="task-list">
+                <div class="calendar-event" style="border-left-color: var(--color-natural-brown);">
+                    <div class="calendar-event-date" style="color: var(--color-natural-brown);"><i class="fas fa-paper-plane"></i> 2026年2月16日〜3月16日</div>
+                    <div class="calendar-event-title" style="color: var(--color-natural-brown);">e-Taxで提出（申告期間）</div>
+                    <div class="calendar-event-desc">
+                        freeeから直接e-Taxに送信。マイナンバーカードで認証して完了。
+                    </div>
+                </div>
+
+                <div class="calendar-event">
+                    <div class="calendar-event-date"><i class="fas fa-yen-sign"></i> 2026年3月31日まで</div>
+                    <div class="calendar-event-title">消費税の申告・納付</div>
+                    <div class="calendar-event-desc">
+                        インボイス登録事業者として消費税を申告・納付。2割特例の適用も検討。
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 1: 必要書類 -->
+            <section class="step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">必要書類を集める（1月〜2月）</div>
+                </div>
+                <div class="step-content">
+                    <p><strong><i class="fas fa-inbox"></i> 集める書類リスト</strong></p>
+
+                    <div class="warning-box">
+                        <strong><i class="fas fa-star"></i> 最重要：源泉徴収票</strong><br>
+                        2025年1月に退職した会社から発行された源泉徴収票が必須です。<br>
+                        まだ受け取っていない場合は、すぐに前職に連絡して入手してください。
+                    </div>
+
+                    <ul>
                         <li>
-                            <input type="checkbox" id="task-3-1">
-                            <label for="task-3-1">領収書・レシートの保管ルール決定（月別ファイルなど）</label>
+                            <strong><i class="fas fa-file-invoice"></i> 源泉徴収票</strong>（2025年1月分の給与）<br>
+                            退職した会社から交付。給与額・源泉徴収税額が記載されています。
                         </li>
                         <li>
-                            <input type="checkbox" id="task-3-2">
-                            <label for="task-3-2">適格請求書（インボイス）の保存フォルダ作成</label>
-                            <span class="priority high">重要</span>
+                            <strong><i class="fas fa-building"></i> 国民年金の控除証明書</strong><br>
+                            11月頃に日本年金機構から郵送。紛失した場合は再発行可能。<br>
+                            <a href="https://www.nenkin.go.jp/" target="_blank">日本年金機構サイト</a>
                         </li>
                         <li>
-                            <input type="checkbox" id="task-3-3">
-                            <label for="task-3-3">請求書控えの保存（7年間保存義務）</label>
+                            <strong><i class="fas fa-hospital"></i> 国民健康保険料の支払証明書</strong><br>
+                            大分市役所の国保年金課に問い合わせると発行してもらえます。<br>
+                            <a href="https://www.city.oita.oita.jp/" target="_blank">大分市役所サイト</a>
                         </li>
                         <li>
-                            <input type="checkbox" id="task-3-4">
-                            <label for="task-3-4">電子帳簿保存法の対応確認（スキャナ保存など）</label>
+                            <strong><i class="fas fa-shield-alt"></i> 生命保険料・地震保険料の控除証明書</strong><br>
+                            加入している保険会社から10月〜11月に届きます。
                         </li>
+                        <li>
+                            <strong><i class="fas fa-gift"></i> ふるさと納税の寄付金受領証明書</strong>（該当する場合）<br>
+                            ワンストップ特例を使っていない人のみ必要。
+                        </li>
+                        <li>
+                            <strong><i class="fas fa-piggy-bank"></i> 小規模企業共済等掛金の払込証明書</strong>（該当する場合）<br>
+                            加入している場合のみ（10月〜11月に届きます）
+                        </li>
+                    </ul>
+
+                    <div class="note-box">
+                        <strong><i class="fas fa-info-circle"></i> 証明書を無くした場合</strong><br>
+                        各機関に連絡すれば再発行してもらえます。早めに問い合わせましょう。
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2: freeeで申告書作成 -->
+            <section class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">freeeで確定申告書を作成（2月）</div>
+                </div>
+                <div class="step-content">
+                    <p><strong><i class="fas fa-desktop"></i> freeeなら質問に答えるだけで申告書が完成</strong></p>
+
+                    <p><strong><i class="fas fa-list-ol"></i> 操作手順</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>
+                            <strong>freeeにログイン</strong><br>
+                            <a href="https://www.freee.co.jp/" target="_blank">https://www.freee.co.jp/</a>
+                        </li>
+                        <li>
+                            <strong>メニューから「確定申告」をクリック</strong><br>
+                            画面左のメニューに「確定申告」という項目があります
+                        </li>
+                        <li>
+                            <strong>「確定申告書類の作成」を開始</strong><br>
+                            「確定申告を始める」ボタンをクリック
+                        </li>
+                        <li>
+                            <strong>「会社から給与を受け取りましたか？」に「はい」と回答</strong><br>
+                            2025年1月に給与所得があるため
+                        </li>
+                    </ol>
+
+                    <div class="note-box">
+                        <h3><i class="fas fa-upload"></i> 源泉徴収票の入力方法（3つから選択）</h3>
+                        <p><strong>① AI-OCRアップロード（一番簡単！）</strong></p>
+                        <ul>
+                            <li>源泉徴収票をスマホで撮影 or PDFをアップロード</li>
+                            <li>AIが自動で読み取って入力してくれます</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><strong>② マイナンバーポータル連携</strong></p>
+                        <ul>
+                            <li>前職がe-Taxで源泉徴収票を提出している場合</li>
+                            <li>マイナンバーカードで連携して自動取得</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><strong>③ 手動入力</strong></p>
+                        <ul>
+                            <li>源泉徴収票を見ながら手入力</li>
+                            <li>freeeの画面に源泉徴収票のイメージが表示されるので見やすい</li>
+                        </ul>
+                    </div>
+
+                    <ol style="margin-left: 20px;" start="5">
+                        <li>
+                            <strong>事業所得の確認</strong><br>
+                            freeeで記帳した5月〜12月の取引データから自動で集計されます
+                        </li>
+                        <li>
+                            <strong>所得控除の入力</strong><br>
+                            国民年金、国民健康保険、生命保険料などの控除証明書の金額を入力
+                        </li>
+                        <li>
+                            <strong>青色申告特別控除の確認</strong><br>
+                            「65万円控除」が選ばれているか確認（e-Taxで電子申告すると65万円控除）
+                        </li>
+                        <li>
+                            <strong>消費税の申告書も作成</strong><br>
+                            インボイス登録事業者のため消費税申告も必要。<br>
+                            <strong>「2割特例」</strong>を使うと納税額が少なくなる可能性があります
+                        </li>
+                        <li>
+                            <strong>申告書のプレビュー確認</strong><br>
+                            最後に申告書のPDFを確認して、間違いがないかチェック
+                        </li>
+                    </ol>
+
+                    <div class="success-box">
+                        <h3><i class="fas fa-check-circle"></i> 還付金が戻ってくる可能性が高いです</h3>
+                        <p><strong>給与所得</strong>（2025年1月）と<strong>事業所得</strong>（5月〜12月）を合算すると、税金が戻ってくる可能性が高いです。</p>
+
+                        <p style="margin-top: 15px;"><strong>理由：</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>会社員時代の給与から源泉徴収で税金が天引きされている</li>
+                            <li>事業所得と合算して再計算すると、所得が減る可能性がある</li>
+                            <li>結果として、払いすぎた税金が還付される</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><strong>確認方法：</strong></p>
+                        <ol style="margin-left: 20px;">
+                            <li>源泉徴収票で「源泉徴収税額」を確認（既に払った税金）</li>
+                            <li>freeeで申告書を作成すると、還付金額が自動計算される</li>
+                            <li>還付金は、申告から1〜2ヶ月後に指定口座に振り込まれます</li>
+                        </ol>
+                    </div>
+
+                    <div class="button-group">
+                        <a href="https://support.freee.co.jp/hc/ja/articles/207605616" target="_blank" class="btn"><i class="fas fa-book"></i> freee: 給与所得の入力方法</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 3: e-Taxで提出 -->
+            <section class="step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">e-Taxでオンライン提出（2月16日〜3月16日）</div>
+                </div>
+                <div class="step-content">
+                    <p><strong><i class="fas fa-globe"></i> e-Taxとは</strong><br>
+                    税務署に行かなくても、インターネットで確定申告ができるシステムです。<br>
+                    freeeから直接e-Taxに送信できるので、とっても簡単です。</p>
+
+                    <p><strong><i class="fas fa-key"></i> 事前準備（初回のみ）</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>
+                            <strong>マイナンバーカードを用意</strong><br>
+                            まだ持っていない人は市役所で申請しましょう（発行まで1ヶ月程度）<br>
+                            <a href="https://www.kojinbango-card.go.jp/" target="_blank">マイナンバーカード総合サイト</a>
+                        </li>
+                        <li>
+                            <strong>スマホにマイナポータルアプリをインストール</strong><br>
+                            iPhoneでもAndroidでもOK<br>
+                            <a href="https://app.oss.myna.go.jp/" target="_blank">マイナポータルアプリ</a>
+                        </li>
+                        <li>
+                            <strong>利用者識別番号を取得</strong><br>
+                            e-Taxを使うために必要な番号です。freeeの画面から簡単に取得できます。
+                        </li>
+                    </ol>
+
+                    <p><strong><i class="fas fa-upload"></i> freeeからe-Taxで提出する手順</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li><strong>freeeの確定申告画面で「電子申告」を選択</strong></li>
+                        <li><strong>「e-Taxで提出する」ボタンをクリック</strong></li>
+                        <li>
+                            <strong>マイナンバーカードで認証</strong><br>
+                            スマホをかざして認証します（カードリーダーがなくてもスマホでOK）
+                        </li>
+                        <li>
+                            <strong>申告データを送信</strong><br>
+                            ボタンを押すだけで送信完了
+                        </li>
+                        <li>
+                            <strong>受信通知を確認</strong><br>
+                            「申告を受け付けました」というメッセージが表示されたら成功です
+                        </li>
+                        <li>
+                            <strong>控えをPDFで保存</strong><br>
+                            念のため、申告書の控えをパソコンに保存しておきましょう
+                        </li>
+                    </ol>
+
+                    <div class="success-box">
+                        <strong><i class="fas fa-check-circle"></i> 提出完了</strong><br>
+                        これで確定申告は終了です。freeeとe-Taxを使えば、税務署に行かなくても自宅で完結できます。
+                    </div>
+
+                    <div class="button-group">
+                        <a href="https://www.e-tax.nta.go.jp/" target="_blank" class="btn"><i class="fas fa-external-link-alt"></i> e-Tax公式サイト</a>
+                        <a href="https://support.freee.co.jp/hc/ja/articles/360001289882" target="_blank" class="btn btn-secondary"><i class="fas fa-book"></i> freeeからe-Taxで提出する方法</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 4: 納税 -->
+            <section class="step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">税金を納める（還付される）</div>
+                </div>
+                <div class="step-content">
+                    <p><strong><i class="fas fa-calendar-check"></i> 納付（還付）期限</strong></p>
+                    <ul>
+                        <li><strong>所得税</strong>：freeeで計算された金額（還付の場合は1〜2ヶ月後に振込）</li>
+                        <li><strong>消費税</strong>：2026年3月31日まで</li>
+                    </ul>
+
+                    <div class="success-box">
+                        <strong><i class="fas fa-info-circle"></i> 還付金が見込まれる場合</strong><br>
+                        源泉徴収された税金が戻ってくる場合、申告から1〜2ヶ月後に指定口座に振り込まれます。<br>
+                        振込先は、freeeで申告書を作成するときに入力します。
+                    </div>
+
+                    <p><strong><i class="fas fa-credit-card"></i> 消費税の支払い方法（おすすめ順）</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>
+                            <strong>ダイレクト納付（e-Taxから即座に引き落とし）</strong><br>
+                            一番簡単。e-Taxで申告したら、そのまま銀行口座から引き落とし<br>
+                            事前に「ダイレクト納付利用届出書」の提出が必要（e-Taxから提出可能）
+                        </li>
+                        <li>
+                            <strong>インターネットバンキングで納付</strong><br>
+                            自分の銀行のネットバンキングから「国庫金」として納付
+                        </li>
+                        <li>
+                            <strong>クレジットカードで納付</strong><br>
+                            国税クレジットカードお支払サイトから納付<br>
+                            手数料がかかります（納付額の0.8%程度）<br>
+                            <a href="https://kokuzei.noufu.jp/" target="_blank">国税クレジットカード納付サイト</a>
+                        </li>
+                        <li>
+                            <strong>コンビニで納付（30万円以下の場合）</strong><br>
+                            QRコードを発行してコンビニで支払い
+                        </li>
+                    </ol>
+
+                    <div class="button-group">
+                        <a href="https://www.nta.go.jp/taxes/nozei/nofu/index.htm" target="_blank" class="btn"><i class="fas fa-external-link-alt"></i> 国税庁：納付方法</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- よくある質問 -->
+            <section class="step">
+                <div class="step-header">
+                    <div class="step-number"><i class="fas fa-question-circle"></i></div>
+                    <div class="step-title">よくある質問（Q&A）</div>
+                </div>
+                <div class="step-content">
+                    <p><strong>Q1. 源泉徴収票を無くしてしまいました</strong></p>
+                    <p>A. 前職の会社に連絡して再発行してもらえます。通常は無料で再発行してくれます。早めに連絡しましょう。</p>
+
+                    <p><strong>Q2. 給与所得と事業所得の両方がある場合、どうやって申告しますか？</strong></p>
+                    <p>A. freeeの確定申告画面で「会社から給与を受け取りましたか？」に「はい」と回答し、源泉徴収票の内容を入力します。事業所得は自動で集計されるので、両方が合算された申告書が作成されます。</p>
+
+                    <p><strong>Q3. 青色申告承認申請書は提出しましたか？</strong></p>
+                    <p>A. 開業から2ヶ月以内（2025年7月まで）に提出する必要があります。まだの場合は、2026年3月15日までに提出すれば2026年分から青色申告できます。<br>
+                    <a href="https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/shinkoku/annai/09.htm" target="_blank">青色申告承認申請書（国税庁）</a></p>
+
+                    <p><strong>Q4. 消費税の「2割特例」って何？</strong></p>
+                    <p>A. インボイス登録した事業者が使える特例で、<strong>納める消費税 = 売上の消費税 × 20%</strong> で計算できます。<br>
+                    通常の計算方法より納税額が少なくなる場合が多いので、freeeで自動計算してもらって有利な方を選びましょう。</p>
+
+                    <p><strong>Q5. 還付金はいつ振り込まれますか？</strong></p>
+                    <p>A. e-Taxで電子申告した場合、通常1〜2ヶ月後に指定口座に振り込まれます。書面提出の場合は1〜3ヶ月かかることがあります。</p>
+
+                    <p><strong>Q6. 分からないことがあったらどうすればいい？</strong></p>
+                    <p>A. 以下の相談先があります：</p>
+                    <ul>
+                        <li><strong>大分税務署</strong>：電話で質問できます（繁忙期は混みます）<br>
+                        TEL: 097-532-4171</li>
+                        <li><strong>freeeのサポート</strong>：チャットやメールで質問できます<br>
+                        <a href="https://support.freee.co.jp/" target="_blank">freeeサポート</a></li>
                     </ul>
                 </div>
             </section>
 
-            <!-- Phase 2: 日常記帳 -->
-            <section class="phase">
-                <h2>✅ Phase 2: 日常記帳（2025年5月〜12月）【完了済み】</h2>
-
-                <div class="task-group">
-                    <h3>2.1 毎月の記帳作業【全て完了】</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-4-1" checked>
-                            <label for="task-4-1">5月分の記帳完了</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-4-2" checked>
-                            <label for="task-4-2">6月分の記帳完了</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-4-3" checked>
-                            <label for="task-4-3">7月分の記帳完了</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-4-4" checked>
-                            <label for="task-4-4">8月分の記帳完了</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-4-5" checked>
-                            <label for="task-4-5">9月分の記帳完了</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-4-6" checked>
-                            <label for="task-4-6">10月分の記帳完了</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-4-7" checked>
-                            <label for="task-4-7">11月分の記帳完了</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-4-8" checked>
-                            <label for="task-4-8">12月分の記帳完了</label>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="task-group">
-                    <h3>2.2 インボイス制度対応</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-5-1">
-                            <label for="task-5-1">発行する請求書に登録番号を記載</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-5-2">
-                            <label for="task-5-2">受け取った請求書の登録番号確認（仕入税額控除の要件）</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-5-3">
-                            <label for="task-5-3">適格請求書の記載事項確認（税率区分、税額など）</label>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Phase 3: 年末準備 -->
-            <section class="phase">
-                <h2>🎯 Phase 3: 年末準備（2025年12月〜2026年1月）</h2>
-
-                <div class="task-group">
-                    <h3>3.1 棚卸・固定資産</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-6-1">
-                            <label for="task-6-1">在庫の棚卸（該当する場合）</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-6-2">
-                            <label for="task-6-2">固定資産台帳の作成（10万円以上の資産）</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-6-3">
-                            <label for="task-6-3">減価償却費の計算</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-6-4">
-                            <label for="task-6-4">少額減価償却資産の特例確認（30万円未満）</label>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="task-group">
-                    <h3>3.2 経費の最終確認</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-7-1">
-                            <label for="task-7-1">家事按分の計算（自宅兼事務所の場合）</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-7-2">
-                            <label for="task-7-2">通信費の事業割合計算</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-7-3">
-                            <label for="task-7-3">水道光熱費の事業割合計算</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-7-4">
-                            <label for="task-7-4">車両費の事業割合計算（該当する場合）</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-7-5">
-                            <label for="task-7-5">漏れている経費の確認（クレジットカード明細チェック）</label>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="task-group">
-                    <h3>3.3 必要書類の収集</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-8-1">
-                            <label for="task-8-1">支払調書の受領（取引先から）</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-8-2">
-                            <label for="task-8-2">国民健康保険料の支払証明書</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-8-3">
-                            <label for="task-8-3">国民年金保険料の控除証明書</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-8-4">
-                            <label for="task-8-4">生命保険料控除証明書</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-8-5">
-                            <label for="task-8-5">地震保険料控除証明書</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-8-6">
-                            <label for="task-8-6">ふるさと納税の寄付金受領証明書</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-8-7">
-                            <label for="task-8-7">小規模企業共済等掛金の払込証明書（該当する場合）</label>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Phase 4: 申告書作成 -->
-            <section class="phase">
-                <h2>📄 Phase 4: 申告書作成（2026年2月〜3月15日）</h2>
-
-                <div class="task-group">
-                    <h3>4.1 決算書の作成</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-9-1">
-                            <label for="task-9-1">青色申告決算書（損益計算書）の作成</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-9-2">
-                            <label for="task-9-2">青色申告決算書（貸借対照表）の作成</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-9-3">
-                            <label for="task-9-3">月別売上・仕入の集計</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-9-4">
-                            <label for="task-9-4">減価償却費の明細書作成</label>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="task-group">
-                    <h3>4.2 確定申告書Bの作成</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-10-1">
-                            <label for="task-10-1">所得金額の計算</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-10-2">
-                            <label for="task-10-2">所得控除の計算（社会保険料、生命保険料など）</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-10-3">
-                            <label for="task-10-3">基礎控除・配偶者控除の確認</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-10-4">
-                            <label for="task-10-4">税額の計算</label>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="task-group">
-                    <h3>4.3 消費税申告（適格請求書発行事業者）</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-11-1">
-                            <label for="task-11-1">課税売上高の集計</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-11-2">
-                            <label for="task-11-2">仕入税額控除の計算（インボイス保存確認）</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-11-3">
-                            <label for="task-11-3">簡易課税 or 本則課税の選択確認</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-11-4">
-                            <label for="task-11-4">消費税及び地方消費税の申告書作成</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-11-5">
-                            <label for="task-11-5">2割特例の適用確認（インボイス登録初年度〜3年間）</label>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Phase 5: 提出 -->
-            <section class="phase">
-                <h2>✅ Phase 5: 提出（〜2026年3月16日）</h2>
-
-                <div class="task-group">
-                    <h3>5.1 e-Taxでの提出準備</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-12-1">
-                            <label for="task-12-1">マイナンバーカードの準備</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-12-2">
-                            <label for="task-12-2">ICカードリーダーの準備 or スマホ認証の設定</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-12-3">
-                            <label for="task-12-3">e-Taxソフト or 会計ソフトからの電子申告設定</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-12-4">
-                            <label for="task-12-4">利用者識別番号の取得（初回のみ）</label>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="task-group">
-                    <h3>5.2 申告書の提出</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-13-1">
-                            <label for="task-13-1">所得税の確定申告書提出（e-Tax）</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-13-2">
-                            <label for="task-13-2">消費税の確定申告書提出（e-Tax）</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-13-3">
-                            <label for="task-13-3">送信完了通知の保存</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-13-4">
-                            <label for="task-13-4">申告書控えのPDF保存</label>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="task-group">
-                    <h3>5.3 納税</h3>
-                    <ul class="task-list">
-                        <li>
-                            <input type="checkbox" id="task-14-1">
-                            <label for="task-14-1">所得税の納付（3月16日まで）</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-14-2">
-                            <label for="task-14-2">消費税の納付（3月31日まで）</label>
-                            <span class="priority high">重要</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="task-14-3">
-                            <label for="task-14-3">振替納税の手続き（口座引落し希望の場合）</label>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- 重要リンク -->
+            <!-- 重要リンク集 -->
             <section class="links">
-                <h2>🔗 重要リンク</h2>
+                <h2><i class="fas fa-link"></i> 重要リンク集</h2>
                 <ul>
-                    <li><a href="https://www.nta.go.jp/" target="_blank">国税庁ホームページ</a></li>
-                    <li><a href="https://www.e-tax.nta.go.jp/" target="_blank">e-Tax（国税電子申告・納税システム）</a></li>
-                    <li><a href="https://www.nta.go.jp/taxes/shiraberu/shinkoku/kakutei.htm" target="_blank">確定申告特集ページ</a></li>
-                    <li><a href="https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/invoice.htm" target="_blank">インボイス制度特設サイト</a></li>
-                    <li><a href="https://www.nta.go.jp/about/organization/access/map.htm" target="_blank">大分税務署（所在地・連絡先）</a></li>
+                    <li><a href="https://www.freee.co.jp/" target="_blank"><i class="fas fa-external-link-alt"></i> 会計freee（ログイン）</a></li>
+                    <li><a href="https://www.e-tax.nta.go.jp/" target="_blank"><i class="fas fa-external-link-alt"></i> e-Tax（国税電子申告システム）</a></li>
+                    <li><a href="https://www.nta.go.jp/" target="_blank"><i class="fas fa-external-link-alt"></i> 国税庁ホームページ</a></li>
+                    <li><a href="https://www.nta.go.jp/about/organization/oita/index.htm" target="_blank"><i class="fas fa-external-link-alt"></i> 大分税務署</a></li>
+                    <li><a href="https://app.oss.myna.go.jp/" target="_blank"><i class="fas fa-external-link-alt"></i> マイナポータル</a></li>
+                    <li><a href="https://www.kojinbango-card.go.jp/" target="_blank"><i class="fas fa-external-link-alt"></i> マイナンバーカード総合サイト</a></li>
+                    <li><a href="https://support.freee.co.jp/hc/ja" target="_blank"><i class="fas fa-external-link-alt"></i> freeeヘルプセンター</a></li>
+                    <li><a href="https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/invoice.htm" target="_blank"><i class="fas fa-external-link-alt"></i> インボイス制度特設サイト</a></li>
                 </ul>
             </section>
 
-            <!-- メモエリア -->
-            <section class="notes">
-                <h2>📝 メモ・注意事項</h2>
-                <div class="note-box">
-                    <h3>青色申告特別控除（65万円）の要件</h3>
-                    <ul>
-                        <li>複式簿記による記帳</li>
-                        <li>貸借対照表と損益計算書の作成</li>
-                        <li>e-Taxでの電子申告 OR 電子帳簿保存</li>
-                        <li>期限内申告（3月16日まで）</li>
-                    </ul>
+            <!-- まとめ -->
+            <section class="step">
+                <div class="step-header">
+                    <div class="step-number"><i class="fas fa-bullseye"></i></div>
+                    <div class="step-title">まとめ：やることリスト</div>
                 </div>
+                <div class="step-content">
+                    <p><strong><i class="fas fa-clipboard-list"></i> シンプル版やることリスト</strong></p>
+                    <ol style="margin-left: 20px; font-size: 1.1rem; line-height: 2;">
+                        <li><strong>源泉徴収票を入手</strong>（2025年1月分・最重要）</li>
+                        <li><strong>控除証明書を集める</strong>（国民年金、健康保険、生命保険など）</li>
+                        <li><strong>freeeで申告書を作る</strong>（給与所得+事業所得を入力）</li>
+                        <li><strong>e-Taxで送信する</strong>（マイナンバーカードで認証）</li>
+                        <li><strong>消費税を納める</strong>（3月31日まで）</li>
+                        <li><strong>還付金の振込を待つ</strong>（1〜2ヶ月後）</li>
+                    </ol>
 
-                <div class="note-box">
-                    <h3>2025年開業の注意点</h3>
-                    <ul>
-                        <li>5月〜12月の8ヶ月分が申告対象</li>
-                        <li>開業費は資産計上→5年で償却 or 任意償却</li>
-                        <li>開業前の経費も「開業費」として計上可能</li>
-                        <li>月割りでの控除額計算（国民年金・健康保険など）</li>
-                    </ul>
-                </div>
-
-                <div class="note-box">
-                    <h3>インボイス制度（2割特例）</h3>
-                    <ul>
-                        <li>2023年10月〜2026年9月の登録事業者が対象</li>
-                        <li>納税額 = 売上税額 × 20%（仕入税額控除不要）</li>
-                        <li>申告時に適用を選択（事前届出不要）</li>
-                        <li>通常の計算方法と有利な方を選択可能</li>
-                    </ul>
-                </div>
-
-                <div class="note-box">
-                    <h3>経費になるもの・ならないもの</h3>
-                    <p><strong>経費になる:</strong> 事業に直接関係する支出（通信費、広告費、交通費、書籍代、消耗品費、外注費など）</p>
-                    <p><strong>経費にならない:</strong> 個人的な支出、住民税・所得税、罰金、生計を一にする家族への給与（青色事業専従者を除く）</p>
+                    <div class="success-box">
+                        <strong><i class="fas fa-check-circle"></i> 確定申告は怖くない</strong><br>
+                        freeeとe-Taxを使えば、自宅で簡単に完了できます。<br>
+                        分からないことがあったら、freeeのサポートや税務署に気軽に相談してくださいね。
+                    </div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>最終更新: 2025年12月29日</p>
-            <p>※このタスクリストは一般的な内容です。詳細は税理士または税務署にご相談ください。</p>
+            <p>最終更新: 2026年1月4日</p>
+            <p>このガイドは一般的な内容です。詳細は税理士または税務署にご相談ください。</p>
         </footer>
     </div>
 
     <script>
-        // チェックボックスの状態をローカルストレージに保存
-        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-            // ページ読み込み時に状態を復元
-            const savedState = localStorage.getItem(checkbox.id);
-            if (savedState === 'true') {
-                checkbox.checked = true;
-            }
-
-            // チェック状態が変わったら保存
-            checkbox.addEventListener('change', function() {
-                localStorage.setItem(this.id, this.checked);
-                updateProgress();
-            });
-        });
-
-        // 進捗状況の更新
-        function updateProgress() {
-            const total = document.querySelectorAll('input[type="checkbox"]').length;
-            const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
-            const percentage = Math.round((checked / total) * 100);
-
-            console.log(`進捗: ${checked}/${total} (${percentage}%)`);
-        }
-
-        // 初期表示時の進捗
-        updateProgress();
+        // ページ読み込み時のメッセージ
+        console.log('確定申告ガイドを読み込みました');
     </script>
 </body>
 </html>
